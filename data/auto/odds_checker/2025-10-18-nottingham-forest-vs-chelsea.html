@@ -54,4 +54,21 @@
               </div>
             
         </div>
-        </div></body></html>
+        </div>
+<script>
+(function () {
+  function sendHeight() {
+    var h = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    // send height with a little padding
+    window.parent.postMessage({ type: 'ODDS_IFRAME_HEIGHT', height: h + 20 }, '*');
+  }
+  window.addEventListener('load', function(){ setTimeout(sendHeight, 50); });
+  window.addEventListener('resize', sendHeight);
+  setInterval(sendHeight, 1000);
+})();
+</script>
+
+</body></html>
