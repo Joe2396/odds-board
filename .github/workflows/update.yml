@@ -1,38 +1,79 @@
 name: Update Odds + Arbitrage Pages
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"   # every hour
-  workflow_dispatch:      # allows manual runs
+    # run 15 minutes past every hour (adjust if you like)
+    - cron: '15 * * * *'
+
+# allow the action to push updates back to this repo
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0    # we need full history for clean commits
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.10"
+      - name: Show where we are
+        run: |
+          pwd
+          ls -la
+          git status
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Run update scripts
-      run: |
-        python src/app/arb_goals_totals.py
-        python src/app/generate_odds_checker.py
-        # add any other scripts you want here
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "No requirements.txt found (ok if everything is stdlib)."
+          fi
 
-    - name: Commit and push changes
-      run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-        git add data/auto/*.html arb_goals_latest.html latest.html
-        git commit -m "Auto update odds + arbitrage pages" || echo "No changes to commit"
-        git push
+      - name: Run generators
+        env:
+          PYTHONPATH: src  # so modules under src are importable
+        run: |
+          # print tree for debugging
+          echo "----- repo tree -----"
+          ls -R | sed -n '1,200p'
+          echo "---------------------"
+
+          # run your scripts (adjust if names/locations differ)
+          python src/app/generate_odds_checker.py
+          python src/app/arb_goals_totals.py
+
+          # optional: if you created this helper to patch heights
+          if [ -f src/patch_iframe.py ]; then
+            python src/patch_iframe.py || true
+          fi
+
+      - name: Show changed files
+        run: |
+          echo "Changed files:"
+          git status --porcelain
+          git diff --name-only | sed -n '1,200p' || true
+
+      - name: Commit & push if there are changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Auto-update odds & arbitrage pages [skip ci]"
+          git push
