@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'></head><body>
     <div style="color:#E2E8F0;background:#0F1621;padding:24px;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
       <h1 style="margin:0 0 6px 0;">EPL Odds Checker</h1>
-      <p style="opacity:0.8;margin:0 0 16px 0;">Click a fixture to view Match Result & Total Goals odds. Updated: 2025-10-16 12:03:43Z</p>
+      <p style="opacity:0.8;margin:0 0 16px 0;">Click a fixture to view Match Result & Total Goals odds. Updated: 2025-10-18 01:56:28Z</p>
       
           <h2 style="margin:18px 0 10px 0;">2025-10-18</h2>
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
@@ -254,21 +254,4 @@
           </div>
         
     </div>
-    
-<script>
-(function () {
-  function sendHeight() {
-    var h = Math.max(
-      document.documentElement.scrollHeight,
-      document.body.scrollHeight
-    );
-    // send height with a little padding
-    window.parent.postMessage({ type: 'ODDS_IFRAME_HEIGHT', height: h + 20 }, '*');
-  }
-  window.addEventListener('load', function(){ setTimeout(sendHeight, 50); });
-  window.addEventListener('resize', sendHeight);
-  setInterval(sendHeight, 1000);
-})();
-</script>
-
-</body></html>
+    </body></html>
