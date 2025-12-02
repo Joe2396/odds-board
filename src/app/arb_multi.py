@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 EPL Multi-Market Arbitrage Finder – UK books via The Odds API.
-Markets: 1X2 · BTTS · Double Chance · Totals
+Markets: 1X2 · Double Chance · Totals
 Output: data/auto/arb_latest.html
 """
 
