@@ -3,8 +3,9 @@ name: Update Odds + Arbitrage Pages V2
 on:
   workflow_dispatch: {}
   schedule:
-    # run 15 minutes past every hour (adjust if you like)
-    - cron: '15 * * * *'
+    - cron: '*/5 * * * *'
+
+
 
 # allow the action to push updates back to this repo
 permissions:
