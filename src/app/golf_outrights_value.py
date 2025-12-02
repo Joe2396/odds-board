@@ -13,7 +13,7 @@ import requests
 import pandas as pd
 
 # ====== CONFIG ======
-API_KEY = "YOUR_ODDS_API_KEY_HERE"   # <- put your key here
+API_KEY = "98fb91f398403151a3eece97dc514a0b"   # <- put your key here
 SPORT = "golf_pga"                   # PGA Tour only
 REGIONS = "uk"                       # adjust if you want other regions
 MARKETS = "outrights"
