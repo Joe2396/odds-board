@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 EPL Multi-Market Arbitrage Finder – UK books via The Odds API.
-Markets: 1X2 · Double Chance · Totals
+
+Markets covered in this version:
+- Match Result (1X2 / h2h)
+- Goals Totals (Over/Under)
+
 Output: data/auto/arb_latest.html
 """
 
-import json, html
+import html
 from pathlib import Path
 from datetime import datetime, timezone
 import requests
@@ -15,347 +19,402 @@ import pandas as pd
 API_KEY = "98fb91f398403151a3eece97dc514a0b"
 SPORT = "soccer_epl"
 REGIONS = "uk"
-MARKETS = "h2h,btts,totals"
+# IMPORTANT: ONLY markets supported by /odds here
+MARKETS = "h2h,totals"
 ODDS_FORMAT = "decimal"
 DATE_FORMAT = "iso"
-BANKROLL = 100.0
-STALE_MIN = 240
+
+BANKROLL = 100.0            # bankroll used for stake splits
+STALE_MIN = 240             # ignore very old markets (if timestamps present)
 OUTPUT_HTML = Path("data/auto/arb_latest.html")
 TIMEOUT = 20
 
 BOOK_PRIORITY = [
-    "PaddyPower","Betfair","Betfair Sportsbook","William Hill",
-    "Ladbrokes","SkyBet","Unibet","BetVictor","BoyleSports","Casumo"
+    "PaddyPower", "Betfair", "Betfair Sportsbook", "William Hill",
+    "Ladbrokes", "SkyBet", "Unibet", "BetVictor", "BoyleSports", "Casumo"
 ]
 
-# ===== Helpers =====
 
-def now_iso():
+# ===== HELPERS =====
+def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
 
+
 def fetch_all():
+    """
+    Fetch EPL odds for supported markets using The Odds API.
+    """
     url = f"https://api.the-odds-api.com/v4/sports/{SPORT}/odds"
     params = dict(
         apiKey=API_KEY,
         regions=REGIONS,
         markets=MARKETS,
         oddsFormat=ODDS_FORMAT,
-        dateFormat=DATE_FORMAT
+        dateFormat=DATE_FORMAT,
     )
     r = requests.get(url, params=params, timeout=TIMEOUT)
     if r.status_code != 200:
-        raise SystemExit(f"[ERROR] HTTP {r.status_code}: {r.text}")
+        raise SystemExit(f"HTTP {r.status_code}: {r.text}")
     return r.json()
 
-def book_order(name):
-    return BOOK_PRIORITY.index(name) if name in BOOK_PRIORITY else len(BOOK_PRIORITY)
 
-# ===== Market Parsers =====
-
-def parse_1x2(data):
-    """Extract 1X2 markets (h2h)"""
+def json_to_long(df_json):
+    """
+    Flatten API JSON to rows:
+      one row per (event, bookmaker, market, outcome).
+    """
     rows = []
-    for g in data:
-        for b in g.get("bookmakers", []):
+    for game in df_json:
+        gid = game.get("id")
+        commence = game.get("commence_time")
+        home = game.get("home_team")
+        away = game.get("away_team")
+        for b in game.get("bookmakers", []):
+            book = b.get("title")
+            last = b.get("last_update") or commence
             for m in b.get("markets", []):
-                if m.get("key") != "h2h":
-                    continue
-                outcomes = m.get("outcomes", [])
-                if len(outcomes) != 3:
-                    continue
-                for o in outcomes:
-                    rows.append({
-                        "event_id": g["id"],
-                        "start": g["commence_time"],
-                        "home": g["home_team"],
-                        "away": g["away_team"],
-                        "book": b["title"],
-                        "label": o["name"],   # Home / Draw / Away
-                        "odds": o["price"]
-                    })
-    return pd.DataFrame(rows)
-
-def parse_btts(data):
-    rows = []
-    for g in data:
-        for b in g.get("bookmakers", []):
-            for m in b.get("markets", []):
-                if m.get("key") != "btts":
+                mkey = m.get("key")
+                if mkey not in ("h2h", "totals"):
                     continue
                 for o in m.get("outcomes", []):
-                    if o["name"].lower() not in ("yes","no"):
+                    price = o.get("price")
+                    name = o.get("name")
+                    line = o.get("point")
+                    if price is None:
                         continue
-                    rows.append({
-                        "event_id": g["id"],
-                        "start": g["commence_time"],
-                        "home": g["home_team"],
-                        "away": g["away_team"],
-                        "book": b["title"],
-                        "label": o["name"].title(),  # Yes / No
-                        "odds": o["price"]
-                    })
+                    rows.append(
+                        {
+                            "event_id": gid,
+                            "commence_time": commence,
+                            "home_team": home,
+                            "away_team": away,
+                            "bookmaker": book,
+                            "market": mkey,
+                            "outcome": name,
+                            "line": line,
+                            "odds": float(price),
+                            "last_update": last,
+                        }
+                    )
+    if not rows:
+        return pd.DataFrame()
     return pd.DataFrame(rows)
 
-def parse_totals(data):
-    rows = []
-    for g in data:
-        for b in g.get("bookmakers", []):
-            for m in b.get("markets", []):
-                if m.get("key") != "totals":
-                    continue
-                for o in m.get("outcomes", []):
-                    if o["name"] not in ("Over","Under"):
-                        continue
-                    rows.append({
-                        "event_id": g["id"],
-                        "start": g["commence_time"],
-                        "home": g["home_team"],
-                        "away": g["away_team"],
-                        "book": b["title"],
-                        "label": o["name"],
-                        "line": o["point"],
-                        "odds": o["price"]
-                    })
-    return pd.DataFrame(rows)
 
-# ===== Arbitrage Calculators =====
+def _book_order(book: str) -> int:
+    return BOOK_PRIORITY.index(book) if book in BOOK_PRIORITY else len(BOOK_PRIORITY)
 
-def arb_1x2(df):
+
+# ===== 1X2 ARBITRAGE (H2H) =====
+def parse_1x2(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
-        return pd.DataFrame()
-    df = df.copy()
-    df["prio"] = df["book"].apply(book_order)
+        return df
 
-    # best odds per outcome
-    best = df.sort_values(["odds","prio"], ascending=[False,True]) \
-             .groupby(["event_id","start","home","away","label"], as_index=False) \
-             .first()
-
-    # pivot → Home, Draw, Away
-    wide = best.pivot(index=["event_id","start","home","away"],
-                      columns="label", values=["odds","book"]).reset_index()
-
-    if ("odds","Home") not in wide or ("odds","Draw") not in wide or ("odds","Away") not in wide:
-        return pd.DataFrame()
-
-    wide["sum_imp"] = 1/wide[("odds","Home")] + 1/wide[("odds","Draw")] + 1/wide[("odds","Away")]
-    arbs = wide[wide["sum_imp"] < 1]
-
-    if arbs.empty:
-        return arbs
-
-    arbs["roi"] = ((1 - arbs["sum_imp"]) * 100).round(2)
-    return arbs.sort_values("roi", ascending=False)
-
-def arb_btts(df):
+    df = df[df["market"] == "h2h"].copy()
     if df.empty:
-        return pd.DataFrame()
-    df = df.copy()
-    df["prio"] = df["book"].apply(book_order)
+        return df
 
-    best = df.sort_values(["odds","prio"], ascending=[False,True]) \
-             .groupby(["event_id","start","home","away","label"], as_index=False) \
-             .first()
+    df["book_order"] = df["bookmaker"].apply(_book_order)
 
-    wide = best.pivot(index=["event_id","start","home","away"],
-                      columns="label", values=["odds","book"]).reset_index()
+    # Outcomes: home, away, draw (names are usually the team names or "Draw")
+    def classify_side(row):
+        name = (row["outcome"] or "").strip()
+        if name.lower() == "draw":
+            return "draw"
+        if name == row["home_team"]:
+            return "home"
+        if name == row["away_team"]:
+            return "away"
+        # fallback: best guess using substring
+        nlow = name.lower()
+        if row["home_team"] and row["home_team"].lower() in nlow:
+            return "home"
+        if row["away_team"] and row["away_team"].lower() in nlow:
+            return "away"
+        return "other"
 
-    if ("odds","Yes") not in wide or ("odds","No") not in wide:
-        return pd.DataFrame()
+    df["side"] = df.apply(classify_side, axis=1)
+    df = df[df["side"].isin(["home", "draw", "away"])]
 
-    wide["sum_imp"] = 1/wide[("odds","Yes")] + 1/wide[("odds","No")]
-    arbs = wide[wide["sum_imp"] < 1]
-
-    if arbs.empty:
-        return arbs
-
-    arbs["roi"] = ((1 - arbs["sum_imp"]) * 100).round(2)
-    return arbs.sort_values("roi", ascending=False)
-
-def arb_double_chance(df_1x2):
-    # Double Chance derived from 1X2 odds
-    if df_1x2.empty:
-        return pd.DataFrame()
-
-    df = df_1x2.copy()
-    df["prio"] = df["book"].apply(book_order)
-    best = df.sort_values(["odds","prio"], ascending=[False,True]) \
-             .groupby(["event_id","start","home","away","label"], as_index=False) \
-             .first()
-
-    wide = best.pivot(index=["event_id","start","home","away"],
-                      columns="label", values=["odds","book"]).reset_index()
-
-    if ("odds","Home") not in wide or ("odds","Draw") not in wide or ("odds","Away") not in wide:
-        return pd.DataFrame()
-
-    rows = []
-
-    for _, r in wide.iterrows():
-        # DC markets:
-        # 1X = Home or Draw → price = max(Home, Draw)
-        # 12 = Home or Away → price = max(Home, Away)
-        # X2 = Draw or Away → price = max(Draw, Away)
-
-        dc = {
-            "1X": max(r[("odds","Home")], r[("odds","Draw")]),
-            "12": max(r[("odds","Home")], r[("odds","Away")]),
-            "X2": max(r[("odds","Draw")], r[("odds","Away")]),
-        }
-
-        # 2-way arbitrage across DC options
-        for m1, m2 in [("1X","12"), ("1X","X2"), ("12","X2")]:
-            o1, o2 = dc[m1], dc[m2]
-            imp = 1/o1 + 1/o2
-            if imp < 1:
-                rows.append({
-                    "event_id": r["event_id"],
-                    "start": r["start"],
-                    "home": r["home"],
-                    "away": r["away"],
-                    "opt1": m1, "odds1": o1,
-                    "opt2": m2, "odds2": o2,
-                    "roi": round((1-imp)*100,2)
-                })
-
-    return pd.DataFrame(rows).sort_values("roi", ascending=False)
-
-def arb_totals(df):
     if df.empty:
+        return df
+
+    grouped_cols = ["event_id", "commence_time", "home_team", "away_team"]
+
+    best = (
+        df.sort_values(["odds", "book_order"], ascending=[False, True])
+        .groupby(grouped_cols + ["side"], as_index=False)
+        .first()
+    )
+
+    # pivot into columns for home/draw/away
+    pivot = best.pivot_table(
+        index=grouped_cols,
+        columns="side",
+        values=["odds", "bookmaker"],
+        aggfunc="first",
+    )
+
+    # flatten column MultiIndex
+    pivot.columns = [f"{a}_{b}" for a, b in pivot.columns.to_flat_index()]
+    pivot = pivot.reset_index()
+
+    # require all three legs present
+    required_cols = ["odds_home", "odds_draw", "odds_away"]
+    for c in required_cols:
+        if c not in pivot.columns:
+            return pd.DataFrame()
+    pivot = pivot.dropna(subset=required_cols)
+
+    # arb calc
+    pivot["sum_imp"] = (
+        1.0 / pivot["odds_home"] + 1.0 / pivot["odds_draw"] + 1.0 / pivot["odds_away"]
+    )
+    pivot["is_arb"] = pivot["sum_imp"] < 1.0
+    if not pivot["is_arb"].any():
         return pd.DataFrame()
 
-    df = df.copy()
-    df["prio"] = df["book"].apply(book_order)
+    B = BANKROLL
+    pivot["stake_home"] = ((B / pivot["odds_home"]) / pivot["sum_imp"]).round(2)
+    pivot["stake_draw"] = ((B / pivot["odds_draw"]) / pivot["sum_imp"]).round(2)
+    pivot["stake_away"] = ((B / pivot["odds_away"]) / pivot["sum_imp"]).round(2)
+    pivot["roi_pct"] = ((1.0 - pivot["sum_imp"]) * 100.0).round(2)
 
-    # best Over/Under for each line
-    over = df[df["label"]=="Over"].sort_values(["odds","prio"], ascending=[False,True]) \
-                                 .groupby(["event_id","start","home","away","line"], as_index=False).first()
-    under = df[df["label"]=="Under"].sort_values(["odds","prio"], ascending=[False,True]) \
-                                   .groupby(["event_id","start","home","away","line"], as_index=False).first()
+    pivot["book_home"] = pivot.get("bookmaker_home", "")
+    pivot["book_draw"] = pivot.get("bookmaker_draw", "")
+    pivot["book_away"] = pivot.get("bookmaker_away", "")
 
-    merged = over.merge(under, on=["event_id","start","home","away","line"], suffixes=("_o","_u"))
-    merged["sum_imp"] = 1/merged["odds_o"] + 1/merged["odds_u"]
-    arbs = merged[merged["sum_imp"] < 1]
+    cols = [
+        "event_id",
+        "commence_time",
+        "home_team",
+        "away_team",
+        "odds_home",
+        "odds_draw",
+        "odds_away",
+        "book_home",
+        "book_draw",
+        "book_away",
+        "stake_home",
+        "stake_draw",
+        "stake_away",
+        "roi_pct",
+    ]
+    return pivot[cols].sort_values("roi_pct", ascending=False)
 
-    if arbs.empty:
-        return arbs
 
-    arbs["roi"] = ((1-arbs["sum_imp"])*100).round(2)
-    return arbs.sort_values("roi", ascending=False)
+# ===== TOTALS ARBITRAGE (OVER/UNDER) =====
+def parse_totals(df: pd.DataFrame) -> pd.DataFrame:
+    if df.empty:
+        return df
 
-# ===== HTML Renderer =====
+    df = df[df["market"] == "totals"].copy()
+    if df.empty:
+        return df
 
-def render(arbs_1x2, arbs_btts, arbs_dc, arbs_tot):
-    ts = now_iso()
+    df["book_order"] = df["bookmaker"].apply(_book_order)
 
-    def section(title, html_body):
-        return f"""
-        <h2 style='margin-top:24px;margin-bottom:12px;'>{title}</h2>
-        {html_body}
-        """
+    # classify over/under
+    def side_from_name(name: str) -> str:
+        n = (name or "").strip().lower()
+        if "over" in n:
+            return "over"
+        if "under" in n:
+            return "under"
+        return "other"
 
-    def table(headers, rows_html):
-        return f"""
-        <div style='overflow:auto;border:1px solid #1F2937;border-radius:12px;margin-bottom:20px;'>
-          <table style='width:100%;border-collapse:collapse;min-width:700px;'>
-            <thead><tr style='background:#111827;'>
-              {''.join(f"<th style='padding:10px;text-align:left;border-bottom:1px solid #1F2937;'>{h}</th>" for h in headers)}
-            </tr></thead>
-            <tbody>{rows_html}</tbody>
-          </table>
-        </div>
-        """
+    df["side"] = df["outcome"].apply(side_from_name)
+    df = df[df["side"].isin(["over", "under"])]
+    df = df.dropna(subset=["line"])
 
-    out = f"""
-    <!doctype html><html><head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-    </head>
-    <body style='color:#E2E8F0;background:#0F1621;padding:24px;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;'>
-    <h1 style='margin-top:0;'>EPL Multi-Market Arbitrage</h1>
-    <p style='opacity:0.8'>Last update: {ts}</p>
+    grouped = ["event_id", "commence_time", "home_team", "away_team", "line"]
+
+    over = (
+        df[df["side"] == "over"]
+        .sort_values(["odds", "book_order"], ascending=[False, True])
+        .groupby(grouped, as_index=False)
+        .first()
+        .rename(columns={"bookmaker": "over_book", "odds": "over_odds"})
+    )
+
+    under = (
+        df[df["side"] == "under"]
+        .sort_values(["odds", "book_order"], ascending=[False, True])
+        .groupby(grouped, as_index=False)
+        .first()
+        .rename(columns={"bookmaker": "under_book", "odds": "under_odds"})
+    )
+
+    out = pd.merge(
+        over,
+        under,
+        on=["event_id", "commence_time", "home_team", "away_team", "line"],
+        how="inner",
+    )
+
+    if out.empty:
+        return out
+
+    out["sum_imp"] = 1.0 / out["over_odds"] + 1.0 / out["under_odds"]
+    out["is_arb"] = out["sum_imp"] < 1.0
+    out = out[out["is_arb"]]
+    if out.empty:
+        return out
+
+    B = BANKROLL
+    out["stake_over"] = ((B / out["over_odds"]) / out["sum_imp"]).round(2)
+    out["stake_under"] = ((B / out["under_odds"]) / out["sum_imp"]).round(2)
+    out["roi_pct"] = ((1.0 - out["sum_imp"]) * 100.0).round(2)
+
+    return out.sort_values("roi_pct", ascending=False)
+
+
+# ===== HTML RENDERING =====
+def section(title: str, subtitle: str) -> str:
+    return f"""
+    <div style="margin-top:24px;">
+      <h2 style="margin:0 0 4px 0;font-size:20px;">{html.escape(title)}</h2>
+      <p style="margin:0 0 10px 0;opacity:0.8;font-size:13px;">{html.escape(subtitle)}</p>
+    </div>
     """
 
-    # 1X2
-    if not arbs_1x2.empty:
-        rows = ""
+
+def table(headers, rows_html: str) -> str:
+    ths = "".join(
+        f"<th style='text-align:left;padding:10px;border-bottom:1px solid #1F2937;font-size:13px;'>{html.escape(h)}</th>"
+        for h in headers
+    )
+    return f"""
+    <div style="overflow:auto;border:1px solid #1F2937;border-radius:12px;">
+      <table style="width:100%;border-collapse:collapse;min-width:900px;font-size:13px;">
+        <thead>
+          <tr style="background:#111827;">
+            {ths}
+          </tr>
+        </thead>
+        <tbody>
+          {rows_html}
+        </tbody>
+      </table>
+    </div>
+    """
+
+
+def render(arbs_1x2: pd.DataFrame, arbs_totals: pd.DataFrame) -> str:
+    ts = now_iso()
+    header = f"""
+    <div style="color:#E2E8F0;background:#0F1621;padding:24px;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+      <h1 style="margin:0 0 6px 0;font-size:24px;">EPL Multi-Market Arbitrage Board</h1>
+      <p style="opacity:0.8;margin:0 0 16px 0;font-size:13px;">
+        Last updated: {html.escape(ts)} · Display bankroll: £{BANKROLL:.0f} · Markets: Match Result & Goals Totals
+      </p>
+    """
+
+    body = ""
+
+    # ---- 1X2 section ----
+    body += section("Match Result (1X2) Arbitrage", "Best cross-book 1X2 opportunities.")
+    if arbs_1x2.empty:
+        body += "<p style='opacity:0.7;font-size:13px;'>No 1X2 arbitrage opportunities right now.</p>"
+    else:
+        rows = []
         for _, r in arbs_1x2.iterrows():
-            rows += f"""
+            fixture = f"{r['home_team']} vs {r['away_team']}"
+            row = f"""
             <tr>
-              <td>{r['home']} vs {r['away']}</td>
-              <td>{r[('odds','Home')]:.2f}</td>
-              <td>{r[('odds','Draw')]:.2f}</td>
-              <td>{r[('odds','Away')]:.2f}</td>
-              <td>{r['roi']}%</td>
-            </tr>"""
-        out += section("Match Result (1X2) Arbitrage",
-                       table(["Fixture","Home","Draw","Away","ROI"], rows))
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">{html.escape(fixture)}</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">{r['odds_home']} @ {html.escape(str(r['book_home']))}</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">{r['odds_draw']} @ {html.escape(str(r['book_draw']))}</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">{r['odds_away']} @ {html.escape(str(r['book_away']))}</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;text-align:right;">{r['roi_pct']}%</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">
+                Home: £{r['stake_home']}<br>
+                Draw: £{r['stake_draw']}<br>
+                Away: £{r['stake_away']}
+              </td>
+            </tr>
+            """
+            rows.append(row)
 
-    # BTTS
-    if not arbs_btts.empty:
-        rows = ""
-        for _, r in arbs_btts.iterrows():
-            rows += f"""
+        body += table(
+            ["Fixture", "Home", "Draw", "Away", "ROI", "Suggested Stakes"],
+            "".join(rows),
+        )
+
+    # ---- Totals section ----
+    body += section(
+        "Goals Totals (Over/Under) Arbitrage",
+        "Lines where Over & Under across books lock in a profit.",
+    )
+
+    if arbs_totals.empty:
+        body += "<p style='opacity:0.7;font-size:13px;'>No goals totals arbitrage opportunities right now.</p>"
+    else:
+        rows = []
+        for _, r in arbs_totals.iterrows():
+            fixture = f"{r['home_team']} vs {r['away_team']}"
+            line = f"{r['line']:+.1f} goals"
+            row = f"""
             <tr>
-              <td>{r['home']} vs {r['away']}</td>
-              <td>{r[('odds','Yes')]:.2f}</td>
-              <td>{r[('odds','No')]:.2f}</td>
-              <td>{r['roi']}%</td>
-            </tr>"""
-        out += section("Both Teams To Score (BTTS) Arbitrage",
-                       table(["Fixture","Yes","No","ROI"], rows))
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">{html.escape(fixture)}</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">{html.escape(line)}</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">{r['over_odds']} @ {html.escape(str(r['over_book']))}</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">{r['under_odds']} @ {html.escape(str(r['under_book']))}</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;text-align:right;">{r['roi_pct']}%</td>
+              <td style="padding:8px 10px;border-bottom:1px solid #111827;">
+                Over: £{r['stake_over']}<br>
+                Under: £{r['stake_under']}
+              </td>
+            </tr>
+            """
+            rows.append(row)
 
-    # Double Chance
-    if not arbs_dc.empty:
-        rows = ""
-        for _, r in arbs_dc.iterrows():
-            rows += f"""
-            <tr>
-              <td>{r['home']} vs {r['away']}</td>
-              <td>{r['opt1']} @ {r['odds1']:.2f}</td>
-              <td>{r['opt2']} @ {r['odds2']:.2f}</td>
-              <td>{r['roi']}%</td>
-            </tr>"""
-        out += section("Double Chance Arbitrage",
-                       table(["Fixture","Option 1","Option 2","ROI"], rows))
+        body += table(
+            ["Fixture", "Line", "Best Over", "Best Under", "ROI", "Suggested Stakes"],
+            "".join(rows),
+        )
 
-    # Totals
-    if not arbs_tot.empty:
-        rows = ""
-        for _, r in arbs_tot.iterrows():
-            rows += f"""
-            <tr>
-              <td>{r['home']} vs {r['away']}</td>
-              <td>{r['line']}</td>
-              <td>{r['odds_o']:.2f}</td>
-              <td>{r['odds_u']:.2f}</td>
-              <td>{r['roi']}%</td>
-            </tr>"""
-        out += section("Totals Over/Under Arbitrage",
-                       table(["Fixture","Line","Over","Under","ROI"], rows))
+    body += """
+      <p style="opacity:0.7;margin-top:16px;font-size:11px;">
+        Stakes are illustrative for a £{bank} bankroll. Always confirm exact market and line before placing bets.
+      </p>
+    """.format(
+        bank=BANKROLL
+    )
 
-    out += "</body></html>"
-    return out
+    return (
+        "<!doctype html><html><head><meta charset='utf-8'>"
+        "<meta name='viewport' content='width=device-width,initial-scale=1'></head>"
+        f"<body>{header}{body}</div></body></html>"
+    )
 
-# ===== Main =====
 
+# ===== MAIN =====
 def main():
     data = fetch_all()
+    df = json_to_long(data)
 
-    df1x2   = parse_1x2(data)
-    dfbtts  = parse_btts(data)
-    dftot   = parse_totals(data)
+    if df.empty:
+        html_text = render(pd.DataFrame(), pd.DataFrame())
+    else:
+        # drop stale by last_update if present
+        if "last_update" in df.columns and df["last_update"].notna().any():
+            ts = pd.to_datetime(df["last_update"], errors="coerce", utc=True)
+            cutoff = pd.Timestamp.utcnow() - pd.Timedelta(minutes=STALE_MIN)
+            df = df[ts.isna() | (ts >= cutoff)]
 
-    arbs1   = arb_1x2(df1x2)
-    arbsbt  = arb_btts(dfbtts)
-    arbsdc  = arb_double_chance(df1x2)
-    arbstot = arb_totals(dftot)
+        # price sanity
+        df = df[(df["odds"] >= 1.01) & (df["odds"] <= 1000)]
 
-    html_out = render(arbs1, arbsbt, arbsdc, arbstot)
+        arbs_1x2 = parse_1x2(df)
+        arbs_totals = parse_totals(df)
+
+        html_text = render(arbs_1x2, arbs_totals)
 
     OUTPUT_HTML.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_HTML.write_text(html_out, encoding="utf-8")
+    OUTPUT_HTML.write_text(html_text, encoding="utf-8")
     print(f"Wrote: {OUTPUT_HTML}")
+
 
 if __name__ == "__main__":
     main()
