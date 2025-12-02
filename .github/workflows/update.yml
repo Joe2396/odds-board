@@ -51,7 +51,8 @@ jobs:
 
           # run your scripts (adjust if names/locations differ)
           python src/app/generate_odds_checker.py
-          python src/app/arb_goals_totals.py
+         python src/app/arb_multi.py
+
 
           # optional: if you created this helper to patch heights
           if [ -f src/patch_iframe.py ]; then
