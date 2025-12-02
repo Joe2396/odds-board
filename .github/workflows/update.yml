@@ -56,6 +56,11 @@ jobs:
           # run the NEW multi-market arbitrage generator
           python src/app/arb_multi.py
 
+          # run the PGA golf value outrights board
+          python src/app/golf_outrights_value.py
+
+
+      
           # optional: if you created this helper to patch heights
           if [ -f src/patch_iframe.py ]; then
             python src/patch_iframe.py || true
