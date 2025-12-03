@@ -46,10 +46,24 @@ def fetch_golf_outrights():
         oddsFormat=ODDS_FORMAT,
         dateFormat=DATE_FORMAT,
     )
-    r = requests.get(url, params=params, timeout=TIMEOUT)
+
+    try:
+        r = requests.get(url, params=params, timeout=TIMEOUT)
+    except Exception as e:
+        print(f"[golf] Request error: {e}")
+        return []
+
     if r.status_code != 200:
-        raise SystemExit(f"HTTP {r.status_code}: {r.text}")
-    return r.json()
+        print(f"[golf] HTTP {r.status_code}: {r.text}")
+        # DO NOT crash the workflow — just return no data
+        return []
+
+    try:
+        return r.json()
+    except Exception as e:
+        print(f"[golf] JSON decode error: {e}")
+        return []
+
 
 
 def json_to_long(data) -> pd.DataFrame:
