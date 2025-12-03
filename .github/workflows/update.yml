@@ -59,6 +59,10 @@ jobs:
           # run the PGA golf value outrights board
           python src/app/golf_outrights_value.py
 
+          # test which golf sport keys are supported
+          python src/app/test_golf_sports.py
+
+
 
       
           # optional: if you created this helper to patch heights
