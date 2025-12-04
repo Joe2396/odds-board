@@ -1,13 +1,10 @@
 name: Update Odds + Arbitrage Pages V2
 
 on:
-  workflow_dispatch: {}
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "0 * * * *"   # run at minute 0 every hour
+  workflow_dispatch: {}
 
-
-
-# allow the action to push updates back to this repo
 permissions:
   contents: write
 
@@ -19,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0    # we need full history for clean commits
+          fetch-depth: 0
 
       - name: Show where we are
         run: |
@@ -42,34 +39,19 @@ jobs:
           fi
 
       - name: Run generators
-      env:
-        PYTHONPATH: src
-        ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-
         env:
-          PYTHONPATH: src  # so modules under src are importable
+          PYTHONPATH: src
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
-          # print tree for debugging
           echo "----- repo tree -----"
           ls -R | sed -n '1,200p'
           echo "---------------------"
 
-          # run the odds checker generator
           python src/app/generate_odds_checker.py
-
-          # run the NEW multi-market arbitrage generator
           python src/app/arb_multi.py
-
-          # run the PGA golf value outrights board
           python src/app/golf_outrights_value.py
-
-          # test which golf sport keys are supported
           python src/app/test_golf_sports.py
 
-
-
-      
-          # optional: if you created this helper to patch heights
           if [ -f src/patch_iframe.py ]; then
             python src/patch_iframe.py || true
           fi
