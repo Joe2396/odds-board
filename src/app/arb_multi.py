@@ -16,7 +16,7 @@ import requests
 import pandas as pd
 
 # ===== CONFIG =====
-API_KEY = "98fb91f398403151a3eece97dc514a0b"
+API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"
 SPORT = "soccer_epl"
 REGIONS = "uk"
 # IMPORTANT: ONLY markets supported by /odds here
