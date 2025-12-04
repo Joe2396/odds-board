@@ -51,6 +51,8 @@ jobs:
           python src/app/arb_multi.py
           python src/app/golf_outrights_value.py
           python src/app/test_golf_sports.py
+          python src/app/test_epl_markets.py
+
 
           if [ -f src/patch_iframe.py ]; then
             python src/patch_iframe.py || true
