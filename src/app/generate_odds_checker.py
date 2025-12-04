@@ -14,7 +14,7 @@ import pandas as pd
 from collections import defaultdict
 
 # ----- CONFIG -----
-API_KEY = "98fb91f398403151a3eece97dc514a0b"  # rotate later if needed
+API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"  # rotate later if needed
 SPORT = "soccer_epl"
 REGIONS = "uk"
 ODDS_FORMAT = "decimal"
@@ -268,3 +268,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
