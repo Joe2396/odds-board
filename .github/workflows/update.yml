@@ -42,6 +42,10 @@ jobs:
           fi
 
       - name: Run generators
+      env:
+        PYTHONPATH: src
+        ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+
         env:
           PYTHONPATH: src  # so modules under src are importable
         run: |
