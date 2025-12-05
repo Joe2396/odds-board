@@ -12,7 +12,7 @@ import requests
 import pandas as pd
 
 # ------------------ CONFIG ------------------
-API_KEY = "YOUR_NEW_API_KEY_HERE"      # <--- INSERT NEW KEY
+API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"      # <--- INSERT NEW KEY
 SPORT   = "soccer_epl"
 REGIONS = "uk"
 MARKETS = "h2h,totals,spreads"
@@ -259,3 +259,4 @@ def render_index(fixtures):
 
 if __name__ == "__main__":
     main()
+
