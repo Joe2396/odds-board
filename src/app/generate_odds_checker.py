@@ -15,7 +15,7 @@ import pandas as pd
 
 API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"    # <--- YOUR KEY
 SPORT   = "soccer_epl"
-REGIONS = "uk"
+REGIONS = "eu"
 MARKETS = "h2h,totals,spreads"
 ODDS_FORMAT = "decimal"
 DATE_FORMAT = "iso"
@@ -287,3 +287,4 @@ f"""
 
 if __name__=="__main__":
     main()
+
