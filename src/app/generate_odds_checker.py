@@ -354,103 +354,131 @@ def render_fixture_page(fx, h2h, totals, spreads):
     parts.append("</div></body></html>")
     return "".join(parts)
 
-# ---------------- MAIN GENERATION --------------------
-
 def main():
-    all_dfs_h2h = []
-all_dfs_totals = []
-all_dfs_spreads = []
+    BASE_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-for league_name, league_key in LEAGUES.items():
-    print(f"Fetching {league_name.upper()} H2H…")
-    raw = fetch(league_key, "h2h")
-    df_h = df_h2h(raw)
-    if not df_h.empty:
-        df_h["league"] = league_name
-        all_dfs_h2h.append(df_h)
+    all_h2h = []
+    all_totals = []
+    all_spreads = []
 
-    print(f"Fetching {league_name.upper()} Totals…")
-    raw = fetch(league_key, "totals")
-    df_t = df_totals(raw)
-    if not df_t.empty:
-        df_t["league"] = league_name
-        all_dfs_totals.append(df_t)
+    # --------------------------------------------------
+    # FETCH DATA FOR EACH LEAGUE
+    # --------------------------------------------------
+    for league_name, league_key in LEAGUES.items():
+        print(f"\n=== {league_name.upper()} ===")
 
-    print(f"Fetching {league_name.upper()} Spreads…")
-    raw = fetch(league_key, "spreads")
-    df_s = df_spreads(raw)
-    if not df_s.empty:
-        df_s["league"] = league_name
-        all_dfs_spreads.append(df_s)
+        print("Fetching H2H…")
+        raw = fetch(league_key, "h2h")
+        df_h = df_h2h(raw)
+        if not df_h.empty:
+            df_h["league"] = league_name
+            all_h2h.append(df_h)
 
-df1 = pd.concat(all_dfs_h2h, ignore_index=True)
-df2 = pd.concat(all_dfs_totals, ignore_index=True) if all_dfs_totals else pd.DataFrame()
-df3 = pd.concat(all_dfs_spreads, ignore_index=True) if all_dfs_spreads else pd.DataFrame()
+        print("Fetching Totals…")
+        raw = fetch(league_key, "totals")
+        df_t = df_totals(raw)
+        if not df_t.empty:
+            df_t["league"] = league_name
+            all_totals.append(df_t)
 
-if df1.empty:
-    print("No H2H data returned; nothing to write.")
-    return
+        print("Fetching Spreads…")
+        raw = fetch(league_key, "spreads")
+        df_s = df_spreads(raw)
+        if not df_s.empty:
+            df_s["league"] = league_name
+            all_spreads.append(df_s)
 
-all_games = df1[["event_id","time","home","away","league"]].drop_duplicates()
+    if not all_h2h:
+        print("No data returned at all. Exiting.")
+        return
 
-    # Fixture pages
+    df_h2h_all = pd.concat(all_h2h, ignore_index=True)
+    df_totals_all = pd.concat(all_totals, ignore_index=True) if all_totals else pd.DataFrame()
+    df_spreads_all = pd.concat(all_spreads, ignore_index=True) if all_spreads else pd.DataFrame()
+
+    # --------------------------------------------------
+    # FIXTURE PAGES (PER MATCH)
+    # --------------------------------------------------
+    all_games = (
+        df_h2h_all[["event_id", "time", "home", "away", "league"]]
+        .drop_duplicates()
+        .sort_values("time")
+    )
+
     for _, fx in all_games.iterrows():
-        h = df1[df1["event_id"] == fx.event_id]
-        t = df2[df2["event_id"] == fx.event_id] if not df2.empty else df2
-        s = df3[df3["event_id"] == fx.event_id] if not df3.empty else df3
+        league_dir = BASE_OUTPUT_DIR / fx["league"]
+        league_dir.mkdir(parents=True, exist_ok=True)
+
+        h = df_h2h_all[df_h2h_all["event_id"] == fx.event_id]
+        t = df_totals_all[df_totals_all["event_id"] == fx.event_id] if not df_totals_all.empty else df_totals_all
+        s = df_spreads_all[df_spreads_all["event_id"] == fx.event_id] if not df_spreads_all.empty else df_spreads_all
+
         html_out = render_fixture_page(fx, h, t, s)
-        slug = f"{fx['home'].lower().replace(' ', '-')}-vs-{fx['away'].lower().replace(' ', '-')}.html"
-        fn = OUTPUT_DIR / slug
-        fn.write_text(html_out, encoding="utf-8")
+
+        slug = f"{fx['home'].lower().replace(' ','-')}-vs-{fx['away'].lower().replace(' ','-')}.html"
+        (league_dir / slug).write_text(html_out, encoding="utf-8")
 
     print(f"Wrote {len(all_games)} fixture pages")
 
-    # Index page with dark cards grouped by date
-    index_html = []
-    current_date = None
-    for _, fx in all_games.sort_values("time").iterrows():
-        dt = (fx["time"] or "")[:10]  # YYYY-MM-DD
-        if dt != current_date:
-            current_date = dt
-            index_html.append("<h2 style='margin:18px 0 10px 0;'>{}</h2>".format(dt))
+    # --------------------------------------------------
+    # INDEX PAGES (DARK CARD LAYOUT PER LEAGUE)
+    # --------------------------------------------------
+    for league_name in LEAGUES.keys():
+        league_games = all_games[all_games["league"] == league_name]
+        if league_games.empty:
+            continue
 
-        slug = f"{fx['home'].lower().replace(' ', '-')}-vs-{fx['away'].lower().replace(' ', '-')}.html"
-        index_html.append(
-            f"""
-    <a href="{slug}" style="text-decoration:none;color:{TXT};">
-      <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;
-                  padding:16px;margin:12px 0;display:flex;justify-content:space-between;
-                  align-items:center;gap:10px;">
-        <div>
-          <div style="font-size:18px;font-weight:600;">{html.escape(fx['home'])}</div>
-          <div style="opacity:0.8;">vs</div>
-          <div style="font-size:18px;font-weight:600;">{html.escape(fx['away'])}</div>
-        </div>
-        <div style="opacity:0.7;white-space:nowrap;">{fx['time']} UTC</div>
-      </div>
-    </a>
-    """
+        index_html = []
+        current_date = None
+
+        for _, fx in league_games.iterrows():
+            dt = fx["time"][:10]  # YYYY-MM-DD
+            if dt != current_date:
+                current_date = dt
+                index_html.append(f"<h2 style='margin:24px 0 8px 0;'>{dt}</h2>")
+
+            slug = f"{fx['home'].lower().replace(' ','-')}-vs-{fx['away'].lower().replace(' ','-')}.html"
+
+            index_html.append(f"""
+            <a href="{slug}" style="text-decoration:none;color:{TXT};">
+              <div style="
+                background:#111827;
+                border:1px solid #1F2937;
+                border-radius:14px;
+                padding:16px;
+                margin:12px 0;
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+              ">
+                <div>
+                  <div style="font-size:18px;font-weight:600;">{html.escape(fx['home'])}</div>
+                  <div style="opacity:0.7;">vs</div>
+                  <div style="font-size:18px;font-weight:600;">{html.escape(fx['away'])}</div>
+                </div>
+                <div style="opacity:0.6;font-size:14px;">
+                  {fx['time']} UTC
+                </div>
+              </div>
+            </a>
+            """)
+
+        league_dir = BASE_OUTPUT_DIR / league_name
+        league_dir.mkdir(parents=True, exist_ok=True)
+
+        (league_dir / "index.html").write_text(
+            f"""<!doctype html>
+<html>
+<body style="background:{THEME_BG};color:{TXT};font-family:Inter,system-ui,Roboto;padding:24px;">
+<h1>{league_name.replace('_',' ').title()} Odds Checker</h1>
+<p>Updated: {now_iso()}</p>
+{''.join(index_html)}
+</body>
+</html>
+""",
+            encoding="utf-8",
         )
 
-    index_full = (
-        "<!doctype html><html><head>"
-        "<meta charset='utf-8'>"
-        "<meta name='viewport' content='width=device-width,initial-scale=1'>"
-        "</head><body "
-        f"style=\"background:{THEME_BG};color:{TXT};font-family:Inter,system-ui,Roboto;padding:24px;\">"
-        "<h1 style='margin:0 0 6px 0;'>EPL Odds Checker</h1>"
-        f"<p style='opacity:0.8;margin:0 0 16px 0;'>Click a fixture to view Match Result, Totals, and Spreads. "
-        f"Updated: {now_iso()}</p>"
-        f"{''.join(index_html)}"
-        "</body></html>"
-    )
-
-    (OUTPUT_DIR / "index.html").write_text(index_full, encoding="utf-8")
-    print("Index written.")
 
 if __name__ == "__main__":
     main()
-
-
-
-
