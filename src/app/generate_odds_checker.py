@@ -13,13 +13,18 @@ import pandas as pd
 # ---------------- CONFIG --------------------
 
 API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"    # your API key
-SPORT   = "soccer_epl"
+LEAGUES = {
+    "epl": "soccer_epl",
+    "championship": "soccer_england_championship",
+    "la_liga": "soccer_spain_la_liga",
+    "bundesliga": "soccer_germany_bundesliga",
+    "serie_a": "soccer_italy_serie_a",
 REGIONS = "eu"  # EU books (you asked for this)
 ODDS_FORMAT = "decimal"
 DATE_FORMAT = "iso"
 TIMEOUT = 30
 
-OUTPUT_DIR = Path("data/auto/odds_checker")
+BASE_OUTPUT_DIR = Path("data/auto/odds_checker")
 THEME_BG = "#0F1621"
 TXT = "#E2E8F0"
 
@@ -423,3 +428,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
