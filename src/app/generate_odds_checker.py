@@ -47,16 +47,22 @@ def tidy_book(name: str) -> str:
 def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
 
-def fetch(markets: str):
-    """Call The Odds API for the given markets string (e.g. 'h2h', 'totals', 'spreads')."""
-    url = f"https://api.the-odds-api.com/v4/sports/{SPORT}/odds"
+def fetch(league_key: str, mkts: str):
+    url = f"https://api.the-odds-api.com/v4/sports/{league_key}/odds"
+
     params = dict(
         apiKey=API_KEY,
         regions=REGIONS,
-        markets=markets,
+        markets=mkts,          # ✅ FIXED
         oddsFormat=ODDS_FORMAT,
         dateFormat=DATE_FORMAT,
     )
+
+    r = requests.get(url, params=params, timeout=TIMEOUT)
+    if r.status_code != 200:
+        raise SystemExit(f"HTTP {r.status_code}: {r.text}")
+    return r.json()
+
     try:
         r = requests.get(url, params=params, timeout=TIMEOUT)
     except Exception as e:
@@ -428,4 +434,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
