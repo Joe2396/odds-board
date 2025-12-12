@@ -130,18 +130,26 @@ def parse_1x2(df):
     pivot.columns = [f"{a}_{b}" for a, b in pivot.columns]
     pivot = pivot.dropna().reset_index()
 
-    pivot["sum_imp"] = (
-        1 / pivot["odds_home"]
-        + 1 / pivot["odds_draw"]
-        + 1 / pivot["odds_away"]
-    )
-    pivot = pivot[pivot["sum_imp"] < 1]
+   num_cols = ["odds_home", "odds_draw", "odds_away"]
+for c in num_cols:
+    pivot[c] = pd.to_numeric(pivot[c], errors="coerce")
 
-    B = BANKROLL
-    pivot["stake_home"] = (B / pivot["odds_home"] / pivot["sum_imp"]).round(2)
-    pivot["stake_draw"] = (B / pivot["odds_draw"] / pivot["sum_imp"]).round(2)
-    pivot["stake_away"] = (B / pivot["odds_away"] / pivot["sum_imp"]).round(2)
-    pivot["roi_pct"] = ((1 - pivot["sum_imp"]) * 100).round(2)
+pivot = pivot.dropna(subset=num_cols)
+
+pivot["sum_imp"] = (
+    1 / pivot["odds_home"]
+    + 1 / pivot["odds_draw"]
+    + 1 / pivot["odds_away"]
+)
+
+pivot = pivot[pivot["sum_imp"] < 1]
+
+B = BANKROLL
+pivot["stake_home"] = (B / pivot["odds_home"] / pivot["sum_imp"]).round(2)
+pivot["stake_draw"] = (B / pivot["odds_draw"] / pivot["sum_imp"]).round(2)
+pivot["stake_away"] = (B / pivot["odds_away"] / pivot["sum_imp"]).round(2)
+pivot["roi_pct"] = ((1 - pivot["sum_imp"]) * 100).round(2)
+
 
     return pivot.sort_values("roi_pct", ascending=False)
 
