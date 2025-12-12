@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Multi-League Multi-Market Arbitrage Finder – EU books via The Odds API.
-
-Markets:
-- Match Result (1X2 / h2h)
-- Goals Totals (Over/Under)
+Multi-League Arbitrage Finder (1X2 + Totals)
+EU books via The Odds API
 """
 
 import html
@@ -13,7 +10,7 @@ from datetime import datetime, timezone
 import requests
 import pandas as pd
 
-# ===== CONFIG =====
+# ================= CONFIG =================
 API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"
 REGIONS = "eu"
 MARKETS = "h2h,totals"
@@ -39,53 +36,47 @@ BOOK_PRIORITY = [
     "Ladbrokes", "SkyBet", "Unibet", "BetVictor", "BoyleSports", "Casumo"
 ]
 
-# ===== HELPERS =====
+# ================= HELPERS =================
 def now_iso():
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
 
 
 def fetch_all(sport_key):
     url = f"https://api.the-odds-api.com/v4/sports/{sport_key}/odds"
-    params = dict(
-        apiKey=API_KEY,
-        regions=REGIONS,
-        markets=MARKETS,
-        oddsFormat=ODDS_FORMAT,
-        dateFormat=DATE_FORMAT,
-    )
+    params = {
+        "apiKey": API_KEY,
+        "regions": REGIONS,
+        "markets": MARKETS,
+        "oddsFormat": ODDS_FORMAT,
+        "dateFormat": DATE_FORMAT,
+    }
     r = requests.get(url, params=params, timeout=TIMEOUT)
     if r.status_code != 200:
-        raise SystemExit(f"{sport_key} → HTTP {r.status_code}: {r.text}")
+        raise SystemExit(f"{sport_key}: HTTP {r.status_code} {r.text}")
     return r.json()
 
 
-def json_to_long(df_json):
+def json_to_long(data):
     rows = []
-    for game in df_json:
-        gid = game.get("id")
-        commence = game.get("commence_time")
-        home = game.get("home_team")
-        away = game.get("away_team")
+    for game in data:
         for b in game.get("bookmakers", []):
-            book = b.get("title")
-            last = b.get("last_update") or commence
             for m in b.get("markets", []):
-                if m.get("key") not in ("h2h", "totals"):
+                if m["key"] not in ("h2h", "totals"):
                     continue
                 for o in m.get("outcomes", []):
                     if o.get("price") is None:
                         continue
                     rows.append({
-                        "event_id": gid,
-                        "commence_time": commence,
-                        "home_team": home,
-                        "away_team": away,
-                        "bookmaker": book,
-                        "market": m.get("key"),
+                        "event_id": game["id"],
+                        "commence_time": game["commence_time"],
+                        "home_team": game["home_team"],
+                        "away_team": game["away_team"],
+                        "bookmaker": b["title"],
+                        "market": m["key"],
                         "outcome": o.get("name"),
                         "line": o.get("point"),
-                        "odds": float(o.get("price")),
-                        "last_update": last,
+                        "odds": float(o["price"]),
+                        "last_update": b.get("last_update"),
                     })
     return pd.DataFrame(rows)
 
@@ -93,14 +84,12 @@ def json_to_long(df_json):
 def _book_order(book):
     return BOOK_PRIORITY.index(book) if book in BOOK_PRIORITY else len(BOOK_PRIORITY)
 
-# ===== ARBITRAGE LOGIC (UNCHANGED) =====
+# ================= 1X2 ARBITRAGE =================
 def parse_1x2(df):
     if df.empty:
         return df
-    df = df[df["market"] == "h2h"].copy()
-    if df.empty:
-        return df
 
+    df = df[df["market"] == "h2h"].copy()
     df["book_order"] = df["bookmaker"].apply(_book_order)
 
     def classify(row):
@@ -125,38 +114,39 @@ def parse_1x2(df):
     pivot = best.pivot(
         index=["event_id", "commence_time", "home_team", "away_team"],
         columns="side",
-        values=["odds", "bookmaker"],
+        values=["odds", "bookmaker"]
     )
+
     pivot.columns = [f"{a}_{b}" for a, b in pivot.columns]
     pivot = pivot.dropna().reset_index()
 
-   num_cols = ["odds_home", "odds_draw", "odds_away"]
-for c in num_cols:
-    pivot[c] = pd.to_numeric(pivot[c], errors="coerce")
+    # numeric safety
+    for c in ["odds_home", "odds_draw", "odds_away"]:
+        pivot[c] = pd.to_numeric(pivot[c], errors="coerce")
 
-pivot = pivot.dropna(subset=num_cols)
+    pivot = pivot.dropna(subset=["odds_home", "odds_draw", "odds_away"])
 
-pivot["sum_imp"] = (
-    1 / pivot["odds_home"]
-    + 1 / pivot["odds_draw"]
-    + 1 / pivot["odds_away"]
-)
+    pivot["sum_imp"] = (
+        1 / pivot["odds_home"]
+        + 1 / pivot["odds_draw"]
+        + 1 / pivot["odds_away"]
+    )
 
-pivot = pivot[pivot["sum_imp"] < 1]
+    pivot = pivot[pivot["sum_imp"] < 1]
 
-B = BANKROLL
-pivot["stake_home"] = (B / pivot["odds_home"] / pivot["sum_imp"]).round(2)
-pivot["stake_draw"] = (B / pivot["odds_draw"] / pivot["sum_imp"]).round(2)
-pivot["stake_away"] = (B / pivot["odds_away"] / pivot["sum_imp"]).round(2)
-pivot["roi_pct"] = ((1 - pivot["sum_imp"]) * 100).round(2)
-
+    B = BANKROLL
+    pivot["stake_home"] = (B / pivot["odds_home"] / pivot["sum_imp"]).round(2)
+    pivot["stake_draw"] = (B / pivot["odds_draw"] / pivot["sum_imp"]).round(2)
+    pivot["stake_away"] = (B / pivot["odds_away"] / pivot["sum_imp"]).round(2)
+    pivot["roi_pct"] = ((1 - pivot["sum_imp"]) * 100).round(2)
 
     return pivot.sort_values("roi_pct", ascending=False)
 
-
+# ================= TOTALS ARBITRAGE =================
 def parse_totals(df):
     if df.empty:
         return df
+
     df = df[df["market"] == "totals"].copy()
     df = df.dropna(subset=["line"])
 
@@ -166,10 +156,31 @@ def parse_totals(df):
 
     grouped = ["event_id", "commence_time", "home_team", "away_team", "line"]
 
-    over = df[df["side"] == "over"].sort_values("odds", ascending=False).groupby(grouped).first().reset_index()
-    under = df[df["side"] == "under"].sort_values("odds", ascending=False).groupby(grouped).first().reset_index()
+    over = (
+        df[df["side"] == "over"]
+        .sort_values("odds", ascending=False)
+        .groupby(grouped)
+        .first()
+        .reset_index()
+        .rename(columns={"odds": "odds_over", "bookmaker": "book_over"})
+    )
 
-    out = over.merge(under, on=grouped, suffixes=("_over", "_under"))
+    under = (
+        df[df["side"] == "under"]
+        .sort_values("odds", ascending=False)
+        .groupby(grouped)
+        .first()
+        .reset_index()
+        .rename(columns={"odds": "odds_under", "bookmaker": "book_under"})
+    )
+
+    out = over.merge(under, on=grouped)
+
+    for c in ["odds_over", "odds_under"]:
+        out[c] = pd.to_numeric(out[c], errors="coerce")
+
+    out = out.dropna(subset=["odds_over", "odds_under"])
+
     out["sum_imp"] = 1 / out["odds_over"] + 1 / out["odds_under"]
     out = out[out["sum_imp"] < 1]
 
@@ -180,44 +191,32 @@ def parse_totals(df):
 
     return out.sort_values("roi_pct", ascending=False)
 
-# ===== HTML =====
+# ================= HTML =================
 def render_page(league, arbs_1x2, arbs_totals):
     ts = now_iso()
-    return f"""
-<!doctype html>
+    return f"""<!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-</head>
+<head><meta charset="utf-8"></head>
 <body style="background:#0F1621;color:#E2E8F0;font-family:Inter,system-ui;padding:24px;">
-<h1>{league} Arbitrage</h1>
-<p style="opacity:.7">Last updated {ts} · Bankroll £{BANKROLL:.0f}</p>
-<h2>1X2</h2>
+<h1>{html.escape(league)} Arbitrage</h1>
+<p style="opacity:.7">Updated {ts} · Bankroll £{BANKROLL:.0f}</p>
+
+<h2>Match Result (1X2)</h2>
 <pre>{arbs_1x2.to_string(index=False) if not arbs_1x2.empty else "No opportunities"}</pre>
-<h2>Totals</h2>
+
+<h2>Goals Totals</h2>
 <pre>{arbs_totals.to_string(index=False) if not arbs_totals.empty else "No opportunities"}</pre>
-</body>
-</html>
-"""
+</body></html>"""
 
 
 def render_index():
     links = "".join(
-        f"<li><a href='{k.lower().replace(' ','_')}.html'>{k}</a></li>"
+        f"<li><a href='{k.lower().replace(' ', '_')}.html'>{k}</a></li>"
         for k in LEAGUES
     )
-    return f"""
-<!doctype html>
-<html>
-<body style="background:#0F1621;color:#E2E8F0;padding:24px;">
-<h1>Arbitrage Boards</h1>
-<ul>{links}</ul>
-</body>
-</html>
-"""
+    return f"<html><body><h1>Arbitrage Boards</h1><ul>{links}</ul></body></html>"
 
-# ===== MAIN =====
+# ================= MAIN =================
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -242,8 +241,7 @@ def main():
         )
 
     (OUTPUT_DIR / "index.html").write_text(render_index(), encoding="utf-8")
-    print("Arbitrage boards generated.")
-
+    print("Arbitrage generation complete.")
 
 if __name__ == "__main__":
     main()
