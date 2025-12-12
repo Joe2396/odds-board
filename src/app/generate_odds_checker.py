@@ -269,22 +269,42 @@ def main():
 
     print(f"Wrote {len(all_games)} fixture pages")
 
-    # Write index
-    index=[]
-    for _,fx in all_games.sort_values("time").iterrows():
-        slug=f"{fx['home'].lower().replace(' ','-')}-vs-{fx['away'].lower().replace(' ','-')}.html"
-        index.append(f"<li><a href='{slug}'>{html.escape(fx['home'])} vs {html.escape(fx['away'])}</a></li>")
+    # Write index (dark card layout)
+index_html = []
+current_date = None
 
-    (OUTPUT_DIR/"index.html").write_text(
+for _, fx in all_games.sort_values("time").iterrows():
+    dt = fx["time"][:10]  # YYYY-MM-DD
+    if dt != current_date:
+        current_date = dt
+        index_html.append(f"<h2>{dt}</h2>")
+
+    slug = f"{fx['home'].lower().replace(' ','-')}-vs-{fx['away'].lower().replace(' ','-')}.html"
+
+    index_html.append(f"""
+    <a href="{slug}" style="text-decoration:none;color:{TXT};">
+        <div style="background:#111827;border:1px solid #1F2937;border-radius:12px;padding:16px;margin:12px 0;">
+            <div style="font-size:20px;font-weight:600;">{html.escape(fx['home'])}</div>
+            <div style="opacity:0.8;">vs</div>
+            <div style="font-size:20px;font-weight:600;">{html.escape(fx['away'])}</div>
+            <div style="opacity:0.6;margin-top:6px;">
+                {fx['time']} UTC
+            </div>
+        </div>
+    </a>
+    """)
+
+(OUTPUT_DIR/"index.html").write_text(
 f"""
-<!doctype html><html><body style="background:{THEME_BG};color:{TXT};font-family:Inter,system-ui,Roboto">
+<!doctype html>
+<html>
+<body style="background:{THEME_BG};color:{TXT};font-family:Inter,system-ui,Roboto;padding:24px;">
 <h1>EPL Odds Checker</h1>
-<ul>{''.join(index)}</ul>
-</body></html>
-""", encoding="utf-8")
-
-    print("Index written.")
-
-if __name__=="__main__":
-    main()
+<p>Click a fixture to view Match Result, Totals, and Spreads. Updated: {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")}</p>
+{''.join(index_html)}
+</body>
+</html>
+""",
+encoding="utf-8"
+)
 
