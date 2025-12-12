@@ -14,7 +14,7 @@ import requests
 import pandas as pd
 
 # ===== CONFIG =====
-API_KEY = "YOUR_API_KEY"
+API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"
 REGIONS = "eu"
 MARKETS = "h2h,totals"
 ODDS_FORMAT = "decimal"
