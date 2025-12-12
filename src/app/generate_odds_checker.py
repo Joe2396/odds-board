@@ -14,15 +14,12 @@ import pandas as pd
 
 API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"    # your API key
 LEAGUES = {
-    LEAGUES = {
     "epl": "soccer_epl",
     "championship": "soccer_england_efl_championship",
     "la_liga": "soccer_spain_la_liga",
     "bundesliga": "soccer_germany_bundesliga",
     "serie_a": "soccer_italy_serie_a",
 }
-
-} 
 
 REGIONS = "eu"  # EU books (you asked for this)
 ODDS_FORMAT = "decimal"
@@ -487,5 +484,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
