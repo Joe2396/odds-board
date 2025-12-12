@@ -357,25 +357,41 @@ def render_fixture_page(fx, h2h, totals, spreads):
 # ---------------- MAIN GENERATION --------------------
 
 def main():
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    all_dfs_h2h = []
+all_dfs_totals = []
+all_dfs_spreads = []
 
-    print("Fetching H2H…")
-    raw_h2h = fetch("h2h")
-    df1 = df_h2h(raw_h2h)
+for league_name, league_key in LEAGUES.items():
+    print(f"Fetching {league_name.upper()} H2H…")
+    raw = fetch(league_key, "h2h")
+    df_h = df_h2h(raw)
+    if not df_h.empty:
+        df_h["league"] = league_name
+        all_dfs_h2h.append(df_h)
 
-    print("Fetching Totals…")
-    raw_totals = fetch("totals")
-    df2 = df_totals(raw_totals)
+    print(f"Fetching {league_name.upper()} Totals…")
+    raw = fetch(league_key, "totals")
+    df_t = df_totals(raw)
+    if not df_t.empty:
+        df_t["league"] = league_name
+        all_dfs_totals.append(df_t)
 
-    print("Fetching Spreads…")
-    raw_spreads = fetch("spreads")
-    df3 = df_spreads(raw_spreads)
+    print(f"Fetching {league_name.upper()} Spreads…")
+    raw = fetch(league_key, "spreads")
+    df_s = df_spreads(raw)
+    if not df_s.empty:
+        df_s["league"] = league_name
+        all_dfs_spreads.append(df_s)
 
-    if df1.empty:
-        print("No H2H data returned; nothing to write.")
-        return
+df1 = pd.concat(all_dfs_h2h, ignore_index=True)
+df2 = pd.concat(all_dfs_totals, ignore_index=True) if all_dfs_totals else pd.DataFrame()
+df3 = pd.concat(all_dfs_spreads, ignore_index=True) if all_dfs_spreads else pd.DataFrame()
 
-    all_games = df1[["event_id", "time", "home", "away"]].drop_duplicates()
+if df1.empty:
+    print("No H2H data returned; nothing to write.")
+    return
+
+all_games = df1[["event_id","time","home","away","league"]].drop_duplicates()
 
     # Fixture pages
     for _, fx in all_games.iterrows():
@@ -434,5 +450,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
