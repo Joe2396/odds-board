@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-BeatTheBooks Arbitrage Finder — Soccer + NFL
-Markets:
-- Soccer: 1X2, Totals, Spreads
-- NFL: Moneyline, Totals, Spreads
-
-Output:
+Soccer & NFL Arbitrage Finder
+Markets: H2H / Totals / Spreads
+Single-page output:
   data/auto/arb_latest.html
 """
 
@@ -20,12 +17,12 @@ import pandas as pd
 API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"
 
 SPORTS = {
-    "Premier League": ("soccer_epl", "soccer"),
-    "La Liga": ("soccer_spain_la_liga", "soccer"),
-    "Bundesliga": ("soccer_germany_bundesliga", "soccer"),
-    "Serie A": ("soccer_italy_serie_a", "soccer"),
-    "Champions League": ("soccer_uefa_champs_league", "soccer"),
-    "NFL": ("americanfootball_nfl", "nfl"),
+    "Premier League": "soccer_epl",
+    "La Liga": "soccer_spain_la_liga",
+    "Bundesliga": "soccer_germany_bundesliga",
+    "Serie A": "soccer_italy_serie_a",
+    "Champions League": "soccer_uefa_champs_league",
+    "NFL": "americanfootball_nfl",
 }
 
 REGIONS = "eu"
@@ -38,11 +35,7 @@ BANKROLL = 100.0
 MIN_ROI_PCT = 1.0
 OUTPUT_HTML = Path("data/auto/arb_latest.html")
 
-SPREAD_LINES = {
-    "soccer": {-1.0, 0.0, 1.0},
-    "nfl": {-7.5, -3.5, 0.0, 3.5, 7.5},
-}
-
+POPULAR_SPREAD_LINES = {-1.0, 0.0, 1.0}
 ODDS_MIN = 1.01
 ODDS_MAX = 1000.0
 
@@ -62,83 +55,73 @@ def fetch_odds(sport_key):
     )
     r = requests.get(url, params=params, timeout=TIMEOUT)
     if r.status_code != 200:
-        print(f"[WARN] {sport_key}: HTTP {r.status_code}")
+        print(f"[WARN] {sport_key}: {r.status_code}")
         return []
     return r.json()
 
 # ================= FLATTEN =================
 
-def flatten(league, sport_type, data):
+def flatten(league, data):
     rows = []
-
     for g in data:
-        home = g.get("home_team")
-        away = g.get("away_team")
-        kickoff = g.get("commence_time")
-        gid = g.get("id")
+        home, away = g.get("home_team"), g.get("away_team")
+        gid, kickoff = g.get("id"), g.get("commence_time")
+
+        if not home or not away:
+            continue
 
         for b in g.get("bookmakers", []):
             book = b.get("title", "")
             for m in b.get("markets", []):
-                key = m.get("key")
-
                 for o in m.get("outcomes", []):
-                    odds = o.get("price")
-                    name = (o.get("name") or "").strip()
-                    point = o.get("point")
-
-                    if odds is None:
+                    price, point, name = o.get("price"), o.get("point"), (o.get("name") or "").strip()
+                    if price is None:
                         continue
 
-                    odds = float(odds)
+                    odds = float(price)
                     if not (ODDS_MIN <= odds <= ODDS_MAX):
                         continue
 
-                    side = None
-                    line = None
+                    side, line = None, None
 
-                    if key == "h2h":
-                        if name.lower() == "draw" and sport_type == "soccer":
+                    if m["key"] == "h2h":
+                        if name.lower() == "draw":
                             side = "Draw"
-                        elif name.lower() == (home or "").lower():
+                        elif name.lower() == home.lower():
                             side = "Home"
-                        elif name.lower() == (away or "").lower():
+                        elif name.lower() == away.lower():
                             side = "Away"
                         else:
                             continue
 
-                    elif key == "totals":
-                        if point is None:
-                            continue
-                        line = float(point)
+                    elif m["key"] == "totals":
                         if "over" in name.lower():
                             side = "Over"
                         elif "under" in name.lower():
                             side = "Under"
                         else:
                             continue
-
-                    elif key == "spreads":
                         if point is None:
                             continue
                         line = float(point)
-                        if line not in SPREAD_LINES[sport_type]:
+
+                    elif m["key"] == "spreads":
+                        if point is None:
                             continue
-                        if name.lower() == (home or "").lower():
+                        line = float(point)
+                        if line not in POPULAR_SPREAD_LINES:
+                            continue
+                        if name.lower() == home.lower():
                             side = "Home"
-                        elif name.lower() == (away or "").lower():
+                        elif name.lower() == away.lower():
                             side = "Away"
                         else:
                             continue
 
                     rows.append({
                         "league": league,
-                        "sport": sport_type,
-                        "event_id": gid,
-                        "home": home,
-                        "away": away,
-                        "kickoff": kickoff,
-                        "market": key,
+                        "fixture": f"{home} vs {away}",
+                        "market": m["key"],
                         "side": side,
                         "line": line,
                         "odds": odds,
@@ -147,104 +130,123 @@ def flatten(league, sport_type, data):
 
     return pd.DataFrame(rows)
 
-# ================= ARBITRAGE =================
+# ================= ARB CORE =================
 
-def best_by_side(df):
+def best_per_side(df):
     return df.sort_values("odds", ascending=False).groupby("side").first()
 
-def build_h2h_arbs(df):
-    out = []
-    df = df[df.market == "h2h"]
+def calc_roi(best):
+    return (1 - sum(1 / best["odds"])) * 100
 
-    for (_, league, sport), g in df.groupby(["event_id", "league", "sport"]):
-        sides = set(g.side)
+def stakes(best):
+    inv = sum(1 / best["odds"])
+    return {s: round((BANKROLL / r.odds) / inv, 2) for s, r in best.iterrows()}
 
-        if sport == "soccer" and sides != {"Home", "Draw", "Away"}:
-            continue
-        if sport == "nfl" and sides != {"Home", "Away"}:
-            continue
+# ================= TABLE RENDER =================
 
-        best = best_by_side(g)
-        inv_sum = sum(1 / best.odds)
+def table(headers, rows):
+    th = "".join(f"<th>{h}</th>" for h in headers)
+    return f"""
+    <div style="overflow:auto;border:1px solid #1F2937;border-radius:12px;margin-bottom:24px;">
+      <table style="width:100%;min-width:1050px;border-collapse:collapse;">
+        <thead style="background:#111827;">
+          <tr>{th}</tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+    </div>
+    """
 
-        if inv_sum >= 1:
-            continue
-
-        roi = (1 - inv_sum) * 100
-        if roi < MIN_ROI_PCT:
-            continue
-
-        row = {
-            "league": league,
-            "fixture": f"{g.iloc[0].home} vs {g.iloc[0].away}",
-            "roi": round(roi, 2),
-            "stakes": {}
-        }
-
-        for side in best.index:
-            row["stakes"][side] = {
-                "odds": best.loc[side].odds,
-                "book": best.loc[side].book,
-                "stake": round((BANKROLL / best.loc[side].odds) / inv_sum, 2)
-            }
-
-        out.append(row)
-
-    return out
+def td(x): return f"<td style='padding:10px;border-bottom:1px solid #111827;'>{x}</td>"
 
 # ================= HTML =================
 
-def render(arbs):
-    ts = now_iso()
-
-    html_out = f"""
+def render_board(df):
+    out = [f"""
 <!doctype html>
-<html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
 <body style="background:#0F1621;color:#E2E8F0;font-family:Inter,system-ui;padding:24px;">
 <h1>Soccer & NFL Arbitrage Board</h1>
-<p>Updated: {ts} · Bankroll £{BANKROLL:.0f} · Min ROI {MIN_ROI_PCT:.0f}%</p>
-"""
+<p style="opacity:.8">Updated: {now_iso()} · Bankroll £{BANKROLL:.0f} · Min ROI {MIN_ROI_PCT:.0f}%</p>
+"""]
 
-    if not arbs:
-        html_out += "<p>No arbitrage opportunities found.</p>"
-    else:
-        for a in arbs:
-            html_out += f"""
-<div style="border:1px solid #1F2937;border-radius:12px;padding:14px;margin:16px 0;">
-<h3>{html.escape(a['league'])} — {html.escape(a['fixture'])}</h3>
-<p>ROI: <strong>{a['roi']}%</strong></p>
-<ul>
-"""
-            for side, d in a["stakes"].items():
-                html_out += (
-                    f"<li>{side}: {d['odds']} @ {html.escape(d['book'])} "
-                    f"— £{d['stake']}</li>"
-                )
-            html_out += "</ul></div>"
+    # -------- 1X2 --------
+    rows = []
+    for (league, fixture), sub in df[df.market == "h2h"].groupby(["league", "fixture"]):
+        if set(sub.side) != {"Home", "Draw", "Away"}:
+            continue
+        best = best_per_side(sub)
+        roi = calc_roi(best)
+        if roi < MIN_ROI_PCT:
+            continue
+        st = stakes(best)
+        rows.append(
+            "<tr>" +
+            td(league) +
+            td(fixture) +
+            td(f"{best.loc['Home'].odds} @ {best.loc['Home'].book}") +
+            td(f"{best.loc['Draw'].odds} @ {best.loc['Draw'].book}") +
+            td(f"{best.loc['Away'].odds} @ {best.loc['Away'].book}") +
+            td(f"{roi:.2f}%") +
+            td(f"Home £{st['Home']}<br>Draw £{st['Draw']}<br>Away £{st['Away']}") +
+            "</tr>"
+        )
 
-    html_out += "</body></html>"
-    return html_out
+    out.append("<h2>Match Result (1X2)</h2>")
+    out.append(table(
+        ["League", "Fixture", "Home", "Draw", "Away", "ROI", "Suggested Stakes"],
+        "".join(rows) if rows else "<tr><td colspan=7>No opportunities</td></tr>"
+    ))
+
+    # -------- TOTALS --------
+    rows = []
+    for (league, fixture, line), sub in df[df.market == "totals"].groupby(["league", "fixture", "line"]):
+        if set(sub.side) != {"Over", "Under"}:
+            continue
+        best = best_per_side(sub)
+        roi = calc_roi(best)
+        if roi < MIN_ROI_PCT:
+            continue
+        st = stakes(best)
+        rows.append(
+            "<tr>" +
+            td(league) +
+            td(fixture) +
+            td(f"{line:.1f}") +
+            td(f"{best.loc['Over'].odds} @ {best.loc['Over'].book}") +
+            td(f"{best.loc['Under'].odds} @ {best.loc['Under'].book}") +
+            td(f"{roi:.2f}%") +
+            td(f"Over £{st['Over']}<br>Under £{st['Under']}") +
+            "</tr>"
+        )
+
+    out.append("<h2>Totals (Over / Under)</h2>")
+    out.append(table(
+        ["League", "Fixture", "Line", "Over", "Under", "ROI", "Suggested Stakes"],
+        "".join(rows) if rows else "<tr><td colspan=7>No opportunities</td></tr>"
+    ))
+
+    out.append("</body></html>")
+    return "".join(out)
 
 # ================= MAIN =================
 
 def main():
     frames = []
-
-    for league, (key, sport) in SPORTS.items():
-        data = fetch_odds(key)
-        df = flatten(league, sport, data)
+    for league, key in SPORTS.items():
+        df = flatten(league, fetch_odds(key))
         if not df.empty:
             frames.append(df)
 
     if not frames:
-        OUTPUT_HTML.write_text(render([]), encoding="utf-8")
         return
 
-    full = pd.concat(frames, ignore_index=True)
-    arbs = build_h2h_arbs(full)
-
+    full_df = pd.concat(frames, ignore_index=True)
+    html_out = render_board(full_df)
     OUTPUT_HTML.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_HTML.write_text(render(arbs), encoding="utf-8")
+    OUTPUT_HTML.write_text(html_out, encoding="utf-8")
     print("Arbitrage board updated")
 
 if __name__ == "__main__":
