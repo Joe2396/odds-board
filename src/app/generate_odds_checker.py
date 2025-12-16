@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Odds Checker — Sports-based layout (Soccer / NFL / NBA)
+Multi-Sport Odds Checker
+Sports:
+- Soccer (EPL, La Liga, Bundesliga, Serie A, UCL)
+- NFL
+- NBA
 
 Outputs:
-  data/auto/odds_checker/index.html
-  data/auto/odds_checker/<sport>/<league>/index.html
-  data/auto/odds_checker/<sport>/<league>/<fixture>.html
+data/auto/odds_checker/index.html
 """
 
 import html
@@ -20,29 +22,18 @@ import pandas as pd
 API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"
 
 SPORTS = {
-    "soccer": {
-        "title": "Soccer",
-        "leagues": {
-            "epl": "soccer_epl",
-            "la_liga": "soccer_spain_la_liga",
-            "bundesliga": "soccer_germany_bundesliga",
-            "serie_a": "soccer_italy_serie_a",
-            "ucl": "soccer_uefa_champs_league",
-        },
-        "markets": {"h2h", "totals", "spreads"},
-        "spread_lines": {-1.0, 0.0, 1.0},
+    "Soccer": {
+        "epl": "soccer_epl",
+        "la_liga": "soccer_spain_la_liga",
+        "bundesliga": "soccer_germany_bundesliga",
+        "serie_a": "soccer_italy_serie_a",
+        "ucl": "soccer_uefa_champs_league",
     },
-    "nfl": {
-        "title": "NFL",
-        "leagues": {"nfl": "americanfootball_nfl"},
-        "markets": {"h2h", "totals", "spreads"},
-        "spread_lines": {-1.5, 0.0, 1.5, 2.5, 3.5},
+    "NFL": {
+        "nfl": "americanfootball_nfl",
     },
-    "nba": {
-        "title": "NBA",
-        "leagues": {"nba": "basketball_nba"},
-        "markets": {"h2h", "totals"},
-        "spread_lines": set(),
+    "NBA": {
+        "nba": "basketball_nba",
     },
 }
 
@@ -51,194 +42,220 @@ ODDS_FORMAT = "decimal"
 DATE_FORMAT = "iso"
 TIMEOUT = 30
 
-BASE_DIR = Path("data/auto/odds_checker")
+BASE_OUTPUT_DIR = Path("data/auto/odds_checker")
 
 THEME_BG = "#0F1621"
 TXT = "#E2E8F0"
 
-ODDS_MIN = 1.01
-ODDS_MAX = 1000.0
+# Soccer only
+POPULAR_SOCCER_SPREADS = {-1.0, 0.0, 1.0}
 
 # ================= HELPERS =================
 
 def now_iso():
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
 
-def tidy_book(name):
-    return name or "Unknown"
+def is_future_game(iso_time: str) -> bool:
+    try:
+        kickoff = datetime.fromisoformat(iso_time.replace("Z", "+00:00"))
+        return kickoff > datetime.now(timezone.utc)
+    except Exception:
+        return False
 
-def slugify(s):
-    s = (s or "").lower()
-    s = s.replace("&", " and ")
-    s = re.sub(r"[^\w\s-]", " ", s)
-    s = re.sub(r"[\s_-]+", "-", s).strip("-")
-    return s or "event"
+def slugify(text: str) -> str:
+    text = (text or "").lower()
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"[\s_-]+", "-", text).strip("-")
+    return text or "item"
 
-def fixture_slug(home, away):
-    return f"{slugify(home)}-vs-{slugify(away)}.html"
-
-# ================= API =================
-
-def fetch(sport_key, markets):
+def fetch(sport_key: str):
     url = f"https://api.the-odds-api.com/v4/sports/{sport_key}/odds"
-    params = dict(
-        apiKey=API_KEY,
-        regions=REGIONS,
-        markets=",".join(markets),
-        oddsFormat=ODDS_FORMAT,
-        dateFormat=DATE_FORMAT,
-    )
+    params = {
+        "apiKey": API_KEY,
+        "regions": REGIONS,
+        "markets": "h2h,totals,spreads",
+        "oddsFormat": ODDS_FORMAT,
+        "dateFormat": DATE_FORMAT,
+    }
     r = requests.get(url, params=params, timeout=TIMEOUT)
     if r.status_code != 200:
+        print(f"[WARN] {sport_key}: {r.status_code}")
         return []
     return r.json()
 
-# ================= DF BUILDERS =================
+# ================= DATA BUILD =================
 
-def df_h2h(data):
+def flatten(data, sport_name):
     rows = []
+
     for g in data:
+        kickoff = g.get("commence_time")
+        if not kickoff or not is_future_game(kickoff):
+            continue
+
+        home = g.get("home_team")
+        away = g.get("away_team")
+        gid = g.get("id")
+
         for b in g.get("bookmakers", []):
+            book = b.get("title")
             for m in b.get("markets", []):
-                if m["key"] != "h2h":
-                    continue
-                for o in m["outcomes"]:
-                    if o.get("price") is None:
+                mkey = m.get("key")
+
+                for o in m.get("outcomes", []):
+                    price = o.get("price")
+                    point = o.get("point")
+                    name = (o.get("name") or "").strip()
+
+                    if price is None:
                         continue
-                    side = o["name"]
+
+                    side = None
+                    line = None
+
+                    if mkey == "h2h":
+                        if name.lower() == (home or "").lower():
+                            side = "Home"
+                        elif name.lower() == (away or "").lower():
+                            side = "Away"
+                        elif name.lower() == "draw":
+                            side = "Draw"
+                        else:
+                            continue
+
+                    elif mkey == "totals":
+                        if "over" in name.lower():
+                            side = "Over"
+                        elif "under" in name.lower():
+                            side = "Under"
+                        else:
+                            continue
+                        if point is None:
+                            continue
+                        line = float(point)
+
+                    elif mkey == "spreads":
+                        if point is None:
+                            continue
+                        line = float(point)
+
+                        if sport_name == "Soccer" and line not in POPULAR_SOCCER_SPREADS:
+                            continue
+
+                        if name.lower() == (home or "").lower():
+                            side = "Home"
+                        elif name.lower() == (away or "").lower():
+                            side = "Away"
+                        else:
+                            continue
+
                     rows.append({
-                        "event_id": g["id"],
-                        "time": g["commence_time"],
-                        "home": g["home_team"],
-                        "away": g["away_team"],
-                        "book": tidy_book(b["title"]),
-                        "market": "h2h",
+                        "sport": sport_name,
+                        "event_id": gid,
+                        "home": home,
+                        "away": away,
+                        "kickoff": kickoff,
+                        "market": mkey,
                         "side": side,
-                        "odds": float(o["price"]),
-                    })
-    return pd.DataFrame(rows)
-
-def df_totals(data):
-    rows = []
-    for g in data:
-        for b in g.get("bookmakers", []):
-            for m in b.get("markets", []):
-                if m["key"] != "totals":
-                    continue
-                for o in m["outcomes"]:
-                    if o.get("price") is None or o.get("point") is None:
-                        continue
-                    rows.append({
-                        "event_id": g["id"],
-                        "time": g["commence_time"],
-                        "home": g["home_team"],
-                        "away": g["away_team"],
-                        "book": tidy_book(b["title"]),
-                        "market": "totals",
-                        "side": o["name"].title(),
-                        "line": float(o["point"]),
-                        "odds": float(o["price"]),
-                    })
-    return pd.DataFrame(rows)
-
-def df_spreads(data, allowed_lines):
-    rows = []
-    for g in data:
-        for b in g.get("bookmakers", []):
-            for m in b.get("markets", []):
-                if m["key"] != "spreads":
-                    continue
-                for o in m["outcomes"]:
-                    if o.get("price") is None or o.get("point") is None:
-                        continue
-                    line = float(o["point"])
-                    if line not in allowed_lines:
-                        continue
-                    rows.append({
-                        "event_id": g["id"],
-                        "time": g["commence_time"],
-                        "home": g["home_team"],
-                        "away": g["away_team"],
-                        "book": tidy_book(b["title"]),
-                        "market": "spreads",
-                        "side": o["name"],
                         "line": line,
-                        "odds": float(o["price"]),
+                        "book": book,
+                        "odds": float(price),
                     })
+
     return pd.DataFrame(rows)
 
-# ================= RENDER =================
+# ================= HTML =================
 
-def render_index(sections):
-    cards = []
-    for s in sections:
-        cards.append(f"""
-        <a href="{s}/index.html" style="text-decoration:none;color:{TXT};">
-          <div style="background:#111827;border:1px solid #1F2937;
-                      border-radius:14px;padding:18px;margin:14px 0;">
-            <h2 style="margin:0;">{s.upper()}</h2>
-            <div style="opacity:.7">View odds</div>
-          </div>
-        </a>
-        """)
+def card(title, subtitle, href):
+    return f"""
+<a href="{href}" style="text-decoration:none;color:{TXT};">
+  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
+    <div style="font-size:18px;font-weight:700;">{html.escape(title)}</div>
+    <div style="opacity:0.7;margin-top:4px;">{html.escape(subtitle)}</div>
+  </div>
+</a>
+"""
+
+def render_index(groups):
+    sections = []
+
+    for sport, leagues in groups.items():
+        blocks = []
+        for league_key, league_name in leagues:
+            blocks.append(card(
+                league_name,
+                "Open fixtures",
+                f"{league_key}/index.html"
+            ))
+
+        sections.append(f"""
+<h2 style="margin-top:32px;">{sport}</h2>
+{''.join(blocks)}
+""")
+
     return f"""<!doctype html>
-<html><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="background:{THEME_BG};color:{TXT};font-family:Inter,system-ui;padding:24px;">
-<h1>Odds Checker</h1>
-<p style="opacity:.8">Updated: {now_iso()}</p>
-{''.join(cards)}
-</body></html>
+  <h1>Odds Checker</h1>
+  <p style="opacity:0.8;">Updated: {now_iso()}</p>
+  {''.join(sections)}
+</body>
+</html>
 """
 
 # ================= MAIN =================
 
 def main():
-    BASE_DIR.mkdir(parents=True, exist_ok=True)
-    sports_written = []
+    BASE_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    for sport, cfg in SPORTS.items():
-        sport_dir = BASE_DIR / sport
-        sport_dir.mkdir(exist_ok=True)
-        any_data = False
+    sport_groups = {}
 
-        for league, key in cfg["leagues"].items():
-            raw = fetch(key, cfg["markets"])
-            if not raw:
+    for sport_name, leagues in SPORTS.items():
+        for league_slug, api_key in leagues.items():
+            data = fetch(api_key)
+            df = flatten(data, sport_name)
+
+            if df.empty:
                 continue
 
-            h2h = df_h2h(raw)
-            totals = df_totals(raw)
-            spreads = df_spreads(raw, cfg["spread_lines"]) if cfg["spread_lines"] else pd.DataFrame()
+            league_dir = BASE_OUTPUT_DIR / league_slug
+            league_dir.mkdir(parents=True, exist_ok=True)
 
-            if h2h.empty:
-                continue
-
-            any_data = True
-            league_dir = sport_dir / league
-            league_dir.mkdir(exist_ok=True)
-
-            games = h2h[["event_id", "time", "home", "away"]].drop_duplicates()
-
-            for _, fx in games.iterrows():
-                page = f"""<!doctype html><html><body style="background:{THEME_BG};
-                color:{TXT};font-family:Inter;padding:24px;">
-                <h1>{fx['home']} vs {fx['away']}</h1>
-                <p>{fx['time']} UTC</p>
-                </body></html>"""
-                (league_dir / fixture_slug(fx["home"], fx["away"])).write_text(page, encoding="utf-8")
-
-            (league_dir / "index.html").write_text(
-                f"<html><body style='background:{THEME_BG};color:{TXT};padding:24px;'>"
-                f"<h1>{league.upper()}</h1></body></html>",
-                encoding="utf-8",
+            games = (
+                df[["event_id", "home", "away", "kickoff"]]
+                .drop_duplicates()
+                .sort_values("kickoff")
             )
 
-        if any_data:
-            sports_written.append(sport)
+            rows = []
+            for _, g in games.iterrows():
+                slug = f"{slugify(g['home'])}-vs-{slugify(g['away'])}.html"
+                rows.append(card(
+                    f"{g['home']} vs {g['away']}",
+                    f"{g['kickoff']} UTC",
+                    slug
+                ))
 
-    (BASE_DIR / "index.html").write_text(render_index(sports_written), encoding="utf-8")
+            league_html = f"""<!doctype html>
+<html>
+<body style="background:{THEME_BG};color:{TXT};font-family:Inter,system-ui;padding:24px;">
+<a href="../index.html" style="color:#93C5FD;">← All sports</a>
+<h1>{league_slug.replace('_',' ').title()} Odds Checker</h1>
+{''.join(rows)}
+</body>
+</html>
+"""
+            (league_dir / "index.html").write_text(league_html, encoding="utf-8")
+
+            sport_groups.setdefault(sport_name, []).append(
+                (league_slug, league_slug.replace("_", " ").title())
+            )
+
+    (BASE_OUTPUT_DIR / "index.html").write_text(
+        render_index(sport_groups),
+        encoding="utf-8"
+    )
 
 if __name__ == "__main__":
     main()
-
