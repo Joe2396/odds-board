@@ -8,6 +8,8 @@ Sports:
 
 Outputs:
 data/auto/odds_checker/index.html
++ per-league index pages
++ per-fixture pages (FIXES 404s)
 """
 
 import html
@@ -47,7 +49,6 @@ BASE_OUTPUT_DIR = Path("data/auto/odds_checker")
 THEME_BG = "#0F1621"
 TXT = "#E2E8F0"
 
-# Soccer only
 POPULAR_SOCCER_SPREADS = {-1.0, 0.0, 1.0}
 
 # ================= HELPERS =================
@@ -195,7 +196,6 @@ def render_index(groups):
 
     return f"""<!doctype html>
 <html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="background:{THEME_BG};color:{TXT};font-family:Inter,system-ui;padding:24px;">
   <h1>Odds Checker</h1>
   <p style="opacity:0.8;">Updated: {now_iso()}</p>
@@ -204,11 +204,49 @@ def render_index(groups):
 </html>
 """
 
+def render_fixture_page(df, home, away, kickoff, league_slug):
+    rows = []
+
+    for market in df["market"].unique():
+        block = df[df["market"] == market]
+
+        table_rows = []
+        for _, r in block.iterrows():
+            label = r["side"]
+            if r["line"] is not None:
+                label += f" ({r['line']})"
+
+            table_rows.append(f"""
+<tr>
+<td>{r['book']}</td>
+<td>{label}</td>
+<td>{r['odds']}</td>
+</tr>
+""")
+
+        rows.append(f"""
+<h3 style="margin-top:28px;">{market.upper()}</h3>
+<table style="width:100%;border-collapse:collapse;">
+<tr><th align="left">Book</th><th align="left">Outcome</th><th align="left">Odds</th></tr>
+{''.join(table_rows)}
+</table>
+""")
+
+    return f"""<!doctype html>
+<html>
+<body style="background:{THEME_BG};color:{TXT};font-family:Inter,system-ui;padding:24px;">
+<a href="index.html" style="color:#93C5FD;">← Back to league</a>
+<h1>{home} vs {away}</h1>
+<p style="opacity:0.7;">Kickoff: {kickoff} UTC</p>
+{''.join(rows)}
+</body>
+</html>
+"""
+
 # ================= MAIN =================
 
 def main():
     BASE_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
     sport_groups = {}
 
     for sport_name, leagues in SPORTS.items():
@@ -229,13 +267,26 @@ def main():
             )
 
             rows = []
+
             for _, g in games.iterrows():
                 slug = f"{slugify(g['home'])}-vs-{slugify(g['away'])}.html"
+
                 rows.append(card(
                     f"{g['home']} vs {g['away']}",
                     f"{g['kickoff']} UTC",
                     slug
                 ))
+
+                match_df = df[df["event_id"] == g["event_id"]]
+                fixture_html = render_fixture_page(
+                    match_df,
+                    g["home"],
+                    g["away"],
+                    g["kickoff"],
+                    league_slug
+                )
+
+                (league_dir / slug).write_text(fixture_html, encoding="utf-8")
 
             league_html = f"""<!doctype html>
 <html>
