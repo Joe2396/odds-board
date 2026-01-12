@@ -9,7 +9,7 @@ Sports:
 Outputs:
 data/auto/odds_checker/index.html
 + per-league index pages
-+ per-fixture pages (FIXES 404s)
++ per-fixture pages
 """
 
 import html
@@ -31,12 +31,8 @@ SPORTS = {
         "serie_a": "soccer_italy_serie_a",
         "ucl": "soccer_uefa_champs_league",
     },
-    "NFL": {
-        "nfl": "americanfootball_nfl",
-    },
-    "NBA": {
-        "nba": "basketball_nba",
-    },
+    "NFL": {"nfl": "americanfootball_nfl"},
+    "NBA": {"nba": "basketball_nba"},
 }
 
 REGIONS = "eu"
@@ -179,32 +175,23 @@ def card(title, subtitle, href):
 
 def render_index(groups):
     sections = []
-
     for sport, leagues in groups.items():
         blocks = []
         for league_key, league_name in leagues:
-            blocks.append(card(
-                league_name,
-                "Open fixtures",
-                f"{league_key}/index.html"
-            ))
-
-        sections.append(f"""
-<h2 style="margin-top:32px;">{sport}</h2>
-{''.join(blocks)}
-""")
+            blocks.append(card(league_name, "Open fixtures", f"{league_key}/index.html"))
+        sections.append(f"<h2 style='margin-top:32px;'>{sport}</h2>{''.join(blocks)}")
 
     return f"""<!doctype html>
 <html>
 <body style="background:{THEME_BG};color:{TXT};font-family:Inter,system-ui;padding:24px;">
-  <h1>Odds Checker</h1>
-  <p style="opacity:0.8;">Updated: {now_iso()}</p>
-  {''.join(sections)}
+<h1>Odds Checker</h1>
+<p style="opacity:0.8;">Updated: {now_iso()}</p>
+{''.join(sections)}
 </body>
 </html>
 """
 
-def render_fixture_page(df, home, away, kickoff, league_slug):
+def render_fixture_page(df, home, away, kickoff):
     rows = []
 
     for market in df["market"].unique():
@@ -212,9 +199,9 @@ def render_fixture_page(df, home, away, kickoff, league_slug):
 
         table_rows = []
         for _, r in block.iterrows():
-            label = r["side"]
+            label = r["side"] or ""
             if r["line"] is not None:
-                label += f" ({r['line']})"
+                label = f"{label} ({r['line']})".strip()
 
             table_rows.append(f"""
 <tr>
@@ -253,7 +240,6 @@ def main():
         for league_slug, api_key in leagues.items():
             data = fetch(api_key)
             df = flatten(data, sport_name)
-
             if df.empty:
                 continue
 
@@ -279,11 +265,7 @@ def main():
 
                 match_df = df[df["event_id"] == g["event_id"]]
                 fixture_html = render_fixture_page(
-                    match_df,
-                    g["home"],
-                    g["away"],
-                    g["kickoff"],
-                    league_slug
+                    match_df, g["home"], g["away"], g["kickoff"]
                 )
 
                 (league_dir / slug).write_text(fixture_html, encoding="utf-8")
