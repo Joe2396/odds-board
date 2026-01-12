@@ -1,753 +1,321 @@
 <!doctype html>
-<html>
-<body style="background:#0F1621;color:#E2E8F0;font-family:Inter,system-ui;padding:24px;">
-<a href="index.html" style="color:#93C5FD;">← Back to league</a>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Los Angeles Clippers vs Charlotte Hornets</title>
+<style>
+  :root {
+    --bg: #0F1621;
+    --fg: #E2E8F0;
+    --card: #0B1220;
+    --card2: #0E1A2D;
+    --border: #1F2937;
+    --muted: rgba(226,232,240,0.70);
+    --link: #93C5FD;
+    --pill: rgba(148,163,184,0.12);
+    --pillBorder: rgba(148,163,184,0.22);
+    --bestBg: rgba(16,185,129,0.14);
+    --bestBorder: rgba(16,185,129,0.35);
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  }
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px 18px 44px;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1 { margin: 6px 0 6px; font-size: 42px; letter-spacing: -0.02em; }
+  h2 { margin: 24px 0 10px; font-size: 26px; }
+  .meta { color: var(--muted); margin-bottom: 16px; }
+  .navtop { margin: 8px 0 18px; }
+  .panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 14px 0 22px;
+  }
+  .panel-h {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    font-weight: 800;
+    font-size: 22px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  th, td {
+    padding: 14px 16px;
+    vertical-align: middle;
+  }
+  th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 700;
+    background: rgba(255,255,255,0.01);
+  }
+  tr + tr td {
+    border-top: 1px solid rgba(31,41,55,0.8);
+  }
+  .best {
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+  .best small {
+    display: block;
+    font-size: 14px;
+    font-weight: 650;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .pill {
+    background: var(--pill);
+    border: 1px solid var(--pillBorder);
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pill.bestpill {
+    background: var(--bestBg);
+    border-color: var(--bestBorder);
+  }
+  .subtle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .gridcards a {
+    text-decoration: none;
+  }
+  .card {
+    background: #111827;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .card-sub {
+    margin-top: 6px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    
+<div class="navtop"><a href="index.html">← All fixtures</a></div>
 <h1>Los Angeles Clippers vs Charlotte Hornets</h1>
-<p style="opacity:0.7;">Kickoff: 2026-01-13T03:40:00Z UTC</p>
-
-<h3 style="margin-top:28px;">H2H</h3>
-<table style="width:100%;border-collapse:collapse;">
-<tr><th align="left">Book</th><th align="left">Outcome</th><th align="left">Odds</th></tr>
-
-<tr>
-<td>Codere (IT)</td>
-<td>Away (nan)</td>
-<td>2.55</td>
-</tr>
-
-<tr>
-<td>Codere (IT)</td>
-<td>Home (nan)</td>
-<td>1.5</td>
-</tr>
-
-<tr>
-<td>Parions Sport (FR)</td>
-<td>Away (nan)</td>
-<td>2.55</td>
-</tr>
-
-<tr>
-<td>Parions Sport (FR)</td>
-<td>Home (nan)</td>
-<td>1.5</td>
-</tr>
-
-<tr>
-<td>Winamax (DE)</td>
-<td>Away (nan)</td>
-<td>2.6</td>
-</tr>
-
-<tr>
-<td>Winamax (DE)</td>
-<td>Home (nan)</td>
-<td>1.52</td>
-</tr>
-
-<tr>
-<td>Winamax (FR)</td>
-<td>Away (nan)</td>
-<td>2.5</td>
-</tr>
-
-<tr>
-<td>Winamax (FR)</td>
-<td>Home (nan)</td>
-<td>1.5</td>
-</tr>
-
-<tr>
-<td>Unibet (FR)</td>
-<td>Away (nan)</td>
-<td>2.58</td>
-</tr>
-
-<tr>
-<td>Unibet (FR)</td>
-<td>Home (nan)</td>
-<td>1.51</td>
-</tr>
-
-<tr>
-<td>MyBookie.ag</td>
-<td>Away (nan)</td>
-<td>2.65</td>
-</tr>
-
-<tr>
-<td>MyBookie.ag</td>
-<td>Home (nan)</td>
-<td>1.49</td>
-</tr>
-
-<tr>
-<td>888sport</td>
-<td>Away (nan)</td>
-<td>2.45</td>
-</tr>
-
-<tr>
-<td>888sport</td>
-<td>Home (nan)</td>
-<td>1.53</td>
-</tr>
-
-<tr>
-<td>Coolbet</td>
-<td>Away (nan)</td>
-<td>2.53</td>
-</tr>
-
-<tr>
-<td>Coolbet</td>
-<td>Home (nan)</td>
-<td>1.55</td>
-</tr>
-
-<tr>
-<td>BetOnline.ag</td>
-<td>Away (nan)</td>
-<td>2.65</td>
-</tr>
-
-<tr>
-<td>BetOnline.ag</td>
-<td>Home (nan)</td>
-<td>1.53</td>
-</tr>
-
-<tr>
-<td>Betsson</td>
-<td>Away (nan)</td>
-<td>2.6</td>
-</tr>
-
-<tr>
-<td>Betsson</td>
-<td>Home (nan)</td>
-<td>1.5</td>
-</tr>
-
-<tr>
-<td>Nordic Bet</td>
-<td>Away (nan)</td>
-<td>2.6</td>
-</tr>
-
-<tr>
-<td>Nordic Bet</td>
-<td>Home (nan)</td>
-<td>1.5</td>
-</tr>
-
-<tr>
-<td>1xBet</td>
-<td>Away (nan)</td>
-<td>2.6</td>
-</tr>
-
-<tr>
-<td>1xBet</td>
-<td>Home (nan)</td>
-<td>1.57</td>
-</tr>
-
-<tr>
-<td>Marathon Bet</td>
-<td>Away (nan)</td>
-<td>2.65</td>
-</tr>
-
-<tr>
-<td>Marathon Bet</td>
-<td>Home (nan)</td>
-<td>1.5</td>
-</tr>
-
-<tr>
-<td>GTbets</td>
-<td>Away (nan)</td>
-<td>2.6</td>
-</tr>
-
-<tr>
-<td>GTbets</td>
-<td>Home (nan)</td>
-<td>1.53</td>
-</tr>
-
-<tr>
-<td>William Hill</td>
-<td>Away (nan)</td>
-<td>2.6</td>
-</tr>
-
-<tr>
-<td>William Hill</td>
-<td>Home (nan)</td>
-<td>1.5</td>
-</tr>
-
-<tr>
-<td>LeoVegas (SE)</td>
-<td>Away (nan)</td>
-<td>2.55</td>
-</tr>
-
-<tr>
-<td>LeoVegas (SE)</td>
-<td>Home (nan)</td>
-<td>1.49</td>
-</tr>
-
-<tr>
-<td>Unibet (SE)</td>
-<td>Away (nan)</td>
-<td>2.55</td>
-</tr>
-
-<tr>
-<td>Unibet (SE)</td>
-<td>Home (nan)</td>
-<td>1.51</td>
-</tr>
-
-<tr>
-<td>Unibet (NL)</td>
-<td>Away (nan)</td>
-<td>2.6</td>
-</tr>
-
-<tr>
-<td>Unibet (NL)</td>
-<td>Home (nan)</td>
-<td>1.53</td>
-</tr>
-
-<tr>
-<td>Betfair</td>
-<td>Away (nan)</td>
-<td>2.74</td>
-</tr>
-
-<tr>
-<td>Betfair</td>
-<td>Home (nan)</td>
-<td>1.56</td>
-</tr>
-
-<tr>
-<td>Pinnacle</td>
-<td>Away (nan)</td>
-<td>2.72</td>
-</tr>
-
-<tr>
-<td>Pinnacle</td>
-<td>Home (nan)</td>
-<td>1.52</td>
-</tr>
-
-<tr>
-<td>Betclic (FR)</td>
-<td>Away (nan)</td>
-<td>2.6</td>
-</tr>
-
-<tr>
-<td>Betclic (FR)</td>
-<td>Home (nan)</td>
-<td>1.5</td>
-</tr>
-
-<tr>
-<td>Tipico</td>
-<td>Away (nan)</td>
-<td>2.55</td>
-</tr>
-
-<tr>
-<td>Tipico</td>
-<td>Home (nan)</td>
-<td>1.5</td>
-</tr>
-
-<tr>
-<td>Matchbook</td>
-<td>Away (nan)</td>
-<td>2.74</td>
-</tr>
-
-<tr>
-<td>Matchbook</td>
-<td>Home (nan)</td>
-<td>1.56</td>
-</tr>
-
-<tr>
-<td>BetAnything</td>
-<td>Away (nan)</td>
-<td>2.65</td>
-</tr>
-
-<tr>
-<td>BetAnything</td>
-<td>Home (nan)</td>
-<td>1.51</td>
-</tr>
-
-<tr>
-<td>Everygame</td>
-<td>Away (nan)</td>
-<td>2.65</td>
-</tr>
-
-<tr>
-<td>Everygame</td>
-<td>Home (nan)</td>
-<td>1.53</td>
-</tr>
-
-</table>
-
-<h3 style="margin-top:28px;">TOTALS</h3>
-<table style="width:100%;border-collapse:collapse;">
-<tr><th align="left">Book</th><th align="left">Outcome</th><th align="left">Odds</th></tr>
-
-<tr>
-<td>Codere (IT)</td>
-<td>Over (223.5)</td>
-<td>1.85</td>
-</tr>
-
-<tr>
-<td>Codere (IT)</td>
-<td>Under (223.5)</td>
-<td>1.85</td>
-</tr>
-
-<tr>
-<td>MyBookie.ag</td>
-<td>Over (223.5)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>MyBookie.ag</td>
-<td>Under (223.5)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>888sport</td>
-<td>Over (223.5)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>888sport</td>
-<td>Under (223.5)</td>
-<td>1.85</td>
-</tr>
-
-<tr>
-<td>Coolbet</td>
-<td>Over (223.0)</td>
-<td>1.94</td>
+<div class="meta">Kickoff (UTC): 2026-01-13T03:40:00Z · Updated: 2026-01-12T19:33:53Z</div>
+
+<div class="panel">
+  <div class="panel-h">Match Result (1X2)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%;">Outcome</th>
+        <th style="width:18%;">Best price</th>
+        <th>All books (sorted)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+<tr>
+  <td style="width:18%;font-weight:750;">Home</td>
+  <td style="width:18%;">
+    <div class="best">1.57 <span style="color:var(--muted);font-weight:650;">@</span> 1xBet</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>1xBet @ 1.57</span><span class='pill '>Matchbook @ 1.57</span><span class='pill '>Betfair @ 1.56</span><span class='pill '>Coolbet @ 1.55</span><span class='pill '>888sport @ 1.53</span><span class='pill '>Unibet (SE) @ 1.53</span><span class='pill '>Everygame @ 1.53</span><span class='pill '>Pinnacle @ 1.53</span><span class='pill '>Unibet (NL) @ 1.53</span><span class='pill '>Winamax (DE) @ 1.52</span><span class='pill '>BetOnline.ag @ 1.52</span><span class='pill '>BetAnything @ 1.51</span><span class='pill '>GTbets @ 1.51</span><span class='pill '>Unibet (FR) @ 1.51</span><span class='pill '>Winamax (FR) @ 1.5</span><span class='pill '>Parions Sport (FR) @ 1.5</span><span class='pill '>Codere (IT) @ 1.5</span><span class='pill '>Betsson @ 1.5</span><span class='pill '>LeoVegas (SE) @ 1.5</span><span class='pill '>Nordic Bet @ 1.5</span><span class='pill '>Marathon Bet @ 1.5</span><span class='pill '>Betclic (FR) @ 1.5</span><span class='pill '>William Hill @ 1.5</span><span class='pill '>Tipico @ 1.5</span><span class='pill '>MyBookie.ag @ 1.49</span></div>
+  </td>
+</tr>
+
+<tr>
+  <td style="width:18%;font-weight:750;">Away</td>
+  <td style="width:18%;">
+    <div class="best">2.72 <span style="color:var(--muted);font-weight:650;">@</span> Matchbook</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>Matchbook @ 2.72</span><span class='pill '>Betfair @ 2.72</span><span class='pill '>Pinnacle @ 2.69</span><span class='pill '>BetOnline.ag @ 2.67</span><span class='pill '>MyBookie.ag @ 2.65</span><span class='pill '>Marathon Bet @ 2.65</span><span class='pill '>Everygame @ 2.65</span><span class='pill '>GTbets @ 2.65</span><span class='pill '>BetAnything @ 2.65</span><span class='pill '>Betsson @ 2.6</span><span class='pill '>Unibet (NL) @ 2.6</span><span class='pill '>William Hill @ 2.6</span><span class='pill '>1xBet @ 2.6</span><span class='pill '>Betclic (FR) @ 2.6</span><span class='pill '>Nordic Bet @ 2.6</span><span class='pill '>Winamax (DE) @ 2.6</span><span class='pill '>Unibet (FR) @ 2.58</span><span class='pill '>Codere (IT) @ 2.55</span><span class='pill '>Unibet (SE) @ 2.55</span><span class='pill '>Tipico @ 2.55</span><span class='pill '>Parions Sport (FR) @ 2.55</span><span class='pill '>Coolbet @ 2.53</span><span class='pill '>Winamax (FR) @ 2.5</span><span class='pill '>LeoVegas (SE) @ 2.5</span><span class='pill '>888sport @ 2.45</span></div>
+  </td>
+</tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div class="panel">
+  <div class="panel-h">Totals (Over/Under)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%;">Outcome</th>
+        <th style="width:18%;">Best price</th>
+        <th>All books (sorted)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+<tr>
+  <td style="width:18%;font-weight:750;">Over 223</td>
+  <td style="width:18%;">
+    <div class="best">1.94 <span style="color:var(--muted);font-weight:650;">@</span> Coolbet</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>Coolbet @ 1.94</span><span class='pill '>Matchbook @ 1.89</span></div>
+  </td>
+</tr>
+
+<tr>
+  <td style="width:18%;font-weight:750;">Under 223</td>
+  <td style="width:18%;">
+    <div class="best">2.02 <span style="color:var(--muted);font-weight:650;">@</span> Matchbook</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>Matchbook @ 2.02</span><span class='pill '>Coolbet @ 1.9</span></div>
+  </td>
+</tr>
+
+<tr>
+  <td style="width:18%;font-weight:750;">Over 223.5</td>
+  <td style="width:18%;">
+    <div class="best">1.96 <span style="color:var(--muted);font-weight:650;">@</span> 1xBet</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>1xBet @ 1.96</span><span class='pill '>Pinnacle @ 1.93</span><span class='pill '>GTbets @ 1.92</span><span class='pill '>MyBookie.ag @ 1.91</span><span class='pill '>888sport @ 1.91</span><span class='pill '>BetOnline.ag @ 1.91</span><span class='pill '>Everygame @ 1.91</span><span class='pill '>BetAnything @ 1.91</span><span class='pill '>Codere (IT) @ 1.85</span><span class='pill '>Tipico @ 1.83</span></div>
+  </td>
+</tr>
+
+<tr>
+  <td style="width:18%;font-weight:750;">Under 223.5</td>
+  <td style="width:18%;">
+    <div class="best">1.96 <span style="color:var(--muted);font-weight:650;">@</span> Pinnacle</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>Pinnacle @ 1.96</span><span class='pill '>1xBet @ 1.96</span><span class='pill '>GTbets @ 1.92</span><span class='pill '>MyBookie.ag @ 1.91</span><span class='pill '>Everygame @ 1.91</span><span class='pill '>BetOnline.ag @ 1.91</span><span class='pill '>BetAnything @ 1.91</span><span class='pill '>Tipico @ 1.87</span><span class='pill '>Codere (IT) @ 1.85</span><span class='pill '>888sport @ 1.85</span></div>
+  </td>
+</tr>
+
+<tr>
+  <td style="width:18%;font-weight:750;">Over 224</td>
+  <td style="width:18%;">
+    <div class="best">1.92 <span style="color:var(--muted);font-weight:650;">@</span> LeoVegas (SE)</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>LeoVegas (SE) @ 1.92</span><span class='pill '>Unibet (SE) @ 1.92</span><span class='pill '>Unibet (NL) @ 1.92</span></div>
+  </td>
+</tr>
+
+<tr>
+  <td style="width:18%;font-weight:750;">Under 224</td>
+  <td style="width:18%;">
+    <div class="best">1.89 <span style="color:var(--muted);font-weight:650;">@</span> LeoVegas (SE)</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>LeoVegas (SE) @ 1.89</span><span class='pill '>Unibet (SE) @ 1.89</span><span class='pill '>Unibet (NL) @ 1.89</span></div>
+  </td>
 </tr>
 
 <tr>
-<td>Coolbet</td>
-<td>Under (223.0)</td>
-<td>1.9</td>
+  <td style="width:18%;font-weight:750;">Over 224.5</td>
+  <td style="width:18%;">
+    <div class="best">1.9 <span style="color:var(--muted);font-weight:650;">@</span> Betsson</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>Betsson @ 1.9</span><span class='pill '>Nordic Bet @ 1.9</span></div>
+  </td>
 </tr>
 
 <tr>
-<td>BetOnline.ag</td>
-<td>Over (223.5)</td>
-<td>1.91</td>
+  <td style="width:18%;font-weight:750;">Under 224.5</td>
+  <td style="width:18%;">
+    <div class="best">1.86 <span style="color:var(--muted);font-weight:650;">@</span> Betsson</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>Betsson @ 1.86</span><span class='pill '>Nordic Bet @ 1.86</span></div>
+  </td>
 </tr>
 
-<tr>
-<td>BetOnline.ag</td>
-<td>Under (223.5)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>Betsson</td>
-<td>Over (224.5)</td>
-<td>1.9</td>
-</tr>
-
-<tr>
-<td>Betsson</td>
-<td>Under (224.5)</td>
-<td>1.86</td>
-</tr>
-
-<tr>
-<td>Nordic Bet</td>
-<td>Over (224.5)</td>
-<td>1.9</td>
-</tr>
-
-<tr>
-<td>Nordic Bet</td>
-<td>Under (224.5)</td>
-<td>1.86</td>
-</tr>
-
-<tr>
-<td>1xBet</td>
-<td>Over (223.5)</td>
-<td>1.96</td>
-</tr>
-
-<tr>
-<td>1xBet</td>
-<td>Under (223.5)</td>
-<td>1.96</td>
-</tr>
-
-<tr>
-<td>GTbets</td>
-<td>Over (223.5)</td>
-<td>1.92</td>
-</tr>
-
-<tr>
-<td>GTbets</td>
-<td>Under (223.5)</td>
-<td>1.92</td>
-</tr>
-
-<tr>
-<td>LeoVegas (SE)</td>
-<td>Over (223.5)</td>
-<td>1.88</td>
-</tr>
-
-<tr>
-<td>LeoVegas (SE)</td>
-<td>Under (223.5)</td>
-<td>1.93</td>
-</tr>
-
-<tr>
-<td>Unibet (SE)</td>
-<td>Over (223.5)</td>
-<td>1.88</td>
-</tr>
-
-<tr>
-<td>Unibet (SE)</td>
-<td>Under (223.5)</td>
-<td>1.93</td>
-</tr>
-
-<tr>
-<td>Unibet (NL)</td>
-<td>Over (223.5)</td>
-<td>1.88</td>
-</tr>
-
-<tr>
-<td>Unibet (NL)</td>
-<td>Under (223.5)</td>
-<td>1.93</td>
-</tr>
-
-<tr>
-<td>Pinnacle</td>
-<td>Over (223.5)</td>
-<td>1.93</td>
-</tr>
-
-<tr>
-<td>Pinnacle</td>
-<td>Under (223.5)</td>
-<td>1.96</td>
-</tr>
-
-<tr>
-<td>Tipico</td>
-<td>Over (223.5)</td>
-<td>1.83</td>
-</tr>
-
-<tr>
-<td>Tipico</td>
-<td>Under (223.5)</td>
-<td>1.87</td>
-</tr>
-
-<tr>
-<td>Matchbook</td>
-<td>Over (223.0)</td>
-<td>1.89</td>
-</tr>
-
-<tr>
-<td>Matchbook</td>
-<td>Under (223.0)</td>
-<td>2.0</td>
-</tr>
-
-<tr>
-<td>BetAnything</td>
-<td>Over (223.5)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>BetAnything</td>
-<td>Under (223.5)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>Everygame</td>
-<td>Over (223.5)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>Everygame</td>
-<td>Under (223.5)</td>
-<td>1.91</td>
-</tr>
-
-</table>
-
-<h3 style="margin-top:28px;">SPREADS</h3>
-<table style="width:100%;border-collapse:collapse;">
-<tr><th align="left">Book</th><th align="left">Outcome</th><th align="left">Odds</th></tr>
-
-<tr>
-<td>MyBookie.ag</td>
-<td>Away (5.0)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>MyBookie.ag</td>
-<td>Home (-5.0)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>888sport</td>
-<td>Away (4.5)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>888sport</td>
-<td>Home (-4.5)</td>
-<td>1.85</td>
-</tr>
-
-<tr>
-<td>Coolbet</td>
-<td>Away (4.5)</td>
-<td>1.96</td>
-</tr>
-
-<tr>
-<td>Coolbet</td>
-<td>Home (-4.5)</td>
-<td>1.88</td>
-</tr>
-
-<tr>
-<td>BetOnline.ag</td>
-<td>Away (5.0)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>BetOnline.ag</td>
-<td>Home (-5.0)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>Betsson</td>
-<td>Away (4.5)</td>
-<td>1.93</td>
-</tr>
-
-<tr>
-<td>Betsson</td>
-<td>Home (-4.5)</td>
-<td>1.83</td>
-</tr>
-
-<tr>
-<td>Nordic Bet</td>
-<td>Away (4.5)</td>
-<td>1.93</td>
-</tr>
-
-<tr>
-<td>Nordic Bet</td>
-<td>Home (-4.5)</td>
-<td>1.83</td>
-</tr>
-
-<tr>
-<td>1xBet</td>
-<td>Away (4.5)</td>
-<td>1.96</td>
-</tr>
-
-<tr>
-<td>1xBet</td>
-<td>Home (-4.5)</td>
-<td>1.96</td>
-</tr>
-
-<tr>
-<td>GTbets</td>
-<td>Away (5.0)</td>
-<td>1.92</td>
-</tr>
-
-<tr>
-<td>GTbets</td>
-<td>Home (-5.0)</td>
-<td>1.92</td>
-</tr>
-
-<tr>
-<td>LeoVegas (SE)</td>
-<td>Away (5.0)</td>
-<td>1.88</td>
-</tr>
-
-<tr>
-<td>LeoVegas (SE)</td>
-<td>Home (-5.0)</td>
-<td>1.93</td>
-</tr>
-
-<tr>
-<td>Unibet (SE)</td>
-<td>Away (5.0)</td>
-<td>1.88</td>
-</tr>
-
-<tr>
-<td>Unibet (SE)</td>
-<td>Home (-5.0)</td>
-<td>1.93</td>
-</tr>
-
-<tr>
-<td>Unibet (NL)</td>
-<td>Away (5.0)</td>
-<td>1.88</td>
-</tr>
-
-<tr>
-<td>Unibet (NL)</td>
-<td>Home (-5.0)</td>
-<td>1.93</td>
-</tr>
-
-<tr>
-<td>Pinnacle</td>
-<td>Away (4.5)</td>
-<td>2.04</td>
-</tr>
-
-<tr>
-<td>Pinnacle</td>
-<td>Home (-4.5)</td>
-<td>1.88</td>
-</tr>
-
-<tr>
-<td>Tipico</td>
-<td>Away (4.5)</td>
-<td>1.93</td>
-</tr>
+    </tbody>
+  </table>
+</div>
 
+<div class="panel">
+  <div class="panel-h">Spreads (Handicap)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%;">Outcome</th>
+        <th style="width:18%;">Best price</th>
+        <th>All books (sorted)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
 <tr>
-<td>Tipico</td>
-<td>Home (-4.5)</td>
-<td>1.77</td>
+  <td style="width:18%;font-weight:750;">Home -5</td>
+  <td style="width:18%;">
+    <div class="best">1.93 <span style="color:var(--muted);font-weight:650;">@</span> Unibet (SE)</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>Unibet (SE) @ 1.93</span><span class='pill '>Matchbook @ 1.93</span><span class='pill '>LeoVegas (SE) @ 1.93</span><span class='pill '>Unibet (NL) @ 1.93</span><span class='pill '>GTbets @ 1.92</span><span class='pill '>MyBookie.ag @ 1.91</span><span class='pill '>BetAnything @ 1.91</span><span class='pill '>Everygame @ 1.91</span><span class='pill '>BetOnline.ag @ 1.89</span></div>
+  </td>
 </tr>
 
 <tr>
-<td>Matchbook</td>
-<td>Away (5.0)</td>
-<td>1.97</td>
+  <td style="width:18%;font-weight:750;">Home -4.5</td>
+  <td style="width:18%;">
+    <div class="best">1.96 <span style="color:var(--muted);font-weight:650;">@</span> 1xBet</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>1xBet @ 1.96</span><span class='pill '>Pinnacle @ 1.88</span><span class='pill '>Coolbet @ 1.88</span><span class='pill '>888sport @ 1.85</span><span class='pill '>Betsson @ 1.83</span><span class='pill '>Nordic Bet @ 1.83</span><span class='pill '>Tipico @ 1.77</span></div>
+  </td>
 </tr>
 
 <tr>
-<td>Matchbook</td>
-<td>Home (-5.0)</td>
-<td>1.93</td>
+  <td style="width:18%;font-weight:750;">Away +4.5</td>
+  <td style="width:18%;">
+    <div class="best">2.02 <span style="color:var(--muted);font-weight:650;">@</span> Pinnacle</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>Pinnacle @ 2.02</span><span class='pill '>1xBet @ 1.96</span><span class='pill '>Coolbet @ 1.96</span><span class='pill '>Nordic Bet @ 1.93</span><span class='pill '>Betsson @ 1.93</span><span class='pill '>Tipico @ 1.93</span><span class='pill '>888sport @ 1.91</span></div>
+  </td>
 </tr>
 
 <tr>
-<td>BetAnything</td>
-<td>Away (5.0)</td>
-<td>1.91</td>
+  <td style="width:18%;font-weight:750;">Away +5</td>
+  <td style="width:18%;">
+    <div class="best">1.97 <span style="color:var(--muted);font-weight:650;">@</span> Matchbook</div>
+  </td>
+  <td>
+    <div class="pills"><span class='pill bestpill'>Matchbook @ 1.97</span><span class='pill '>BetOnline.ag @ 1.93</span><span class='pill '>GTbets @ 1.92</span><span class='pill '>MyBookie.ag @ 1.91</span><span class='pill '>BetAnything @ 1.91</span><span class='pill '>Everygame @ 1.91</span><span class='pill '>LeoVegas (SE) @ 1.88</span><span class='pill '>Unibet (SE) @ 1.88</span><span class='pill '>Unibet (NL) @ 1.88</span></div>
+  </td>
 </tr>
 
-<tr>
-<td>BetAnything</td>
-<td>Home (-5.0)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>Everygame</td>
-<td>Away (5.0)</td>
-<td>1.91</td>
-</tr>
-
-<tr>
-<td>Everygame</td>
-<td>Home (-5.0)</td>
-<td>1.91</td>
-</tr>
-
-</table>
-
-<h3 style="margin-top:28px;">H2H_LAY</h3>
-<table style="width:100%;border-collapse:collapse;">
-<tr><th align="left">Book</th><th align="left">Outcome</th><th align="left">Odds</th></tr>
-
-<tr>
-<td>Betfair</td>
-<td>(nan)</td>
-<td>2.78</td>
-</tr>
-
-<tr>
-<td>Betfair</td>
-<td>(nan)</td>
-<td>1.58</td>
-</tr>
-
-<tr>
-<td>Matchbook</td>
-<td>(nan)</td>
-<td>2.78</td>
-</tr>
-
-<tr>
-<td>Matchbook</td>
-<td>(nan)</td>
-<td>1.58</td>
-</tr>
+    </tbody>
+  </table>
+</div>
 
-</table>
 
+  </div>
 </body>
 </html>

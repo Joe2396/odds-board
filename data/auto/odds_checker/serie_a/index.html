@@ -1,113 +1,238 @@
 <!doctype html>
-<html>
-<body style="background:#0F1621;color:#E2E8F0;font-family:Inter,system-ui;padding:24px;">
-<a href="../index.html" style="color:#93C5FD;">← All sports</a>
-<h1>Serie A Odds Checker</h1>
-
-<a href="juventus-vs-cremonese.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Juventus vs Cremonese</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-12T19:45:00Z UTC</div>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>serie_a fixtures</title>
+<style>
+  :root {
+    --bg: #0F1621;
+    --fg: #E2E8F0;
+    --card: #0B1220;
+    --card2: #0E1A2D;
+    --border: #1F2937;
+    --muted: rgba(226,232,240,0.70);
+    --link: #93C5FD;
+    --pill: rgba(148,163,184,0.12);
+    --pillBorder: rgba(148,163,184,0.22);
+    --bestBg: rgba(16,185,129,0.14);
+    --bestBorder: rgba(16,185,129,0.35);
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  }
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px 18px 44px;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1 { margin: 6px 0 6px; font-size: 42px; letter-spacing: -0.02em; }
+  h2 { margin: 24px 0 10px; font-size: 26px; }
+  .meta { color: var(--muted); margin-bottom: 16px; }
+  .navtop { margin: 8px 0 18px; }
+  .panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 14px 0 22px;
+  }
+  .panel-h {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    font-weight: 800;
+    font-size: 22px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  th, td {
+    padding: 14px 16px;
+    vertical-align: middle;
+  }
+  th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 700;
+    background: rgba(255,255,255,0.01);
+  }
+  tr + tr td {
+    border-top: 1px solid rgba(31,41,55,0.8);
+  }
+  .best {
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+  .best small {
+    display: block;
+    font-size: 14px;
+    font-weight: 650;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .pill {
+    background: var(--pill);
+    border: 1px solid var(--pillBorder);
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pill.bestpill {
+    background: var(--bestBg);
+    border-color: var(--bestBorder);
+  }
+  .subtle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .gridcards a {
+    text-decoration: none;
+  }
+  .card {
+    background: #111827;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .card-sub {
+    margin-top: 6px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    
+<div class="navtop"><a href="../index.html">← All sports</a></div>
+<h1>Serie A</h1>
+<div class="meta">Updated: 2026-01-12T19:33:53Z</div>
+<div class="gridcards">
+<a href="juventus-vs-cremonese.html">
+  <div class="card">
+    <div class="card-title">Juventus vs Cremonese</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-12T19:45:00Z</div>
   </div>
 </a>
 
-<a href="napoli-vs-parma.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Napoli vs Parma</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-14T17:30:00Z UTC</div>
+<a href="napoli-vs-parma.html">
+  <div class="card">
+    <div class="card-title">Napoli vs Parma</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-14T17:30:00Z</div>
   </div>
 </a>
 
-<a href="inter-milan-vs-lecce.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Inter Milan vs Lecce</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-14T19:45:00Z UTC</div>
+<a href="inter-milan-vs-lecce.html">
+  <div class="card">
+    <div class="card-title">Inter Milan vs Lecce</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-14T19:45:00Z</div>
   </div>
 </a>
 
-<a href="hellas-verona-vs-bologna.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Hellas Verona vs Bologna</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-15T17:30:00Z UTC</div>
+<a href="hellas-verona-vs-bologna.html">
+  <div class="card">
+    <div class="card-title">Hellas Verona vs Bologna</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-15T17:30:00Z</div>
   </div>
 </a>
 
-<a href="como-vs-ac-milan.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Como vs AC Milan</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-15T19:45:00Z UTC</div>
+<a href="como-vs-ac-milan.html">
+  <div class="card">
+    <div class="card-title">Como vs AC Milan</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-15T19:45:00Z</div>
   </div>
 </a>
 
-<a href="pisa-vs-atalanta-bc.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Pisa vs Atalanta BC</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-16T19:45:00Z UTC</div>
+<a href="pisa-vs-atalanta-bc.html">
+  <div class="card">
+    <div class="card-title">Pisa vs Atalanta BC</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-16T19:45:00Z</div>
   </div>
 </a>
 
-<a href="udinese-vs-inter-milan.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Udinese vs Inter Milan</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-17T14:00:00Z UTC</div>
+<a href="udinese-vs-inter-milan.html">
+  <div class="card">
+    <div class="card-title">Udinese vs Inter Milan</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-17T14:00:00Z</div>
   </div>
 </a>
 
-<a href="napoli-vs-sassuolo.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Napoli vs Sassuolo</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-17T17:00:00Z UTC</div>
+<a href="napoli-vs-sassuolo.html">
+  <div class="card">
+    <div class="card-title">Napoli vs Sassuolo</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-17T17:00:00Z</div>
   </div>
 </a>
 
-<a href="cagliari-vs-juventus.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Cagliari vs Juventus</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-17T19:45:00Z UTC</div>
+<a href="cagliari-vs-juventus.html">
+  <div class="card">
+    <div class="card-title">Cagliari vs Juventus</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-17T19:45:00Z</div>
   </div>
 </a>
 
-<a href="parma-vs-genoa.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Parma vs Genoa</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-18T11:30:00Z UTC</div>
+<a href="parma-vs-genoa.html">
+  <div class="card">
+    <div class="card-title">Parma vs Genoa</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-18T11:30:00Z</div>
   </div>
 </a>
 
-<a href="bologna-vs-fiorentina.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Bologna vs Fiorentina</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-18T14:00:00Z UTC</div>
+<a href="bologna-vs-fiorentina.html">
+  <div class="card">
+    <div class="card-title">Bologna vs Fiorentina</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-18T14:00:00Z</div>
   </div>
 </a>
 
-<a href="torino-vs-as-roma.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Torino vs AS Roma</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-18T17:00:00Z UTC</div>
+<a href="torino-vs-as-roma.html">
+  <div class="card">
+    <div class="card-title">Torino vs AS Roma</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-18T17:00:00Z</div>
   </div>
 </a>
 
-<a href="ac-milan-vs-lecce.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">AC Milan vs Lecce</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-18T19:45:00Z UTC</div>
+<a href="ac-milan-vs-lecce.html">
+  <div class="card">
+    <div class="card-title">AC Milan vs Lecce</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-18T19:45:00Z</div>
   </div>
 </a>
 
-<a href="cremonese-vs-hellas-verona.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Cremonese vs Hellas Verona</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-19T17:30:00Z UTC</div>
+<a href="cremonese-vs-hellas-verona.html">
+  <div class="card">
+    <div class="card-title">Cremonese vs Hellas Verona</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-19T17:30:00Z</div>
   </div>
 </a>
 
-<a href="lazio-vs-como.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Lazio vs Como</div>
-    <div style="opacity:0.7;margin-top:4px;">2026-01-19T19:45:00Z UTC</div>
+<a href="lazio-vs-como.html">
+  <div class="card">
+    <div class="card-title">Lazio vs Como</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-19T19:45:00Z</div>
   </div>
 </a>
+</div>
 
+  </div>
 </body>
 </html>

@@ -1,57 +1,181 @@
 <!doctype html>
-<html>
-<body style="background:#0F1621;color:#E2E8F0;font-family:Inter,system-ui;padding:24px;">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Odds Checker</title>
+<style>
+  :root {
+    --bg: #0F1621;
+    --fg: #E2E8F0;
+    --card: #0B1220;
+    --card2: #0E1A2D;
+    --border: #1F2937;
+    --muted: rgba(226,232,240,0.70);
+    --link: #93C5FD;
+    --pill: rgba(148,163,184,0.12);
+    --pillBorder: rgba(148,163,184,0.22);
+    --bestBg: rgba(16,185,129,0.14);
+    --bestBorder: rgba(16,185,129,0.35);
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  }
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px 18px 44px;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1 { margin: 6px 0 6px; font-size: 42px; letter-spacing: -0.02em; }
+  h2 { margin: 24px 0 10px; font-size: 26px; }
+  .meta { color: var(--muted); margin-bottom: 16px; }
+  .navtop { margin: 8px 0 18px; }
+  .panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 14px 0 22px;
+  }
+  .panel-h {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    font-weight: 800;
+    font-size: 22px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  th, td {
+    padding: 14px 16px;
+    vertical-align: middle;
+  }
+  th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 700;
+    background: rgba(255,255,255,0.01);
+  }
+  tr + tr td {
+    border-top: 1px solid rgba(31,41,55,0.8);
+  }
+  .best {
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+  .best small {
+    display: block;
+    font-size: 14px;
+    font-weight: 650;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .pill {
+    background: var(--pill);
+    border: 1px solid var(--pillBorder);
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pill.bestpill {
+    background: var(--bestBg);
+    border-color: var(--bestBorder);
+  }
+  .subtle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .gridcards a {
+    text-decoration: none;
+  }
+  .card {
+    background: #111827;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .card-sub {
+    margin-top: 6px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    
 <h1>Odds Checker</h1>
-<p style="opacity:0.8;">Updated: 2026-01-12 19:20:56Z</p>
-<h2 style='margin-top:32px;'>Soccer</h2>
-<a href="epl/index.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Epl</div>
-    <div style="opacity:0.7;margin-top:4px;">Open fixtures</div>
+<div class="meta">Updated: 2026-01-12T19:33:57Z</div>
+<h2>Soccer</h2><div class='gridcards'>
+<a href="epl/index.html">
+  <div class="card">
+    <div class="card-title">Epl</div>
+    <div class="card-sub">Open fixtures</div>
   </div>
 </a>
 
-<a href="la_liga/index.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">La Liga</div>
-    <div style="opacity:0.7;margin-top:4px;">Open fixtures</div>
+<a href="la_liga/index.html">
+  <div class="card">
+    <div class="card-title">La Liga</div>
+    <div class="card-sub">Open fixtures</div>
   </div>
 </a>
 
-<a href="bundesliga/index.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Bundesliga</div>
-    <div style="opacity:0.7;margin-top:4px;">Open fixtures</div>
+<a href="bundesliga/index.html">
+  <div class="card">
+    <div class="card-title">Bundesliga</div>
+    <div class="card-sub">Open fixtures</div>
   </div>
 </a>
 
-<a href="serie_a/index.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Serie A</div>
-    <div style="opacity:0.7;margin-top:4px;">Open fixtures</div>
+<a href="serie_a/index.html">
+  <div class="card">
+    <div class="card-title">Serie A</div>
+    <div class="card-sub">Open fixtures</div>
   </div>
 </a>
 
-<a href="ucl/index.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Ucl</div>
-    <div style="opacity:0.7;margin-top:4px;">Open fixtures</div>
+<a href="ucl/index.html">
+  <div class="card">
+    <div class="card-title">Ucl</div>
+    <div class="card-sub">Open fixtures</div>
   </div>
 </a>
-<h2 style='margin-top:32px;'>NFL</h2>
-<a href="nfl/index.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Nfl</div>
-    <div style="opacity:0.7;margin-top:4px;">Open fixtures</div>
+</div><h2>NFL</h2><div class='gridcards'>
+<a href="nfl/index.html">
+  <div class="card">
+    <div class="card-title">Nfl</div>
+    <div class="card-sub">Open fixtures</div>
   </div>
 </a>
-<h2 style='margin-top:32px;'>NBA</h2>
-<a href="nba/index.html" style="text-decoration:none;color:#E2E8F0;">
-  <div style="background:#111827;border:1px solid #1F2937;border-radius:14px;padding:16px;margin:12px 0;">
-    <div style="font-size:18px;font-weight:700;">Nba</div>
-    <div style="opacity:0.7;margin-top:4px;">Open fixtures</div>
+</div><h2>NBA</h2><div class='gridcards'>
+<a href="nba/index.html">
+  <div class="card">
+    <div class="card-title">Nba</div>
+    <div class="card-sub">Open fixtures</div>
   </div>
 </a>
+</div>
 
+  </div>
 </body>
 </html>
