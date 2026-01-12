@@ -17,7 +17,7 @@ import pandas as pd
 
 # ================= CONFIG =================
 
-API_KEY = os.getenv("ODDS_API_KEY")
+API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"
 # If not set, we still generate a page (so the site updates), but we'll show an error banner.
 # This prevents the "stuck since December" problem.
 SPORTS = {
