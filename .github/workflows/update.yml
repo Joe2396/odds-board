@@ -43,25 +43,49 @@ jobs:
           PYTHONPATH: src
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
-          echo "----- repo tree -----"
-          ls -R | sed -n '1,200p'
-          echo "---------------------"
+          set -e
 
+          echo "----- UTC now -----"
+          date -u
+          echo "-------------------"
+
+          echo "Running odds checker..."
           python src/app/generate_odds_checker.py
+
+          echo "Running arbitrage..."
           python src/app/arb_multi.py
+
+          echo "Running golf outrights..."
           python src/app/golf_outrights_value.py
-          python src/app/test_golf_sports.py
-          python src/app/test_epl_markets.py
 
+          echo "----- verify outputs exist -----"
+          echo "Listing data/auto (top level):"
+          ls -la data/auto || true
 
-          if [ -f src/patch_iframe.py ]; then
-            python src/patch_iframe.py || true
+          echo "Looking for arb outputs:"
+          find data -maxdepth 4 -type f -name "*arb*.html" -print || true
+
+          echo "Last modified arb_latest* if present:"
+          ls -la data/auto/arb_latest*.html 2>/dev/null || true
+
+          echo "--------------------------------"
+
+          # Optional: enforce arb_latest.html exists (recommended if Shopify expects this exact file)
+          if [ ! -f data/auto/arb_latest.html ]; then
+            echo "ERROR: data/auto/arb_latest.html was not generated. Check arb_multi.py output path."
+            exit 1
+          fi
+
+          # Patch iframe step (keep as-is, but fix path to match your repo structure)
+          if [ -f src/app/patch_iframe.py ]; then
+            python src/app/patch_iframe.py || true
           fi
 
       - name: Show changed files
         run: |
           echo "Changed files:"
           git status --porcelain
+          echo "Diff names:"
           git diff --name-only | sed -n '1,200p' || true
 
       - name: Commit & push if there are changes
