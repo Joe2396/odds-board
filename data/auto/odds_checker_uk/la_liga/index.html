@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>la_liga fixtures</title>
+<style>
+  :root {
+    --bg: #0F1621;
+    --fg: #E2E8F0;
+    --card: #0B1220;
+    --card2: #0E1A2D;
+    --border: #1F2937;
+    --muted: rgba(226,232,240,0.70);
+    --link: #93C5FD;
+    --pill: rgba(148,163,184,0.12);
+    --pillBorder: rgba(148,163,184,0.22);
+    --bestBg: rgba(16,185,129,0.14);
+    --bestBorder: rgba(16,185,129,0.35);
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  }
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px 18px 44px;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* top bar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .topbar label {
+    color: var(--muted);
+    font-weight: 650;
+    font-size: 14px;
+  }
+  .topbar select {
+    background: #0B1220;
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-weight: 700;
+    outline: none;
+  }
+
+  h1 { margin: 6px 0 6px; font-size: 42px; letter-spacing: -0.02em; }
+  h2 { margin: 24px 0 10px; font-size: 26px; }
+  .meta { color: var(--muted); margin-bottom: 16px; }
+  .navtop { margin: 8px 0 18px; }
+  .panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 14px 0 22px;
+  }
+  .panel-h {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    font-weight: 800;
+    font-size: 22px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  th, td {
+    padding: 14px 16px;
+    vertical-align: middle;
+  }
+  th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 700;
+    background: rgba(255,255,255,0.01);
+  }
+  tr + tr td {
+    border-top: 1px solid rgba(31,41,55,0.8);
+  }
+  .best {
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+  .best small {
+    display: block;
+    font-size: 14px;
+    font-weight: 650;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .pill {
+    background: var(--pill);
+    border: 1px solid var(--pillBorder);
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pill.bestpill {
+    background: var(--bestBg);
+    border-color: var(--bestBorder);
+  }
+  .subtle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .gridcards a {
+    text-decoration: none;
+  }
+  .card {
+    background: #111827;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .card-sub {
+    margin-top: 6px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <label for="groupSelect">Bookmakers</label>
+      <select id="groupSelect">
+        <option value="BOTH">BOTH</option>
+        <option value="UK">UK</option>
+        <option value="EU">EU</option>
+      </select>
+    </div>
+
+    
+<div class="navtop"><a href="../index.html">← All sports</a></div>
+<h1>La Liga</h1>
+<div class="meta">Updated: 2026-01-13T02:40:55Z</div>
+<div class="gridcards">
+<a href="espanyol-vs-girona.html">
+  <div class="card">
+    <div class="card-title">Espanyol vs Girona</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-16T20:00:00Z</div>
+  </div>
+</a>
+
+<a href="real-madrid-vs-levante.html">
+  <div class="card">
+    <div class="card-title">Real Madrid vs Levante</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-17T13:00:00Z</div>
+  </div>
+</a>
+
+<a href="mallorca-vs-athletic-bilbao.html">
+  <div class="card">
+    <div class="card-title">Mallorca vs Athletic Bilbao</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-17T15:15:00Z</div>
+  </div>
+</a>
+
+<a href="ca-osasuna-vs-oviedo.html">
+  <div class="card">
+    <div class="card-title">CA Osasuna vs Oviedo</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-17T17:30:00Z</div>
+  </div>
+</a>
+
+<a href="real-betis-vs-villarreal.html">
+  <div class="card">
+    <div class="card-title">Real Betis vs Villarreal</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-17T20:00:00Z</div>
+  </div>
+</a>
+
+<a href="getafe-vs-valencia.html">
+  <div class="card">
+    <div class="card-title">Getafe vs Valencia</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-18T13:00:00Z</div>
+  </div>
+</a>
+
+<a href="atlético-madrid-vs-alavés.html">
+  <div class="card">
+    <div class="card-title">Atlético Madrid vs Alavés</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-18T15:15:00Z</div>
+  </div>
+</a>
+
+<a href="celta-vigo-vs-rayo-vallecano.html">
+  <div class="card">
+    <div class="card-title">Celta Vigo vs Rayo Vallecano</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-18T17:30:00Z</div>
+  </div>
+</a>
+
+<a href="real-sociedad-vs-barcelona.html">
+  <div class="card">
+    <div class="card-title">Real Sociedad vs Barcelona</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-18T20:00:00Z</div>
+  </div>
+</a>
+
+<a href="elche-cf-vs-sevilla.html">
+  <div class="card">
+    <div class="card-title">Elche CF vs Sevilla</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-19T20:00:00Z</div>
+  </div>
+</a>
+
+<a href="alavés-vs-real-betis.html">
+  <div class="card">
+    <div class="card-title">Alavés vs Real Betis</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+
+<a href="sevilla-vs-athletic-bilbao.html">
+  <div class="card">
+    <div class="card-title">Sevilla vs Athletic Bilbao</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+
+<a href="atlético-madrid-vs-mallorca.html">
+  <div class="card">
+    <div class="card-title">Atlético Madrid vs Mallorca</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+
+<a href="barcelona-vs-oviedo.html">
+  <div class="card">
+    <div class="card-title">Barcelona vs Oviedo</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+
+<a href="rayo-vallecano-vs-ca-osasuna.html">
+  <div class="card">
+    <div class="card-title">Rayo Vallecano vs CA Osasuna</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+
+<a href="real-sociedad-vs-celta-vigo.html">
+  <div class="card">
+    <div class="card-title">Real Sociedad vs Celta Vigo</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+
+<a href="levante-vs-elche-cf.html">
+  <div class="card">
+    <div class="card-title">Levante vs Elche CF</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+
+<a href="valencia-vs-espanyol.html">
+  <div class="card">
+    <div class="card-title">Valencia vs Espanyol</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+
+<a href="girona-vs-getafe.html">
+  <div class="card">
+    <div class="card-title">Girona vs Getafe</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+
+<a href="villarreal-vs-real-madrid.html">
+  <div class="card">
+    <div class="card-title">Villarreal vs Real Madrid</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-25T17:00:00Z</div>
+  </div>
+</a>
+</div>
+
+  </div>
+
+<script>
+(function() {
+  var current = "UK";
+  var sel = document.getElementById("groupSelect");
+  if (sel) sel.value = current;
+
+  function swapGroup(target) {
+    var oldPath = window.location.pathname;
+    // swap folder segment
+    var newPath = oldPath.replace(/odds_checker_(uk|eu|both)/i, "odds_checker_" + target.toLowerCase());
+    if (newPath === oldPath) return;
+    window.location.pathname = newPath;
+  }
+
+  if (sel) {
+    sel.addEventListener("change", function() {
+      swapGroup(this.value);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
