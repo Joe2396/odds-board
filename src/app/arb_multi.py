@@ -31,7 +31,7 @@ import pandas as pd
 # ================= CONFIG =================
 
 # Prefer GitHub Secret env var; fallback to empty so page still renders with an error banner
-API_KEY = os.getenv("ODDS_API_KEY", "").strip()
+API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"
 
 SPORTS = {
     "Soccer — Premier League": "soccer_epl",
