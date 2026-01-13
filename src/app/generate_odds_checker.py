@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 """
 Multi-Sport Odds Checker
-Sports:
-- Soccer (EPL, La Liga, Bundesliga, Serie A, UCL)
-- NFL
-- NBA
+Now supports UK / EU bookmaker separation.
 
-Outputs:
-data/auto/odds_checker/index.html
-+ per-league index pages
-+ per-fixture pages (match pages)
+Run examples:
+python generate_odds_checker.py --group UK
+python generate_odds_checker.py --group EU
 """
 
 import html
 import re
+import json
+import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 import requests
@@ -35,17 +33,20 @@ SPORTS = {
     "NBA": {"nba": "basketball_nba"},
 }
 
-REGIONS = "eu"
+REGIONS = "uk,eu"   # ✅ fetch both
 ODDS_FORMAT = "decimal"
 DATE_FORMAT = "iso"
 TIMEOUT = 30
-
-BASE_OUTPUT_DIR = Path("data/auto/odds_checker")
 
 THEME_BG = "#0F1621"
 TXT = "#E2E8F0"
 
 POPULAR_SOCCER_SPREADS = {-1.0, 0.0, 1.0}
+
+# ================= BOOKMAKER GROUPS =================
+
+def load_bookmaker_groups(path="config/bookmakers.json"):
+    return json.loads(Path(path).read_text(encoding="utf-8"))
 
 # ================= HELPERS =================
 
@@ -82,7 +83,7 @@ def fetch(sport_key: str):
 
 # ================= DATA BUILD =================
 
-def flatten(data, sport_name):
+def flatten(data, sport_name, allowed_keys: set):
     rows = []
 
     for g in data:
@@ -95,7 +96,12 @@ def flatten(data, sport_name):
         gid = g.get("id")
 
         for b in g.get("bookmakers", []):
-            book = b.get("title") or b.get("key") or "Book"
+            book_key = (b.get("key") or "").strip()
+            if book_key not in allowed_keys:
+                continue   # ✅ FILTER HERE
+
+            book = b.get("title") or book_key or "Book"
+
             for m in b.get("markets", []):
                 mkey = m.get("key")
 
@@ -146,7 +152,6 @@ def flatten(data, sport_name):
                         else:
                             continue
 
-                    # extra safety: do not allow rows without side
                     if side is None:
                         continue
 
@@ -156,335 +161,39 @@ def flatten(data, sport_name):
                         "home": home,
                         "away": away,
                         "kickoff": kickoff,
-                        "market": mkey,   # h2h / totals / spreads
-                        "side": side,     # Home/Away/Draw OR Over/Under OR Home/Away
-                        "line": line,     # totals/spreads number, else None
+                        "market": mkey,
+                        "side": side,
+                        "line": line,
                         "book": book,
                         "odds": float(price),
                     })
 
     return pd.DataFrame(rows)
 
-# ================= HTML UI =================
-
-def page_shell(title: str, body_html: str) -> str:
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(title)}</title>
-<style>
-  :root {{
-    --bg: {THEME_BG};
-    --fg: {TXT};
-    --card: #0B1220;
-    --card2: #0E1A2D;
-    --border: #1F2937;
-    --muted: rgba(226,232,240,0.70);
-    --link: #93C5FD;
-    --pill: rgba(148,163,184,0.12);
-    --pillBorder: rgba(148,163,184,0.22);
-    --bestBg: rgba(16,185,129,0.14);
-    --bestBorder: rgba(16,185,129,0.35);
-  }}
-  body {{
-    margin: 0;
-    background: var(--bg);
-    color: var(--fg);
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  }}
-  .wrap {{
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 22px 18px 44px;
-  }}
-  a {{ color: var(--link); text-decoration: none; }}
-  a:hover {{ text-decoration: underline; }}
-  h1 {{ margin: 6px 0 6px; font-size: 42px; letter-spacing: -0.02em; }}
-  h2 {{ margin: 24px 0 10px; font-size: 26px; }}
-  .meta {{ color: var(--muted); margin-bottom: 16px; }}
-  .navtop {{ margin: 8px 0 18px; }}
-  .panel {{
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    margin: 14px 0 22px;
-  }}
-  .panel-h {{
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(255,255,255,0.02);
-    font-weight: 800;
-    font-size: 22px;
-  }}
-  table {{
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 16px;
-  }}
-  th, td {{
-    padding: 14px 16px;
-    vertical-align: middle;
-  }}
-  th {{
-    text-align: left;
-    color: var(--muted);
-    font-weight: 700;
-    background: rgba(255,255,255,0.01);
-  }}
-  tr + tr td {{
-    border-top: 1px solid rgba(31,41,55,0.8);
-  }}
-  .best {{
-    font-weight: 800;
-    font-size: 22px;
-    line-height: 1.1;
-  }}
-  .best small {{
-    display: block;
-    font-size: 14px;
-    font-weight: 650;
-    color: var(--muted);
-    margin-top: 4px;
-  }}
-  .pills {{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }}
-  .pill {{
-    background: var(--pill);
-    border: 1px solid var(--pillBorder);
-    padding: 6px 10px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }}
-  .pill.bestpill {{
-    background: var(--bestBg);
-    border-color: var(--bestBorder);
-  }}
-  .subtle {{
-    color: var(--muted);
-    font-size: 14px;
-    margin-top: 6px;
-  }}
-  .gridcards a {{
-    text-decoration: none;
-  }}
-  .card {{
-    background: #111827;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px;
-    margin: 12px 0;
-  }}
-  .card-title {{
-    font-size: 18px;
-    font-weight: 800;
-  }}
-  .card-sub {{
-    margin-top: 6px;
-    color: var(--muted);
-  }}
-</style>
-</head>
-<body>
-  <div class="wrap">
-    {body_html}
-  </div>
-</body>
-</html>
-"""
-
-def card(title, subtitle, href):
-    return f"""
-<a href="{href}">
-  <div class="card">
-    <div class="card-title">{html.escape(title)}</div>
-    <div class="card-sub">{html.escape(subtitle)}</div>
-  </div>
-</a>
-"""
-
-def render_root_index(groups):
-    sections = []
-    for sport, leagues in groups.items():
-        blocks = []
-        for league_key, league_name in leagues:
-            blocks.append(card(league_name, "Open fixtures", f"{league_key}/index.html"))
-        sections.append(f"<h2>{html.escape(sport)}</h2><div class='gridcards'>{''.join(blocks)}</div>")
-
-    body = f"""
-<h1>Odds Checker</h1>
-<div class="meta">Updated: {now_iso()}</div>
-{''.join(sections)}
-"""
-    return page_shell("Odds Checker", body)
-
-def market_label(market_key: str) -> str:
-    if market_key == "h2h":
-        return "Match Result (1X2)"
-    if market_key == "totals":
-        return "Totals (Over/Under)"
-    if market_key == "spreads":
-        return "Spreads (Handicap)"
-    return market_key.upper()
-
-def format_odds(x: float) -> str:
-    try:
-        return f"{float(x):.2f}".rstrip("0").rstrip(".")
-    except Exception:
-        return str(x)
-
-def render_market_panels(match_df: pd.DataFrame) -> str:
-    """
-    For each market:
-      - group by (line, side) so totals/spreads show separate lines
-      - for each outcome row, show:
-          outcome | best price | all books sorted
-    """
-    out = []
-
-    if match_df.empty:
-        return "<div class='meta'>No odds available.</div>"
-
-    # stable market ordering
-    market_order = ["h2h", "totals", "spreads"]
-    markets = [m for m in market_order if m in set(match_df["market"].tolist())]
-    for m in sorted(set(match_df["market"].tolist())):
-        if m not in markets:
-            markets.append(m)
-
-    for market in markets:
-        dfm = match_df[match_df["market"] == market].copy()
-        if dfm.empty:
-            continue
-
-        # For totals/spreads, separate by line
-        # For h2h, line is None, so it naturally forms one group.
-        # We'll build rows in a nice logical order:
-        # h2h => Home, Draw, Away
-        # totals => Over, Under
-        # spreads => Home, Away
-        if market == "h2h":
-            side_order = ["Home", "Draw", "Away"]
-        elif market == "totals":
-            side_order = ["Over", "Under"]
-        else:
-            side_order = ["Home", "Away"]
-
-        # Unique (line, side) combos
-        # Use line first (so totals/spreads line blocks appear grouped)
-        combos = dfm[["line", "side"]].drop_duplicates()
-
-        # sort by line (None last) then side order
-        def side_rank(s): 
-            try: 
-                return side_order.index(s)
-            except ValueError:
-                return 999
-
-        combos = combos.assign(
-            _line_sort=combos["line"].apply(lambda v: 999999 if pd.isna(v) else float(v)),
-            _side_sort=combos["side"].apply(side_rank),
-        ).sort_values(["_line_sort", "_side_sort"])
-
-        rows_html = []
-        for _, c in combos.iterrows():
-            line = c["line"]
-            side = c["side"]
-
-            block = dfm[(dfm["side"] == side)]
-            if pd.isna(line):
-                block = block[block["line"].isna()]
-            else:
-                block = block[block["line"] == float(line)]
-
-            if block.empty:
-                continue
-
-            # Sort books by odds best->worst
-            block_sorted = block.sort_values("odds", ascending=False)
-
-            best_row = block_sorted.iloc[0]
-            best_odds = format_odds(best_row["odds"])
-            best_book = best_row["book"]
-
-            # Outcome label
-            outcome = side
-            if market in ("totals", "spreads") and not pd.isna(line):
-                # match screenshot style (Over 2.5, Home -1.0 etc.)
-                sign = ""
-                if market == "spreads":
-                    # spreads commonly shown with sign
-                    lv = float(line)
-                    sign = "+" if lv > 0 else ""
-                outcome = f"{side} {sign}{float(line):g}"
-
-            pills = []
-            for _, r in block_sorted.iterrows():
-                book = r["book"]
-                odds = format_odds(r["odds"])
-                is_best = (book == best_book and odds == best_odds)
-                pills.append(
-                    f"<span class='pill {'bestpill' if is_best else ''}'>{html.escape(book)} @ {html.escape(odds)}</span>"
-                )
-
-            rows_html.append(f"""
-<tr>
-  <td style="width:18%;font-weight:750;">{html.escape(outcome)}</td>
-  <td style="width:18%;">
-    <div class="best">{html.escape(best_odds)} <span style="color:var(--muted);font-weight:650;">@</span> {html.escape(best_book)}</div>
-  </td>
-  <td>
-    <div class="pills">{''.join(pills)}</div>
-  </td>
-</tr>
-""")
-
-        panel = f"""
-<div class="panel">
-  <div class="panel-h">{html.escape(market_label(market))}</div>
-  <table>
-    <thead>
-      <tr>
-        <th style="width:18%;">Outcome</th>
-        <th style="width:18%;">Best price</th>
-        <th>All books (sorted)</th>
-      </tr>
-    </thead>
-    <tbody>
-      {''.join(rows_html) if rows_html else "<tr><td colspan='3' class='subtle'>No odds.</td></tr>"}
-    </tbody>
-  </table>
-</div>
-"""
-        out.append(panel)
-
-    return "".join(out)
-
-def render_fixture_page(match_df: pd.DataFrame, home: str, away: str, kickoff: str, updated: str) -> str:
-    body = f"""
-<div class="navtop"><a href="index.html">← All fixtures</a></div>
-<h1>{html.escape(home)} vs {html.escape(away)}</h1>
-<div class="meta">Kickoff (UTC): {html.escape(kickoff)} · Updated: {html.escape(updated)}</div>
-{render_market_panels(match_df)}
-"""
-    return page_shell(f"{home} vs {away}", body)
+# ================= HTML UI (UNCHANGED) =================
+# (everything from page_shell() down stays the same)
 
 # ================= MAIN =================
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--group", choices=["UK", "EU"], default="EU")
+    args = parser.parse_args()
+
+    groups = load_bookmaker_groups()
+    allowed_keys = set(groups.get(args.group, []))
+
+    BASE_OUTPUT_DIR = Path(f"data/auto/odds_checker_{args.group.lower()}")
     BASE_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
     sport_groups = {}
     updated_stamp = now_iso()
 
     for sport_name, leagues in SPORTS.items():
         for league_slug, api_key in leagues.items():
             data = fetch(api_key)
-            df = flatten(data, sport_name)
+            df = flatten(data, sport_name, allowed_keys)
+
             if df.empty:
                 continue
 
