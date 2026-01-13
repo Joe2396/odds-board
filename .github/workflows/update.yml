@@ -59,8 +59,10 @@ jobs:
           python src/app/generate_odds_checker.py --group UK
           python src/app/generate_odds_checker.py --group EU
 
-          echo "Running arbitrage..."
-          python src/app/arb_multi.py
+          echo "Running arbitrage (BOTH/UK/EU)..."
+          python src/app/arb_multi.py --group BOTH
+          python src/app/arb_multi.py --group UK
+          python src/app/arb_multi.py --group EU
 
           echo "Running golf outrights..."
           python src/app/golf_outrights_value.py
@@ -75,10 +77,8 @@ jobs:
           ls -la data/auto/odds_checker_eu 2>/dev/null || true
 
           echo "Looking for arb outputs:"
-          find data -maxdepth 4 -type f -name "*arb*.html" -print || true
-
-          echo "Last modified arb_latest* if present:"
           ls -la data/auto/arb_latest*.html 2>/dev/null || true
+          find data -maxdepth 4 -type f -name "*arb*.html" -print || true
 
           echo "--------------------------------"
 
