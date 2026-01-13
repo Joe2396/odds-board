@@ -8,6 +8,11 @@ on:
 permissions:
   contents: write
 
+# Prevent overlapping hourly runs (helps avoid partial/stale outputs)
+concurrency:
+  group: odds-board-hourly
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -49,8 +54,10 @@ jobs:
           date -u
           echo "-------------------"
 
-          echo "Running odds checker..."
-          python src/app/generate_odds_checker.py
+          echo "Running odds checker (BOTH/UK/EU)..."
+          python src/app/generate_odds_checker.py --group BOTH
+          python src/app/generate_odds_checker.py --group UK
+          python src/app/generate_odds_checker.py --group EU
 
           echo "Running arbitrage..."
           python src/app/arb_multi.py
@@ -62,6 +69,11 @@ jobs:
           echo "Listing data/auto (top level):"
           ls -la data/auto || true
 
+          echo "Looking for odds checker outputs:"
+          ls -la data/auto/odds_checker_both 2>/dev/null || true
+          ls -la data/auto/odds_checker_uk 2>/dev/null || true
+          ls -la data/auto/odds_checker_eu 2>/dev/null || true
+
           echo "Looking for arb outputs:"
           find data -maxdepth 4 -type f -name "*arb*.html" -print || true
 
@@ -70,13 +82,13 @@ jobs:
 
           echo "--------------------------------"
 
-          # Optional: enforce arb_latest.html exists (recommended if Shopify expects this exact file)
+          # Keep this strict check if Shopify expects this exact file
           if [ ! -f data/auto/arb_latest.html ]; then
             echo "ERROR: data/auto/arb_latest.html was not generated. Check arb_multi.py output path."
             exit 1
           fi
 
-          # Patch iframe step (keep as-is, but fix path to match your repo structure)
+          # Patch iframe step (keep as-is)
           if [ -f src/app/patch_iframe.py ]; then
             python src/app/patch_iframe.py || true
           fi
