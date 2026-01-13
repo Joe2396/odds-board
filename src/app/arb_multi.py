@@ -4,22 +4,35 @@ Multi-Sport Arbitrage Board
 Soccer (1X2)
 NBA (H2H 2-way)
 
-Output:
-  data/auto/arb_latest.html
+Outputs:
+  data/auto/arb_latest_both.html
+  data/auto/arb_latest_uk.html
+  data/auto/arb_latest_eu.html
+
+Also writes:
+  data/auto/arb_latest.html   (alias of BOTH, for Shopify/backwards compatibility)
+
+Run:
+  python arb_multi.py --group BOTH
+  python arb_multi.py --group UK
+  python arb_multi.py --group EU
 """
 
 import os
 import html
+import json
+import argparse
 from datetime import datetime, timezone
 from pathlib import Path
+
 import requests
 import pandas as pd
 
 # ================= CONFIG =================
 
-API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"
-# If not set, we still generate a page (so the site updates), but we'll show an error banner.
-# This prevents the "stuck since December" problem.
+# Prefer GitHub Secret env var; fallback to empty so page still renders with an error banner
+API_KEY = os.getenv("ODDS_API_KEY", "").strip()
+
 SPORTS = {
     "Soccer — Premier League": "soccer_epl",
     "Soccer — La Liga": "soccer_spain_la_liga",
@@ -29,7 +42,8 @@ SPORTS = {
     "NBA": "basketball_nba",
 }
 
-REGIONS = "eu"
+# Fetch both, then filter into groups
+REGIONS = "uk,eu"
 MARKETS = "h2h,totals,spreads"
 ODDS_FORMAT = "decimal"
 DATE_FORMAT = "iso"
@@ -37,12 +51,15 @@ TIMEOUT = 30
 
 BANKROLL = 100.0
 MIN_ROI_PCT = 1.0
-OUTPUT_HTML = Path("data/auto/arb_latest.html")
 
 POPULAR_SPREAD_LINES = {-10.5, -7.5, -5.5, -3.5, -1.5, 0.5, 1.5, 3.5, 5.5, 7.5, 10.5}
-
 ODDS_MIN = 1.01
 ODDS_MAX = 1000.0
+
+# ================= BOOKMAKER GROUPS =================
+
+def load_bookmaker_groups(path="config/bookmakers.json"):
+    return json.loads(Path(path).read_text(encoding="utf-8"))
 
 # ================= HELPERS =================
 
@@ -84,19 +101,25 @@ def is_future_game(iso_time: str) -> bool:
 
 # ================= FLATTEN =================
 
-def flatten(league, data):
+def flatten(league, data, allowed_keys=None):
     rows = []
     for g in data:
         home = g.get("home_team") or ""
         away = g.get("away_team") or ""
         kickoff = g.get("commence_time")
 
-        # avoid stale/completed games
         if not kickoff or not is_future_game(kickoff):
             continue
 
         for b in g.get("bookmakers", []):
-            book = b.get("title") or b.get("key") or "Book"
+            book_key = (b.get("key") or "").strip()
+
+            # Filter by bookmaker KEY
+            if allowed_keys is not None and book_key not in allowed_keys:
+                continue
+
+            book_title = b.get("title") or book_key or "Book"
+
             for m in b.get("markets", []):
                 mkey = m.get("key")
 
@@ -126,7 +149,6 @@ def flatten(league, data):
                             continue
 
                     elif mkey == "totals":
-                        # not used in current arb build, but keep flattening for later expansion
                         if "over" in name:
                             side = "Over"
                         elif "under" in name:
@@ -138,7 +160,6 @@ def flatten(league, data):
                         line_val = float(line)
 
                     elif mkey == "spreads":
-                        # not used in current arb build, but keep flattening for later expansion
                         if line is None:
                             continue
                         line_val = float(line)
@@ -161,7 +182,7 @@ def flatten(league, data):
                         "market": mkey,
                         "side": side,
                         "line": line_val,
-                        "book": book,
+                        "book": book_title,
                         "odds": odds,
                     })
 
@@ -170,7 +191,6 @@ def flatten(league, data):
 # ================= ARB LOGIC =================
 
 def best_by_side(df):
-    # best odds (highest) per side
     return df.sort_values("odds", ascending=False).groupby("side").first()
 
 def build_1x2(df):
@@ -200,7 +220,10 @@ def build_1x2(df):
             "ROI": f"{roi:.2f}%",
         })
 
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    if not out.empty:
+        out = out.sort_values("ROI", ascending=False)
+    return out
 
 def build_2way(df):
     rows = []
@@ -228,7 +251,10 @@ def build_2way(df):
             "ROI": f"{roi:.2f}%",
         })
 
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    if not out.empty:
+        out = out.sort_values("ROI", ascending=False)
+    return out
 
 # ================= HTML =================
 
@@ -236,7 +262,10 @@ def render_table(df):
     if df.empty:
         return "<p style='opacity:0.75;'>No arbitrage opportunities right now.</p>"
 
-    headers = "".join(f"<th style='text-align:left;padding:10px;border-bottom:1px solid #1F2937;'>{html.escape(h)}</th>" for h in df.columns)
+    headers = "".join(
+        f"<th style='text-align:left;padding:10px;border-bottom:1px solid #1F2937;'>{html.escape(h)}</th>"
+        for h in df.columns
+    )
     rows = ""
     for _, r in df.iterrows():
         rows += "<tr>" + "".join(
@@ -251,12 +280,16 @@ def render_table(df):
     </table>
     """
 
-def render_page(soccer_1x2: pd.DataFrame, nba_2way: pd.DataFrame, status_lines: list[str]) -> str:
+def render_page(soccer_1x2: pd.DataFrame, nba_2way: pd.DataFrame, status_lines: list[str], group: str) -> str:
+    group = (group or "BOTH").upper()
+
     status_html = ""
     if status_lines:
-        status_html = "<div style='margin:12px 0 18px;padding:12px;border:1px solid #334155;border-radius:12px;background:#0B1220;'>" + \
-                      "<br>".join(html.escape(s) for s in status_lines) + \
-                      "</div>"
+        status_html = (
+            "<div style='margin:12px 0 18px;padding:12px;border:1px solid #334155;border-radius:12px;background:#0B1220;'>"
+            + "<br>".join(html.escape(s) for s in status_lines)
+            + "</div>"
+        )
 
     return f"""<!doctype html>
 <html>
@@ -264,8 +297,49 @@ def render_page(soccer_1x2: pd.DataFrame, nba_2way: pd.DataFrame, status_lines: 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Arbitrage Board</title>
+  <style>
+    body {{
+      background:#0F1621;
+      color:#E2E8F0;
+      font-family:Inter,system-ui;
+      padding:24px;
+      margin:0;
+    }}
+    .topbar {{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+    }}
+    .topbar label {{
+      color: rgba(226,232,240,0.70);
+      font-weight:650;
+      font-size:14px;
+    }}
+    .topbar select {{
+      background:#0B1220;
+      color:#E2E8F0;
+      border:1px solid #334155;
+      border-radius:10px;
+      padding:8px 10px;
+      font-weight:700;
+      outline:none;
+    }}
+    h1 {{ margin: 6px 0 6px; }}
+    h2 {{ margin-top: 28px; }}
+  </style>
 </head>
-<body style="background:#0F1621;color:#E2E8F0;font-family:Inter,system-ui;padding:24px;">
+<body>
+  <div class="topbar">
+    <label for="groupSelect">Bookmakers</label>
+    <select id="groupSelect">
+      <option value="BOTH">BOTH</option>
+      <option value="UK">UK</option>
+      <option value="EU">EU</option>
+    </select>
+  </div>
+
   <h1>Multi-Sport Arbitrage Board</h1>
   <p style="opacity:0.8;">Updated: {now_iso()} | Bankroll £{BANKROLL:.0f} | Min ROI {MIN_ROI_PCT:.1f}%</p>
   {status_html}
@@ -273,8 +347,37 @@ def render_page(soccer_1x2: pd.DataFrame, nba_2way: pd.DataFrame, status_lines: 
   <h2>Soccer 1X2 Arbitrage</h2>
   {render_table(soccer_1x2)}
 
-  <h2 style="margin-top:28px;">NBA H2H Arbitrage</h2>
+  <h2>NBA H2H Arbitrage</h2>
   {render_table(nba_2way)}
+
+<script>
+(function() {{
+  var current = "{group}";
+  var sel = document.getElementById("groupSelect");
+  if (sel) sel.value = current;
+
+  function swapGroup(target) {{
+    var path = window.location.pathname;
+
+    // swap arb_latest_(uk|eu|both).html
+    path = path.replace(/arb_latest_(uk|eu|both)\\.html/i, "arb_latest_" + target.toLowerCase() + ".html");
+
+    // if user is on legacy arb_latest.html, treat it as BOTH and redirect cleanly
+    if (/arb_latest\\.html/i.test(window.location.pathname)) {{
+      path = path.replace(/arb_latest\\.html/i, "arb_latest_" + target.toLowerCase() + ".html");
+    }}
+
+    window.location.pathname = path;
+  }}
+
+  if (sel) {{
+    sel.addEventListener("change", function() {{
+      swapGroup(this.value);
+    }});
+  }}
+}})();
+</script>
+
 </body>
 </html>
 """
@@ -282,6 +385,17 @@ def render_page(soccer_1x2: pd.DataFrame, nba_2way: pd.DataFrame, status_lines: 
 # ================= MAIN =================
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--group", choices=["UK", "EU", "BOTH"], default="BOTH")
+    args = parser.parse_args()
+
+    groups = load_bookmaker_groups()
+
+    if args.group == "BOTH":
+        allowed_keys = set(groups.get("UK", [])) | set(groups.get("EU", []))
+    else:
+        allowed_keys = set(groups.get(args.group, []))
+
     frames = []
     status_lines = []
 
@@ -289,14 +403,15 @@ def main():
         status_lines.append("ERROR: Missing ODDS_API_KEY (GitHub secret). Arbitrage data cannot be fetched.")
         status_lines.append("Fix: add ODDS_API_KEY to repo secrets and ensure workflow passes it.")
     else:
-        # fetch all leagues
         for league, key in SPORTS.items():
             data, meta = fetch_odds(key)
             if meta.get("status") != 200:
-                status_lines.append(f"{league}: API error {meta.get('status')} (remaining={meta.get('remaining')}, used={meta.get('used')})")
+                status_lines.append(
+                    f"{league}: API error {meta.get('status')} (remaining={meta.get('remaining')}, used={meta.get('used')})"
+                )
                 continue
 
-            df = flatten(league, data)
+            df = flatten(league, data, allowed_keys=allowed_keys)
             if not df.empty:
                 frames.append(df)
 
@@ -308,11 +423,19 @@ def main():
     soccer_1x2 = build_1x2(full)
     nba_2way = build_2way(full)
 
-    html_out = render_page(soccer_1x2, nba_2way, status_lines)
+    html_out = render_page(soccer_1x2, nba_2way, status_lines, args.group)
 
-    OUTPUT_HTML.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_HTML.write_text(html_out, encoding="utf-8")
-    print(f"Wrote: {OUTPUT_HTML}")
+    out = Path(f"data/auto/arb_latest_{args.group.lower()}.html")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(html_out, encoding="utf-8")
+    print(f"Wrote: {out}")
+
+    # Backwards-compatible alias for Shopify / existing links
+    if args.group == "BOTH":
+        alias = Path("data/auto/arb_latest.html")
+        alias.write_text(html_out, encoding="utf-8")
+        print(f"Wrote alias: {alias}")
 
 if __name__ == "__main__":
     main()
+
