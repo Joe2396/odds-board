@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Multi-Sport Odds Checker
+Multi-Sport Odds Checker (UK / EU / BOTH) + Corners (Soccer)
+
 Sports:
 - Soccer (EPL, La Liga, Bundesliga, Serie A, UCL)
 - NFL
@@ -13,10 +14,15 @@ data/auto/odds_checker_both/index.html
 + per-league index pages
 + per-fixture pages (match pages)
 
+NEW:
+- Soccer “Total Corners (Over/Under)” via per-event endpoint:
+  market key: alternate_totals_corners
+  (only added when available for that game)
+
 Run:
+  python generate_odds_checker.py --group BOTH
   python generate_odds_checker.py --group UK
   python generate_odds_checker.py --group EU
-  python generate_odds_checker.py --group BOTH
 """
 
 import html
@@ -31,6 +37,7 @@ import pandas as pd
 
 # ================= CONFIG =================
 
+# Per your preference: hard-code API key (no secrets/env)
 API_KEY = "8e8a4a2421e95ad2fb0df450c88ef6c6"
 
 SPORTS = {
@@ -45,7 +52,7 @@ SPORTS = {
     "NBA": {"nba": "basketball_nba"},
 }
 
-# Fetch both UK + EU so the same build can filter into UK / EU / BOTH outputs
+# Fetch both UK + EU so we can filter into UK/EU/BOTH builds
 REGIONS = "uk,eu"
 ODDS_FORMAT = "decimal"
 DATE_FORMAT = "iso"
@@ -55,6 +62,10 @@ THEME_BG = "#0F1621"
 TXT = "#E2E8F0"
 
 POPULAR_SOCCER_SPREADS = {-1.0, 0.0, 1.0}
+
+# Corners config (soccer only)
+CORNERS_MARKET = "alternate_totals_corners"   # Total corners O/U
+CORNERS_EVENT_CAP_PER_LEAGUE = 18             # keep API usage sane
 
 # ================= BOOKMAKER GROUPS =================
 
@@ -80,6 +91,9 @@ def slugify(text: str) -> str:
     return text or "item"
 
 def fetch(sport_key: str):
+    """
+    Bulk endpoint for main markets.
+    """
     url = f"https://api.the-odds-api.com/v4/sports/{sport_key}/odds"
     params = {
         "apiKey": API_KEY,
@@ -94,9 +108,36 @@ def fetch(sport_key: str):
         return []
     return r.json()
 
+def fetch_event_odds(sport_key: str, event_id: str, markets: str):
+    """
+    Per-event endpoint (needed for additional markets like corners).
+    """
+    url = f"https://api.the-odds-api.com/v4/sports/{sport_key}/events/{event_id}/odds"
+    params = {
+        "apiKey": API_KEY,
+        "regions": REGIONS,
+        "markets": markets,
+        "oddsFormat": ODDS_FORMAT,
+        "dateFormat": DATE_FORMAT,
+    }
+    r = requests.get(url, params=params, timeout=TIMEOUT)
+    if r.status_code != 200:
+        # Keep this as WARN (coverage varies, some events may not have corners)
+        print(f"[WARN] event_odds {sport_key} {event_id}: {r.status_code}")
+        return None
+    return r.json()
+
 # ================= DATA BUILD =================
 
 def flatten(data, sport_name, allowed_keys: set):
+    """
+    Flattens odds into rows, filtering bookmakers by KEY using allowed_keys.
+    Supports:
+      - h2h
+      - totals
+      - spreads
+      - alternate_totals_corners (mapped internally to totals_corners)
+    """
     rows = []
 
     for g in data:
@@ -111,7 +152,7 @@ def flatten(data, sport_name, allowed_keys: set):
         for b in g.get("bookmakers", []):
             book_key = (b.get("key") or "").strip()
             if book_key not in allowed_keys:
-                continue  # filter by bookmaker key
+                continue
 
             book = b.get("title") or book_key or "Book"
 
@@ -128,6 +169,7 @@ def flatten(data, sport_name, allowed_keys: set):
 
                     side = None
                     line = None
+                    internal_market = mkey  # we may remap for nicer labels
 
                     if mkey == "h2h":
                         if name.lower() == (home or "").lower():
@@ -165,6 +207,20 @@ def flatten(data, sport_name, allowed_keys: set):
                         else:
                             continue
 
+                    elif mkey == "alternate_totals_corners":
+                        # Total corners O/U
+                        internal_market = "totals_corners"
+                        if "over" in name.lower():
+                            side = "Over"
+                        elif "under" in name.lower():
+                            side = "Under"
+                        else:
+                            continue
+                        if point is None:
+                            continue
+                        line = float(point)
+
+                    # extra safety: do not allow rows without side
                     if side is None:
                         continue
 
@@ -174,9 +230,9 @@ def flatten(data, sport_name, allowed_keys: set):
                         "home": home,
                         "away": away,
                         "kickoff": kickoff,
-                        "market": mkey,   # h2h / totals / spreads
-                        "side": side,     # Home/Away/Draw OR Over/Under OR Home/Away
-                        "line": line,     # totals/spreads number, else None
+                        "market": internal_market,  # h2h / totals / spreads / totals_corners
+                        "side": side,
+                        "line": line,
                         "book": book,
                         "odds": float(price),
                     })
@@ -286,13 +342,6 @@ def page_shell(title: str, body_html: str, group: str) -> str:
     font-size: 22px;
     line-height: 1.1;
   }}
-  .best small {{
-    display: block;
-    font-size: 14px;
-    font-weight: 650;
-    color: var(--muted);
-    margin-top: 4px;
-  }}
   .pills {{
     display: flex;
     flex-wrap: wrap;
@@ -356,7 +405,6 @@ def page_shell(title: str, body_html: str, group: str) -> str:
 
   function swapGroup(target) {{
     var oldPath = window.location.pathname;
-    // swap folder segment
     var newPath = oldPath.replace(/odds_checker_(uk|eu|both)/i, "odds_checker_" + target.toLowerCase());
     if (newPath === oldPath) return;
     window.location.pathname = newPath;
@@ -404,6 +452,8 @@ def market_label(market_key: str) -> str:
         return "Match Result (1X2)"
     if market_key == "totals":
         return "Totals (Over/Under)"
+    if market_key == "totals_corners":
+        return "Total Corners (Over/Under)"
     if market_key == "spreads":
         return "Spreads (Handicap)"
     return market_key.upper()
@@ -419,7 +469,7 @@ def render_market_panels(match_df: pd.DataFrame) -> str:
         return "<div class='meta'>No odds available.</div>"
 
     out = []
-    market_order = ["h2h", "totals", "spreads"]
+    market_order = ["h2h", "totals", "totals_corners", "spreads"]
     markets = [m for m in market_order if m in set(match_df["market"].tolist())]
     for m in sorted(set(match_df["market"].tolist())):
         if m not in markets:
@@ -432,7 +482,7 @@ def render_market_panels(match_df: pd.DataFrame) -> str:
 
         if market == "h2h":
             side_order = ["Home", "Draw", "Away"]
-        elif market == "totals":
+        elif market in ("totals", "totals_corners"):
             side_order = ["Over", "Under"]
         else:
             side_order = ["Home", "Away"]
@@ -471,7 +521,7 @@ def render_market_panels(match_df: pd.DataFrame) -> str:
             best_book = best_row["book"]
 
             outcome = side
-            if market in ("totals", "spreads") and not pd.isna(line):
+            if market in ("totals", "spreads", "totals_corners") and not pd.isna(line):
                 sign = ""
                 if market == "spreads":
                     lv = float(line)
@@ -537,7 +587,6 @@ def main():
     args = parser.parse_args()
 
     groups = load_bookmaker_groups()
-
     if args.group == "BOTH":
         allowed_keys = set(groups.get("UK", [])) | set(groups.get("EU", []))
     else:
@@ -550,12 +599,29 @@ def main():
     updated_stamp = now_iso()
 
     for sport_name, leagues in SPORTS.items():
-        for league_slug, api_key in leagues.items():
-            data = fetch(api_key)
+        for league_slug, api_sport_key in leagues.items():
+            data = fetch(api_sport_key)
             df = flatten(data, sport_name, allowed_keys)
 
             if df.empty:
                 continue
+
+            # --- Corners: soccer only, per-event odds endpoint ---
+            # Only attempt if we already have some fixtures from the bulk call
+            if sport_name == "Soccer":
+                # Limit calls per league to keep hourly usage manageable
+                event_ids = df["event_id"].dropna().unique().tolist()[:CORNERS_EVENT_CAP_PER_LEAGUE]
+                corners_frames = []
+                for eid in event_ids:
+                    ev = fetch_event_odds(api_sport_key, eid, markets=CORNERS_MARKET)
+                    if not ev:
+                        continue
+                    # event endpoint returns a single event object -> pass as list
+                    cdf = flatten([ev], sport_name, allowed_keys)
+                    if not cdf.empty:
+                        corners_frames.append(cdf)
+                if corners_frames:
+                    df = pd.concat([df] + corners_frames, ignore_index=True)
 
             league_dir = base_output_dir / league_slug
             league_dir.mkdir(parents=True, exist_ok=True)
