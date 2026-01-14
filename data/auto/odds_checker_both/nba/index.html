@@ -96,13 +96,6 @@
     font-size: 22px;
     line-height: 1.1;
   }
-  .best small {
-    display: block;
-    font-size: 14px;
-    font-weight: 650;
-    color: var(--muted);
-    margin-top: 4px;
-  }
   .pills {
     display: flex;
     flex-wrap: wrap;
@@ -158,7 +151,7 @@
     
 <div class="navtop"><a href="../index.html">← All sports</a></div>
 <h1>Nba</h1>
-<div class="meta">Updated: 2026-01-13T23:19:51Z</div>
+<div class="meta">Updated: 2026-01-14T00:01:42Z</div>
 <div class="gridcards">
 <a href="miami-heat-vs-phoenix-suns.html">
   <div class="card">
@@ -222,6 +215,13 @@
     <div class="card-sub">Kickoff (UTC): 2026-01-15T00:10:00Z</div>
   </div>
 </a>
+
+<a href="sacramento-kings-vs-new-york-knicks.html">
+  <div class="card">
+    <div class="card-title">Sacramento Kings vs New York Knicks</div>
+    <div class="card-sub">Kickoff (UTC): 2026-01-15T03:10:00Z</div>
+  </div>
+</a>
 </div>
 
   </div>
@@ -234,7 +234,6 @@
 
   function swapGroup(target) {
     var oldPath = window.location.pathname;
-    // swap folder segment
     var newPath = oldPath.replace(/odds_checker_(uk|eu|both)/i, "odds_checker_" + target.toLowerCase());
     if (newPath === oldPath) return;
     window.location.pathname = newPath;

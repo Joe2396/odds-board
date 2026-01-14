@@ -96,13 +96,6 @@
     font-size: 22px;
     line-height: 1.1;
   }
-  .best small {
-    display: block;
-    font-size: 14px;
-    font-weight: 650;
-    color: var(--muted);
-    margin-top: 4px;
-  }
   .pills {
     display: flex;
     flex-wrap: wrap;
@@ -157,7 +150,7 @@
 
     
 <h1>Odds Checker</h1>
-<div class="meta">Updated: 2026-01-13T23:19:58Z</div>
+<div class="meta">Updated: 2026-01-14T00:02:10Z</div>
 <h2>Soccer</h2><div class='gridcards'>
 <a href="epl/index.html">
   <div class="card">
@@ -219,7 +212,6 @@
 
   function swapGroup(target) {
     var oldPath = window.location.pathname;
-    // swap folder segment
     var newPath = oldPath.replace(/odds_checker_(uk|eu|both)/i, "odds_checker_" + target.toLowerCase());
     if (newPath === oldPath) return;
     window.location.pathname = newPath;

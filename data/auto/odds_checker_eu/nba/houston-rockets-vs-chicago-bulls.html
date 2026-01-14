@@ -96,13 +96,6 @@
     font-size: 22px;
     line-height: 1.1;
   }
-  .best small {
-    display: block;
-    font-size: 14px;
-    font-weight: 650;
-    color: var(--muted);
-    margin-top: 4px;
-  }
   .pills {
     display: flex;
     flex-wrap: wrap;
@@ -158,7 +151,7 @@
     
 <div class="navtop"><a href="index.html">← All fixtures</a></div>
 <h1>Houston Rockets vs Chicago Bulls</h1>
-<div class="meta">Kickoff (UTC): 2026-01-14T01:10:00Z · Updated: 2026-01-13T23:19:59Z</div>
+<div class="meta">Kickoff (UTC): 2026-01-14T01:10:00Z · Updated: 2026-01-14T00:02:10Z</div>
 
 <div class="panel">
   <div class="panel-h">Match Result (1X2)</div>
@@ -185,10 +178,10 @@
 <tr>
   <td style="width:18%;font-weight:750;">Away</td>
   <td style="width:18%;">
-    <div class="best">5.95 <span style="color:var(--muted);font-weight:650;">@</span> Marathon Bet</div>
+    <div class="best">6 <span style="color:var(--muted);font-weight:650;">@</span> Marathon Bet</div>
   </td>
   <td>
-    <div class="pills"><span class='pill bestpill'>Marathon Bet @ 5.95</span><span class='pill '>Pinnacle @ 5.59</span><span class='pill '>Betsson @ 5.25</span></div>
+    <div class="pills"><span class='pill bestpill'>Marathon Bet @ 6</span><span class='pill '>Pinnacle @ 5.57</span><span class='pill '>Betsson @ 5.25</span></div>
   </td>
 </tr>
 
@@ -209,22 +202,22 @@
     <tbody>
       
 <tr>
-  <td style="width:18%;font-weight:750;">Over 225.5</td>
+  <td style="width:18%;font-weight:750;">Over 224</td>
   <td style="width:18%;">
-    <div class="best">1.91 <span style="color:var(--muted);font-weight:650;">@</span> Pinnacle</div>
+    <div class="best">1.93 <span style="color:var(--muted);font-weight:650;">@</span> Pinnacle</div>
   </td>
   <td>
-    <div class="pills"><span class='pill bestpill'>Pinnacle @ 1.91</span></div>
+    <div class="pills"><span class='pill bestpill'>Pinnacle @ 1.93</span></div>
   </td>
 </tr>
 
 <tr>
-  <td style="width:18%;font-weight:750;">Under 225.5</td>
+  <td style="width:18%;font-weight:750;">Under 224</td>
   <td style="width:18%;">
-    <div class="best">1.98 <span style="color:var(--muted);font-weight:650;">@</span> Pinnacle</div>
+    <div class="best">1.96 <span style="color:var(--muted);font-weight:650;">@</span> Pinnacle</div>
   </td>
   <td>
-    <div class="pills"><span class='pill bestpill'>Pinnacle @ 1.98</span></div>
+    <div class="pills"><span class='pill bestpill'>Pinnacle @ 1.96</span></div>
   </td>
 </tr>
 
@@ -279,7 +272,6 @@
 
   function swapGroup(target) {
     var oldPath = window.location.pathname;
-    // swap folder segment
     var newPath = oldPath.replace(/odds_checker_(uk|eu|both)/i, "odds_checker_" + target.toLowerCase());
     if (newPath === oldPath) return;
     window.location.pathname = newPath;

@@ -96,13 +96,6 @@
     font-size: 22px;
     line-height: 1.1;
   }
-  .best small {
-    display: block;
-    font-size: 14px;
-    font-weight: 650;
-    color: var(--muted);
-    margin-top: 4px;
-  }
   .pills {
     display: flex;
     flex-wrap: wrap;
@@ -158,7 +151,7 @@
     
 <div class="navtop"><a href="index.html">← All fixtures</a></div>
 <h1>Burnley vs Tottenham Hotspur</h1>
-<div class="meta">Kickoff (UTC): 2026-01-24T15:00:00Z · Updated: 2026-01-13T23:19:59Z</div>
+<div class="meta">Kickoff (UTC): 2026-01-24T15:00:00Z · Updated: 2026-01-14T00:02:10Z</div>
 
 <div class="panel">
   <div class="panel-h">Match Result (1X2)</div>
@@ -253,7 +246,6 @@
 
   function swapGroup(target) {
     var oldPath = window.location.pathname;
-    // swap folder segment
     var newPath = oldPath.replace(/odds_checker_(uk|eu|both)/i, "odds_checker_" + target.toLowerCase());
     if (newPath === oldPath) return;
     window.location.pathname = newPath;
