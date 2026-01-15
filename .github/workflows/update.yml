@@ -2,7 +2,8 @@ name: Update Odds + Arbitrage Pages V2
 
 on:
   schedule:
-    - cron: "0 * * * *"   # run at minute 0 every hour
+  - cron: "0 */4 * * *"
+
   workflow_dispatch: {}
 
 permissions:
