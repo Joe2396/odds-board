@@ -65,7 +65,7 @@ POPULAR_SOCCER_SPREADS = {-1.0, 0.0, 1.0}
 
 # Corners config (soccer only)
 CORNERS_MARKET = "alternate_totals_corners"   # Total corners O/U
-CORNERS_EVENT_CAP_PER_LEAGUE = 18             # keep API usage sane
+CORNERS_EVENT_CAP_PER_LEAGUE = 2            # keep API usage sane
 
 # ================= BOOKMAKER GROUPS =================
 
@@ -675,3 +675,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
