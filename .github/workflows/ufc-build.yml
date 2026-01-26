@@ -1,11 +1,11 @@
 name: Build UFC Hub
-
 on:
   workflow_dispatch:
   push:
     paths:
       - "ufc/data/**"
       - "scripts/generate_ufc_*.py"
+      - ".github/workflows/ufc-build.yml"
 
 jobs:
   build-ufc:
