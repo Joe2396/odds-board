@@ -4,30 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UFC 999: Example vs Sample</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      padding: 24px;
-      background: #0b0f14;
-      color: #e6edf3;
-    }
-    .card {
-      max-width: 900px;
-      border: 1px solid #1f2a3a;
-      border-radius: 12px;
-      padding: 20px;
-      background: #111826;
-    }
-    .muted { color: #9aa4b2; }
-    a { color: #7ab7ff; text-decoration: none; }
-    .fight {
-      margin-top: 14px;
-      border: 1px solid #1f2a3a;
-      border-radius: 12px;
-      padding: 14px;
-      background: rgba(255,255,255,0.02);
-    }
-  </style>
+  <link rel="stylesheet" href="/odds-board/ufc/assets/ufc.css">
 </head>
 <body>
   <div class="card">
@@ -38,12 +15,17 @@
 
     <h2>Fight Card</h2>
 
-    <div class="fight">
-      <h3>John Example vs Alex Sample</h3>
-      <p class="muted">Welterweight • 5 rounds • Main Event</p>
-<a href="/odds-board/ufc/events/ufc-999/fights/example-vs-sample/">View fight →</a>
+    <div class="row" style="margin-top:16px;">
+      <div>
+        <h3>John Example vs Alex Sample</h3>
+        <p class="muted">Welterweight • 5 rounds • Main Event</p>
+        <p><a href="/odds-board/ufc/events/ufc-999/fights/example-vs-sample/">View fight →</a></p>
+      </div>
+      <div class="muted">→</div>
     </div>
 
+    <hr style="margin:24px 0; border-color:#1f2a3a;">
+    <p class="muted">More fights will be added here.</p>
   </div>
 </body>
 </html>
