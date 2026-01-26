@@ -4,41 +4,34 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UFC Hub</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      padding: 24px;
-      background: #0b0f14;
-      color: #e6edf3;
-    }
-    .card {
-      max-width: 700px;
-      border: 1px solid #1f2a3a;
-      border-radius: 12px;
-      padding: 20px;
-      background: #111826;
-    }
-    .muted { color: #9aa4b2; }
-    a { color: #7ab7ff; text-decoration: none; }
-  </style>
+
+  <!-- Shared UFC styles -->
+  <link rel="stylesheet" href="/odds-board/ufc/assets/ufc.css">
+
 </head>
-<b<div class="card">
-  <h1>🥊 UFC Hub</h1>
-  <p class="muted">UFC events, fight cards and fighter research tools.</p>
-<p><a href="/odds-board/ufc/fighters/">Browse fighters →</a></p>
+<body>
 
-  <h2>Upcoming Events</h2>
+  <div class="card">
+    <h1>🥊 UFC Hub</h1>
+    <p class="muted">UFC events, fight cards and fighter research tools.</p>
 
-  <div style="margin-top:16px; border:1px solid #1f2a3a; border-radius:12px; padding:14px;">
-    <h3>UFC 999: Example vs Sample</h3>
-    <p class="muted">Feb 14, 2026 • Las Vegas, NV</p>
-   <a href="/odds-board/ufc/events/ufc-999/">View event →</a>
+    <p><a href="/odds-board/ufc/fighters/">Browse fighters →</a></p>
+
+    <h2>Upcoming Events</h2>
+
+    <div class="row" style="margin-top:16px;">
+      <div>
+        <h3>UFC 999: Example vs Sample</h3>
+        <p class="muted">Feb 14, 2026 • Las Vegas, NV</p>
+        <p><a href="/odds-board/ufc/events/ufc-999/">View event →</a></p>
+      </div>
+      <div class="muted">→</div>
+    </div>
+
+    <hr style="margin:24px 0; border-color:#1f2a3a;">
+
+    <p><a href="/">← Back to home</a></p>
   </div>
-
-  <hr style="margin:24px 0; border-color:#1f2a3a;">
-
-  <p><a href="/">← Back to home</a></p>
-</div>
 
 </body>
 </html>
