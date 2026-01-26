@@ -1,17 +1,16 @@
 {
-  "generated_at": "2026-01-26T22:38:04.864675+00:00",
+  "generated_at": "2026-01-26T22:48:02.714766+00:00",
   "steps": [
     {
-      "source": "wikipedia",
-      "fetched_at": "2026-01-26T22:38:04.864693+00:00",
+      "source": "espn",
+      "fetched_at": "2026-01-26T22:48:02.714785+00:00",
       "endpoints": {
-        "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_UFC_events&prop=text&format=json": {
-          "status": 200,
-          "preview": "{\"parse\":{\"title\":\"List of UFC events\",\"pageid\":28418256,\"text\":{\"*\":\"<div class=\\\"mw-content-ltr mw-parser-output\\\" lang=\\\"en\\\" dir=\\\"ltr\\\"><p class=\\\"mw-empty-elt\\\">\\n\\n\\n</p>\\n<figure class=\\\"mw-halign-right\\\" typeof=\\\"mw:File/Thumb\\\"><a href=\\\"/wiki/File:UFC_74_Respect_Bout.jpg\\\" class=\\\"mw-file"
+        "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard": {
+          "preview": "{\"leagues\":[{\"id\":\"3321\",\"uid\":\"s:3301~l:3321\",\"name\":\"Ultimate Fighting Championship\",\"displayName\":\"UFC\",\"abbreviation\":\"UFC\",\"shortName\":\"UFC\",\"slug\":\"ufc\",\"season\":{\"year\":2026,\"startDate\":\"2026-01-01T08:00Z\",\"endDate\":\"2026-12-31T08:00Z\",\"displayName\":\"2026\",\"type\":{\"id\":\"2\",\"type\":2,\"name\":\"Re"
         }
       },
       "notes": [
-        "Parsed 0 upcoming events from Wikipedia"
+        "Parsed 1 upcoming events from ESPN."
       ]
     }
   ]
