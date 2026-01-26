@@ -417,10 +417,95 @@ def main():
     events, cache = fetch_ufc_api_upcoming()
     all_cache["steps"].append(cache)
 
-    # Fallback to Wikipedia if UFC API failed
-    if not events:
-        events, cache2 = fetch_wikipedia_scheduled_events()
-        all_cache["steps"].append(cache2)
+   def fetch_wikipedia_scheduled_events() -> tuple[list[dict], dict]:
+    """
+    Robust fallback: fetch rendered HTML for the 'Scheduled events' section and parse the table.
+    """
+    cache = {"source": "wikipedia", "fetched_at": now_iso(), "notes": [], "endpoints": {}}
+
+    # MediaWiki parse endpoint (HTML)
+    params = {
+        "action": "parse",
+        "page": "List_of_UFC_events",
+        "prop": "text",
+        "format": "json",
+    }
+    url = "https://en.wikipedia.org/w/api.php?" + urlencode(params)
+    status, body = http_get(url, headers={"Accept": "application/json"})
+    cache["endpoints"][url] = {"status": status, "body_preview": body[:500]}
+
+    if status != 200:
+        cache["notes"].append("Wikipedia API request failed.")
+        return [], cache
+
+    j = safe_json_loads(body)
+    html = (((j or {}).get("parse") or {}).get("text") or {}).get("*", "")
+    if not html:
+        cache["notes"].append("No HTML returned from Wikipedia parse API.")
+        return [], cache
+
+    # Lazy HTML parsing without bs4 to keep deps minimal:
+    # We locate the 'Scheduled events' header and then the next wikitable.
+    # This is still much more stable than wikitext row parsing.
+    idx = html.lower().find("scheduled events")
+    if idx == -1:
+        cache["notes"].append("Could not find 'Scheduled events' in parsed HTML.")
+        return [], cache
+
+    sub = html[idx:]
+    # Find the first table after the section
+    table_match = re.search(r"<table[^>]*class=\"[^\"]*wikitable[^\"]*\"[^>]*>.*?</table>", sub, flags=re.S | re.I)
+    if not table_match:
+        cache["notes"].append("Could not find scheduled events wikitable in HTML.")
+        return [], cache
+
+    table_html = table_match.group(0)
+
+    # Extract rows
+    row_html = re.findall(r"<tr[^>]*>.*?</tr>", table_html, flags=re.S | re.I)
+
+    def strip_tags(s: str) -> str:
+        s = re.sub(r"<sup[^>]*>.*?</sup>", "", s, flags=re.S | re.I)  # remove refs
+        s = re.sub(r"<.*?>", "", s, flags=re.S)
+        s = s.replace("&nbsp;", " ")
+        s = re.sub(r"\s+", " ", s).strip()
+        return s
+
+    events = []
+    for r in row_html[1:]:  # skip header
+        cols = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", r, flags=re.S | re.I)
+        cols = [strip_tags(c) for c in cols]
+        if len(cols) < 2:
+            continue
+
+        date_cell = cols[0]
+        name_cell = cols[1] if len(cols) > 1 else ""
+        venue_cell = cols[2] if len(cols) > 2 else ""
+        loc_cell = cols[3] if len(cols) > 3 else ""
+
+        iso_date = to_iso_date_from_human(date_cell)
+        if not iso_date:
+            continue
+
+        name = name_cell or "UFC Event"
+        event_slug = f"{iso_date}-{slugify(name)}"
+        events.append(
+            {
+                "id": event_slug,
+                "slug": event_slug,
+                "name": name,
+                "date": iso_date,
+                "location": ", ".join([p for p in [venue_cell, loc_cell] if p]).strip(", "),
+                "status": "upcoming",
+                "source": {"provider": "wikipedia"},
+                "fights": [],
+            }
+        )
+
+    events.sort(key=lambda e: e.get("date") or "9999-12-31")
+    cache["notes"].append(f"Normalized {len(events)} upcoming events from Wikipedia HTML fallback.")
+    return events, cache
+
 
     # Final output format (simple + generator-friendly)
     out = {
