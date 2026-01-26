@@ -1,42 +1,5 @@
 {
-  "events": [
-    {
-      "slug": "ufc-999",
-      "name": "UFC 999: Example vs Sample",
-      "date": "2026-02-14",
-      "location": "Las Vegas, NV",
-      "fights": [
-        {
-          "slug": "example-vs-sample",
-          "weight_class": "Welterweight",
-          "scheduled_rounds": 5,
-          "is_main_event": true,
-          "fighter_a": {
-            "slug": "john-example",
-            "name": "John Example",
-            "nickname": "The Template",
-            "record": "18-6-0",
-            "stance": "Orthodox",
-            "height_cm": 183,
-            "reach_cm": 188,
-            "country": "USA",
-            "methods": { "ko_tko_w": 7, "sub_w": 3, "dec_w": 8, "ko_tko_l": 2, "sub_l": 1, "dec_l": 3 },
-            "quick": { "finish_rate": 0.56, "avg_fight_min": 11.4, "r1_win_share": 0.33 }
-          },
-          "fighter_b": {
-            "slug": "alex-sample",
-            "name": "Alex Sample",
-            "nickname": "No Data",
-            "record": "14-3-0",
-            "stance": "Southpaw",
-            "height_cm": 178,
-            "reach_cm": 180,
-            "country": "Ireland",
-            "methods": { "ko_tko_w": 6, "sub_w": 2, "dec_w": 6, "ko_tko_l": 1, "sub_l": 0, "dec_l": 2 },
-            "quick": { "finish_rate": 0.57, "avg_fight_min": 9.2, "r1_win_share": 0.40 }
-          }
-        }
-      ]
-    }
-  ]
+  "generated_at": "2026-01-26T22:38:06.075520+00:00",
+  "source": "wikipedia",
+  "events": []
 }
