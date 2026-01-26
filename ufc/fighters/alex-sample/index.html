@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alex Sample — Fighter Profile</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; padding:24px; background:#0b0f14; color:#e6edf3; }
+    .card { max-width: 950px; border:1px solid #1f2a3a; border-radius:12px; padding:20px; background:#111826; }
+    .muted{ color:#9aa4b2; }
+    a{ color:#7ab7ff; text-decoration:none; }
+    .pillrow{ display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+    .pill{ border:1px solid #1f2a3a; border-radius:999px; padding:6px 10px; color:#9aa4b2; font-size:13px; }
+    table{ width:100%; border-collapse:collapse; margin-top:10px; }
+    td,th{ padding:8px; border-bottom:1px solid #1f2a3a; text-align:left; }
+    .panel{ border:1px solid #1f2a3a; border-radius:12px; padding:14px; background:rgba(255,255,255,0.02); margin-top:14px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="muted"><a href="/odds-board/ufc/">← Back to UFC Hub</a></p>
+
+    <h1>Alex Sample</h1>
+    <p class="muted">Nickname: No Data</p>
+
+    <div class="pillrow">
+      <span class="pill">Record: 14-3-0</span>
+      <span class="pill">Stance: Southpaw</span>
+      <span class="pill">Height: 178 cm</span>
+      <span class="pill">Reach: 180 cm</span>
+      <span class="pill">Country: Ireland</span>
+    </div>
+
+    <div class="panel">
+      <h2>Methods</h2>
+      <table>
+        <thead><tr><th>Method</th><th>Wins</th><th>Losses</th></tr></thead>
+        <tbody>
+          <tr><td>KO/TKO</td><td>6</td><td>1</td></tr>
+          <tr><td>SUB</td><td>2</td><td>0</td></tr>
+          <tr><td>DEC</td><td>6</td><td>2</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Quick Stats</h2>
+      <table>
+        <tbody>
+          <tr><td>Finish rate</td><td>57%</td></tr>
+          <tr><td>Avg fight length</td><td>9.2 min</td></tr>
+          <tr><td>Round 1 win share</td><td>40%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Indexed Fights</h2>
+      <p><a href="/odds-board/ufc/events/ufc-999/fights/example-vs-sample/">John Example vs Alex Sample (UFC 999) →</a></p>
+    </div>
+  </div>
+</body>
+</html>
