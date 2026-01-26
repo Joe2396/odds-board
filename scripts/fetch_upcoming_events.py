@@ -435,10 +435,10 @@ def main():
     print(f"Wrote {len(events)} events to {EVENTS_OUT}")
     print(f"Wrote cache to {CACHE_OUT}")
 
-    # Exit code: fail only if we got nothing at all
+       # Exit code: don't fail scheduled workflows if sources are temporarily blocked
     if len(events) == 0:
-        print("ERROR: No upcoming events found from any source.", file=sys.stderr)
-        sys.exit(1)
+        print("WARN: No upcoming events found from any source. Keeping workflow green.", file=sys.stderr)
+        sys.exit(0)
 
 
 if __name__ == "__main__":
