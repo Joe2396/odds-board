@@ -1,0 +1,43 @@
+:root{
+  --bg:#0b0f14;
+  --card:#111826;
+  --text:#e6edf3;
+  --muted:#9aa4b2;
+  --line:#1f2a3a;
+  --link:#7ab7ff;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  padding:24px;
+  background:var(--bg);
+  color:var(--text);
+}
+
+a{ color:var(--link); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.card{
+  max-width:1000px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:20px;
+  background:var(--card);
+}
+
+.muted{ color:var(--muted); }
+
+.row{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px;
+  background:rgba(255,255,255,0.02);
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.list{ margin-top:14px; display:flex; flex-direction:column; gap:10px; }
