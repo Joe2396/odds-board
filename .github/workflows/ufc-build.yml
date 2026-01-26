@@ -26,6 +26,10 @@ jobs:
       - name: Generate UFC events
         run: python scripts/generate_ufc_events.py
 
+       - name: Generate UFC fights
+        run: python scripts/generate_ufc_fights.py
+
+
       - name: Commit generated pages
         run: |
           git config user.name "ufc-bot"
