@@ -1,51 +1,113 @@
 #!/usr/bin/env python3
 
-from __future__ import annotations
-import json
-import os
-import re
-import sys
-import time
-from datetime import datetime, timezone
-from urllib.parse import urlencode
+import json, os, re, sys
+from datetime import datetime, timezone, date
 from urllib.request import Request, urlopen
-from urllib.error import URLError, HTTPError
+from urllib.parse import urlencode, urljoin
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-UFC_DATA_DIR = os.path.join(ROOT, "ufc", "data")
-EVENTS_OUT = os.path.join(UFC_DATA_DIR, "events.json")
-CACHE_OUT = os.path.join(UFC_DATA_DIR, "source_cache.json")
+DATA_DIR = os.path.join(ROOT, "ufc", "data")
+EVENTS_PATH = os.path.join(DATA_DIR, "events.json")
+CACHE_PATH = os.path.join(DATA_DIR, "source_cache.json")
 
-DEFAULT_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (compatible; odds-board-bot/1.0)",
-    "Accept": "application/json, text/plain, */*",
-}
+HEADERS = {"User-Agent": "Mozilla/5.0 (odds-board-bot)"}
+WIKI_BASE = "https://en.wikipedia.org"
 
-# ---------------- HTTP ---------------- #
+def now():
+    return datetime.now(timezone.utc).isoformat()
 
-def http_get(url, timeout=20):
+def get(url, accept="application/json"):
+    h = dict(HEADERS)
+    h["Accept"] = accept
+    req = Request(url, headers=h)
+    with urlopen(req, timeout=25) as r:
+        return r.read().decode("utf-8", errors="ignore")
+
+def safe_json(s):
     try:
-        req = Request(url, headers=DEFAULT_HEADERS)
-        with urlopen(req, timeout=timeout) as resp:
-            return resp.status, resp.read().decode("utf-8", errors="replace")
-    except (HTTPError, URLError) as e:
-        return getattr(e, "code", 0), str(e)
-
-def safe_json(text):
-    try:
-        return json.loads(text)
+        return json.loads(s)
     except Exception:
         return None
 
-# ---------------- Helpers ---------------- #
-
-def now_iso():
-    return datetime.now(timezone.utc).isoformat()
-
 def slugify(s):
-    s = s.lower().strip()
-    s = re.sub(r"[^a-z0-9]+", "-", s)
-    return s.strip("-") or "event"
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-") or "event"
+
+def to_iso_date_from_espn(dt):
+    # ESPN dates are usually ISO like "2026-02-28T23:00Z" or with offset
+    if not dt:
+        return None
+    ds = str(dt).replace("Z", "+00:00")
+    try:
+        return datetime.fromisoformat(ds).date().isoformat()
+    except Exception:
+        m = re.search(r"(\d{4}-\d{2}-\d{2})", str(dt))
+        return m.group(1) if m else None
+
+# ---------------- ESPN (primary) ---------------- #
+
+def fetch_espn_upcoming():
+    cache = {"source": "espn", "fetched_at": now(), "endpoints": {}, "notes": []}
+    events = []
+
+    # ESPN “scoreboard” JSON pattern (undocumented but widely used)
+    # If this endpoint changes, we fall back to Wikipedia.
+    url = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard"
+    body = get(url)
+    cache["endpoints"][url] = {"preview": body[:300]}
+    data = safe_json(body)
+
+    if not data or "events" not in data:
+        cache["notes"].append("ESPN scoreboard missing events[].")
+        return [], cache
+
+    today = date.today()
+
+    for ev in data.get("events", []):
+        name = ev.get("name") or ev.get("shortName") or "UFC Event"
+        ev_date = to_iso_date_from_espn(ev.get("date"))
+        if not ev_date:
+            continue
+
+        try:
+            d = datetime.fromisoformat(ev_date).date()
+        except Exception:
+            continue
+
+        if d < today:
+            continue
+
+        # best-effort location (ESPN sometimes has venue in competitions[0].venue.fullName)
+        location = ""
+        comps = ev.get("competitions") or []
+        if comps and isinstance(comps, list):
+            venue = (comps[0].get("venue") or {})
+            location = venue.get("fullName") or venue.get("name") or ""
+
+            # city/state/country sometimes present
+            addr = venue.get("address") or {}
+            parts = [addr.get("city"), addr.get("state"), addr.get("country")]
+            parts = [p for p in parts if p]
+            if parts:
+                location = ", ".join([p for p in [location] if p] + parts)
+
+        slug = f"{ev_date}-{slugify(name)}"
+
+        events.append({
+            "id": slug,
+            "slug": slug,
+            "name": name,
+            "date": ev_date,
+            "location": location,
+            "status": "upcoming",
+            "source": {"provider": "espn"},
+            "fights": []  # fight card can be added later from event detail endpoints
+        })
+
+    events.sort(key=lambda x: x["date"])
+    cache["notes"].append(f"Parsed {len(events)} upcoming events from ESPN.")
+    return events, cache
+
+# ---------------- Wikipedia fallback ---------------- #
 
 def to_iso_date_from_human(s):
     for fmt in ("%B %d, %Y", "%b %d, %Y", "%Y-%m-%d"):
@@ -53,77 +115,52 @@ def to_iso_date_from_human(s):
             return datetime.strptime(s.strip(), fmt).date().isoformat()
         except Exception:
             pass
-    m = re.search(r"([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})", s)
-    if m:
-        try:
-            return datetime.strptime(m.group(0), "%B %d, %Y").date().isoformat()
-        except Exception:
-            return None
     return None
 
-# ---------------- Wikipedia fallback ---------------- #
-
-def fetch_wikipedia_scheduled_events():
-    cache = {"source": "wikipedia", "fetched_at": now_iso(), "endpoints": {}, "notes": []}
-
-    params = {
-        "action": "parse",
-        "page": "List_of_UFC_events",
-        "prop": "text",
-        "format": "json",
-    }
-
-    url = "https://en.wikipedia.org/w/api.php?" + urlencode(params)
-    status, body = http_get(url)
-    cache["endpoints"][url] = {"status": status, "preview": body[:300]}
-
-    if status != 200:
-        cache["notes"].append("Wikipedia request failed")
-        return [], cache
-
-    data = safe_json(body)
-    html = (((data or {}).get("parse") or {}).get("text") or {}).get("*", "")
-    if not html:
-        cache["notes"].append("No HTML from Wikipedia")
-        return [], cache
-
-    idx = html.lower().find("scheduled events")
-    if idx == -1:
-        cache["notes"].append("No 'Scheduled events' section found")
-        return [], cache
-
-    sub = html[idx:]
-    table_match = re.search(r"<table[^>]*wikitable[^>]*>.*?</table>", sub, flags=re.S | re.I)
-    if not table_match:
-        cache["notes"].append("No scheduled events table found")
-        return [], cache
-
-    table = table_match.group(0)
-    rows = re.findall(r"<tr[^>]*>.*?</tr>", table, flags=re.S | re.I)
-
-    def strip_tags(s):
-        s = re.sub(r"<sup[^>]*>.*?</sup>", "", s, flags=re.S)
-        s = re.sub(r"<.*?>", "", s)
-        s = s.replace("&nbsp;", " ")
-        return re.sub(r"\s+", " ", s).strip()
-
+def fetch_wikipedia_event_pages():
+    cache = {"source": "wikipedia", "fetched_at": now(), "events_checked": []}
     events = []
 
-    for r in rows[1:]:
-        cols = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", r, flags=re.S | re.I)
-        cols = [strip_tags(c) for c in cols]
+    index_html = get("https://en.wikipedia.org/wiki/List_of_UFC_events", accept="text/html")
+    links = set(re.findall(r'href="(/wiki/UFC_\d+)"', index_html))
+    links = sorted(links, key=lambda x: int(re.findall(r"\d+", x)[0]), reverse=True)[:15]
 
-        if len(cols) < 2:
-            continue
+    today = date.today()
 
-        date_iso = to_iso_date_from_human(cols[0])
+    def extract_infobox(html):
+        box = re.search(r'(<table class="infobox[^"]*".*?</table>)', html, re.S)
+        if not box:
+            return {}
+        t = box.group(1)
+
+        def field(name):
+            m = re.search(rf"<th[^>]*>{name}</th>.*?<td[^>]*>(.*?)</td>", t, re.S)
+            if not m:
+                return ""
+            val = re.sub("<.*?>", "", m.group(1))
+            return re.sub(r"\s+", " ", val).strip()
+
+        return {"date": field("Date"), "venue": field("Venue"), "city": field("City"), "name": field("Event")}
+
+    for link in links:
+        url = urljoin(WIKI_BASE, link)
+        html = get(url, accept="text/html")
+        cache["events_checked"].append(url)
+        info = extract_infobox(html)
+
+        date_iso = to_iso_date_from_human(info.get("date", ""))
         if not date_iso:
             continue
 
-        name = cols[1]
-        venue = cols[2] if len(cols) > 2 else ""
-        loc = cols[3] if len(cols) > 3 else ""
+        try:
+            d = datetime.fromisoformat(date_iso).date()
+        except Exception:
+            continue
 
+        if d < today:
+            continue
+
+        name = info.get("name") or link.replace("/wiki/", "").replace("_", " ")
         slug = f"{date_iso}-{slugify(name)}"
 
         events.append({
@@ -131,46 +168,39 @@ def fetch_wikipedia_scheduled_events():
             "slug": slug,
             "name": name,
             "date": date_iso,
-            "location": ", ".join(x for x in [venue, loc] if x),
+            "location": ", ".join(x for x in [info.get("venue"), info.get("city")] if x),
             "status": "upcoming",
             "source": {"provider": "wikipedia"},
             "fights": []
         })
 
     events.sort(key=lambda x: x["date"])
-    cache["notes"].append(f"Parsed {len(events)} upcoming events from Wikipedia")
-
     return events, cache
 
 # ---------------- Main ---------------- #
 
-def ensure_dirs():
-    os.makedirs(UFC_DATA_DIR, exist_ok=True)
-
 def main():
-    ensure_dirs()
-    all_cache = {"generated_at": now_iso(), "steps": []}
+    os.makedirs(DATA_DIR, exist_ok=True)
 
-    events, cache = fetch_wikipedia_scheduled_events()
-    all_cache["steps"].append(cache)
+    cache = {"generated_at": now(), "steps": []}
 
-    out = {
-        "generated_at": now_iso(),
-        "source": "wikipedia",
-        "events": events
-    }
+    events, c1 = fetch_espn_upcoming()
+    cache["steps"].append(c1)
 
-    with open(EVENTS_OUT, "w", encoding="utf-8") as f:
+    if not events:
+        events, c2 = fetch_wikipedia_event_pages()
+        cache["steps"].append(c2)
+
+    out = {"generated_at": now(), "events": events}
+
+    with open(EVENTS_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2, ensure_ascii=False)
 
-    with open(CACHE_OUT, "w", encoding="utf-8") as f:
-        json.dump(all_cache, f, indent=2, ensure_ascii=False)
+    with open(CACHE_PATH, "w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=2, ensure_ascii=False)
 
-    print(f"Wrote {len(events)} events")
-
-    if len(events) == 0:
-        print("WARN: No upcoming events found. Keeping workflow green.")
-        sys.exit(0)
+    print(f"Wrote {len(events)} upcoming events")
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()
