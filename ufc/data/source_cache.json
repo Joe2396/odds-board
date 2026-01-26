@@ -1,16 +1,163 @@
 {
-  "generated_at": "2026-01-26T22:48:02.714766+00:00",
+  "generated_at": "2026-01-26T22:54:31.087413+00:00",
   "steps": [
     {
       "source": "espn",
-      "fetched_at": "2026-01-26T22:48:02.714785+00:00",
-      "endpoints": {
-        "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard": {
-          "preview": "{\"leagues\":[{\"id\":\"3321\",\"uid\":\"s:3301~l:3321\",\"name\":\"Ultimate Fighting Championship\",\"displayName\":\"UFC\",\"abbreviation\":\"UFC\",\"shortName\":\"UFC\",\"slug\":\"ufc\",\"season\":{\"year\":2026,\"startDate\":\"2026-01-01T08:00Z\",\"endDate\":\"2026-12-31T08:00Z\",\"displayName\":\"2026\",\"type\":{\"id\":\"2\",\"type\":2,\"name\":\"Re"
+      "fetched_at": "2026-01-26T22:54:24.210116+00:00",
+      "requests": [
+        {
+          "url": "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard",
+          "status": 200,
+          "preview": "{\"leagues\":[{\"id\":\"3321\",\"uid\":\"s:3301~l:3321\",\"name\":\"Ultimate Fighting Championship\",\"displayName\":\"UFC\",\"abbreviation\":\"UFC\",\"shortName\":\"UFC\",\"slug\":\"ufc\",\"season\":{\"year\":2026,\"startDate\":\"2026-0"
+        },
+        {
+          "url": "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/events/600057025",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/events/600057025?lang=en&region=us\",\"id\":\"600057025\",\"guid\":\"ed91adcc-1a03-3d38-a85f-b9cdbb08784d\",\"uid\":\"s:3301~l:3321~e:600057025\","
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5215272?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5215272?lang=en&region=us\",\"id\":\"5215272\",\"uid\":\"s:3301~a:5215272\",\"guid\":\"9fb40591-c921-35d2-bc6f-fdb6e14158fd\",\"firstName\":\"Aaron\",\"la"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5145018?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5145018?lang=en&region=us\",\"id\":\"5145018\",\"uid\":\"s:3301~a:5145018\",\"guid\":\"254c2845-bfa2-3285-b64d-754f7a3aa5dc\",\"firstName\":\"Namsrai\",\""
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5278267?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5278267?lang=en&region=us\",\"id\":\"5278267\",\"uid\":\"s:3301~a:5278267\",\"guid\":\"ce93d93b-4d96-304e-9d88-859c3ff6d1a4\",\"firstName\":\"Sulangrang"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5220183?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5220183?lang=en&region=us\",\"id\":\"5220183\",\"uid\":\"s:3301~a:5220183\",\"guid\":\"69e59d59-2fab-3eeb-9b90-5b5f00309dff\",\"firstName\":\"Lawrence\","
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5327937?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5327937?lang=en&region=us\",\"id\":\"5327937\",\"uid\":\"s:3301~a:5327937\",\"guid\":\"0c6d65d0-eb8c-376e-ac31-b7bd5cff5bf7\",\"firstName\":\"Keiichiro\""
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5277351?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5277351?lang=en&region=us\",\"id\":\"5277351\",\"uid\":\"s:3301~a:5277351\",\"guid\":\"10aa23b6-c4c7-3ae0-be9d-e7746827c676\",\"firstName\":\"Sebastian\""
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5138448?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5138448?lang=en&region=us\",\"id\":\"5138448\",\"uid\":\"s:3301~a:5138448\",\"guid\":\"cb5289c3-da4a-3d06-a2ff-64c1b7926dae\",\"firstName\":\"Sangwook\","
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5157806?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5157806?lang=en&region=us\",\"id\":\"5157806\",\"uid\":\"s:3301~a:5157806\",\"guid\":\"7e52f609-53dd-3251-80d1-6553eba5bebb\",\"firstName\":\"Dom\",\"last"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5204223?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5204223?lang=en&region=us\",\"id\":\"5204223\",\"uid\":\"s:3301~a:5204223\",\"guid\":\"a77cfd3c-4e40-3bc7-8d4f-fd3229ed8914\",\"firstName\":\"Kaan\",\"las"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4894925?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4894925?lang=en&region=us\",\"id\":\"4894925\",\"uid\":\"s:3301~a:4894925\",\"guid\":\"a6c1e638-bf7a-34f2-8136-ca62dd89f831\",\"firstName\":\"Yizha\",\"fu"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5236142?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5236142?lang=en&region=us\",\"id\":\"5236142\",\"uid\":\"s:3301~a:5236142\",\"guid\":\"882fc1ff-2b27-3264-a0c7-14f704713f46\",\"firstName\":\"Jonathan\","
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4900808?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4900808?lang=en&region=us\",\"id\":\"4900808\",\"uid\":\"s:3301~a:4900808\",\"guid\":\"ef2ece08-d78f-3d9d-b248-e45711cb3fd3\",\"firstName\":\"Oban\",\"las"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4687434?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4687434?lang=en&region=us\",\"id\":\"4687434\",\"uid\":\"s:3301~a:4687434\",\"guid\":\"d81036ad-899e-3e86-bf88-d253121b186a\",\"firstName\":\"Jacob\",\"la"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4050996?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4050996?lang=en&region=us\",\"id\":\"4050996\",\"uid\":\"s:3301~a:4050996\",\"guid\":\"03c2e633-e5a4-751f-e844-569a79dd349c\",\"firstName\":\"Torrez\",\"l"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4694832?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4694832?lang=en&region=us\",\"id\":\"4694832\",\"uid\":\"s:3301~a:4694832\",\"guid\":\"95adf000-027f-3d8a-b53b-ca729dabf198\",\"firstName\":\"Cam\",\"last"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4684474?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4684474?lang=en&region=us\",\"id\":\"4684474\",\"uid\":\"s:3301~a:4684474\",\"guid\":\"7c8d2323-2e0b-3058-bce5-d4166dab32b6\",\"firstName\":\"Cody\",\"las"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5122234?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5122234?lang=en&region=us\",\"id\":\"5122234\",\"uid\":\"s:3301~a:5122234\",\"guid\":\"2d40db13-e269-35f1-afb5-bb3b01638b93\",\"firstName\":\"Junior\",\"l"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5078114?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5078114?lang=en&region=us\",\"id\":\"5078114\",\"uid\":\"s:3301~a:5078114\",\"guid\":\"6c393e7e-0462-3ba0-ad98-a06a72036b3a\",\"firstName\":\"Billy\",\"la"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5157667?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5157667?lang=en&region=us\",\"id\":\"5157667\",\"uid\":\"s:3301~a:5157667\",\"guid\":\"eb9ecee4-6beb-34f3-8edf-6e43218fbf0e\",\"firstName\":\"Quillan\",\""
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4064883?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4064883?lang=en&region=us\",\"id\":\"4064883\",\"uid\":\"s:3301~a:4064883\",\"guid\":\"5072124e-12d9-0f46-6535-9720f03e0b2a\",\"firstName\":\"Jamie\",\"la"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3722422?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/3722422?lang=en&region=us\",\"id\":\"3722422\",\"uid\":\"s:3301~a:3722422\",\"guid\":\"78540a20-2ac6-0acc-bc0a-cb5fd6ec1dea\",\"firstName\":\"Tai\",\"last"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5212856?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5212856?lang=en&region=us\",\"id\":\"5212856\",\"uid\":\"s:3301~a:5212856\",\"guid\":\"501ca0ba-a5c5-32cb-97ea-4cb76b1f2fec\",\"firstName\":\"Tallison\","
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4339488?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4339488?lang=en&region=us\",\"id\":\"4339488\",\"uid\":\"s:3301~a:4339488\",\"guid\":\"fef98508-f23a-93f2-4752-89a389cd9e6b\",\"firstName\":\"Rafael\",\"l"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/5122238?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/5122238?lang=en&region=us\",\"id\":\"5122238\",\"uid\":\"s:3301~a:5122238\",\"guid\":\"19e06337-8d15-30d4-a42e-8e9f052f479f\",\"firstName\":\"Mauricio\","
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3109135?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/3109135?lang=en&region=us\",\"id\":\"3109135\",\"uid\":\"s:3301~a:3109135\",\"guid\":\"08fd167d-4a0e-7044-a89f-da7beee2f39c\",\"firstName\":\"Dan\",\"last"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4895362?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4895362?lang=en&region=us\",\"id\":\"4895362\",\"uid\":\"s:3301~a:4895362\",\"guid\":\"085cb250-9fd2-3133-ae7a-57258256cf34\",\"firstName\":\"Benoît\",\"l"
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3949584?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/3949584?lang=en&region=us\",\"id\":\"3949584\",\"uid\":\"s:3301~a:3949584\",\"guid\":\"94b3fe95-8304-7f5e-7183-57daf49a5c0e\",\"firstName\":\"Alexander\""
+        },
+        {
+          "url": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4881999?lang=en&region=us",
+          "status": 200,
+          "preview": "{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/mma/athletes/4881999?lang=en&region=us\",\"id\":\"4881999\",\"uid\":\"s:3301~a:4881999\",\"guid\":\"640bd3e0-67af-3f11-8fbf-7859fd260f91\",\"firstName\":\"Diego\",\"la"
         }
-      },
+      ],
       "notes": [
-        "Parsed 1 upcoming events from ESPN."
+        "Built 1 upcoming events from ESPN (with fight cards when available)."
       ]
     }
   ]
