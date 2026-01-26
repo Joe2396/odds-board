@@ -4,16 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>John Example — Fighter Profile</title>
+  <link rel="stylesheet" href="/odds-board/ufc/assets/ufc.css">
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; padding:24px; background:#0b0f14; color:#e6edf3; }
-    .card { max-width: 950px; border:1px solid #1f2a3a; border-radius:12px; padding:20px; background:#111826; }
-    .muted{ color:#9aa4b2; }
-    a{ color:#7ab7ff; text-decoration:none; }
     .pillrow{ display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
-    .pill{ border:1px solid #1f2a3a; border-radius:999px; padding:6px 10px; color:#9aa4b2; font-size:13px; }
+    .pill{ border:1px solid var(--line); border-radius:999px; padding:6px 10px; color:var(--muted); font-size:13px; }
+    .panel{ border:1px solid var(--line); border-radius:12px; padding:14px; background:rgba(255,255,255,0.02); margin-top:14px; }
     table{ width:100%; border-collapse:collapse; margin-top:10px; }
-    td,th{ padding:8px; border-bottom:1px solid #1f2a3a; text-align:left; }
-    .panel{ border:1px solid #1f2a3a; border-radius:12px; padding:14px; background:rgba(255,255,255,0.02); margin-top:14px; }
+    td,th{ padding:8px; border-bottom:1px solid var(--line); text-align:left; }
   </style>
 </head>
 <body>
@@ -34,23 +31,18 @@
     <div class="panel">
       <h2>Methods</h2>
       <table>
-        <thead><tr><th>Method</th><th>Wins</th><th>Losses</th></tr></thead>
-        <tbody>
-          <tr><td>KO/TKO</td><td>7</td><td>2</td></tr>
-          <tr><td>SUB</td><td>3</td><td>1</td></tr>
-          <tr><td>DEC</td><td>8</td><td>3</td></tr>
-        </tbody>
+        <tr><td>KO/TKO</td><td>7 wins • 2 losses</td></tr>
+        <tr><td>SUB</td><td>3 wins • 1 loss</td></tr>
+        <tr><td>DEC</td><td>8 wins • 3 losses</td></tr>
       </table>
     </div>
 
     <div class="panel">
       <h2>Quick Stats</h2>
       <table>
-        <tbody>
-          <tr><td>Finish rate</td><td>56%</td></tr>
-          <tr><td>Avg fight length</td><td>11.4 min</td></tr>
-          <tr><td>Round 1 win share</td><td>33%</td></tr>
-        </tbody>
+        <tr><td>Finish rate</td><td>56%</td></tr>
+        <tr><td>Avg fight length</td><td>11.4 min</td></tr>
+        <tr><td>Round 1 win share</td><td>33%</td></tr>
       </table>
     </div>
 
