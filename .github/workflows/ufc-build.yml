@@ -1,0 +1,35 @@
+name: Build UFC Hub
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ufc/data/**"
+      - "scripts/generate_ufc_*.py"
+
+jobs:
+  build-ufc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate UFC hub
+        run: python scripts/generate_ufc_hub.py
+
+      - name: Generate UFC events
+        run: python scripts/generate_ufc_events.py
+
+      - name: Commit generated pages
+        run: |
+          git config user.name "ufc-bot"
+          git config user.email "actions@github.com"
+          git add ufc/index.html ufc/events
+          git commit -m "Auto-generate UFC pages" || echo "No changes to commit"
+          git push
