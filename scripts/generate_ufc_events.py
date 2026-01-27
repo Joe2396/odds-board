@@ -33,7 +33,6 @@ def ensure_dir(path):
 
 
 def fight_slug(fight):
-    # Prefer fight id from your scraper/generator pipeline
     fid = fight.get("id") or ""
     return str(fid).strip()
 
@@ -57,7 +56,6 @@ def render_event_page(ev):
             wc = esc(f.get("weight_class") or "")
             f_id = fight_slug(f)
 
-            # Link to fight page if your fights generator created it under /ufc/fights/<id>/
             if f_id:
                 fight_link = f"{BASE}/ufc/fights/{esc(f_id)}/"
                 rows.append(
@@ -115,7 +113,6 @@ def main():
     events = load_events()
     ensure_dir(EVENTS_DIR)
 
-    # Generate a folder for each event in events.json
     wrote = 0
     for ev in events:
         slug, html = render_event_page(ev)
