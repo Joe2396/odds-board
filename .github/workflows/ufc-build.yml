@@ -34,12 +34,18 @@ jobs:
       - name: Install deps (if needed)
         run: pip install requests beautifulsoup4
 
+      # 1) Build hub + events first (events.json is required for later steps)
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
 
       - name: Generate UFC events
         run: python scripts/generate_ufc_events.py
 
+      # 2) Fetch fighter stats after events.json exists
+      - name: Fetch ESPN fighter stats
+        run: python scripts/fetch_espn_fighter_details.py
+
+      # 3) Now generate pages that can consume fighters.json
       - name: Generate UFC fights
         run: python scripts/generate_ufc_fights.py
 
