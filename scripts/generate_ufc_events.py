@@ -20,6 +20,10 @@ def esc(s):
     )
 
 
+def ensure_dir(path):
+    os.makedirs(path, exist_ok=True)
+
+
 def load_events():
     if not os.path.exists(DATA_PATH):
         return []
@@ -28,11 +32,7 @@ def load_events():
     return data.get("events", []) or []
 
 
-def ensure_dir(path):
-    os.makedirs(path, exist_ok=True)
-
-
-def fight_slug(fight):
+def fight_id(fight):
     fid = fight.get("id") or ""
     return str(fid).strip()
 
@@ -44,7 +44,6 @@ def render_event_page(ev):
     slug = esc(ev.get("slug") or ev.get("id"))
     fights = ev.get("fights", []) or []
 
-    fights_html = ""
     if not fights:
         fights_html = "<p class='muted'>Fight card not available yet.</p>"
     else:
@@ -54,33 +53,36 @@ def render_event_page(ev):
             red = esc((f.get("red") or {}).get("name"))
             blue = esc((f.get("blue") or {}).get("name"))
             wc = esc(f.get("weight_class") or "")
-            f_id = fight_slug(f)
+            fid = fight_id(f)
 
-            if f_id:
-                fight_link = f"{BASE}/ufc/fights/{esc(f_id)}/"
+            title = bout or (red + " vs " + blue)
+
+            if fid:
+                link = f"{BASE}/ufc/fights/{esc(fid)}/"
                 rows.append(
                     f"""
-                    <div class="row" style="margin-top:12px;">
-                      <div>
-                        <h3 style="margin:0;">{bout or (red + " vs " + blue)}</h3>
-                        <p class="muted" style="margin:6px 0 0 0;">{wc}</p>
-                        <p style="margin:6px 0 0 0;"><a href="{fight_link}">View fight →</a></p>
-                      </div>
-                      <div class="muted">→</div>
-                    </div>
+        <div class="row" style="margin-top:12px;">
+          <div>
+            <h3 style="margin:0;">{title}</h3>
+            <p class="muted" style="margin:6px 0 0 0;">{wc}</p>
+            <p style="margin:6px 0 0 0;"><a href="{link}">View fight →</a></p>
+          </div>
+          <div class="muted">→</div>
+        </div>
                     """.rstrip()
                 )
             else:
                 rows.append(
                     f"""
-                    <div class="row" style="margin-top:12px;">
-                      <div>
-                        <h3 style="margin:0;">{bout or (red + " vs " + blue)}</h3>
-                        <p class="muted" style="margin:6px 0 0 0;">{wc}</p>
-                      </div>
-                    </div>
+        <div class="row" style="margin-top:12px;">
+          <div>
+            <h3 style="margin:0;">{title}</h3>
+            <p class="muted" style="margin:6px 0 0 0;">{wc}</p>
+          </div>
+        </div>
                     """.rstrip()
                 )
+
         fights_html = "\n".join(rows)
 
     html = f"""<!doctype html>
@@ -110,11 +112,12 @@ def render_event_page(ev):
 
 
 def main():
-ensure_dir(EVENTS_DIR)
-with open(os.path.join(EVENTS_DIR, ".keep"), "w", encoding="utf-8") as f:
-    f.write("keep")
-    events = load_events()
+    # Ensure folder exists and keep it in git
     ensure_dir(EVENTS_DIR)
+    with open(os.path.join(EVENTS_DIR, ".keep"), "w", encoding="utf-8") as f:
+        f.write("keep")
+
+    events = load_events()
 
     wrote = 0
     for ev in events:
