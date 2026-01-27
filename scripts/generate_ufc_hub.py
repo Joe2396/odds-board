@@ -1,57 +1,70 @@
+#!/usr/bin/env python3
 import json
-from pathlib import Path
+import os
 from datetime import datetime
 
-ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "ufc" / "data" / "events.json"
-OUT = ROOT / "ufc" / "index.html"
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
+OUT_PATH = os.path.join(ROOT, "ufc", "index.html")
 
-BASE_PATH = "/odds-board/ufc"  # adjust later if you change repo name / domain
+BASE = "/odds-board"  # GitHub Pages repo base path
 
 
 def load_events():
-    data = json.loads(DATA.read_text(encoding="utf-8"))
-    events = data.get("events", [])
-    # newest first by date string YYYY-MM-DD
-    events.sort(key=lambda e: e.get("date", ""), reverse=True)
-    return events
+    if not os.path.exists(DATA_PATH):
+        return {"generated_at": None, "events": []}
+    with open(DATA_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
-def html_escape(s: str) -> str:
+def esc(s):
     return (
-        str(s)
+        str(s or "")
         .replace("&", "&amp;")
         .replace("<", "&lt;")
         .replace(">", "&gt;")
         .replace('"', "&quot;")
-        .replace("'", "&#39;")
     )
 
 
-def build():
-    events = load_events()
-    generated = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+def fmt_generated(ts):
+    # events.json uses ISO, but be flexible
+    if not ts:
+        return datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    return str(ts).replace("T", " ").replace("+00:00", " UTC")
 
-    cards = []
-    for e in events:
-        name = html_escape(e.get("name", "Event"))
-        date = html_escape(e.get("date", ""))
-        loc = html_escape(e.get("location", ""))
-        slug = e.get("slug", "")
-        url = f"{BASE_PATH}/events/{slug}/"
 
-        cards.append(f"""
+def main():
+    payload = load_events()
+    events = payload.get("events", []) or []
+    generated_at = payload.get("generated_at")
+
+    # Sort by date ascending (YYYY-MM-DD)
+    def key(ev):
+        return ev.get("date") or "9999-12-31"
+
+    events = sorted(events, key=key)
+
+    rows_html = ""
+    if not events:
+        rows_html = "<p class='muted'>No upcoming events found.</p>"
+    else:
+        for ev in events:
+            name = esc(ev.get("name"))
+            date = esc(ev.get("date"))
+            location = esc(ev.get("location"))
+            slug = esc(ev.get("slug") or ev.get("id"))
+
+            rows_html += f"""
         <div class="row" style="margin-top:16px;">
           <div>
             <h3>{name}</h3>
-            <p class="muted">{date} • {loc}</p>
-            <p><a href="{url}">View event →</a></p>
+            <p class="muted">{date} • {location}</p>
+            <p><a href="{BASE}/ufc/events/{slug}/">View event →</a></p>
           </div>
           <div class="muted">→</div>
         </div>
-        """)
-
-    cards_html = "\n".join(cards) if cards else "<p class='muted'>No events yet.</p>"
+            """.rstrip()
 
     html = f"""<!doctype html>
 <html lang="en">
@@ -59,7 +72,7 @@ def build():
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UFC Hub</title>
-  <link rel="stylesheet" href="{BASE_PATH}/assets/ufc.css">
+  <link rel="stylesheet" href="{BASE}/ufc/assets/ufc.css">
 </head>
 <body>
 
@@ -67,23 +80,27 @@ def build():
     <h1>🥊 UFC Hub</h1>
     <p class="muted">UFC events, fight cards and fighter research tools.</p>
 
-    <p><a href="{BASE_PATH}/fighters/">Browse fighters →</a></p>
+    <p><a href="{BASE}/ufc/fighters/">Browse fighters →</a></p>
 
     <h2>Upcoming Events</h2>
 
-    {cards_html}
+    {rows_html}
 
     <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Generated: {generated}</p>
-    <p><a href="/">← Back to home</a></p>
+    <p class="muted">Generated: {esc(fmt_generated(generated_at))}</p>
+    <p><a href="{BASE}/">← Back to home</a></p>
   </div>
 
 </body>
 </html>
 """
-    OUT.write_text(html, encoding="utf-8")
-    print(f"Wrote {OUT}")
+
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    with open(OUT_PATH, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    print(f"Wrote UFC hub: {OUT_PATH}")
 
 
 if __name__ == "__main__":
-    build()
+    main()
