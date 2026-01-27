@@ -44,72 +44,34 @@ def load_events():
 
 
 def get_fight_id(fight: dict) -> str:
-    for k in ("fight_id", "id", "ufcstats_fight_id", "ufcstats_id", "fightId"):
-        v = fight.get(k)
-        if v is not None and str(v).strip():
-            return str(v).strip()
-
-    meta = fight.get("meta", {})
-    if isinstance(meta, dict):
-        for k in ("fight_id", "id", "ufcstats_fight_id"):
-            v = meta.get(k)
-            if v is not None and str(v).strip():
-                return str(v).strip()
-
-    return ""
+    # Your schema uses "id" like "401839016"
+    v = fight.get("id")
+    return str(v).strip() if v is not None else ""
 
 
-def normalize_fighter(fight: dict, side: str) -> dict:
+def normalize_fighter_from_corner(corner: dict) -> dict:
     """
-    Returns a fighter dict with keys your UI expects:
-      name, slug, nickname, record, stance, height_cm, reach_cm, country, methods, quick
-    Pulls from multiple possible input shapes.
+    Convert your corner object:
+      {"name":"...", "espn_id":"..."}
+    into the richer shape your UI expects.
     """
+    name = corner.get("name", "") if isinstance(corner, dict) else ""
+    espn_id = corner.get("espn_id", "") if isinstance(corner, dict) else ""
+    slug = slugify(name) if name else ""
 
-    # 1) Nested standard format
-    if side in ("a", "b"):
-        nested = fight.get(f"fighter_{side}")
-        if isinstance(nested, dict) and nested.get("name"):
-            return nested
-
-    # 2) Flat keys: fighter_a_name, fighter_a_slug, etc.
-    if side in ("a", "b"):
-        name = fight.get(f"fighter_{side}_name") or fight.get(f"fighter{side.upper()}Name")
-        slug = fight.get(f"fighter_{side}_slug") or fight.get(f"fighter{side.upper()}Slug")
-        record = fight.get(f"fighter_{side}_record")
-        stance = fight.get(f"fighter_{side}_stance")
-        height_cm = fight.get(f"fighter_{side}_height_cm")
-        reach_cm = fight.get(f"fighter_{side}_reach_cm")
-        country = fight.get(f"fighter_{side}_country")
-        nickname = fight.get(f"fighter_{side}_nickname")
-
-        if name:
-            return {
-                "name": name,
-                "slug": slug or slugify(name),
-                "record": record or "",
-                "stance": stance or "",
-                "height_cm": height_cm,
-                "reach_cm": reach_cm,
-                "country": country or "",
-                "nickname": nickname or "",
-                "methods": fight.get(f"fighter_{side}_methods", {}) if isinstance(fight.get(f"fighter_{side}_methods", {}), dict) else {},
-                "quick": fight.get(f"fighter_{side}_quick", {}) if isinstance(fight.get(f"fighter_{side}_quick", {}), dict) else {},
-            }
-
-    # 3) Red/Blue corner formats
-    if side == "a":
-        name = fight.get("red_name") or fight.get("redCornerName") or fight.get("fighter1_name")
-        slug = fight.get("red_slug") or fight.get("redCornerSlug") or fight.get("fighter1_slug")
-    else:
-        name = fight.get("blue_name") or fight.get("blueCornerName") or fight.get("fighter2_name")
-        slug = fight.get("blue_slug") or fight.get("blueCornerSlug") or fight.get("fighter2_slug")
-
-    if name:
-        return {"name": name, "slug": slug or slugify(name)}
-
-    # 4) Nothing found
-    return {}
+    return {
+        "name": name or "Fighter",
+        "slug": slug,
+        "nickname": "",
+        "record": "",
+        "stance": "",
+        "height_cm": None,
+        "reach_cm": None,
+        "country": "",
+        "methods": {},  # will be filled later when you enrich fighters
+        "quick": {},    # will be filled later when you enrich fighters
+        "espn_id": espn_id,
+    }
 
 
 def fighter_panel(f: dict) -> str:
@@ -161,13 +123,15 @@ def build_fight_page(event: dict, fight: dict, fight_id: str) -> str:
     event_slug = event.get("slug", "")
     event_name = html_escape(event.get("name", "Event"))
 
-    a = normalize_fighter(fight, "a")
-    b = normalize_fighter(fight, "b")
+    red = normalize_fighter_from_corner(fight.get("red", {}))
+    blue = normalize_fighter_from_corner(fight.get("blue", {}))
 
-    title = f"{a.get('name','Fighter A')} vs {b.get('name','Fighter B')}"
+    title = f"{red.get('name','Fighter A')} vs {blue.get('name','Fighter B')}"
     weight = html_escape(fight.get("weight_class", "—"))
-    rounds = html_escape(str(fight.get("scheduled_rounds", "—")))
-    is_main = "Yes" if fight.get("is_main_event") else "No"
+    rounds = "—"  # not present in your schema yet
+    is_main = "Yes" if int(fight.get("order", 0)) == max(1, int(fight.get("order", 0))) and fight.get("order") == 14 else "No"
+    # ^ we don't truly know main event from schema; leaving basic logic.
+    # You can replace with real flag once you store it.
 
     generated = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
     css_href = "../../assets/ufc.css"
@@ -208,16 +172,21 @@ def build_fight_page(event: dict, fight: dict, fight_id: str) -> str:
     </p>
 
     <h1>{html_escape(title)}</h1>
-    <p class="muted">{weight} • {rounds} rounds • Main event: {is_main}</p>
+    <p class="muted">{weight} • {rounds} rounds</p>
 
     <div class="grid">
-      {fighter_panel(a)}
-      {fighter_panel(b)}
+      {fighter_panel(red)}
+      {fighter_panel(blue)}
     </div>
 
     <div class="panel" style="margin-top:14px;">
-      <h2>Result</h2>
-      <p class="muted">Scheduled / not final.</p>
+      <h2>Fight Meta</h2>
+      <table>
+        <tr><td>Bout</td><td>{html_escape(fight.get("bout","—"))}</td></tr>
+        <tr><td>Status</td><td>{html_escape(fight.get("status","—"))}</td></tr>
+        <tr><td>Red ESPN ID</td><td>{html_escape(red.get("espn_id","—"))}</td></tr>
+        <tr><td>Blue ESPN ID</td><td>{html_escape(blue.get("espn_id","—"))}</td></tr>
+      </table>
     </div>
 
     <hr style="margin:24px 0; border-color:#1f2a3a;">
@@ -238,7 +207,6 @@ def main():
 
     fights_written = 0
     missing_ids = 0
-    missing_names = 0
 
     for event in events:
         if not event.get("slug"):
@@ -250,11 +218,6 @@ def main():
                 missing_ids += 1
                 continue
 
-            a = normalize_fighter(fight, "a")
-            b = normalize_fighter(fight, "b")
-            if not a.get("name") or not b.get("name"):
-                missing_names += 1
-
             out_dir = FIGHTS_DIR / fight_id
             out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -264,12 +227,10 @@ def main():
 
     print(f"✅ Wrote {fights_written} fight pages to {FIGHTS_DIR}")
     if missing_ids:
-        print(f"⚠️ Skipped {missing_ids} fights with no fight_id/id key")
-    if missing_names:
-        print(f"⚠️ {missing_names} fights missing fighter names (check normalize_fighter mapping)")
+        print(f"⚠️ Skipped {missing_ids} fights with no id key")
 
     if fights_written == 0:
-        raise SystemExit("❌ Generated 0 fight pages. Check events.json fight id keys and get_fight_id().")
+        raise SystemExit("❌ Generated 0 fight pages. Check events.json schema.")
 
 
 if __name__ == "__main__":
