@@ -7,7 +7,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
 EVENTS_DIR = os.path.join(ROOT, "ufc", "events")
 
-BASE = "/odds-board"  # GitHub Pages base path
+BASE = "/odds-board"  # GitHub Pages repo base path
 
 
 def esc(s):
