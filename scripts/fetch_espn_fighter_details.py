@@ -1,5 +1,8 @@
-import json, time, requests
+import json
+import time
 from pathlib import Path
+
+import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 EVENTS = ROOT / "ufc" / "data" / "events.json"
@@ -9,13 +12,16 @@ BASE = "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}"
 HEADERS = {"User-Agent": "ufc-lab-bot/1.0"}
 
 
-def resolve(session, obj):
+def resolve(session: requests.Session, obj):
     """Resolve ESPN core $ref objects."""
     if isinstance(obj, dict) and "$ref" in obj and isinstance(obj["$ref"], str):
-        r = session.get(obj["$ref"])
-        if r.status_code == 200:
-            return r.json()
-        return None
+        try:
+            r = session.get(obj["$ref"], timeout=20)
+            if r.status_code == 200:
+                return r.json()
+            return None
+        except Exception:
+            return None
     return obj
 
 
@@ -24,7 +30,7 @@ def inches_to_cm(x):
         if x is None:
             return None
         return round(float(x) * 2.54, 1)
-    except:
+    except Exception:
         return None
 
 
@@ -40,7 +46,7 @@ def load_ids():
     return sorted(ids)
 
 
-def stats_list_to_dict(item):
+def stats_list_to_dict(item: dict) -> dict:
     """
     ESPN record items often have:
       "stats": [{"name":"wins","value":26}, {"name":"losses","value":4}, ...]
@@ -57,12 +63,58 @@ def stats_list_to_dict(item):
     return out
 
 
-def extract_records(session, athlete_payload):
+def compute_methods_from_overall_stats(overall_item: dict) -> dict:
+    """
+    ESPN puts method counts inside the overall record item stats, e.g.
+      "tkos": 13, "tkoLosses": 3, "submissions": 3, "submissionLosses": 0, etc.
+
+    We compute:
+      KO/TKO wins = tkos + kos
+      SUB wins    = submissions
+      DEC wins    = wins - KO - SUB (fallback)
+
+      KO/TKO losses = tkoLosses + koLosses
+      SUB losses    = submissionLosses
+      DEC losses    = losses - KO - SUB (fallback)
+    """
+    methods = {
+        "ko_tko_w": 0, "ko_tko_l": 0,
+        "sub_w": 0, "sub_l": 0,
+        "dec_w": 0, "dec_l": 0,
+    }
+    if not isinstance(overall_item, dict):
+        return methods
+
+    stats = stats_list_to_dict(overall_item)
+    wins = int(stats.get("wins") or 0)
+    losses = int(stats.get("losses") or 0)
+
+    ko_w = int((stats.get("tkos") or 0) + (stats.get("kos") or 0))
+    sub_w = int(stats.get("submissions") or 0)
+
+    ko_l = int((stats.get("tkoLosses") or 0) + (stats.get("koLosses") or 0))
+    sub_l = int(stats.get("submissionLosses") or 0)
+
+    dec_w = max(0, wins - ko_w - sub_w)
+    dec_l = max(0, losses - ko_l - sub_l)
+
+    methods["ko_tko_w"] = ko_w
+    methods["sub_w"] = sub_w
+    methods["dec_w"] = dec_w
+    methods["ko_tko_l"] = ko_l
+    methods["sub_l"] = sub_l
+    methods["dec_l"] = dec_l
+
+    return methods
+
+
+def extract_records(session: requests.Session, athlete_payload: dict):
     """
     athlete_payload["records"] resolves to a container with items refs.
-    We resolve each item and try to extract:
-      - overall summary (record string)
-      - method breakdowns (ko/sub/dec) if present
+    We resolve each item and return:
+      - overall summary record string
+      - methods dict (computed from overall stats list)
+      - records_container (with items resolved)
     """
     records_container = resolve(session, athlete_payload.get("records"))
     if not isinstance(records_container, dict):
@@ -72,63 +124,44 @@ def extract_records(session, athlete_payload):
     if not isinstance(items, list):
         return None, {}, records_container
 
-    overall_summary = None
-    methods = {
-        "ko_tko_w": 0, "ko_tko_l": 0,
-        "sub_w": 0, "sub_l": 0,
-        "dec_w": 0, "dec_l": 0,
-    }
-
-    # Try resolve each record item
+    # Resolve each item ($ref) into the actual record objects
     resolved_items = []
     for it in items:
-        rit = resolve(session, it)  # item might be a $ref or already expanded
+        rit = resolve(session, it)
         if isinstance(rit, dict):
             resolved_items.append(rit)
 
-    # 1) Find "overall"
+    # Overwrite container items with resolved items (helpful for debugging)
+    records_container["items"] = resolved_items
+
+    overall_item = None
     for rit in resolved_items:
-        name = (rit.get("name") or "").lower()
-        if name == "overall":
-            # Many shapes: summary/displayValue, or computed from stats
-            overall_summary = rit.get("summary") or rit.get("displayValue")
-            if not overall_summary:
-                sd = stats_list_to_dict(rit)
-                w = sd.get("wins")
-                l = sd.get("losses")
-                d = sd.get("draws") or sd.get("ties")
-                if w is not None and l is not None:
-                    overall_summary = f"{w}-{l}" + (f"-{d}" if d is not None else "")
+        if (rit.get("name") or "").lower() == "overall":
+            overall_item = rit
             break
 
-    # 2) Method splits (if ESPN provides them as separate record items)
-    # Names vary; we match loosely.
-    def apply_method(key_prefix, rit):
-        sd = stats_list_to_dict(rit)
-        w = sd.get("wins") or 0
-        l = sd.get("losses") or 0
-        methods[f"{key_prefix}_w"] = int(w) if w is not None else 0
-        methods[f"{key_prefix}_l"] = int(l) if l is not None else 0
+    overall_summary = None
+    if isinstance(overall_item, dict):
+        overall_summary = overall_item.get("summary") or overall_item.get("displayValue")
 
-    for rit in resolved_items:
-        nm = (rit.get("name") or "").lower()
+        # fallback compute from wins/losses/draws
+        if not overall_summary:
+            sd = stats_list_to_dict(overall_item)
+            w = sd.get("wins")
+            l = sd.get("losses")
+            d = sd.get("draws") or sd.get("ties")
+            if w is not None and l is not None:
+                overall_summary = f"{int(w)}-{int(l)}" + (f"-{int(d)}" if d is not None else "")
 
-        # Common possibilities: "knockouts", "ko/tko", "tko/ko"
-        if "ko" in nm or "tko" in nm or "knock" in nm:
-            apply_method("ko_tko", rit)
-
-        # "submissions", "submission"
-        if "sub" in nm:
-            apply_method("sub", rit)
-
-        # "decisions", "decision"
-        if "dec" in nm or "decision" in nm:
-            apply_method("dec", rit)
+    methods = compute_methods_from_overall_stats(overall_item)
 
     return overall_summary, methods, records_container
 
 
 def main():
+    if not EVENTS.exists():
+        raise SystemExit(f"Missing {EVENTS}")
+
     ids = load_ids()
     out = {"generated_at": time.time(), "fighters": {}}
 
@@ -139,38 +172,44 @@ def main():
 
     for i, fid in enumerate(ids, 1):
         url = BASE.format(fid)
-        r = s.get(url, timeout=20)
+        try:
+            r = s.get(url, timeout=20)
+        except Exception as e:
+            print(f"⚠️ {fid}: request failed: {e}")
+            continue
 
         if r.status_code != 200:
-            print("⚠️", fid, r.status_code)
+            print("⚠️", fid, f"HTTP {r.status_code}")
             continue
 
         p = r.json()
 
-        # Resolve top-level refs we care about (statistics stays as ref for now)
-        statistics_ref = p.get("statistics")  # keep ref (or resolve later)
-        overall_record, methods, records_container = extract_records(s, p)
+        # Keep statistics as a ref for later (we'll parse it in a future step)
+        statistics_ref = p.get("statistics")
+
+        record_summary, methods, records_container = extract_records(s, p)
 
         fighter = {
             "name": p.get("displayName"),
             "nickname": p.get("nickname"),
-            # ESPN core height/reach are INCHES → convert to cm
+            # ESPN core height/reach are inches -> convert to cm
             "height_cm": inches_to_cm(p.get("height")),
             "reach_cm": inches_to_cm(p.get("reach")),
             "stance": (p.get("stance") or {}).get("text"),
             "country": p.get("citizenship"),
             "weight_class": (p.get("weightClass") or {}).get("text"),
-            "record": overall_record,
+            "record": record_summary,
             "methods": methods,
             "raw": {
-                "statistics": statistics_ref,     # keep as ref for later parsing
-                "records": records_container      # container w/ items already expanded
-            }
+                "statistics": statistics_ref,
+                "records": records_container,
+            },
         }
 
-        out["fighters"][fid] = fighter
+        out["fighters"][str(fid)] = fighter
         ok += 1
         print(f"✅ {i}/{len(ids)} {fighter.get('name','')} | record={fighter.get('record')}")
+
         time.sleep(0.25)
 
     OUT.write_text(json.dumps(out, indent=2), encoding="utf-8")
