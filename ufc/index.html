@@ -35,7 +35,7 @@ function escapeHtml(str) {
     .replace(/>/g, "&gt;");
 }
 
-fetch(EVENTS_URL)
+fetch (EVENTS_URL + "?v=" + Date.now(), { cache: "no-store" })
   .then(r => r.json())
   .then(data => {
     const wrap = document.getElementById("events");
