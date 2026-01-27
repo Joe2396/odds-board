@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 from datetime import datetime
 
@@ -20,26 +21,63 @@ def html_escape(s: str) -> str:
     )
 
 
+def slugify(name: str) -> str:
+    name = (name or "").strip().lower()
+    name = re.sub(r"[^a-z0-9\s-]", "", name)
+    name = re.sub(r"\s+", "-", name)
+    name = re.sub(r"-+", "-", name)
+    return name.strip("-")
+
+
 def load_events():
     return json.loads(DATA.read_text(encoding="utf-8")).get("events", [])
 
 
 def collect_fighters(events):
-    fighters = {}
+    """
+    events.json schema:
+      fight.red:  { name, espn_id }
+      fight.blue: { name, espn_id }
+    We'll dedupe by espn_id when available, else by name.
+    """
+    fighters = {}  # key -> fighter dict
+
     for ev in events:
         for fight in ev.get("fights", []):
-            for side in ("fighter_a", "fighter_b"):
-                f = fight.get(side)
-                if not f:
+            for corner_key in ("red", "blue"):
+                c = fight.get(corner_key) or {}
+                name = (c.get("name") or "").strip()
+                espn_id = (c.get("espn_id") or "").strip()
+
+                if not name and not espn_id:
                     continue
-                slug = f.get("slug")
-                if slug:
-                    fighters[slug] = f
+
+                slug = slugify(name) if name else (f"fighter-{espn_id}" if espn_id else "")
+                key = f"espn:{espn_id}" if espn_id else f"name:{name.lower()}"
+
+                # Minimal fighter object (stats will be filled later when you integrate UFCStats)
+                fighters[key] = {
+                    "name": name or "Fighter",
+                    "slug": slug,
+                    "espn_id": espn_id,
+                    "nickname": "",
+                    "record": "",
+                    "stance": "",
+                    "country": "",
+                    "height_cm": None,
+                    "reach_cm": None,
+                    "methods": {},
+                    "quick": {},
+                }
+
     return fighters
 
 
 def build_fighter_page(f):
     name = html_escape(f.get("name", "Fighter"))
+    slug = f.get("slug", "")
+    espn_id = html_escape(f.get("espn_id", ""))
+
     nick = html_escape(f.get("nickname", ""))
     record = html_escape(f.get("record", ""))
     stance = html_escape(f.get("stance", ""))
@@ -47,8 +85,8 @@ def build_fighter_page(f):
     height = f.get("height_cm")
     reach = f.get("reach_cm")
 
-    methods = f.get("methods", {})
-    quick = f.get("quick", {})
+    methods = f.get("methods", {}) if isinstance(f.get("methods", {}), dict) else {}
+    quick = f.get("quick", {}) if isinstance(f.get("quick", {}), dict) else {}
 
     generated = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 
@@ -70,13 +108,14 @@ def build_fighter_page(f):
 <p class="muted"><a href="{BASE_PATH}/">UFC Hub</a> / <a href="{BASE_PATH}/fighters/">Fighters</a></p>
 
 <h1>{name}</h1>
-<p class="muted">{nick} • {record}</p>
+<p class="muted">{nick or "—"} • {record or "—"}</p>
 
 <div class="panel">
-<p>Stance: {stance or "—"}</p>
-<p>Height: {str(height)+" cm" if height else "—"}</p>
-<p>Reach: {str(reach)+" cm" if reach else "—"}</p>
-<p>Country: {country or "—"}</p>
+<p><b>ESPN ID:</b> {espn_id or "—"}</p>
+<p><b>Stance:</b> {stance or "—"}</p>
+<p><b>Height:</b> {str(height)+" cm" if height else "—"}</p>
+<p><b>Reach:</b> {str(reach)+" cm" if reach else "—"}</p>
+<p><b>Country:</b> {country or "—"}</p>
 </div>
 
 <h2>Methods</h2>
@@ -102,9 +141,13 @@ def build_fighter_page(f):
 
 
 def build_fighter_index(fighters):
+    # fighters is dict keyed by espn/name; index by name
+    rows = sorted(fighters.values(), key=lambda x: (x.get("name") or "").lower())
+
     items = "\n".join(
-        f'<li><a href="{BASE_PATH}/fighters/{slug}/">{html_escape(f.get("name","Fighter"))}</a></li>'
-        for slug, f in sorted(fighters.items(), key=lambda x: x[1].get("name",""))
+        f'<li><a href="{BASE_PATH}/fighters/{f.get("slug","")}/">{html_escape(f.get("name","Fighter"))}</a></li>'
+        for f in rows
+        if f.get("slug")
     )
 
     generated = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
@@ -136,13 +179,23 @@ def main():
 
     OUT.mkdir(parents=True, exist_ok=True)
 
-    for slug, f in fighters.items():
+    # Ensure folder exists in git even if empty (optional)
+    keep = OUT / ".keep"
+    if not keep.exists():
+        keep.write_text("", encoding="utf-8")
+
+    written = 0
+    for f in fighters.values():
+        slug = f.get("slug")
+        if not slug:
+            continue
         d = OUT / slug
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(build_fighter_page(f), encoding="utf-8")
+        written += 1
 
     (OUT / "index.html").write_text(build_fighter_index(fighters), encoding="utf-8")
-    print(f"Wrote {len(fighters)} fighters")
+    print(f"✅ Wrote {written} fighter pages")
 
 
 if __name__ == "__main__":
