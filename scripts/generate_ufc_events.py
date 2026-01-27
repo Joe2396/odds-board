@@ -110,6 +110,9 @@ def render_event_page(ev):
 
 
 def main():
+ensure_dir(EVENTS_DIR)
+with open(os.path.join(EVENTS_DIR, ".keep"), "w", encoding="utf-8") as f:
+    f.write("keep")
     events = load_events()
     ensure_dir(EVENTS_DIR)
 
