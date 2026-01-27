@@ -7,6 +7,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "ufc" / "data" / "events.json"
 FIGHTS_DIR = ROOT / "ufc" / "fights"
 
+# NEW: stats file produced by your fetch step
+FIGHTERS_JSON = ROOT / "ufc" / "data" / "fighters.json"
+
 BASE_PATH = "/odds-board/ufc"
 
 
@@ -43,17 +46,59 @@ def load_events():
     return data.get("events", [])
 
 
+def load_fighter_details():
+    """
+    Expected-ish shape:
+      {"fighters": {"3949584": {...}, "4881999": {...}}}
+    Returns: dict keyed by espn_id (string)
+    """
+    if not FIGHTERS_JSON.exists():
+        return {}
+    data = json.loads(FIGHTERS_JSON.read_text(encoding="utf-8"))
+    fighters = data.get("fighters", {})
+    return fighters if isinstance(fighters, dict) else {}
+
+
+def pick_first(d: dict, keys: list):
+    for k in keys:
+        if isinstance(d, dict) and k in d and d[k] not in (None, "", []):
+            return d[k]
+    return None
+
+
+def normalize_height_to_cm(v):
+    """
+    Best-effort normalizer:
+    - if already numeric, assume cm when >= 120 else unknown
+    - if string like '5\'6"' or '5-6' etc, we won't parse here (keep raw)
+    """
+    if v is None:
+        return None
+    if isinstance(v, (int, float)):
+        # assume cm if plausible
+        return float(v)
+    # keep as-is (string) for display elsewhere; our UI expects cm numeric so we'll return None
+    return None
+
+
+def normalize_reach_to_cm(v):
+    if v is None:
+        return None
+    if isinstance(v, (int, float)):
+        return float(v)
+    return None
+
+
 def get_fight_id(fight: dict) -> str:
-    # Your schema uses "id" like "401839016"
     v = fight.get("id")
     return str(v).strip() if v is not None else ""
 
 
 def normalize_fighter_from_corner(corner: dict) -> dict:
     """
-    Convert your corner object:
+    Convert corner object:
       {"name":"...", "espn_id":"..."}
-    into the richer shape your UI expects.
+    to the richer shape expected by fighter_panel.
     """
     name = corner.get("name", "") if isinstance(corner, dict) else ""
     espn_id = corner.get("espn_id", "") if isinstance(corner, dict) else ""
@@ -68,10 +113,59 @@ def normalize_fighter_from_corner(corner: dict) -> dict:
         "height_cm": None,
         "reach_cm": None,
         "country": "",
-        "methods": {},  # will be filled later when you enrich fighters
-        "quick": {},    # will be filled later when you enrich fighters
-        "espn_id": espn_id,
+        "methods": {},
+        "quick": {},
+        "espn_id": str(espn_id).strip() if espn_id is not None else "",
     }
+
+
+def enrich_fighter(f: dict, details_by_espn: dict) -> dict:
+    """
+    Merge stats from fighters.json into our UI fighter object.
+    Tries multiple possible field names.
+    """
+    espn_id = str(f.get("espn_id", "")).strip()
+    if not espn_id or espn_id not in details_by_espn:
+        return f
+
+    d = details_by_espn.get(espn_id, {}) or {}
+    if not isinstance(d, dict):
+        return f
+
+    # Prefer ESPN-returned name if present
+    name = pick_first(d, ["name", "displayName", "fullName"])
+    if name:
+        f["name"] = name
+        f["slug"] = f.get("slug") or slugify(name)
+
+    # Record / stance / country
+    rec = pick_first(d, ["record", "summary", "record_display", "recordSummary"])
+    if rec:
+        f["record"] = rec
+
+    stance = pick_first(d, ["stance", "fightingStance"])
+    if stance:
+        f["stance"] = stance
+
+    country = pick_first(d, ["country", "nationality"])
+    if country:
+        f["country"] = country
+
+    # Height/reach (try multiple keys)
+    height_val = pick_first(d, ["height_cm", "heightCm", "height", "heightCM"])
+    reach_val = pick_first(d, ["reach_cm", "reachCm", "reach", "reachCM"])
+
+    # If height/reach come in as numbers, populate our cm fields
+    f["height_cm"] = normalize_height_to_cm(height_val) if height_val is not None else f.get("height_cm")
+    f["reach_cm"] = normalize_reach_to_cm(reach_val) if reach_val is not None else f.get("reach_cm")
+
+    # Optional: if your fighters.json later includes these, they'll render automatically
+    if isinstance(d.get("methods"), dict):
+        f["methods"] = d["methods"]
+    if isinstance(d.get("quick"), dict):
+        f["quick"] = d["quick"]
+
+    return f
 
 
 def fighter_panel(f: dict) -> str:
@@ -97,8 +191,8 @@ def fighter_panel(f: dict) -> str:
       <div class="pillrow">
         <span class="pill">Record: {record or "—"}</span>
         <span class="pill">Stance: {stance or "—"}</span>
-        <span class="pill">Height: {html_escape(str(h) + " cm") if h else "—"}</span>
-        <span class="pill">Reach: {html_escape(str(r) + " cm") if r else "—"}</span>
+        <span class="pill">Height: {html_escape(str(int(h)) + " cm") if isinstance(h,(int,float)) else ("—")}</span>
+        <span class="pill">Reach: {html_escape(str(int(r)) + " cm") if isinstance(r,(int,float)) else ("—")}</span>
         <span class="pill">Country: {country or "—"}</span>
       </div>
 
@@ -119,19 +213,20 @@ def fighter_panel(f: dict) -> str:
     """
 
 
-def build_fight_page(event: dict, fight: dict, fight_id: str) -> str:
+def build_fight_page(event: dict, fight: dict, fight_id: str, details_by_espn: dict) -> str:
     event_slug = event.get("slug", "")
     event_name = html_escape(event.get("name", "Event"))
 
     red = normalize_fighter_from_corner(fight.get("red", {}))
     blue = normalize_fighter_from_corner(fight.get("blue", {}))
 
+    # NEW: enrich with fighters.json data
+    red = enrich_fighter(red, details_by_espn)
+    blue = enrich_fighter(blue, details_by_espn)
+
     title = f"{red.get('name','Fighter A')} vs {blue.get('name','Fighter B')}"
     weight = html_escape(fight.get("weight_class", "—"))
     rounds = "—"  # not present in your schema yet
-    is_main = "Yes" if int(fight.get("order", 0)) == max(1, int(fight.get("order", 0))) and fight.get("order") == 14 else "No"
-    # ^ we don't truly know main event from schema; leaving basic logic.
-    # You can replace with real flag once you store it.
 
     generated = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
     css_href = "../../assets/ufc.css"
@@ -199,6 +294,7 @@ def build_fight_page(event: dict, fight: dict, fight_id: str) -> str:
 
 def main():
     events = load_events()
+    details_by_espn = load_fighter_details()
 
     FIGHTS_DIR.mkdir(parents=True, exist_ok=True)
     keep = FIGHTS_DIR / ".keep"
@@ -222,7 +318,7 @@ def main():
             out_dir.mkdir(parents=True, exist_ok=True)
 
             out_file = out_dir / "index.html"
-            out_file.write_text(build_fight_page(event, fight, fight_id), encoding="utf-8")
+            out_file.write_text(build_fight_page(event, fight, fight_id, details_by_espn), encoding="utf-8")
             fights_written += 1
 
     print(f"✅ Wrote {fights_written} fight pages to {FIGHTS_DIR}")
