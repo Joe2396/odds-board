@@ -16,21 +16,66 @@
 
     <h2>Upcoming Events</h2>
 
-    
-        <div class="row" style="margin-top:16px;">
-          <div>
-            <h3>UFC 999: Example vs Sample</h3>
-            <p class="muted">2026-02-14 • Las Vegas, NV</p>
-            <p><a href="/odds-board/ufc/events/ufc-999/">View event →</a></p>
-          </div>
-          <div class="muted">→</div>
-        </div>
-        
+    <div id="events">
+      <p class="muted">Loading upcoming events…</p>
+    </div>
 
     <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Generated: 2026-01-26 18:41 UTC</p>
-    <p><a href="/">← Back to home</a></p>
+    <p id="generated" class="muted"></p>
+    <p><a href="/odds-board/">← Back to home</a></p>
   </div>
+
+<script>
+const EVENTS_URL = "/odds-board/ufc/data/events.json";
+
+function escapeHtml(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+fetch(EVENTS_URL)
+  .then(r => r.json())
+  .then(data => {
+    const wrap = document.getElementById("events");
+    wrap.innerHTML = "";
+
+    const events = (data && data.events) || [];
+
+    if (!events.length) {
+      wrap.innerHTML = "<p class='muted'>No upcoming events found.</p>";
+      return;
+    }
+
+    events.forEach(ev => {
+      const div = document.createElement("div");
+      div.className = "row";
+      div.style.marginTop = "16px";
+
+      div.innerHTML = `
+        <div>
+          <h3>${escapeHtml(ev.name)}</h3>
+          <p class="muted">${escapeHtml(ev.date)} • ${escapeHtml(ev.location)}</p>
+          <p><a href="/odds-board/ufc/events/${escapeHtml(ev.slug)}/">View event →</a></p>
+        </div>
+        <div class="muted">→</div>
+      `;
+
+      wrap.appendChild(div);
+    });
+
+    if (data.generated_at) {
+      document.getElementById("generated").textContent =
+        "Generated: " + data.generated_at.replace("T", " ").replace("+00:00", " UTC");
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    document.getElementById("events").innerHTML =
+      "<p class='muted'>Failed to load upcoming events.</p>";
+  });
+</script>
 
 </body>
 </html>
