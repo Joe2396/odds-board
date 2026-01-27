@@ -3,13 +3,11 @@ name: Build UFC Hub
 on:
   workflow_dispatch:
 
-  # Run whenever code/scripts change (manual dev)
   push:
     paths:
       - "scripts/**"
       - ".github/workflows/ufc-build.yml"
 
-  # ✅ Run automatically after data refresh completes
   workflow_run:
     workflows: ["UFC Data Refresh"]
     types: [completed]
@@ -53,11 +51,9 @@ jobs:
           git config user.name "ufc-bot"
           git config user.email "actions@github.com"
 
-          # ✅ Always add generated output folders
-          git add ufc/index.html ufc/events ufc/fights ufc/fighters 2>/dev/null || true
+          # stage EVERYTHING under ufc (includes new folders)
+          git add -A ufc
 
-          # ✅ Add data files too (in case generators normalize anything)
-          git add ufc/data/events.json ufc/data/source_cache.json 2>/dev/null || true
-
+          git status
           git commit -m "Auto-generate UFC pages" || echo "No changes to commit"
           git push
