@@ -2,31 +2,61 @@ name: UFC Data Refresh
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "17 9 * * *" # daily, adjust anytime
+  # Optional: run on a schedule (uncomment if you want)
+  # schedule:
+  #   - cron: "0 */6 * * *"  # every 6 hours
 
 permissions:
   contents: write
 
+concurrency:
+  group: ufc-data-refresh
+  cancel-in-progress: true
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # needed for pull --rebase
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      - name: Install deps
+        run: pip install requests beautifulsoup4
+
       - name: Fetch upcoming events (GitHub-safe)
         run: python scripts/fetch_upcoming_events.py
 
       - name: Commit updated data
         run: |
+          set -e
+
           git config user.name "ufc-bot"
           git config user.email "actions@github.com"
+
+          # Stage only the data outputs
           git add ufc/data/events.json ufc/data/source_cache.json
+
+          # Commit if there are changes
           git commit -m "Update UFC upcoming events" || echo "No changes to commit"
-          git push
+
+          # If there was no commit, don't try to push
+          if git log -1 --pretty=%B | grep -q "Update UFC upcoming events"; then
+            echo "Attempting to rebase and push..."
+          else
+            echo "No new commit created. Exiting."
+            exit 0
+          fi
+
+          # Rebase onto the latest main to avoid non-fast-forward rejections
+          git pull --rebase origin main
+
+          # Push safely
+          git push origin HEAD:main
