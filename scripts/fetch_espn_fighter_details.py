@@ -1,107 +1,77 @@
-import json
-import time
+import json, time, requests
 from pathlib import Path
-import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 EVENTS = ROOT / "ufc" / "data" / "events.json"
 OUT = ROOT / "ufc" / "data" / "fighters.json"
 
-HEADERS = {"User-Agent": "Mozilla/5.0 (ufc-lab-bot)"}
-
-# ESPN athlete endpoint (works for many sports; MMA can vary but this is the correct starting point)
-URL = "https://site.web.api.espn.com/apis/v2/sports/mma/ufc/athletes/{athlete_id}"
+BASE = "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}"
+HEADERS = {"User-Agent": "ufc-lab-bot/1.0"}
 
 
-def load_events():
-    data = json.loads(EVENTS.read_text(encoding="utf-8"))
-    return data.get("events", [])
+def resolve(session, obj):
+    if isinstance(obj, dict) and "$ref" in obj:
+        r = session.get(obj["$ref"])
+        if r.status_code == 200:
+            return r.json()
+    return obj
 
 
-def collect_espn_ids(events):
+def load_ids():
+    data = json.loads(EVENTS.read_text())
     ids = set()
-    for ev in events:
-        for fight in ev.get("fights", []):
-            for corner in ("red", "blue"):
-                c = fight.get(corner) or {}
-                espn_id = str(c.get("espn_id") or "").strip()
-                if espn_id:
-                    ids.add(espn_id)
+    for e in data.get("events", []):
+        for f in e.get("fights", []):
+            for side in ("red", "blue"):
+                v = f.get(side, {}).get("espn_id")
+                if v:
+                    ids.add(str(v))
     return sorted(ids)
 
 
-def safe_get(d, *keys):
-    cur = d
-    for k in keys:
-        if isinstance(cur, dict) and k in cur:
-            cur = cur[k]
-        else:
-            return None
-    return cur
-
-
-def parse_payload(payload: dict) -> dict:
-    # ESPN sometimes wraps in athlete, sometimes not
-    athlete = payload.get("athlete") if isinstance(payload.get("athlete"), dict) else payload
-
-    name = athlete.get("displayName") or athlete.get("fullName") or ""
-
-    # record can appear in multiple shapes
-    record = safe_get(athlete, "record", "displayValue")
-    if not record:
-        recs = athlete.get("records")
-        if isinstance(recs, list) and recs:
-            record = recs[0].get("summary") or recs[0].get("displayValue")
-
-    stance = athlete.get("stance") or ""
-
-    # measurements can vary
-    height = athlete.get("height") or safe_get(athlete, "measurements", "height")
-    reach = athlete.get("reach") or safe_get(athlete, "measurements", "reach")
-    country = safe_get(athlete, "birthPlace", "country") or athlete.get("citizenship") or ""
-
-    return {
-        "name": name,
-        "record": record or "",
-        "stance": stance or "",
-        "height": height,
-        "reach": reach,
-        "country": country or "",
-    }
-
-
 def main():
-    if not EVENTS.exists():
-        raise SystemExit(f"Missing {EVENTS}")
-
-    events = load_events()
-    ids = collect_espn_ids(events)
-
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-
+    ids = load_ids()
     out = {"generated_at": time.time(), "fighters": {}}
 
     s = requests.Session()
     s.headers.update(HEADERS)
 
     ok = 0
-    for i, athlete_id in enumerate(ids, start=1):
-        try:
-            r = s.get(URL.format(athlete_id=athlete_id), timeout=20)
-            if r.status_code != 200:
-                print(f"⚠️ {athlete_id}: HTTP {r.status_code}")
-                continue
-            payload = r.json()
-            out["fighters"][athlete_id] = parse_payload(payload)
-            ok += 1
-            print(f"✅ {i}/{len(ids)} {athlete_id}: {out['fighters'][athlete_id].get('name','')}")
-        except Exception as e:
-            print(f"⚠️ {athlete_id}: {e}")
 
-        time.sleep(0.25)  # be polite
+    for i, fid in enumerate(ids, 1):
+        url = BASE.format(fid)
+        r = s.get(url)
 
-    OUT.write_text(json.dumps(out, indent=2), encoding="utf-8")
-    print(f"✅ Wrote {ok} fighters to {OUT}")
+        if r.status_code != 200:
+            print("⚠️", fid, r.status_code)
+            continue
+
+        p = r.json()
+
+        stats = resolve(s, p.get("statistics"))
+        records = resolve(s, p.get("records"))
+
+        fighter = {
+            "name": p.get("displayName"),
+            "nickname": p.get("nickname"),
+            "height_cm": p.get("height"),
+            "reach_cm": p.get("reach"),
+            "stance": (p.get("stance") or {}).get("text"),
+            "country": p.get("citizenship"),
+            "record": (records or {}).get("summary"),
+            "raw": {
+                "statistics": stats,
+                "records": records
+            }
+        }
+
+        out["fighters"][fid] = fighter
+        ok += 1
+        print(f"✅ {i}/{len(ids)} {fighter['name']}")
+        time.sleep(0.25)
+
+    OUT.write_text(json.dumps(out, indent=2))
+    print(f"\n🔥 Wrote {ok} fighters to {OUT}")
 
 
 if __name__ == "__main__":
