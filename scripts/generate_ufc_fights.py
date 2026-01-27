@@ -1,14 +1,12 @@
 import json
+import re
 from pathlib import Path
 from datetime import datetime
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "ufc" / "data" / "events.json"
-
-# NEW: central fights directory
 FIGHTS_DIR = ROOT / "ufc" / "fights"
 
-# Keep BASE_PATH for absolute links to hub/events/fighters (works in GitHub Pages)
 BASE_PATH = "/odds-board/ufc"
 
 
@@ -32,22 +30,25 @@ def pct(x):
         return "—"
 
 
+def slugify(name: str) -> str:
+    name = (name or "").strip().lower()
+    name = re.sub(r"[^a-z0-9\s-]", "", name)
+    name = re.sub(r"\s+", "-", name)
+    name = re.sub(r"-+", "-", name)
+    return name.strip("-")
+
+
 def load_events():
     data = json.loads(DATA.read_text(encoding="utf-8"))
     return data.get("events", [])
 
 
 def get_fight_id(fight: dict) -> str:
-    """
-    We want a stable folder name that matches your event links, e.g. /ufc/fights/401839016/
-    Try multiple keys to be robust.
-    """
     for k in ("fight_id", "id", "ufcstats_fight_id", "ufcstats_id", "fightId"):
         v = fight.get(k)
         if v is not None and str(v).strip():
             return str(v).strip()
 
-    # sometimes nested
     meta = fight.get("meta", {})
     if isinstance(meta, dict):
         for k in ("fight_id", "id", "ufcstats_fight_id"):
@@ -56,6 +57,59 @@ def get_fight_id(fight: dict) -> str:
                 return str(v).strip()
 
     return ""
+
+
+def normalize_fighter(fight: dict, side: str) -> dict:
+    """
+    Returns a fighter dict with keys your UI expects:
+      name, slug, nickname, record, stance, height_cm, reach_cm, country, methods, quick
+    Pulls from multiple possible input shapes.
+    """
+
+    # 1) Nested standard format
+    if side in ("a", "b"):
+        nested = fight.get(f"fighter_{side}")
+        if isinstance(nested, dict) and nested.get("name"):
+            return nested
+
+    # 2) Flat keys: fighter_a_name, fighter_a_slug, etc.
+    if side in ("a", "b"):
+        name = fight.get(f"fighter_{side}_name") or fight.get(f"fighter{side.upper()}Name")
+        slug = fight.get(f"fighter_{side}_slug") or fight.get(f"fighter{side.upper()}Slug")
+        record = fight.get(f"fighter_{side}_record")
+        stance = fight.get(f"fighter_{side}_stance")
+        height_cm = fight.get(f"fighter_{side}_height_cm")
+        reach_cm = fight.get(f"fighter_{side}_reach_cm")
+        country = fight.get(f"fighter_{side}_country")
+        nickname = fight.get(f"fighter_{side}_nickname")
+
+        if name:
+            return {
+                "name": name,
+                "slug": slug or slugify(name),
+                "record": record or "",
+                "stance": stance or "",
+                "height_cm": height_cm,
+                "reach_cm": reach_cm,
+                "country": country or "",
+                "nickname": nickname or "",
+                "methods": fight.get(f"fighter_{side}_methods", {}) if isinstance(fight.get(f"fighter_{side}_methods", {}), dict) else {},
+                "quick": fight.get(f"fighter_{side}_quick", {}) if isinstance(fight.get(f"fighter_{side}_quick", {}), dict) else {},
+            }
+
+    # 3) Red/Blue corner formats
+    if side == "a":
+        name = fight.get("red_name") or fight.get("redCornerName") or fight.get("fighter1_name")
+        slug = fight.get("red_slug") or fight.get("redCornerSlug") or fight.get("fighter1_slug")
+    else:
+        name = fight.get("blue_name") or fight.get("blueCornerName") or fight.get("fighter2_name")
+        slug = fight.get("blue_slug") or fight.get("blueCornerSlug") or fight.get("fighter2_slug")
+
+    if name:
+        return {"name": name, "slug": slug or slugify(name)}
+
+    # 4) Nothing found
+    return {}
 
 
 def fighter_panel(f: dict) -> str:
@@ -68,10 +122,9 @@ def fighter_panel(f: dict) -> str:
     r = f.get("reach_cm", None)
     country = html_escape(f.get("country", ""))
 
-    methods = f.get("methods", {})
-    quick = f.get("quick", {})
+    methods = f.get("methods", {}) if isinstance(f.get("methods", {}), dict) else {}
+    quick = f.get("quick", {}) if isinstance(f.get("quick", {}), dict) else {}
 
-    # Link to fighter profile if slug exists
     fighter_href = f"{BASE_PATH}/fighters/{slug}/" if slug else "#"
 
     return f"""
@@ -108,8 +161,8 @@ def build_fight_page(event: dict, fight: dict, fight_id: str) -> str:
     event_slug = event.get("slug", "")
     event_name = html_escape(event.get("name", "Event"))
 
-    a = fight.get("fighter_a", {}) or {}
-    b = fight.get("fighter_b", {}) or {}
+    a = normalize_fighter(fight, "a")
+    b = normalize_fighter(fight, "b")
 
     title = f"{a.get('name','Fighter A')} vs {b.get('name','Fighter B')}"
     weight = html_escape(fight.get("weight_class", "—"))
@@ -117,9 +170,6 @@ def build_fight_page(event: dict, fight: dict, fight_id: str) -> str:
     is_main = "Yes" if fight.get("is_main_event") else "No"
 
     generated = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-
-    # IMPORTANT:
-    # This page lives at /ufc/fights/<fight_id>/ so use relative path to css:
     css_href = "../../assets/ufc.css"
 
     return f"""<!doctype html>
@@ -181,7 +231,6 @@ def build_fight_page(event: dict, fight: dict, fight_id: str) -> str:
 def main():
     events = load_events()
 
-    # Ensure fights dir exists + keep placeholder so folder is tracked
     FIGHTS_DIR.mkdir(parents=True, exist_ok=True)
     keep = FIGHTS_DIR / ".keep"
     if not keep.exists():
@@ -189,18 +238,22 @@ def main():
 
     fights_written = 0
     missing_ids = 0
+    missing_names = 0
 
     for event in events:
-        event_slug = event.get("slug")
-        if not event_slug:
+        if not event.get("slug"):
             continue
 
-        fights = event.get("fights", [])
-        for fight in fights:
+        for fight in event.get("fights", []):
             fight_id = get_fight_id(fight)
             if not fight_id:
                 missing_ids += 1
                 continue
+
+            a = normalize_fighter(fight, "a")
+            b = normalize_fighter(fight, "b")
+            if not a.get("name") or not b.get("name"):
+                missing_names += 1
 
             out_dir = FIGHTS_DIR / fight_id
             out_dir.mkdir(parents=True, exist_ok=True)
@@ -212,6 +265,8 @@ def main():
     print(f"✅ Wrote {fights_written} fight pages to {FIGHTS_DIR}")
     if missing_ids:
         print(f"⚠️ Skipped {missing_ids} fights with no fight_id/id key")
+    if missing_names:
+        print(f"⚠️ {missing_names} fights missing fighter names (check normalize_fighter mapping)")
 
     if fights_written == 0:
         raise SystemExit("❌ Generated 0 fight pages. Check events.json fight id keys and get_fight_id().")
