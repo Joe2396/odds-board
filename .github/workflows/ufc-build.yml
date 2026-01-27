@@ -2,18 +2,27 @@ name: Build UFC Hub
 
 on:
   workflow_dispatch:
+  # still allow manual pushes to trigger builds (useful for script changes)
   push:
     paths:
-      - "ufc/data/**"
       - "scripts/**"
       - ".github/workflows/ufc-build.yml"
+
+  # ✅ THIS is the key: run after the data refresh workflow completes
+  workflow_run:
+    workflows: ["UFC Data Refresh"]
+    types:
+      - completed
 
 permissions:
   contents: write
 
 jobs:
   build-ufc:
+    # Only run on successful data refresh runs (or manual/push)
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -25,12 +34,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      # If your generators ONLY use stdlib, you can remove this entire step.
-      # Keep it if any generator imports requests/bs4.
       - name: Install deps (if needed)
         run: pip install requests beautifulsoup4
-
-      # ✅ NO SCRAPING HERE. Generators should read JSON already committed to repo.
 
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
@@ -49,13 +54,8 @@ jobs:
           git config user.name "ufc-bot"
           git config user.email "actions@github.com"
 
-          # Add generated site output
-          git add ufc/index.html ufc/events ufc/fights ufc/fighters ufc/styles.css ufc/assets 2>/dev/null || true
-
-          # Add data outputs if present/updated (supports both old and new cache files)
-          git add ufc/data/events.json 2>/dev/null || true
-          git add ufc/data/source_cache.json 2>/dev/null || true
-          git add ufc/data/ufcstats_cache.json 2>/dev/null || true
+          git add ufc/index.html ufc/events ufc/fights ufc/fighters 2>/dev/null || true
+          git add ufc/data/events.json ufc/data/source_cache.json 2>/dev/null || true
 
           git commit -m "Auto-build UFC site" || echo "No changes to commit"
           git push
