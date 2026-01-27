@@ -4,8 +4,11 @@ from datetime import datetime
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "ufc" / "data" / "events.json"
-EVENTS_DIR = ROOT / "ufc" / "events"
 
+# NEW: central fights directory
+FIGHTS_DIR = ROOT / "ufc" / "fights"
+
+# Keep BASE_PATH for absolute links to hub/events/fighters (works in GitHub Pages)
 BASE_PATH = "/odds-board/ufc"
 
 
@@ -24,7 +27,7 @@ def pct(x):
     if x is None:
         return "—"
     try:
-        return f"{float(x)*100:.0f}%"
+        return f"{float(x) * 100:.0f}%"
     except:
         return "—"
 
@@ -32,6 +35,27 @@ def pct(x):
 def load_events():
     data = json.loads(DATA.read_text(encoding="utf-8"))
     return data.get("events", [])
+
+
+def get_fight_id(fight: dict) -> str:
+    """
+    We want a stable folder name that matches your event links, e.g. /ufc/fights/401839016/
+    Try multiple keys to be robust.
+    """
+    for k in ("fight_id", "id", "ufcstats_fight_id", "ufcstats_id", "fightId"):
+        v = fight.get(k)
+        if v is not None and str(v).strip():
+            return str(v).strip()
+
+    # sometimes nested
+    meta = fight.get("meta", {})
+    if isinstance(meta, dict):
+        for k in ("fight_id", "id", "ufcstats_fight_id"):
+            v = meta.get(k)
+            if v is not None and str(v).strip():
+                return str(v).strip()
+
+    return ""
 
 
 def fighter_panel(f: dict) -> str:
@@ -47,9 +71,12 @@ def fighter_panel(f: dict) -> str:
     methods = f.get("methods", {})
     quick = f.get("quick", {})
 
+    # Link to fighter profile if slug exists
+    fighter_href = f"{BASE_PATH}/fighters/{slug}/" if slug else "#"
+
     return f"""
     <div class="panel">
-      <h2><a href="{BASE_PATH}/fighters/{slug}/">{name}</a></h2>
+      <h2><a href="{fighter_href}">{name}</a></h2>
       <div class="muted">Nickname: {nick or "—"}</div>
 
       <div class="pillrow">
@@ -77,13 +104,12 @@ def fighter_panel(f: dict) -> str:
     """
 
 
-def build_fight_page(event: dict, fight: dict) -> str:
+def build_fight_page(event: dict, fight: dict, fight_id: str) -> str:
     event_slug = event.get("slug", "")
     event_name = html_escape(event.get("name", "Event"))
-    fight_slug = fight.get("slug", "")
 
-    a = fight.get("fighter_a", {})
-    b = fight.get("fighter_b", {})
+    a = fight.get("fighter_a", {}) or {}
+    b = fight.get("fighter_b", {}) or {}
 
     title = f"{a.get('name','Fighter A')} vs {b.get('name','Fighter B')}"
     weight = html_escape(fight.get("weight_class", "—"))
@@ -92,13 +118,17 @@ def build_fight_page(event: dict, fight: dict) -> str:
 
     generated = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 
+    # IMPORTANT:
+    # This page lives at /ufc/fights/<fight_id>/ so use relative path to css:
+    css_href = "../../assets/ufc.css"
+
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{html_escape(title)}</title>
-  <link rel="stylesheet" href="{BASE_PATH}/assets/ufc.css">
+  <link rel="stylesheet" href="{css_href}">
   <style>
     .grid {{
       display:grid;
@@ -141,7 +171,7 @@ def build_fight_page(event: dict, fight: dict) -> str:
     </div>
 
     <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Generated: {generated}</p>
+    <p class="muted">Fight ID: {html_escape(fight_id)} • Generated: {generated}</p>
   </div>
 </body>
 </html>
@@ -150,6 +180,16 @@ def build_fight_page(event: dict, fight: dict) -> str:
 
 def main():
     events = load_events()
+
+    # Ensure fights dir exists + keep placeholder so folder is tracked
+    FIGHTS_DIR.mkdir(parents=True, exist_ok=True)
+    keep = FIGHTS_DIR / ".keep"
+    if not keep.exists():
+        keep.write_text("", encoding="utf-8")
+
+    fights_written = 0
+    missing_ids = 0
+
     for event in events:
         event_slug = event.get("slug")
         if not event_slug:
@@ -157,15 +197,24 @@ def main():
 
         fights = event.get("fights", [])
         for fight in fights:
-            fight_slug = fight.get("slug")
-            if not fight_slug:
+            fight_id = get_fight_id(fight)
+            if not fight_id:
+                missing_ids += 1
                 continue
 
-            out_dir = EVENTS_DIR / event_slug / "fights" / fight_slug
+            out_dir = FIGHTS_DIR / fight_id
             out_dir.mkdir(parents=True, exist_ok=True)
+
             out_file = out_dir / "index.html"
-            out_file.write_text(build_fight_page(event, fight), encoding="utf-8")
-            print(f"Wrote {out_file}")
+            out_file.write_text(build_fight_page(event, fight, fight_id), encoding="utf-8")
+            fights_written += 1
+
+    print(f"✅ Wrote {fights_written} fight pages to {FIGHTS_DIR}")
+    if missing_ids:
+        print(f"⚠️ Skipped {missing_ids} fights with no fight_id/id key")
+
+    if fights_written == 0:
+        raise SystemExit("❌ Generated 0 fight pages. Check events.json fight id keys and get_fight_id().")
 
 
 if __name__ == "__main__":
