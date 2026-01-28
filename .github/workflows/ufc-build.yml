@@ -1,23 +1,24 @@
-name: Build UFC Hub
+name: UFC Build
 
 on:
   workflow_dispatch:
 
   push:
+    branches: [ main ]
     paths:
       - "scripts/**"
+      - "ufc/**"
       - ".github/workflows/ufc-build.yml"
-
-  workflow_run:
-    workflows: ["UFC Data Refresh"]
-    types: [completed]
 
 permissions:
   contents: write
 
+concurrency:
+  group: ufc-build-main
+  cancel-in-progress: true
+
 jobs:
   build-ufc:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -31,10 +32,10 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install deps (if needed)
+      - name: Install deps
         run: pip install requests beautifulsoup4
 
-      # 1) Build hub + events first (events.json is required for later steps)
+      # 1) Build hub + events first (events.json required downstream)
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
 
@@ -45,25 +46,31 @@ jobs:
       - name: Fetch ESPN fighter stats
         run: python scripts/fetch_espn_fighter_details.py
 
-       - name: Build fighter recent fights (from events.json)
+      # 2b) Build "recent fights" list for each fighter (derived from events.json)
+      - name: Build fighter recent fights
         run: python scripts/build_fighter_recent_fights.py
 
-
-      # 3) Now generate pages that can consume fighters.json
+      # 3) Generate pages that consume fighters.json
       - name: Generate UFC fights
         run: python scripts/generate_ufc_fights.py
 
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
 
+      # 4) Commit generated output
       - name: Commit generated pages
         run: |
           git config user.name "ufc-bot"
           git config user.email "actions@github.com"
 
-          # stage EVERYTHING under ufc (includes new folders)
+          # Stage generated content
           git add -A ufc
 
-          git status
+          # Commit if anything changed
           git commit -m "Auto-generate UFC pages" || echo "No changes to commit"
-          git push
+
+          # Avoid non-fast-forward push failures
+          git pull --rebase origin main
+
+          # Push back to main
+          git push origin main
