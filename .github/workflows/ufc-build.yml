@@ -45,6 +45,10 @@ jobs:
       - name: Fetch ESPN fighter stats
         run: python scripts/fetch_espn_fighter_details.py
 
+       - name: Build fighter recent fights (from events.json)
+        run: python scripts/build_fighter_recent_fights.py
+
+
       # 3) Now generate pages that can consume fighters.json
       - name: Generate UFC fights
         run: python scripts/generate_ufc_fights.py
