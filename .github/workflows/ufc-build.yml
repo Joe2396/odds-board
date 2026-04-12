@@ -46,13 +46,13 @@ jobs:
       - name: Fetch ESPN fighter stats
         run: python scripts/fetch_espn_fighter_details.py
 
-      # Temporarily disabled because this step is failing on stale/incomplete events.json
+      # Temporarily disabled until events.json has full usable fight data again
       # - name: Build fighter recent fights
       #   run: python scripts/build_fighter_recent_fights.py
 
-      # 3) Generate pages that consume fighters.json
-      - name: Generate UFC fights
-        run: python scripts/generate_ufc_fights.py
+      # Temporarily disabled until events.json contains fight entries for page generation
+      # - name: Generate UFC fights
+      #   run: python scripts/generate_ufc_fights.py
 
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
