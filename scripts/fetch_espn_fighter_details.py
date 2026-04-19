@@ -8,6 +8,7 @@ EVENTS = ROOT / "ufc" / "data" / "events.json"
 OUT = ROOT / "ufc" / "data" / "fighters.json"
 
 BASE_ATHLETE = "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}"
+SEARCH_URL = "https://site.api.espn.com/apis/site/v2/search?q={}"
 HEADERS = {"User-Agent": "ufc-lab-bot/1.0"}
 
 RECENT_ENDPOINTS = [
@@ -60,9 +61,15 @@ def is_scheduled_fight(fight):
     return status in {"scheduled", "in_progress", "upcoming", ""}
 
 
-def load_ids():
+def load_targets():
+    """
+    Returns:
+      ids: set of known espn fighter ids
+      names: set of fighter names that are missing ids
+    """
     data = json.loads(EVENTS.read_text(encoding="utf-8"))
     ids = set()
+    names = set()
 
     upcoming_event_count = 0
     upcoming_fight_count = 0
@@ -80,82 +87,21 @@ def load_ids():
             upcoming_fight_count += 1
 
             for side in ("red", "blue"):
-                v = (f.get(side) or {}).get("espn_id")
-                if v:
-                    ids.add(str(v).strip())
+                side_obj = f.get(side) or {}
+                fid = str(side_obj.get("espn_id") or "").strip()
+                name = str(side_obj.get("name") or "").strip()
+
+                if fid:
+                    ids.add(fid)
+                elif name:
+                    names.add(name)
 
     print(f"Found {upcoming_event_count} upcoming events")
     print(f"Found {upcoming_fight_count} scheduled fights")
     print(f"Found {len(ids)} unique fighter IDs from scheduled fights")
+    print(f"Found {len(names)} fighter names missing IDs")
 
-    return sorted(ids)
-
-
-def fetch_top_fighters(session: requests.Session):
-    """
-    Pull a larger UFC fighter pool using ESPN search.
-    This is more reliable than the athlete list endpoint for coverage.
-    """
-    fighters = []
-    seen = set()
-
-    search_terms = [
-        "ufc",
-        "mma",
-        "fighter",
-        "champion",
-        "lightweight",
-        "welterweight",
-        "middleweight",
-        "featherweight",
-        "bantamweight",
-        "flyweight",
-        "heavyweight",
-        "women strawweight",
-        "women flyweight",
-        "women bantamweight",
-    ]
-
-    for term in search_terms:
-        url = f"https://site.api.espn.com/apis/site/v2/search?q={term}"
-
-        try:
-            r = session.get(url, timeout=20)
-        except Exception:
-            continue
-
-        if r.status_code != 200:
-            continue
-
-        try:
-            data = r.json()
-        except Exception:
-            continue
-
-        # ESPN search result shapes vary, so search broadly
-        result_groups = data.get("results", []) or []
-
-        for group in result_groups:
-            contents = group.get("contents", []) or []
-            for entry in contents:
-                athlete = entry.get("athlete") or entry.get("player") or entry
-
-                if not isinstance(athlete, dict):
-                    continue
-
-                fid = str(athlete.get("id") or "").strip()
-                name = athlete.get("displayName") or athlete.get("fullName")
-
-                if not fid or fid in seen:
-                    continue
-
-                seen.add(fid)
-                fighters.append({"id": fid, "name": name})
-
-        time.sleep(0.15)
-
-    print(f"Found {len(fighters)} extra fighters from ESPN search")
-    return fighters
+    return ids, names
 
 
 def stats_list_to_dict(item: dict) -> dict:
@@ -244,13 +190,85 @@ def _pick(d, *keys):
     return cur
 
 
+def iter_dicts(obj):
+    """Yield all nested dicts inside a JSON structure."""
+    if isinstance(obj, dict):
+        yield obj
+        for v in obj.values():
+            yield from iter_dicts(v)
+    elif isinstance(obj, list):
+        for item in obj:
+            yield from iter_dicts(item)
+
+
+def resolve_name_to_id(session: requests.Session, fighter_name: str):
+    """
+    Search ESPN by fighter name and try to find an MMA/UFC athlete id.
+    """
+    if not fighter_name:
+        return ""
+
+    try:
+        r = session.get(SEARCH_URL.format(requests.utils.quote(fighter_name)), timeout=20)
+    except Exception:
+        return ""
+
+    if r.status_code != 200:
+        return ""
+
+    try:
+        data = r.json()
+    except Exception:
+        return ""
+
+    target = fighter_name.strip().lower()
+
+    exact_candidates = []
+    loose_candidates = []
+
+    for d in iter_dicts(data):
+        candidate_id = str(d.get("id") or "").strip()
+        candidate_name = str(d.get("displayName") or d.get("fullName") or "").strip()
+
+        if not candidate_id or not candidate_name:
+            continue
+
+        blob = json.dumps(d, ensure_ascii=False).lower()
+
+        score = 0
+        if candidate_name.lower() == target:
+            score += 100
+        elif target in candidate_name.lower():
+            score += 25
+
+        if "mma" in blob or "ufc" in blob:
+            score += 50
+
+        if "athlete" in blob or "player" in blob:
+            score += 10
+
+        if score >= 100:
+            exact_candidates.append((score, candidate_id, candidate_name))
+        elif score > 0:
+            loose_candidates.append((score, candidate_id, candidate_name))
+
+    if exact_candidates:
+        exact_candidates.sort(reverse=True)
+        return exact_candidates[0][1]
+
+    if loose_candidates:
+        loose_candidates.sort(reverse=True)
+        return loose_candidates[0][1]
+
+    return ""
+
+
 def fetch_recent_fights(session: requests.Session, fid: str, limit: int = 10):
     """
     Return a list of dicts:
       [{"date":"YYYY-MM-DD", "opponent":"...", "result":"W/L/D", "method":"DEC/KO/SUB", "round":"", "time":"", "event":"..."}]
     """
     fid = str(fid).strip()
-
     for tmpl in RECENT_ENDPOINTS:
         url = tmpl.format(fid)
         try:
@@ -368,12 +386,17 @@ def main():
     s = requests.Session()
     s.headers.update(HEADERS)
 
-    ids = set(load_ids())
+    ids, missing_names = load_targets()
 
-    extra_fighters = fetch_top_fighters(s)
-    for f in extra_fighters:
-        if f.get("id"):
-            ids.add(str(f["id"]).strip())
+    resolved_names = 0
+    for name in sorted(missing_names):
+        fid = resolve_name_to_id(s, name)
+        if fid:
+            ids.add(fid)
+            resolved_names += 1
+        time.sleep(0.15)
+
+    print(f"Resolved {resolved_names}/{len(missing_names)} missing fighter names to ESPN IDs")
 
     ids = sorted(ids)
 
