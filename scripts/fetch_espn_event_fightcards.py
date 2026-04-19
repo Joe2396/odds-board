@@ -107,6 +107,34 @@ def extract_id_from_ref(ref: Optional[str]) -> str:
     return match.group(1) if match else ""
 
 
+def extract_athlete_id(obj: Optional[Dict[str, Any]]) -> str:
+    """
+    ESPN sometimes gives a direct athlete id, and sometimes only a $ref/href.
+    This helper tries both.
+    """
+    if not isinstance(obj, dict):
+        return ""
+
+    direct_id = obj.get("id")
+    if direct_id:
+        return str(direct_id).strip()
+
+    for key in ("$ref", "href"):
+        ref = obj.get(key)
+        if isinstance(ref, str):
+            # Prefer athlete-specific extraction
+            m = re.search(r"/athletes/(\d+)", ref)
+            if m:
+                return m.group(1)
+
+            # Fallback: final numeric segment
+            fallback = extract_id_from_ref(ref)
+            if fallback:
+                return fallback
+
+    return ""
+
+
 def normalize_weight_class(text: str) -> str:
     return str(text or "").strip()
 
@@ -133,20 +161,44 @@ def parse_competition_from_core(comp: Dict[str, Any], idx: int, event_id: str) -
 
     if len(competitors_items) >= 1:
         c1 = competitors_items[0]
-        athlete_ref = c1.get("athlete", {}).get("$ref") if isinstance(c1.get("athlete"), dict) else None
-        athlete_payload = get_ref_json(athlete_ref) if athlete_ref else None
+        athlete_obj = c1.get("athlete", {}) if isinstance(c1.get("athlete"), dict) else {}
+        athlete_payload = get_ref_json(athlete_obj.get("$ref")) if athlete_obj.get("$ref") else None
+
+        red_name = (
+            (athlete_payload or {}).get("displayName")
+            or athlete_obj.get("displayName")
+            or c1.get("displayName")
+            or ""
+        )
+
         red = {
-            "name": str((athlete_payload or {}).get("displayName") or c1.get("displayName") or "").strip(),
-            "espn_id": extract_id_from_ref(athlete_ref) or str(c1.get("id") or "").strip(),
+            "name": str(red_name).strip(),
+            "espn_id": (
+                extract_athlete_id(athlete_payload)
+                or extract_athlete_id(athlete_obj)
+                or extract_athlete_id(c1)
+            ),
         }
 
     if len(competitors_items) >= 2:
         c2 = competitors_items[1]
-        athlete_ref = c2.get("athlete", {}).get("$ref") if isinstance(c2.get("athlete"), dict) else None
-        athlete_payload = get_ref_json(athlete_ref) if athlete_ref else None
+        athlete_obj = c2.get("athlete", {}) if isinstance(c2.get("athlete"), dict) else {}
+        athlete_payload = get_ref_json(athlete_obj.get("$ref")) if athlete_obj.get("$ref") else None
+
+        blue_name = (
+            (athlete_payload or {}).get("displayName")
+            or athlete_obj.get("displayName")
+            or c2.get("displayName")
+            or ""
+        )
+
         blue = {
-            "name": str((athlete_payload or {}).get("displayName") or c2.get("displayName") or "").strip(),
-            "espn_id": extract_id_from_ref(athlete_ref) or str(c2.get("id") or "").strip(),
+            "name": str(blue_name).strip(),
+            "espn_id": (
+                extract_athlete_id(athlete_payload)
+                or extract_athlete_id(athlete_obj)
+                or extract_athlete_id(c2)
+            ),
         }
 
     weight_class = ""
@@ -222,19 +274,21 @@ def fetch_fights_from_site_summary(event_id: str) -> List[Dict[str, Any]]:
         blue = {"name": "", "espn_id": ""}
 
         if len(competitors) >= 1:
-            c1 = competitors[0]
+            c1 = competitors[0] or {}
             athlete = c1.get("athlete", {}) or {}
+
             red = {
                 "name": str(athlete.get("displayName") or c1.get("displayName") or "").strip(),
-                "espn_id": str(athlete.get("id") or c1.get("id") or "").strip(),
+                "espn_id": extract_athlete_id(athlete) or extract_athlete_id(c1),
             }
 
         if len(competitors) >= 2:
-            c2 = competitors[1]
+            c2 = competitors[1] or {}
             athlete = c2.get("athlete", {}) or {}
+
             blue = {
                 "name": str(athlete.get("displayName") or c2.get("displayName") or "").strip(),
-                "espn_id": str(athlete.get("id") or c2.get("id") or "").strip(),
+                "espn_id": extract_athlete_id(athlete) or extract_athlete_id(c2),
             }
 
         note = ""
@@ -285,6 +339,7 @@ def is_name_candidate(line: str) -> bool:
     s = line.strip()
     if not s:
         return False
+
     lower = s.lower()
 
     if lower in STOP_MARKERS or lower in SECTION_MARKERS:
@@ -308,13 +363,6 @@ def is_name_candidate(line: str) -> bool:
     return True
 
 
-def next_nonempty(lines: List[str], start: int) -> str:
-    for i in range(start, len(lines)):
-        if lines[i].strip():
-            return lines[i].strip()
-    return ""
-
-
 def extract_profile_ids_in_order(soup: BeautifulSoup) -> List[str]:
     ids: List[str] = []
     seen = set()
@@ -335,8 +383,7 @@ def extract_profile_ids_in_order(soup: BeautifulSoup) -> List[str]:
 
 def extract_clean_lines(soup: BeautifulSoup) -> List[str]:
     raw_lines = [line.strip() for line in soup.get_text("\n").splitlines()]
-    lines = [line for line in raw_lines if line]
-    return lines
+    return [line for line in raw_lines if line]
 
 
 def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
@@ -353,7 +400,6 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
     idx = 1
     i = 0
 
-    # Start only once we hit the actual card area.
     while i < len(lines):
         lower = lines[i].lower()
         if lower in SECTION_MARKERS:
@@ -393,7 +439,6 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
             block.append(nxt)
             j += 1
 
-        # Pick fighter names by looking for lines followed by a record line.
         name_positions: List[int] = []
         for k in range(len(block) - 1):
             if is_name_candidate(block[k]) and is_record_line(block[k + 1]):
@@ -442,14 +487,48 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
     return fights
 
 
+def fill_missing_ids_from_html(event_id: str, fights: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    If JSON endpoints returned fights but missed many athlete IDs, try to enrich
+    them from the public fightcenter page.
+    """
+    if not fights:
+        return fights
+
+    html_fights = parse_fights_from_fightcenter_html(event_id)
+    if not html_fights:
+        return fights
+
+    html_map = {}
+    for hf in html_fights:
+        key = hf.get("bout", "").strip().lower()
+        if key:
+            html_map[key] = hf
+
+    for fight in fights:
+        key = fight.get("bout", "").strip().lower()
+        if not key or key not in html_map:
+            continue
+
+        hf = html_map[key]
+
+        if not (fight.get("red") or {}).get("espn_id"):
+            fight.setdefault("red", {})["espn_id"] = (hf.get("red") or {}).get("espn_id", "")
+
+        if not (fight.get("blue") or {}).get("espn_id"):
+            fight.setdefault("blue", {})["espn_id"] = (hf.get("blue") or {}).get("espn_id", "")
+
+    return fights
+
+
 def fetch_event_fights(event_id: str) -> List[Dict[str, Any]]:
     fights = fetch_fights_from_core_event(event_id)
     if fights:
-        return fights
+        return fill_missing_ids_from_html(event_id, fights)
 
     fights = fetch_fights_from_site_summary(event_id)
     if fights:
-        return fights
+        return fill_missing_ids_from_html(event_id, fights)
 
     return parse_fights_from_fightcenter_html(event_id)
 
@@ -477,7 +556,14 @@ def main() -> None:
 
         if fights:
             updated_count += 1
-            print(f"Updated {name}: {len(fights)} fights")
+            with_ids = 0
+            total_sides = 0
+            for f in fights:
+                for side in ("red", "blue"):
+                    total_sides += 1
+                    if (f.get(side) or {}).get("espn_id"):
+                        with_ids += 1
+            print(f"Updated {name}: {len(fights)} fights | fighter IDs: {with_ids}/{total_sides}")
         else:
             print(f"No fights found for {name} ({event_id})")
 
