@@ -1,457 +1,568 @@
+#!/usr/bin/env python3
 import json
+import os
+import re
 import time
-from pathlib import Path
+from typing import Any, Dict, List, Optional
+
 import requests
+from bs4 import BeautifulSoup
 
-ROOT = Path(__file__).resolve().parents[1]
-EVENTS = ROOT / "ufc" / "data" / "events.json"
-OUT = ROOT / "ufc" / "data" / "fighters.json"
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+EVENTS_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
 
-BASE_ATHLETE = "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}"
-SEARCH_URL = "https://site.api.espn.com/apis/site/v2/search?q={}"
-HEADERS = {"User-Agent": "ufc-lab-bot/1.0"}
+HEADERS = {
+    "User-Agent": "Mozilla/5.0",
+    "Accept": "application/json,text/plain,*/*",
+}
 
-RECENT_ENDPOINTS = [
-    "https://site.web.api.espn.com/apis/common/v3/sports/mma/ufc/athletes/{}/gamelog",
-    "https://site.web.api.espn.com/apis/common/v3/sports/mma/ufc/athletes/{}/eventlog",
-    "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}/events?limit=10",
-    "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}/eventlog?limit=10",
-]
+CORE_EVENT_URL = "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/events/{event_id}"
+SITE_SUMMARY_URL = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/summary?event={event_id}"
+FIGHTCENTER_URL = "https://www.espn.com/mma/fightcenter/_/id/{event_id}/league/ufc"
+
+STOP_MARKERS = {
+    "latest videos",
+    "mma news",
+    "all mma news",
+    "latest news",
+    "title fights",
+    "racing positions",
+    "quick links",
+}
+
+SECTION_MARKERS = {
+    "main card - final",
+    "prelims - final",
+    "preliminary card - final",
+    "main card",
+    "prelims",
+    "preliminary card",
+}
+
+KNOWN_WEIGHT_CLASSES = {
+    "heavyweight",
+    "light heavyweight",
+    "middleweight",
+    "welterweight",
+    "lightweight",
+    "featherweight",
+    "bantamweight",
+    "flyweight",
+    "women's bantamweight",
+    "women's featherweight",
+    "women's flyweight",
+    "women's strawweight",
+    "women's atomweight",
+    "catch weight",
+    "open weight",
+}
 
 
-def resolve(session: requests.Session, obj):
-    """Resolve ESPN core $ref objects."""
-    if isinstance(obj, dict) and "$ref" in obj and isinstance(obj["$ref"], str):
-        try:
-            r = session.get(obj["$ref"], timeout=20)
-            if r.status_code == 200:
-                return r.json()
-            return None
-        except Exception:
-            return None
-    return obj
+def load_events() -> Dict[str, Any]:
+    if not os.path.exists(EVENTS_PATH):
+        return {"generated_at": None, "events": []}
+
+    with open(EVENTS_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
-def inches_to_cm(x):
+def save_events(payload: Dict[str, Any]) -> None:
+    with open(EVENTS_PATH, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+
+
+def get_json(url: str) -> Optional[Dict[str, Any]]:
     try:
-        if x is None:
-            return None
-        return round(float(x) * 2.54, 1)
+        resp = requests.get(url, headers=HEADERS, timeout=20)
+        resp.raise_for_status()
+        return resp.json()
     except Exception:
         return None
 
 
-def load_existing_fighters():
-    if not OUT.exists():
-        return {"generated_at": time.time(), "fighters": {}}
-
+def get_html(url: str) -> Optional[str]:
     try:
-        return json.loads(OUT.read_text(encoding="utf-8"))
+        resp = requests.get(url, headers=HEADERS, timeout=20)
+        resp.raise_for_status()
+        return resp.text
     except Exception:
-        return {"generated_at": time.time(), "fighters": {}}
+        return None
 
 
-def is_upcoming_event(event):
-    status = str(event.get("status") or "").strip().lower()
-    return status in {"upcoming", "today", "scheduled"}
-
-
-def is_scheduled_fight(fight):
-    status = str(fight.get("status") or "").strip().lower()
-    return status in {"scheduled", "in_progress", "upcoming", ""}
-
-
-def load_targets():
-    """
-    Returns:
-      ids: set of known espn fighter ids
-      names: set of fighter names that are missing ids
-    """
-    data = json.loads(EVENTS.read_text(encoding="utf-8"))
-    ids = set()
-    names = set()
-
-    upcoming_event_count = 0
-    upcoming_fight_count = 0
-
-    for e in data.get("events", []):
-        if not is_upcoming_event(e):
-            continue
-
-        upcoming_event_count += 1
-
-        for f in e.get("fights", []):
-            if not is_scheduled_fight(f):
-                continue
-
-            upcoming_fight_count += 1
-
-            for side in ("red", "blue"):
-                side_obj = f.get(side) or {}
-                fid = str(side_obj.get("espn_id") or "").strip()
-                name = str(side_obj.get("name") or "").strip()
-
-                if fid:
-                    ids.add(fid)
-                elif name:
-                    names.add(name)
-
-    print(f"Found {upcoming_event_count} upcoming events")
-    print(f"Found {upcoming_fight_count} scheduled fights")
-    print(f"Found {len(ids)} unique fighter IDs from scheduled fights")
-    print(f"Found {len(names)} fighter names missing IDs")
-
-    return ids, names
-
-
-def stats_list_to_dict(item: dict) -> dict:
-    out = {}
-    if not isinstance(item, dict):
-        return out
-    stats = item.get("stats")
-    if isinstance(stats, list):
-        for s in stats:
-            if isinstance(s, dict) and "name" in s:
-                out[s["name"]] = s.get("value")
-    return out
-
-
-def compute_methods_from_overall_stats(overall_item: dict) -> dict:
-    methods = {
-        "ko_tko_w": 0,
-        "ko_tko_l": 0,
-        "sub_w": 0,
-        "sub_l": 0,
-        "dec_w": 0,
-        "dec_l": 0,
-    }
-    if not isinstance(overall_item, dict):
-        return methods
-
-    stats = stats_list_to_dict(overall_item)
-    wins = int(stats.get("wins") or 0)
-    losses = int(stats.get("losses") or 0)
-
-    ko_w = int((stats.get("tkos") or 0) + (stats.get("kos") or 0))
-    sub_w = int(stats.get("submissions") or 0)
-    ko_l = int((stats.get("tkoLosses") or 0) + (stats.get("koLosses") or 0))
-    sub_l = int(stats.get("submissionLosses") or 0)
-
-    dec_w = max(0, wins - ko_w - sub_w)
-    dec_l = max(0, losses - ko_l - sub_l)
-
-    methods["ko_tko_w"] = ko_w
-    methods["sub_w"] = sub_w
-    methods["dec_w"] = dec_w
-    methods["ko_tko_l"] = ko_l
-    methods["sub_l"] = sub_l
-    methods["dec_l"] = dec_l
-    return methods
-
-
-def extract_records(session: requests.Session, athlete_payload: dict):
-    records_container = resolve(session, athlete_payload.get("records"))
-    if not isinstance(records_container, dict):
-        return None, {}, records_container
-
-    items = records_container.get("items")
-    if not isinstance(items, list):
-        return None, {}, records_container
-
-    resolved_items = []
-    for it in items:
-        rit = resolve(session, it)
-        if isinstance(rit, dict):
-            resolved_items.append(rit)
-
-    records_container["items"] = resolved_items
-
-    overall_item = None
-    for rit in resolved_items:
-        if (rit.get("name") or "").lower() == "overall":
-            overall_item = rit
-            break
-
-    overall_summary = None
-    if isinstance(overall_item, dict):
-        overall_summary = overall_item.get("summary") or overall_item.get("displayValue")
-
-    methods = compute_methods_from_overall_stats(overall_item)
-    return overall_summary, methods, records_container
-
-
-def _pick(d, *keys):
-    cur = d
-    for k in keys:
-        if isinstance(cur, dict) and k in cur:
-            cur = cur[k]
-        else:
-            return None
-    return cur
-
-
-def iter_dicts(obj):
-    """Yield all nested dicts inside a JSON structure."""
-    if isinstance(obj, dict):
-        yield obj
-        for v in obj.values():
-            yield from iter_dicts(v)
-    elif isinstance(obj, list):
-        for item in obj:
-            yield from iter_dicts(item)
-
-
-def resolve_name_to_id(session: requests.Session, fighter_name: str):
-    """
-    Search ESPN by fighter name and try to find an MMA/UFC athlete id.
-    """
-    if not fighter_name:
-        return ""
-
+def get_ref_json(ref: Optional[str]) -> Optional[Dict[str, Any]]:
+    if not ref:
+        return None
     try:
-        r = session.get(SEARCH_URL.format(requests.utils.quote(fighter_name)), timeout=20)
+        resp = requests.get(ref, headers=HEADERS, timeout=20)
+        resp.raise_for_status()
+        return resp.json()
     except Exception:
+        return None
+
+
+def extract_id_from_ref(ref: Optional[str]) -> str:
+    if not ref:
+        return ""
+    match = re.search(r"/(\d+)(?:\?.*)?$", ref)
+    return match.group(1) if match else ""
+
+
+def extract_athlete_id(obj: Optional[Dict[str, Any]]) -> str:
+    """
+    ESPN sometimes gives:
+      {"id": "..."}
+    and sometimes:
+      {"$ref": ".../athletes/12345"}
+    """
+    if not isinstance(obj, dict):
         return ""
 
-    if r.status_code != 200:
-        return ""
+    direct_id = obj.get("id")
+    if direct_id:
+        return str(direct_id).strip()
 
-    try:
-        data = r.json()
-    except Exception:
-        return ""
+    for key in ("$ref", "href"):
+        ref = obj.get(key)
+        if isinstance(ref, str):
+            m = re.search(r"/athletes/(\d+)", ref)
+            if m:
+                return m.group(1)
 
-    target = fighter_name.strip().lower()
-
-    exact_candidates = []
-    loose_candidates = []
-
-    for d in iter_dicts(data):
-        candidate_id = str(d.get("id") or "").strip()
-        candidate_name = str(d.get("displayName") or d.get("fullName") or "").strip()
-
-        if not candidate_id or not candidate_name:
-            continue
-
-        blob = json.dumps(d, ensure_ascii=False).lower()
-
-        score = 0
-        if candidate_name.lower() == target:
-            score += 100
-        elif target in candidate_name.lower():
-            score += 25
-
-        if "mma" in blob or "ufc" in blob:
-            score += 50
-
-        if "athlete" in blob or "player" in blob:
-            score += 10
-
-        if score >= 100:
-            exact_candidates.append((score, candidate_id, candidate_name))
-        elif score > 0:
-            loose_candidates.append((score, candidate_id, candidate_name))
-
-    if exact_candidates:
-        exact_candidates.sort(reverse=True)
-        return exact_candidates[0][1]
-
-    if loose_candidates:
-        loose_candidates.sort(reverse=True)
-        return loose_candidates[0][1]
+            fallback = extract_id_from_ref(ref)
+            if fallback:
+                return fallback
 
     return ""
 
 
-def fetch_recent_fights(session: requests.Session, fid: str, limit: int = 10):
+def normalize_weight_class(text: str) -> str:
+    return str(text or "").strip()
+
+
+def build_bout_name(red_name: str, blue_name: str) -> str:
+    red_name = str(red_name or "").strip()
+    blue_name = str(blue_name or "").strip()
+    if red_name and blue_name:
+        return f"{red_name} vs {blue_name}"
+    return red_name or blue_name or "TBD vs TBD"
+
+
+def extract_fighter(competitor: Dict[str, Any], session: requests.Session) -> Dict[str, str]:
     """
-    Return a list of dicts:
-      [{"date":"YYYY-MM-DD", "opponent":"...", "result":"W/L/D", "method":"DEC/KO/SUB", "round":"", "time":"", "event":"..."}]
+    More robust competitor parsing:
+    - direct athlete.id
+    - direct competitor.id
+    - athlete $ref
+    - resolved athlete payload
     """
-    fid = str(fid).strip()
-    for tmpl in RECENT_ENDPOINTS:
-        url = tmpl.format(fid)
-        try:
-            r = session.get(url, timeout=20)
-        except Exception:
-            continue
+    competitor = competitor or {}
+    competitor = get_ref_json(competitor.get("$ref")) or competitor
 
-        if r.status_code != 200:
-            continue
+    athlete_obj = competitor.get("athlete") or {}
+    if isinstance(athlete_obj, dict):
+        athlete_payload = get_ref_json(athlete_obj.get("$ref")) if athlete_obj.get("$ref") else None
+    else:
+        athlete_obj = {}
+        athlete_payload = None
 
-        try:
-            data = r.json()
-        except Exception:
-            continue
+    fid = (
+        extract_athlete_id(athlete_payload)
+        or extract_athlete_id(athlete_obj)
+        or extract_athlete_id(competitor)
+        or str(competitor.get("id") or "").strip()
+    )
 
-        fights = []
+    name = (
+        (athlete_payload or {}).get("displayName")
+        or (athlete_payload or {}).get("fullName")
+        or athlete_obj.get("displayName")
+        or athlete_obj.get("fullName")
+        or competitor.get("displayName")
+        or competitor.get("shortName")
+        or ""
+    )
 
-        candidates = []
-        if isinstance(data.get("events"), list):
-            candidates = data["events"]
-        elif isinstance(data.get("items"), list):
-            candidates = data["items"]
-        else:
-            gl = data.get("gamelog") or data.get("eventlog") or {}
-            if isinstance(gl, dict) and isinstance(gl.get("events"), list):
-                candidates = gl["events"]
-
-        for ev in candidates:
-            ev = resolve(session, ev) or ev
-            if not isinstance(ev, dict):
-                continue
-
-            date = ev.get("date") or ev.get("startDate") or _pick(ev, "event", "date")
-            event_name = (
-                ev.get("name")
-                or ev.get("shortName")
-                or _pick(ev, "event", "name")
-                or _pick(ev, "event", "shortName")
-            )
-
-            opponent = None
-            result = None
-            method = None
-            rnd = None
-            tme = None
-
-            comp = None
-            if isinstance(ev.get("competition"), dict):
-                comp = ev["competition"]
-            elif isinstance(ev.get("competitions"), list) and ev["competitions"]:
-                comp = ev["competitions"][0]
-
-            if isinstance(comp, dict):
-                competitors = comp.get("competitors")
-                if isinstance(competitors, list) and competitors:
-                    me = None
-                    opp = None
-                    for c in competitors:
-                        c = resolve(session, c) or c
-                        if str(c.get("id") or "") == fid or str(_pick(c, "athlete", "id") or "") == fid:
-                            me = c
-                        else:
-                            opp = c
-
-                    if opp:
-                        opponent = (
-                            _pick(opp, "athlete", "displayName")
-                            or _pick(opp, "athlete", "fullName")
-                            or opp.get("displayName")
-                        )
-
-                    if me:
-                        winner = me.get("winner")
-                        outc = me.get("outcome") or me.get("result")
-                        if isinstance(outc, dict):
-                            result = outc.get("type") or outc.get("displayValue")
-                        elif isinstance(outc, str):
-                            result = outc
-                        elif isinstance(winner, bool):
-                            result = "W" if winner else "L"
-
-                method = (
-                    _pick(comp, "status", "type", "detail")
-                    or _pick(comp, "status", "result")
-                    or _pick(comp, "status", "type", "name")
-                )
-                rnd = _pick(comp, "status", "period") or _pick(comp, "status", "periods")
-                tme = _pick(comp, "status", "displayClock") or _pick(comp, "status", "clock")
-
-            fights.append({
-                "date": date,
-                "event": event_name,
-                "opponent": opponent,
-                "result": result,
-                "method": method,
-                "round": rnd,
-                "time": tme,
-            })
-
-            if len(fights) >= limit:
-                break
-
-        if fights:
-            return fights[:limit]
-
-    return []
-
-
-def main():
-    if not EVENTS.exists():
-        raise SystemExit(f"Missing {EVENTS}")
-
-    existing = load_existing_fighters()
-
-    s = requests.Session()
-    s.headers.update(HEADERS)
-
-    ids, missing_names = load_targets()
-
-    resolved_names = 0
-    for name in sorted(missing_names):
-        fid = resolve_name_to_id(s, name)
-        if fid:
-            ids.add(fid)
-            resolved_names += 1
-        time.sleep(0.15)
-
-    print(f"Resolved {resolved_names}/{len(missing_names)} missing fighter names to ESPN IDs")
-
-    ids = sorted(ids)
-
-    out = {
-        "generated_at": time.time(),
-        "fighters": existing.get("fighters", {}).copy(),
+    return {
+        "name": str(name).strip(),
+        "espn_id": str(fid).strip(),
     }
 
-    ok = 0
-    for i, fid in enumerate(ids, 1):
-        url = BASE_ATHLETE.format(fid)
-        try:
-            r = s.get(url, timeout=20)
-        except Exception as e:
-            print(f"⚠️ {fid}: request failed: {e}")
-            continue
 
-        if r.status_code != 200:
-            print("⚠️", fid, f"HTTP {r.status_code}")
-            continue
+def parse_competition_from_core(comp: Dict[str, Any], idx: int, event_id: str, session: requests.Session) -> Optional[Dict[str, Any]]:
+    comp_id = str(comp.get("id") or extract_id_from_ref(comp.get("$ref"))).strip()
+    competitors_ref = comp.get("competitors", {}).get("$ref") if isinstance(comp.get("competitors"), dict) else None
+    status_ref = comp.get("status", {}).get("$ref") if isinstance(comp.get("status"), dict) else None
+    notes_ref = comp.get("notes", {}).get("$ref") if isinstance(comp.get("notes"), dict) else None
 
-        try:
-            p = r.json()
-        except Exception:
-            print("⚠️", fid, "invalid JSON")
-            continue
+    competitors_payload = get_ref_json(competitors_ref) if competitors_ref else None
+    competitors_items = competitors_payload.get("items", []) if competitors_payload else []
 
-        record_summary, methods, records_container = extract_records(s, p)
-        recent = fetch_recent_fights(s, fid, limit=10)
+    red = {"name": "", "espn_id": ""}
+    blue = {"name": "", "espn_id": ""}
 
-        fighter = {
-            "name": p.get("displayName"),
-            "nickname": p.get("nickname"),
-            "height_cm": inches_to_cm(p.get("height")),
-            "reach_cm": inches_to_cm(p.get("reach")),
-            "stance": (p.get("stance") or {}).get("text"),
-            "country": p.get("citizenship"),
-            "weight_class": (p.get("weightClass") or {}).get("text"),
-            "record": record_summary,
-            "methods": methods,
-            "recent_fights": recent,
-            "raw": {
-                "statistics": p.get("statistics"),
-                "records": records_container,
+    if len(competitors_items) >= 1:
+        red = extract_fighter(competitors_items[0], session)
+
+    if len(competitors_items) >= 2:
+        blue = extract_fighter(competitors_items[1], session)
+
+    weight_class = ""
+    if notes_ref:
+        notes_payload = get_ref_json(notes_ref)
+        note_items = notes_payload.get("items", []) if notes_payload else []
+        if note_items:
+            weight_class = str(note_items[0].get("headline") or "").strip()
+
+    status = "scheduled"
+    if status_ref:
+        status_payload = get_ref_json(status_ref)
+        state = str((status_payload or {}).get("type", {}).get("state") or "").lower()
+        detail = str((status_payload or {}).get("type", {}).get("detail") or "").lower()
+        if "post" in state or "final" in detail:
+            status = "completed"
+        elif "in" in state:
+            status = "in_progress"
+
+    bout = build_bout_name(red["name"], blue["name"])
+
+    return {
+        "id": comp_id or f"{event_id}-{idx}",
+        "bout": bout,
+        "red": red,
+        "blue": blue,
+        "weight_class": normalize_weight_class(weight_class),
+        "order": idx,
+        "status": status,
+        "source": {
+            "provider": "espn",
+            "event_id": str(event_id),
+        },
+    }
+
+
+def fetch_fights_from_core_event(event_id: str, session: requests.Session) -> List[Dict[str, Any]]:
+    event_url = CORE_EVENT_URL.format(event_id=event_id)
+    event_payload = get_json(event_url)
+    if not event_payload:
+        return []
+
+    competitions_ref = None
+    competitions_obj = event_payload.get("competitions")
+    if isinstance(competitions_obj, dict):
+        competitions_ref = competitions_obj.get("$ref")
+
+    competitions_payload = get_ref_json(competitions_ref) if competitions_ref else None
+    competitions = competitions_payload.get("items", []) if competitions_payload else []
+
+    fights: List[Dict[str, Any]] = []
+    for idx, comp in enumerate(competitions, start=1):
+        parsed = parse_competition_from_core(comp, idx, event_id, session)
+        if parsed:
+            fights.append(parsed)
+        time.sleep(0.10)
+
+    return fights
+
+
+def fetch_fights_from_site_summary(event_id: str, session: requests.Session) -> List[Dict[str, Any]]:
+    summary_url = SITE_SUMMARY_URL.format(event_id=event_id)
+    payload = get_json(summary_url)
+    if not payload:
+        return []
+
+    fights: List[Dict[str, Any]] = []
+    for idx, comp in enumerate(payload.get("header", {}).get("competitions", []) or [], start=1):
+        comp_id = str(comp.get("id") or "").strip()
+        competitors = comp.get("competitors", []) or []
+
+        red = {"name": "", "espn_id": ""}
+        blue = {"name": "", "espn_id": ""}
+
+        if len(competitors) >= 1:
+            red = extract_fighter(competitors[0], session)
+
+        if len(competitors) >= 2:
+            blue = extract_fighter(competitors[1], session)
+
+        note = ""
+        notes = comp.get("notes", []) or []
+        if notes:
+            note = str(notes[0].get("headline") or "").strip()
+
+        status = "scheduled"
+        comp_status = comp.get("status", {}) or {}
+        state = str((comp_status.get("type", {}) or {}).get("state") or "").lower()
+        detail = str((comp_status.get("type", {}) or {}).get("detail") or "").lower()
+        if "post" in state or "final" in detail:
+            status = "completed"
+        elif "in" in state:
+            status = "in_progress"
+
+        fights.append({
+            "id": comp_id or f"{event_id}-{idx}",
+            "bout": build_bout_name(red["name"], blue["name"]),
+            "red": red,
+            "blue": blue,
+            "weight_class": normalize_weight_class(note),
+            "order": idx,
+            "status": status,
+            "source": {
+                "provider": "espn",
+                "event_id": str(event_id),
             },
-        }
+        })
 
-        out["fighters"][str(fid)] = fighter
-        ok += 1
-        print(f"✅ {i}/{len(ids)} {fighter.get('name','')} | recent={len(recent)}")
-        time.sleep(0.20)
+    return fights
 
-    OUT.write_text(json.dumps(out, indent=2), encoding="utf-8")
-    print(f"\n🔥 Updated {ok} fighters in {OUT}")
-    print(f"🔥 Total fighters stored: {len(out['fighters'])}")
+
+def is_record_line(line: str) -> bool:
+    return bool(re.fullmatch(r"\d{1,3}-\d{1,3}-\d{1,3}", line.strip()))
+
+
+def is_round_time_line(line: str) -> bool:
+    return bool(re.fullmatch(r"R\d+,\s*\d{1,2}:\d{2}", line.strip(), flags=re.IGNORECASE))
+
+
+def is_weight_class_line(line: str) -> bool:
+    s = line.strip().lower()
+    return s in KNOWN_WEIGHT_CLASSES or "weight" in s
+
+
+def is_name_candidate(line: str) -> bool:
+    s = line.strip()
+    if not s:
+        return False
+
+    lower = s.lower()
+
+    if lower in STOP_MARKERS or lower in SECTION_MARKERS:
+        return False
+    if lower in {"final", "draw", "sub", "ko/tko", "u dec", "s dec", "m dec", "dq", "nc"}:
+        return False
+    if lower.startswith("victory by"):
+        return False
+    if is_record_line(s) or is_round_time_line(s):
+        return False
+    if re.fullmatch(r"\d+/\d+", s):
+        return False
+    if re.fullmatch(r"\d+:\d+", s):
+        return False
+    if re.fullmatch(r"\d+(?:\|\d+)+", s.replace(" ", "")):
+        return False
+    if len(s) > 40:
+        return False
+    if not re.fullmatch(r"[A-Za-zÀ-ÿ0-9'\-\. ]+", s):
+        return False
+    return True
+
+
+def extract_profile_ids_in_order(soup: BeautifulSoup) -> List[str]:
+    ids: List[str] = []
+    seen = set()
+
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        match = re.search(r"/mma/fighter/_/id/(\d+)", href)
+        if not match:
+            continue
+        fighter_id = match.group(1)
+        if fighter_id in seen:
+            continue
+        seen.add(fighter_id)
+        ids.append(fighter_id)
+
+    return ids
+
+
+def extract_clean_lines(soup: BeautifulSoup) -> List[str]:
+    raw_lines = [line.strip() for line in soup.get_text("\n").splitlines()]
+    return [line for line in raw_lines if line]
+
+
+def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
+    html = get_html(FIGHTCENTER_URL.format(event_id=event_id))
+    if not html:
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    lines = extract_clean_lines(soup)
+    profile_ids = extract_profile_ids_in_order(soup)
+    profile_idx = 0
+
+    fights: List[Dict[str, Any]] = []
+    idx = 1
+    i = 0
+
+    while i < len(lines):
+        lower = lines[i].lower()
+        if lower in SECTION_MARKERS:
+            break
+        i += 1
+
+    while i < len(lines):
+        line = lines[i].strip()
+        lower = line.lower()
+
+        if lower in STOP_MARKERS:
+            break
+
+        if lower in SECTION_MARKERS:
+            i += 1
+            continue
+
+        if not is_weight_class_line(line):
+            i += 1
+            continue
+
+        weight_class = line
+        block: List[str] = []
+        j = i + 1
+
+        while j < len(lines):
+            nxt = lines[j].strip()
+            nxt_lower = nxt.lower()
+
+            if nxt_lower in STOP_MARKERS:
+                break
+            if nxt_lower in SECTION_MARKERS:
+                break
+            if is_weight_class_line(nxt):
+                break
+
+            block.append(nxt)
+            j += 1
+
+        name_positions: List[int] = []
+        for k in range(len(block) - 1):
+            if is_name_candidate(block[k]) and is_record_line(block[k + 1]):
+                name_positions.append(k)
+
+        if len(name_positions) >= 2:
+            red_name = block[name_positions[0]].strip()
+            blue_name = block[name_positions[1]].strip()
+
+            red_id = profile_ids[profile_idx] if profile_idx < len(profile_ids) else ""
+            if profile_idx < len(profile_ids):
+                profile_idx += 1
+
+            blue_id = profile_ids[profile_idx] if profile_idx < len(profile_ids) else ""
+            if profile_idx < len(profile_ids):
+                profile_idx += 1
+
+            fight_status = "scheduled"
+            block_lower = [b.lower() for b in block]
+            if "final" in block_lower:
+                fight_status = "completed"
+
+            fights.append({
+                "id": f"{event_id}-{idx}",
+                "bout": build_bout_name(red_name, blue_name),
+                "red": {
+                    "name": red_name,
+                    "espn_id": red_id,
+                },
+                "blue": {
+                    "name": blue_name,
+                    "espn_id": blue_id,
+                },
+                "weight_class": normalize_weight_class(weight_class),
+                "order": idx,
+                "status": fight_status,
+                "source": {
+                    "provider": "espn",
+                    "event_id": str(event_id),
+                },
+            })
+            idx += 1
+
+        i = j
+
+    return fights
+
+
+def fill_missing_ids_from_html(event_id: str, fights: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    if not fights:
+        return fights
+
+    html_fights = parse_fights_from_fightcenter_html(event_id)
+    if not html_fights:
+        return fights
+
+    html_map = {}
+    for hf in html_fights:
+        key = hf.get("bout", "").strip().lower()
+        if key:
+            html_map[key] = hf
+
+    for fight in fights:
+        key = fight.get("bout", "").strip().lower()
+        if not key or key not in html_map:
+            continue
+
+        hf = html_map[key]
+
+        if not (fight.get("red") or {}).get("espn_id"):
+            fight.setdefault("red", {})["espn_id"] = (hf.get("red") or {}).get("espn_id", "")
+
+        if not (fight.get("blue") or {}).get("espn_id"):
+            fight.setdefault("blue", {})["espn_id"] = (hf.get("blue") or {}).get("espn_id", "")
+
+    return fights
+
+
+def fetch_event_fights(event_id: str, session: requests.Session) -> List[Dict[str, Any]]:
+    fights = fetch_fights_from_core_event(event_id, session)
+    if fights:
+        return fill_missing_ids_from_html(event_id, fights)
+
+    fights = fetch_fights_from_site_summary(event_id, session)
+    if fights:
+        return fill_missing_ids_from_html(event_id, fights)
+
+    return parse_fights_from_fightcenter_html(event_id)
+
+
+def main() -> None:
+    payload = load_events()
+    events = payload.get("events", []) or []
+
+    if not events:
+        print("No events found in ufc/data/events.json")
+        return
+
+    session = requests.Session()
+    session.headers.update(HEADERS)
+
+    updated_count = 0
+
+    for ev in events:
+        event_id = str(((ev.get("source") or {}).get("event_id")) or "").strip()
+        name = str(ev.get("name") or "").strip()
+
+        if not event_id:
+            print(f"Skipping {name or '(unnamed event)'}: missing source.event_id")
+            continue
+
+        fights = fetch_event_fights(event_id, session)
+        ev["fights"] = fights
+
+        if fights:
+            updated_count += 1
+            with_ids = 0
+            total_sides = 0
+            for f in fights:
+                for side in ("red", "blue"):
+                    total_sides += 1
+                    if (f.get(side) or {}).get("espn_id"):
+                        with_ids += 1
+            print(f"Updated {name}: {len(fights)} fights | fighter IDs: {with_ids}/{total_sides}")
+        else:
+            print(f"No fights found for {name} ({event_id})")
+
+        time.sleep(0.25)
+
+    save_events(payload)
+    print(f"Done. Populated fight cards for {updated_count} event(s).")
 
 
 if __name__ == "__main__":
