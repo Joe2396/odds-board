@@ -35,23 +35,27 @@ jobs:
       - name: Install deps
         run: pip install requests beautifulsoup4
 
-      # 1) Build hub first from current events.json
+      # 1) Build hub from current events.json
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
 
-      # 2) Enrich events.json with fight cards from ESPN
+      # 2) Add recent completed UFC events back into events.json
+      - name: Fetch recent past UFC events
+        run: python scripts/fetch_recent_past_events.py
+
+      # 3) Try to populate fight cards for all events in events.json
       - name: Fetch ESPN event fight cards
         run: python scripts/fetch_espn_event_fightcards.py
 
-      # 3) Generate event pages after fight cards are populated
+      # 4) Generate event pages after events.json has been enriched
       - name: Generate UFC events
         run: python scripts/generate_ufc_events.py
 
-      # 4) Fetch fighter stats
+      # 5) Fetch fighter stats from ESPN using fighters found in events.json
       - name: Fetch ESPN fighter stats
         run: python scripts/fetch_espn_fighter_details.py
 
-      # Temporarily disabled until events.json fight data is confirmed stable downstream
+      # Temporarily disabled until enriched events/fights are confirmed stable downstream
       # - name: Build fighter recent fights
       #   run: python scripts/build_fighter_recent_fights.py
 
@@ -59,10 +63,11 @@ jobs:
       # - name: Generate UFC fights
       #   run: python scripts/generate_ufc_fights.py
 
+      # 6) Generate fighter pages
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
 
-      # 5) Commit generated output
+      # 7) Commit generated output
       - name: Commit generated pages
         run: |
           git config user.name "ufc-bot"
