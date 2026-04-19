@@ -8,7 +8,7 @@ import requests
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 EVENTS_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
 
-# Updated ESPN web API endpoint
+# ESPN web API endpoint
 SCHEDULE_URL = "https://site.web.api.espn.com/apis/common/v3/sports/mma/ufc/schedule"
 
 HEADERS = {
@@ -53,16 +53,18 @@ def event_location(ev):
 
 
 def build_event(ev):
+    event_id = str(ev.get("id") or "").strip()
+
     return {
-        "id": str(ev.get("id") or "").strip(),
-        "slug": str(ev.get("id") or "").strip(),
+        "id": event_id,
+        "slug": event_id,
         "name": ev.get("name"),
         "date": str(ev.get("date") or "")[:10],
         "location": event_location(ev),
         "status": "completed",
         "source": {
             "provider": "espn",
-            "event_id": str(ev.get("id") or "").strip()
+            "event_id": event_id
         },
         "fights": []
     }
@@ -80,29 +82,26 @@ def main():
     past_events = []
     seen_ids = {str(ev.get("id") or "").strip() for ev in existing_events}
 
-    # ESPN web schedule structure usually nests events under content.schedule
-    schedule_blocks = ((schedule.get("content") or {}).get("schedule") or [])
+    # ESPN schedule events live at top-level "events"
+    events_list = schedule.get("events") or []
 
-    for block in schedule_blocks:
-        for ev in block.get("events", []) or []:
-            status = str(((ev.get("status") or {}).get("type") or {}).get("state") or "").lower()
+    for ev in events_list:
+        status = str(((ev.get("status") or {}).get("type") or {}).get("state") or "").lower()
 
-            if status != "post":
-                continue
+        if status != "post":
+            continue
 
-            built = build_event(ev)
-            if not built["id"] or built["id"] in seen_ids:
-                continue
+        built = build_event(ev)
+        if not built["id"] or built["id"] in seen_ids:
+            continue
 
-            past_events.append(built)
+        past_events.append(built)
 
     # Keep only the most recent 10 completed events
     past_events = past_events[:10]
 
-    # Merge past events first, then keep your existing current/future events
-    merged = past_events + existing_events
-
-    payload["events"] = merged
+    # Merge: recent completed events first, then your existing current/future events
+    payload["events"] = past_events + existing_events
     payload["generated_at"] = datetime.now(timezone.utc).isoformat()
 
     save_events(payload)
