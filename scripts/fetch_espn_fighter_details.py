@@ -17,6 +17,11 @@ RECENT_ENDPOINTS = [
     "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}/eventlog?limit=10",
 ]
 
+ATHLETES_LIST_ENDPOINTS = [
+    "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/athletes",
+    "https://site.web.api.espn.com/apis/common/v3/sports/mma/ufc/athletes",
+]
+
 
 def resolve(session: requests.Session, obj):
     """Resolve ESPN core $ref objects."""
@@ -89,6 +94,64 @@ def load_ids():
     print(f"Found {len(ids)} unique fighter IDs from scheduled fights")
 
     return sorted(ids)
+
+
+def fetch_top_fighters(session: requests.Session):
+    """
+    Fallback / booster source to expand fighter coverage when fight cards
+    do not expose all athlete IDs reliably.
+    """
+    found = []
+
+    for url in ATHLETES_LIST_ENDPOINTS:
+        try:
+            r = session.get(url, timeout=20)
+        except Exception:
+            continue
+
+        if r.status_code != 200:
+            continue
+
+        try:
+            data = r.json()
+        except Exception:
+            continue
+
+        athletes = []
+
+        if isinstance(data.get("athletes"), list):
+            athletes = data["athletes"]
+        elif isinstance(data.get("items"), list):
+            athletes = data["items"]
+        elif isinstance((data.get("sports") or [{}])[0].get("leagues"), list):
+            # defensive fallback for alternate shapes
+            leagues = (data.get("sports") or [{}])[0].get("leagues") or []
+            for league in leagues:
+                if isinstance(league.get("athletes"), list):
+                    athletes = league["athletes"]
+                    break
+
+        for a in athletes:
+            athlete = a.get("athlete", a) if isinstance(a, dict) else {}
+            fid = str(athlete.get("id") or "").strip()
+            name = athlete.get("displayName") or athlete.get("fullName")
+            if fid:
+                found.append({"id": fid, "name": name})
+
+        if found:
+            break
+
+    # dedupe while preserving order
+    deduped = []
+    seen = set()
+    for f in found:
+        if f["id"] in seen:
+            continue
+        seen.add(f["id"])
+        deduped.append(f)
+
+    print(f"Found {len(deduped)} extra fighters from ESPN athlete list")
+    return deduped
 
 
 def stats_list_to_dict(item: dict) -> dict:
@@ -290,16 +353,24 @@ def main():
     if not EVENTS.exists():
         raise SystemExit(f"Missing {EVENTS}")
 
-    ids = load_ids()
     existing = load_existing_fighters()
+
+    s = requests.Session()
+    s.headers.update(HEADERS)
+
+    ids = set(load_ids())
+
+    extra_fighters = fetch_top_fighters(s)
+    for f in extra_fighters:
+        if f.get("id"):
+            ids.add(str(f["id"]).strip())
+
+    ids = sorted(ids)
 
     out = {
         "generated_at": time.time(),
         "fighters": existing.get("fighters", {}).copy(),
     }
-
-    s = requests.Session()
-    s.headers.update(HEADERS)
 
     ok = 0
     for i, fid in enumerate(ids, 1):
@@ -339,10 +410,10 @@ def main():
         out["fighters"][str(fid)] = fighter
         ok += 1
         print(f"✅ {i}/{len(ids)} {fighter.get('name','')} | recent={len(recent)}")
-        time.sleep(0.25)
+        time.sleep(0.20)
 
     OUT.write_text(json.dumps(out, indent=2), encoding="utf-8")
-    print(f"\n🔥 Updated {ok} scheduled fighters in {OUT}")
+    print(f"\n🔥 Updated {ok} fighters in {OUT}")
     print(f"🔥 Total fighters stored: {len(out['fighters'])}")
 
 
