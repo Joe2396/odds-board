@@ -10,15 +10,13 @@ OUT = ROOT / "ufc" / "data" / "fighters.json"
 BASE_ATHLETE = "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}"
 HEADERS = {"User-Agent": "ufc-lab-bot/1.0"}
 
-# Try a couple "recent fights" endpoints (ESPN uses different shapes depending on sport/product)
 RECENT_ENDPOINTS = [
-    # Sometimes exists for athletes (common API family used by fightcenter)
     "https://site.web.api.espn.com/apis/common/v3/sports/mma/ufc/athletes/{}/gamelog",
     "https://site.web.api.espn.com/apis/common/v3/sports/mma/ufc/athletes/{}/eventlog",
-    # Core API sometimes exposes per-athlete events/eventlog
     "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}/events?limit=10",
     "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}/eventlog?limit=10",
 ]
+
 
 def resolve(session: requests.Session, obj):
     """Resolve ESPN core $ref objects."""
@@ -32,6 +30,7 @@ def resolve(session: requests.Session, obj):
             return None
     return obj
 
+
 def inches_to_cm(x):
     try:
         if x is None:
@@ -40,16 +39,57 @@ def inches_to_cm(x):
     except Exception:
         return None
 
+
+def load_existing_fighters():
+    if not OUT.exists():
+        return {"generated_at": time.time(), "fighters": {}}
+
+    try:
+        return json.loads(OUT.read_text(encoding="utf-8"))
+    except Exception:
+        return {"generated_at": time.time(), "fighters": {}}
+
+
+def is_upcoming_event(event):
+    status = str(event.get("status") or "").strip().lower()
+    return status in {"upcoming", "today", "scheduled"}
+
+
+def is_scheduled_fight(fight):
+    status = str(fight.get("status") or "").strip().lower()
+    return status in {"scheduled", "in_progress", "upcoming", ""}
+
+
 def load_ids():
     data = json.loads(EVENTS.read_text(encoding="utf-8"))
     ids = set()
+
+    upcoming_event_count = 0
+    upcoming_fight_count = 0
+
     for e in data.get("events", []):
+        if not is_upcoming_event(e):
+            continue
+
+        upcoming_event_count += 1
+
         for f in e.get("fights", []):
+            if not is_scheduled_fight(f):
+                continue
+
+            upcoming_fight_count += 1
+
             for side in ("red", "blue"):
                 v = (f.get(side) or {}).get("espn_id")
                 if v:
                     ids.add(str(v).strip())
+
+    print(f"Found {upcoming_event_count} upcoming events")
+    print(f"Found {upcoming_fight_count} scheduled fights")
+    print(f"Found {len(ids)} unique fighter IDs from scheduled fights")
+
     return sorted(ids)
+
 
 def stats_list_to_dict(item: dict) -> dict:
     out = {}
@@ -62,11 +102,15 @@ def stats_list_to_dict(item: dict) -> dict:
                 out[s["name"]] = s.get("value")
     return out
 
+
 def compute_methods_from_overall_stats(overall_item: dict) -> dict:
     methods = {
-        "ko_tko_w": 0, "ko_tko_l": 0,
-        "sub_w": 0, "sub_l": 0,
-        "dec_w": 0, "dec_l": 0,
+        "ko_tko_w": 0,
+        "ko_tko_l": 0,
+        "sub_w": 0,
+        "sub_l": 0,
+        "dec_w": 0,
+        "dec_l": 0,
     }
     if not isinstance(overall_item, dict):
         return methods
@@ -90,6 +134,7 @@ def compute_methods_from_overall_stats(overall_item: dict) -> dict:
     methods["sub_l"] = sub_l
     methods["dec_l"] = dec_l
     return methods
+
 
 def extract_records(session: requests.Session, athlete_payload: dict):
     records_container = resolve(session, athlete_payload.get("records"))
@@ -121,6 +166,7 @@ def extract_records(session: requests.Session, athlete_payload: dict):
     methods = compute_methods_from_overall_stats(overall_item)
     return overall_summary, methods, records_container
 
+
 def _pick(d, *keys):
     cur = d
     for k in keys:
@@ -129,6 +175,7 @@ def _pick(d, *keys):
         else:
             return None
     return cur
+
 
 def fetch_recent_fights(session: requests.Session, fid: str, limit: int = 10):
     """
@@ -148,33 +195,29 @@ def fetch_recent_fights(session: requests.Session, fid: str, limit: int = 10):
         data = r.json()
         fights = []
 
-        # Common patterns we might see:
-        # - data["events"] list
-        # - data["items"] list
-        # - data["gamelog"]["events"] etc
         candidates = []
         if isinstance(data.get("events"), list):
             candidates = data["events"]
         elif isinstance(data.get("items"), list):
             candidates = data["items"]
         else:
-            # try nested possibilities
             gl = data.get("gamelog") or data.get("eventlog") or {}
             if isinstance(gl, dict) and isinstance(gl.get("events"), list):
                 candidates = gl["events"]
 
-        # Try to normalize each entry
         for ev in candidates:
-            # Some entries are $ref objects
             ev = resolve(session, ev) or ev
             if not isinstance(ev, dict):
                 continue
 
-            # Try to find opponent/result fields (varies by shape)
             date = ev.get("date") or ev.get("startDate") or _pick(ev, "event", "date")
-            event_name = ev.get("name") or ev.get("shortName") or _pick(ev, "event", "name") or _pick(ev, "event", "shortName")
+            event_name = (
+                ev.get("name")
+                or ev.get("shortName")
+                or _pick(ev, "event", "name")
+                or _pick(ev, "event", "shortName")
+            )
 
-            # competition / competitors
             opponent = None
             result = None
             method = None
@@ -188,28 +231,26 @@ def fetch_recent_fights(session: requests.Session, fid: str, limit: int = 10):
                 comp = ev["competitions"][0]
 
             if isinstance(comp, dict):
-                # attempt competitors list
                 competitors = comp.get("competitors")
                 if isinstance(competitors, list) and competitors:
-                    # find "me" by athlete id
                     me = None
                     opp = None
                     for c in competitors:
                         c = resolve(session, c) or c
-                        cid = str(_pick(c, "athlete", "id") or _pick(c, "athlete", "$ref") or "")
-                        # cid matching is hard; prefer explicit id field if present
                         if str(c.get("id") or "") == fid or str(_pick(c, "athlete", "id") or "") == fid:
                             me = c
                         else:
                             opp = c
 
                     if opp:
-                        opponent = _pick(opp, "athlete", "displayName") or _pick(opp, "athlete", "fullName") or opp.get("displayName")
+                        opponent = (
+                            _pick(opp, "athlete", "displayName")
+                            or _pick(opp, "athlete", "fullName")
+                            or opp.get("displayName")
+                        )
 
-                    # outcome fields
                     if me:
                         winner = me.get("winner")
-                        # some shapes: outcome -> "W"/"L"
                         outc = me.get("outcome") or me.get("result")
                         if isinstance(outc, dict):
                             result = outc.get("type") or outc.get("displayValue")
@@ -218,8 +259,11 @@ def fetch_recent_fights(session: requests.Session, fid: str, limit: int = 10):
                         elif isinstance(winner, bool):
                             result = "W" if winner else "L"
 
-                # method / round / time (if present)
-                method = _pick(comp, "status", "type", "detail") or _pick(comp, "status", "result") or _pick(comp, "status", "type", "name")
+                method = (
+                    _pick(comp, "status", "type", "detail")
+                    or _pick(comp, "status", "result")
+                    or _pick(comp, "status", "type", "name")
+                )
                 rnd = _pick(comp, "status", "period") or _pick(comp, "status", "periods")
                 tme = _pick(comp, "status", "displayClock") or _pick(comp, "status", "clock")
 
@@ -241,12 +285,18 @@ def fetch_recent_fights(session: requests.Session, fid: str, limit: int = 10):
 
     return []
 
+
 def main():
     if not EVENTS.exists():
         raise SystemExit(f"Missing {EVENTS}")
 
     ids = load_ids()
-    out = {"generated_at": time.time(), "fighters": {}}
+    existing = load_existing_fighters()
+
+    out = {
+        "generated_at": time.time(),
+        "fighters": existing.get("fighters", {}).copy(),
+    }
 
     s = requests.Session()
     s.headers.update(HEADERS)
@@ -267,7 +317,6 @@ def main():
         p = r.json()
 
         record_summary, methods, records_container = extract_records(s, p)
-
         recent = fetch_recent_fights(s, fid, limit=10)
 
         fighter = {
@@ -293,7 +342,9 @@ def main():
         time.sleep(0.25)
 
     OUT.write_text(json.dumps(out, indent=2), encoding="utf-8")
-    print(f"\n🔥 Wrote {ok} fighters to {OUT}")
+    print(f"\n🔥 Updated {ok} scheduled fighters in {OUT}")
+    print(f"🔥 Total fighters stored: {len(out['fighters'])}")
+
 
 if __name__ == "__main__":
     main()
