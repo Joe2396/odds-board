@@ -17,11 +17,6 @@ RECENT_ENDPOINTS = [
     "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/{}/eventlog?limit=10",
 ]
 
-ATHLETES_LIST_ENDPOINTS = [
-    "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/athletes",
-    "https://site.web.api.espn.com/apis/common/v3/sports/mma/ufc/athletes",
-]
-
 
 def resolve(session: requests.Session, obj):
     """Resolve ESPN core $ref objects."""
@@ -98,12 +93,32 @@ def load_ids():
 
 def fetch_top_fighters(session: requests.Session):
     """
-    Fallback / booster source to expand fighter coverage when fight cards
-    do not expose all athlete IDs reliably.
+    Pull a larger UFC fighter pool using ESPN search.
+    This is more reliable than the athlete list endpoint for coverage.
     """
-    found = []
+    fighters = []
+    seen = set()
 
-    for url in ATHLETES_LIST_ENDPOINTS:
+    search_terms = [
+        "ufc",
+        "mma",
+        "fighter",
+        "champion",
+        "lightweight",
+        "welterweight",
+        "middleweight",
+        "featherweight",
+        "bantamweight",
+        "flyweight",
+        "heavyweight",
+        "women strawweight",
+        "women flyweight",
+        "women bantamweight",
+    ]
+
+    for term in search_terms:
+        url = f"https://site.api.espn.com/apis/site/v2/search?q={term}"
+
         try:
             r = session.get(url, timeout=20)
         except Exception:
@@ -117,41 +132,30 @@ def fetch_top_fighters(session: requests.Session):
         except Exception:
             continue
 
-        athletes = []
+        # ESPN search result shapes vary, so search broadly
+        result_groups = data.get("results", []) or []
 
-        if isinstance(data.get("athletes"), list):
-            athletes = data["athletes"]
-        elif isinstance(data.get("items"), list):
-            athletes = data["items"]
-        elif isinstance((data.get("sports") or [{}])[0].get("leagues"), list):
-            # defensive fallback for alternate shapes
-            leagues = (data.get("sports") or [{}])[0].get("leagues") or []
-            for league in leagues:
-                if isinstance(league.get("athletes"), list):
-                    athletes = league["athletes"]
-                    break
+        for group in result_groups:
+            contents = group.get("contents", []) or []
+            for entry in contents:
+                athlete = entry.get("athlete") or entry.get("player") or entry
 
-        for a in athletes:
-            athlete = a.get("athlete", a) if isinstance(a, dict) else {}
-            fid = str(athlete.get("id") or "").strip()
-            name = athlete.get("displayName") or athlete.get("fullName")
-            if fid:
-                found.append({"id": fid, "name": name})
+                if not isinstance(athlete, dict):
+                    continue
 
-        if found:
-            break
+                fid = str(athlete.get("id") or "").strip()
+                name = athlete.get("displayName") or athlete.get("fullName")
 
-    # dedupe while preserving order
-    deduped = []
-    seen = set()
-    for f in found:
-        if f["id"] in seen:
-            continue
-        seen.add(f["id"])
-        deduped.append(f)
+                if not fid or fid in seen:
+                    continue
 
-    print(f"Found {len(deduped)} extra fighters from ESPN athlete list")
-    return deduped
+                seen.add(fid)
+                fighters.append({"id": fid, "name": name})
+
+        time.sleep(0.15)
+
+    print(f"Found {len(fighters)} extra fighters from ESPN search")
+    return fighters
 
 
 def stats_list_to_dict(item: dict) -> dict:
@@ -246,16 +250,22 @@ def fetch_recent_fights(session: requests.Session, fid: str, limit: int = 10):
       [{"date":"YYYY-MM-DD", "opponent":"...", "result":"W/L/D", "method":"DEC/KO/SUB", "round":"", "time":"", "event":"..."}]
     """
     fid = str(fid).strip()
+
     for tmpl in RECENT_ENDPOINTS:
         url = tmpl.format(fid)
         try:
             r = session.get(url, timeout=20)
         except Exception:
             continue
+
         if r.status_code != 200:
             continue
 
-        data = r.json()
+        try:
+            data = r.json()
+        except Exception:
+            continue
+
         fights = []
 
         candidates = []
@@ -385,7 +395,11 @@ def main():
             print("⚠️", fid, f"HTTP {r.status_code}")
             continue
 
-        p = r.json()
+        try:
+            p = r.json()
+        except Exception:
+            print("⚠️", fid, "invalid JSON")
+            continue
 
         record_summary, methods, records_container = extract_records(s, p)
         recent = fetch_recent_fights(s, fid, limit=10)
