@@ -39,15 +39,15 @@ jobs:
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
 
-      # 2) Add recent completed UFC events back into events.json
+      # 2) Add recent completed UFC events into events.json
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
 
-      # 3) Try to populate fight cards for all events in events.json
+      # 3) Populate fight cards for events in events.json
       - name: Fetch ESPN event fight cards
         run: python scripts/fetch_espn_event_fightcards.py
 
-      # 4) Generate event pages after events.json has been enriched
+      # 4) Generate event pages after fight cards are populated
       - name: Generate UFC events
         run: python scripts/generate_ufc_events.py
 
@@ -55,19 +55,19 @@ jobs:
       - name: Fetch ESPN fighter stats
         run: python scripts/fetch_espn_fighter_details.py
 
-      # Temporarily disabled until enriched events/fights are confirmed stable downstream
+      # Temporarily disabled until fighter history/recent fights are stable again
       # - name: Build fighter recent fights
       #   run: python scripts/build_fighter_recent_fights.py
 
-      # Temporarily disabled until fight-page generation is confirmed working again
-      # - name: Generate UFC fights
-      #   run: python scripts/generate_ufc_fights.py
+      # 6) Generate fight pages so event links stop 404ing
+      - name: Generate UFC fights
+        run: python scripts/generate_ufc_fights.py
 
-      # 6) Generate fighter pages
+      # 7) Generate fighter pages
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
 
-      # 7) Commit generated output
+      # 8) Commit generated output
       - name: Commit generated pages
         run: |
           git config user.name "ufc-bot"
