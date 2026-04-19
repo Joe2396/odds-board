@@ -55,11 +55,11 @@ jobs:
       - name: Fetch ESPN fighter stats
         run: python scripts/fetch_espn_fighter_details.py
 
-      # Temporarily disabled until fighter history/recent fights are stable again
+      # Temporarily disabled until fighter history / recent fights are stable again
       # - name: Build fighter recent fights
       #   run: python scripts/build_fighter_recent_fights.py
 
-      # 6) Generate fight pages so event links stop 404ing
+      # 6) Generate fight pages so event links do not 404
       - name: Generate UFC fights
         run: python scripts/generate_ufc_fights.py
 
@@ -79,8 +79,5 @@ jobs:
           # Commit if anything changed
           git commit -m "Auto-generate UFC pages" || echo "No changes to commit"
 
-          # Avoid non-fast-forward push failures
-          git pull --rebase origin main
-
-          # Push back to main
-          git push origin main
+          # Force push generated output to avoid rebase conflicts on generated files
+          git push origin main --force
