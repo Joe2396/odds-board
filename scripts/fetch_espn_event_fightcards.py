@@ -109,8 +109,10 @@ def extract_id_from_ref(ref: Optional[str]) -> str:
 
 def extract_athlete_id(obj: Optional[Dict[str, Any]]) -> str:
     """
-    ESPN sometimes gives a direct athlete id, and sometimes only a $ref/href.
-    This helper tries both.
+    ESPN sometimes gives:
+      {"id": "..."}
+    and sometimes:
+      {"$ref": ".../athletes/12345"}
     """
     if not isinstance(obj, dict):
         return ""
@@ -122,12 +124,10 @@ def extract_athlete_id(obj: Optional[Dict[str, Any]]) -> str:
     for key in ("$ref", "href"):
         ref = obj.get(key)
         if isinstance(ref, str):
-            # Prefer athlete-specific extraction
             m = re.search(r"/athletes/(\d+)", ref)
             if m:
                 return m.group(1)
 
-            # Fallback: final numeric segment
             fallback = extract_id_from_ref(ref)
             if fallback:
                 return fallback
@@ -147,7 +147,48 @@ def build_bout_name(red_name: str, blue_name: str) -> str:
     return red_name or blue_name or "TBD vs TBD"
 
 
-def parse_competition_from_core(comp: Dict[str, Any], idx: int, event_id: str) -> Optional[Dict[str, Any]]:
+def extract_fighter(competitor: Dict[str, Any], session: requests.Session) -> Dict[str, str]:
+    """
+    More robust competitor parsing:
+    - direct athlete.id
+    - direct competitor.id
+    - athlete $ref
+    - resolved athlete payload
+    """
+    competitor = competitor or {}
+    competitor = get_ref_json(competitor.get("$ref")) or competitor
+
+    athlete_obj = competitor.get("athlete") or {}
+    if isinstance(athlete_obj, dict):
+        athlete_payload = get_ref_json(athlete_obj.get("$ref")) if athlete_obj.get("$ref") else None
+    else:
+        athlete_obj = {}
+        athlete_payload = None
+
+    fid = (
+        extract_athlete_id(athlete_payload)
+        or extract_athlete_id(athlete_obj)
+        or extract_athlete_id(competitor)
+        or str(competitor.get("id") or "").strip()
+    )
+
+    name = (
+        (athlete_payload or {}).get("displayName")
+        or (athlete_payload or {}).get("fullName")
+        or athlete_obj.get("displayName")
+        or athlete_obj.get("fullName")
+        or competitor.get("displayName")
+        or competitor.get("shortName")
+        or ""
+    )
+
+    return {
+        "name": str(name).strip(),
+        "espn_id": str(fid).strip(),
+    }
+
+
+def parse_competition_from_core(comp: Dict[str, Any], idx: int, event_id: str, session: requests.Session) -> Optional[Dict[str, Any]]:
     comp_id = str(comp.get("id") or extract_id_from_ref(comp.get("$ref"))).strip()
     competitors_ref = comp.get("competitors", {}).get("$ref") if isinstance(comp.get("competitors"), dict) else None
     status_ref = comp.get("status", {}).get("$ref") if isinstance(comp.get("status"), dict) else None
@@ -160,46 +201,10 @@ def parse_competition_from_core(comp: Dict[str, Any], idx: int, event_id: str) -
     blue = {"name": "", "espn_id": ""}
 
     if len(competitors_items) >= 1:
-        c1 = competitors_items[0]
-        athlete_obj = c1.get("athlete", {}) if isinstance(c1.get("athlete"), dict) else {}
-        athlete_payload = get_ref_json(athlete_obj.get("$ref")) if athlete_obj.get("$ref") else None
-
-        red_name = (
-            (athlete_payload or {}).get("displayName")
-            or athlete_obj.get("displayName")
-            or c1.get("displayName")
-            or ""
-        )
-
-        red = {
-            "name": str(red_name).strip(),
-            "espn_id": (
-                extract_athlete_id(athlete_payload)
-                or extract_athlete_id(athlete_obj)
-                or extract_athlete_id(c1)
-            ),
-        }
+        red = extract_fighter(competitors_items[0], session)
 
     if len(competitors_items) >= 2:
-        c2 = competitors_items[1]
-        athlete_obj = c2.get("athlete", {}) if isinstance(c2.get("athlete"), dict) else {}
-        athlete_payload = get_ref_json(athlete_obj.get("$ref")) if athlete_obj.get("$ref") else None
-
-        blue_name = (
-            (athlete_payload or {}).get("displayName")
-            or athlete_obj.get("displayName")
-            or c2.get("displayName")
-            or ""
-        )
-
-        blue = {
-            "name": str(blue_name).strip(),
-            "espn_id": (
-                extract_athlete_id(athlete_payload)
-                or extract_athlete_id(athlete_obj)
-                or extract_athlete_id(c2)
-            ),
-        }
+        blue = extract_fighter(competitors_items[1], session)
 
     weight_class = ""
     if notes_ref:
@@ -235,7 +240,7 @@ def parse_competition_from_core(comp: Dict[str, Any], idx: int, event_id: str) -
     }
 
 
-def fetch_fights_from_core_event(event_id: str) -> List[Dict[str, Any]]:
+def fetch_fights_from_core_event(event_id: str, session: requests.Session) -> List[Dict[str, Any]]:
     event_url = CORE_EVENT_URL.format(event_id=event_id)
     event_payload = get_json(event_url)
     if not event_payload:
@@ -251,7 +256,7 @@ def fetch_fights_from_core_event(event_id: str) -> List[Dict[str, Any]]:
 
     fights: List[Dict[str, Any]] = []
     for idx, comp in enumerate(competitions, start=1):
-        parsed = parse_competition_from_core(comp, idx, event_id)
+        parsed = parse_competition_from_core(comp, idx, event_id, session)
         if parsed:
             fights.append(parsed)
         time.sleep(0.10)
@@ -259,7 +264,7 @@ def fetch_fights_from_core_event(event_id: str) -> List[Dict[str, Any]]:
     return fights
 
 
-def fetch_fights_from_site_summary(event_id: str) -> List[Dict[str, Any]]:
+def fetch_fights_from_site_summary(event_id: str, session: requests.Session) -> List[Dict[str, Any]]:
     summary_url = SITE_SUMMARY_URL.format(event_id=event_id)
     payload = get_json(summary_url)
     if not payload:
@@ -274,22 +279,10 @@ def fetch_fights_from_site_summary(event_id: str) -> List[Dict[str, Any]]:
         blue = {"name": "", "espn_id": ""}
 
         if len(competitors) >= 1:
-            c1 = competitors[0] or {}
-            athlete = c1.get("athlete", {}) or {}
-
-            red = {
-                "name": str(athlete.get("displayName") or c1.get("displayName") or "").strip(),
-                "espn_id": extract_athlete_id(athlete) or extract_athlete_id(c1),
-            }
+            red = extract_fighter(competitors[0], session)
 
         if len(competitors) >= 2:
-            c2 = competitors[1] or {}
-            athlete = c2.get("athlete", {}) or {}
-
-            blue = {
-                "name": str(athlete.get("displayName") or c2.get("displayName") or "").strip(),
-                "espn_id": extract_athlete_id(athlete) or extract_athlete_id(c2),
-            }
+            blue = extract_fighter(competitors[1], session)
 
         note = ""
         notes = comp.get("notes", []) or []
@@ -489,44 +482,46 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
 
 def fill_missing_ids_from_html(event_id: str, fights: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
-    If JSON endpoints returned fights but missed many athlete IDs, try to enrich
-    them from the public fightcenter page.
+    Use fight ORDER, not exact bout-name matching.
+    This is the key fix for cards where summary/core have fights but miss IDs.
     """
-    if not fights:
-        return fights
-
     html_fights = parse_fights_from_fightcenter_html(event_id)
     if not html_fights:
         return fights
 
-    html_map = {}
-    for hf in html_fights:
-        key = hf.get("bout", "").strip().lower()
-        if key:
-            html_map[key] = hf
+    min_len = min(len(fights), len(html_fights))
 
-    for fight in fights:
-        key = fight.get("bout", "").strip().lower()
-        if not key or key not in html_map:
-            continue
+    for i in range(min_len):
+        f = fights[i]
+        hf = html_fights[i]
 
-        hf = html_map[key]
+        if not (f.get("red") or {}).get("espn_id"):
+            f.setdefault("red", {})["espn_id"] = (hf.get("red") or {}).get("espn_id", "")
 
-        if not (fight.get("red") or {}).get("espn_id"):
-            fight.setdefault("red", {})["espn_id"] = (hf.get("red") or {}).get("espn_id", "")
+        if not (f.get("blue") or {}).get("espn_id"):
+            f.setdefault("blue", {})["espn_id"] = (hf.get("blue") or {}).get("espn_id", "")
 
-        if not (fight.get("blue") or {}).get("espn_id"):
-            fight.setdefault("blue", {})["espn_id"] = (hf.get("blue") or {}).get("espn_id", "")
+        if not (f.get("red") or {}).get("name"):
+            f.setdefault("red", {})["name"] = (hf.get("red") or {}).get("name", "")
+
+        if not (f.get("blue") or {}).get("name"):
+            f.setdefault("blue", {})["name"] = (hf.get("blue") or {}).get("name", "")
+
+        if not f.get("bout"):
+            f["bout"] = hf.get("bout", "")
+
+        if not f.get("weight_class"):
+            f["weight_class"] = hf.get("weight_class", "")
 
     return fights
 
 
-def fetch_event_fights(event_id: str) -> List[Dict[str, Any]]:
-    fights = fetch_fights_from_core_event(event_id)
+def fetch_event_fights(event_id: str, session: requests.Session) -> List[Dict[str, Any]]:
+    fights = fetch_fights_from_core_event(event_id, session)
     if fights:
         return fill_missing_ids_from_html(event_id, fights)
 
-    fights = fetch_fights_from_site_summary(event_id)
+    fights = fetch_fights_from_site_summary(event_id, session)
     if fights:
         return fill_missing_ids_from_html(event_id, fights)
 
@@ -541,6 +536,9 @@ def main() -> None:
         print("No events found in ufc/data/events.json")
         return
 
+    session = requests.Session()
+    session.headers.update(HEADERS)
+
     updated_count = 0
 
     for ev in events:
@@ -551,7 +549,7 @@ def main() -> None:
             print(f"Skipping {name or '(unnamed event)'}: missing source.event_id")
             continue
 
-        fights = fetch_event_fights(event_id)
+        fights = fetch_event_fights(event_id, session)
         ev["fights"] = fights
 
         if fights:
