@@ -6,6 +6,7 @@ import time
 from typing import Any, Dict, List, Optional
 
 import requests
+from bs4 import BeautifulSoup
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 EVENTS_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
@@ -15,9 +16,46 @@ HEADERS = {
     "Accept": "application/json,text/plain,*/*",
 }
 
-# ESPN event JSON pattern commonly reachable from event IDs
 CORE_EVENT_URL = "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/events/{event_id}"
 SITE_SUMMARY_URL = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/summary?event={event_id}"
+FIGHTCENTER_URL = "https://www.espn.com/mma/fightcenter/_/id/{event_id}/league/ufc"
+
+STOP_MARKERS = {
+    "latest videos",
+    "mma news",
+    "all mma news",
+    "latest news",
+    "title fights",
+    "racing positions",
+    "quick links",
+}
+
+SECTION_MARKERS = {
+    "main card - final",
+    "prelims - final",
+    "preliminary card - final",
+    "main card",
+    "prelims",
+    "preliminary card",
+}
+
+KNOWN_WEIGHT_CLASSES = {
+    "heavyweight",
+    "light heavyweight",
+    "middleweight",
+    "welterweight",
+    "lightweight",
+    "featherweight",
+    "bantamweight",
+    "flyweight",
+    "women's bantamweight",
+    "women's featherweight",
+    "women's flyweight",
+    "women's strawweight",
+    "women's atomweight",
+    "catch weight",
+    "open weight",
+}
 
 
 def load_events() -> Dict[str, Any]:
@@ -38,6 +76,15 @@ def get_json(url: str) -> Optional[Dict[str, Any]]:
         resp = requests.get(url, headers=HEADERS, timeout=20)
         resp.raise_for_status()
         return resp.json()
+    except Exception:
+        return None
+
+
+def get_html(url: str) -> Optional[str]:
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=20)
+        resp.raise_for_status()
+        return resp.text
     except Exception:
         return None
 
@@ -84,8 +131,6 @@ def parse_competition_from_core(comp: Dict[str, Any], idx: int, event_id: str) -
     red = {"name": "", "espn_id": ""}
     blue = {"name": "", "espn_id": ""}
 
-    # ESPN competitor order is not always guaranteed, but for your site
-    # a stable left/right mapping is fine.
     if len(competitors_items) >= 1:
         c1 = competitors_items[0]
         athlete_ref = c1.get("athlete", {}).get("$ref") if isinstance(c1.get("athlete"), dict) else None
@@ -157,7 +202,7 @@ def fetch_fights_from_core_event(event_id: str) -> List[Dict[str, Any]]:
         parsed = parse_competition_from_core(comp, idx, event_id)
         if parsed:
             fights.append(parsed)
-        time.sleep(0.15)
+        time.sleep(0.10)
 
     return fights
 
@@ -223,12 +268,190 @@ def fetch_fights_from_site_summary(event_id: str) -> List[Dict[str, Any]]:
     return fights
 
 
+def is_record_line(line: str) -> bool:
+    return bool(re.fullmatch(r"\d{1,3}-\d{1,3}-\d{1,3}", line.strip()))
+
+
+def is_round_time_line(line: str) -> bool:
+    return bool(re.fullmatch(r"R\d+,\s*\d{1,2}:\d{2}", line.strip(), flags=re.IGNORECASE))
+
+
+def is_weight_class_line(line: str) -> bool:
+    s = line.strip().lower()
+    return s in KNOWN_WEIGHT_CLASSES or "weight" in s
+
+
+def is_name_candidate(line: str) -> bool:
+    s = line.strip()
+    if not s:
+        return False
+    lower = s.lower()
+
+    if lower in STOP_MARKERS or lower in SECTION_MARKERS:
+        return False
+    if lower in {"final", "draw", "sub", "ko/tko", "u dec", "s dec", "m dec", "dq", "nc"}:
+        return False
+    if lower.startswith("victory by"):
+        return False
+    if is_record_line(s) or is_round_time_line(s):
+        return False
+    if re.fullmatch(r"\d+/\d+", s):
+        return False
+    if re.fullmatch(r"\d+:\d+", s):
+        return False
+    if re.fullmatch(r"\d+(?:\|\d+)+", s.replace(" ", "")):
+        return False
+    if len(s) > 40:
+        return False
+    if not re.fullmatch(r"[A-Za-zÀ-ÿ0-9'\-\. ]+", s):
+        return False
+    return True
+
+
+def next_nonempty(lines: List[str], start: int) -> str:
+    for i in range(start, len(lines)):
+        if lines[i].strip():
+            return lines[i].strip()
+    return ""
+
+
+def extract_profile_ids_in_order(soup: BeautifulSoup) -> List[str]:
+    ids: List[str] = []
+    seen = set()
+
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        match = re.search(r"/mma/fighter/_/id/(\d+)", href)
+        if not match:
+            continue
+        fighter_id = match.group(1)
+        if fighter_id in seen:
+            continue
+        seen.add(fighter_id)
+        ids.append(fighter_id)
+
+    return ids
+
+
+def extract_clean_lines(soup: BeautifulSoup) -> List[str]:
+    raw_lines = [line.strip() for line in soup.get_text("\n").splitlines()]
+    lines = [line for line in raw_lines if line]
+    return lines
+
+
+def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
+    html = get_html(FIGHTCENTER_URL.format(event_id=event_id))
+    if not html:
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    lines = extract_clean_lines(soup)
+    profile_ids = extract_profile_ids_in_order(soup)
+    profile_idx = 0
+
+    fights: List[Dict[str, Any]] = []
+    idx = 1
+    i = 0
+
+    # Start only once we hit the actual card area.
+    while i < len(lines):
+        lower = lines[i].lower()
+        if lower in SECTION_MARKERS:
+            break
+        i += 1
+
+    while i < len(lines):
+        line = lines[i].strip()
+        lower = line.lower()
+
+        if lower in STOP_MARKERS:
+            break
+
+        if lower in SECTION_MARKERS:
+            i += 1
+            continue
+
+        if not is_weight_class_line(line):
+            i += 1
+            continue
+
+        weight_class = line
+        block: List[str] = []
+        j = i + 1
+
+        while j < len(lines):
+            nxt = lines[j].strip()
+            nxt_lower = nxt.lower()
+
+            if nxt_lower in STOP_MARKERS:
+                break
+            if nxt_lower in SECTION_MARKERS:
+                break
+            if is_weight_class_line(nxt):
+                break
+
+            block.append(nxt)
+            j += 1
+
+        # Pick fighter names by looking for lines followed by a record line.
+        name_positions: List[int] = []
+        for k in range(len(block) - 1):
+            if is_name_candidate(block[k]) and is_record_line(block[k + 1]):
+                name_positions.append(k)
+
+        if len(name_positions) >= 2:
+            red_name = block[name_positions[0]].strip()
+            blue_name = block[name_positions[1]].strip()
+
+            red_id = profile_ids[profile_idx] if profile_idx < len(profile_ids) else ""
+            if profile_idx < len(profile_ids):
+                profile_idx += 1
+
+            blue_id = profile_ids[profile_idx] if profile_idx < len(profile_ids) else ""
+            if profile_idx < len(profile_ids):
+                profile_idx += 1
+
+            fight_status = "scheduled"
+            block_lower = [b.lower() for b in block]
+            if "final" in block_lower:
+                fight_status = "completed"
+
+            fights.append({
+                "id": f"{event_id}-{idx}",
+                "bout": build_bout_name(red_name, blue_name),
+                "red": {
+                    "name": red_name,
+                    "espn_id": red_id,
+                },
+                "blue": {
+                    "name": blue_name,
+                    "espn_id": blue_id,
+                },
+                "weight_class": normalize_weight_class(weight_class),
+                "order": idx,
+                "status": fight_status,
+                "source": {
+                    "provider": "espn",
+                    "event_id": str(event_id),
+                },
+            })
+            idx += 1
+
+        i = j
+
+    return fights
+
+
 def fetch_event_fights(event_id: str) -> List[Dict[str, Any]]:
     fights = fetch_fights_from_core_event(event_id)
     if fights:
         return fights
 
-    return fetch_fights_from_site_summary(event_id)
+    fights = fetch_fights_from_site_summary(event_id)
+    if fights:
+        return fights
+
+    return parse_fights_from_fightcenter_html(event_id)
 
 
 def main() -> None:
@@ -258,7 +481,7 @@ def main() -> None:
         else:
             print(f"No fights found for {name} ({event_id})")
 
-        time.sleep(0.4)
+        time.sleep(0.25)
 
     save_events(payload)
     print(f"Done. Populated fight cards for {updated_count} event(s).")
