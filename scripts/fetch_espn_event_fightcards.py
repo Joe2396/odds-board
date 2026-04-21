@@ -3,10 +3,10 @@ import json
 import os
 import re
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 EVENTS_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
@@ -356,12 +356,24 @@ def is_name_candidate(line: str) -> bool:
     return True
 
 
-def extract_profile_ids_in_order(soup: BeautifulSoup) -> List[str]:
+def extract_clean_lines(soup: BeautifulSoup) -> List[str]:
+    raw_lines = [line.strip() for line in soup.get_text("\n").splitlines()]
+    return [line for line in raw_lines if line]
+
+
+def normalize_name(text: str) -> str:
+    text = str(text or "").strip().lower()
+    text = re.sub(r"[^a-z0-9 ]+", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def extract_profile_ids_from_tag(tag: Tag) -> List[str]:
     ids: List[str] = []
     seen = set()
 
-    for a in soup.find_all("a", href=True):
-        href = a["href"]
+    for a in tag.find_all("a", href=True):
+        href = a.get("href", "")
         match = re.search(r"/mma/fighter/_/id/(\d+)", href)
         if not match:
             continue
@@ -374,9 +386,60 @@ def extract_profile_ids_in_order(soup: BeautifulSoup) -> List[str]:
     return ids
 
 
-def extract_clean_lines(soup: BeautifulSoup) -> List[str]:
-    raw_lines = [line.strip() for line in soup.get_text("\n").splitlines()]
-    return [line for line in raw_lines if line]
+def find_best_fight_container(soup: BeautifulSoup, red_name: str, blue_name: str) -> Optional[Tag]:
+    """
+    Find the smallest DOM container that contains both fighter names
+    and at least two fighter profile links.
+    """
+    red_norm = normalize_name(red_name)
+    blue_norm = normalize_name(blue_name)
+
+    if not red_norm or not blue_norm:
+        return None
+
+    candidates: List[Tuple[int, Tag]] = []
+
+    for tag in soup.find_all(["section", "article", "div", "li"]):
+        try:
+            text = " ".join(tag.stripped_strings)
+        except Exception:
+            continue
+
+        if not text:
+            continue
+
+        text_norm = normalize_name(text)
+        if red_norm not in text_norm or blue_norm not in text_norm:
+            continue
+
+        profile_ids = extract_profile_ids_from_tag(tag)
+        if len(profile_ids) < 2:
+            continue
+
+        score = len(text)
+        candidates.append((score, tag))
+
+    if not candidates:
+        return None
+
+    candidates.sort(key=lambda x: x[0])
+    return candidates[0][1]
+
+
+def extract_local_fighter_ids(soup: BeautifulSoup, red_name: str, blue_name: str) -> Tuple[str, str]:
+    """
+    Extract fighter profile IDs from the smallest fight-specific container
+    instead of using page-wide link order.
+    """
+    container = find_best_fight_container(soup, red_name, blue_name)
+    if not container:
+        return "", ""
+
+    profile_ids = extract_profile_ids_from_tag(container)
+    if len(profile_ids) < 2:
+        return "", ""
+
+    return profile_ids[0], profile_ids[1]
 
 
 def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
@@ -386,8 +449,6 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
 
     soup = BeautifulSoup(html, "html.parser")
     lines = extract_clean_lines(soup)
-    profile_ids = extract_profile_ids_in_order(soup)
-    profile_idx = 0
 
     fights: List[Dict[str, Any]] = []
     idx = 1
@@ -441,13 +502,7 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
             red_name = block[name_positions[0]].strip()
             blue_name = block[name_positions[1]].strip()
 
-            red_id = profile_ids[profile_idx] if profile_idx < len(profile_ids) else ""
-            if profile_idx < len(profile_ids):
-                profile_idx += 1
-
-            blue_id = profile_ids[profile_idx] if profile_idx < len(profile_ids) else ""
-            if profile_idx < len(profile_ids):
-                profile_idx += 1
+            red_id, blue_id = extract_local_fighter_ids(soup, red_name, blue_name)
 
             fight_status = "scheduled"
             block_lower = [b.lower() for b in block]
@@ -483,7 +538,8 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
 def fill_missing_ids_from_html(event_id: str, fights: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
     Use fight ORDER, not exact bout-name matching.
-    This is the key fix for cards where summary/core have fights but miss IDs.
+    This remains useful for filling IDs into fights from core/summary,
+    but the HTML parser now extracts IDs locally per fight container.
     """
     html_fights = parse_fights_from_fightcenter_html(event_id)
     if not html_fights:
