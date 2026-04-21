@@ -108,12 +108,6 @@ def extract_id_from_ref(ref: Optional[str]) -> str:
 
 
 def extract_athlete_id(obj: Optional[Dict[str, Any]]) -> str:
-    """
-    ESPN sometimes gives:
-      {"id": "..."}
-    and sometimes:
-      {"$ref": ".../athletes/12345"}
-    """
     if not isinstance(obj, dict):
         return ""
 
@@ -148,13 +142,6 @@ def build_bout_name(red_name: str, blue_name: str) -> str:
 
 
 def extract_fighter(competitor: Dict[str, Any], session: requests.Session) -> Dict[str, str]:
-    """
-    More robust competitor parsing:
-    - direct athlete.id
-    - direct competitor.id
-    - athlete $ref
-    - resolved athlete payload
-    """
     competitor = competitor or {}
     competitor = get_ref_json(competitor.get("$ref")) or competitor
 
@@ -188,7 +175,9 @@ def extract_fighter(competitor: Dict[str, Any], session: requests.Session) -> Di
     }
 
 
-def parse_competition_from_core(comp: Dict[str, Any], idx: int, event_id: str, session: requests.Session) -> Optional[Dict[str, Any]]:
+def parse_competition_from_core(
+    comp: Dict[str, Any], idx: int, event_id: str, session: requests.Session
+) -> Optional[Dict[str, Any]]:
     comp_id = str(comp.get("id") or extract_id_from_ref(comp.get("$ref"))).strip()
     competitors_ref = comp.get("competitors", {}).get("$ref") if isinstance(comp.get("competitors"), dict) else None
     status_ref = comp.get("status", {}).get("$ref") if isinstance(comp.get("status"), dict) else None
@@ -298,19 +287,21 @@ def fetch_fights_from_site_summary(event_id: str, session: requests.Session) -> 
         elif "in" in state:
             status = "in_progress"
 
-        fights.append({
-            "id": comp_id or f"{event_id}-{idx}",
-            "bout": build_bout_name(red["name"], blue["name"]),
-            "red": red,
-            "blue": blue,
-            "weight_class": normalize_weight_class(note),
-            "order": idx,
-            "status": status,
-            "source": {
-                "provider": "espn",
-                "event_id": str(event_id),
-            },
-        })
+        fights.append(
+            {
+                "id": comp_id or f"{event_id}-{idx}",
+                "bout": build_bout_name(red["name"], blue["name"]),
+                "red": red,
+                "blue": blue,
+                "weight_class": normalize_weight_class(note),
+                "order": idx,
+                "status": status,
+                "source": {
+                    "provider": "espn",
+                    "event_id": str(event_id),
+                },
+            }
+        )
 
     return fights
 
@@ -388,7 +379,7 @@ def extract_profile_ids_from_tag(tag: Tag) -> List[str]:
 
 def find_best_fight_container(soup: BeautifulSoup, red_name: str, blue_name: str) -> Optional[Tag]:
     """
-    Find the smallest DOM container that contains both fighter names
+    Try to find the smallest DOM container that includes both fighter names
     and at least two fighter profile links.
     """
     red_norm = normalize_name(red_name)
@@ -416,8 +407,7 @@ def find_best_fight_container(soup: BeautifulSoup, red_name: str, blue_name: str
         if len(profile_ids) < 2:
             continue
 
-        score = len(text)
-        candidates.append((score, tag))
+        candidates.append((len(text), tag))
 
     if not candidates:
         return None
@@ -427,10 +417,6 @@ def find_best_fight_container(soup: BeautifulSoup, red_name: str, blue_name: str
 
 
 def extract_local_fighter_ids(soup: BeautifulSoup, red_name: str, blue_name: str) -> Tuple[str, str]:
-    """
-    Extract fighter profile IDs from the smallest fight-specific container
-    instead of using page-wide link order.
-    """
     container = find_best_fight_container(soup, red_name, blue_name)
     if not container:
         return "", ""
@@ -503,41 +489,44 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
             blue_name = block[name_positions[1]].strip()
 
             red_id, blue_id = extract_local_fighter_ids(soup, red_name, blue_name)
-if red_name == "Marcus Buchecha" and blue_name == "Ryan Spann":
-    print(f"DEBUG fight: {red_name} vs {blue_name}")
-    print(f"DEBUG ids: red={red_id!r}, blue={blue_id!r}")
 
-    container = find_best_fight_container(soup, red_name, blue_name)
-    if container:
-        print("DEBUG container found")
-        print(container.prettify()[:5000])
-    else:
-        print("DEBUG no container found")
-        
+            if red_name == "Marcus Buchecha" and blue_name == "Ryan Spann":
+                print(f"DEBUG fight: {red_name} vs {blue_name}")
+                print(f"DEBUG ids: red={red_id!r}, blue={blue_id!r}")
+
+                container = find_best_fight_container(soup, red_name, blue_name)
+                if container:
+                    print("DEBUG container found")
+                    print(container.prettify()[:5000])
+                else:
+                    print("DEBUG no container found")
+
             fight_status = "scheduled"
             block_lower = [b.lower() for b in block]
             if "final" in block_lower:
                 fight_status = "completed"
 
-            fights.append({
-                "id": f"{event_id}-{idx}",
-                "bout": build_bout_name(red_name, blue_name),
-                "red": {
-                    "name": red_name,
-                    "espn_id": red_id,
-                },
-                "blue": {
-                    "name": blue_name,
-                    "espn_id": blue_id,
-                },
-                "weight_class": normalize_weight_class(weight_class),
-                "order": idx,
-                "status": fight_status,
-                "source": {
-                    "provider": "espn",
-                    "event_id": str(event_id),
-                },
-            })
+            fights.append(
+                {
+                    "id": f"{event_id}-{idx}",
+                    "bout": build_bout_name(red_name, blue_name),
+                    "red": {
+                        "name": red_name,
+                        "espn_id": red_id,
+                    },
+                    "blue": {
+                        "name": blue_name,
+                        "espn_id": blue_id,
+                    },
+                    "weight_class": normalize_weight_class(weight_class),
+                    "order": idx,
+                    "status": fight_status,
+                    "source": {
+                        "provider": "espn",
+                        "event_id": str(event_id),
+                    },
+                }
+            )
             idx += 1
 
         i = j
@@ -546,11 +535,6 @@ if red_name == "Marcus Buchecha" and blue_name == "Ryan Spann":
 
 
 def fill_missing_ids_from_html(event_id: str, fights: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """
-    Use fight ORDER, not exact bout-name matching.
-    This remains useful for filling IDs into fights from core/summary,
-    but the HTML parser now extracts IDs locally per fight container.
-    """
     html_fights = parse_fights_from_fightcenter_html(event_id)
     if not html_fights:
         return fights
@@ -622,10 +606,10 @@ def main() -> None:
             updated_count += 1
             with_ids = 0
             total_sides = 0
-            for f in fights:
+            for fight in fights:
                 for side in ("red", "blue"):
                     total_sides += 1
-                    if (f.get(side) or {}).get("espn_id"):
+                    if (fight.get(side) or {}).get("espn_id"):
                         with_ids += 1
             print(f"Updated {name}: {len(fights)} fights | fighter IDs: {with_ids}/{total_sides}")
         else:
