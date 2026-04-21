@@ -503,7 +503,17 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
             blue_name = block[name_positions[1]].strip()
 
             red_id, blue_id = extract_local_fighter_ids(soup, red_name, blue_name)
+if red_name == "Marcus Buchecha" and blue_name == "Ryan Spann":
+    print(f"DEBUG fight: {red_name} vs {blue_name}")
+    print(f"DEBUG ids: red={red_id!r}, blue={blue_id!r}")
 
+    container = find_best_fight_container(soup, red_name, blue_name)
+    if container:
+        print("DEBUG container found")
+        print(container.prettify()[:5000])
+    else:
+        print("DEBUG no container found")
+        
             fight_status = "scheduled"
             block_lower = [b.lower() for b in block]
             if "final" in block_lower:
