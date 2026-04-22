@@ -1,2517 +1,2812 @@
 {
-  "generated_at": 1776632999.7409678,
-  "fighters": {
-    "3022345": {
-      "name": "Justin Gaethje",
-      "nickname": "The Highlight",
-      "height_cm": 180.3,
-      "reach_cm": 177.8,
-      "stance": "Orthodox",
-      "country": "USA",
-      "weight_class": "Lightweight",
-      "record": "27-5-0",
-      "methods": {
-        "ko_tko_w": 20,
-        "ko_tko_l": 3,
-        "sub_w": 1,
-        "sub_l": 2,
-        "dec_w": 6,
-        "dec_l": 0
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3022345/statistics?lang=en&region=us"
-        },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3022345/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "27-5-0",
-              "displayValue": "27-5-0",
-              "value": 0.84375,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 5.0,
-                  "displayValue": "5"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 27.0,
-                  "displayValue": "27"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 8.0,
-                  "displayValue": "8"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 3.0,
-                  "displayValue": "3"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 20.0,
-                  "displayValue": "20"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "3031559": {
+  "generated_at": "2026-04-22T06:32:32.692492+00:00",
+  "count": 14,
+  "fighters": [
+    {
+      "espn_id": "3031559",
       "name": "Aljamain Sterling",
-      "nickname": "Funk Master",
-      "height_cm": 170.2,
-      "reach_cm": 180.3,
-      "stance": "Orthodox",
-      "country": "USA",
-      "weight_class": "Featherweight",
+      "first_name": "Aljamain",
+      "last_name": "Sterling",
+      "slug": "aljamain-sterling",
       "record": "25-5-0",
-      "methods": {
-        "ko_tko_w": 3,
-        "ko_tko_l": 2,
-        "sub_w": 8,
-        "sub_l": 0,
-        "dec_w": 14,
-        "dec_l": 3
-      },
-      "recent_fights": [],
-      "raw": {
+      "height": "Weight Aljamain Sterling Brazi",
+      "weight": "HT/WT 5' 7\"",
+      "reach": "",
+      "stance": "Orthodox Stats W-L-D 25-5-0",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/3031559",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:24.689387+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "3031559",
+        "uid": "s:3301~a:3031559",
+        "guid": "27165ce2-5ad4-ea77-e7aa-bf3bb0d8127d",
+        "firstName": "Aljamain",
+        "lastName": "Sterling",
+        "fullName": "Aljamain Sterling",
+        "displayName": "Aljamain Sterling",
+        "nickname": "Funk Master",
+        "shortName": "A. Sterling",
+        "weight": 145.0,
+        "displayWeight": "145 lbs",
+        "height": 67.0,
+        "displayHeight": "5' 7\"",
+        "age": 36,
+        "dateOfBirth": "1989-07-31T07:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3031559/aljamain-sterling",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/3031559/aljamain-sterling",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/3031559/aljamain-sterling",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/3031559/aljamain-sterling",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3031559/aljamain-sterling",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/3031559/aljamain-sterling",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "USA",
+        "citizenshipCountry": {
+          "alternateId": "1",
+          "abbreviation": "USA",
+          "color": "#3C3B6E",
+          "alternateColor": "#B22234"
+        },
+        "slug": "aljamain-sterling",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/3031559.png",
+          "alt": "Aljamain Sterling"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+          "alt": "USA",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
         "statistics": {
           "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3031559/statistics?lang=en&region=us"
         },
         "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3031559/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "25-5-0",
-              "displayValue": "25-5-0",
-              "value": 0.8333333333333334,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 5.0,
-                  "displayValue": "5"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 25.0,
-                  "displayValue": "25"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 8.0,
-                  "displayValue": "8"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 8.0,
-                  "displayValue": "8"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 3.0,
-                  "displayValue": "3"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "3090197": {
-      "name": "Gilbert Burns",
-      "nickname": "Durinho",
-      "height_cm": 177.8,
-      "reach_cm": 180.3,
-      "stance": "Orthodox",
-      "country": "Brazil",
-      "weight_class": "Welterweight",
-      "record": "22-10-0",
-      "methods": {
-        "ko_tko_w": 6,
-        "ko_tko_l": 5,
-        "sub_w": 9,
-        "sub_l": 0,
-        "dec_w": 7,
-        "dec_l": 5
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3090197/statistics?lang=en&region=us"
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3031559/records?lang=en&region=us"
         },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3090197/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "22-10-0",
-              "displayValue": "22-10-0",
-              "value": 0.6875,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 10.0,
-                  "displayValue": "10"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 22.0,
-                  "displayValue": "22"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 9.0,
-                  "displayValue": "9"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 5.0,
-                  "displayValue": "5"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 6.0,
-                  "displayValue": "6"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "3093653": {
-      "name": "Sean Strickland",
-      "nickname": null,
-      "height_cm": 185.4,
-      "reach_cm": 193.0,
-      "stance": "Orthodox",
-      "country": "USA",
-      "weight_class": "Middleweight",
-      "record": "30-7-0",
-      "methods": {
-        "ko_tko_w": 12,
-        "ko_tko_l": 2,
-        "sub_w": 4,
-        "sub_l": 0,
-        "dec_w": 14,
-        "dec_l": 5
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3093653/statistics?lang=en&region=us"
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3031559/eventlog?lang=en&region=us"
         },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3093653/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "30-7-0",
-              "displayValue": "30-7-0",
-              "value": 0.8108108108108109,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 7.0,
-                  "displayValue": "7"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 30.0,
-                  "displayValue": "30"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 4.0,
-                  "displayValue": "4"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 6.0,
-                  "displayValue": "6"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 12.0,
-                  "displayValue": "12"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "3151289": {
-      "name": "Song Yadong",
-      "nickname": "Kung Fu Kid",
-      "height_cm": 172.7,
-      "reach_cm": 170.2,
-      "stance": "Orthodox",
-      "country": "China",
-      "weight_class": "Bantamweight",
-      "record": "22-9-1",
-      "methods": {
-        "ko_tko_w": 9,
-        "ko_tko_l": 2,
-        "sub_w": 3,
-        "sub_l": 0,
-        "dec_w": 10,
-        "dec_l": 7
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3151289/statistics?lang=en&region=us"
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
         },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3151289/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "22-9-1",
-              "displayValue": "22-9-1",
-              "value": 0.703125,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 9.0,
-                  "displayValue": "9"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 22.0,
-                  "displayValue": "22"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 3.0,
-                  "displayValue": "3"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 9.0,
-                  "displayValue": "9"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "3165120": {
-      "name": "Mike Malott",
-      "nickname": "Proper",
-      "height_cm": 185.4,
-      "reach_cm": 185.4,
-      "stance": "Orthodox",
-      "country": "Canada",
-      "weight_class": "Welterweight",
-      "record": "14-2-1",
-      "methods": {
-        "ko_tko_w": 6,
-        "ko_tko_l": 2,
-        "sub_w": 6,
-        "sub_l": 0,
-        "dec_w": 2,
-        "dec_l": 0
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3165120/statistics?lang=en&region=us"
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3031559/leagues?lang=en&region=us"
         },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3165120/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "14-2-1",
-              "displayValue": "14-2-1",
-              "value": 0.8529411764705882,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 14.0,
-                  "displayValue": "14"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 6.0,
-                  "displayValue": "6"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 6.0,
-                  "displayValue": "6"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "3172112": {
-      "name": "Belal Muhammad",
-      "nickname": "Remember the Name",
-      "height_cm": 180.3,
-      "reach_cm": 182.9,
-      "stance": "Orthodox",
-      "country": "Palestine",
-      "weight_class": "Welterweight",
-      "record": "24-5-0",
-      "methods": {
-        "ko_tko_w": 5,
-        "ko_tko_l": 1,
-        "sub_w": 1,
-        "sub_l": 0,
-        "dec_w": 18,
-        "dec_l": 4
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3172112/statistics?lang=en&region=us"
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
         },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3172112/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "24-5-0",
-              "displayValue": "24-5-0",
-              "value": 0.8275862068965517,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 5.0,
-                  "displayValue": "5"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 24.0,
-                  "displayValue": "24"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 5.0,
-                  "displayValue": "5"
-                }
-              ]
-            }
-          ]
+        "reach": 71.0,
+        "displayReach": "71\"",
+        "weightClass": {
+          "id": "999",
+          "text": "Featherweight",
+          "shortName": "Featherweight",
+          "slug": "featherweight"
+        },
+        "stance": {
+          "id": "75",
+          "text": "Orthodox"
+        },
+        "association": {
+          "id": "402",
+          "name": "Serra-Longo Fight Team ",
+          "location": {
+            "country": "USA"
+          }
+        },
+        "styles": [
+          {
+            "id": "21",
+            "text": "Brazilian Jiu-Jitsu"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/3031559.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/3031559.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ],
+        "ranks": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3031559/ranks?lang=en&region=us"
         }
       }
     },
-    "3902098": {
+    {
+      "espn_id": "3902098",
       "name": "Arnold Allen",
-      "nickname": "Almighty",
-      "height_cm": 172.7,
-      "reach_cm": 177.8,
-      "stance": "Southpaw",
-      "country": "England",
-      "weight_class": "Featherweight",
+      "first_name": "Arnold",
+      "last_name": "Allen",
+      "slug": "arnold-allen",
       "record": "20-4-0",
-      "methods": {
-        "ko_tko_w": 7,
-        "ko_tko_l": 0,
-        "sub_w": 4,
-        "sub_l": 0,
-        "dec_w": 9,
-        "dec_l": 4
-      },
-      "recent_fights": [],
-      "raw": {
+      "height": "Weight Arnold Allen Striker 5'",
+      "weight": "HT/WT 5' 8\"",
+      "reach": "",
+      "stance": "Southpaw Stats W-L-D 20-4-0",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/3902098",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:27.251836+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "3902098",
+        "uid": "s:3301~a:3902098",
+        "guid": "87e97b7a-a9fb-d3e1-cadb-38729837eab2",
+        "firstName": "Arnold",
+        "lastName": "Allen",
+        "fullName": "Arnold Allen",
+        "displayName": "Arnold Allen",
+        "nickname": "Almighty",
+        "shortName": "A. Allen",
+        "weight": 145.0,
+        "displayWeight": "145 lbs",
+        "height": 68.0,
+        "displayHeight": "5' 8\"",
+        "age": 32,
+        "dateOfBirth": "1994-01-22T08:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3902098/arnold-allen",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/3902098/arnold-allen",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/3902098/arnold-allen",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/3902098/arnold-allen",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3902098/arnold-allen",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/3902098/arnold-allen",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "England",
+        "citizenshipCountry": {
+          "alternateId": "500",
+          "abbreviation": "ENG",
+          "color": "#CE1124",
+          "alternateColor": "#001CC3"
+        },
+        "slug": "arnold-allen",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/3902098.png",
+          "alt": "Arnold Allen"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/eng.png",
+          "alt": "England",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
         "statistics": {
           "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3902098/statistics?lang=en&region=us"
         },
         "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3902098/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "20-4-0",
-              "displayValue": "20-4-0",
-              "value": 0.8333333333333334,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 4.0,
-                  "displayValue": "4"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 20.0,
-                  "displayValue": "20"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 4.0,
-                  "displayValue": "4"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 7.0,
-                  "displayValue": "7"
-                }
-              ]
-            }
-          ]
-        }
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3902098/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3902098/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3902098/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 70.0,
+        "displayReach": "70\"",
+        "weightClass": {
+          "id": "999",
+          "text": "Featherweight",
+          "shortName": "Featherweight",
+          "slug": "featherweight"
+        },
+        "stance": {
+          "id": "76",
+          "text": "Southpaw"
+        },
+        "association": {
+          "id": "7047",
+          "name": "BKK Fighters",
+          "location": {
+            "country": "England"
+          }
+        },
+        "styles": [
+          {
+            "id": "30",
+            "text": "Striker"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/3902098.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/3902098.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ]
       }
     },
-    "4189320": {
-      "name": "Deiveson Figueiredo",
-      "nickname": "Deus da Guerra",
-      "height_cm": 165.1,
-      "reach_cm": 172.7,
-      "stance": "Orthodox",
-      "country": "Brazil",
-      "weight_class": "Bantamweight",
-      "record": "25-6-1",
-      "methods": {
-        "ko_tko_w": 9,
-        "ko_tko_l": 2,
-        "sub_w": 9,
-        "sub_l": 1,
-        "dec_w": 7,
-        "dec_l": 3
-      },
-      "recent_fights": [],
-      "raw": {
+    {
+      "espn_id": "3172112",
+      "name": "Belal Muhammad",
+      "first_name": "Belal",
+      "last_name": "Muhammad",
+      "slug": "belal-muhammad",
+      "record": "24-5-0",
+      "height": "Weight Belal Muhammad Striker",
+      "weight": "HT/WT 5' 11\"",
+      "reach": "",
+      "stance": "Orthodox Stats W-L-D 24-5-0",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/3172112",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:26.567290+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "3172112",
+        "uid": "s:3301~a:3172112",
+        "guid": "baad1277-5417-b5c9-6426-1595e2e1aa02",
+        "firstName": "Belal",
+        "lastName": "Muhammad",
+        "fullName": "Belal Muhammad",
+        "displayName": "Belal Muhammad",
+        "nickname": "Remember the Name",
+        "shortName": "B. Muhammad",
+        "weight": 171.0,
+        "displayWeight": "171 lbs",
+        "height": 71.0,
+        "displayHeight": "5' 11\"",
+        "age": 37,
+        "dateOfBirth": "1988-07-09T07:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3172112/belal-muhammad",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/3172112/belal-muhammad",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/3172112/belal-muhammad",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/3172112/belal-muhammad",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3172112/belal-muhammad",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/3172112/belal-muhammad",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "Palestine",
+        "citizenshipCountry": {
+          "alternateId": "676",
+          "abbreviation": "PLE"
+        },
+        "slug": "belal-muhammad",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/3172112.png",
+          "alt": "Belal Muhammad"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/ple.png",
+          "alt": "Palestine",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
         "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4189320/statistics?lang=en&region=us"
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3172112/statistics?lang=en&region=us"
         },
         "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4189320/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "25-6-1",
-              "displayValue": "25-6-1",
-              "value": 0.796875,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 6.0,
-                  "displayValue": "6"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 25.0,
-                  "displayValue": "25"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 9.0,
-                  "displayValue": "9"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 4.0,
-                  "displayValue": "4"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 9.0,
-                  "displayValue": "9"
-                }
-              ]
-            }
-          ]
-        }
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3172112/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3172112/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3172112/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 72.0,
+        "displayReach": "72\"",
+        "weightClass": {
+          "id": "969",
+          "text": "Welterweight",
+          "shortName": "Welterweight",
+          "slug": "welterweight"
+        },
+        "stance": {
+          "id": "75",
+          "text": "Orthodox"
+        },
+        "association": {
+          "id": "5993",
+          "name": "Valle Flow Striking",
+          "location": {
+            "country": "Palestine"
+          }
+        },
+        "styles": [
+          {
+            "id": "30",
+            "text": "Striker"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/3172112.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/3172112.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ]
       }
     },
-    "4294832": {
+    {
+      "espn_id": "4294832",
       "name": "Carlos Prates",
-      "nickname": "The Nightmare",
-      "height_cm": 185.4,
-      "reach_cm": 198.1,
-      "stance": "Switch",
-      "country": "Brazil",
-      "weight_class": "Welterweight",
+      "first_name": "Carlos",
+      "last_name": "Prates",
+      "slug": "carlos-prates",
       "record": "23-7-0",
-      "methods": {
-        "ko_tko_w": 18,
-        "ko_tko_l": 2,
-        "sub_w": 3,
-        "sub_l": 3,
-        "dec_w": 2,
-        "dec_l": 2
-      },
-      "recent_fights": [],
-      "raw": {
+      "height": "Weight Jack Della Maddalena Mi",
+      "weight": "HT/WT 6' 1\"",
+      "reach": "",
+      "stance": "Switch Stats W-L-D 23-7-0",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/4294832",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:28.662023+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "4294832",
+        "uid": "s:3301~a:4294832",
+        "guid": "499fbb2c-05e4-1044-ba2f-17ddf942a8a7",
+        "firstName": "Carlos",
+        "lastName": "Prates",
+        "fullName": "Carlos Prates",
+        "displayName": "Carlos Prates",
+        "nickname": "The Nightmare",
+        "shortName": "C. Prates",
+        "weight": 170.0,
+        "displayWeight": "170 lbs",
+        "height": 73.0,
+        "displayHeight": "6' 1\"",
+        "age": 32,
+        "dateOfBirth": "1993-08-17T07:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4294832/carlos-prates",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/4294832/carlos-prates",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/4294832/carlos-prates",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/4294832/carlos-prates",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4294832/carlos-prates",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/4294832/carlos-prates",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "Brazil",
+        "citizenshipCountry": {
+          "alternateId": "147",
+          "abbreviation": "BRA",
+          "color": "#FFDF00",
+          "alternateColor": "#002776"
+        },
+        "slug": "carlos-prates",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/4294832.png",
+          "alt": "Carlos Prates"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+          "alt": "Brazil",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
         "statistics": {
           "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4294832/statistics?lang=en&region=us"
         },
         "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4294832/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "23-7-0",
-              "displayValue": "23-7-0",
-              "value": 0.7666666666666667,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 7.0,
-                  "displayValue": "7"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 23.0,
-                  "displayValue": "23"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 3.0,
-                  "displayValue": "3"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 3.0,
-                  "displayValue": "3"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 18.0,
-                  "displayValue": "18"
-                }
-              ]
-            }
-          ]
-        }
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4294832/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4294832/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4294832/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 78.0,
+        "displayReach": "78\"",
+        "weightClass": {
+          "id": "969",
+          "text": "Welterweight",
+          "shortName": "Welterweight",
+          "slug": "welterweight"
+        },
+        "stance": {
+          "id": "80",
+          "text": "Switch"
+        },
+        "association": {
+          "id": "10487",
+          "name": "Fighting Nerds",
+          "location": {
+            "country": "Brazil"
+          }
+        },
+        "styles": [
+          {
+            "id": "30",
+            "text": "Striker"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/4294832.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ]
       }
     },
-    "4350812": {
-      "name": "Ilia Topuria",
-      "nickname": "El Matador",
-      "height_cm": 170.2,
-      "reach_cm": 175.3,
-      "stance": "Orthodox",
-      "country": "Georgia",
-      "weight_class": "Lightweight",
-      "record": "17-0-0",
-      "methods": {
-        "ko_tko_w": 7,
-        "ko_tko_l": 0,
-        "sub_w": 8,
-        "sub_l": 0,
-        "dec_w": 2,
-        "dec_l": 0
-      },
-      "recent_fights": [],
-      "raw": {
+    {
+      "espn_id": "4189320",
+      "name": "Deiveson Figueiredo",
+      "first_name": "Deiveson",
+      "last_name": "Figueiredo",
+      "slug": "deiveson-figueiredo",
+      "record": "25-6-1",
+      "height": "Weight Song Yadong Striker 5'",
+      "weight": "HT/WT 5' 5\"",
+      "reach": "",
+      "stance": "Orthodox Stats W-L-D 25-6-1",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/4189320",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:27.936310+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "4189320",
+        "uid": "s:3301~a:4189320",
+        "guid": "49f83c09-a58d-0193-e0d3-bd8eefcd294c",
+        "firstName": "Deiveson",
+        "lastName": "Figueiredo",
+        "fullName": "Deiveson Figueiredo",
+        "displayName": "Deiveson Figueiredo",
+        "nickname": "Deus da Guerra",
+        "shortName": "D. Figueiredo",
+        "weight": 138.0,
+        "displayWeight": "138 lbs",
+        "height": 65.0,
+        "displayHeight": "5' 5\"",
+        "age": 38,
+        "dateOfBirth": "1987-12-18T08:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4189320/deiveson-figueiredo",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/4189320/deiveson-figueiredo",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/4189320/deiveson-figueiredo",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/4189320/deiveson-figueiredo",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4189320/deiveson-figueiredo",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/4189320/deiveson-figueiredo",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "Brazil",
+        "citizenshipCountry": {
+          "alternateId": "147",
+          "abbreviation": "BRA",
+          "color": "#FFDF00",
+          "alternateColor": "#002776"
+        },
+        "slug": "deiveson-figueiredo",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/4189320.png",
+          "alt": "Deiveson Figueiredo"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+          "alt": "Brazil",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
         "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4350812/statistics?lang=en&region=us"
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4189320/statistics?lang=en&region=us"
         },
         "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4350812/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "17-0-0",
-              "displayValue": "17-0-0",
-              "value": 1.0,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 17.0,
-                  "displayValue": "17"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 8.0,
-                  "displayValue": "8"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 4.0,
-                  "displayValue": "4"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 7.0,
-                  "displayValue": "7"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "4351319": {
-      "name": "Youssef Zalal",
-      "nickname": "The Moroccan Devil",
-      "height_cm": 177.8,
-      "reach_cm": 182.9,
-      "stance": "Switch",
-      "country": "Morocco",
-      "weight_class": "Featherweight",
-      "record": "18-5-1",
-      "methods": {
-        "ko_tko_w": 4,
-        "ko_tko_l": 0,
-        "sub_w": 10,
-        "sub_l": 0,
-        "dec_w": 4,
-        "dec_l": 5
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4351319/statistics?lang=en&region=us"
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4189320/records?lang=en&region=us"
         },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4351319/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "18-5-1",
-              "displayValue": "18-5-1",
-              "value": 0.7708333333333334,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 5.0,
-                  "displayValue": "5"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 18.0,
-                  "displayValue": "18"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 10.0,
-                  "displayValue": "10"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 4.0,
-                  "displayValue": "4"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "4425763": {
-      "name": "Melquizael Costa",
-      "nickname": "The Dalmatian",
-      "height_cm": 177.8,
-      "reach_cm": 180.3,
-      "stance": "Southpaw",
-      "country": "Brazil",
-      "weight_class": "Featherweight",
-      "record": "26-7-0",
-      "methods": {
-        "ko_tko_w": 9,
-        "ko_tko_l": 2,
-        "sub_w": 8,
-        "sub_l": 2,
-        "dec_w": 9,
-        "dec_l": 3
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4425763/statistics?lang=en&region=us"
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4189320/eventlog?lang=en&region=us"
         },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4425763/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "26-7-0",
-              "displayValue": "26-7-0",
-              "value": 0.7878787878787878,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 7.0,
-                  "displayValue": "7"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 26.0,
-                  "displayValue": "26"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 8.0,
-                  "displayValue": "8"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 9.0,
-                  "displayValue": "9"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "4684751": {
-      "name": "Khamzat Chimaev",
-      "nickname": "Borz",
-      "height_cm": 188.0,
-      "reach_cm": 190.5,
-      "stance": "Orthodox",
-      "country": "United Arab Emirates",
-      "weight_class": "Middleweight",
-      "record": "15-0-0",
-      "methods": {
-        "ko_tko_w": 6,
-        "ko_tko_l": 0,
-        "sub_w": 6,
-        "sub_l": 0,
-        "dec_w": 3,
-        "dec_l": 0
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4684751/statistics?lang=en&region=us"
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
         },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4684751/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "15-0-0",
-              "displayValue": "15-0-0",
-              "value": 1.0,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 15.0,
-                  "displayValue": "15"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 6.0,
-                  "displayValue": "6"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 6.0,
-                  "displayValue": "6"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "4828707": {
-      "name": "Jack Della Maddalena",
-      "nickname": null,
-      "height_cm": 180.3,
-      "reach_cm": 185.4,
-      "stance": "Switch",
-      "country": "Australia",
-      "weight_class": "Welterweight",
-      "record": "18-3-0",
-      "methods": {
-        "ko_tko_w": 12,
-        "ko_tko_l": 1,
-        "sub_w": 2,
-        "sub_l": 1,
-        "dec_w": 4,
-        "dec_l": 1
-      },
-      "recent_fights": [],
-      "raw": {
-        "statistics": {
-          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4828707/statistics?lang=en&region=us"
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4189320/leagues?lang=en&region=us"
         },
-        "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4828707/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "18-3-0",
-              "displayValue": "18-3-0",
-              "value": 0.8571428571428571,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 3.0,
-                  "displayValue": "3"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 18.0,
-                  "displayValue": "18"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 2.0,
-                  "displayValue": "2"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 6.0,
-                  "displayValue": "6"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 12.0,
-                  "displayValue": "12"
-                }
-              ]
-            }
-          ]
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 68.0,
+        "displayReach": "68\"",
+        "weightClass": {
+          "id": "970",
+          "text": "Bantamweight",
+          "shortName": "Bantamweight",
+          "slug": "bantamweight"
+        },
+        "stance": {
+          "id": "75",
+          "text": "Orthodox"
+        },
+        "association": {
+          "id": "9147",
+          "name": "Team Figueiredo",
+          "location": {
+            "country": "Brazil"
+          }
+        },
+        "styles": [
+          {
+            "id": "20",
+            "text": "Wrestling"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/4189320.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/4189320.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ],
+        "ranks": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4189320/ranks?lang=en&region=us"
         }
       }
     },
-    "4921516": {
+    {
+      "espn_id": "4921516",
       "name": "Gabriel Bonfim",
-      "nickname": "Marretinha",
-      "height_cm": 185.4,
-      "reach_cm": 184.2,
-      "stance": "Orthodox",
-      "country": "Brazil",
-      "weight_class": "Welterweight",
+      "first_name": "Gabriel",
+      "last_name": "Bonfim",
+      "slug": "gabriel-bonfim",
       "record": "19-1-0",
-      "methods": {
-        "ko_tko_w": 4,
-        "ko_tko_l": 1,
-        "sub_w": 13,
-        "sub_l": 0,
-        "dec_w": 2,
-        "dec_l": 0
-      },
-      "recent_fights": [],
-      "raw": {
+      "height": "Weight Belal Muhammad Striker",
+      "weight": "HT/WT 6' 1\"",
+      "reach": "",
+      "stance": "Orthodox Stats W-L-D 19-1-0",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/4921516",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:32.492295+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "4921516",
+        "uid": "s:3301~a:4921516",
+        "guid": "bc4dd947-2a45-3822-9754-5efa198d716c",
+        "firstName": "Gabriel",
+        "lastName": "Bonfim",
+        "fullName": "Gabriel Bonfim",
+        "displayName": "Gabriel Bonfim",
+        "nickname": "Marretinha",
+        "shortName": "G. Bonfim",
+        "weight": 170.0,
+        "displayWeight": "170 lbs",
+        "height": 73.0,
+        "displayHeight": "6' 1\"",
+        "age": 28,
+        "dateOfBirth": "1997-08-20T07:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4921516/gabriel-bonfim",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/4921516/gabriel-bonfim",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/4921516/gabriel-bonfim",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/4921516/gabriel-bonfim",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4921516/gabriel-bonfim",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/4921516/gabriel-bonfim",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "Brazil",
+        "citizenshipCountry": {
+          "alternateId": "147",
+          "abbreviation": "BRA",
+          "color": "#FFDF00",
+          "alternateColor": "#002776"
+        },
+        "slug": "gabriel-bonfim",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/4921516.png",
+          "alt": "Gabriel Bonfim"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+          "alt": "Brazil",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
         "statistics": {
           "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4921516/statistics?lang=en&region=us"
         },
         "records": {
-          "count": 1,
-          "pageIndex": 1,
-          "pageSize": 25,
-          "pageCount": 1,
-          "items": [
-            {
-              "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4921516/records/0?lang=en&region=us",
-              "id": "0",
-              "name": "overall",
-              "abbreviation": "TOT",
-              "displayName": "Overall",
-              "shortDisplayName": "OVER",
-              "description": "Overall Record",
-              "type": "total",
-              "summary": "19-1-0",
-              "displayValue": "19-1-0",
-              "value": 0.95,
-              "stats": [
-                {
-                  "name": "losses",
-                  "displayName": "Losses",
-                  "shortDisplayName": "L",
-                  "description": "Losses",
-                  "abbreviation": "L",
-                  "type": "losses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "wins",
-                  "displayName": "Wins",
-                  "shortDisplayName": "W",
-                  "description": "Wins",
-                  "abbreviation": "W",
-                  "type": "wins",
-                  "value": 19.0,
-                  "displayValue": "19"
-                },
-                {
-                  "name": "draws",
-                  "displayName": "Draws",
-                  "shortDisplayName": "Draws",
-                  "description": "Draws",
-                  "abbreviation": "D",
-                  "type": "draws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "noContests",
-                  "displayName": "No Contests",
-                  "shortDisplayName": "No Contests",
-                  "description": "No Contests",
-                  "abbreviation": "NC",
-                  "type": "nocontests",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissionLosses",
-                  "displayName": "Submission Losses",
-                  "shortDisplayName": "SUBL",
-                  "description": "Submission Losses",
-                  "abbreviation": "SUBL",
-                  "type": "submissionlosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "submissions",
-                  "displayName": "Submissions",
-                  "shortDisplayName": "SUB",
-                  "description": "Submissions",
-                  "abbreviation": "SUB",
-                  "type": "submissions",
-                  "value": 13.0,
-                  "displayValue": "13"
-                },
-                {
-                  "name": "titleDraws",
-                  "displayName": "Title Draws",
-                  "shortDisplayName": "TDRW",
-                  "description": "Title Draws",
-                  "abbreviation": "TDRW",
-                  "type": "titledraws",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleLosses",
-                  "displayName": "Title Losses",
-                  "shortDisplayName": "TLOS",
-                  "description": "Title Losses",
-                  "abbreviation": "TLOS",
-                  "type": "titlelosses",
-                  "value": 0.0,
-                  "displayValue": "0"
-                },
-                {
-                  "name": "titleWins",
-                  "displayName": "Title Wins",
-                  "shortDisplayName": "TWIN",
-                  "description": "Titles Wins",
-                  "abbreviation": "TWIN",
-                  "type": "titlewins",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "tkoLosses",
-                  "displayName": "Technical Knockout Losses",
-                  "shortDisplayName": "TKOL",
-                  "description": "Technical Knockout Losses",
-                  "abbreviation": "TKOL",
-                  "type": "tkolosses",
-                  "value": 1.0,
-                  "displayValue": "1"
-                },
-                {
-                  "name": "tkos",
-                  "displayName": "Technical Knockout",
-                  "shortDisplayName": "TKO",
-                  "description": "Technical Knockout",
-                  "abbreviation": "TKO",
-                  "type": "tkos",
-                  "value": 4.0,
-                  "displayValue": "4"
-                }
-              ]
-            }
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4921516/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4921516/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4921516/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 72.5,
+        "displayReach": "72.5\"",
+        "weightClass": {
+          "id": "969",
+          "text": "Welterweight",
+          "shortName": "Welterweight",
+          "slug": "welterweight"
+        },
+        "stance": {
+          "id": "75",
+          "text": "Orthodox"
+        },
+        "association": {
+          "id": "7287",
+          "name": "Cerrado MMA",
+          "location": {
+            "country": "Brazil"
+          }
+        },
+        "styles": [
+          {
+            "id": "34",
+            "text": "Mixed Martial Artist"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/4921516.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/4921516.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "espn_id": "4350812",
+      "name": "Ilia Topuria",
+      "first_name": "Ilia",
+      "last_name": "Topuria",
+      "slug": "ilia-topuria",
+      "record": "17-0-0",
+      "height": "Weight Ilia Topuria Brazilian",
+      "weight": "HT/WT 5' 7\"",
+      "reach": "",
+      "stance": "Orthodox Stats W-L-D 17-0-0",
+      "dob": "",
+      "age": "1",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/4350812",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:29.293964+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "4350812",
+        "uid": "s:3301~a:4350812",
+        "guid": "7c7452e8-f7d0-bfa0-f6dd-61d531ad856e",
+        "firstName": "Ilia",
+        "lastName": "Topuria",
+        "fullName": "Ilia Topuria",
+        "displayName": "Ilia Topuria",
+        "nickname": "El Matador",
+        "shortName": "I. Topuria",
+        "weight": 155.0,
+        "displayWeight": "155 lbs",
+        "height": 67.0,
+        "displayHeight": "5' 7\"",
+        "age": 29,
+        "dateOfBirth": "1997-01-21T08:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4350812/ilia-topuria",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/4350812/ilia-topuria",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/4350812/ilia-topuria",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/4350812/ilia-topuria",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4350812/ilia-topuria",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/4350812/ilia-topuria",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "Georgia",
+        "citizenshipCountry": {
+          "alternateId": "614",
+          "abbreviation": "GEO",
+          "color": "#FF0000",
+          "alternateColor": "#FFFFFF"
+        },
+        "slug": "ilia-topuria",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/4350812.png",
+          "alt": "Ilia Topuria"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/geo.png",
+          "alt": "Georgia",
+          "rel": [
+            "country-flag"
           ]
+        },
+        "linked": true,
+        "statistics": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4350812/statistics?lang=en&region=us"
+        },
+        "records": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4350812/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4350812/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4350812/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 69.0,
+        "displayReach": "69\"",
+        "weightClass": {
+          "id": "986",
+          "text": "Lightweight",
+          "shortName": "Lightweight",
+          "slug": "lightweight"
+        },
+        "stance": {
+          "id": "75",
+          "text": "Orthodox"
+        },
+        "association": {
+          "id": "8927",
+          "name": "Climent Club",
+          "location": {
+            "country": "Georgia"
+          }
+        },
+        "styles": [
+          {
+            "id": "21",
+            "text": "Brazilian Jiu-Jitsu"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/4350812.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/4350812.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ],
+        "accolades": [
+          {
+            "id": "382",
+            "name": "UFC Lightweight Title",
+            "type": "Belt"
+          }
+        ]
+      }
+    },
+    {
+      "espn_id": "4828707",
+      "name": "Jack Della Maddalena",
+      "first_name": "Jack",
+      "last_name": "Della Maddalena",
+      "slug": "jack-della-maddalena",
+      "record": "18-3-0",
+      "height": "Weight Jack Della Maddalena Mi",
+      "weight": "HT/WT 5' 11\"",
+      "reach": "73\" Stats W-L-D 18-3-0",
+      "stance": "Switch Reach 73\" Stats W-L-D 1",
+      "dob": "",
+      "age": "with 'no credentials'",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/4828707",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:31.887586+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "4828707",
+        "uid": "s:3301~a:4828707",
+        "guid": "7e04ba85-1fc7-38b6-9730-99505c788676",
+        "firstName": "Jack",
+        "lastName": "Della Maddalena",
+        "fullName": "Jack Della Maddalena",
+        "displayName": "Jack Della Maddalena",
+        "shortName": "J. Della Maddalena",
+        "weight": 170.0,
+        "displayWeight": "170 lbs",
+        "height": 71.0,
+        "displayHeight": "5' 11\"",
+        "age": 29,
+        "dateOfBirth": "1996-09-10T07:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4828707/jack-della-maddalena",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/4828707/jack-della-maddalena",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/4828707/jack-della-maddalena",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/4828707/jack-della-maddalena",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4828707/jack-della-maddalena",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/4828707/jack-della-maddalena",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "Australia",
+        "citizenshipCountry": {
+          "alternateId": "121",
+          "abbreviation": "AUS",
+          "color": "#00008B",
+          "alternateColor": "#FF0000"
+        },
+        "slug": "jack-della-maddalena",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/4828707.png",
+          "alt": "Jack Della Maddalena"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/aus.png",
+          "alt": "Australia",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
+        "statistics": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4828707/statistics?lang=en&region=us"
+        },
+        "records": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4828707/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4828707/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4828707/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 73.0,
+        "displayReach": "73\"",
+        "weightClass": {
+          "id": "969",
+          "text": "Welterweight",
+          "shortName": "Welterweight",
+          "slug": "welterweight"
+        },
+        "stance": {
+          "id": "80",
+          "text": "Switch"
+        },
+        "association": {
+          "id": "9547",
+          "name": "Scrappy MMA",
+          "location": {
+            "country": "Australia"
+          }
+        },
+        "styles": [
+          {
+            "id": "34",
+            "text": "Mixed Martial Artist"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/4828707.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/4828707.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "espn_id": "3022345",
+      "name": "Justin Gaethje",
+      "first_name": "Justin",
+      "last_name": "Gaethje",
+      "slug": "justin-gaethje",
+      "record": "27-5-0",
+      "height": "Weight Ilia Topuria Brazilian",
+      "weight": "HT/WT 5' 11\"",
+      "reach": "",
+      "stance": "Orthodox Stats W-L-D 27-5-0",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/3022345",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:24.107457+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "3022345",
+        "uid": "s:3301~a:3022345",
+        "guid": "9eafa488-d359-4697-8978-d93ec761b4cf",
+        "firstName": "Justin",
+        "lastName": "Gaethje",
+        "fullName": "Justin Gaethje",
+        "displayName": "Justin Gaethje",
+        "nickname": "The Highlight",
+        "shortName": "J. Gaethje",
+        "weight": 155.0,
+        "displayWeight": "155 lbs",
+        "height": 71.0,
+        "displayHeight": "5' 11\"",
+        "age": 37,
+        "dateOfBirth": "1988-11-14T08:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3022345/justin-gaethje",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/3022345/justin-gaethje",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/3022345/justin-gaethje",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/3022345/justin-gaethje",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3022345/justin-gaethje",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/3022345/justin-gaethje",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "USA",
+        "citizenshipCountry": {
+          "alternateId": "1",
+          "abbreviation": "USA",
+          "color": "#3C3B6E",
+          "alternateColor": "#B22234"
+        },
+        "slug": "justin-gaethje",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/3022345.png",
+          "alt": "Justin Gaethje"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+          "alt": "USA",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
+        "statistics": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3022345/statistics?lang=en&region=us"
+        },
+        "records": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3022345/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3022345/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3022345/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 70.0,
+        "displayReach": "70\"",
+        "weightClass": {
+          "id": "986",
+          "text": "Lightweight",
+          "shortName": "Lightweight",
+          "slug": "lightweight"
+        },
+        "stance": {
+          "id": "75",
+          "text": "Orthodox"
+        },
+        "association": {
+          "id": "3827",
+          "name": "Elevation Fight Team",
+          "location": {
+            "country": "USA"
+          }
+        },
+        "styles": [
+          {
+            "id": "30",
+            "text": "Striker"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/3022345.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/3022345.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ],
+        "accolades": [
+          {
+            "id": "390",
+            "name": "UFC Interim Lightweight Title",
+            "type": "Belt"
+          }
+        ],
+        "ranks": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3022345/ranks?lang=en&region=us"
         }
       }
+    },
+    {
+      "espn_id": "4684751",
+      "name": "Khamzat Chimaev",
+      "first_name": "Khamzat",
+      "last_name": "Chimaev",
+      "slug": "khamzat-chimaev",
+      "record": "15-0-0",
+      "height": "Weight Khamzat Chimaev Freesty",
+      "weight": "HT/WT 6' 2\"",
+      "reach": "",
+      "stance": "Orthodox Stats W-L-D 15-0-0",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/4684751",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:31.265640+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "4684751",
+        "uid": "s:3301~a:4684751",
+        "guid": "f2279330-6f8d-3d4c-895b-a11754c99a33",
+        "firstName": "Khamzat",
+        "lastName": "Chimaev",
+        "fullName": "Khamzat Chimaev",
+        "displayName": "Khamzat Chimaev",
+        "nickname": "Borz",
+        "shortName": "K. Chimaev",
+        "weight": 183.0,
+        "displayWeight": "183 lbs",
+        "height": 74.0,
+        "displayHeight": "6' 2\"",
+        "age": 31,
+        "dateOfBirth": "1994-05-01T07:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4684751/khamzat-chimaev",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/4684751/khamzat-chimaev",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/4684751/khamzat-chimaev",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/4684751/khamzat-chimaev",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4684751/khamzat-chimaev",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/4684751/khamzat-chimaev",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "United Arab Emirates",
+        "citizenshipCountry": {
+          "alternateId": "382",
+          "abbreviation": "UAE",
+          "color": "#FF0000",
+          "alternateColor": "#02732F"
+        },
+        "slug": "khamzat-chimaev",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/4684751.png",
+          "alt": "Khamzat Chimaev"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/uae.png",
+          "alt": "United Arab Emirates",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
+        "statistics": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4684751/statistics?lang=en&region=us"
+        },
+        "records": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4684751/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4684751/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4684751/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 75.0,
+        "displayReach": "75\"",
+        "weightClass": {
+          "id": "972",
+          "text": "Middleweight",
+          "shortName": "Middleweight",
+          "slug": "middleweight"
+        },
+        "stance": {
+          "id": "75",
+          "text": "Orthodox"
+        },
+        "association": {
+          "id": "5961",
+          "name": "Allstars Training Center",
+          "location": {
+            "country": "United Arab Emirates"
+          }
+        },
+        "styles": [
+          {
+            "id": "35",
+            "text": "Freestyle"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/4684751.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/4684751.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ],
+        "accolades": [
+          {
+            "id": "380",
+            "name": "UFC Middleweight Title",
+            "type": "Belt"
+          }
+        ]
+      }
+    },
+    {
+      "espn_id": "4425763",
+      "name": "Melquizael Costa",
+      "first_name": "Melquizael",
+      "last_name": "Costa",
+      "slug": "melquizael-costa",
+      "record": "26-7-0",
+      "height": "Weight Arnold Allen Striker 5'",
+      "weight": "HT/WT 5' 10\"",
+      "reach": "",
+      "stance": "Southpaw Stats W-L-D 26-7-0",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/4425763",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:30.685940+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "4425763",
+        "uid": "s:3301~a:4425763",
+        "guid": "89ad78d5-d135-5499-1339-f53972fad7b7",
+        "firstName": "Melquizael",
+        "lastName": "Costa",
+        "fullName": "Melquizael Costa",
+        "displayName": "Melquizael Costa",
+        "nickname": "The Dalmatian",
+        "shortName": "M. Costa",
+        "weight": 145.0,
+        "displayWeight": "145 lbs",
+        "height": 70.0,
+        "displayHeight": "5' 10\"",
+        "age": 29,
+        "dateOfBirth": "1996-09-14T07:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4425763/melquizael-costa",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/4425763/melquizael-costa",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/4425763/melquizael-costa",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/4425763/melquizael-costa",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4425763/melquizael-costa",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/4425763/melquizael-costa",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "Brazil",
+        "citizenshipCountry": {
+          "alternateId": "147",
+          "abbreviation": "BRA",
+          "color": "#FFDF00",
+          "alternateColor": "#002776"
+        },
+        "slug": "melquizael-costa",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/4425763.png",
+          "alt": "Melquizael Costa"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+          "alt": "Brazil",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
+        "statistics": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4425763/statistics?lang=en&region=us"
+        },
+        "records": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4425763/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4425763/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4425763/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 71.0,
+        "displayReach": "71\"",
+        "weightClass": {
+          "id": "999",
+          "text": "Featherweight",
+          "shortName": "Featherweight",
+          "slug": "featherweight"
+        },
+        "stance": {
+          "id": "76",
+          "text": "Southpaw"
+        },
+        "association": {
+          "id": "12667",
+          "name": "Chute Boxe - Joao Emilio",
+          "location": {
+            "country": "Brazil"
+          }
+        },
+        "styles": [
+          {
+            "id": "34",
+            "text": "Mixed Martial Artist"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/4425763.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/4425763.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "espn_id": "3093653",
+      "name": "Sean Strickland",
+      "first_name": "Sean",
+      "last_name": "Strickland",
+      "slug": "sean-strickland",
+      "record": "30-7-0",
+      "height": "Weight Khamzat Chimaev Freesty",
+      "weight": "HT/WT 6' 1\"",
+      "reach": "76\" Stats W-L-D 30-7-0",
+      "stance": "Orthodox Reach 76\" Stats W-L-D",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/3093653",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:25.304939+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "3093653",
+        "uid": "s:3301~a:3093653",
+        "guid": "979d91c2-6fbf-ac10-e9f9-5d2ab043c70e",
+        "firstName": "Sean",
+        "lastName": "Strickland",
+        "fullName": "Sean Strickland",
+        "displayName": "Sean Strickland",
+        "shortName": "S. Strickland",
+        "weight": 185.0,
+        "displayWeight": "185 lbs",
+        "height": 73.0,
+        "displayHeight": "6' 1\"",
+        "age": 35,
+        "dateOfBirth": "1991-02-27T08:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3093653/sean-strickland",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/3093653/sean-strickland",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/3093653/sean-strickland",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/3093653/sean-strickland",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3093653/sean-strickland",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/3093653/sean-strickland",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "USA",
+        "citizenshipCountry": {
+          "alternateId": "1",
+          "abbreviation": "USA",
+          "color": "#3C3B6E",
+          "alternateColor": "#B22234"
+        },
+        "slug": "sean-strickland",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/3093653.png",
+          "alt": "Sean Strickland"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+          "alt": "USA",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
+        "statistics": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3093653/statistics?lang=en&region=us"
+        },
+        "records": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3093653/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3093653/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3093653/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 76.0,
+        "displayReach": "76\"",
+        "weightClass": {
+          "id": "972",
+          "text": "Middleweight",
+          "shortName": "Middleweight",
+          "slug": "middleweight"
+        },
+        "stance": {
+          "id": "75",
+          "text": "Orthodox"
+        },
+        "association": {
+          "id": "61",
+          "name": "Xtreme Couture",
+          "location": {
+            "country": "USA"
+          }
+        },
+        "styles": [
+          {
+            "id": "30",
+            "text": "Striker"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/3093653.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/3093653.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "espn_id": "3151289",
+      "name": "Song Yadong",
+      "first_name": "Song",
+      "last_name": "Yadong",
+      "slug": "song-yadong",
+      "record": "22-9-1",
+      "height": "Weight Song Yadong Striker 5'",
+      "weight": "HT/WT 5' 8\"",
+      "reach": "",
+      "stance": "Orthodox Stats W-L-D 22-9-1",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/3151289",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:25.914659+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "3151289",
+        "uid": "s:3301~a:3151289",
+        "guid": "c6b47422-3a9f-79a8-b471-e2e2454cfb08",
+        "firstName": "Song",
+        "lastName": "Yadong",
+        "fullName": "Song Yadong",
+        "displayName": "Song Yadong",
+        "nickname": "Kung Fu Kid",
+        "shortName": "S. Yadong",
+        "weight": 136.0,
+        "displayWeight": "136 lbs",
+        "height": 68.0,
+        "displayHeight": "5' 8\"",
+        "age": 28,
+        "dateOfBirth": "1997-12-02T08:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3151289/song-yadong",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/3151289/song-yadong",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/3151289/song-yadong",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/3151289/song-yadong",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/3151289/song-yadong",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/3151289/song-yadong",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "China",
+        "citizenshipCountry": {
+          "alternateId": "384",
+          "abbreviation": "CHN",
+          "color": "#DE2910",
+          "alternateColor": "#FFDE00"
+        },
+        "slug": "song-yadong",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/3151289.png",
+          "alt": "Song Yadong"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/chn.png",
+          "alt": "China",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
+        "statistics": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3151289/statistics?lang=en&region=us"
+        },
+        "records": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/3151289/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3151289/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/3151289/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 67.0,
+        "displayReach": "67\"",
+        "weightClass": {
+          "id": "970",
+          "text": "Bantamweight",
+          "shortName": "Bantamweight",
+          "slug": "bantamweight"
+        },
+        "stance": {
+          "id": "75",
+          "text": "Orthodox"
+        },
+        "association": {
+          "id": "82",
+          "name": "Team Alpha Male",
+          "location": {
+            "country": "China"
+          }
+        },
+        "styles": [
+          {
+            "id": "30",
+            "text": "Striker"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/3151289.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/3151289.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "espn_id": "4351319",
+      "name": "Youssef Zalal",
+      "first_name": "Youssef",
+      "last_name": "Zalal",
+      "slug": "youssef-zalal",
+      "record": "18-5-1",
+      "height": "Weight Aljamain Sterling Brazi",
+      "weight": "HT/WT 5' 10\"",
+      "reach": "",
+      "stance": "Switch Stats W-L-D 18-5-1",
+      "dob": "",
+      "age": "",
+      "association": "",
+      "country": "",
+      "profile_url": "https://www.espn.com/mma/fighter/_/id/4351319",
+      "image_url": "https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/mma.png",
+      "last_updated": "2026-04-22T06:32:30.009254+00:00",
+      "api_payload": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/ufc?lang=en&region=us",
+        "id": "4351319",
+        "uid": "s:3301~a:4351319",
+        "guid": "041085cb-cf8d-20cf-cfea-ddafe9bf7f09",
+        "firstName": "Youssef",
+        "lastName": "Zalal",
+        "fullName": "Youssef Zalal",
+        "displayName": "Youssef Zalal",
+        "nickname": "The Moroccan Devil",
+        "shortName": "Y. Zalal",
+        "weight": 146.0,
+        "displayWeight": "146 lbs",
+        "height": 70.0,
+        "displayHeight": "5' 10\"",
+        "age": 29,
+        "dateOfBirth": "1996-09-04T07:00Z",
+        "gender": "MALE",
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "playercard",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4351319/youssef-zalal",
+            "text": "Player Card",
+            "shortText": "Player Card",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "stats",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/stats/_/id/4351319/youssef-zalal",
+            "text": "Stats",
+            "shortText": "Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "news",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/news/_/id/4351319/youssef-zalal",
+            "text": "News",
+            "shortText": "News",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "bio",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/bio/_/id/4351319/youssef-zalal",
+            "text": "Bio",
+            "shortText": "Bio",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "overview",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/_/id/4351319/youssef-zalal",
+            "text": "Overview",
+            "shortText": "Overview",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "history",
+              "desktop",
+              "athlete"
+            ],
+            "href": "https://www.espn.com/mma/fighter/history/_/id/4351319/youssef-zalal",
+            "text": "Fight History",
+            "shortText": "Fight History",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ],
+        "citizenship": "Morocco",
+        "citizenshipCountry": {
+          "alternateId": "167",
+          "abbreviation": "MAR",
+          "color": "#C1272D",
+          "alternateColor": "#006233"
+        },
+        "slug": "youssef-zalal",
+        "headshot": {
+          "href": "https://a.espncdn.com/i/headshots/mma/players/full/4351319.png",
+          "alt": "Youssef Zalal"
+        },
+        "flag": {
+          "href": "https://a.espncdn.com/i/teamlogos/countries/500/mar.png",
+          "alt": "Morocco",
+          "rel": [
+            "country-flag"
+          ]
+        },
+        "linked": true,
+        "statistics": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4351319/statistics?lang=en&region=us"
+        },
+        "records": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes/4351319/records?lang=en&region=us"
+        },
+        "active": true,
+        "eventLog": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4351319/eventlog?lang=en&region=us"
+        },
+        "status": {
+          "id": "1",
+          "name": "Active",
+          "type": "active",
+          "abbreviation": "Active"
+        },
+        "leagues": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/athletes/4351319/leagues?lang=en&region=us"
+        },
+        "defaultLeague": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/mma/leagues/ufc?lang=en&region=us"
+        },
+        "reach": 72.0,
+        "displayReach": "72\"",
+        "weightClass": {
+          "id": "999",
+          "text": "Featherweight",
+          "shortName": "Featherweight",
+          "slug": "featherweight"
+        },
+        "stance": {
+          "id": "80",
+          "text": "Switch"
+        },
+        "association": {
+          "id": "1005",
+          "name": "FactoryX Muay Thai",
+          "location": {
+            "country": "Morocco"
+          }
+        },
+        "styles": [
+          {
+            "id": "35",
+            "text": "Freestyle"
+          }
+        ],
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/left/4351319.png",
+            "rel": [
+              "leftStance"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/headshots/mma/players/stance/right/4351319.png",
+            "rel": [
+              "rightStance"
+            ]
+          }
+        ]
+      }
     }
-  }
+  ]
 }
