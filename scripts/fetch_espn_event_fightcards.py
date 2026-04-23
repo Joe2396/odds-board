@@ -178,15 +178,24 @@ def extract_profile_links_from_tag(tag: Tag) -> List[Dict[str, str]]:
         m = re.search(r"/mma/fighter/_/id/(\d+)(?:/([^/?#]+))?", href)
         if not m:
             continue
+
         fid = m.group(1)
         slug = (m.group(2) or "").strip().lower()
+        text = " ".join(a.stripped_strings).strip()
 
-        key = (fid, slug)
+        key = (fid, slug, text.lower())
         if key in seen:
             continue
         seen.add(key)
 
-        links.append({"espn_id": fid, "href": href, "slug": slug})
+        links.append(
+            {
+                "espn_id": fid,
+                "href": href,
+                "slug": slug,
+                "text": text,
+            }
+        )
 
     return links
 
@@ -194,23 +203,26 @@ def extract_profile_links_from_tag(tag: Tag) -> List[Dict[str, str]]:
 def slug_matches_name(slug: str, fighter_name: str) -> bool:
     if not slug:
         return False
+
     slug_norm = slug.replace("-", " ").strip().lower()
     slug_tokens = set(slug_norm.split())
-    fighter_tokens = set(name_tokens(fighter_name))
+    fighter_parts = name_tokens(fighter_name)
+    fighter_tokens = set(fighter_parts)
+
     if not slug_tokens or not fighter_tokens:
         return False
 
-    if fighter_tokens & slug_tokens:
+    overlap = slug_tokens & fighter_tokens
+    if len(overlap) >= 2:
         return True
 
-    fighter_parts = name_tokens(fighter_name)
     if fighter_parts and fighter_parts[-1] in slug_tokens:
         return True
 
     return False
 
 
-def find_name_nodes(soup: BeautifulSoup, fighter_name: str) -> List[Tag]:
+def find_exact_name_nodes(root: Tag, fighter_name: str) -> List[Tag]:
     target = normalize_name(fighter_name)
     if not target:
         return []
@@ -218,12 +230,14 @@ def find_name_nodes(soup: BeautifulSoup, fighter_name: str) -> List[Tag]:
     out: List[Tag] = []
     seen = set()
 
-    for node in soup.find_all(string=True):
+    for node in root.find_all(string=True):
         if not isinstance(node, NavigableString):
             continue
+
         text = str(node).strip()
         if not text:
             continue
+
         if normalize_name(text) != target:
             continue
 
@@ -235,56 +249,77 @@ def find_name_nodes(soup: BeautifulSoup, fighter_name: str) -> List[Tag]:
     return out
 
 
-def nearest_profile_id_for_name_node(name_node: Tag, fighter_name: str, max_depth: int = 8) -> str:
-    current: Optional[Tag] = name_node
-    depth = 0
+def pick_best_id_from_context(context: Tag, fighter_name: str) -> str:
+    links = extract_profile_links_from_tag(context)
+    if not links:
+        return ""
 
-    while isinstance(current, Tag) and depth <= max_depth:
-        links = extract_profile_links_from_tag(current)
+    slug_matches = [x for x in links if slug_matches_name(x["slug"], fighter_name)]
+    unique_slug_ids = {x["espn_id"] for x in slug_matches}
 
-        if len(links) == 1:
-            return links[0]["espn_id"]
+    if len(unique_slug_ids) == 1:
+        return next(iter(unique_slug_ids))
+    if len(slug_matches) == 1:
+        return slug_matches[0]["espn_id"]
 
-        if len(links) > 1:
-            matched = [x for x in links if slug_matches_name(x["slug"], fighter_name)]
-            if len(matched) == 1:
-                return matched[0]["espn_id"]
-            if matched:
-                return matched[0]["espn_id"]
+    target = normalize_name(fighter_name)
+    text_matches = [x for x in links if normalize_name(x["text"]) == target]
+    unique_text_ids = {x["espn_id"] for x in text_matches}
 
-        parent = current.parent
-        current = parent if isinstance(parent, Tag) else None
-        depth += 1
+    if len(unique_text_ids) == 1:
+        return next(iter(unique_text_ids))
+    if len(text_matches) == 1:
+        return text_matches[0]["espn_id"]
 
     return ""
 
 
-def extract_local_fighter_ids(soup: BeautifulSoup, red_name: str, blue_name: str) -> tuple[str, str]:
-    red_nodes = find_name_nodes(soup, red_name)
-    blue_nodes = find_name_nodes(soup, blue_name)
-
+def extract_ids_from_fight_block(fight_tag: Tag, red_name: str, blue_name: str) -> tuple[str, str]:
     red_id = ""
     blue_id = ""
 
+    red_nodes = find_exact_name_nodes(fight_tag, red_name)
+    blue_nodes = find_exact_name_nodes(fight_tag, blue_name)
+
     for node in red_nodes:
-        red_id = nearest_profile_id_for_name_node(node, red_name)
+        current: Optional[Tag] = node
+        depth = 0
+        while isinstance(current, Tag) and depth <= 6:
+            red_id = pick_best_id_from_context(current, red_name)
+            if red_id:
+                break
+            parent = current.parent
+            current = parent if isinstance(parent, Tag) else None
+            depth += 1
         if red_id:
             break
 
     for node in blue_nodes:
-        blue_id = nearest_profile_id_for_name_node(node, blue_name)
+        current: Optional[Tag] = node
+        depth = 0
+        while isinstance(current, Tag) and depth <= 6:
+            blue_id = pick_best_id_from_context(current, blue_name)
+            if blue_id:
+                break
+            parent = current.parent
+            current = parent if isinstance(parent, Tag) else None
+            depth += 1
         if blue_id:
             break
 
-    if red_id and blue_id and red_id != blue_id:
-        return red_id, blue_id
+    if red_id and blue_id and red_id == blue_id:
+        return "", ""
 
-    # fallback: find a small shared ancestor with both names and local fighter links
+    return red_id, blue_id
+
+
+def find_fight_block_tag(soup: BeautifulSoup, red_name: str, blue_name: str) -> Optional[Tag]:
     red_norm = normalize_name(red_name)
     blue_norm = normalize_name(blue_name)
+
     candidates: List[tuple[int, Tag]] = []
 
-    for tag in soup.find_all(["section", "article", "div", "li"]):
+    for tag in soup.find_all(["article", "section", "li", "div"]):
         try:
             text = " ".join(tag.stripped_strings)
         except Exception:
@@ -294,19 +329,17 @@ def extract_local_fighter_ids(soup: BeautifulSoup, red_name: str, blue_name: str
         if red_norm not in text_norm or blue_norm not in text_norm:
             continue
 
-        ids = extract_profile_ids_from_tag(tag)
-        if len(ids) < 2:
+        links = extract_profile_links_from_tag(tag)
+        if len({x["espn_id"] for x in links}) < 2:
             continue
 
         candidates.append((len(text), tag))
 
-    if candidates:
-        candidates.sort(key=lambda x: x[0])
-        ids = extract_profile_ids_from_tag(candidates[0][1])
-        if len(ids) >= 2 and ids[0] != ids[1]:
-            return ids[0], ids[1]
+    if not candidates:
+        return None
 
-    return red_id, blue_id
+    candidates.sort(key=lambda x: x[0])
+    return candidates[0][1]
 
 
 def extract_fighter(competitor: Dict[str, Any], session: requests.Session) -> Dict[str, str]:
@@ -576,7 +609,11 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
             red_name = block[name_positions[0]].strip()
             blue_name = block[name_positions[1]].strip()
 
-            red_id, blue_id = extract_local_fighter_ids(soup, red_name, blue_name)
+            fight_tag = find_fight_block_tag(soup, red_name, blue_name)
+            if fight_tag:
+                red_id, blue_id = extract_ids_from_fight_block(fight_tag, red_name, blue_name)
+            else:
+                red_id, blue_id = "", ""
 
             fight_status = "scheduled"
             block_lower = [b.lower() for b in block]
