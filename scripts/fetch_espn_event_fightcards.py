@@ -66,6 +66,8 @@ def load_events() -> Dict[str, Any]:
 
 
 def save_events(payload: Dict[str, Any]) -> None:
+    payload["_debug_saved_by"] = "fetch_espn_event_fightcards.py"
+    payload["_debug_saved_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     with open(EVENTS_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
 
@@ -149,24 +151,6 @@ def normalize_name(text: str) -> str:
 
 def name_tokens(text: str) -> List[str]:
     return [t for t in normalize_name(text).split() if t]
-
-
-def extract_profile_ids_from_tag(tag: Tag) -> List[str]:
-    ids: List[str] = []
-    seen = set()
-
-    for a in tag.find_all("a", href=True):
-        href = a.get("href", "")
-        m = re.search(r"/mma/fighter/_/id/(\d+)", href)
-        if not m:
-            continue
-        fid = m.group(1)
-        if fid in seen:
-            continue
-        seen.add(fid)
-        ids.append(fid)
-
-    return ids
 
 
 def extract_profile_links_from_tag(tag: Tag) -> List[Dict[str, str]]:
@@ -256,7 +240,6 @@ def pick_best_id_from_context(context: Tag, fighter_name: str) -> str:
 
     slug_matches = [x for x in links if slug_matches_name(x["slug"], fighter_name)]
     unique_slug_ids = {x["espn_id"] for x in slug_matches}
-
     if len(unique_slug_ids) == 1:
         return next(iter(unique_slug_ids))
     if len(slug_matches) == 1:
@@ -265,7 +248,6 @@ def pick_best_id_from_context(context: Tag, fighter_name: str) -> str:
     target = normalize_name(fighter_name)
     text_matches = [x for x in links if normalize_name(x["text"]) == target]
     unique_text_ids = {x["espn_id"] for x in text_matches}
-
     if len(unique_text_ids) == 1:
         return next(iter(unique_text_ids))
     if len(text_matches) == 1:
@@ -701,6 +683,10 @@ def looks_suspicious(existing_fights: List[Dict[str, Any]], new_fights: List[Dic
 
 
 def main() -> None:
+    print("RUNNING UPDATED fetch_espn_event_fightcards.py")
+    print("ROOT =", ROOT)
+    print("EVENTS_PATH =", EVENTS_PATH)
+
     payload = load_events()
     events = payload.get("events", []) or []
 
@@ -726,11 +712,12 @@ def main() -> None:
 
         print(f"{name}: existing fights={len(existing_fights)} | new fights={len(new_fights)}")
 
-        if looks_suspicious(existing_fights, new_fights):
-            print(f"Keeping existing fights for {name}: new scrape looked suspicious")
-            fights = existing_fights
-        else:
-            fights = new_fights
+        suspicious = looks_suspicious(existing_fights, new_fights)
+        print(f"{name}: suspicious={suspicious}")
+
+        # TEMP DEBUG MODE:
+        # If we got new fights, write them so we can verify events.json is updating.
+        fights = new_fights if new_fights else existing_fights
 
         ev["fights"] = fights
 
@@ -749,7 +736,10 @@ def main() -> None:
 
         time.sleep(0.25)
 
+    payload["generated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    print("About to save file...")
     save_events(payload)
+    print("Saved file to:", EVENTS_PATH)
     print(f"Done. Populated fight cards for {updated_count} event(s).")
 
 
