@@ -3,10 +3,10 @@ import json
 import os
 import re
 import time
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 import requests
-from bs4 import BeautifulSoup, Tag, NavigableString
+from bs4 import BeautifulSoup, NavigableString, Tag
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 EVENTS_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
@@ -140,6 +140,175 @@ def build_bout_name(red_name: str, blue_name: str) -> str:
     return red_name or blue_name or "TBD vs TBD"
 
 
+def normalize_name(text: str) -> str:
+    text = str(text or "").strip().lower()
+    text = re.sub(r"[^a-z0-9à-ÿ ]+", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def name_tokens(text: str) -> List[str]:
+    return [t for t in normalize_name(text).split() if t]
+
+
+def extract_profile_ids_from_tag(tag: Tag) -> List[str]:
+    ids: List[str] = []
+    seen = set()
+
+    for a in tag.find_all("a", href=True):
+        href = a.get("href", "")
+        m = re.search(r"/mma/fighter/_/id/(\d+)", href)
+        if not m:
+            continue
+        fid = m.group(1)
+        if fid in seen:
+            continue
+        seen.add(fid)
+        ids.append(fid)
+
+    return ids
+
+
+def extract_profile_links_from_tag(tag: Tag) -> List[Dict[str, str]]:
+    links: List[Dict[str, str]] = []
+    seen = set()
+
+    for a in tag.find_all("a", href=True):
+        href = a.get("href", "")
+        m = re.search(r"/mma/fighter/_/id/(\d+)(?:/([^/?#]+))?", href)
+        if not m:
+            continue
+        fid = m.group(1)
+        slug = (m.group(2) or "").strip().lower()
+
+        key = (fid, slug)
+        if key in seen:
+            continue
+        seen.add(key)
+
+        links.append({"espn_id": fid, "href": href, "slug": slug})
+
+    return links
+
+
+def slug_matches_name(slug: str, fighter_name: str) -> bool:
+    if not slug:
+        return False
+    slug_norm = slug.replace("-", " ").strip().lower()
+    slug_tokens = set(slug_norm.split())
+    fighter_tokens = set(name_tokens(fighter_name))
+    if not slug_tokens or not fighter_tokens:
+        return False
+
+    if fighter_tokens & slug_tokens:
+        return True
+
+    fighter_parts = name_tokens(fighter_name)
+    if fighter_parts and fighter_parts[-1] in slug_tokens:
+        return True
+
+    return False
+
+
+def find_name_nodes(soup: BeautifulSoup, fighter_name: str) -> List[Tag]:
+    target = normalize_name(fighter_name)
+    if not target:
+        return []
+
+    out: List[Tag] = []
+    seen = set()
+
+    for node in soup.find_all(string=True):
+        if not isinstance(node, NavigableString):
+            continue
+        text = str(node).strip()
+        if not text:
+            continue
+        if normalize_name(text) != target:
+            continue
+
+        parent = node.parent
+        if isinstance(parent, Tag) and id(parent) not in seen:
+            out.append(parent)
+            seen.add(id(parent))
+
+    return out
+
+
+def nearest_profile_id_for_name_node(name_node: Tag, fighter_name: str, max_depth: int = 8) -> str:
+    current: Optional[Tag] = name_node
+    depth = 0
+
+    while isinstance(current, Tag) and depth <= max_depth:
+        links = extract_profile_links_from_tag(current)
+
+        if len(links) == 1:
+            return links[0]["espn_id"]
+
+        if len(links) > 1:
+            matched = [x for x in links if slug_matches_name(x["slug"], fighter_name)]
+            if len(matched) == 1:
+                return matched[0]["espn_id"]
+            if matched:
+                return matched[0]["espn_id"]
+
+        parent = current.parent
+        current = parent if isinstance(parent, Tag) else None
+        depth += 1
+
+    return ""
+
+
+def extract_local_fighter_ids(soup: BeautifulSoup, red_name: str, blue_name: str) -> tuple[str, str]:
+    red_nodes = find_name_nodes(soup, red_name)
+    blue_nodes = find_name_nodes(soup, blue_name)
+
+    red_id = ""
+    blue_id = ""
+
+    for node in red_nodes:
+        red_id = nearest_profile_id_for_name_node(node, red_name)
+        if red_id:
+            break
+
+    for node in blue_nodes:
+        blue_id = nearest_profile_id_for_name_node(node, blue_name)
+        if blue_id:
+            break
+
+    if red_id and blue_id and red_id != blue_id:
+        return red_id, blue_id
+
+    # fallback: find a small shared ancestor with both names and local fighter links
+    red_norm = normalize_name(red_name)
+    blue_norm = normalize_name(blue_name)
+    candidates: List[tuple[int, Tag]] = []
+
+    for tag in soup.find_all(["section", "article", "div", "li"]):
+        try:
+            text = " ".join(tag.stripped_strings)
+        except Exception:
+            continue
+
+        text_norm = normalize_name(text)
+        if red_norm not in text_norm or blue_norm not in text_norm:
+            continue
+
+        ids = extract_profile_ids_from_tag(tag)
+        if len(ids) < 2:
+            continue
+
+        candidates.append((len(text), tag))
+
+    if candidates:
+        candidates.sort(key=lambda x: x[0])
+        ids = extract_profile_ids_from_tag(candidates[0][1])
+        if len(ids) >= 2 and ids[0] != ids[1]:
+            return ids[0], ids[1]
+
+    return red_id, blue_id
+
+
 def extract_fighter(competitor: Dict[str, Any], session: requests.Session) -> Dict[str, str]:
     competitor = competitor or {}
     competitor = get_ref_json(competitor.get("$ref")) or competitor
@@ -174,9 +343,7 @@ def extract_fighter(competitor: Dict[str, Any], session: requests.Session) -> Di
     }
 
 
-def parse_competition_from_core(
-    comp: Dict[str, Any], idx: int, event_id: str, session: requests.Session
-) -> Optional[Dict[str, Any]]:
+def parse_competition_from_core(comp: Dict[str, Any], idx: int, event_id: str, session: requests.Session) -> Optional[Dict[str, Any]]:
     comp_id = str(comp.get("id") or extract_id_from_ref(comp.get("$ref"))).strip()
     competitors_ref = comp.get("competitors", {}).get("$ref") if isinstance(comp.get("competitors"), dict) else None
     status_ref = comp.get("status", {}).get("$ref") if isinstance(comp.get("status"), dict) else None
@@ -349,128 +516,6 @@ def extract_clean_lines(soup: BeautifulSoup) -> List[str]:
     return [line for line in raw_lines if line]
 
 
-def normalize_name(text: str) -> str:
-    text = str(text or "").strip().lower()
-    text = re.sub(r"[^a-z0-9 ]+", " ", text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
-
-
-def extract_profile_ids_from_tag(tag: Tag) -> List[str]:
-    ids: List[str] = []
-    seen = set()
-
-    for a in tag.find_all("a", href=True):
-        href = a.get("href", "")
-        m = re.search(r"/mma/fighter/_/id/(\d+)", href)
-        if not m:
-            continue
-        fid = m.group(1)
-        if fid in seen:
-            continue
-        seen.add(fid)
-        ids.append(fid)
-
-    return ids
-
-
-def find_name_nodes(soup: BeautifulSoup, fighter_name: str) -> List[Tag]:
-    target = normalize_name(fighter_name)
-    if not target:
-        return []
-
-    found: List[Tag] = []
-    seen_ids = set()
-
-    for node in soup.find_all(string=True):
-        if not isinstance(node, NavigableString):
-            continue
-        text = str(node).strip()
-        if not text:
-            continue
-        if normalize_name(text) != target:
-            continue
-
-        parent = node.parent
-        if not isinstance(parent, Tag):
-            continue
-
-        obj_id = id(parent)
-        if obj_id in seen_ids:
-            continue
-        seen_ids.add(obj_id)
-        found.append(parent)
-
-    return found
-
-
-def ancestor_chain(tag: Tag) -> List[Tag]:
-    chain: List[Tag] = []
-    cur: Optional[Tag] = tag
-    while isinstance(cur, Tag):
-        chain.append(cur)
-        cur = cur.parent if isinstance(cur.parent, Tag) else None
-    return chain
-
-
-def candidate_container_score(tag: Tag, red_name: str, blue_name: str) -> Optional[Tuple[int, int]]:
-    text = " ".join(tag.stripped_strings)
-    text_norm = normalize_name(text)
-
-    if normalize_name(red_name) not in text_norm or normalize_name(blue_name) not in text_norm:
-        return None
-
-    ids = extract_profile_ids_from_tag(tag)
-    if len(ids) < 2:
-        return None
-
-    # prefer smaller text blocks, then fewer links
-    return (len(text), len(ids))
-
-
-def find_best_shared_container(soup: BeautifulSoup, red_name: str, blue_name: str) -> Optional[Tag]:
-    red_nodes = find_name_nodes(soup, red_name)
-    blue_nodes = find_name_nodes(soup, blue_name)
-
-    if not red_nodes or not blue_nodes:
-        return None
-
-    best: Optional[Tuple[Tuple[int, int], Tag]] = None
-
-    for red_node in red_nodes:
-        red_ancestors = ancestor_chain(red_node)
-        red_ancestor_ids = {id(tag) for tag in red_ancestors}
-
-        for blue_node in blue_nodes:
-            for anc in ancestor_chain(blue_node):
-                if id(anc) not in red_ancestor_ids:
-                    continue
-
-                score = candidate_container_score(anc, red_name, blue_name)
-                if score is None:
-                    continue
-
-                if best is None or score < best[0]:
-                    best = (score, anc)
-
-                # first shared ancestor in blue chain is the smallest shared one
-                break
-
-    return best[1] if best else None
-
-
-def extract_local_fighter_ids(soup: BeautifulSoup, red_name: str, blue_name: str) -> Tuple[str, str]:
-    container = find_best_shared_container(soup, red_name, blue_name)
-    if not container:
-        return "", ""
-
-    ids = extract_profile_ids_from_tag(container)
-    if len(ids) < 2:
-        return "", ""
-
-    return ids[0], ids[1]
-
-
 def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
     html = get_html(FIGHTCENTER_URL.format(event_id=event_id))
     if not html:
@@ -484,7 +529,8 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
     i = 0
 
     while i < len(lines):
-        if lines[i].lower() in SECTION_MARKERS:
+        lower = lines[i].lower()
+        if lower in SECTION_MARKERS:
             break
         i += 1
 
@@ -511,7 +557,11 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
             nxt = lines[j].strip()
             nxt_lower = nxt.lower()
 
-            if nxt_lower in STOP_MARKERS or nxt_lower in SECTION_MARKERS or is_weight_class_line(nxt):
+            if nxt_lower in STOP_MARKERS:
+                break
+            if nxt_lower in SECTION_MARKERS:
+                break
+            if is_weight_class_line(nxt):
                 break
 
             block.append(nxt)
@@ -599,6 +649,20 @@ def fetch_event_fights(event_id: str, session: requests.Session) -> List[Dict[st
     return parse_fights_from_fightcenter_html(event_id)
 
 
+def looks_suspicious(existing_fights: List[Dict[str, Any]], new_fights: List[Dict[str, Any]]) -> bool:
+    if not new_fights:
+        return True
+
+    if existing_fights and len(new_fights) < max(1, len(existing_fights) // 2):
+        return True
+
+    valid_bouts = sum(1 for f in new_fights if isinstance(f, dict) and f.get("bout"))
+    if valid_bouts == 0:
+        return True
+
+    return False
+
+
 def main() -> None:
     payload = load_events()
     events = payload.get("events", []) or []
@@ -620,7 +684,17 @@ def main() -> None:
             print(f"Skipping {name or '(unnamed event)'}: missing source.event_id")
             continue
 
-        fights = fetch_event_fights(event_id, session)
+        existing_fights = ev.get("fights", []) or []
+        new_fights = fetch_event_fights(event_id, session)
+
+        print(f"{name}: existing fights={len(existing_fights)} | new fights={len(new_fights)}")
+
+        if looks_suspicious(existing_fights, new_fights):
+            print(f"Keeping existing fights for {name}: new scrape looked suspicious")
+            fights = existing_fights
+        else:
+            fights = new_fights
+
         ev["fights"] = fights
 
         if fights:
