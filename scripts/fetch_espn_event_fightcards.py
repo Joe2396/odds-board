@@ -6,7 +6,7 @@ import time
 from typing import Any, Dict, List, Optional, Tuple
 
 import requests
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup, Tag, NavigableString
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 EVENTS_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
@@ -61,7 +61,6 @@ KNOWN_WEIGHT_CLASSES = {
 def load_events() -> Dict[str, Any]:
     if not os.path.exists(EVENTS_PATH):
         return {"generated_at": None, "events": []}
-
     with open(EVENTS_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -212,11 +211,9 @@ def parse_competition_from_core(
         elif "in" in state:
             status = "in_progress"
 
-    bout = build_bout_name(red["name"], blue["name"])
-
     return {
         "id": comp_id or f"{event_id}-{idx}",
-        "bout": bout,
+        "bout": build_bout_name(red["name"], blue["name"]),
         "red": red,
         "blue": blue,
         "weight_class": normalize_weight_class(weight_class),
@@ -365,67 +362,113 @@ def extract_profile_ids_from_tag(tag: Tag) -> List[str]:
 
     for a in tag.find_all("a", href=True):
         href = a.get("href", "")
-        match = re.search(r"/mma/fighter/_/id/(\d+)", href)
-        if not match:
+        m = re.search(r"/mma/fighter/_/id/(\d+)", href)
+        if not m:
             continue
-        fighter_id = match.group(1)
-        if fighter_id in seen:
+        fid = m.group(1)
+        if fid in seen:
             continue
-        seen.add(fighter_id)
-        ids.append(fighter_id)
+        seen.add(fid)
+        ids.append(fid)
 
     return ids
 
 
-def find_best_fight_container(soup: BeautifulSoup, red_name: str, blue_name: str) -> Optional[Tag]:
-    """
-    Try to find the smallest DOM container that includes both fighter names
-    and at least two fighter profile links.
-    """
-    red_norm = normalize_name(red_name)
-    blue_norm = normalize_name(blue_name)
+def find_name_nodes(soup: BeautifulSoup, fighter_name: str) -> List[Tag]:
+    target = normalize_name(fighter_name)
+    if not target:
+        return []
 
-    if not red_norm or not blue_norm:
-        return None
+    found: List[Tag] = []
+    seen_ids = set()
 
-    candidates: List[Tuple[int, Tag]] = []
-
-    for tag in soup.find_all(["section", "article", "div", "li"]):
-        try:
-            text = " ".join(tag.stripped_strings)
-        except Exception:
+    for node in soup.find_all(string=True):
+        if not isinstance(node, NavigableString):
             continue
-
+        text = str(node).strip()
         if not text:
             continue
-
-        text_norm = normalize_name(text)
-        if red_norm not in text_norm or blue_norm not in text_norm:
+        if normalize_name(text) != target:
             continue
 
-        profile_ids = extract_profile_ids_from_tag(tag)
-        if len(profile_ids) < 2:
+        parent = node.parent
+        if not isinstance(parent, Tag):
             continue
 
-        candidates.append((len(text), tag))
+        obj_id = id(parent)
+        if obj_id in seen_ids:
+            continue
+        seen_ids.add(obj_id)
+        found.append(parent)
 
-    if not candidates:
+    return found
+
+
+def ancestor_chain(tag: Tag) -> List[Tag]:
+    chain: List[Tag] = []
+    cur: Optional[Tag] = tag
+    while isinstance(cur, Tag):
+        chain.append(cur)
+        cur = cur.parent if isinstance(cur.parent, Tag) else None
+    return chain
+
+
+def candidate_container_score(tag: Tag, red_name: str, blue_name: str) -> Optional[Tuple[int, int]]:
+    text = " ".join(tag.stripped_strings)
+    text_norm = normalize_name(text)
+
+    if normalize_name(red_name) not in text_norm or normalize_name(blue_name) not in text_norm:
         return None
 
-    candidates.sort(key=lambda x: x[0])
-    return candidates[0][1]
+    ids = extract_profile_ids_from_tag(tag)
+    if len(ids) < 2:
+        return None
+
+    # prefer smaller text blocks, then fewer links
+    return (len(text), len(ids))
+
+
+def find_best_shared_container(soup: BeautifulSoup, red_name: str, blue_name: str) -> Optional[Tag]:
+    red_nodes = find_name_nodes(soup, red_name)
+    blue_nodes = find_name_nodes(soup, blue_name)
+
+    if not red_nodes or not blue_nodes:
+        return None
+
+    best: Optional[Tuple[Tuple[int, int], Tag]] = None
+
+    for red_node in red_nodes:
+        red_ancestors = ancestor_chain(red_node)
+        red_ancestor_ids = {id(tag) for tag in red_ancestors}
+
+        for blue_node in blue_nodes:
+            for anc in ancestor_chain(blue_node):
+                if id(anc) not in red_ancestor_ids:
+                    continue
+
+                score = candidate_container_score(anc, red_name, blue_name)
+                if score is None:
+                    continue
+
+                if best is None or score < best[0]:
+                    best = (score, anc)
+
+                # first shared ancestor in blue chain is the smallest shared one
+                break
+
+    return best[1] if best else None
 
 
 def extract_local_fighter_ids(soup: BeautifulSoup, red_name: str, blue_name: str) -> Tuple[str, str]:
-    container = find_best_fight_container(soup, red_name, blue_name)
+    container = find_best_shared_container(soup, red_name, blue_name)
     if not container:
         return "", ""
 
-    profile_ids = extract_profile_ids_from_tag(container)
-    if len(profile_ids) < 2:
+    ids = extract_profile_ids_from_tag(container)
+    if len(ids) < 2:
         return "", ""
 
-    return profile_ids[0], profile_ids[1]
+    return ids[0], ids[1]
 
 
 def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
@@ -441,8 +484,7 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
     i = 0
 
     while i < len(lines):
-        lower = lines[i].lower()
-        if lower in SECTION_MARKERS:
+        if lines[i].lower() in SECTION_MARKERS:
             break
         i += 1
 
@@ -469,11 +511,7 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
             nxt = lines[j].strip()
             nxt_lower = nxt.lower()
 
-            if nxt_lower in STOP_MARKERS:
-                break
-            if nxt_lower in SECTION_MARKERS:
-                break
-            if is_weight_class_line(nxt):
+            if nxt_lower in STOP_MARKERS or nxt_lower in SECTION_MARKERS or is_weight_class_line(nxt):
                 break
 
             block.append(nxt)
@@ -490,7 +528,6 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
 
             red_id, blue_id = extract_local_fighter_ids(soup, red_name, blue_name)
 
-        
             fight_status = "scheduled"
             block_lower = [b.lower() for b in block]
             if "final" in block_lower:
@@ -500,14 +537,8 @@ def parse_fights_from_fightcenter_html(event_id: str) -> List[Dict[str, Any]]:
                 {
                     "id": f"{event_id}-{idx}",
                     "bout": build_bout_name(red_name, blue_name),
-                    "red": {
-                        "name": red_name,
-                        "espn_id": red_id,
-                    },
-                    "blue": {
-                        "name": blue_name,
-                        "espn_id": blue_id,
-                    },
+                    "red": {"name": red_name, "espn_id": red_id},
+                    "blue": {"name": blue_name, "espn_id": blue_id},
                     "weight_class": normalize_weight_class(weight_class),
                     "order": idx,
                     "status": fight_status,
