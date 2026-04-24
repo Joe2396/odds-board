@@ -35,45 +35,44 @@ jobs:
       - name: Install deps
         run: pip install requests beautifulsoup4
 
-      # 1) Build hub from current events.json
-      - name: Generate UFC hub
-        run: python scripts/generate_ufc_hub.py
-
-      # 2) Add recent completed UFC events into events.json
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
 
-      # 3) Populate fight cards for events in events.json
       - name: Fetch ESPN event fight cards
         run: python scripts/fetch_espn_event_fightcards.py
 
-      # 4) NEW: Build fighter coverage from fight names, not ESPN IDs
       - name: Collect UFC fighters
         run: python scripts/collect_ufc_fighters.py
 
-      # 5) Generate event pages after fight cards/fighter keys are populated
+      - name: Generate UFC hub
+        run: python scripts/generate_ufc_hub.py
+
       - name: Generate UFC events
         run: python scripts/generate_ufc_events.py
 
-      # 6) ESPN fighter stats are now optional enrichment.
-      # Keep this step for now, but it should not be required for fighter coverage.
-      - name: Fetch ESPN fighter stats
-        run: python scripts/fetch_espn_fighter_details.py
-
-      # Temporarily disabled until fighter history / recent fights are stable again
-      # - name: Build fighter recent fights
-      #   run: python scripts/build_fighter_recent_fights.py
-
-      # 7) Generate fight pages so event links do not 404
       - name: Generate UFC fights
         run: python scripts/generate_ufc_fights.py
 
-      # 8) Generate fighter pages
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
 
-      # 9) Commit generated output
-      - name: Commit generated pages
+      - name: Debug generated fighter count
+        run: |
+          python - <<'PY'
+          import json, os
+          path = "ufc/data/fighters.json"
+          if not os.path.exists(path):
+              print("fighters.json missing")
+              raise SystemExit(1)
+          data = json.load(open(path, encoding="utf-8"))
+          fighters = data.get("fighters", [])
+          print("fighters.json count:", len(fighters))
+          print("first 10 fighters:")
+          for f in fighters[:10]:
+              print("-", f.get("fighter_key"), "|", f.get("name"), "| upcoming:", len(f.get("upcoming_fights", [])))
+          PY
+
+      - name: Commit generated output
         run: |
           git config user.name "ufc-bot"
           git config user.email "actions@github.com"
@@ -82,4 +81,4 @@ jobs:
 
           git commit -m "Auto-generate UFC pages" || echo "No changes to commit"
 
-          git push origin main --force
+          git push origin main
