@@ -47,11 +47,16 @@ jobs:
       - name: Fetch ESPN event fight cards
         run: python scripts/fetch_espn_event_fightcards.py
 
-      # 4) Generate event pages after fight cards are populated
+      # 4) NEW: Build fighter coverage from fight names, not ESPN IDs
+      - name: Collect UFC fighters
+        run: python scripts/collect_ufc_fighters.py
+
+      # 5) Generate event pages after fight cards/fighter keys are populated
       - name: Generate UFC events
         run: python scripts/generate_ufc_events.py
 
-      # 5) Fetch fighter stats from ESPN using fighters found in events.json
+      # 6) ESPN fighter stats are now optional enrichment.
+      # Keep this step for now, but it should not be required for fighter coverage.
       - name: Fetch ESPN fighter stats
         run: python scripts/fetch_espn_fighter_details.py
 
@@ -59,25 +64,22 @@ jobs:
       # - name: Build fighter recent fights
       #   run: python scripts/build_fighter_recent_fights.py
 
-      # 6) Generate fight pages so event links do not 404
+      # 7) Generate fight pages so event links do not 404
       - name: Generate UFC fights
         run: python scripts/generate_ufc_fights.py
 
-      # 7) Generate fighter pages
+      # 8) Generate fighter pages
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
 
-      # 8) Commit generated output
+      # 9) Commit generated output
       - name: Commit generated pages
         run: |
           git config user.name "ufc-bot"
           git config user.email "actions@github.com"
 
-          # Stage generated content
           git add -A ufc
 
-          # Commit if anything changed
           git commit -m "Auto-generate UFC pages" || echo "No changes to commit"
 
-          # Force push generated output to avoid rebase conflicts on generated files
           git push origin main --force
