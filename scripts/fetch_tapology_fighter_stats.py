@@ -1,121 +1,154 @@
 #!/usr/bin/env python3
 import json
 import time
+import re
+import urllib.parse
+from pathlib import Path
+
 import requests
 from bs4 import BeautifulSoup
-from pathlib import Path
-import urllib.parse
 
 ROOT = Path(__file__).resolve().parents[1]
 EVENTS = ROOT / "ufc" / "data" / "events.json"
 OUT = ROOT / "ufc" / "data" / "fighters.json"
 
-HEADERS = {"User-Agent": "Mozilla/5.0"}
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (compatible; UFCStatsBot/1.0)"
+}
 
 
-# -------------------------
-# LOAD FIGHTER NAMES
-# -------------------------
+def slugify(name):
+    return re.sub(r"[^a-z0-9]+", "-", str(name).lower()).strip("-")
+
+
 def load_fighter_names():
     data = json.loads(EVENTS.read_text(encoding="utf-8"))
     names = set()
 
-    for ev in data.get("events", []):
-        for f in ev.get("fights", []):
-            if f.get("red", {}).get("name"):
-                names.add(f["red"]["name"].strip())
-            if f.get("blue", {}).get("name"):
-                names.add(f["blue"]["name"].strip())
+    for event in data.get("events", []):
+        for fight in event.get("fights", []) or []:
+            for side in ("red", "blue"):
+                fighter = fight.get(side) or {}
+                name = fighter.get("name")
+                if name:
+                    names.add(name.strip())
 
     return sorted(names)
 
 
-# -------------------------
-# FIND TAPOLOGY PROFILE
-# -------------------------
 def find_tapology_url(name):
     query = urllib.parse.quote(name)
     url = f"https://www.tapology.com/search?term={query}"
 
     try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
+        r = requests.get(url, headers=HEADERS, timeout=20)
+
+        if r.status_code != 200:
+            print(f"⚠️ Tapology search HTTP {r.status_code} for {name}")
+            return None
+
         soup = BeautifulSoup(r.text, "html.parser")
 
-        # Tapology fighter links look like:
-        # /fightcenter/fighters/1234-name
-        links = soup.select("a[href*='/fightcenter/fighters/']")
+        # Main Tapology search results container
+        results = soup.select("div.searchResults a")
 
-        for a in links:
-            href = a.get("href")
-            if "/fightcenter/fighters/" in href:
-                return "https://www.tapology.com" + href
+        # Fallback: search all links if container selector changes
+        if not results:
+            results = soup.select("a[href*='/fightcenter/fighters/']")
 
-    except Exception:
-        return None
+        for a in results:
+            href = a.get("href", "")
+            text = a.get_text(" ", strip=True)
+
+            if "/fightcenter/fighters/" not in href:
+                continue
+
+            full_url = href
+            if href.startswith("/"):
+                full_url = "https://www.tapology.com" + href
+
+            print(f"✅ Tapology match for {name}: {text} -> {full_url}")
+            return full_url
+
+    except Exception as e:
+        print(f"⚠️ Search error for {name}: {e}")
 
     return None
 
 
-# -------------------------
-# SCRAPE FIGHTER PAGE
-# -------------------------
-def scrape_fighter(url, name):
+def clean_text(value):
+    if not value:
+        return None
+    value = re.sub(r"\s+", " ", value).strip()
+    return value or None
+
+
+def scrape_fighter(url, fallback_name):
     try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
+        r = requests.get(url, headers=HEADERS, timeout=20)
+
+        if r.status_code != 200:
+            print(f"⚠️ Fighter page HTTP {r.status_code}: {url}")
+            return None
+
         soup = BeautifulSoup(r.text, "html.parser")
 
-        # record
+        name = fallback_name
+        h1 = soup.select_one("h1")
+        if h1:
+            name = clean_text(h1.get_text(" ", strip=True)) or fallback_name
+
         record = None
-        rec = soup.select_one(".record")
-        if rec:
-            record = rec.get_text(strip=True)
+        record_el = soup.select_one(".record")
+        if record_el:
+            record = clean_text(record_el.get_text(" ", strip=True))
 
-        # nickname
         nickname = None
-        nick = soup.select_one(".fighterNickname")
-        if nick:
-            nickname = nick.get_text(strip=True)
+        nick_el = soup.select_one(".fighterNickname")
+        if nick_el:
+            nickname = clean_text(nick_el.get_text(" ", strip=True))
 
-        # stats block
-        stats = soup.select(".details_two_columns .details")
+        page_text = soup.get_text("\n")
 
-        height = weight = reach = stance = None
+        def find_field(label):
+            pattern = rf"{label}\s*[:\-]?\s*([^\n]+)"
+            m = re.search(pattern, page_text, flags=re.IGNORECASE)
+            if m:
+                return clean_text(m.group(1))
+            return None
 
-        for s in stats:
-            text = s.get_text(" ", strip=True)
-
-            if "Height" in text:
-                height = text.replace("Height", "").strip()
-            elif "Weight" in text:
-                weight = text.replace("Weight", "").strip()
-            elif "Reach" in text:
-                reach = text.replace("Reach", "").strip()
-            elif "Stance" in text:
-                stance = text.replace("Stance", "").strip()
+        height = find_field("Height")
+        weight = find_field("Weight")
+        reach = find_field("Reach")
+        stance = find_field("Stance")
+        age = find_field("Age")
+        country = find_field("Nationality") or find_field("Fighting out of")
 
         return {
             "name": name,
+            "slug": slugify(fallback_name),
             "nickname": nickname,
             "record": record,
             "height": height,
             "weight": weight,
             "reach": reach,
             "stance": stance,
-            "source_url": url,
+            "age": age,
+            "country": country,
+            "tapology_url": url,
+            "recent_fights": []
         }
 
-    except Exception:
+    except Exception as e:
+        print(f"⚠️ Failed scrape for {fallback_name}: {e}")
         return None
 
 
-# -------------------------
-# MAIN
-# -------------------------
 def main():
     names = load_fighter_names()
-
     fighters = []
-    print(f"Found {len(names)} fighters\n")
+
+    print(f"Found {len(names)} fighter names from events.json\n")
 
     for i, name in enumerate(names, 1):
         print(f"{i}/{len(names)} Searching: {name}")
@@ -130,15 +163,25 @@ def main():
 
         if fighter:
             fighters.append(fighter)
-            print(f"✅ {name}")
+            print(f"✅ Saved {fighter.get('name')} | record={fighter.get('record')}")
         else:
-            print(f"❌ Failed scrape for {name}")
+            print(f"❌ Failed to scrape {name}")
 
-        time.sleep(0.5)
+        time.sleep(0.75)
 
-    OUT.write_text(json.dumps({"fighters": fighters}, indent=2), encoding="utf-8")
+    OUT.write_text(
+        json.dumps(
+            {
+                "generated_at": time.time(),
+                "fighters": fighters
+            },
+            indent=2,
+            ensure_ascii=False
+        ),
+        encoding="utf-8"
+    )
 
-    print(f"\n🔥 Done. {len(fighters)} fighters saved.")
+    print(f"\n🔥 Done. {len(fighters)} fighters saved to {OUT}")
 
 
 if __name__ == "__main__":
