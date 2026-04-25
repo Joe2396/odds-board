@@ -35,15 +35,19 @@ jobs:
       - name: Install deps
         run: pip install requests beautifulsoup4
 
+      # 1) Keep events/fight cards updated
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
 
       - name: Fetch ESPN event fight cards
         run: python scripts/fetch_espn_event_fightcards.py
 
-      - name: Collect UFC fighters
-        run: python scripts/collect_ufc_fighters.py
+      # 2) NEW: Build fighters.json from Tapology by fighter name
+      # This replaces the old ESPN-ID-based fighter stats system.
+      - name: Fetch Tapology fighter stats
+        run: python scripts/fetch_tapology_fighter.py
 
+      # 3) Generate site pages
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
 
@@ -64,14 +68,24 @@ jobs:
           if not os.path.exists(path):
               print("fighters.json missing")
               raise SystemExit(1)
+
           data = json.load(open(path, encoding="utf-8"))
           fighters = data.get("fighters", [])
-          print("fighters.json count:", len(fighters))
+
+          if isinstance(fighters, dict):
+              count = len(fighters)
+              sample = list(fighters.values())[:10]
+          else:
+              count = len(fighters)
+              sample = fighters[:10]
+
+          print("fighters.json count:", count)
           print("first 10 fighters:")
-          for f in fighters[:10]:
-              print("-", f.get("fighter_key"), "|", f.get("name"), "| upcoming:", len(f.get("upcoming_fights", [])))
+          for f in sample:
+              print("-", f.get("name"), "| record:", f.get("record"), "| tapology:", f.get("tapology_url"))
           PY
 
+      # 4) Commit generated output
       - name: Commit generated output
         run: |
           git config user.name "ufc-bot"
@@ -81,4 +95,4 @@ jobs:
 
           git commit -m "Auto-generate UFC pages" || echo "No changes to commit"
 
-          git push origin main
+          git push origin main --force
