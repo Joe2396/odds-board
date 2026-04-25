@@ -45,7 +45,7 @@ jobs:
       # 2) NEW: Build fighters.json from Tapology by fighter name
       # This replaces the old ESPN-ID-based fighter stats system.
       - name: Fetch Tapology fighter stats
-        run: python scripts/fetch_tapology_fighter.py
+  run: python scripts/fetch_tapology_fighter_stats.py
 
       # 3) Generate site pages
       - name: Generate UFC hub
