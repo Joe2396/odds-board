@@ -35,19 +35,24 @@ jobs:
       - name: Install deps
         run: pip install requests beautifulsoup4
 
-      # 1) Keep events/fight cards updated
+      # -----------------------------
+      # 1) EVENT + FIGHT CARD DATA
+      # -----------------------------
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
 
       - name: Fetch ESPN event fight cards
         run: python scripts/fetch_espn_event_fightcards.py
 
-      # 2) NEW: Build fighters.json from Tapology by fighter name
-      # This replaces the old ESPN-ID-based fighter stats system.
+      # -----------------------------
+      # 2) TAPOLOGY (NEW SYSTEM)
+      # -----------------------------
       - name: Fetch Tapology fighter stats
-  run: python scripts/fetch_tapology_fighter_stats.py
+        run: python scripts/fetch_tapology_fighter_stats.py
 
-      # 3) Generate site pages
+      # -----------------------------
+      # 3) GENERATE SITE
+      # -----------------------------
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
 
@@ -60,10 +65,14 @@ jobs:
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
 
-      - name: Debug generated fighter count
+      # -----------------------------
+      # DEBUG (optional but useful)
+      # -----------------------------
+      - name: Debug fighter count
         run: |
           python - <<'PY'
           import json, os
+
           path = "ufc/data/fighters.json"
           if not os.path.exists(path):
               print("fighters.json missing")
@@ -72,20 +81,16 @@ jobs:
           data = json.load(open(path, encoding="utf-8"))
           fighters = data.get("fighters", [])
 
-          if isinstance(fighters, dict):
-              count = len(fighters)
-              sample = list(fighters.values())[:10]
-          else:
-              count = len(fighters)
-              sample = fighters[:10]
+          print("fighters count:", len(fighters))
 
-          print("fighters.json count:", count)
-          print("first 10 fighters:")
-          for f in sample:
-              print("-", f.get("name"), "| record:", f.get("record"), "| tapology:", f.get("tapology_url"))
+          print("\nSample fighters:")
+          for f in fighters[:10]:
+              print("-", f.get("name"), "| record:", f.get("record"))
           PY
 
-      # 4) Commit generated output
+      # -----------------------------
+      # COMMIT OUTPUT
+      # -----------------------------
       - name: Commit generated output
         run: |
           git config user.name "ufc-bot"
