@@ -41,6 +41,18 @@
       border-bottom:1px solid var(--line);
       text-align:left;
     }
+    .recent-list {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:10px;
+    }
+    .recent-fight {
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+      background:rgba(255,255,255,0.015);
+    }
     @media (max-width: 900px) {
       .grid {
         grid-template-columns:1fr;
@@ -89,6 +101,20 @@
         <tr><td>TD Def.</td><td>—</td></tr>
         <tr><td>Sub. Avg.</td><td>—</td></tr>
       </table>
+
+      
+      <h3 class="muted">Method Breakdown</h3>
+      <table>
+        <tr><td>KO/TKO</td><td>0 W • 0 L</td></tr>
+        <tr><td>Submission</td><td>0 W • 0 L</td></tr>
+        <tr><td>Decision</td><td>0 W • 0 L</td></tr>
+        <tr><td>Other</td><td>0 W • 0 L</td></tr>
+      </table>
+    
+      
+      <h3 class="muted">Recent Fights</h3>
+      <p class="muted">Recent fight history not available yet.</p>
+        
     </div>
     
       
@@ -120,6 +146,46 @@
         <tr><td>TD Def.</td><td>71%</td></tr>
         <tr><td>Sub. Avg.</td><td>1.9</td></tr>
       </table>
+
+      
+      <h3 class="muted">Method Breakdown</h3>
+      <table>
+        <tr><td>KO/TKO</td><td>2 W • 1 L</td></tr>
+        <tr><td>Submission</td><td>1 W • 0 L</td></tr>
+        <tr><td>Decision</td><td>2 W • 0 L</td></tr>
+        <tr><td>Other</td><td>0 W • 0 L</td></tr>
+      </table>
+    
+      
+      <h3 class="muted">Recent Fights</h3>
+      <div class="recent-list">
+        
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Charlie Campbell
+          <div class="muted">SUB Rear Naked Choke • R1 • 4:08 • UFC Fight Night: Ulberg vs. Reyes Sep. 27, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Viacheslav Borshchev
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 312: Du Plessis vs. Strickland 2 Feb. 08, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Alex Reyes
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 305: Du Plessis vs. Adesanya Aug. 17, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Victor Martinez
+          <div class="muted">KO/TKO Knee • R1 • 3:50 • UFC Fight Night: Barboza vs. Murphy May. 18, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Nikolas Motta
+          <div class="muted">KO/TKO Punches • R1 • 1:03 • UFC Fight Night: Ankalaev vs. Walker 2 Jan. 13, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Bogdan Grad
+          <div class="muted">KO/TKO Punch • R1 • 1:23 • DWCS 7.1 Aug. 08, 2023</div>
+        </div>
+      </div>
+    
     </div>
     
     </div>
@@ -134,7 +200,7 @@
     </div>
 
     <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Fight ID: 600058949-8 • Generated: 2026-04-26 13:08 UTC</p>
+    <p class="muted">Fight ID: 600058949-8 • Generated: 2026-04-26 13:19 UTC</p>
   </div>
 </body>
 </html>

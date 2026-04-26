@@ -41,6 +41,18 @@
       border-bottom:1px solid var(--line);
       text-align:left;
     }
+    .recent-list {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:10px;
+    }
+    .recent-fight {
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+      background:rgba(255,255,255,0.015);
+    }
     @media (max-width: 900px) {
       .grid {
         grid-template-columns:1fr;
@@ -89,6 +101,46 @@
         <tr><td>TD Def.</td><td>85%</td></tr>
         <tr><td>Sub. Avg.</td><td>0.0</td></tr>
       </table>
+
+      
+      <h3 class="muted">Method Breakdown</h3>
+      <table>
+        <tr><td>KO/TKO</td><td>4 W • 0 L</td></tr>
+        <tr><td>Submission</td><td>0 W • 1 L</td></tr>
+        <tr><td>Decision</td><td>1 W • 0 L</td></tr>
+        <tr><td>Other</td><td>0 W • 0 L</td></tr>
+      </table>
+    
+      
+      <h3 class="muted">Recent Fights</h3>
+      <div class="recent-list">
+        
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Rafael Fiziev
+          <div class="muted">KO/TKO Punches • R2 • 4:30 • UFC 325: Volkanovski vs. Lopes 2 Jan. 31, 2026</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Benoit Saint Denis
+          <div class="muted">SUB Rear Naked Choke • R2 • 2:56 • UFC Fight Night: Imavov vs. Borralho Sep. 06, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs King Green
+          <div class="muted">KO/TKO Kick • R1 • 2:07 • UFC 313: Pereira vs. Ankalaev Mar. 08, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs James Llontop
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 309: Jones vs. Miocic Nov. 16, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Jamie Mullarkey
+          <div class="muted">KO/TKO Punches • R1 • 4:42 • UFC 301: Pantoja vs. Erceg May. 04, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Raimond Magomedaliev
+          <div class="muted">KO/TKO Punches • R3 • 4:45 • DWCS 7.9 Oct. 03, 2023</div>
+        </div>
+      </div>
+    
     </div>
     
       
@@ -120,6 +172,58 @@
         <tr><td>TD Def.</td><td>61%</td></tr>
         <tr><td>Sub. Avg.</td><td>0.6</td></tr>
       </table>
+
+      
+      <h3 class="muted">Method Breakdown</h3>
+      <table>
+        <tr><td>KO/TKO</td><td>3 W • 2 L</td></tr>
+        <tr><td>Submission</td><td>1 W • 1 L</td></tr>
+        <tr><td>Decision</td><td>0 W • 2 L</td></tr>
+        <tr><td>Other</td><td>0 W • 0 L</td></tr>
+      </table>
+    
+      
+      <h3 class="muted">Recent Fights</h3>
+      <div class="recent-list">
+        
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Paddy Pimblett
+          <div class="muted">KO/TKO Elbows • R3 • 3:07 • UFC 314: Volkanovski vs. Lopes Apr. 12, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Charles Oliveira
+          <div class="muted">U-DEC • R5 • 5:00 • UFC 309: Jones vs. Miocic Nov. 16, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Dustin Poirier
+          <div class="muted">SUB Rear Naked Choke • R3 • 2:00 • UFC 281: Adesanya vs. Pereira Nov. 12, 2022</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Tony Ferguson
+          <div class="muted">KO/TKO Kick • R2 • 0:17 • UFC 274: Oliveira vs. Gaethje May. 07, 2022</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Justin Gaethje
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 268: Usman vs. Covington 2 Nov. 06, 2021</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Charles Oliveira
+          <div class="muted">KO/TKO Punch • R2 • 0:19 • UFC 262: Oliveira vs. Chandler May. 15, 2021</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Dan Hooker
+          <div class="muted">KO/TKO Punch • R1 • 2:30 • UFC 257: Poirier vs. McGregor Jan. 23, 2021</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Salvador Woods
+          <div class="muted">SUB Rear Naked Choke • R1 • 0:59 • Strikeforce - Heavy Artillery May. 15, 2010</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Rich Bouphanouvong
+          <div class="muted">KO/TKO • R2 • 2:07 • Strikeforce Challengers 5 Nov. 20, 2009</div>
+        </div>
+      </div>
+    
     </div>
     
     </div>
@@ -134,7 +238,7 @@
     </div>
 
     <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Fight ID: 600058854-4 • Generated: 2026-04-26 13:08 UTC</p>
+    <p class="muted">Fight ID: 600058854-4 • Generated: 2026-04-26 13:19 UTC</p>
   </div>
 </body>
 </html>

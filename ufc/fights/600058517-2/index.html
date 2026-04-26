@@ -41,6 +41,18 @@
       border-bottom:1px solid var(--line);
       text-align:left;
     }
+    .recent-list {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:10px;
+    }
+    .recent-fight {
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+      background:rgba(255,255,255,0.015);
+    }
     @media (max-width: 900px) {
       .grid {
         grid-template-columns:1fr;
@@ -89,6 +101,42 @@
         <tr><td>TD Def.</td><td>75%</td></tr>
         <tr><td>Sub. Avg.</td><td>0.0</td></tr>
       </table>
+
+      
+      <h3 class="muted">Method Breakdown</h3>
+      <table>
+        <tr><td>KO/TKO</td><td>4 W • 1 L</td></tr>
+        <tr><td>Submission</td><td>0 W • 0 L</td></tr>
+        <tr><td>Decision</td><td>0 W • 0 L</td></tr>
+        <tr><td>Other</td><td>0 W • 0 L</td></tr>
+      </table>
+    
+      
+      <h3 class="muted">Recent Fights</h3>
+      <div class="recent-list">
+        
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Johnny Walker
+          <div class="muted">KO/TKO Punches • R2 • 2:37 • UFC Fight Night: Walker vs. Zhang Aug. 23, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Anthony Smith
+          <div class="muted">KO/TKO Elbows • R1 • 4:03 • UFC Fight Night: Machado Garry vs. Prates Apr. 26, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Ozzy Diaz
+          <div class="muted">KO/TKO Elbow • R1 • 2:25 • UFC Fight Night: Yan vs. Figueiredo Nov. 23, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Brendson Ribeiro
+          <div class="muted">KO/TKO Punch • R1 • 1:41 • UFC 298: Volkanovski vs. Topuria Feb. 17, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Tuco Tokkos
+          <div class="muted">KO/TKO Punch • R1 • 3:57 • Road to UFC 1.1 Jun. 09, 2022</div>
+        </div>
+      </div>
+    
     </div>
     
       
@@ -120,6 +168,62 @@
         <tr><td>TD Def.</td><td>78%</td></tr>
         <tr><td>Sub. Avg.</td><td>0.2</td></tr>
       </table>
+
+      
+      <h3 class="muted">Method Breakdown</h3>
+      <table>
+        <tr><td>KO/TKO</td><td>6 W • 4 L</td></tr>
+        <tr><td>Submission</td><td>2 W • 0 L</td></tr>
+        <tr><td>Decision</td><td>4 W • 2 L</td></tr>
+        <tr><td>Other</td><td>0 W • 0 L</td></tr>
+      </table>
+    
+      
+      <h3 class="muted">Recent Fights</h3>
+      <div class="recent-list">
+        
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Volkan Oezdemir
+          <div class="muted">KO/TKO Punches • R1 • 1:27 • UFC Fight Night: Tsarukyan vs. Hooker Nov. 22, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Oumar Sy
+          <div class="muted">U-DEC • R3 • 5:00 • UFC Fight Night: Usman vs. Buckley Jun. 14, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Julius Walker
+          <div class="muted">S-DEC • R3 • 5:00 • UFC Fight Night: Cejudo vs. Song Feb. 22, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Azamat Murzakanov
+          <div class="muted">KO/TKO Punches • R2 • 3:18 • UFC Fight Night: Sandhagen vs. Nurmagomedov Aug. 03, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Carlos Ulberg
+          <div class="muted">KO/TKO Punches • R1 • 0:12 • UFC Fight Night: Lewis vs. Nascimento May. 11, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Dustin Jacoby
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 296: Edwards vs. Covington Dec. 16, 2023</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Jimmy Crute
+          <div class="muted">SUB Guillotine Choke • R2 • 1:55 • UFC 290: Volkanovski vs. Rodriguez Jul. 08, 2023</div>
+        </div>
+        <div class="recent-fight">
+          <strong>DRAW</strong> vs Jimmy Crute
+          <div class="muted">M-DEC • R3 • 5:00 • UFC 284: Makhachev vs. Volkanovski Feb. 11, 2023</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Misha Cirkunov
+          <div class="muted">KO/TKO Punch • R1 • 1:28 • UFC Fight Night: Grasso vs. Araujo Oct. 15, 2022</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Askar Mozharov
+          <div class="muted">KO/TKO Elbows • R1 • 4:40 • UFC Fight Night: Volkov vs. Rozenstruik Jun. 04, 2022</div>
+        </div>
+      </div>
+    
     </div>
     
     </div>
@@ -134,7 +238,7 @@
     </div>
 
     <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Fight ID: 600058517-2 • Generated: 2026-04-26 13:08 UTC</p>
+    <p class="muted">Fight ID: 600058517-2 • Generated: 2026-04-26 13:19 UTC</p>
   </div>
 </body>
 </html>
