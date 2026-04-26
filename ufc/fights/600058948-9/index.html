@@ -31,6 +31,26 @@
       color:var(--muted);
       font-size:13px;
     }
+    .quick-summary {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:14px;
+    }
+    .quick-summary div {
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+      background:rgba(255,255,255,0.015);
+    }
+    .quick-summary span {
+      display:block;
+      font-size:12px;
+      margin-bottom:4px;
+    }
+    .quick-summary strong {
+      font-size:18px;
+    }
     table {
       width:100%;
       border-collapse:collapse;
@@ -55,6 +75,9 @@
     }
     @media (max-width: 900px) {
       .grid {
+        grid-template-columns:1fr;
+      }
+      .quick-summary {
         grid-template-columns:1fr;
       }
     }
@@ -84,6 +107,17 @@
         <span class="pill">Height: 5&#39; 8&quot;</span>
         <span class="pill">Reach: 68&quot;</span>
         <span class="pill">DOB: Aug 26, 1991</span>
+      </div>
+
+      <div class="quick-summary">
+        <div>
+          <span class="muted">Recent Form</span>
+          <strong>L W L W L W W L W L</strong>
+        </div>
+        <div>
+          <span class="muted">Finish Rate</span>
+          <strong>11%</strong>
+        </div>
       </div>
 
       <h3 class="muted">Striking</h3>
@@ -173,6 +207,17 @@
         <span class="pill">DOB: Aug 29, 1997</span>
       </div>
 
+      <div class="quick-summary">
+        <div>
+          <span class="muted">Recent Form</span>
+          <strong>W W W W W</strong>
+        </div>
+        <div>
+          <span class="muted">Finish Rate</span>
+          <strong>0%</strong>
+        </div>
+      </div>
+
       <h3 class="muted">Striking</h3>
       <table>
         <tr><td>SLpM</td><td>5.65</td></tr>
@@ -238,7 +283,7 @@
     </div>
 
     <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Fight ID: 600058948-9 • Generated: 2026-04-26 13:19 UTC</p>
+    <p class="muted">Fight ID: 600058948-9 • Generated: 2026-04-26 15:22 UTC</p>
   </div>
 </body>
 </html>

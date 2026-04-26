@@ -31,6 +31,26 @@
       color:var(--muted);
       font-size:13px;
     }
+    .quick-summary {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:14px;
+    }
+    .quick-summary div {
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+      background:rgba(255,255,255,0.015);
+    }
+    .quick-summary span {
+      display:block;
+      font-size:12px;
+      margin-bottom:4px;
+    }
+    .quick-summary strong {
+      font-size:18px;
+    }
     table {
       width:100%;
       border-collapse:collapse;
@@ -55,6 +75,9 @@
     }
     @media (max-width: 900px) {
       .grid {
+        grid-template-columns:1fr;
+      }
+      .quick-summary {
         grid-template-columns:1fr;
       }
     }
@@ -84,6 +107,17 @@
         <span class="pill">Height: 6&#39; 0&quot;</span>
         <span class="pill">Reach: 77&quot;</span>
         <span class="pill">DOB: Mar 05, 1999</span>
+      </div>
+
+      <div class="quick-summary">
+        <div>
+          <span class="muted">Recent Form</span>
+          <strong>W W W</strong>
+        </div>
+        <div>
+          <span class="muted">Finish Rate</span>
+          <strong>67%</strong>
+        </div>
       </div>
 
       <h3 class="muted">Striking</h3>
@@ -143,6 +177,17 @@
         <span class="pill">Height: 6&#39; 1&quot;</span>
         <span class="pill">Reach: 77&quot;</span>
         <span class="pill">DOB: Jan 23, 1991</span>
+      </div>
+
+      <div class="quick-summary">
+        <div>
+          <span class="muted">Recent Form</span>
+          <strong>L L W W W W L</strong>
+        </div>
+        <div>
+          <span class="muted">Finish Rate</span>
+          <strong>25%</strong>
+        </div>
       </div>
 
       <h3 class="muted">Striking</h3>
@@ -218,7 +263,7 @@
     </div>
 
     <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Fight ID: 600058807-10 • Generated: 2026-04-26 13:19 UTC</p>
+    <p class="muted">Fight ID: 600058807-10 • Generated: 2026-04-26 15:22 UTC</p>
   </div>
 </body>
 </html>
