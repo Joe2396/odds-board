@@ -101,21 +101,67 @@ def enrich_fighter(fighter, fighters_by_slug):
     if not isinstance(details, dict):
         details = {}
 
-    merged = {
+    return {
         **fighter,
         **details,
         "slug": slug,
     }
-
-    return merged
 
 
 def stat_value(stats, key):
     if not isinstance(stats, dict):
         return "—"
 
-    value = stats.get(key)
-    return html_escape(value)
+    return html_escape(stats.get(key))
+
+
+def render_methods(methods):
+    if not isinstance(methods, dict):
+        methods = {}
+
+    return f"""
+      <h3 class="muted">Method Breakdown</h3>
+      <table>
+        <tr><td>KO/TKO</td><td>{methods.get("ko_tko_w", 0)} W • {methods.get("ko_tko_l", 0)} L</td></tr>
+        <tr><td>Submission</td><td>{methods.get("sub_w", 0)} W • {methods.get("sub_l", 0)} L</td></tr>
+        <tr><td>Decision</td><td>{methods.get("dec_w", 0)} W • {methods.get("dec_l", 0)} L</td></tr>
+        <tr><td>Other</td><td>{methods.get("other_w", 0)} W • {methods.get("other_l", 0)} L</td></tr>
+      </table>
+    """
+
+
+def render_recent_fights(recent_fights):
+    if not isinstance(recent_fights, list) or not recent_fights:
+        return """
+      <h3 class="muted">Recent Fights</h3>
+      <p class="muted">Recent fight history not available yet.</p>
+        """
+
+    rows = []
+
+    for fight in recent_fights[:10]:
+        result = html_escape(fight.get("result"))
+        opponent = html_escape(fight.get("opponent"))
+        method = html_escape(fight.get("method"))
+        round_num = html_escape(fight.get("round"))
+        fight_time = html_escape(fight.get("time"))
+        event = html_escape(fight.get("event"))
+
+        rows.append(
+            f"""
+        <div class="recent-fight">
+          <strong>{result}</strong> vs {opponent}
+          <div class="muted">{method} • R{round_num} • {fight_time} • {event}</div>
+        </div>
+            """.rstrip()
+        )
+
+    return f"""
+      <h3 class="muted">Recent Fights</h3>
+      <div class="recent-list">
+        {"".join(rows)}
+      </div>
+    """
 
 
 def fighter_panel(fighter):
@@ -131,6 +177,8 @@ def fighter_panel(fighter):
     ufcstats_url = fighter.get("ufcstats_url")
 
     stats = fighter.get("stats") or {}
+    methods = fighter.get("methods") or {}
+    recent_fights = fighter.get("recent_fights") or []
 
     fighter_href = f"{BASE_PATH}/fighters/{slug}/" if slug else "#"
 
@@ -167,6 +215,9 @@ def fighter_panel(fighter):
         <tr><td>TD Def.</td><td>{stat_value(stats, "td_def")}</td></tr>
         <tr><td>Sub. Avg.</td><td>{stat_value(stats, "sub_avg")}</td></tr>
       </table>
+
+      {render_methods(methods)}
+      {render_recent_fights(recent_fights)}
     </div>
     """
 
@@ -228,6 +279,18 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug):
       padding:8px;
       border-bottom:1px solid var(--line);
       text-align:left;
+    }}
+    .recent-list {{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:10px;
+    }}
+    .recent-fight {{
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+      background:rgba(255,255,255,0.015);
     }}
     @media (max-width: 900px) {{
       .grid {{
