@@ -28,6 +28,21 @@ def clean_text(value):
     return re.sub(r"\s+", " ", value).strip() if value else ""
 
 
+def classify_method(method):
+    method = clean_text(method).lower()
+
+    if any(x in method for x in ["ko", "tko"]):
+        return "ko_tko"
+
+    if any(x in method for x in ["sub", "submission"]):
+        return "sub"
+
+    if any(x in method for x in ["dec", "decision"]):
+        return "dec"
+
+    return "other"
+
+
 def build_ufcstats_index():
     index = {}
 
@@ -127,6 +142,67 @@ def parse_label_value_items(soup):
     return data
 
 
+def extract_fight_history(soup, fighter_name):
+    recent_fights = []
+
+    methods = {
+        "ko_tko_w": 0,
+        "sub_w": 0,
+        "dec_w": 0,
+        "other_w": 0,
+        "ko_tko_l": 0,
+        "sub_l": 0,
+        "dec_l": 0,
+        "other_l": 0,
+    }
+
+    rows = soup.select("tr.b-fight-details__table-row.b-fight-details__table-row__hover.js-fight-details-click")
+
+    for row in rows:
+        cols = row.select("td.b-fight-details__table-col")
+
+        if len(cols) < 10:
+            continue
+
+        result = clean_text(cols[0].get_text(" ", strip=True)).upper()
+
+        fighter_links = cols[1].select("a")
+        fighters = [clean_text(a.get_text(" ", strip=True)) for a in fighter_links if clean_text(a.get_text(" ", strip=True))]
+
+        opponent = ""
+
+        if len(fighters) >= 2:
+            if normalize_name(fighters[0]) == normalize_name(fighter_name):
+                opponent = fighters[1]
+            else:
+                opponent = fighters[0]
+
+        event = clean_text(cols[6].get_text(" ", strip=True))
+        method = clean_text(cols[7].get_text(" ", strip=True))
+        round_num = clean_text(cols[8].get_text(" ", strip=True))
+        fight_time = clean_text(cols[9].get_text(" ", strip=True))
+
+        method_type = classify_method(method)
+
+        if result == "WIN":
+            methods[f"{method_type}_w"] = methods.get(f"{method_type}_w", 0) + 1
+        elif result == "LOSS":
+            methods[f"{method_type}_l"] = methods.get(f"{method_type}_l", 0) + 1
+
+        recent_fights.append(
+            {
+                "result": result,
+                "opponent": opponent,
+                "method": method,
+                "round": round_num,
+                "time": fight_time,
+                "event": event,
+            }
+        )
+
+    return recent_fights[:10], methods
+
+
 def scrape_fighter_profile(name, url):
     print(f"Scraping fighter profile: {name}")
 
@@ -145,6 +221,8 @@ def scrape_fighter_profile(name, url):
         "stance": "",
         "dob": "",
         "stats": {},
+        "recent_fights": [],
+        "methods": {},
     }
 
     record_el = soup.select_one(".b-content__title-record")
@@ -170,6 +248,11 @@ def scrape_fighter_profile(name, url):
         "td_def": fields.get("td def.", ""),
         "sub_avg": fields.get("sub. avg.", ""),
     }
+
+    recent_fights, methods = extract_fight_history(soup, name)
+
+    fighter["recent_fights"] = recent_fights
+    fighter["methods"] = methods
 
     return fighter
 
@@ -229,10 +312,14 @@ def main():
             fighter["name"],
             "| record:",
             fighter["record"],
-            "| height:",
-            fighter["height"],
-            "| reach:",
-            fighter["reach"],
+            "| KO/TKO wins:",
+            fighter["methods"].get("ko_tko_w", 0),
+            "| SUB wins:",
+            fighter["methods"].get("sub_w", 0),
+            "| DEC wins:",
+            fighter["methods"].get("dec_w", 0),
+            "| recent fights:",
+            len(fighter.get("recent_fights", [])),
         )
 
 
