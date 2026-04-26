@@ -9,12 +9,11 @@ from bs4 import BeautifulSoup
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
 MATCHES_OUT_PATH = ROOT / "ufc" / "data" / "ufcstats_fighter_matches.json"
 FIGHTERS_OUT_PATH = ROOT / "ufc" / "data" / "fighters.json"
 
-EVENT_URLS = [
-    "http://ufcstats.com/event-details/872b018076f831b0",
-]
+UPCOMING_EVENTS_URL = "http://ufcstats.com/statistics/events/upcoming"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0"
@@ -62,6 +61,32 @@ def build_ufcstats_index():
     return index
 
 
+def get_upcoming_event_urls():
+    print(f"Fetching UFCStats upcoming events: {UPCOMING_EVENTS_URL}")
+
+    response = requests.get(UPCOMING_EVENTS_URL, headers=HEADERS, timeout=30)
+    response.raise_for_status()
+
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    event_urls = []
+
+    for link in soup.select("a.b-link.b-link_style_black"):
+        href = link.get("href", "")
+
+        if "/event-details/" in href:
+            event_urls.append(href)
+
+    event_urls = sorted(set(event_urls))
+
+    print(f"Found {len(event_urls)} upcoming UFCStats events")
+
+    for url in event_urls:
+        print(f"- {url}")
+
+    return event_urls
+
+
 def get_fighter_names_from_event_page(event_url):
     print(f"Fetching UFCStats event page: {event_url}")
 
@@ -69,6 +94,7 @@ def get_fighter_names_from_event_page(event_url):
     response.raise_for_status()
 
     soup = BeautifulSoup(response.text, "html.parser")
+
     names = set()
 
     for link in soup.select("a.b-link.b-link_style_black"):
@@ -77,6 +103,8 @@ def get_fighter_names_from_event_page(event_url):
 
         if "/fighter-details/" in href and text:
             names.add(text)
+
+    print(f"Found {len(names)} fighters on event page")
 
     return names
 
@@ -120,6 +148,7 @@ def scrape_fighter_profile(name, url):
     }
 
     record_el = soup.select_one(".b-content__title-record")
+
     if record_el:
         fighter["record"] = clean_text(record_el.get_text()).replace("Record:", "").strip()
 
@@ -149,15 +178,17 @@ def main():
     ufcstats_index = build_ufcstats_index()
     print(f"Indexed {len(ufcstats_index)} UFCStats fighters")
 
+    event_urls = get_upcoming_event_urls()
+
     fighter_names = set()
 
-    for event_url in EVENT_URLS:
+    for event_url in event_urls:
         fighter_names.update(get_fighter_names_from_event_page(event_url))
         time.sleep(0.5)
 
     fighter_names = sorted(fighter_names)
 
-    print(f"Found {len(fighter_names)} fighter names from UFCStats event pages")
+    print(f"Found {len(fighter_names)} booked fighter names from upcoming UFCStats event pages")
 
     matches = {}
     fighters = []
@@ -180,7 +211,7 @@ def main():
 
         time.sleep(0.5)
 
-    MATCHES_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    FIGHTERS_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     with open(MATCHES_OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(matches, f, indent=2, ensure_ascii=False)
@@ -192,7 +223,7 @@ def main():
     print(f"Saved {len(fighters)} fighters to {FIGHTERS_OUT_PATH}")
 
     print("\nSample fighters:")
-    for fighter in fighters[:5]:
+    for fighter in fighters[:10]:
         print(
             "-",
             fighter["name"],
