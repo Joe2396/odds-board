@@ -22,12 +22,17 @@ def normalize_name(name):
 
 def get_fighter_names_from_events():
     with open(EVENTS_PATH, "r", encoding="utf-8") as f:
-        events = json.load(f)
+        data = json.load(f)
+
+    events = data.get("events", [])
 
     names = set()
 
     for event in events:
         for fight in event.get("fights", []):
+            if not isinstance(fight, dict):
+                continue
+
             for key in ["fighter1", "fighter2", "red_corner", "blue_corner"]:
                 value = fight.get(key)
                 if value:
@@ -57,7 +62,9 @@ def build_ufcstats_index():
                 href = links[0].get("href")
 
                 full_name = f"{first} {last}".strip()
-                index[normalize_name(full_name)] = href
+
+                if full_name and href:
+                    index[normalize_name(full_name)] = href
 
         time.sleep(0.5)
 
@@ -79,7 +86,10 @@ def main():
         url = ufcstats_index.get(key)
 
         if url:
-            matches[name] = {"ufcstats_url": url}
+            matches[name] = {
+                "name": name,
+                "ufcstats_url": url
+            }
         else:
             missing.append(name)
 
