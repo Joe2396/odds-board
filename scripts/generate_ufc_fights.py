@@ -115,6 +115,45 @@ def stat_value(stats, key):
     return html_escape(stats.get(key))
 
 
+def get_recent_form(recent_fights):
+    if not isinstance(recent_fights, list) or not recent_fights:
+        return "—"
+
+    form = []
+
+    for fight in recent_fights[:10]:
+        result = str(fight.get("result") or "").upper()
+
+        if result == "WIN":
+            form.append("W")
+        elif result == "LOSS":
+            form.append("L")
+        elif result:
+            form.append(result[0])
+        else:
+            form.append("—")
+
+    return " ".join(form) if form else "—"
+
+
+def get_finish_rate(methods):
+    if not isinstance(methods, dict):
+        return "—"
+
+    ko_w = int(methods.get("ko_tko_w", 0) or 0)
+    sub_w = int(methods.get("sub_w", 0) or 0)
+    dec_w = int(methods.get("dec_w", 0) or 0)
+    other_w = int(methods.get("other_w", 0) or 0)
+
+    total_wins = ko_w + sub_w + dec_w + other_w
+    finishes = ko_w + sub_w
+
+    if total_wins <= 0:
+        return "—"
+
+    return f"{round((finishes / total_wins) * 100)}%"
+
+
 def render_methods(methods):
     if not isinstance(methods, dict):
         methods = {}
@@ -180,6 +219,9 @@ def fighter_panel(fighter):
     methods = fighter.get("methods") or {}
     recent_fights = fighter.get("recent_fights") or []
 
+    form = html_escape(get_recent_form(recent_fights))
+    finish_rate = html_escape(get_finish_rate(methods))
+
     fighter_href = f"{BASE_PATH}/fighters/{slug}/" if slug else "#"
 
     ufcstats_link = ""
@@ -198,6 +240,17 @@ def fighter_panel(fighter):
         <span class="pill">Height: {height}</span>
         <span class="pill">Reach: {reach}</span>
         <span class="pill">DOB: {dob}</span>
+      </div>
+
+      <div class="quick-summary">
+        <div>
+          <span class="muted">Recent Form</span>
+          <strong>{form}</strong>
+        </div>
+        <div>
+          <span class="muted">Finish Rate</span>
+          <strong>{finish_rate}</strong>
+        </div>
       </div>
 
       <h3 class="muted">Striking</h3>
@@ -270,6 +323,26 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug):
       color:var(--muted);
       font-size:13px;
     }}
+    .quick-summary {{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:14px;
+    }}
+    .quick-summary div {{
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+      background:rgba(255,255,255,0.015);
+    }}
+    .quick-summary span {{
+      display:block;
+      font-size:12px;
+      margin-bottom:4px;
+    }}
+    .quick-summary strong {{
+      font-size:18px;
+    }}
     table {{
       width:100%;
       border-collapse:collapse;
@@ -294,6 +367,9 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug):
     }}
     @media (max-width: 900px) {{
       .grid {{
+        grid-template-columns:1fr;
+      }}
+      .quick-summary {{
         grid-template-columns:1fr;
       }}
     }}
