@@ -45,10 +45,10 @@ jobs:
         run: python scripts/fetch_espn_event_fightcards.py
 
       # -----------------------------
-      # 2) TAPOLOGY (NEW SYSTEM)
+      # 2) FIGHTER DATA
       # -----------------------------
-      - name: Fetch Tapology fighter stats
-        run: python scripts/fetch_tapology_fighter_stats.py
+      - name: Fetch UFCStats fighter stats
+        run: python scripts/fetch_ufcstats_fighter_stats.py
 
       # -----------------------------
       # 3) GENERATE SITE
@@ -66,26 +66,25 @@ jobs:
         run: python scripts/generate_ufc_fighters.py
 
       # -----------------------------
-      # DEBUG (optional but useful)
+      # DEBUG
       # -----------------------------
-      - name: Debug fighter count
+      - name: Debug UFCStats fighter match count
         run: |
           python - <<'PY'
           import json, os
 
-          path = "ufc/data/fighters.json"
+          path = "ufc/data/ufcstats_fighter_matches.json"
           if not os.path.exists(path):
-              print("fighters.json missing")
+              print("ufcstats_fighter_matches.json missing")
               raise SystemExit(1)
 
           data = json.load(open(path, encoding="utf-8"))
-          fighters = data.get("fighters", [])
 
-          print("fighters count:", len(fighters))
+          print("ufcstats matched fighters:", len(data))
 
-          print("\nSample fighters:")
-          for f in fighters[:10]:
-              print("-", f.get("name"), "| record:", f.get("record"))
+          print("\nSample matches:")
+          for name, info in list(data.items())[:10]:
+              print("-", name, "|", info.get("ufcstats_url"))
           PY
 
       # -----------------------------
