@@ -45,13 +45,19 @@ jobs:
         run: python scripts/fetch_espn_event_fightcards.py
 
       # -----------------------------
-      # 2) FIGHTER DATA
+      # 2) UFCSTATS FIGHTER DATA
       # -----------------------------
       - name: Fetch UFCStats fighter stats
         run: python scripts/fetch_ufcstats_fighter_stats.py
 
       # -----------------------------
-      # 3) GENERATE SITE
+      # 3) ODDS DATA (NEW 🔥)
+      # -----------------------------
+      - name: Fetch UFC odds (UK bookies)
+        run: python scripts/fetch_ufc_odds.py
+
+      # -----------------------------
+      # 4) GENERATE SITE
       # -----------------------------
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
@@ -66,25 +72,34 @@ jobs:
         run: python scripts/generate_ufc_fighters.py
 
       # -----------------------------
-      # DEBUG
+      # DEBUG (VERY USEFUL NOW)
       # -----------------------------
-      - name: Debug UFCStats fighter match count
+      - name: Debug fighter + odds count
         run: |
           python - <<'PY'
           import json, os
 
-          path = "ufc/data/ufcstats_fighter_matches.json"
-          if not os.path.exists(path):
-              print("ufcstats_fighter_matches.json missing")
-              raise SystemExit(1)
+          # Fighters
+          f_path = "ufc/data/fighters.json"
+          if os.path.exists(f_path):
+              data = json.load(open(f_path, encoding="utf-8"))
+              fighters = data.get("fighters", [])
+              print("fighters count:", len(fighters))
+          else:
+              print("fighters.json missing")
 
-          data = json.load(open(path, encoding="utf-8"))
+          # Odds
+          o_path = "ufc/data/odds.json"
+          if os.path.exists(o_path):
+              data = json.load(open(o_path, encoding="utf-8"))
+              events = data.get("events", [])
+              print("odds events count:", len(events))
 
-          print("ufcstats matched fighters:", len(data))
-
-          print("\nSample matches:")
-          for name, info in list(data.items())[:10]:
-              print("-", name, "|", info.get("ufcstats_url"))
+              print("\nSample odds:")
+              for e in events[:3]:
+                  print("-", e.get("home_team"), "vs", e.get("away_team"))
+          else:
+              print("odds.json missing")
           PY
 
       # -----------------------------
@@ -97,6 +112,6 @@ jobs:
 
           git add -A ufc
 
-          git commit -m "Auto-generate UFC pages" || echo "No changes to commit"
+          git commit -m "Auto-generate UFC pages + odds" || echo "No changes to commit"
 
           git push origin main --force
