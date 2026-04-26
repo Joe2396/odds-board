@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 EVENTS_JSON = ROOT / "ufc" / "data" / "events.json"
 FIGHTERS_JSON = ROOT / "ufc" / "data" / "fighters.json"
+ODDS_JSON = ROOT / "ufc" / "data" / "odds.json"
 FIGHTS_DIR = ROOT / "ufc" / "fights"
 
 BASE_PATH = "/odds-board/ufc"
@@ -41,8 +42,11 @@ def load_json(path, default):
 
 
 def load_events():
-    data = load_json(EVENTS_JSON, {"events": []})
-    return data.get("events", [])
+    return load_json(EVENTS_JSON, {"events": []}).get("events", [])
+
+
+def load_odds():
+    return load_json(ODDS_JSON, {"events": []}).get("events", [])
 
 
 def load_fighter_details():
@@ -59,14 +63,8 @@ def load_fighter_details():
         iterable = []
 
     for fighter in iterable:
-        if not isinstance(fighter, dict):
-            continue
-
-        name = fighter.get("name")
-        if not name:
-            continue
-
-        fighters_by_slug[slugify(name)] = fighter
+        if isinstance(fighter, dict) and fighter.get("name"):
+            fighters_by_slug[slugify(fighter["name"])] = fighter
 
     return fighters_by_slug
 
@@ -86,32 +84,21 @@ def get_corner_name(corner):
 
 def normalize_corner(corner):
     name = get_corner_name(corner)
-    slug = slugify(name)
-
-    return {
-        "name": name or "Fighter",
-        "slug": slug,
-    }
+    return {"name": name or "Fighter", "slug": slugify(name)}
 
 
 def enrich_fighter(fighter, fighters_by_slug):
     slug = fighter.get("slug", "")
     details = fighters_by_slug.get(slug, {})
-
     if not isinstance(details, dict):
         details = {}
 
-    return {
-        **fighter,
-        **details,
-        "slug": slug,
-    }
+    return {**fighter, **details, "slug": slug}
 
 
 def stat_value(stats, key):
     if not isinstance(stats, dict):
         return "—"
-
     return html_escape(stats.get(key))
 
 
@@ -120,10 +107,8 @@ def get_recent_form(recent_fights):
         return "—"
 
     form = []
-
     for fight in recent_fights[:10]:
         result = str(fight.get("result") or "").upper()
-
         if result == "WIN":
             form.append("W")
         elif result == "LOSS":
@@ -154,6 +139,81 @@ def get_finish_rate(methods):
     return f"{round((finishes / total_wins) * 100)}%"
 
 
+def find_odds_event(red_name, blue_name, odds_events):
+    red_slug = slugify(red_name)
+    blue_slug = slugify(blue_name)
+    target = {red_slug, blue_slug}
+
+    for event in odds_events:
+        home_slug = slugify(event.get("home_team"))
+        away_slug = slugify(event.get("away_team"))
+
+        if {home_slug, away_slug} == target:
+            return event
+
+    return None
+
+
+def get_fighter_odds(fighter_name, odds_event):
+    if not odds_event:
+        return []
+
+    fighter_slug = slugify(fighter_name)
+    rows = []
+
+    for bookmaker in odds_event.get("bookmakers", []):
+        book_title = bookmaker.get("title") or bookmaker.get("key")
+
+        for market in bookmaker.get("markets", []):
+            if market.get("key") != "h2h":
+                continue
+
+            for outcome in market.get("outcomes", []):
+                if slugify(outcome.get("name")) == fighter_slug:
+                    rows.append(
+                        {
+                            "bookmaker": book_title,
+                            "price": outcome.get("price"),
+                            "last_update": bookmaker.get("last_update"),
+                        }
+                    )
+
+    rows.sort(key=lambda r: float(r.get("price") or 0), reverse=True)
+    return rows
+
+
+def render_odds(fighter_name, odds_event):
+    odds_rows = get_fighter_odds(fighter_name, odds_event)
+
+    if not odds_rows:
+        return """
+      <h3 class="muted">UK Moneyline Odds</h3>
+      <p class="muted">No UK odds found yet.</p>
+        """
+
+    best = odds_rows[0]
+
+    rows_html = []
+    for row in odds_rows:
+        marker = " ⭐ Best" if row == best else ""
+        rows_html.append(
+            f"""
+        <tr>
+          <td>{html_escape(row.get("bookmaker"))}{marker}</td>
+          <td>{html_escape(row.get("price"))}</td>
+        </tr>
+            """.rstrip()
+        )
+
+    return f"""
+      <h3 class="muted">UK Moneyline Odds</h3>
+      <table>
+        <tr><td><strong>Best Price</strong></td><td><strong>{html_escape(best.get("price"))}</strong></td></tr>
+        {"".join(rows_html)}
+      </table>
+    """
+
+
 def render_methods(methods):
     if not isinstance(methods, dict):
         methods = {}
@@ -179,18 +239,11 @@ def render_recent_fights(recent_fights):
     rows = []
 
     for fight in recent_fights[:10]:
-        result = html_escape(fight.get("result"))
-        opponent = html_escape(fight.get("opponent"))
-        method = html_escape(fight.get("method"))
-        round_num = html_escape(fight.get("round"))
-        fight_time = html_escape(fight.get("time"))
-        event = html_escape(fight.get("event"))
-
         rows.append(
             f"""
         <div class="recent-fight">
-          <strong>{result}</strong> vs {opponent}
-          <div class="muted">{method} • R{round_num} • {fight_time} • {event}</div>
+          <strong>{html_escape(fight.get("result"))}</strong> vs {html_escape(fight.get("opponent"))}
+          <div class="muted">{html_escape(fight.get("method"))} • R{html_escape(fight.get("round"))} • {html_escape(fight.get("time"))} • {html_escape(fight.get("event"))}</div>
         </div>
             """.rstrip()
         )
@@ -203,8 +256,9 @@ def render_recent_fights(recent_fights):
     """
 
 
-def fighter_panel(fighter):
-    name = html_escape(fighter.get("name"))
+def fighter_panel(fighter, odds_event):
+    name_raw = fighter.get("name")
+    name = html_escape(name_raw)
     slug = fighter.get("slug", "")
 
     record = html_escape(fighter.get("record"))
@@ -253,6 +307,8 @@ def fighter_panel(fighter):
         </div>
       </div>
 
+      {render_odds(name_raw, odds_event)}
+
       <h3 class="muted">Striking</h3>
       <table>
         <tr><td>SLpM</td><td>{stat_value(stats, "slpm")}</td></tr>
@@ -275,12 +331,14 @@ def fighter_panel(fighter):
     """
 
 
-def build_fight_page(event, fight, fight_id, fighters_by_slug):
+def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
     event_slug = event.get("slug", "")
     event_name = html_escape(event.get("name", "Event"))
 
     red = enrich_fighter(normalize_corner(fight.get("red", {})), fighters_by_slug)
     blue = enrich_fighter(normalize_corner(fight.get("blue", {})), fighters_by_slug)
+
+    odds_event = find_odds_event(red.get("name"), blue.get("name"), odds_events)
 
     title = f"{red.get('name', 'Fighter A')} vs {blue.get('name', 'Fighter B')}"
     weight = html_escape(fight.get("weight_class"))
@@ -387,8 +445,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug):
     <p class="muted">{weight} • {bout}</p>
 
     <div class="grid">
-      {fighter_panel(red)}
-      {fighter_panel(blue)}
+      {fighter_panel(red, odds_event)}
+      {fighter_panel(blue, odds_event)}
     </div>
 
     <div class="panel" style="margin-top:14px;">
@@ -397,6 +455,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug):
         <tr><td>Bout</td><td>{bout}</td></tr>
         <tr><td>Weight Class</td><td>{weight}</td></tr>
         <tr><td>Status</td><td>{status}</td></tr>
+        <tr><td>Odds Match</td><td>{'Yes' if odds_event else 'No'}</td></tr>
       </table>
     </div>
 
@@ -411,6 +470,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug):
 def main():
     events = load_events()
     fighters_by_slug = load_fighter_details()
+    odds_events = load_odds()
 
     FIGHTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -435,7 +495,7 @@ def main():
             out_dir = FIGHTS_DIR / fight_id
             out_dir.mkdir(parents=True, exist_ok=True)
 
-            html = build_fight_page(event, fight, fight_id, fighters_by_slug)
+            html = build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events)
 
             (out_dir / "index.html").write_text(html, encoding="utf-8")
             fights_written += 1
