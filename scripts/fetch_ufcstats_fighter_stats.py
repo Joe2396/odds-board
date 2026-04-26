@@ -17,26 +17,64 @@ HEADERS = {
 
 
 def normalize_name(name):
-    return " ".join(name.lower().strip().split())
+    return " ".join(str(name).lower().strip().split())
 
 
 def get_fighter_names_from_events():
     with open(EVENTS_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    events = data.get("events", [])
+    events = data.get("events", []) if isinstance(data, dict) else data
 
     names = set()
 
     for event in events:
-        for fight in event.get("fights", []):
+        if not isinstance(event, dict):
+            continue
+
+        fights = event.get("fights", [])
+
+        for fight in fights:
             if not isinstance(fight, dict):
                 continue
 
-            for key in ["fighter1", "fighter2", "red_corner", "blue_corner"]:
+            # Common formats
+            for key in [
+                "fighter1",
+                "fighter2",
+                "red_corner",
+                "blue_corner",
+                "red",
+                "blue",
+                "fighter_a",
+                "fighter_b",
+            ]:
                 value = fight.get(key)
-                if value:
+                if isinstance(value, str) and value.strip():
                     names.add(value.strip())
+
+            # Array format: fighters: ["Name A", "Name B"]
+            fighters = fight.get("fighters")
+            if isinstance(fighters, list):
+                for fighter in fighters:
+                    if isinstance(fighter, str) and fighter.strip():
+                        names.add(fighter.strip())
+                    elif isinstance(fighter, dict):
+                        for key in ["name", "fullName", "displayName"]:
+                            value = fighter.get(key)
+                            if isinstance(value, str) and value.strip():
+                                names.add(value.strip())
+
+            # Nested format: competitors / athletes
+            for list_key in ["competitors", "athletes"]:
+                people = fight.get(list_key)
+                if isinstance(people, list):
+                    for person in people:
+                        if isinstance(person, dict):
+                            for key in ["name", "fullName", "displayName"]:
+                                value = person.get(key)
+                                if isinstance(value, str) and value.strip():
+                                    names.add(value.strip())
 
     return sorted(names)
 
@@ -74,6 +112,11 @@ def build_ufcstats_index():
 def main():
     fighter_names = get_fighter_names_from_events()
     print(f"Found {len(fighter_names)} fighter names from events.json")
+
+    if fighter_names:
+        print("Sample fighter names:")
+        for name in fighter_names[:10]:
+            print(f"- {name}")
 
     ufcstats_index = build_ufcstats_index()
     print(f"Indexed {len(ufcstats_index)} UFCStats fighters")
