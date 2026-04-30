@@ -133,8 +133,17 @@ jobs:
           git config user.name "ufc-bot"
           git config user.email "actions@github.com"
 
+          echo "Status before staging:"
+          git status --short
+
           git add -A ufc data
 
-          git commit -m "Auto-generate UFC pages, odds and arbitrage" || echo "No changes to commit"
+          echo "Status after staging:"
+          git status --short
 
-          git push origin main --force
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-generate UFC pages, odds and arbitrage"
+            git push origin main
+          fi
