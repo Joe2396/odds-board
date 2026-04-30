@@ -1,0 +1,29 @@
+{
+  "updated_at": "2026-04-30T18:48:26.791432+00:00",
+  "total_arbitrage": 1,
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "event": "Stephen Erceg vs Tim Elliott",
+      "market": "Moneyline",
+      "commence_time": "2026-05-02T15:00:00Z",
+      "profit_margin_percent": 3.44,
+      "arb_sum": 0.965587,
+      "bookmakers": [
+        {
+          "selection": "Stephen Erceg",
+          "bookmaker": "Betfair",
+          "odds": 1.52,
+          "implied_probability": 65.79
+        },
+        {
+          "selection": "Tim Elliott",
+          "bookmaker": "William Hill",
+          "odds": 3.25,
+          "implied_probability": 30.77
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ]
+}
