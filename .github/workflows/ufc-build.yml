@@ -8,6 +8,7 @@ on:
     paths:
       - "scripts/**"
       - "ufc/**"
+      - "data/**"
       - ".github/workflows/ufc-build.yml"
 
 permissions:
@@ -53,7 +54,7 @@ jobs:
       # -----------------------------
       # 3) ODDS DATA
       # -----------------------------
-      - name: Fetch UFC odds (UK bookies)
+      - name: Fetch UFC odds UK bookies
         run: python scripts/fetch_ufc_odds.py
 
       # -----------------------------
@@ -61,6 +62,9 @@ jobs:
       # -----------------------------
       - name: Analyze UFC arbitrage
         run: python scripts/analyze_ufc_arbitrage.py
+
+      - name: Build unified arbitrage
+        run: python scripts/build_arbitrage_all.py
 
       # -----------------------------
       # 5) GENERATE SITE
@@ -89,6 +93,7 @@ jobs:
               ("fighters", "ufc/data/fighters.json"),
               ("odds", "ufc/data/odds.json"),
               ("arbitrage", "ufc/data/arbitrage.json"),
+              ("arbitrage_all", "data/arbitrage_all.json"),
           ]
 
           for label, path in checks:
@@ -113,6 +118,11 @@ jobs:
                   for a in data.get("arbitrage_opportunities", [])[:3]:
                       print("-", a.get("fight"), "| margin:", a.get("profit_margin_percent"))
 
+              elif label == "arbitrage_all":
+                  print("total arbitrage:", data.get("total_arbitrage"))
+                  for a in data.get("arbitrage", [])[:3]:
+                      print("-", a.get("sport"), "|", a.get("event"), "| margin:", a.get("profit_margin_percent"))
+
           PY
 
       # -----------------------------
@@ -123,7 +133,7 @@ jobs:
           git config user.name "ufc-bot"
           git config user.email "actions@github.com"
 
-          git add -A ufc
+          git add -A ufc data
 
           git commit -m "Auto-generate UFC pages, odds and arbitrage" || echo "No changes to commit"
 
