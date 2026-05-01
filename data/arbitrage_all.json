@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-05-01T20:07:33.353194+00:00",
-  "total_arbitrage": 2,
+  "updated_at": "2026-05-01T21:02:21.670765+00:00",
+  "total_arbitrage": 4,
   "arbitrage": [
     {
       "sport": "UFC",
       "event": "Dom Mar Fan vs Kody Steele",
       "market": "Moneyline",
       "commence_time": "2026-05-02T08:15:00Z",
-      "profit_margin_percent": 1.23,
-      "arb_sum": 0.98774,
+      "profit_margin_percent": 1.95,
+      "arb_sum": 0.980482,
       "bookmakers": [
         {
           "selection": "Dom Mar Fan",
@@ -18,9 +18,9 @@
         },
         {
           "selection": "Kody Steele",
-          "bookmaker": "Matchbook",
-          "odds": 1.65,
-          "implied_probability": 60.61
+          "bookmaker": "Betfair",
+          "odds": 1.67,
+          "implied_probability": 59.88
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
@@ -44,6 +44,52 @@
           "bookmaker": "Betway",
           "odds": 3.0,
           "implied_probability": 33.33
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "UFC",
+      "event": "Brando Pericic vs Shamil Gaziev",
+      "market": "Moneyline",
+      "commence_time": "2026-05-02T11:45:00Z",
+      "profit_margin_percent": 2.88,
+      "arb_sum": 0.97124,
+      "bookmakers": [
+        {
+          "selection": "Brando Pericic",
+          "bookmaker": "Betfair",
+          "odds": 2.02,
+          "implied_probability": 49.5
+        },
+        {
+          "selection": "Shamil Gaziev",
+          "bookmaker": "Betway",
+          "odds": 2.1,
+          "implied_probability": 47.62
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "UFC",
+      "event": "Beneil Dariush vs Quillan Salkilld",
+      "market": "Moneyline",
+      "commence_time": "2026-05-02T12:45:00Z",
+      "profit_margin_percent": 0.26,
+      "arb_sum": 0.997416,
+      "bookmakers": [
+        {
+          "selection": "Beneil Dariush",
+          "bookmaker": "LeoVegas",
+          "odds": 4.5,
+          "implied_probability": 22.22
+        },
+        {
+          "selection": "Quillan Salkilld",
+          "bookmaker": "Betfair",
+          "odds": 1.29,
+          "implied_probability": 77.52
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
