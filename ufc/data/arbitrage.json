@@ -1,8 +1,48 @@
 {
   "source": "odds_json",
-  "total_fights_checked": 42,
+  "total_fights_checked": 51,
   "arbitrage_count": 1,
   "fights": [
+    {
+      "event_id": "14907f094f1e69182dca6b1f05475d7c",
+      "commence_time": "2026-05-02T08:15:00Z",
+      "fight": "Dom Mar Fan vs Kody Steele",
+      "fighters": {
+        "Dom Mar Fan": {
+          "best_bookmaker": "Betfair Sportsbook",
+          "best_price": 2.63,
+          "implied_probability": 38.02
+        },
+        "Kody Steele": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.59,
+          "implied_probability": 62.89
+        }
+      },
+      "arb_sum": 1.009159,
+      "is_arbitrage": false,
+      "profit_margin_percent": -0.92
+    },
+    {
+      "event_id": "bdca2911eed89d98c9297b13557c5bf6",
+      "commence_time": "2026-05-02T08:45:00Z",
+      "fight": "Jonathan Micallef vs Themba Gorimbo",
+      "fighters": {
+        "Jonathan Micallef": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.48,
+          "implied_probability": 67.57
+        },
+        "Themba Gorimbo": {
+          "best_bookmaker": "William Hill",
+          "best_price": 3.1,
+          "implied_probability": 32.26
+        }
+      },
+      "arb_sum": 0.998256,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.17
+    },
     {
       "event_id": "783061f020d8480cd696d9b91ac0b1c7",
       "commence_time": "2026-05-02T09:15:00Z",
@@ -10,18 +50,18 @@
       "fighters": {
         "Ben Johnston": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.7,
-          "implied_probability": 58.82
+          "best_price": 1.79,
+          "implied_probability": 55.87
         },
         "Wes Schultz": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.34,
-          "implied_probability": 42.74
+          "best_bookmaker": "William Hill",
+          "best_price": 2.2,
+          "implied_probability": 45.45
         }
       },
-      "arb_sum": 1.015586,
+      "arb_sum": 1.013205,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.56
+      "profit_margin_percent": -1.32
     },
     {
       "event_id": "90f603711355e10eb78ef195a8c39d84",
@@ -29,19 +69,19 @@
       "fight": "Colby Thicknesse vs Vince Morales",
       "fighters": {
         "Colby Thicknesse": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.83,
-          "implied_probability": 54.64
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.8,
+          "implied_probability": 55.56
         },
         "Vince Morales": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.18,
-          "implied_probability": 45.87
+          "best_bookmaker": "Matchbook",
+          "best_price": 2.22,
+          "implied_probability": 45.05
         }
       },
-      "arb_sum": 1.005164,
+      "arb_sum": 1.006006,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.52
+      "profit_margin_percent": -0.6
     },
     {
       "event_id": "fbf7ef7423c3133a9a019981db7cb18e",
@@ -49,69 +89,49 @@
       "fight": "Gerald Meerschaert vs Jacob Malkoun",
       "fighters": {
         "Gerald Meerschaert": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 8.5,
-          "implied_probability": 11.76
+          "best_bookmaker": "Matchbook",
+          "best_price": 9.6,
+          "implied_probability": 10.42
         },
         "Jacob Malkoun": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.1,
+          "implied_probability": 90.91
+        }
+      },
+      "arb_sum": 1.013258,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.33
+    },
+    {
+      "event_id": "9b8a4523ec28a0c91297dd06ee3690fe",
+      "commence_time": "2026-05-02T10:30:00Z",
+      "fight": "Junior Tafa vs Kevin Christian",
+      "fighters": {
+        "Junior Tafa": {
           "best_bookmaker": "Matchbook",
-          "best_price": 1.11,
-          "implied_probability": 90.09
-        }
-      },
-      "arb_sum": 1.018548,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.85
-    },
-    {
-      "event_id": "6049085de42ddc0b1980dbcdcda70467",
-      "commence_time": "2026-05-02T11:00:00Z",
-      "fight": "Louie Sutherland vs Tai Tuivasa",
-      "fighters": {
-        "Louie Sutherland": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.75,
-          "implied_probability": 36.36
+          "best_price": 1.52,
+          "implied_probability": 65.79
         },
-        "Tai Tuivasa": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.53,
-          "implied_probability": 65.36
+        "Kevin Christian": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 2.88,
+          "implied_probability": 34.72
         }
       },
-      "arb_sum": 1.017231,
+      "arb_sum": 1.005117,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.72
-    },
-    {
-      "event_id": "5c7d9ec8f1e95d64bcead567c0946c1d",
-      "commence_time": "2026-05-02T12:45:00Z",
-      "fight": "Beneil Dariush vs Quillan Salkilld",
-      "fighters": {
-        "Beneil Dariush": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 4.5,
-          "implied_probability": 22.22
-        },
-        "Quillan Salkilld": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.23,
-          "implied_probability": 81.3
-        }
-      },
-      "arb_sum": 1.03523,
-      "is_arbitrage": false,
-      "profit_margin_percent": -3.52
+      "profit_margin_percent": -0.51
     },
     {
       "event_id": "7bcb7fecc9f0abb2fa681739960a829c",
-      "commence_time": "2026-05-02T13:00:00Z",
+      "commence_time": "2026-05-02T10:45:00Z",
       "fight": "Cam Rowston vs Robert Bryczek",
       "fighters": {
         "Cam Rowston": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.61,
-          "implied_probability": 62.11
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 1.62,
+          "implied_probability": 61.73
         },
         "Robert Bryczek": {
           "best_bookmaker": "William Hill",
@@ -119,29 +139,109 @@
           "implied_probability": 38.46
         }
       },
-      "arb_sum": 1.005733,
+      "arb_sum": 1.001899,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.57
+      "profit_margin_percent": -0.19
     },
     {
-      "event_id": "14907f094f1e69182dca6b1f05475d7c",
-      "commence_time": "2026-05-02T13:00:00Z",
-      "fight": "Dom Mar Fan vs Kody Steele",
+      "event_id": "6049085de42ddc0b1980dbcdcda70467",
+      "commence_time": "2026-05-02T11:15:00Z",
+      "fight": "Louie Sutherland vs Tai Tuivasa",
       "fighters": {
-        "Dom Mar Fan": {
+        "Louie Sutherland": {
+          "best_bookmaker": "Betfair",
+          "best_price": 2.88,
+          "implied_probability": 34.72
+        },
+        "Tai Tuivasa": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.51,
+          "implied_probability": 66.23
+        }
+      },
+      "arb_sum": 1.009474,
+      "is_arbitrage": false,
+      "profit_margin_percent": -0.95
+    },
+    {
+      "event_id": "5df097b38ef78a244dd9274d2ab025ce",
+      "commence_time": "2026-05-02T11:45:00Z",
+      "fight": "Brando Pericic vs Shamil Gaziev",
+      "fighters": {
+        "Brando Pericic": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.85,
+          "implied_probability": 54.05
+        },
+        "Shamil Gaziev": {
+          "best_bookmaker": "Betfair",
+          "best_price": 2.16,
+          "implied_probability": 46.3
+        }
+      },
+      "arb_sum": 1.003504,
+      "is_arbitrage": false,
+      "profit_margin_percent": -0.35
+    },
+    {
+      "event_id": "a60247fbe8841f60b47006901fb77b43",
+      "commence_time": "2026-05-02T12:15:00Z",
+      "fight": "Marwan Rahiki vs Ollie Schmid",
+      "fighters": {
+        "Marwan Rahiki": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.17,
+          "implied_probability": 85.47
+        },
+        "Ollie Schmid": {
+          "best_bookmaker": "Betfair",
+          "best_price": 6.4,
+          "implied_probability": 15.62
+        }
+      },
+      "arb_sum": 1.010951,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.1
+    },
+    {
+      "event_id": "2f4054240d75e5992a009c2eb2886288",
+      "commence_time": "2026-05-02T12:15:00Z",
+      "fight": "Stephen Erceg vs Tim Elliott",
+      "fighters": {
+        "Stephen Erceg": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.59,
+          "implied_probability": 62.89
+        },
+        "Tim Elliott": {
           "best_bookmaker": "Betfair",
           "best_price": 2.66,
           "implied_probability": 37.59
-        },
-        "Kody Steele": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.54,
-          "implied_probability": 64.94
         }
       },
-      "arb_sum": 1.02529,
+      "arb_sum": 1.004871,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.53
+      "profit_margin_percent": -0.49
+    },
+    {
+      "event_id": "5c7d9ec8f1e95d64bcead567c0946c1d",
+      "commence_time": "2026-05-02T12:45:00Z",
+      "fight": "Beneil Dariush vs Quillan Salkilld",
+      "fighters": {
+        "Beneil Dariush": {
+          "best_bookmaker": "Betfair",
+          "best_price": 5.0,
+          "implied_probability": 20.0
+        },
+        "Quillan Salkilld": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.23,
+          "implied_probability": 81.3
+        }
+      },
+      "arb_sum": 1.013008,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.3
     },
     {
       "event_id": "2d2bed66733809597dc7425a6a68eb2b",
@@ -164,84 +264,64 @@
       "profit_margin_percent": -8.16
     },
     {
-      "event_id": "bdca2911eed89d98c9297b13557c5bf6",
-      "commence_time": "2026-05-02T13:00:00Z",
-      "fight": "Jonathan Micallef vs Themba Gorimbo",
-      "fighters": {
-        "Jonathan Micallef": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.46,
-          "implied_probability": 68.49
-        },
-        "Themba Gorimbo": {
-          "best_bookmaker": "William Hill",
-          "best_price": 3.1,
-          "implied_probability": 32.26
-        }
-      },
-      "arb_sum": 1.007512,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.75
-    },
-    {
-      "event_id": "9b8a4523ec28a0c91297dd06ee3690fe",
-      "commence_time": "2026-05-02T13:00:00Z",
-      "fight": "Junior Tafa vs Kevin Christian",
-      "fighters": {
-        "Junior Tafa": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.51,
-          "implied_probability": 66.23
-        },
-        "Kevin Christian": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.84,
-          "implied_probability": 35.21
-        }
-      },
-      "arb_sum": 1.014364,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.44
-    },
-    {
       "event_id": "ae22ee2cfaa7d47bdfbf58c00e46a7d7",
-      "commence_time": "2026-05-02T13:15:00Z",
+      "commence_time": "2026-05-02T13:45:00Z",
       "fight": "Carlos Prates vs Jack Della Maddalena",
       "fighters": {
         "Carlos Prates": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.87,
-          "implied_probability": 53.48
+          "best_price": 1.92,
+          "implied_probability": 52.08
         },
         "Jack Della Maddalena": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.08,
-          "implied_probability": 48.08
+          "best_price": 2.06,
+          "implied_probability": 48.54
         }
       },
-      "arb_sum": 1.015529,
+      "arb_sum": 1.00627,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.55
+      "profit_margin_percent": -0.63
     },
     {
-      "event_id": "5df097b38ef78a244dd9274d2ab025ce",
+      "event_id": "49bfb2f3e748499cae7c42d0e663c0c4",
       "commence_time": "2026-05-02T15:00:00Z",
-      "fight": "Brando Pericic vs Shamil Gaziev",
+      "fight": "Ali Al-Jasim vs Iago Silva",
       "fighters": {
-        "Brando Pericic": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.75,
-          "implied_probability": 57.14
+        "Ali Al-Jasim": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.29,
+          "implied_probability": 77.52
         },
-        "Shamil Gaziev": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.2,
-          "implied_probability": 45.45
+        "Iago Silva": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 3.3,
+          "implied_probability": 30.3
         }
       },
-      "arb_sum": 1.025974,
+      "arb_sum": 1.078224,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.6
+      "profit_margin_percent": -7.82
+    },
+    {
+      "event_id": "6229a9bbec013a7b9f3ac6ae40313886",
+      "commence_time": "2026-05-02T15:00:00Z",
+      "fight": "Julius Rijkschroeff vs Viktor Mangs",
+      "fighters": {
+        "Julius Rijkschroeff": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 4.8,
+          "implied_probability": 20.83
+        },
+        "Viktor Mangs": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.16,
+          "implied_probability": 86.21
+        }
+      },
+      "arb_sum": 1.070402,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.04
     },
     {
       "event_id": "0a87e1410eb0ebd72b04b758bf822946",
@@ -284,6 +364,26 @@
       "profit_margin_percent": -7.21
     },
     {
+      "event_id": "cd171ab505ff3da444d19d011d099e59",
+      "commence_time": "2026-05-02T15:00:00Z",
+      "fight": "Patryk Grabowski vs Rafael Kveldstad",
+      "fighters": {
+        "Patryk Grabowski": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 4.35,
+          "implied_probability": 22.99
+        },
+        "Rafael Kveldstad": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.19,
+          "implied_probability": 84.03
+        }
+      },
+      "arb_sum": 1.070221,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.02
+    },
+    {
       "event_id": "583e55023e61e2a84a37dd5ba057e4c7",
       "commence_time": "2026-05-02T15:00:00Z",
       "fight": "Sebastian Palacio Gomez vs Tome Bokofo",
@@ -302,26 +402,6 @@
       "arb_sum": 1.081081,
       "is_arbitrage": false,
       "profit_margin_percent": -8.11
-    },
-    {
-      "event_id": "2f4054240d75e5992a009c2eb2886288",
-      "commence_time": "2026-05-02T15:00:00Z",
-      "fight": "Stephen Erceg vs Tim Elliott",
-      "fighters": {
-        "Stephen Erceg": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.52,
-          "implied_probability": 65.79
-        },
-        "Tim Elliott": {
-          "best_bookmaker": "William Hill",
-          "best_price": 3.25,
-          "implied_probability": 30.77
-        }
-      },
-      "arb_sum": 0.965587,
-      "is_arbitrage": true,
-      "profit_margin_percent": 3.44
     },
     {
       "event_id": "cd130f2059ad6c004c7f569d29dae9cd",
@@ -344,44 +424,24 @@
       "profit_margin_percent": -5.48
     },
     {
-      "event_id": "7abeb8914a9593f33d612db39c5734c8",
-      "commence_time": "2026-05-02T23:00:00Z",
-      "fight": "Florim Zendeli vs Logan Storley",
-      "fighters": {
-        "Florim Zendeli": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 2.75,
-          "implied_probability": 36.36
-        },
-        "Logan Storley": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.43,
-          "implied_probability": 69.93
-        }
-      },
-      "arb_sum": 1.062937,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.29
-    },
-    {
       "event_id": "d01a806df2fc20bc9b07aea4e4666471",
       "commence_time": "2026-05-02T23:00:00Z",
       "fight": "Leandro Higo vs Magomed Magomedov",
       "fighters": {
         "Leandro Higo": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 4.6,
-          "implied_probability": 21.74
+          "best_price": 5.4,
+          "implied_probability": 18.52
         },
         "Magomed Magomedov": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 1.18,
-          "implied_probability": 84.75
+          "best_price": 1.15,
+          "implied_probability": 86.96
         }
       },
-      "arb_sum": 1.064849,
+      "arb_sum": 1.05475,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.48
+      "profit_margin_percent": -5.48
     },
     {
       "event_id": "4f04a9d5c27efd73ba2140eb4f785c7c",
@@ -404,8 +464,168 @@
       "profit_margin_percent": -7.1
     },
     {
+      "event_id": "01b1164f5383b8cc3d7423de6d638a40",
+      "commence_time": "2026-05-02T23:10:00Z",
+      "fight": "Karl Williams vs Maxwell Djantou Nana",
+      "fighters": {
+        "Karl Williams": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.42,
+          "implied_probability": 70.42
+        },
+        "Maxwell Djantou Nana": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.75,
+          "implied_probability": 36.36
+        }
+      },
+      "arb_sum": 1.067862,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.79
+    },
+    {
+      "event_id": "e8b13cf90d7c205c6933c25f05c2a001",
+      "commence_time": "2026-05-03T00:00:00Z",
+      "fight": "Bryce Logan vs Joel Alvarez",
+      "fighters": {
+        "Bryce Logan": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 2.9,
+          "implied_probability": 34.48
+        },
+        "Joel Alvarez": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.38,
+          "implied_probability": 72.46
+        }
+      },
+      "arb_sum": 1.069465,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.95
+    },
+    {
+      "event_id": "7abeb8914a9593f33d612db39c5734c8",
+      "commence_time": "2026-05-03T00:00:00Z",
+      "fight": "Florim Zendeli vs Logan Storley",
+      "fighters": {
+        "Florim Zendeli": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 2.95,
+          "implied_probability": 33.9
+        },
+        "Logan Storley": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.4,
+          "implied_probability": 71.43
+        }
+      },
+      "arb_sum": 1.053269,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.33
+    },
+    {
+      "event_id": "9ae81e9ebd35ed29e27e0947dbae60ce",
+      "commence_time": "2026-05-03T01:15:00Z",
+      "fight": "Cheyanne Bowers vs Sabrinna de Sousa",
+      "fighters": {
+        "Cheyanne Bowers": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 3.45,
+          "implied_probability": 28.99
+        },
+        "Sabrinna de Sousa": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.29,
+          "implied_probability": 77.52
+        }
+      },
+      "arb_sum": 1.065049,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.5
+    },
+    {
+      "event_id": "f9b821af187682824f7f0019f04f8178",
+      "commence_time": "2026-05-03T01:40:00Z",
+      "fight": "Rafael Alves vs Rasul Magomedov",
+      "fighters": {
+        "Rafael Alves": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 6.1,
+          "implied_probability": 16.39
+        },
+        "Rasul Magomedov": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.12,
+          "implied_probability": 89.29
+        }
+      },
+      "arb_sum": 1.056792,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.68
+    },
+    {
+      "event_id": "f2d884cd63e38532fde31ca78c8eccc5",
+      "commence_time": "2026-05-03T03:10:00Z",
+      "fight": "Emiliano Sordi vs Simeon Powell",
+      "fighters": {
+        "Emiliano Sordi": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 4.0,
+          "implied_probability": 25.0
+        },
+        "Simeon Powell": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.23,
+          "implied_probability": 81.3
+        }
+      },
+      "arb_sum": 1.063008,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.3
+    },
+    {
+      "event_id": "dc70600ccf557c5bce24b0f1e73fa45f",
+      "commence_time": "2026-05-09T20:00:00Z",
+      "fight": "Alexander Volkov vs Waldo Cortes-Acosta",
+      "fighters": {
+        "Alexander Volkov": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.62,
+          "implied_probability": 61.73
+        },
+        "Waldo Cortes-Acosta": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.4,
+          "implied_probability": 41.67
+        }
+      },
+      "arb_sum": 1.033951,
+      "is_arbitrage": false,
+      "profit_margin_percent": -3.4
+    },
+    {
+      "event_id": "ceef4e8aecdbe54bcef9583189370793",
+      "commence_time": "2026-05-09T20:00:00Z",
+      "fight": "Grant Dawson vs Mateusz Rebecki",
+      "fighters": {
+        "Grant Dawson": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.73,
+          "implied_probability": 57.8
+        },
+        "Mateusz Rebecki": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 2.1,
+          "implied_probability": 47.62
+        }
+      },
+      "arb_sum": 1.054225,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.42
+    },
+    {
       "event_id": "dd012ae91033b75cbf3eb387e13b575a",
-      "commence_time": "2026-05-09T21:00:00Z",
+      "commence_time": "2026-05-09T20:00:00Z",
       "fight": "Jared Gordon vs Jim Miller",
       "fighters": {
         "Jared Gordon": {
@@ -424,8 +644,108 @@
       "profit_margin_percent": -5.96
     },
     {
+      "event_id": "bca7261228cf53e0ef8c55e76cdf2138",
+      "commence_time": "2026-05-09T20:00:00Z",
+      "fight": "Jeremy Stephens vs King Green",
+      "fighters": {
+        "Jeremy Stephens": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 3.3,
+          "implied_probability": 30.3
+        },
+        "King Green": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.33,
+          "implied_probability": 75.19
+        }
+      },
+      "arb_sum": 1.05491,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.49
+    },
+    {
+      "event_id": "a2b05838698a5f914b569f502d372985",
+      "commence_time": "2026-05-09T20:00:00Z",
+      "fight": "Joaquin Buckley vs Sean Brady",
+      "fighters": {
+        "Joaquin Buckley": {
+          "best_bookmaker": "888sport",
+          "best_price": 2.55,
+          "implied_probability": 39.22
+        },
+        "Sean Brady": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.53,
+          "implied_probability": 65.36
+        }
+      },
+      "arb_sum": 1.045752,
+      "is_arbitrage": false,
+      "profit_margin_percent": -4.58
+    },
+    {
+      "event_id": "7c8d3c42bb7948ac655b45fb75d00ea9",
+      "commence_time": "2026-05-09T20:00:00Z",
+      "fight": "Joel Alvarez vs Yaroslav Amosov",
+      "fighters": {
+        "Joel Alvarez": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.4,
+          "implied_probability": 41.67
+        },
+        "Yaroslav Amosov": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.62,
+          "implied_probability": 61.73
+        }
+      },
+      "arb_sum": 1.033951,
+      "is_arbitrage": false,
+      "profit_margin_percent": -3.4
+    },
+    {
+      "event_id": "1976a9195475f1efe57d2c1a3a85c019",
+      "commence_time": "2026-05-09T20:00:00Z",
+      "fight": "Joshua Van vs Tatsuro Taira",
+      "fighters": {
+        "Joshua Van": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 2.62,
+          "implied_probability": 38.17
+        },
+        "Tatsuro Taira": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.5,
+          "implied_probability": 66.67
+        }
+      },
+      "arb_sum": 1.048346,
+      "is_arbitrage": false,
+      "profit_margin_percent": -4.83
+    },
+    {
+      "event_id": "9572ebf9d60e9a4a050db937e02dcf03",
+      "commence_time": "2026-05-09T20:00:00Z",
+      "fight": "Khamzat Chimaev vs Sean Strickland",
+      "fighters": {
+        "Khamzat Chimaev": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.22,
+          "implied_probability": 81.97
+        },
+        "Sean Strickland": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 5.1,
+          "implied_probability": 19.61
+        }
+      },
+      "arb_sum": 1.015751,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.58
+    },
+    {
       "event_id": "aaffbaf0057c43a6a2fb2577da294f42",
-      "commence_time": "2026-05-09T21:00:00Z",
+      "commence_time": "2026-05-09T20:00:00Z",
       "fight": "Marco Tulio Silva vs Roman Kopylov",
       "fighters": {
         "Marco Tulio Silva": {
@@ -442,46 +762,6 @@
       "arb_sum": 1.053595,
       "is_arbitrage": false,
       "profit_margin_percent": -5.36
-    },
-    {
-      "event_id": "ceef4e8aecdbe54bcef9583189370793",
-      "commence_time": "2026-05-09T23:00:00Z",
-      "fight": "Grant Dawson vs Mateusz Rebecki",
-      "fighters": {
-        "Grant Dawson": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.83,
-          "implied_probability": 54.64
-        },
-        "Mateusz Rebecki": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.91,
-          "implied_probability": 52.36
-        }
-      },
-      "arb_sum": 1.070008,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.0
-    },
-    {
-      "event_id": "7c8d3c42bb7948ac655b45fb75d00ea9",
-      "commence_time": "2026-05-09T23:00:00Z",
-      "fight": "Joel Alvarez vs Yaroslav Amosov",
-      "fighters": {
-        "Joel Alvarez": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 2.25,
-          "implied_probability": 44.44
-        },
-        "Yaroslav Amosov": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.62,
-          "implied_probability": 61.73
-        }
-      },
-      "arb_sum": 1.061728,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.17
     },
     {
       "event_id": "f7214563fa457f83d32ae08128c0dfa1",
@@ -502,106 +782,6 @@
       "arb_sum": 1.054225,
       "is_arbitrage": false,
       "profit_margin_percent": -5.42
-    },
-    {
-      "event_id": "bca7261228cf53e0ef8c55e76cdf2138",
-      "commence_time": "2026-05-10T01:00:00Z",
-      "fight": "Jeremy Stephens vs King Green",
-      "fighters": {
-        "Jeremy Stephens": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 3.3,
-          "implied_probability": 30.3
-        },
-        "King Green": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.33,
-          "implied_probability": 75.19
-        }
-      },
-      "arb_sum": 1.05491,
-      "is_arbitrage": false,
-      "profit_margin_percent": -5.49
-    },
-    {
-      "event_id": "9572ebf9d60e9a4a050db937e02dcf03",
-      "commence_time": "2026-05-10T01:00:00Z",
-      "fight": "Khamzat Chimaev vs Sean Strickland",
-      "fighters": {
-        "Khamzat Chimaev": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.22,
-          "implied_probability": 81.97
-        },
-        "Sean Strickland": {
-          "best_bookmaker": "Betfair",
-          "best_price": 5.4,
-          "implied_probability": 18.52
-        }
-      },
-      "arb_sum": 1.004857,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.49
-    },
-    {
-      "event_id": "dc70600ccf557c5bce24b0f1e73fa45f",
-      "commence_time": "2026-05-10T02:00:00Z",
-      "fight": "Alexander Volkov vs Waldo Cortes-Acosta",
-      "fighters": {
-        "Alexander Volkov": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.62,
-          "implied_probability": 61.73
-        },
-        "Waldo Cortes-Acosta": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.4,
-          "implied_probability": 41.67
-        }
-      },
-      "arb_sum": 1.033951,
-      "is_arbitrage": false,
-      "profit_margin_percent": -3.4
-    },
-    {
-      "event_id": "1976a9195475f1efe57d2c1a3a85c019",
-      "commence_time": "2026-05-10T02:30:00Z",
-      "fight": "Joshua Van vs Tatsuro Taira",
-      "fighters": {
-        "Joshua Van": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 2.62,
-          "implied_probability": 38.17
-        },
-        "Tatsuro Taira": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.5,
-          "implied_probability": 66.67
-        }
-      },
-      "arb_sum": 1.048346,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.83
-    },
-    {
-      "event_id": "a2b05838698a5f914b569f502d372985",
-      "commence_time": "2026-05-10T03:15:00Z",
-      "fight": "Joaquin Buckley vs Sean Brady",
-      "fighters": {
-        "Joaquin Buckley": {
-          "best_bookmaker": "888sport",
-          "best_price": 2.55,
-          "implied_probability": 39.22
-        },
-        "Sean Brady": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.53,
-          "implied_probability": 65.36
-        }
-      },
-      "arb_sum": 1.045752,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.58
     },
     {
       "event_id": "1b275b79bdfb54ec649b1c4a1cd01b60",
@@ -704,6 +884,66 @@
       "profit_margin_percent": -6.52
     },
     {
+      "event_id": "20d0d02349fe04d63631b1e3f1879fa3",
+      "commence_time": "2026-06-14T22:00:00Z",
+      "fight": "Aiemann Zahabi vs Sean O'Malley",
+      "fighters": {
+        "Aiemann Zahabi": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 4.1,
+          "implied_probability": 24.39
+        },
+        "Sean O'Malley": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.25,
+          "implied_probability": 80.0
+        }
+      },
+      "arb_sum": 1.043902,
+      "is_arbitrage": false,
+      "profit_margin_percent": -4.39
+    },
+    {
+      "event_id": "1e972b73d422aa4cadb9185ca87c3c93",
+      "commence_time": "2026-06-14T22:00:00Z",
+      "fight": "Alex Pereira vs Ciryl Gane",
+      "fighters": {
+        "Alex Pereira": {
+          "best_bookmaker": "Betfair",
+          "best_price": 2.06,
+          "implied_probability": 48.54
+        },
+        "Ciryl Gane": {
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 1.91,
+          "implied_probability": 52.36
+        }
+      },
+      "arb_sum": 1.008997,
+      "is_arbitrage": false,
+      "profit_margin_percent": -0.9
+    },
+    {
+      "event_id": "9cf76c6ecde4824965ca04da644dfefa",
+      "commence_time": "2026-06-14T22:00:00Z",
+      "fight": "Bo Nickal vs Kyle Daukaus",
+      "fighters": {
+        "Bo Nickal": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.33,
+          "implied_probability": 75.19
+        },
+        "Kyle Daukaus": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 3.4,
+          "implied_probability": 29.41
+        }
+      },
+      "arb_sum": 1.045997,
+      "is_arbitrage": false,
+      "profit_margin_percent": -4.6
+    },
+    {
       "event_id": "2f1aabeeefbe5b02db96846ac879a6ae",
       "commence_time": "2026-06-14T22:00:00Z",
       "fight": "Derrick Lewis vs Josh Hokit",
@@ -725,7 +965,7 @@
     },
     {
       "event_id": "4b4920d2454497566b519a271f9e1e93",
-      "commence_time": "2026-06-15T00:30:00Z",
+      "commence_time": "2026-06-14T22:00:00Z",
       "fight": "Diego Lopes vs Steve Garcia Jr.",
       "fighters": {
         "Diego Lopes": {
@@ -744,88 +984,8 @@
       "profit_margin_percent": -4.94
     },
     {
-      "event_id": "9cf76c6ecde4824965ca04da644dfefa",
-      "commence_time": "2026-06-15T01:00:00Z",
-      "fight": "Bo Nickal vs Kyle Daukaus",
-      "fighters": {
-        "Bo Nickal": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.33,
-          "implied_probability": 75.19
-        },
-        "Kyle Daukaus": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 3.4,
-          "implied_probability": 29.41
-        }
-      },
-      "arb_sum": 1.045997,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.6
-    },
-    {
-      "event_id": "54eb45b661945af7aa7da285a12e835c",
-      "commence_time": "2026-06-15T01:30:00Z",
-      "fight": "Mauricio Ruffy vs Michael Chandler",
-      "fighters": {
-        "Mauricio Ruffy": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.22,
-          "implied_probability": 81.97
-        },
-        "Michael Chandler": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 5.2,
-          "implied_probability": 19.23
-        }
-      },
-      "arb_sum": 1.01198,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.2
-    },
-    {
-      "event_id": "20d0d02349fe04d63631b1e3f1879fa3",
-      "commence_time": "2026-06-15T02:00:00Z",
-      "fight": "Aiemann Zahabi vs Sean O'Malley",
-      "fighters": {
-        "Aiemann Zahabi": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 4.1,
-          "implied_probability": 24.39
-        },
-        "Sean O'Malley": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.25,
-          "implied_probability": 80.0
-        }
-      },
-      "arb_sum": 1.043902,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.39
-    },
-    {
-      "event_id": "1e972b73d422aa4cadb9185ca87c3c93",
-      "commence_time": "2026-06-15T02:30:00Z",
-      "fight": "Alex Pereira vs Ciryl Gane",
-      "fighters": {
-        "Alex Pereira": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.04,
-          "implied_probability": 49.02
-        },
-        "Ciryl Gane": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.91,
-          "implied_probability": 52.36
-        }
-      },
-      "arb_sum": 1.013756,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.38
-    },
-    {
       "event_id": "e34a17d5cf2a82a5161a54631e06770c",
-      "commence_time": "2026-06-15T03:00:00Z",
+      "commence_time": "2026-06-14T22:00:00Z",
       "fight": "Ilia Topuria vs Justin Gaethje",
       "fighters": {
         "Ilia Topuria": {
@@ -842,28 +1002,48 @@
       "arb_sum": 1.010951,
       "is_arbitrage": false,
       "profit_margin_percent": -1.1
+    },
+    {
+      "event_id": "54eb45b661945af7aa7da285a12e835c",
+      "commence_time": "2026-06-14T22:00:00Z",
+      "fight": "Mauricio Ruffy vs Michael Chandler",
+      "fighters": {
+        "Mauricio Ruffy": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.22,
+          "implied_probability": 81.97
+        },
+        "Michael Chandler": {
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 5.2,
+          "implied_probability": 19.23
+        }
+      },
+      "arb_sum": 1.01198,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.2
     }
   ],
   "arbitrage_opportunities": [
     {
-      "event_id": "2f4054240d75e5992a009c2eb2886288",
-      "commence_time": "2026-05-02T15:00:00Z",
-      "fight": "Stephen Erceg vs Tim Elliott",
+      "event_id": "bdca2911eed89d98c9297b13557c5bf6",
+      "commence_time": "2026-05-02T08:45:00Z",
+      "fight": "Jonathan Micallef vs Themba Gorimbo",
       "fighters": {
-        "Stephen Erceg": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.52,
-          "implied_probability": 65.79
+        "Jonathan Micallef": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.48,
+          "implied_probability": 67.57
         },
-        "Tim Elliott": {
+        "Themba Gorimbo": {
           "best_bookmaker": "William Hill",
-          "best_price": 3.25,
-          "implied_probability": 30.77
+          "best_price": 3.1,
+          "implied_probability": 32.26
         }
       },
-      "arb_sum": 0.965587,
+      "arb_sum": 0.998256,
       "is_arbitrage": true,
-      "profit_margin_percent": 3.44
+      "profit_margin_percent": 0.17
     }
   ]
 }

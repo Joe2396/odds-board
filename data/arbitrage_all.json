@@ -1,26 +1,26 @@
 {
-  "updated_at": "2026-04-30T18:56:10.430627+00:00",
+  "updated_at": "2026-05-01T15:42:10.390269+00:00",
   "total_arbitrage": 1,
   "arbitrage": [
     {
       "sport": "UFC",
-      "event": "Stephen Erceg vs Tim Elliott",
+      "event": "Jonathan Micallef vs Themba Gorimbo",
       "market": "Moneyline",
-      "commence_time": "2026-05-02T15:00:00Z",
-      "profit_margin_percent": 3.44,
-      "arb_sum": 0.965587,
+      "commence_time": "2026-05-02T08:45:00Z",
+      "profit_margin_percent": 0.17,
+      "arb_sum": 0.998256,
       "bookmakers": [
         {
-          "selection": "Stephen Erceg",
-          "bookmaker": "Betfair",
-          "odds": 1.52,
-          "implied_probability": 65.79
+          "selection": "Jonathan Micallef",
+          "bookmaker": "Matchbook",
+          "odds": 1.48,
+          "implied_probability": 67.57
         },
         {
-          "selection": "Tim Elliott",
+          "selection": "Themba Gorimbo",
           "bookmaker": "William Hill",
-          "odds": 3.25,
-          "implied_probability": 30.77
+          "odds": 3.1,
+          "implied_probability": 32.26
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
