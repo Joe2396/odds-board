@@ -7,7 +7,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
 OUT_PATH = os.path.join(ROOT, "ufc", "index.html")
 
-BASE = "/odds-board"  # GitHub Pages repo base path
+BASE = "/odds-board"
 
 
 def load_events():
@@ -34,13 +34,6 @@ def fmt_generated(ts):
 
 
 def parse_event_date(value):
-    """
-    Accepts values like:
-    - 2026-04-18
-    - 2026-04-18T23:00Z
-    - 2026-04-18T23:00:00Z
-    Returns UTC datetime or None.
-    """
     if not value:
         return None
 
@@ -65,12 +58,6 @@ def parse_event_date(value):
 
 
 def is_upcoming_event(ev):
-    """
-    Event is upcoming if:
-    - status is explicitly 'upcoming', OR
-    - date is today or in the future
-    We still require a valid date to safely render/sort on the hub.
-    """
     dt = parse_event_date(ev.get("date"))
     if not dt:
         return False
@@ -99,7 +86,7 @@ def main():
 
     rows_html = ""
     if not upcoming_events:
-        rows_html = "<p class='muted'>No upcoming events found.</p>"
+        rows_html = "<div class='empty'>No upcoming events found.</div>"
     else:
         for ev in upcoming_events:
             name = esc(ev.get("name"))
@@ -111,14 +98,14 @@ def main():
                 continue
 
             rows_html += f"""
-        <div class="row" style="margin-top:16px;">
-          <div>
-            <h3>{name}</h3>
-            <p class="muted">{date} • {location}</p>
-            <p><a href="{BASE}/ufc/events/{slug}/">View event →</a></p>
-          </div>
-          <div class="muted">→</div>
-        </div>
+            <a class="event-card" href="{BASE}/ufc/events/{slug}/">
+              <div>
+                <div class="event-kicker">Upcoming event</div>
+                <h3>{name}</h3>
+                <p>{date} • {location}</p>
+              </div>
+              <span>→</span>
+            </a>
             """.rstrip()
 
     html = f"""<!doctype html>
@@ -127,24 +114,316 @@ def main():
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UFC Hub</title>
-  <link rel="stylesheet" href="{BASE}/ufc/assets/ufc.css">
+  <style>
+    :root {{
+      --bg: #0F1621;
+      --panel: #111827;
+      --panel-2: #0b1220;
+      --border: #263447;
+      --text: #ffffff;
+      --muted: #aab4c0;
+      --blue: #60a5fa;
+      --green: #22c55e;
+    }}
+
+    * {{
+      box-sizing: border-box;
+    }}
+
+    html,
+    body {{
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }}
+
+    body {{
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }}
+
+    a {{
+      color: var(--blue);
+      text-decoration: none;
+    }}
+
+    a:hover {{
+      text-decoration: underline;
+    }}
+
+    .page {{
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 36px 48px 64px;
+    }}
+
+    .hero {{
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(96,165,250,0.18), transparent 28%),
+        linear-gradient(180deg, var(--panel), var(--panel-2));
+      padding: 36px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+    }}
+
+    .hero-top {{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }}
+
+    .eyebrow {{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      border: 1px solid rgba(34,197,94,0.35);
+      background: rgba(34,197,94,0.10);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }}
+
+    h1 {{
+      margin: 0;
+      font-size: clamp(38px, 5vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }}
+
+    .subtitle {{
+      max-width: 780px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }}
+
+    .actions {{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }}
+
+    .btn {{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      background: #162033;
+      color: white;
+    }}
+
+    .btn.primary {{
+      background: var(--blue);
+      color: #07111f;
+      border-color: var(--blue);
+    }}
+
+    .stats {{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      min-width: 360px;
+    }}
+
+    .stat {{
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(15,22,33,0.75);
+    }}
+
+    .stat strong {{
+      display: block;
+      font-size: 28px;
+      margin-bottom: 4px;
+    }}
+
+    .stat span {{
+      color: var(--muted);
+      font-size: 14px;
+    }}
+
+    .section-head {{
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 36px 0 16px;
+      flex-wrap: wrap;
+    }}
+
+    h2 {{
+      margin: 0;
+      font-size: 32px;
+      letter-spacing: -0.03em;
+    }}
+
+    .muted {{
+      color: var(--muted);
+    }}
+
+    .events-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 16px;
+      width: 100%;
+    }}
+
+    .event-card {{
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 180px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      background: var(--panel);
+      color: white;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }}
+
+    .event-card:hover {{
+      transform: translateY(-2px);
+      border-color: rgba(96,165,250,0.7);
+      background: #152033;
+      text-decoration: none;
+    }}
+
+    .event-kicker {{
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }}
+
+    .event-card h3 {{
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.25;
+      color: white;
+    }}
+
+    .event-card p {{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }}
+
+    .event-card span {{
+      color: var(--blue);
+      font-size: 26px;
+    }}
+
+    .footer {{
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }}
+
+    .empty {{
+      border: 1px dashed var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      color: var(--muted);
+      background: var(--panel);
+    }}
+
+    @media (max-width: 800px) {{
+      .page {{
+        padding: 24px 18px 48px;
+      }}
+
+      .hero {{
+        padding: 24px;
+      }}
+
+      .stats {{
+        min-width: 0;
+        width: 100%;
+        grid-template-columns: 1fr;
+      }}
+
+      .events-grid {{
+        grid-template-columns: 1fr;
+      }}
+    }}
+  </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>🥊 UFC Hub</h1>
-    <p class="muted">UFC events, fight cards and fighter research tools.</p>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow">🥊 UFC Lab</div>
+          <h1>UFC Hub</h1>
+          <p class="subtitle">
+            Full-width UFC research dashboard for upcoming events, fight cards, fighter profiles and betting prep.
+          </p>
 
-    <p><a href="{BASE}/ufc/fighters/">Browse fighters →</a></p>
+          <div class="actions">
+            <a class="btn primary" href="{BASE}/ufc/fighters/">Browse fighters →</a>
+            <a class="btn" href="{BASE}/ufc/events/">View all events →</a>
+          </div>
+        </div>
 
-    <h2>Upcoming Events</h2>
+        <div class="stats">
+          <div class="stat">
+            <strong>{len(upcoming_events)}</strong>
+            <span>Upcoming events</span>
+          </div>
+          <div class="stat">
+            <strong>10</strong>
+            <span>Recent fights tracked</span>
+          </div>
+          <div class="stat">
+            <strong>ML</strong>
+            <span>Moneyline odds ready</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    {rows_html}
+    <div class="section-head">
+      <div>
+        <h2>Upcoming Events</h2>
+        <p class="muted">Select an event to view fight cards and matchup pages.</p>
+      </div>
+      <a class="btn" href="{BASE}/ufc/fighters/">Fighter database →</a>
+    </div>
 
-    <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Generated: {esc(fmt_generated(generated_at))}</p>
-    <p><a href="{BASE}/">← Back to home</a></p>
-  </div>
+    <section class="events-grid">
+      {rows_html}
+    </section>
+
+    <div class="footer">
+      <span>Generated: {esc(fmt_generated(generated_at))}</span>
+      <a href="{BASE}/">← Back to home</a>
+    </div>
+  </main>
 
 </body>
 </html>
