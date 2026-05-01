@@ -1,26 +1,49 @@
 {
-  "updated_at": "2026-05-01T18:07:02.808087+00:00",
-  "total_arbitrage": 1,
+  "updated_at": "2026-05-01T20:07:33.353194+00:00",
+  "total_arbitrage": 2,
   "arbitrage": [
+    {
+      "sport": "UFC",
+      "event": "Dom Mar Fan vs Kody Steele",
+      "market": "Moneyline",
+      "commence_time": "2026-05-02T08:15:00Z",
+      "profit_margin_percent": 1.23,
+      "arb_sum": 0.98774,
+      "bookmakers": [
+        {
+          "selection": "Dom Mar Fan",
+          "bookmaker": "Betway",
+          "odds": 2.62,
+          "implied_probability": 38.17
+        },
+        {
+          "selection": "Kody Steele",
+          "bookmaker": "Matchbook",
+          "odds": 1.65,
+          "implied_probability": 60.61
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
     {
       "sport": "UFC",
       "event": "Jonathan Micallef vs Themba Gorimbo",
       "market": "Moneyline",
       "commence_time": "2026-05-02T08:45:00Z",
-      "profit_margin_percent": 0.17,
-      "arb_sum": 0.998256,
+      "profit_margin_percent": 0.44,
+      "arb_sum": 0.995585,
       "bookmakers": [
         {
           "selection": "Jonathan Micallef",
           "bookmaker": "Matchbook",
-          "odds": 1.48,
-          "implied_probability": 67.57
+          "odds": 1.51,
+          "implied_probability": 66.23
         },
         {
           "selection": "Themba Gorimbo",
-          "bookmaker": "William Hill",
-          "odds": 3.1,
-          "implied_probability": 32.26
+          "bookmaker": "Betway",
+          "odds": 3.0,
+          "implied_probability": 33.33
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
