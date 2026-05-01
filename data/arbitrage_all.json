@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-01T22:54:53.502121+00:00",
+  "updated_at": "2026-05-01T23:55:59.018307+00:00",
   "total_arbitrage": 4,
   "arbitrage": [
     {
@@ -7,8 +7,8 @@
       "event": "Dom Mar Fan vs Kody Steele",
       "market": "Moneyline",
       "commence_time": "2026-05-02T08:15:00Z",
-      "profit_margin_percent": 2.37,
-      "arb_sum": 0.976331,
+      "profit_margin_percent": 0.56,
+      "arb_sum": 0.994371,
       "bookmakers": [
         {
           "selection": "Dom Mar Fan",
@@ -18,32 +18,32 @@
         },
         {
           "selection": "Kody Steele",
-          "bookmaker": "Betfair",
-          "odds": 1.69,
-          "implied_probability": 59.17
+          "bookmaker": "Matchbook",
+          "odds": 1.64,
+          "implied_probability": 60.98
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
     },
     {
       "sport": "UFC",
-      "event": "Jonathan Micallef vs Themba Gorimbo",
+      "event": "Gerald Meerschaert vs Jacob Malkoun",
       "market": "Moneyline",
-      "commence_time": "2026-05-02T08:45:00Z",
-      "profit_margin_percent": 0.44,
-      "arb_sum": 0.995585,
+      "commence_time": "2026-05-02T10:15:00Z",
+      "profit_margin_percent": 0.4,
+      "arb_sum": 0.996047,
       "bookmakers": [
         {
-          "selection": "Jonathan Micallef",
+          "selection": "Gerald Meerschaert",
           "bookmaker": "Matchbook",
-          "odds": 1.51,
-          "implied_probability": 66.23
+          "odds": 11.5,
+          "implied_probability": 8.7
         },
         {
-          "selection": "Themba Gorimbo",
-          "bookmaker": "Betway",
-          "odds": 3.0,
-          "implied_probability": 33.33
+          "selection": "Jacob Malkoun",
+          "bookmaker": "Virgin Bet",
+          "odds": 1.1,
+          "implied_probability": 90.91
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
