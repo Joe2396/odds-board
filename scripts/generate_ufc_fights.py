@@ -90,10 +90,27 @@ def normalize_corner(corner):
 def enrich_fighter(fighter, fighters_by_slug):
     slug = fighter.get("slug", "")
     details = fighters_by_slug.get(slug, {})
+
     if not isinstance(details, dict):
         details = {}
 
-    return {**fighter, **details, "slug": slug}
+    # IMPORTANT: details FIRST so stats don't get wiped
+    merged = {**details, **fighter}
+
+    # Ensure key stat blocks are preserved
+    merged["stats"] = details.get("stats") or fighter.get("stats") or {}
+    merged["methods"] = details.get("methods") or fighter.get("methods") or {}
+    merged["recent_fights"] = details.get("recent_fights") or fighter.get("recent_fights") or []
+
+    # Fill missing bio fields from fighter DB
+    for key in ["record", "stance", "height", "reach", "weight", "dob", "ufcstats_url"]:
+        if not merged.get(key) or merged.get(key) == "—":
+            merged[key] = details.get(key) or fighter.get(key)
+
+    merged["slug"] = slug
+    merged["name"] = fighter.get("name") or details.get("name")
+
+    return merged
 
 
 def stat_value(stats, key):
