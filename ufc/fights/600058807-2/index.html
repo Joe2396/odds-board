@@ -6,77 +6,236 @@
   <title>Beneil Dariush vs Quillan Salkilld</title>
   <link rel="stylesheet" href="../../assets/ufc.css">
   <style>
-    .grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:14px;
+    html,
+    body {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: #0F1621;
     }
-    .panel {
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:14px;
-      background:rgba(255,255,255,0.02);
+
+    body {
+      min-height: 100vh;
     }
+
+    .fight-page {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 32px 40px 64px;
+    }
+
+    .fight-shell {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .fight-hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .fight-hero h1 {
+      margin: 12px 0 10px;
+      font-size: clamp(34px, 4vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      max-width: 1100px;
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .meta-pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.025);
+      font-size: 13px;
+    }
+
+    .matchup-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      width: 100%;
+    }
+
+    .fighter-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(255,255,255,0.025);
+      min-width: 0;
+    }
+
+    .fighter-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .corner-label {
+      display: inline-flex;
+      border: 1px solid rgba(96,165,250,0.45);
+      background: rgba(96,165,250,0.12);
+      color: #93c5fd;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .fighter-card h2 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1.05;
+    }
+
+    .small-link {
+      display: inline-block;
+      margin-top: 2px;
+    }
+
     .pillrow {
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:10px;
+      margin-top:18px;
     }
+
     .pill {
       border:1px solid var(--line);
       border-radius:999px;
-      padding:6px 10px;
+      padding:7px 10px;
       color:var(--muted);
       font-size:13px;
+      background: rgba(255,255,255,0.015);
     }
+
     .quick-summary {
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-top:14px;
+      gap:12px;
+      margin-top:18px;
     }
-    .quick-summary div {
+
+    .quick-summary div,
+    .section-block {
       border:1px solid var(--line);
-      border-radius:10px;
-      padding:10px;
+      border-radius:14px;
+      padding:14px;
       background:rgba(255,255,255,0.015);
     }
+
     .quick-summary span {
       display:block;
       font-size:12px;
-      margin-bottom:4px;
+      margin-bottom:6px;
     }
+
     .quick-summary strong {
-      font-size:18px;
+      font-size:20px;
+      letter-spacing: 0.03em;
     }
+
+    .section-block {
+      margin-top:14px;
+    }
+
+    .section-block h3 {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
     table {
       width:100%;
       border-collapse:collapse;
-      margin-top:10px;
+      margin-top:4px;
     }
+
     td, th {
-      padding:8px;
+      padding:8px 6px;
       border-bottom:1px solid var(--line);
       text-align:left;
+      vertical-align: top;
     }
+
+    td:last-child {
+      text-align:right;
+      font-weight:700;
+    }
+
     .recent-list {
       display:flex;
       flex-direction:column;
       gap:8px;
       margin-top:10px;
     }
+
     .recent-fight {
       border:1px solid var(--line);
       border-radius:10px;
       padding:10px;
       background:rgba(255,255,255,0.015);
     }
-    @media (max-width: 900px) {
-      .grid {
+
+    .fight-meta {
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      background:rgba(255,255,255,0.02);
+      margin-top:22px;
+    }
+
+    @media (max-width: 1100px) {
+      .matchup-grid {
         grid-template-columns:1fr;
       }
+
+      .stats-grid {
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .fight-page {
+        padding: 20px 14px 48px;
+      }
+
+      .fight-shell {
+        padding: 18px;
+      }
+
       .quick-summary {
         grid-template-columns:1fr;
       }
@@ -84,54 +243,71 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <p class="muted">
-      <a href="/odds-board/ufc/">UFC Hub</a> /
-      <a href="/odds-board/ufc/events/2026-05-02-ufc-fight-night-della-maddalena-vs-prates/">UFC Fight Night: Della Maddalena vs. Prates</a> /
-      Fight
-    </p>
+  <main class="fight-page">
+    <div class="fight-shell">
+      <div class="fight-hero">
+        <div>
+          <p class="muted">
+            <a href="/odds-board/ufc/">UFC Hub</a> /
+            <a href="/odds-board/ufc/events/2026-05-02-ufc-fight-night-della-maddalena-vs-prates/">UFC Fight Night: Della Maddalena vs. Prates</a> /
+            Fight
+          </p>
 
-    <h1>Beneil Dariush vs Quillan Salkilld</h1>
-    <p class="muted">Lightweight • Beneil Dariush vs Quillan Salkilld</p>
+          <h1>Beneil Dariush vs Quillan Salkilld</h1>
 
-    <div class="grid">
-      
-    <div class="panel">
-      <h2><a href="/odds-board/ufc/fighters/beneil-dariush/">Beneil Dariush</a></h2>
-      <p><a href="http://ufcstats.com/fighter-details/08af939f41b5a57b">UFCStats profile →</a></p>
+          <div class="meta-pills">
+            <span class="meta-pill">Lightweight</span>
+            <span class="meta-pill">Beneil Dariush vs Quillan Salkilld</span>
+            <span class="meta-pill">Status: scheduled</span>
+            <span class="meta-pill">Odds Match: Yes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="matchup-grid">
+        
+    <section class="fighter-card">
+      <div class="fighter-header">
+        <div>
+          <div class="corner-label">Left Side</div>
+          <h2><a href="/odds-board/ufc/fighters/beneil-dariush/">Beneil Dariush</a></h2>
+          
+        </div>
+      </div>
 
       <div class="pillrow">
-        <span class="pill">Record: 23-7-1</span>
-        <span class="pill">Weight: 155 lbs.</span>
-        <span class="pill">Stance: Southpaw</span>
-        <span class="pill">Height: 5&#39; 10&quot;</span>
-        <span class="pill">Reach: 72&quot;</span>
-        <span class="pill">DOB: May 06, 1989</span>
+        <span class="pill">Record: —</span>
+        <span class="pill">Weight: —</span>
+        <span class="pill">Stance: —</span>
+        <span class="pill">Height: —</span>
+        <span class="pill">Reach: —</span>
+        <span class="pill">DOB: —</span>
       </div>
 
       <div class="quick-summary">
         <div>
           <span class="muted">Recent Form</span>
-          <strong>L W L L W W W W W W</strong>
+          <strong>—</strong>
         </div>
         <div>
           <span class="muted">Finish Rate</span>
-          <strong>47%</strong>
+          <strong>—</strong>
         </div>
       </div>
 
       
-      <h3 class="muted">UK Moneyline Odds</h3>
-      <table>
-        <tr><td><strong>Best Price</strong></td><td><strong>4.33</strong></td></tr>
-        
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <table>
+          <tr><td><strong>Best Price</strong></td><td><strong>4.33</strong></td></tr>
+          
         <tr>
           <td>Betway ⭐ Best</td>
           <td>4.33</td>
         </tr>
         <tr>
           <td>Betfair</td>
-          <td>4.3</td>
+          <td>4.1</td>
         </tr>
         <tr>
           <td>William Hill</td>
@@ -161,112 +337,87 @@
           <td>Paddy Power</td>
           <td>3.75</td>
         </tr>
-      </table>
-    
-
-      <h3 class="muted">Striking</h3>
-      <table>
-        <tr><td>SLpM</td><td>3.78</td></tr>
-        <tr><td>Str. Acc.</td><td>49%</td></tr>
-        <tr><td>SApM</td><td>2.62</td></tr>
-        <tr><td>Str. Def.</td><td>—</td></tr>
-      </table>
-
-      <h3 class="muted">Grappling</h3>
-      <table>
-        <tr><td>TD Avg.</td><td>2.11</td></tr>
-        <tr><td>TD Acc.</td><td>38%</td></tr>
-        <tr><td>TD Def.</td><td>82%</td></tr>
-        <tr><td>Sub. Avg.</td><td>0.8</td></tr>
-      </table>
-
-      
-      <h3 class="muted">Method Breakdown</h3>
-      <table>
-        <tr><td>KO/TKO</td><td>3 W • 6 L</td></tr>
-        <tr><td>Submission</td><td>5 W • 1 L</td></tr>
-        <tr><td>Decision</td><td>9 W • 0 L</td></tr>
-        <tr><td>Other</td><td>0 W • 0 L</td></tr>
-      </table>
-    
-      
-      <h3 class="muted">Recent Fights</h3>
-      <div class="recent-list">
-        
-        <div class="recent-fight">
-          <strong>LOSS</strong> vs Benoit Saint Denis
-          <div class="muted">KO/TKO Punch • R1 • 0:16 • UFC 322: Della Maddalena vs. Makhachev Nov. 15, 2025</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Renato Moicano
-          <div class="muted">U-DEC • R3 • 5:00 • UFC 317: Topuria vs. Oliveira Jun. 28, 2025</div>
-        </div>
-        <div class="recent-fight">
-          <strong>LOSS</strong> vs Arman Tsarukyan
-          <div class="muted">KO/TKO Punch • R1 • 1:04 • UFC Fight Night: Dariush vs. Tsarukyan Dec. 02, 2023</div>
-        </div>
-        <div class="recent-fight">
-          <strong>LOSS</strong> vs Charles Oliveira
-          <div class="muted">KO/TKO Punches • R1 • 4:10 • UFC 289: Nunes vs. Aldana Jun. 10, 2023</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Mateusz Gamrot
-          <div class="muted">U-DEC • R3 • 5:00 • UFC 280: Oliveira vs. Makhachev Oct. 22, 2022</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Tony Ferguson
-          <div class="muted">U-DEC • R3 • 5:00 • UFC 262: Oliveira vs. Chandler May. 15, 2021</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Diego Ferreira
-          <div class="muted">S-DEC • R3 • 5:00 • UFC Fight Night: Overeem vs. Volkov Feb. 06, 2021</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Scott Holtzman
-          <div class="muted">KO/TKO Spinning Back Fist • R1 • 4:38 • UFC Fight Night: Lewis vs. Oleinik Aug. 08, 2020</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Drakkar Klose
-          <div class="muted">KO/TKO Punch • R2 • 1:00 • UFC 248: Adesanya vs. Romero Mar. 07, 2020</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Frank Camacho
-          <div class="muted">SUB Rear Naked Choke • R1 • 2:02 • UFC Fight Night: Maia vs. Askren Oct. 26, 2019</div>
-        </div>
+        </table>
       </div>
     
-    </div>
+
+      <div class="stats-grid">
+        <div class="section-block">
+          <h3>Striking</h3>
+          <table>
+            <tr><td>SLpM</td><td>—</td></tr>
+            <tr><td>Str. Acc.</td><td>—</td></tr>
+            <tr><td>SApM</td><td>—</td></tr>
+            <tr><td>Str. Def.</td><td>—</td></tr>
+          </table>
+        </div>
+
+        <div class="section-block">
+          <h3>Grappling</h3>
+          <table>
+            <tr><td>TD Avg.</td><td>—</td></tr>
+            <tr><td>TD Acc.</td><td>—</td></tr>
+            <tr><td>TD Def.</td><td>—</td></tr>
+            <tr><td>Sub. Avg.</td><td>—</td></tr>
+          </table>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>Method Breakdown</h3>
+        <table>
+          <tr><td>KO/TKO</td><td>0 W • 0 L</td></tr>
+          <tr><td>Submission</td><td>0 W • 0 L</td></tr>
+          <tr><td>Decision</td><td>0 W • 0 L</td></tr>
+          <tr><td>Other</td><td>0 W • 0 L</td></tr>
+        </table>
+      </div>
     
       
-    <div class="panel">
-      <h2><a href="/odds-board/ufc/fighters/quillan-salkilld/">Quillan Salkilld</a></h2>
-      <p><a href="http://ufcstats.com/fighter-details/17734443a833cdf7">UFCStats profile →</a></p>
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <p class="muted">Recent fight history not available yet.</p>
+      </div>
+        
+    </section>
+    
+        
+    <section class="fighter-card">
+      <div class="fighter-header">
+        <div>
+          <div class="corner-label">Right Side</div>
+          <h2><a href="/odds-board/ufc/fighters/quillan-salkilld/">Quillan Salkilld</a></h2>
+          
+        </div>
+      </div>
 
       <div class="pillrow">
-        <span class="pill">Record: 11-1-0</span>
-        <span class="pill">Weight: 155 lbs.</span>
-        <span class="pill">Stance: Orthodox</span>
-        <span class="pill">Height: 6&#39; 0&quot;</span>
-        <span class="pill">Reach: 75&quot;</span>
-        <span class="pill">DOB: Dec 28, 1999</span>
+        <span class="pill">Record: —</span>
+        <span class="pill">Weight: —</span>
+        <span class="pill">Stance: —</span>
+        <span class="pill">Height: —</span>
+        <span class="pill">Reach: —</span>
+        <span class="pill">DOB: —</span>
       </div>
 
       <div class="quick-summary">
         <div>
           <span class="muted">Recent Form</span>
-          <strong>W W W W W</strong>
+          <strong>—</strong>
         </div>
         <div>
           <span class="muted">Finish Rate</span>
-          <strong>60%</strong>
+          <strong>—</strong>
         </div>
       </div>
 
       
-      <h3 class="muted">UK Moneyline Odds</h3>
-      <table>
-        <tr><td><strong>Best Price</strong></td><td><strong>1.29</strong></td></tr>
-        
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <table>
+          <tr><td><strong>Best Price</strong></td><td><strong>1.29</strong></td></tr>
+          
         <tr>
           <td>Betfair ⭐ Best</td>
           <td>1.29</td>
@@ -303,76 +454,66 @@
           <td>Betway</td>
           <td>1.22</td>
         </tr>
-      </table>
-    
-
-      <h3 class="muted">Striking</h3>
-      <table>
-        <tr><td>SLpM</td><td>5.16</td></tr>
-        <tr><td>Str. Acc.</td><td>57%</td></tr>
-        <tr><td>SApM</td><td>3.24</td></tr>
-        <tr><td>Str. Def.</td><td>—</td></tr>
-      </table>
-
-      <h3 class="muted">Grappling</h3>
-      <table>
-        <tr><td>TD Avg.</td><td>7.95</td></tr>
-        <tr><td>TD Acc.</td><td>36%</td></tr>
-        <tr><td>TD Def.</td><td>90%</td></tr>
-        <tr><td>Sub. Avg.</td><td>0.8</td></tr>
-      </table>
-
-      
-      <h3 class="muted">Method Breakdown</h3>
-      <table>
-        <tr><td>KO/TKO</td><td>2 W • 0 L</td></tr>
-        <tr><td>Submission</td><td>1 W • 0 L</td></tr>
-        <tr><td>Decision</td><td>2 W • 0 L</td></tr>
-        <tr><td>Other</td><td>0 W • 0 L</td></tr>
-      </table>
-    
-      
-      <h3 class="muted">Recent Fights</h3>
-      <div class="recent-list">
-        
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Jamie Mullarkey
-          <div class="muted">SUB Neck Crank • R1 • 3:02 • UFC 325: Volkanovski vs. Lopes 2 Jan. 31, 2026</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Nasrat Haqparast
-          <div class="muted">KO/TKO Kick • R1 • 2:30 • UFC 321: Aspinall vs. Gane Oct. 25, 2025</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Yanal Ashmouz
-          <div class="muted">U-DEC • R3 • 5:00 • UFC 316: Dvalishvili vs. O&#39;Malley 2 Jun. 07, 2025</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Anshul Jubli
-          <div class="muted">KO/TKO Punch • R1 • 0:19 • UFC 312: Du Plessis vs. Strickland 2 Feb. 08, 2025</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Gauge Young
-          <div class="muted">U-DEC • R3 • 5:00 • DWCS 8.4 Sep. 03, 2024</div>
-        </div>
+        </table>
       </div>
     
-    </div>
+
+      <div class="stats-grid">
+        <div class="section-block">
+          <h3>Striking</h3>
+          <table>
+            <tr><td>SLpM</td><td>—</td></tr>
+            <tr><td>Str. Acc.</td><td>—</td></tr>
+            <tr><td>SApM</td><td>—</td></tr>
+            <tr><td>Str. Def.</td><td>—</td></tr>
+          </table>
+        </div>
+
+        <div class="section-block">
+          <h3>Grappling</h3>
+          <table>
+            <tr><td>TD Avg.</td><td>—</td></tr>
+            <tr><td>TD Acc.</td><td>—</td></tr>
+            <tr><td>TD Def.</td><td>—</td></tr>
+            <tr><td>Sub. Avg.</td><td>—</td></tr>
+          </table>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>Method Breakdown</h3>
+        <table>
+          <tr><td>KO/TKO</td><td>0 W • 0 L</td></tr>
+          <tr><td>Submission</td><td>0 W • 0 L</td></tr>
+          <tr><td>Decision</td><td>0 W • 0 L</td></tr>
+          <tr><td>Other</td><td>0 W • 0 L</td></tr>
+        </table>
+      </div>
     
-    </div>
+      
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <p class="muted">Recent fight history not available yet.</p>
+      </div>
+        
+    </section>
+    
+      </div>
 
-    <div class="panel" style="margin-top:14px;">
-      <h2>Fight Meta</h2>
-      <table>
-        <tr><td>Bout</td><td>Beneil Dariush vs Quillan Salkilld</td></tr>
-        <tr><td>Weight Class</td><td>Lightweight</td></tr>
-        <tr><td>Status</td><td>scheduled</td></tr>
-        <tr><td>Odds Match</td><td>Yes</td></tr>
-      </table>
-    </div>
+      <div class="fight-meta">
+        <h2>Fight Meta</h2>
+        <table>
+          <tr><td>Bout</td><td>Beneil Dariush vs Quillan Salkilld</td></tr>
+          <tr><td>Weight Class</td><td>Lightweight</td></tr>
+          <tr><td>Status</td><td>scheduled</td></tr>
+          <tr><td>Odds Match</td><td>Yes</td></tr>
+        </table>
+      </div>
 
-    <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Fight ID: 600058807-2 • Generated: 2026-05-02 07:49 UTC</p>
-  </div>
+      <hr style="margin:24px 0; border-color:#1f2a3a;">
+      <p class="muted">Fight ID: 600058807-2 • Generated: 2026-05-02 08:50 UTC</p>
+    </div>
+  </main>
 </body>
 </html>

@@ -1,47 +1,27 @@
 {
   "source": "odds_json",
-  "total_fights_checked": 56,
-  "arbitrage_count": 2,
+  "total_fights_checked": 55,
+  "arbitrage_count": 4,
   "fights": [
     {
-      "event_id": "14907f094f1e69182dca6b1f05475d7c",
-      "commence_time": "2026-05-02T08:15:00Z",
-      "fight": "Dom Mar Fan vs Kody Steele",
-      "fighters": {
-        "Dom Mar Fan": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.4,
-          "implied_probability": 41.67
-        },
-        "Kody Steele": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.71,
-          "implied_probability": 58.48
-        }
-      },
-      "arb_sum": 1.001462,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.15
-    },
-    {
       "event_id": "bdca2911eed89d98c9297b13557c5bf6",
-      "commence_time": "2026-05-02T08:45:00Z",
+      "commence_time": "2026-05-02T08:33:00Z",
       "fight": "Jonathan Micallef vs Themba Gorimbo",
       "fighters": {
         "Jonathan Micallef": {
-          "best_bookmaker": "Matchbook",
+          "best_bookmaker": "Paddy Power",
           "best_price": 1.5,
           "implied_probability": 66.67
         },
         "Themba Gorimbo": {
-          "best_bookmaker": "Betway",
-          "best_price": 3.0,
-          "implied_probability": 33.33
+          "best_bookmaker": "Betfair",
+          "best_price": 8.6,
+          "implied_probability": 11.63
         }
       },
-      "arb_sum": 1.0,
-      "is_arbitrage": false,
-      "profit_margin_percent": 0.0
+      "arb_sum": 0.782946,
+      "is_arbitrage": true,
+      "profit_margin_percent": 21.71
     },
     {
       "event_id": "783061f020d8480cd696d9b91ac0b1c7",
@@ -54,14 +34,14 @@
           "implied_probability": 57.14
         },
         "Wes Schultz": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.28,
-          "implied_probability": 43.86
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.25,
+          "implied_probability": 44.44
         }
       },
-      "arb_sum": 1.010025,
+      "arb_sum": 1.015873,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.0
+      "profit_margin_percent": -1.59
     },
     {
       "event_id": "90f603711355e10eb78ef195a8c39d84",
@@ -75,13 +55,13 @@
         },
         "Vince Morales": {
           "best_bookmaker": "Matchbook",
-          "best_price": 2.24,
-          "implied_probability": 44.64
+          "best_price": 2.26,
+          "implied_probability": 44.25
         }
       },
-      "arb_sum": 1.008226,
+      "arb_sum": 1.004276,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.82
+      "profit_margin_percent": -0.43
     },
     {
       "event_id": "fbf7ef7423c3133a9a019981db7cb18e",
@@ -90,8 +70,8 @@
       "fighters": {
         "Gerald Meerschaert": {
           "best_bookmaker": "Matchbook",
-          "best_price": 11.0,
-          "implied_probability": 9.09
+          "best_price": 11.5,
+          "implied_probability": 8.7
         },
         "Jacob Malkoun": {
           "best_bookmaker": "Virgin Bet",
@@ -99,9 +79,9 @@
           "implied_probability": 90.91
         }
       },
-      "arb_sum": 1.0,
-      "is_arbitrage": false,
-      "profit_margin_percent": 0.0
+      "arb_sum": 0.996047,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.4
     },
     {
       "event_id": "9b8a4523ec28a0c91297dd06ee3690fe",
@@ -135,13 +115,13 @@
         },
         "Robert Bryczek": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.72,
-          "implied_probability": 36.76
+          "best_price": 2.7,
+          "implied_probability": 37.04
         }
       },
-      "arb_sum": 0.988765,
+      "arb_sum": 0.991488,
       "is_arbitrage": true,
-      "profit_margin_percent": 1.12
+      "profit_margin_percent": 0.85
     },
     {
       "event_id": "6049085de42ddc0b1980dbcdcda70467",
@@ -150,18 +130,18 @@
       "fighters": {
         "Louie Sutherland": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.96,
-          "implied_probability": 33.78
+          "best_price": 2.94,
+          "implied_probability": 34.01
         },
         "Tai Tuivasa": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.5,
-          "implied_probability": 66.67
+          "best_price": 1.51,
+          "implied_probability": 66.23
         }
       },
-      "arb_sum": 1.004505,
+      "arb_sum": 1.002388,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.45
+      "profit_margin_percent": -0.24
     },
     {
       "event_id": "5df097b38ef78a244dd9274d2ab025ce",
@@ -169,9 +149,9 @@
       "fight": "Brando Pericic vs Shamil Gaziev",
       "fighters": {
         "Brando Pericic": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.97,
-          "implied_probability": 50.76
+          "best_bookmaker": "Betway",
+          "best_price": 1.95,
+          "implied_probability": 51.28
         },
         "Shamil Gaziev": {
           "best_bookmaker": "William Hill",
@@ -179,9 +159,9 @@
           "implied_probability": 47.62
         }
       },
-      "arb_sum": 0.983805,
+      "arb_sum": 0.989011,
       "is_arbitrage": true,
-      "profit_margin_percent": 1.62
+      "profit_margin_percent": 1.1
     },
     {
       "event_id": "a60247fbe8841f60b47006901fb77b43",
@@ -190,8 +170,8 @@
       "fighters": {
         "Marwan Rahiki": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.17,
-          "implied_probability": 85.47
+          "best_price": 1.16,
+          "implied_probability": 86.21
         },
         "Ollie Schmid": {
           "best_bookmaker": "Betfair",
@@ -199,9 +179,9 @@
           "implied_probability": 15.15
         }
       },
-      "arb_sum": 1.006216,
+      "arb_sum": 1.013584,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.62
+      "profit_margin_percent": -1.36
     },
     {
       "event_id": "2f4054240d75e5992a009c2eb2886288",
@@ -209,19 +189,19 @@
       "fight": "Stephen Erceg vs Tim Elliott",
       "fighters": {
         "Stephen Erceg": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.58,
-          "implied_probability": 63.29
+          "best_bookmaker": "Betfair",
+          "best_price": 1.59,
+          "implied_probability": 62.89
         },
         "Tim Elliott": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.66,
-          "implied_probability": 37.59
+          "best_price": 2.68,
+          "implied_probability": 37.31
         }
       },
-      "arb_sum": 1.008851,
+      "arb_sum": 1.002065,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.89
+      "profit_margin_percent": -0.21
     },
     {
       "event_id": "5c7d9ec8f1e95d64bcead567c0946c1d",
@@ -270,18 +250,18 @@
       "fighters": {
         "Carlos Prates": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.96,
-          "implied_probability": 51.02
+          "best_price": 2.0,
+          "implied_probability": 50.0
         },
         "Jack Della Maddalena": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.02,
-          "implied_probability": 49.5
+          "best_bookmaker": "Paddy Power",
+          "best_price": 2.0,
+          "implied_probability": 50.0
         }
       },
-      "arb_sum": 1.005254,
+      "arb_sum": 1.0,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.53
+      "profit_margin_percent": 0.0
     },
     {
       "event_id": "49bfb2f3e748499cae7c42d0e663c0c4",
@@ -1126,6 +1106,46 @@
   ],
   "arbitrage_opportunities": [
     {
+      "event_id": "bdca2911eed89d98c9297b13557c5bf6",
+      "commence_time": "2026-05-02T08:33:00Z",
+      "fight": "Jonathan Micallef vs Themba Gorimbo",
+      "fighters": {
+        "Jonathan Micallef": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.5,
+          "implied_probability": 66.67
+        },
+        "Themba Gorimbo": {
+          "best_bookmaker": "Betfair",
+          "best_price": 8.6,
+          "implied_probability": 11.63
+        }
+      },
+      "arb_sum": 0.782946,
+      "is_arbitrage": true,
+      "profit_margin_percent": 21.71
+    },
+    {
+      "event_id": "fbf7ef7423c3133a9a019981db7cb18e",
+      "commence_time": "2026-05-02T10:15:00Z",
+      "fight": "Gerald Meerschaert vs Jacob Malkoun",
+      "fighters": {
+        "Gerald Meerschaert": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 11.5,
+          "implied_probability": 8.7
+        },
+        "Jacob Malkoun": {
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 1.1,
+          "implied_probability": 90.91
+        }
+      },
+      "arb_sum": 0.996047,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.4
+    },
+    {
       "event_id": "7bcb7fecc9f0abb2fa681739960a829c",
       "commence_time": "2026-05-02T10:45:00Z",
       "fight": "Cam Rowston vs Robert Bryczek",
@@ -1137,13 +1157,13 @@
         },
         "Robert Bryczek": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.72,
-          "implied_probability": 36.76
+          "best_price": 2.7,
+          "implied_probability": 37.04
         }
       },
-      "arb_sum": 0.988765,
+      "arb_sum": 0.991488,
       "is_arbitrage": true,
-      "profit_margin_percent": 1.12
+      "profit_margin_percent": 0.85
     },
     {
       "event_id": "5df097b38ef78a244dd9274d2ab025ce",
@@ -1151,9 +1171,9 @@
       "fight": "Brando Pericic vs Shamil Gaziev",
       "fighters": {
         "Brando Pericic": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.97,
-          "implied_probability": 50.76
+          "best_bookmaker": "Betway",
+          "best_price": 1.95,
+          "implied_probability": 51.28
         },
         "Shamil Gaziev": {
           "best_bookmaker": "William Hill",
@@ -1161,9 +1181,9 @@
           "implied_probability": 47.62
         }
       },
-      "arb_sum": 0.983805,
+      "arb_sum": 0.989011,
       "is_arbitrage": true,
-      "profit_margin_percent": 1.62
+      "profit_margin_percent": 1.1
     }
   ]
 }

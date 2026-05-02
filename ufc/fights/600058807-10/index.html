@@ -6,77 +6,236 @@
   <title>Ben Johnston vs Wes Schultz</title>
   <link rel="stylesheet" href="../../assets/ufc.css">
   <style>
-    .grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:14px;
+    html,
+    body {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: #0F1621;
     }
-    .panel {
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:14px;
-      background:rgba(255,255,255,0.02);
+
+    body {
+      min-height: 100vh;
     }
+
+    .fight-page {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 32px 40px 64px;
+    }
+
+    .fight-shell {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .fight-hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .fight-hero h1 {
+      margin: 12px 0 10px;
+      font-size: clamp(34px, 4vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      max-width: 1100px;
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .meta-pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.025);
+      font-size: 13px;
+    }
+
+    .matchup-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      width: 100%;
+    }
+
+    .fighter-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(255,255,255,0.025);
+      min-width: 0;
+    }
+
+    .fighter-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .corner-label {
+      display: inline-flex;
+      border: 1px solid rgba(96,165,250,0.45);
+      background: rgba(96,165,250,0.12);
+      color: #93c5fd;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .fighter-card h2 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1.05;
+    }
+
+    .small-link {
+      display: inline-block;
+      margin-top: 2px;
+    }
+
     .pillrow {
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:10px;
+      margin-top:18px;
     }
+
     .pill {
       border:1px solid var(--line);
       border-radius:999px;
-      padding:6px 10px;
+      padding:7px 10px;
       color:var(--muted);
       font-size:13px;
+      background: rgba(255,255,255,0.015);
     }
+
     .quick-summary {
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-top:14px;
+      gap:12px;
+      margin-top:18px;
     }
-    .quick-summary div {
+
+    .quick-summary div,
+    .section-block {
       border:1px solid var(--line);
-      border-radius:10px;
-      padding:10px;
+      border-radius:14px;
+      padding:14px;
       background:rgba(255,255,255,0.015);
     }
+
     .quick-summary span {
       display:block;
       font-size:12px;
-      margin-bottom:4px;
+      margin-bottom:6px;
     }
+
     .quick-summary strong {
-      font-size:18px;
+      font-size:20px;
+      letter-spacing: 0.03em;
     }
+
+    .section-block {
+      margin-top:14px;
+    }
+
+    .section-block h3 {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
     table {
       width:100%;
       border-collapse:collapse;
-      margin-top:10px;
+      margin-top:4px;
     }
+
     td, th {
-      padding:8px;
+      padding:8px 6px;
       border-bottom:1px solid var(--line);
       text-align:left;
+      vertical-align: top;
     }
+
+    td:last-child {
+      text-align:right;
+      font-weight:700;
+    }
+
     .recent-list {
       display:flex;
       flex-direction:column;
       gap:8px;
       margin-top:10px;
     }
+
     .recent-fight {
       border:1px solid var(--line);
       border-radius:10px;
       padding:10px;
       background:rgba(255,255,255,0.015);
     }
-    @media (max-width: 900px) {
-      .grid {
+
+    .fight-meta {
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      background:rgba(255,255,255,0.02);
+      margin-top:22px;
+    }
+
+    @media (max-width: 1100px) {
+      .matchup-grid {
         grid-template-columns:1fr;
       }
+
+      .stats-grid {
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .fight-page {
+        padding: 20px 14px 48px;
+      }
+
+      .fight-shell {
+        padding: 18px;
+      }
+
       .quick-summary {
         grid-template-columns:1fr;
       }
@@ -84,29 +243,45 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <p class="muted">
-      <a href="/odds-board/ufc/">UFC Hub</a> /
-      <a href="/odds-board/ufc/events/2026-05-02-ufc-fight-night-della-maddalena-vs-prates/">UFC Fight Night: Della Maddalena vs. Prates</a> /
-      Fight
-    </p>
+  <main class="fight-page">
+    <div class="fight-shell">
+      <div class="fight-hero">
+        <div>
+          <p class="muted">
+            <a href="/odds-board/ufc/">UFC Hub</a> /
+            <a href="/odds-board/ufc/events/2026-05-02-ufc-fight-night-della-maddalena-vs-prates/">UFC Fight Night: Della Maddalena vs. Prates</a> /
+            Fight
+          </p>
 
-    <h1>Ben Johnston vs Wes Schultz</h1>
-    <p class="muted">Middleweight • Ben Johnston vs Wes Schultz</p>
+          <h1>Ben Johnston vs Wes Schultz</h1>
 
-    <div class="grid">
-      
-    <div class="panel">
-      <h2><a href="/odds-board/ufc/fighters/ben-johnston/">Ben Johnston</a></h2>
-      <p><a href="http://ufcstats.com/fighter-details/3261aa79bf6caa64">UFCStats profile →</a></p>
+          <div class="meta-pills">
+            <span class="meta-pill">Middleweight</span>
+            <span class="meta-pill">Ben Johnston vs Wes Schultz</span>
+            <span class="meta-pill">Status: scheduled</span>
+            <span class="meta-pill">Odds Match: Yes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="matchup-grid">
+        
+    <section class="fighter-card">
+      <div class="fighter-header">
+        <div>
+          <div class="corner-label">Left Side</div>
+          <h2><a href="/odds-board/ufc/fighters/ben-johnston/">Ben Johnston</a></h2>
+          
+        </div>
+      </div>
 
       <div class="pillrow">
-        <span class="pill">Record: 5-1-0</span>
-        <span class="pill">Weight: 185 lbs.</span>
-        <span class="pill">Stance: Orthodox</span>
-        <span class="pill">Height: 6&#39; 4&quot;</span>
-        <span class="pill">Reach: 76&quot;</span>
-        <span class="pill">DOB: Oct 11, 1990</span>
+        <span class="pill">Record: —</span>
+        <span class="pill">Weight: —</span>
+        <span class="pill">Stance: —</span>
+        <span class="pill">Height: —</span>
+        <span class="pill">Reach: —</span>
+        <span class="pill">DOB: —</span>
       </div>
 
       <div class="quick-summary">
@@ -121,10 +296,11 @@
       </div>
 
       
-      <h3 class="muted">UK Moneyline Odds</h3>
-      <table>
-        <tr><td><strong>Best Price</strong></td><td><strong>1.75</strong></td></tr>
-        
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <table>
+          <tr><td><strong>Best Price</strong></td><td><strong>1.75</strong></td></tr>
+          
         <tr>
           <td>Betfair ⭐ Best</td>
           <td>1.75</td>
@@ -161,77 +337,94 @@
           <td>Unibet (UK)</td>
           <td>1.65</td>
         </tr>
-      </table>
+        </table>
+      </div>
     
 
-      <h3 class="muted">Striking</h3>
-      <table>
-        <tr><td>SLpM</td><td>0.00</td></tr>
-        <tr><td>Str. Acc.</td><td>0%</td></tr>
-        <tr><td>SApM</td><td>0.00</td></tr>
-        <tr><td>Str. Def.</td><td>—</td></tr>
-      </table>
+      <div class="stats-grid">
+        <div class="section-block">
+          <h3>Striking</h3>
+          <table>
+            <tr><td>SLpM</td><td>—</td></tr>
+            <tr><td>Str. Acc.</td><td>—</td></tr>
+            <tr><td>SApM</td><td>—</td></tr>
+            <tr><td>Str. Def.</td><td>—</td></tr>
+          </table>
+        </div>
 
-      <h3 class="muted">Grappling</h3>
-      <table>
-        <tr><td>TD Avg.</td><td>0.00</td></tr>
-        <tr><td>TD Acc.</td><td>0%</td></tr>
-        <tr><td>TD Def.</td><td>0%</td></tr>
-        <tr><td>Sub. Avg.</td><td>0.0</td></tr>
-      </table>
+        <div class="section-block">
+          <h3>Grappling</h3>
+          <table>
+            <tr><td>TD Avg.</td><td>—</td></tr>
+            <tr><td>TD Acc.</td><td>—</td></tr>
+            <tr><td>TD Def.</td><td>—</td></tr>
+            <tr><td>Sub. Avg.</td><td>—</td></tr>
+          </table>
+        </div>
+      </div>
 
       
-      <h3 class="muted">Method Breakdown</h3>
-      <table>
-        <tr><td>KO/TKO</td><td>0 W • 0 L</td></tr>
-        <tr><td>Submission</td><td>0 W • 0 L</td></tr>
-        <tr><td>Decision</td><td>0 W • 0 L</td></tr>
-        <tr><td>Other</td><td>0 W • 0 L</td></tr>
-      </table>
+      <div class="section-block">
+        <h3>Method Breakdown</h3>
+        <table>
+          <tr><td>KO/TKO</td><td>0 W • 0 L</td></tr>
+          <tr><td>Submission</td><td>0 W • 0 L</td></tr>
+          <tr><td>Decision</td><td>0 W • 0 L</td></tr>
+          <tr><td>Other</td><td>0 W • 0 L</td></tr>
+        </table>
+      </div>
     
       
-      <h3 class="muted">Recent Fights</h3>
-      <p class="muted">Recent fight history not available yet.</p>
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <p class="muted">Recent fight history not available yet.</p>
+      </div>
         
-    </div>
+    </section>
     
-      
-    <div class="panel">
-      <h2><a href="/odds-board/ufc/fighters/wes-schultz/">Wes Schultz</a></h2>
-      <p><a href="http://ufcstats.com/fighter-details/b4443fae47e7eb9d">UFCStats profile →</a></p>
+        
+    <section class="fighter-card">
+      <div class="fighter-header">
+        <div>
+          <div class="corner-label">Right Side</div>
+          <h2><a href="/odds-board/ufc/fighters/wes-schultz/">Wes Schultz</a></h2>
+          
+        </div>
+      </div>
 
       <div class="pillrow">
-        <span class="pill">Record: 8-3-0</span>
-        <span class="pill">Weight: 185 lbs.</span>
-        <span class="pill">Stance: Orthodox</span>
-        <span class="pill">Height: 6&#39; 1&quot;</span>
-        <span class="pill">Reach: 77&quot;</span>
-        <span class="pill">DOB: Aug 09, 1996</span>
+        <span class="pill">Record: —</span>
+        <span class="pill">Weight: —</span>
+        <span class="pill">Stance: —</span>
+        <span class="pill">Height: —</span>
+        <span class="pill">Reach: —</span>
+        <span class="pill">DOB: —</span>
       </div>
 
       <div class="quick-summary">
         <div>
           <span class="muted">Recent Form</span>
-          <strong>L W L</strong>
+          <strong>—</strong>
         </div>
         <div>
           <span class="muted">Finish Rate</span>
-          <strong>100%</strong>
+          <strong>—</strong>
         </div>
       </div>
 
       
-      <h3 class="muted">UK Moneyline Odds</h3>
-      <table>
-        <tr><td><strong>Best Price</strong></td><td><strong>2.28</strong></td></tr>
-        
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <table>
+          <tr><td><strong>Best Price</strong></td><td><strong>2.25</strong></td></tr>
+          
         <tr>
-          <td>Betfair ⭐ Best</td>
-          <td>2.28</td>
+          <td>Unibet (UK) ⭐ Best</td>
+          <td>2.25</td>
         </tr>
         <tr>
-          <td>Unibet (UK)</td>
-          <td>2.25</td>
+          <td>Betfair</td>
+          <td>2.24</td>
         </tr>
         <tr>
           <td>William Hill</td>
@@ -261,68 +454,66 @@
           <td>Grosvenor</td>
           <td>2.14</td>
         </tr>
-      </table>
-    
-
-      <h3 class="muted">Striking</h3>
-      <table>
-        <tr><td>SLpM</td><td>4.60</td></tr>
-        <tr><td>Str. Acc.</td><td>43%</td></tr>
-        <tr><td>SApM</td><td>4.97</td></tr>
-        <tr><td>Str. Def.</td><td>—</td></tr>
-      </table>
-
-      <h3 class="muted">Grappling</h3>
-      <table>
-        <tr><td>TD Avg.</td><td>4.52</td></tr>
-        <tr><td>TD Acc.</td><td>25%</td></tr>
-        <tr><td>TD Def.</td><td>0%</td></tr>
-        <tr><td>Sub. Avg.</td><td>1.1</td></tr>
-      </table>
-
-      
-      <h3 class="muted">Method Breakdown</h3>
-      <table>
-        <tr><td>KO/TKO</td><td>0 W • 2 L</td></tr>
-        <tr><td>Submission</td><td>1 W • 0 L</td></tr>
-        <tr><td>Decision</td><td>0 W • 0 L</td></tr>
-        <tr><td>Other</td><td>0 W • 0 L</td></tr>
-      </table>
-    
-      
-      <h3 class="muted">Recent Fights</h3>
-      <div class="recent-list">
-        
-        <div class="recent-fight">
-          <strong>LOSS</strong> vs Damian Pinas
-          <div class="muted">KO/TKO Punch • R1 • 2:30 • UFC Fight Night: Moreno vs. Kavanagh Feb. 28, 2026</div>
-        </div>
-        <div class="recent-fight">
-          <strong>WIN</strong> vs Mario Mingaj
-          <div class="muted">SUB Suloev Stretch • R1 • 1:51 • DWCS 9.10 Oct. 14, 2025</div>
-        </div>
-        <div class="recent-fight">
-          <strong>LOSS</strong> vs Mansur Abdul-Malik
-          <div class="muted">KO/TKO Elbows • R2 • 3:55 • DWCS 8.1 Aug. 13, 2024</div>
-        </div>
+        </table>
       </div>
     
-    </div>
+
+      <div class="stats-grid">
+        <div class="section-block">
+          <h3>Striking</h3>
+          <table>
+            <tr><td>SLpM</td><td>—</td></tr>
+            <tr><td>Str. Acc.</td><td>—</td></tr>
+            <tr><td>SApM</td><td>—</td></tr>
+            <tr><td>Str. Def.</td><td>—</td></tr>
+          </table>
+        </div>
+
+        <div class="section-block">
+          <h3>Grappling</h3>
+          <table>
+            <tr><td>TD Avg.</td><td>—</td></tr>
+            <tr><td>TD Acc.</td><td>—</td></tr>
+            <tr><td>TD Def.</td><td>—</td></tr>
+            <tr><td>Sub. Avg.</td><td>—</td></tr>
+          </table>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>Method Breakdown</h3>
+        <table>
+          <tr><td>KO/TKO</td><td>0 W • 0 L</td></tr>
+          <tr><td>Submission</td><td>0 W • 0 L</td></tr>
+          <tr><td>Decision</td><td>0 W • 0 L</td></tr>
+          <tr><td>Other</td><td>0 W • 0 L</td></tr>
+        </table>
+      </div>
     
-    </div>
+      
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <p class="muted">Recent fight history not available yet.</p>
+      </div>
+        
+    </section>
+    
+      </div>
 
-    <div class="panel" style="margin-top:14px;">
-      <h2>Fight Meta</h2>
-      <table>
-        <tr><td>Bout</td><td>Ben Johnston vs Wes Schultz</td></tr>
-        <tr><td>Weight Class</td><td>Middleweight</td></tr>
-        <tr><td>Status</td><td>scheduled</td></tr>
-        <tr><td>Odds Match</td><td>Yes</td></tr>
-      </table>
-    </div>
+      <div class="fight-meta">
+        <h2>Fight Meta</h2>
+        <table>
+          <tr><td>Bout</td><td>Ben Johnston vs Wes Schultz</td></tr>
+          <tr><td>Weight Class</td><td>Middleweight</td></tr>
+          <tr><td>Status</td><td>scheduled</td></tr>
+          <tr><td>Odds Match</td><td>Yes</td></tr>
+        </table>
+      </div>
 
-    <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Fight ID: 600058807-10 • Generated: 2026-05-02 07:49 UTC</p>
-  </div>
+      <hr style="margin:24px 0; border-color:#1f2a3a;">
+      <p class="muted">Fight ID: 600058807-10 • Generated: 2026-05-02 08:50 UTC</p>
+    </div>
+  </main>
 </body>
 </html>

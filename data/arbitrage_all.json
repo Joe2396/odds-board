@@ -1,14 +1,60 @@
 {
-  "updated_at": "2026-05-02T07:49:09.419155+00:00",
-  "total_arbitrage": 2,
+  "updated_at": "2026-05-02T08:50:51.493481+00:00",
+  "total_arbitrage": 4,
   "arbitrage": [
+    {
+      "sport": "UFC",
+      "event": "Jonathan Micallef vs Themba Gorimbo",
+      "market": "Moneyline",
+      "commence_time": "2026-05-02T08:33:00Z",
+      "profit_margin_percent": 21.71,
+      "arb_sum": 0.782946,
+      "bookmakers": [
+        {
+          "selection": "Jonathan Micallef",
+          "bookmaker": "Paddy Power",
+          "odds": 1.5,
+          "implied_probability": 66.67
+        },
+        {
+          "selection": "Themba Gorimbo",
+          "bookmaker": "Betfair",
+          "odds": 8.6,
+          "implied_probability": 11.63
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "UFC",
+      "event": "Gerald Meerschaert vs Jacob Malkoun",
+      "market": "Moneyline",
+      "commence_time": "2026-05-02T10:15:00Z",
+      "profit_margin_percent": 0.4,
+      "arb_sum": 0.996047,
+      "bookmakers": [
+        {
+          "selection": "Gerald Meerschaert",
+          "bookmaker": "Matchbook",
+          "odds": 11.5,
+          "implied_probability": 8.7
+        },
+        {
+          "selection": "Jacob Malkoun",
+          "bookmaker": "Virgin Bet",
+          "odds": 1.1,
+          "implied_probability": 90.91
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
     {
       "sport": "UFC",
       "event": "Cam Rowston vs Robert Bryczek",
       "market": "Moneyline",
       "commence_time": "2026-05-02T10:45:00Z",
-      "profit_margin_percent": 1.12,
-      "arb_sum": 0.988765,
+      "profit_margin_percent": 0.85,
+      "arb_sum": 0.991488,
       "bookmakers": [
         {
           "selection": "Cam Rowston",
@@ -19,8 +65,8 @@
         {
           "selection": "Robert Bryczek",
           "bookmaker": "Betfair",
-          "odds": 2.72,
-          "implied_probability": 36.76
+          "odds": 2.7,
+          "implied_probability": 37.04
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
@@ -30,14 +76,14 @@
       "event": "Brando Pericic vs Shamil Gaziev",
       "market": "Moneyline",
       "commence_time": "2026-05-02T11:45:00Z",
-      "profit_margin_percent": 1.62,
-      "arb_sum": 0.983805,
+      "profit_margin_percent": 1.1,
+      "arb_sum": 0.989011,
       "bookmakers": [
         {
           "selection": "Brando Pericic",
-          "bookmaker": "Betfair",
-          "odds": 1.97,
-          "implied_probability": 50.76
+          "bookmaker": "Betway",
+          "odds": 1.95,
+          "implied_probability": 51.28
         },
         {
           "selection": "Shamil Gaziev",
