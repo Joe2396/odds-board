@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-02T02:48:47Z",
+  "generated_at": "2026-05-02T05:39:01Z",
   "events": [
     {
       "id": "2026-04-18-ufc-fight-night-burns-vs-malott",
@@ -893,6 +893,25 @@
         },
         {
           "id": "600058947-8",
+          "bout": "Jim Miller vs Jared Gordon",
+          "red": {
+            "name": "Jim Miller",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Jared Gordon",
+            "espn_id": ""
+          },
+          "weight_class": "Lightweight",
+          "order": 8,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600058947"
+          }
+        },
+        {
+          "id": "600058947-9",
           "bout": "Roman Kopylov vs Marco Tulio",
           "red": {
             "name": "Roman Kopylov",
@@ -903,7 +922,7 @@
             "espn_id": ""
           },
           "weight_class": "Middleweight",
-          "order": 8,
+          "order": 9,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -911,7 +930,7 @@
           }
         },
         {
-          "id": "600058947-9",
+          "id": "600058947-10",
           "bout": "Pat Sabatini vs William Gomis",
           "red": {
             "name": "Pat Sabatini",
@@ -922,7 +941,7 @@
             "espn_id": ""
           },
           "weight_class": "Featherweight",
-          "order": 9,
+          "order": 10,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -930,7 +949,7 @@
           }
         },
         {
-          "id": "600058947-10",
+          "id": "600058947-11",
           "bout": "Baisangur Susurkaev vs Djorden Santos",
           "red": {
             "name": "Baisangur Susurkaev",
@@ -941,7 +960,7 @@
             "espn_id": ""
           },
           "weight_class": "Middleweight",
-          "order": 10,
+          "order": 11,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -949,7 +968,7 @@
           }
         },
         {
-          "id": "600058947-11",
+          "id": "600058947-12",
           "bout": "Clayton Carpenter vs Jose Ochoa",
           "red": {
             "name": "Clayton Carpenter",
@@ -960,7 +979,7 @@
             "espn_id": ""
           },
           "weight_class": "Flyweight",
-          "order": 11,
+          "order": 12,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1857,5 +1876,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-05-02T02:48:47Z"
+  "_debug_saved_at": "2026-05-02T05:39:01Z"
 }
