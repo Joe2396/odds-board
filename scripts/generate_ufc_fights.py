@@ -187,8 +187,10 @@ def render_odds(fighter_name, odds_event):
 
     if not odds_rows:
         return """
-      <h3 class="muted">UK Moneyline Odds</h3>
-      <p class="muted">No UK odds found yet.</p>
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <p class="muted">No UK odds found yet.</p>
+      </div>
         """
 
     best = odds_rows[0]
@@ -206,11 +208,13 @@ def render_odds(fighter_name, odds_event):
         )
 
     return f"""
-      <h3 class="muted">UK Moneyline Odds</h3>
-      <table>
-        <tr><td><strong>Best Price</strong></td><td><strong>{html_escape(best.get("price"))}</strong></td></tr>
-        {"".join(rows_html)}
-      </table>
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <table>
+          <tr><td><strong>Best Price</strong></td><td><strong>{html_escape(best.get("price"))}</strong></td></tr>
+          {"".join(rows_html)}
+        </table>
+      </div>
     """
 
 
@@ -219,21 +223,25 @@ def render_methods(methods):
         methods = {}
 
     return f"""
-      <h3 class="muted">Method Breakdown</h3>
-      <table>
-        <tr><td>KO/TKO</td><td>{methods.get("ko_tko_w", 0)} W • {methods.get("ko_tko_l", 0)} L</td></tr>
-        <tr><td>Submission</td><td>{methods.get("sub_w", 0)} W • {methods.get("sub_l", 0)} L</td></tr>
-        <tr><td>Decision</td><td>{methods.get("dec_w", 0)} W • {methods.get("dec_l", 0)} L</td></tr>
-        <tr><td>Other</td><td>{methods.get("other_w", 0)} W • {methods.get("other_l", 0)} L</td></tr>
-      </table>
+      <div class="section-block">
+        <h3>Method Breakdown</h3>
+        <table>
+          <tr><td>KO/TKO</td><td>{methods.get("ko_tko_w", 0)} W • {methods.get("ko_tko_l", 0)} L</td></tr>
+          <tr><td>Submission</td><td>{methods.get("sub_w", 0)} W • {methods.get("sub_l", 0)} L</td></tr>
+          <tr><td>Decision</td><td>{methods.get("dec_w", 0)} W • {methods.get("dec_l", 0)} L</td></tr>
+          <tr><td>Other</td><td>{methods.get("other_w", 0)} W • {methods.get("other_l", 0)} L</td></tr>
+        </table>
+      </div>
     """
 
 
 def render_recent_fights(recent_fights):
     if not isinstance(recent_fights, list) or not recent_fights:
         return """
-      <h3 class="muted">Recent Fights</h3>
-      <p class="muted">Recent fight history not available yet.</p>
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <p class="muted">Recent fight history not available yet.</p>
+      </div>
         """
 
     rows = []
@@ -249,14 +257,16 @@ def render_recent_fights(recent_fights):
         )
 
     return f"""
-      <h3 class="muted">Recent Fights</h3>
-      <div class="recent-list">
-        {"".join(rows)}
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <div class="recent-list">
+          {"".join(rows)}
+        </div>
       </div>
     """
 
 
-def fighter_panel(fighter, odds_event):
+def fighter_panel(fighter, odds_event, corner_label):
     name_raw = fighter.get("name")
     name = html_escape(name_raw)
     slug = fighter.get("slug", "")
@@ -280,12 +290,17 @@ def fighter_panel(fighter, odds_event):
 
     ufcstats_link = ""
     if ufcstats_url:
-        ufcstats_link = f'<p><a href="{html_escape(ufcstats_url)}">UFCStats profile →</a></p>'
+        ufcstats_link = f'<a class="small-link" href="{html_escape(ufcstats_url)}">UFCStats profile →</a>'
 
     return f"""
-    <div class="panel">
-      <h2><a href="{fighter_href}">{name}</a></h2>
-      {ufcstats_link}
+    <section class="fighter-card">
+      <div class="fighter-header">
+        <div>
+          <div class="corner-label">{corner_label}</div>
+          <h2><a href="{fighter_href}">{name}</a></h2>
+          {ufcstats_link}
+        </div>
+      </div>
 
       <div class="pillrow">
         <span class="pill">Record: {record}</span>
@@ -309,25 +324,31 @@ def fighter_panel(fighter, odds_event):
 
       {render_odds(name_raw, odds_event)}
 
-      <h3 class="muted">Striking</h3>
-      <table>
-        <tr><td>SLpM</td><td>{stat_value(stats, "slpm")}</td></tr>
-        <tr><td>Str. Acc.</td><td>{stat_value(stats, "str_acc")}</td></tr>
-        <tr><td>SApM</td><td>{stat_value(stats, "sapm")}</td></tr>
-        <tr><td>Str. Def.</td><td>{stat_value(stats, "str_def")}</td></tr>
-      </table>
+      <div class="stats-grid">
+        <div class="section-block">
+          <h3>Striking</h3>
+          <table>
+            <tr><td>SLpM</td><td>{stat_value(stats, "slpm")}</td></tr>
+            <tr><td>Str. Acc.</td><td>{stat_value(stats, "str_acc")}</td></tr>
+            <tr><td>SApM</td><td>{stat_value(stats, "sapm")}</td></tr>
+            <tr><td>Str. Def.</td><td>{stat_value(stats, "str_def")}</td></tr>
+          </table>
+        </div>
 
-      <h3 class="muted">Grappling</h3>
-      <table>
-        <tr><td>TD Avg.</td><td>{stat_value(stats, "td_avg")}</td></tr>
-        <tr><td>TD Acc.</td><td>{stat_value(stats, "td_acc")}</td></tr>
-        <tr><td>TD Def.</td><td>{stat_value(stats, "td_def")}</td></tr>
-        <tr><td>Sub. Avg.</td><td>{stat_value(stats, "sub_avg")}</td></tr>
-      </table>
+        <div class="section-block">
+          <h3>Grappling</h3>
+          <table>
+            <tr><td>TD Avg.</td><td>{stat_value(stats, "td_avg")}</td></tr>
+            <tr><td>TD Acc.</td><td>{stat_value(stats, "td_acc")}</td></tr>
+            <tr><td>TD Def.</td><td>{stat_value(stats, "td_def")}</td></tr>
+            <tr><td>Sub. Avg.</td><td>{stat_value(stats, "sub_avg")}</td></tr>
+          </table>
+        </div>
+      </div>
 
       {render_methods(methods)}
       {render_recent_fights(recent_fights)}
-    </div>
+    </section>
     """
 
 
@@ -356,77 +377,236 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
   <title>{html_escape(title)}</title>
   <link rel="stylesheet" href="{css_href}">
   <style>
-    .grid {{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:14px;
+    html,
+    body {{
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: #0F1621;
     }}
-    .panel {{
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:14px;
-      background:rgba(255,255,255,0.02);
+
+    body {{
+      min-height: 100vh;
     }}
+
+    .fight-page {{
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 32px 40px 64px;
+    }}
+
+    .fight-shell {{
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+      background: rgba(255,255,255,0.02);
+    }}
+
+    .fight-hero {{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }}
+
+    .fight-hero h1 {{
+      margin: 12px 0 10px;
+      font-size: clamp(34px, 4vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      max-width: 1100px;
+    }}
+
+    .meta-pills {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }}
+
+    .meta-pill {{
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.025);
+      font-size: 13px;
+    }}
+
+    .matchup-grid {{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      width: 100%;
+    }}
+
+    .fighter-card {{
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(255,255,255,0.025);
+      min-width: 0;
+    }}
+
+    .fighter-header {{
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }}
+
+    .corner-label {{
+      display: inline-flex;
+      border: 1px solid rgba(96,165,250,0.45);
+      background: rgba(96,165,250,0.12);
+      color: #93c5fd;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }}
+
+    .fighter-card h2 {{
+      margin: 0 0 8px;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1.05;
+    }}
+
+    .small-link {{
+      display: inline-block;
+      margin-top: 2px;
+    }}
+
     .pillrow {{
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:10px;
+      margin-top:18px;
     }}
+
     .pill {{
       border:1px solid var(--line);
       border-radius:999px;
-      padding:6px 10px;
+      padding:7px 10px;
       color:var(--muted);
       font-size:13px;
+      background: rgba(255,255,255,0.015);
     }}
+
     .quick-summary {{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-top:14px;
+      gap:12px;
+      margin-top:18px;
     }}
-    .quick-summary div {{
+
+    .quick-summary div,
+    .section-block {{
       border:1px solid var(--line);
-      border-radius:10px;
-      padding:10px;
+      border-radius:14px;
+      padding:14px;
       background:rgba(255,255,255,0.015);
     }}
+
     .quick-summary span {{
       display:block;
       font-size:12px;
-      margin-bottom:4px;
+      margin-bottom:6px;
     }}
+
     .quick-summary strong {{
-      font-size:18px;
+      font-size:20px;
+      letter-spacing: 0.03em;
     }}
+
+    .section-block {{
+      margin-top:14px;
+    }}
+
+    .section-block h3 {{
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }}
+
+    .stats-grid {{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }}
+
     table {{
       width:100%;
       border-collapse:collapse;
-      margin-top:10px;
+      margin-top:4px;
     }}
+
     td, th {{
-      padding:8px;
+      padding:8px 6px;
       border-bottom:1px solid var(--line);
       text-align:left;
+      vertical-align: top;
     }}
+
+    td:last-child {{
+      text-align:right;
+      font-weight:700;
+    }}
+
     .recent-list {{
       display:flex;
       flex-direction:column;
       gap:8px;
       margin-top:10px;
     }}
+
     .recent-fight {{
       border:1px solid var(--line);
       border-radius:10px;
       padding:10px;
       background:rgba(255,255,255,0.015);
     }}
-    @media (max-width: 900px) {{
-      .grid {{
+
+    .fight-meta {{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      background:rgba(255,255,255,0.02);
+      margin-top:22px;
+    }}
+
+    @media (max-width: 1100px) {{
+      .matchup-grid {{
         grid-template-columns:1fr;
       }}
+
+      .stats-grid {{
+        grid-template-columns:1fr;
+      }}
+    }}
+
+    @media (max-width: 720px) {{
+      .fight-page {{
+        padding: 20px 14px 48px;
+      }}
+
+      .fight-shell {{
+        padding: 18px;
+      }}
+
       .quick-summary {{
         grid-template-columns:1fr;
       }}
@@ -434,34 +614,46 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
   </style>
 </head>
 <body>
-  <div class="card">
-    <p class="muted">
-      <a href="{BASE_PATH}/">UFC Hub</a> /
-      <a href="{BASE_PATH}/events/{event_slug}/">{event_name}</a> /
-      Fight
-    </p>
+  <main class="fight-page">
+    <div class="fight-shell">
+      <div class="fight-hero">
+        <div>
+          <p class="muted">
+            <a href="{BASE_PATH}/">UFC Hub</a> /
+            <a href="{BASE_PATH}/events/{event_slug}/">{event_name}</a> /
+            Fight
+          </p>
 
-    <h1>{html_escape(title)}</h1>
-    <p class="muted">{weight} • {bout}</p>
+          <h1>{html_escape(title)}</h1>
 
-    <div class="grid">
-      {fighter_panel(red, odds_event)}
-      {fighter_panel(blue, odds_event)}
+          <div class="meta-pills">
+            <span class="meta-pill">{weight}</span>
+            <span class="meta-pill">{bout}</span>
+            <span class="meta-pill">Status: {status}</span>
+            <span class="meta-pill">Odds Match: {'Yes' if odds_event else 'No'}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="matchup-grid">
+        {fighter_panel(red, odds_event, "Left Side")}
+        {fighter_panel(blue, odds_event, "Right Side")}
+      </div>
+
+      <div class="fight-meta">
+        <h2>Fight Meta</h2>
+        <table>
+          <tr><td>Bout</td><td>{bout}</td></tr>
+          <tr><td>Weight Class</td><td>{weight}</td></tr>
+          <tr><td>Status</td><td>{status}</td></tr>
+          <tr><td>Odds Match</td><td>{'Yes' if odds_event else 'No'}</td></tr>
+        </table>
+      </div>
+
+      <hr style="margin:24px 0; border-color:#1f2a3a;">
+      <p class="muted">Fight ID: {html_escape(fight_id)} • Generated: {generated}</p>
     </div>
-
-    <div class="panel" style="margin-top:14px;">
-      <h2>Fight Meta</h2>
-      <table>
-        <tr><td>Bout</td><td>{bout}</td></tr>
-        <tr><td>Weight Class</td><td>{weight}</td></tr>
-        <tr><td>Status</td><td>{status}</td></tr>
-        <tr><td>Odds Match</td><td>{'Yes' if odds_event else 'No'}</td></tr>
-      </table>
-    </div>
-
-    <hr style="margin:24px 0; border-color:#1f2a3a;">
-    <p class="muted">Fight ID: {html_escape(fight_id)} • Generated: {generated}</p>
-  </div>
+  </main>
 </body>
 </html>
 """
