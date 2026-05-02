@@ -1,48 +1,8 @@
 {
   "source": "odds_json",
-  "total_fights_checked": 44,
+  "total_fights_checked": 41,
   "arbitrage_count": 0,
   "fights": [
-    {
-      "event_id": "5c7d9ec8f1e95d64bcead567c0946c1d",
-      "commence_time": "2026-05-02T13:15:00Z",
-      "fight": "Beneil Dariush vs Quillan Salkilld",
-      "fighters": {
-        "Beneil Dariush": {
-          "best_bookmaker": "Betway",
-          "best_price": 4.33,
-          "implied_probability": 23.09
-        },
-        "Quillan Salkilld": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.3,
-          "implied_probability": 76.92
-        }
-      },
-      "arb_sum": 1.000178,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.02
-    },
-    {
-      "event_id": "ae22ee2cfaa7d47bdfbf58c00e46a7d7",
-      "commence_time": "2026-05-02T13:45:00Z",
-      "fight": "Carlos Prates vs Jack Della Maddalena",
-      "fighters": {
-        "Carlos Prates": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.0,
-          "implied_probability": 50.0
-        },
-        "Jack Della Maddalena": {
-          "best_bookmaker": "William Hill",
-          "best_price": 2.0,
-          "implied_probability": 50.0
-        }
-      },
-      "arb_sum": 1.0,
-      "is_arbitrage": false,
-      "profit_margin_percent": 0.0
-    },
     {
       "event_id": "49bfb2f3e748499cae7c42d0e663c0c4",
       "commence_time": "2026-05-02T15:00:00Z",
@@ -85,7 +45,7 @@
     },
     {
       "event_id": "0a87e1410eb0ebd72b04b758bf822946",
-      "commence_time": "2026-05-02T15:00:00Z",
+      "commence_time": "2026-05-02T16:00:00Z",
       "fight": "Kevin Munje vs Maxime Fondop",
       "fighters": {
         "Kevin Munje": {
@@ -105,7 +65,7 @@
     },
     {
       "event_id": "c4ae822855dc16d7ccb5d84e1ada07fd",
-      "commence_time": "2026-05-02T15:00:00Z",
+      "commence_time": "2026-05-02T16:00:00Z",
       "fight": "Mattias Henriksson vs Moein Ahmadi",
       "fighters": {
         "Mattias Henriksson": {
@@ -125,7 +85,7 @@
     },
     {
       "event_id": "cd171ab505ff3da444d19d011d099e59",
-      "commence_time": "2026-05-02T15:00:00Z",
+      "commence_time": "2026-05-02T16:00:00Z",
       "fight": "Patryk Grabowski vs Rafael Kveldstad",
       "fighters": {
         "Patryk Grabowski": {
@@ -142,26 +102,6 @@
       "arb_sum": 1.070221,
       "is_arbitrage": false,
       "profit_margin_percent": -7.02
-    },
-    {
-      "event_id": "583e55023e61e2a84a37dd5ba057e4c7",
-      "commence_time": "2026-05-02T15:00:00Z",
-      "fight": "Sebastian Palacio Gomez vs Tome Bokofo",
-      "fighters": {
-        "Sebastian Palacio Gomez": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.85,
-          "implied_probability": 54.05
-        },
-        "Tome Bokofo": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.85,
-          "implied_probability": 54.05
-        }
-      },
-      "arb_sum": 1.081081,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.11
     },
     {
       "event_id": "cd130f2059ad6c004c7f569d29dae9cd",
@@ -414,14 +354,14 @@
           "implied_probability": 61.73
         },
         "Waldo Cortes-Acosta": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.45,
-          "implied_probability": 40.82
+          "best_bookmaker": "888sport",
+          "best_price": 2.5,
+          "implied_probability": 40.0
         }
       },
-      "arb_sum": 1.025447,
+      "arb_sum": 1.017284,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.54
+      "profit_margin_percent": -1.73
     },
     {
       "event_id": "ceef4e8aecdbe54bcef9583189370793",
@@ -490,8 +430,8 @@
       "fighters": {
         "Joaquin Buckley": {
           "best_bookmaker": "888sport",
-          "best_price": 2.65,
-          "implied_probability": 37.74
+          "best_price": 2.55,
+          "implied_probability": 39.22
         },
         "Sean Brady": {
           "best_bookmaker": "Paddy Power",
@@ -499,9 +439,9 @@
           "implied_probability": 65.36
         }
       },
-      "arb_sum": 1.030953,
+      "arb_sum": 1.045752,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.1
+      "profit_margin_percent": -4.58
     },
     {
       "event_id": "7c8d3c42bb7948ac655b45fb75d00ea9",
@@ -529,9 +469,9 @@
       "fight": "Joshua Van vs Tatsuro Taira",
       "fighters": {
         "Joshua Van": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 2.62,
-          "implied_probability": 38.17
+          "best_bookmaker": "Betfair Sportsbook",
+          "best_price": 2.63,
+          "implied_probability": 38.02
         },
         "Tatsuro Taira": {
           "best_bookmaker": "Paddy Power",
@@ -539,9 +479,9 @@
           "implied_probability": 66.67
         }
       },
-      "arb_sum": 1.048346,
+      "arb_sum": 1.046895,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.83
+      "profit_margin_percent": -4.69
     },
     {
       "event_id": "9572ebf9d60e9a4a050db937e02dcf03",
@@ -629,19 +569,19 @@
       "fight": "Clayton Carpenter vs Jose Ochoa",
       "fighters": {
         "Clayton Carpenter": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.35,
-          "implied_probability": 42.55
+          "best_bookmaker": "888sport",
+          "best_price": 2.4,
+          "implied_probability": 41.67
         },
         "Jose Ochoa": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.55,
-          "implied_probability": 64.52
+          "best_bookmaker": "888sport",
+          "best_price": 1.57,
+          "implied_probability": 63.69
         }
       },
-      "arb_sum": 1.070693,
+      "arb_sum": 1.053609,
       "is_arbitrage": false,
-      "profit_margin_percent": -7.07
+      "profit_margin_percent": -5.36
     },
     {
       "event_id": "1b275b79bdfb54ec649b1c4a1cd01b60",
