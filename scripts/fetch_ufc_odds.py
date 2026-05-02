@@ -11,7 +11,7 @@ API_KEY = "98fb91f398403151a3eece97dc514a0b"
 
 SPORT = "mma_mixed_martial_arts"
 REGIONS = "uk"
-MARKETS = "h2h"
+MARKETS = "h2h,totals"
 ODDS_FORMAT = "decimal"
 
 URL = f"https://api.the-odds-api.com/v4/sports/{SPORT}/odds"
