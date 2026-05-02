@@ -1,37 +1,14 @@
 {
-  "updated_at": "2026-05-02T05:41:16.980439+00:00",
-  "total_arbitrage": 3,
+  "updated_at": "2026-05-02T07:49:09.419155+00:00",
+  "total_arbitrage": 2,
   "arbitrage": [
-    {
-      "sport": "UFC",
-      "event": "Dom Mar Fan vs Kody Steele",
-      "market": "Moneyline",
-      "commence_time": "2026-05-02T08:15:00Z",
-      "profit_margin_percent": 2.71,
-      "arb_sum": 0.972851,
-      "bookmakers": [
-        {
-          "selection": "Dom Mar Fan",
-          "bookmaker": "William Hill",
-          "odds": 2.6,
-          "implied_probability": 38.46
-        },
-        {
-          "selection": "Kody Steele",
-          "bookmaker": "Matchbook",
-          "odds": 1.7,
-          "implied_probability": 58.82
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
-    },
     {
       "sport": "UFC",
       "event": "Cam Rowston vs Robert Bryczek",
       "market": "Moneyline",
       "commence_time": "2026-05-02T10:45:00Z",
-      "profit_margin_percent": 0.29,
-      "arb_sum": 0.997058,
+      "profit_margin_percent": 1.12,
+      "arb_sum": 0.988765,
       "bookmakers": [
         {
           "selection": "Cam Rowston",
@@ -42,8 +19,8 @@
         {
           "selection": "Robert Bryczek",
           "bookmaker": "Betfair",
-          "odds": 2.66,
-          "implied_probability": 37.59
+          "odds": 2.72,
+          "implied_probability": 36.76
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
