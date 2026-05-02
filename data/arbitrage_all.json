@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-01T23:55:59.018307+00:00",
+  "updated_at": "2026-05-02T02:51:11.962145+00:00",
   "total_arbitrage": 4,
   "arbitrage": [
     {
@@ -7,8 +7,8 @@
       "event": "Dom Mar Fan vs Kody Steele",
       "market": "Moneyline",
       "commence_time": "2026-05-02T08:15:00Z",
-      "profit_margin_percent": 0.56,
-      "arb_sum": 0.994371,
+      "profit_margin_percent": 2.37,
+      "arb_sum": 0.976331,
       "bookmakers": [
         {
           "selection": "Dom Mar Fan",
@@ -19,31 +19,54 @@
         {
           "selection": "Kody Steele",
           "bookmaker": "Matchbook",
-          "odds": 1.64,
-          "implied_probability": 60.98
+          "odds": 1.69,
+          "implied_probability": 59.17
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
     },
     {
       "sport": "UFC",
-      "event": "Gerald Meerschaert vs Jacob Malkoun",
+      "event": "Junior Tafa vs Kevin Christian",
       "market": "Moneyline",
-      "commence_time": "2026-05-02T10:15:00Z",
-      "profit_margin_percent": 0.4,
-      "arb_sum": 0.996047,
+      "commence_time": "2026-05-02T10:30:00Z",
+      "profit_margin_percent": 0.55,
+      "arb_sum": 0.994536,
       "bookmakers": [
         {
-          "selection": "Gerald Meerschaert",
-          "bookmaker": "Matchbook",
-          "odds": 11.5,
-          "implied_probability": 8.7
+          "selection": "Junior Tafa",
+          "bookmaker": "William Hill",
+          "odds": 1.5,
+          "implied_probability": 66.67
         },
         {
-          "selection": "Jacob Malkoun",
-          "bookmaker": "Virgin Bet",
-          "odds": 1.1,
-          "implied_probability": 90.91
+          "selection": "Kevin Christian",
+          "bookmaker": "Matchbook",
+          "odds": 3.05,
+          "implied_probability": 32.79
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "UFC",
+      "event": "Cam Rowston vs Robert Bryczek",
+      "market": "Moneyline",
+      "commence_time": "2026-05-02T10:45:00Z",
+      "profit_margin_percent": 0.57,
+      "arb_sum": 0.994252,
+      "bookmakers": [
+        {
+          "selection": "Cam Rowston",
+          "bookmaker": "Betway",
+          "odds": 1.61,
+          "implied_probability": 62.11
+        },
+        {
+          "selection": "Robert Bryczek",
+          "bookmaker": "Betfair",
+          "odds": 2.68,
+          "implied_probability": 37.31
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
@@ -67,29 +90,6 @@
           "bookmaker": "William Hill",
           "odds": 2.1,
           "implied_probability": 47.62
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "event": "Beneil Dariush vs Quillan Salkilld",
-      "market": "Moneyline",
-      "commence_time": "2026-05-02T12:45:00Z",
-      "profit_margin_percent": 0.26,
-      "arb_sum": 0.997416,
-      "bookmakers": [
-        {
-          "selection": "Beneil Dariush",
-          "bookmaker": "William Hill",
-          "odds": 4.5,
-          "implied_probability": 22.22
-        },
-        {
-          "selection": "Quillan Salkilld",
-          "bookmaker": "Betfair",
-          "odds": 1.29,
-          "implied_probability": 77.52
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
