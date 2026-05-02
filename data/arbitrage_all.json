@@ -1,26 +1,26 @@
 {
-  "updated_at": "2026-05-02T09:04:30.414084+00:00",
-  "total_arbitrage": 3,
+  "updated_at": "2026-05-02T09:18:59.734262+00:00",
+  "total_arbitrage": 4,
   "arbitrage": [
     {
       "sport": "UFC",
-      "event": "Jonathan Micallef vs Themba Gorimbo",
+      "event": "Ben Johnston vs Wes Schultz",
       "market": "Moneyline",
-      "commence_time": "2026-05-02T08:33:00Z",
-      "profit_margin_percent": 0.96,
-      "arb_sum": 0.990381,
+      "commence_time": "2026-05-02T09:15:00Z",
+      "profit_margin_percent": 4.7,
+      "arb_sum": 0.953005,
       "bookmakers": [
         {
-          "selection": "Jonathan Micallef",
-          "bookmaker": "LeoVegas",
-          "odds": 1.21,
-          "implied_probability": 82.64
+          "selection": "Ben Johnston",
+          "bookmaker": "Paddy Power",
+          "odds": 1.22,
+          "implied_probability": 81.97
         },
         {
-          "selection": "Themba Gorimbo",
-          "bookmaker": "Virgin Bet",
-          "odds": 6.1,
-          "implied_probability": 16.39
+          "selection": "Wes Schultz",
+          "bookmaker": "LiveScore Bet",
+          "odds": 7.5,
+          "implied_probability": 13.33
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
@@ -30,8 +30,8 @@
       "event": "Cam Rowston vs Robert Bryczek",
       "market": "Moneyline",
       "commence_time": "2026-05-02T10:45:00Z",
-      "profit_margin_percent": 0.85,
-      "arb_sum": 0.991488,
+      "profit_margin_percent": 3.41,
+      "arb_sum": 0.965946,
       "bookmakers": [
         {
           "selection": "Cam Rowston",
@@ -41,9 +41,9 @@
         },
         {
           "selection": "Robert Bryczek",
-          "bookmaker": "Betfair",
-          "odds": 2.7,
-          "implied_probability": 37.04
+          "bookmaker": "Matchbook",
+          "odds": 2.9,
+          "implied_probability": 34.48
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
@@ -67,6 +67,29 @@
           "bookmaker": "William Hill",
           "odds": 2.1,
           "implied_probability": 47.62
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "UFC",
+      "event": "Beneil Dariush vs Quillan Salkilld",
+      "market": "Moneyline",
+      "commence_time": "2026-05-02T12:45:00Z",
+      "profit_margin_percent": 0.57,
+      "arb_sum": 0.994306,
+      "bookmakers": [
+        {
+          "selection": "Beneil Dariush",
+          "bookmaker": "Betway",
+          "odds": 4.33,
+          "implied_probability": 23.09
+        },
+        {
+          "selection": "Quillan Salkilld",
+          "bookmaker": "Betfair",
+          "odds": 1.31,
+          "implied_probability": 76.34
         }
       ],
       "source_file": "ufc/data/arbitrage.json"

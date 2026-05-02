@@ -1,47 +1,27 @@
 {
   "source": "odds_json",
-  "total_fights_checked": 55,
-  "arbitrage_count": 3,
+  "total_fights_checked": 54,
+  "arbitrage_count": 4,
   "fights": [
-    {
-      "event_id": "bdca2911eed89d98c9297b13557c5bf6",
-      "commence_time": "2026-05-02T08:33:00Z",
-      "fight": "Jonathan Micallef vs Themba Gorimbo",
-      "fighters": {
-        "Jonathan Micallef": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.21,
-          "implied_probability": 82.64
-        },
-        "Themba Gorimbo": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 6.1,
-          "implied_probability": 16.39
-        }
-      },
-      "arb_sum": 0.990381,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.96
-    },
     {
       "event_id": "783061f020d8480cd696d9b91ac0b1c7",
       "commence_time": "2026-05-02T09:15:00Z",
       "fight": "Ben Johnston vs Wes Schultz",
       "fighters": {
         "Ben Johnston": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.68,
-          "implied_probability": 59.52
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.22,
+          "implied_probability": 81.97
         },
         "Wes Schultz": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.42,
-          "implied_probability": 41.32
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 7.5,
+          "implied_probability": 13.33
         }
       },
-      "arb_sum": 1.008461,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.85
+      "arb_sum": 0.953005,
+      "is_arbitrage": true,
+      "profit_margin_percent": 4.7
     },
     {
       "event_id": "90f603711355e10eb78ef195a8c39d84",
@@ -49,9 +29,9 @@
       "fight": "Colby Thicknesse vs Vince Morales",
       "fighters": {
         "Colby Thicknesse": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.77,
-          "implied_probability": 56.5
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.78,
+          "implied_probability": 56.18
         },
         "Vince Morales": {
           "best_bookmaker": "Matchbook",
@@ -59,9 +39,9 @@
           "implied_probability": 44.25
         }
       },
-      "arb_sum": 1.00745,
+      "arb_sum": 1.004276,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.74
+      "profit_margin_percent": -0.43
     },
     {
       "event_id": "fbf7ef7423c3133a9a019981db7cb18e",
@@ -95,13 +75,13 @@
         },
         "Kevin Christian": {
           "best_bookmaker": "Matchbook",
-          "best_price": 2.98,
-          "implied_probability": 33.56
+          "best_price": 2.96,
+          "implied_probability": 33.78
         }
       },
-      "arb_sum": 1.002237,
+      "arb_sum": 1.004505,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.22
+      "profit_margin_percent": -0.45
     },
     {
       "event_id": "7bcb7fecc9f0abb2fa681739960a829c",
@@ -114,14 +94,14 @@
           "implied_probability": 62.11
         },
         "Robert Bryczek": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.7,
-          "implied_probability": 37.04
+          "best_bookmaker": "Matchbook",
+          "best_price": 2.9,
+          "implied_probability": 34.48
         }
       },
-      "arb_sum": 0.991488,
+      "arb_sum": 0.965946,
       "is_arbitrage": true,
-      "profit_margin_percent": 0.85
+      "profit_margin_percent": 3.41
     },
     {
       "event_id": "6049085de42ddc0b1980dbcdcda70467",
@@ -170,8 +150,8 @@
       "fighters": {
         "Marwan Rahiki": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.15,
-          "implied_probability": 86.96
+          "best_price": 1.16,
+          "implied_probability": 86.21
         },
         "Ollie Schmid": {
           "best_bookmaker": "Betfair",
@@ -179,9 +159,9 @@
           "implied_probability": 13.89
         }
       },
-      "arb_sum": 1.008454,
+      "arb_sum": 1.000958,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.85
+      "profit_margin_percent": -0.1
     },
     {
       "event_id": "2f4054240d75e5992a009c2eb2886288",
@@ -215,13 +195,13 @@
         },
         "Quillan Salkilld": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.3,
-          "implied_probability": 76.92
+          "best_price": 1.31,
+          "implied_probability": 76.34
         }
       },
-      "arb_sum": 1.000178,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.02
+      "arb_sum": 0.994306,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.57
     },
     {
       "event_id": "2d2bed66733809597dc7425a6a68eb2b",
@@ -250,8 +230,8 @@
       "fighters": {
         "Carlos Prates": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.99,
-          "implied_probability": 50.25
+          "best_price": 1.98,
+          "implied_probability": 50.51
         },
         "Jack Della Maddalena": {
           "best_bookmaker": "Paddy Power",
@@ -259,9 +239,9 @@
           "implied_probability": 50.0
         }
       },
-      "arb_sum": 1.002513,
+      "arb_sum": 1.005051,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.25
+      "profit_margin_percent": -0.51
     },
     {
       "event_id": "49bfb2f3e748499cae7c42d0e663c0c4",
@@ -769,19 +749,19 @@
       "fight": "Khamzat Chimaev vs Sean Strickland",
       "fighters": {
         "Khamzat Chimaev": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.22,
-          "implied_probability": 81.97
+          "best_bookmaker": "Betfair",
+          "best_price": 1.24,
+          "implied_probability": 80.65
         },
         "Sean Strickland": {
-          "best_bookmaker": "Betfair",
-          "best_price": 5.2,
-          "implied_probability": 19.23
+          "best_bookmaker": "LeoVegas",
+          "best_price": 5.1,
+          "implied_probability": 19.61
         }
       },
-      "arb_sum": 1.01198,
+      "arb_sum": 1.00253,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.2
+      "profit_margin_percent": -0.25
     },
     {
       "event_id": "aaffbaf0057c43a6a2fb2577da294f42",
@@ -1106,24 +1086,24 @@
   ],
   "arbitrage_opportunities": [
     {
-      "event_id": "bdca2911eed89d98c9297b13557c5bf6",
-      "commence_time": "2026-05-02T08:33:00Z",
-      "fight": "Jonathan Micallef vs Themba Gorimbo",
+      "event_id": "783061f020d8480cd696d9b91ac0b1c7",
+      "commence_time": "2026-05-02T09:15:00Z",
+      "fight": "Ben Johnston vs Wes Schultz",
       "fighters": {
-        "Jonathan Micallef": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.21,
-          "implied_probability": 82.64
+        "Ben Johnston": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.22,
+          "implied_probability": 81.97
         },
-        "Themba Gorimbo": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 6.1,
-          "implied_probability": 16.39
+        "Wes Schultz": {
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 7.5,
+          "implied_probability": 13.33
         }
       },
-      "arb_sum": 0.990381,
+      "arb_sum": 0.953005,
       "is_arbitrage": true,
-      "profit_margin_percent": 0.96
+      "profit_margin_percent": 4.7
     },
     {
       "event_id": "7bcb7fecc9f0abb2fa681739960a829c",
@@ -1136,14 +1116,14 @@
           "implied_probability": 62.11
         },
         "Robert Bryczek": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.7,
-          "implied_probability": 37.04
+          "best_bookmaker": "Matchbook",
+          "best_price": 2.9,
+          "implied_probability": 34.48
         }
       },
-      "arb_sum": 0.991488,
+      "arb_sum": 0.965946,
       "is_arbitrage": true,
-      "profit_margin_percent": 0.85
+      "profit_margin_percent": 3.41
     },
     {
       "event_id": "5df097b38ef78a244dd9274d2ab025ce",
@@ -1164,6 +1144,26 @@
       "arb_sum": 0.989011,
       "is_arbitrage": true,
       "profit_margin_percent": 1.1
+    },
+    {
+      "event_id": "5c7d9ec8f1e95d64bcead567c0946c1d",
+      "commence_time": "2026-05-02T12:45:00Z",
+      "fight": "Beneil Dariush vs Quillan Salkilld",
+      "fighters": {
+        "Beneil Dariush": {
+          "best_bookmaker": "Betway",
+          "best_price": 4.33,
+          "implied_probability": 23.09
+        },
+        "Quillan Salkilld": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.31,
+          "implied_probability": 76.34
+        }
+      },
+      "arb_sum": 0.994306,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.57
     }
   ]
 }
