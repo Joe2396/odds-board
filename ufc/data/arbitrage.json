@@ -1,27 +1,27 @@
 {
   "source": "odds_json",
   "total_fights_checked": 53,
-  "arbitrage_count": 3,
+  "arbitrage_count": 4,
   "fights": [
     {
       "event_id": "90f603711355e10eb78ef195a8c39d84",
-      "commence_time": "2026-05-02T09:45:00Z",
+      "commence_time": "2026-05-02T09:31:00Z",
       "fight": "Colby Thicknesse vs Vince Morales",
       "fighters": {
         "Colby Thicknesse": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 2.38,
-          "implied_probability": 42.02
+          "best_bookmaker": "Betfair Sportsbook",
+          "best_price": 2.25,
+          "implied_probability": 44.44
         },
         "Vince Morales": {
-          "best_bookmaker": "LiveScore Bet",
+          "best_bookmaker": "Grosvenor",
           "best_price": 3.85,
           "implied_probability": 25.97
         }
       },
-      "arb_sum": 0.679908,
+      "arb_sum": 0.704185,
       "is_arbitrage": true,
-      "profit_margin_percent": 32.01
+      "profit_margin_percent": 29.58
     },
     {
       "event_id": "fbf7ef7423c3133a9a019981db7cb18e",
@@ -29,19 +29,19 @@
       "fight": "Gerald Meerschaert vs Jacob Malkoun",
       "fighters": {
         "Gerald Meerschaert": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 11.0,
-          "implied_probability": 9.09
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 9.5,
+          "implied_probability": 10.53
         },
         "Jacob Malkoun": {
           "best_bookmaker": "Paddy Power",
-          "best_price": 1.1,
-          "implied_probability": 90.91
+          "best_price": 1.3,
+          "implied_probability": 76.92
         }
       },
-      "arb_sum": 1.0,
-      "is_arbitrage": false,
-      "profit_margin_percent": 0.0
+      "arb_sum": 0.874494,
+      "is_arbitrage": true,
+      "profit_margin_percent": 12.55
     },
     {
       "event_id": "9b8a4523ec28a0c91297dd06ee3690fe",
@@ -55,13 +55,13 @@
         },
         "Kevin Christian": {
           "best_bookmaker": "Matchbook",
-          "best_price": 2.96,
-          "implied_probability": 33.78
+          "best_price": 3.0,
+          "implied_probability": 33.33
         }
       },
-      "arb_sum": 1.004505,
+      "arb_sum": 1.0,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.45
+      "profit_margin_percent": 0.0
     },
     {
       "event_id": "7bcb7fecc9f0abb2fa681739960a829c",
@@ -90,18 +90,18 @@
       "fighters": {
         "Louie Sutherland": {
           "best_bookmaker": "Matchbook",
-          "best_price": 2.94,
-          "implied_probability": 34.01
+          "best_price": 2.96,
+          "implied_probability": 33.78
         },
         "Tai Tuivasa": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.5,
-          "implied_probability": 66.67
+          "best_bookmaker": "Betfair",
+          "best_price": 1.49,
+          "implied_probability": 67.11
         }
       },
-      "arb_sum": 1.006803,
+      "arb_sum": 1.008979,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.68
+      "profit_margin_percent": -0.9
     },
     {
       "event_id": "5df097b38ef78a244dd9274d2ab025ce",
@@ -130,8 +130,8 @@
       "fighters": {
         "Marwan Rahiki": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.16,
-          "implied_probability": 86.21
+          "best_price": 1.14,
+          "implied_probability": 87.72
         },
         "Ollie Schmid": {
           "best_bookmaker": "Betfair",
@@ -139,9 +139,9 @@
           "implied_probability": 15.15
         }
       },
-      "arb_sum": 1.013584,
+      "arb_sum": 1.028708,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.36
+      "profit_margin_percent": -2.87
     },
     {
       "event_id": "2f4054240d75e5992a009c2eb2886288",
@@ -1067,23 +1067,43 @@
   "arbitrage_opportunities": [
     {
       "event_id": "90f603711355e10eb78ef195a8c39d84",
-      "commence_time": "2026-05-02T09:45:00Z",
+      "commence_time": "2026-05-02T09:31:00Z",
       "fight": "Colby Thicknesse vs Vince Morales",
       "fighters": {
         "Colby Thicknesse": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 2.38,
-          "implied_probability": 42.02
+          "best_bookmaker": "Betfair Sportsbook",
+          "best_price": 2.25,
+          "implied_probability": 44.44
         },
         "Vince Morales": {
-          "best_bookmaker": "LiveScore Bet",
+          "best_bookmaker": "Grosvenor",
           "best_price": 3.85,
           "implied_probability": 25.97
         }
       },
-      "arb_sum": 0.679908,
+      "arb_sum": 0.704185,
       "is_arbitrage": true,
-      "profit_margin_percent": 32.01
+      "profit_margin_percent": 29.58
+    },
+    {
+      "event_id": "fbf7ef7423c3133a9a019981db7cb18e",
+      "commence_time": "2026-05-02T10:15:00Z",
+      "fight": "Gerald Meerschaert vs Jacob Malkoun",
+      "fighters": {
+        "Gerald Meerschaert": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 9.5,
+          "implied_probability": 10.53
+        },
+        "Jacob Malkoun": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.3,
+          "implied_probability": 76.92
+        }
+      },
+      "arb_sum": 0.874494,
+      "is_arbitrage": true,
+      "profit_margin_percent": 12.55
     },
     {
       "event_id": "7bcb7fecc9f0abb2fa681739960a829c",

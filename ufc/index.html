@@ -220,6 +220,67 @@
       font-size: 20px;
     }
 
+    .betting-panel {
+      grid-column: 1 / -1;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(15,22,33,0.75);
+    }
+
+    .betting-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .betting-head h3 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .edge-pill {
+      border: 1px solid rgba(250,204,21,0.45);
+      background: rgba(250,204,21,0.10);
+      color: var(--gold);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bet-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: #0F1621;
+      margin-top: 10px;
+    }
+
+    .bet-row strong,
+    .bet-row span {
+      display: block;
+    }
+
+    .odds-price {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--green);
+      text-align: right;
+    }
+
+    .betting-note {
+      margin: 14px 0 0;
+      font-size: 14px;
+    }
+
     .section-head {
       display: flex;
       align-items: end;
@@ -342,6 +403,15 @@
       .events-grid {
         grid-template-columns: 1fr;
       }
+
+      .bet-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .odds-price {
+        text-align: left;
+      }
     }
   </style>
 </head>
@@ -412,6 +482,48 @@
           <strong>Wes Schultz</strong>
         </div>
       </div>
+
+      
+    <div class="betting-panel">
+      <div class="betting-head">
+        <div>
+          <div class="eyebrow">💰 Betting Edge</div>
+          <h3>Best Moneyline Prices</h3>
+        </div>
+        <span class="edge-pill">+EV model coming next</span>
+      </div>
+
+      
+            <div class="bet-row">
+              <div>
+                <strong>Ben Johnston</strong>
+                <span class="muted">No odds found</span>
+              </div>
+              <div>
+                <span class="odds-price">—</span>
+                <span class="muted">Implied: —</span>
+              </div>
+            </div>
+            
+      
+            <div class="bet-row">
+              <div>
+                <strong>Wes Schultz</strong>
+                <span class="muted">No odds found</span>
+              </div>
+              <div>
+                <span class="odds-price">—</span>
+                <span class="muted">Implied: —</span>
+              </div>
+            </div>
+            
+
+      <p class="muted betting-note">
+        This currently shows best available UK moneyline odds and implied probability.
+        True +EV needs a fair-probability model.
+      </p>
+    </div>
+    
     </section>
         
 
@@ -484,7 +596,7 @@
     </section>
 
     <div class="footer">
-      <span>Generated: 2026-05-02 09:48:16Z</span>
+      <span>Generated: 2026-05-02 10:01:53Z</span>
       <a href="/odds-board/">← Back to home</a>
     </div>
   </main>
