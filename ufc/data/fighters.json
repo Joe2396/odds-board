@@ -11027,7 +11027,7 @@
     {
       "name": "Marwan Rahiki",
       "ufcstats_url": "http://ufcstats.com/fighter-details/6eedb757f13b9978",
-      "record": "8-0-0",
+      "record": "9-0-0",
       "height": "5' 8\"",
       "weight": "145 lbs.",
       "reach": "72\"",
@@ -11046,6 +11046,14 @@
       "recent_fights": [
         {
           "result": "WIN",
+          "opponent": "Ollie Schmid",
+          "method": "KO/TKO Punch",
+          "round": "1",
+          "time": "2:47",
+          "event": "UFC Fight Night: Della Maddalena vs. Prates May. 02, 2026"
+        },
+        {
+          "result": "WIN",
           "opponent": "Harry Hardwick",
           "method": "KO/TKO",
           "round": "2",
@@ -11062,7 +11070,7 @@
         }
       ],
       "methods": {
-        "ko_tko_w": 2,
+        "ko_tko_w": 3,
         "sub_w": 0,
         "dec_w": 0,
         "other_w": 0,
@@ -12819,7 +12827,7 @@
     {
       "name": "Ollie Schmid",
       "ufcstats_url": "http://ufcstats.com/fighter-details/b701f095e6ccb149",
-      "record": "4-2-0",
+      "record": "4-3-0",
       "height": "6' 0\"",
       "weight": "145 lbs.",
       "reach": "71\"",
@@ -12835,13 +12843,22 @@
         "td_def": "0%",
         "sub_avg": "0.0"
       },
-      "recent_fights": [],
+      "recent_fights": [
+        {
+          "result": "LOSS",
+          "opponent": "Marwan Rahiki",
+          "method": "KO/TKO Punch",
+          "round": "1",
+          "time": "2:47",
+          "event": "UFC Fight Night: Della Maddalena vs. Prates May. 02, 2026"
+        }
+      ],
       "methods": {
         "ko_tko_w": 0,
         "sub_w": 0,
         "dec_w": 0,
         "other_w": 0,
-        "ko_tko_l": 0,
+        "ko_tko_l": 1,
         "sub_l": 0,
         "dec_l": 0,
         "other_l": 0
@@ -14962,7 +14979,7 @@
     {
       "name": "Steve Erceg",
       "ufcstats_url": "http://ufcstats.com/fighter-details/32ab52e5de93092d",
-      "record": "13-4-0",
+      "record": "14-4-0",
       "height": "5' 8\"",
       "weight": "125 lbs.",
       "reach": "68\"",
@@ -14979,6 +14996,14 @@
         "sub_avg": "0.4"
       },
       "recent_fights": [
+        {
+          "result": "WIN",
+          "opponent": "Tim Elliott",
+          "method": "U-DEC",
+          "round": "3",
+          "time": "5:00",
+          "event": "UFC Fight Night: Della Maddalena vs. Prates May. 02, 2026"
+        },
         {
           "result": "WIN",
           "opponent": "Ode Osbourne",
@@ -15039,7 +15064,7 @@
       "methods": {
         "ko_tko_w": 1,
         "sub_w": 0,
-        "dec_w": 3,
+        "dec_w": 4,
         "other_w": 0,
         "ko_tko_l": 1,
         "sub_l": 0,
@@ -15842,7 +15867,7 @@
     {
       "name": "Tim Elliott",
       "ufcstats_url": "http://ufcstats.com/fighter-details/c96d9178c9ed9e62",
-      "record": "22-13-1",
+      "record": "22-14-1",
       "height": "5' 7\"",
       "weight": "125 lbs.",
       "reach": "66\"",
@@ -15859,6 +15884,14 @@
         "sub_avg": "1.1"
       },
       "recent_fights": [
+        {
+          "result": "LOSS",
+          "opponent": "Steve Erceg",
+          "method": "U-DEC",
+          "round": "3",
+          "time": "5:00",
+          "event": "UFC Fight Night: Della Maddalena vs. Prates May. 02, 2026"
+        },
         {
           "result": "WIN",
           "opponent": "Kai Asakura",
@@ -15930,14 +15963,6 @@
           "round": "2",
           "time": "3:18",
           "event": "UFC Fight Night: Woodley vs. Burns May. 30, 2020"
-        },
-        {
-          "result": "LOSS",
-          "opponent": "Askar Askarov",
-          "method": "U-DEC",
-          "round": "3",
-          "time": "5:00",
-          "event": "UFC 246: McGregor vs. Cowboy Jan. 18, 2020"
         }
       ],
       "methods": {
@@ -15947,7 +15972,7 @@
         "other_w": 0,
         "ko_tko_l": 0,
         "sub_l": 5,
-        "dec_l": 6,
+        "dec_l": 7,
         "other_l": 0
       }
     },
