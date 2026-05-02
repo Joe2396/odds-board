@@ -4,7 +4,9 @@ import os
 from datetime import datetime, timezone
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
 DATA_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
+ODDS_PATH = os.path.join(ROOT, "ufc", "data", "odds.json")
 OUT_PATH = os.path.join(ROOT, "ufc", "index.html")
 
 BASE = "/odds-board"
@@ -17,6 +19,13 @@ def load_events():
         return json.load(f)
 
 
+def load_odds():
+    if not os.path.exists(ODDS_PATH):
+        return {"events": []}
+    with open(ODDS_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def esc(s):
     return (
         str(s or "")
@@ -25,6 +34,10 @@ def esc(s):
         .replace(">", "&gt;")
         .replace('"', "&quot;")
     )
+
+
+def norm_name(name):
+    return " ".join(str(name or "").lower().strip().split())
 
 
 def get_corner_name(corner):
@@ -39,6 +52,16 @@ def fmt_generated(ts):
     if not ts:
         return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     return str(ts).replace("T", " ").replace("+00:00", " UTC")
+
+
+def implied_prob(decimal_odds):
+    try:
+        odds = float(decimal_odds)
+        if odds <= 1:
+            return "—"
+        return f"{round((1 / odds) * 100, 1)}%"
+    except Exception:
+        return "—"
 
 
 def parse_event_date(value):
@@ -115,10 +138,114 @@ def find_featured_fight(upcoming_events):
     return None
 
 
+def find_odds_event(red, blue, odds_events):
+    target = {norm_name(red), norm_name(blue)}
+
+    for ev in odds_events:
+        home = norm_name(ev.get("home_team"))
+        away = norm_name(ev.get("away_team"))
+
+        if {home, away} == target:
+            return ev
+
+    return None
+
+
+def best_price_for_fighter(fighter_name, odds_event):
+    if not odds_event:
+        return None
+
+    target = norm_name(fighter_name)
+    prices = []
+
+    for book in odds_event.get("bookmakers", []) or []:
+        bookmaker = book.get("title") or book.get("key")
+
+        for market in book.get("markets", []) or []:
+            if market.get("key") != "h2h":
+                continue
+
+            for outcome in market.get("outcomes", []) or []:
+                if norm_name(outcome.get("name")) == target:
+                    try:
+                        prices.append(
+                            {
+                                "bookmaker": bookmaker,
+                                "price": float(outcome.get("price")),
+                                "last_update": book.get("last_update"),
+                            }
+                        )
+                    except Exception:
+                        pass
+
+    if not prices:
+        return None
+
+    return sorted(prices, key=lambda x: x["price"], reverse=True)[0]
+
+
+def render_betting_edge(red, blue, odds_events):
+    odds_event = find_odds_event(red, blue, odds_events)
+
+    red_best = best_price_for_fighter(red, odds_event)
+    blue_best = best_price_for_fighter(blue, odds_event)
+
+    def row(name, best):
+        if not best:
+            return f"""
+            <div class="bet-row">
+              <div>
+                <strong>{esc(name)}</strong>
+                <span class="muted">No odds found</span>
+              </div>
+              <div>
+                <span class="odds-price">—</span>
+                <span class="muted">Implied: —</span>
+              </div>
+            </div>
+            """
+
+        return f"""
+        <div class="bet-row">
+          <div>
+            <strong>{esc(name)}</strong>
+            <span class="muted">{esc(best.get("bookmaker"))}</span>
+          </div>
+          <div>
+            <span class="odds-price">@ {esc(best.get("price"))}</span>
+            <span class="muted">Implied: {implied_prob(best.get("price"))}</span>
+          </div>
+        </div>
+        """
+
+    return f"""
+    <div class="betting-panel">
+      <div class="betting-head">
+        <div>
+          <div class="eyebrow">💰 Betting Edge</div>
+          <h3>Best Moneyline Prices</h3>
+        </div>
+        <span class="edge-pill">+EV model coming next</span>
+      </div>
+
+      {row(red, red_best)}
+      {row(blue, blue_best)}
+
+      <p class="muted betting-note">
+        This currently shows best available UK moneyline odds and implied probability.
+        True +EV needs a fair-probability model.
+      </p>
+    </div>
+    """
+
+
 def main():
     payload = load_events()
     events = payload.get("events", []) or []
     generated_at = payload.get("generated_at")
+
+    odds_payload = load_odds()
+    odds_events = odds_payload.get("events", []) or []
 
     upcoming_events = [ev for ev in events if is_upcoming_event(ev)]
     upcoming_events = sorted(upcoming_events, key=sort_key)
@@ -127,6 +254,12 @@ def main():
 
     featured_html = ""
     if featured:
+        betting_html = render_betting_edge(
+            featured["red"],
+            featured["blue"],
+            odds_events,
+        )
+
         featured_html = f"""
     <section class="featured-fight">
       <div class="featured-copy">
@@ -159,6 +292,8 @@ def main():
           <strong>{featured["blue"]}</strong>
         </div>
       </div>
+
+      {betting_html}
     </section>
         """
 
@@ -408,6 +543,67 @@ def main():
       font-size: 20px;
     }}
 
+    .betting-panel {{
+      grid-column: 1 / -1;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(15,22,33,0.75);
+    }}
+
+    .betting-head {{
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }}
+
+    .betting-head h3 {{
+      margin: 0;
+      font-size: 28px;
+    }}
+
+    .edge-pill {{
+      border: 1px solid rgba(250,204,21,0.45);
+      background: rgba(250,204,21,0.10);
+      color: var(--gold);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 800;
+    }}
+
+    .bet-row {{
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: #0F1621;
+      margin-top: 10px;
+    }}
+
+    .bet-row strong,
+    .bet-row span {{
+      display: block;
+    }}
+
+    .odds-price {{
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--green);
+      text-align: right;
+    }}
+
+    .betting-note {{
+      margin: 14px 0 0;
+      font-size: 14px;
+    }}
+
     .section-head {{
       display: flex;
       align-items: end;
@@ -529,6 +725,15 @@ def main():
 
       .events-grid {{
         grid-template-columns: 1fr;
+      }}
+
+      .bet-row {{
+        align-items: flex-start;
+        flex-direction: column;
+      }}
+
+      .odds-price {{
+        text-align: left;
       }}
     }}
   </style>
