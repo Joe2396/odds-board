@@ -113,7 +113,7 @@ def find_featured_fight(upcoming_events):
         if not fights:
             continue
 
-        fight = fights[0]
+        fight = fights[-1]
         fight_id = str(fight.get("id") or "").strip()
         red = esc(get_corner_name(fight.get("red")))
         blue = esc(get_corner_name(fight.get("blue")))
