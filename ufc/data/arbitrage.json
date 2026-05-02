@@ -1,47 +1,27 @@
 {
   "source": "odds_json",
-  "total_fights_checked": 50,
+  "total_fights_checked": 49,
   "arbitrage_count": 1,
   "fights": [
     {
-      "event_id": "7bcb7fecc9f0abb2fa681739960a829c",
-      "commence_time": "2026-05-02T10:42:00Z",
-      "fight": "Cam Rowston vs Robert Bryczek",
-      "fighters": {
-        "Cam Rowston": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.05,
-          "implied_probability": 95.24
-        },
-        "Robert Bryczek": {
-          "best_bookmaker": "Betfair Sportsbook",
-          "best_price": 34.0,
-          "implied_probability": 2.94
-        }
-      },
-      "arb_sum": 0.981793,
-      "is_arbitrage": true,
-      "profit_margin_percent": 1.82
-    },
-    {
       "event_id": "6049085de42ddc0b1980dbcdcda70467",
-      "commence_time": "2026-05-02T11:15:00Z",
+      "commence_time": "2026-05-02T11:19:00Z",
       "fight": "Louie Sutherland vs Tai Tuivasa",
       "fighters": {
         "Louie Sutherland": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 3.0,
-          "implied_probability": 33.33
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 1.03,
+          "implied_probability": 97.09
         },
         "Tai Tuivasa": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.49,
-          "implied_probability": 67.11
+          "best_price": 13.5,
+          "implied_probability": 7.41
         }
       },
-      "arb_sum": 1.004474,
+      "arb_sum": 1.044948,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.45
+      "profit_margin_percent": -4.49
     },
     {
       "event_id": "5df097b38ef78a244dd9274d2ab025ce",
@@ -49,19 +29,19 @@
       "fight": "Brando Pericic vs Shamil Gaziev",
       "fighters": {
         "Brando Pericic": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.95,
-          "implied_probability": 51.28
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.92,
+          "implied_probability": 52.08
         },
         "Shamil Gaziev": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.04,
-          "implied_probability": 49.02
+          "best_price": 2.08,
+          "implied_probability": 48.08
         }
       },
-      "arb_sum": 1.003017,
+      "arb_sum": 1.001603,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.3
+      "profit_margin_percent": -0.16
     },
     {
       "event_id": "a60247fbe8841f60b47006901fb77b43",
@@ -75,13 +55,13 @@
         },
         "Ollie Schmid": {
           "best_bookmaker": "Betfair",
-          "best_price": 7.0,
-          "implied_probability": 14.29
+          "best_price": 6.8,
+          "implied_probability": 14.71
         }
       },
-      "arb_sum": 1.004926,
+      "arb_sum": 1.009128,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.49
+      "profit_margin_percent": -0.91
     },
     {
       "event_id": "2f4054240d75e5992a009c2eb2886288",
@@ -89,19 +69,19 @@
       "fight": "Stephen Erceg vs Tim Elliott",
       "fighters": {
         "Stephen Erceg": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.58,
-          "implied_probability": 63.29
+          "best_bookmaker": "Betfair",
+          "best_price": 1.57,
+          "implied_probability": 63.69
         },
         "Tim Elliott": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.68,
-          "implied_probability": 37.31
+          "best_bookmaker": "Matchbook",
+          "best_price": 2.74,
+          "implied_probability": 36.5
         }
       },
-      "arb_sum": 1.006046,
+      "arb_sum": 1.001906,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.6
+      "profit_margin_percent": -0.19
     },
     {
       "event_id": "5c7d9ec8f1e95d64bcead567c0946c1d",
@@ -150,18 +130,18 @@
       "fighters": {
         "Carlos Prates": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.95,
-          "implied_probability": 51.28
+          "best_price": 2.02,
+          "implied_probability": 49.5
         },
         "Jack Della Maddalena": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.04,
-          "implied_probability": 49.02
+          "best_bookmaker": "William Hill",
+          "best_price": 2.0,
+          "implied_probability": 50.0
         }
       },
-      "arb_sum": 1.003017,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.3
+      "arb_sum": 0.99505,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.5
     },
     {
       "event_id": "49bfb2f3e748499cae7c42d0e663c0c4",
@@ -669,9 +649,9 @@
       "fight": "Khamzat Chimaev vs Sean Strickland",
       "fighters": {
         "Khamzat Chimaev": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.23,
-          "implied_probability": 81.3
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.22,
+          "implied_probability": 81.97
         },
         "Sean Strickland": {
           "best_bookmaker": "LeoVegas",
@@ -679,9 +659,9 @@
           "implied_probability": 19.61
         }
       },
-      "arb_sum": 1.009087,
+      "arb_sum": 1.015751,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.91
+      "profit_margin_percent": -1.58
     },
     {
       "event_id": "aaffbaf0057c43a6a2fb2577da294f42",
@@ -1006,24 +986,24 @@
   ],
   "arbitrage_opportunities": [
     {
-      "event_id": "7bcb7fecc9f0abb2fa681739960a829c",
-      "commence_time": "2026-05-02T10:42:00Z",
-      "fight": "Cam Rowston vs Robert Bryczek",
+      "event_id": "ae22ee2cfaa7d47bdfbf58c00e46a7d7",
+      "commence_time": "2026-05-02T13:45:00Z",
+      "fight": "Carlos Prates vs Jack Della Maddalena",
       "fighters": {
-        "Cam Rowston": {
+        "Carlos Prates": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.05,
-          "implied_probability": 95.24
+          "best_price": 2.02,
+          "implied_probability": 49.5
         },
-        "Robert Bryczek": {
-          "best_bookmaker": "Betfair Sportsbook",
-          "best_price": 34.0,
-          "implied_probability": 2.94
+        "Jack Della Maddalena": {
+          "best_bookmaker": "William Hill",
+          "best_price": 2.0,
+          "implied_probability": 50.0
         }
       },
-      "arb_sum": 0.981793,
+      "arb_sum": 0.99505,
       "is_arbitrage": true,
-      "profit_margin_percent": 1.82
+      "profit_margin_percent": 0.5
     }
   ]
 }

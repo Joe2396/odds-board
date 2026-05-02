@@ -1,26 +1,26 @@
 {
-  "updated_at": "2026-05-02T10:57:16.179916+00:00",
+  "updated_at": "2026-05-02T11:50:26.102848+00:00",
   "total_arbitrage": 1,
   "arbitrage": [
     {
       "sport": "UFC",
-      "event": "Cam Rowston vs Robert Bryczek",
+      "event": "Carlos Prates vs Jack Della Maddalena",
       "market": "Moneyline",
-      "commence_time": "2026-05-02T10:42:00Z",
-      "profit_margin_percent": 1.82,
-      "arb_sum": 0.981793,
+      "commence_time": "2026-05-02T13:45:00Z",
+      "profit_margin_percent": 0.5,
+      "arb_sum": 0.99505,
       "bookmakers": [
         {
-          "selection": "Cam Rowston",
+          "selection": "Carlos Prates",
           "bookmaker": "Betfair",
-          "odds": 1.05,
-          "implied_probability": 95.24
+          "odds": 2.02,
+          "implied_probability": 49.5
         },
         {
-          "selection": "Robert Bryczek",
-          "bookmaker": "Betfair Sportsbook",
-          "odds": 34.0,
-          "implied_probability": 2.94
+          "selection": "Jack Della Maddalena",
+          "bookmaker": "William Hill",
+          "odds": 2.0,
+          "implied_probability": 50.0
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
