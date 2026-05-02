@@ -27,6 +27,14 @@ def esc(s):
     )
 
 
+def get_corner_name(corner):
+    if isinstance(corner, dict):
+        return corner.get("name") or ""
+    if isinstance(corner, str):
+        return corner
+    return ""
+
+
 def fmt_generated(ts):
     if not ts:
         return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -76,6 +84,37 @@ def sort_key(ev):
     return dt or datetime.max.replace(tzinfo=timezone.utc)
 
 
+def find_featured_fight(upcoming_events):
+    for ev in upcoming_events:
+        fights = ev.get("fights", []) or []
+        if not fights:
+            continue
+
+        fight = fights[0]
+        fight_id = str(fight.get("id") or "").strip()
+        red = esc(get_corner_name(fight.get("red")))
+        blue = esc(get_corner_name(fight.get("blue")))
+
+        if not fight_id or not red or not blue:
+            continue
+
+        return {
+            "event_name": esc(ev.get("name")),
+            "event_date": esc(ev.get("date")),
+            "event_location": esc(ev.get("location")),
+            "event_slug": esc(ev.get("slug") or ev.get("id")),
+            "fight_id": esc(fight_id),
+            "red": red,
+            "blue": blue,
+            "title": f"{red} vs {blue}",
+            "weight": esc(fight.get("weight_class")),
+            "bout": esc(fight.get("bout")),
+            "status": esc(fight.get("status")),
+        }
+
+    return None
+
+
 def main():
     payload = load_events()
     events = payload.get("events", []) or []
@@ -83,6 +122,45 @@ def main():
 
     upcoming_events = [ev for ev in events if is_upcoming_event(ev)]
     upcoming_events = sorted(upcoming_events, key=sort_key)
+
+    featured = find_featured_fight(upcoming_events)
+
+    featured_html = ""
+    if featured:
+        featured_html = f"""
+    <section class="featured-fight">
+      <div class="featured-copy">
+        <div class="eyebrow">🔥 Featured Fight</div>
+        <h2>{featured["title"]}</h2>
+        <p class="muted">
+          {featured["event_name"]} • {featured["event_date"]} • {featured["event_location"]}
+        </p>
+
+        <div class="featured-meta">
+          <span>{featured["weight"]}</span>
+          <span>{featured["bout"]}</span>
+          <span>Status: {featured["status"]}</span>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="{BASE}/ufc/fights/{featured["fight_id"]}/">View full breakdown →</a>
+          <a class="btn" href="{BASE}/ufc/events/{featured["event_slug"]}/">View full event →</a>
+        </div>
+      </div>
+
+      <div class="fighter-vs">
+        <div class="fighter-side">
+          <span>Red corner</span>
+          <strong>{featured["red"]}</strong>
+        </div>
+        <div class="vs">VS</div>
+        <div class="fighter-side">
+          <span>Blue corner</span>
+          <strong>{featured["blue"]}</strong>
+        </div>
+      </div>
+    </section>
+        """
 
     rows_html = ""
     if not upcoming_events:
@@ -124,14 +202,12 @@ def main():
       --muted: #aab4c0;
       --blue: #60a5fa;
       --green: #22c55e;
+      --gold: #facc15;
     }}
 
-    * {{
-      box-sizing: border-box;
-    }}
+    * {{ box-sizing: border-box; }}
 
-    html,
-    body {{
+    html, body {{
       margin: 0;
       padding: 0;
       background: var(--bg);
@@ -150,9 +226,7 @@ def main():
       text-decoration: none;
     }}
 
-    a:hover {{
-      text-decoration: underline;
-    }}
+    a:hover {{ text-decoration: underline; }}
 
     .page {{
       width: 100%;
@@ -161,7 +235,7 @@ def main():
       padding: 36px 48px 64px;
     }}
 
-    .hero {{
+    .hero, .featured-fight {{
       width: 100%;
       border: 1px solid var(--border);
       border-radius: 24px;
@@ -259,6 +333,81 @@ def main():
       font-size: 14px;
     }}
 
+    .featured-fight {{
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr);
+      gap: 24px;
+      align-items: stretch;
+      background:
+        radial-gradient(circle at top left, rgba(250,204,21,0.16), transparent 26%),
+        linear-gradient(180deg, #131d2d, #0b1220);
+    }}
+
+    .featured-fight h2 {{
+      margin: 0;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }}
+
+    .featured-meta {{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }}
+
+    .featured-meta span {{
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.025);
+      font-size: 13px;
+    }}
+
+    .fighter-vs {{
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(255,255,255,0.025);
+    }}
+
+    .fighter-side {{
+      min-height: 150px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      background: #0F1621;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }}
+
+    .fighter-side span {{
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }}
+
+    .fighter-side strong {{
+      font-size: 24px;
+      line-height: 1.1;
+    }}
+
+    .vs {{
+      color: var(--gold);
+      font-weight: 900;
+      font-size: 20px;
+    }}
+
     .section-head {{
       display: flex;
       align-items: end;
@@ -274,9 +423,7 @@ def main():
       letter-spacing: -0.03em;
     }}
 
-    .muted {{
-      color: var(--muted);
-    }}
+    .muted {{ color: var(--muted); }}
 
     .events-grid {{
       display: grid;
@@ -351,12 +498,26 @@ def main():
       background: var(--panel);
     }}
 
+    @media (max-width: 950px) {{
+      .featured-fight {{
+        grid-template-columns: 1fr;
+      }}
+
+      .fighter-vs {{
+        grid-template-columns: 1fr;
+      }}
+
+      .vs {{
+        text-align: center;
+      }}
+    }}
+
     @media (max-width: 800px) {{
       .page {{
         padding: 24px 18px 48px;
       }}
 
-      .hero {{
+      .hero, .featured-fight {{
         padding: 24px;
       }}
 
@@ -406,6 +567,8 @@ def main():
         </div>
       </div>
     </section>
+
+    {featured_html}
 
     <div class="section-head">
       <div>
