@@ -1811,7 +1811,7 @@
     {
       "name": "Ben Johnston",
       "ufcstats_url": "http://ufcstats.com/fighter-details/3261aa79bf6caa64",
-      "record": "5-1-0",
+      "record": "5-2-0",
       "height": "6' 4\"",
       "weight": "185 lbs.",
       "reach": "76\"",
@@ -1827,14 +1827,23 @@
         "td_def": "0%",
         "sub_avg": "0.0"
       },
-      "recent_fights": [],
+      "recent_fights": [
+        {
+          "result": "LOSS",
+          "opponent": "Wes Schultz",
+          "method": "SUB Guillotine Choke",
+          "round": "3",
+          "time": "1:50",
+          "event": "UFC Fight Night: Della Maddalena vs. Prates May. 02, 2026"
+        }
+      ],
       "methods": {
         "ko_tko_w": 0,
         "sub_w": 0,
         "dec_w": 0,
         "other_w": 0,
         "ko_tko_l": 0,
-        "sub_l": 0,
+        "sub_l": 1,
         "dec_l": 0,
         "other_l": 0
       }
@@ -16593,7 +16602,7 @@
     {
       "name": "Wes Schultz",
       "ufcstats_url": "http://ufcstats.com/fighter-details/b4443fae47e7eb9d",
-      "record": "8-3-0",
+      "record": "9-3-0",
       "height": "6' 1\"",
       "weight": "185 lbs.",
       "reach": "77\"",
@@ -16610,6 +16619,14 @@
         "sub_avg": "1.1"
       },
       "recent_fights": [
+        {
+          "result": "WIN",
+          "opponent": "Ben Johnston",
+          "method": "SUB Guillotine Choke",
+          "round": "3",
+          "time": "1:50",
+          "event": "UFC Fight Night: Della Maddalena vs. Prates May. 02, 2026"
+        },
         {
           "result": "LOSS",
           "opponent": "Damian Pinas",
@@ -16637,7 +16654,7 @@
       ],
       "methods": {
         "ko_tko_w": 0,
-        "sub_w": 1,
+        "sub_w": 2,
         "dec_w": 0,
         "other_w": 0,
         "ko_tko_l": 2,

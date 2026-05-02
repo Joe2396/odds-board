@@ -1,47 +1,27 @@
 {
   "source": "odds_json",
-  "total_fights_checked": 54,
-  "arbitrage_count": 4,
+  "total_fights_checked": 53,
+  "arbitrage_count": 3,
   "fights": [
-    {
-      "event_id": "783061f020d8480cd696d9b91ac0b1c7",
-      "commence_time": "2026-05-02T09:15:00Z",
-      "fight": "Ben Johnston vs Wes Schultz",
-      "fighters": {
-        "Ben Johnston": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.22,
-          "implied_probability": 81.97
-        },
-        "Wes Schultz": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 7.5,
-          "implied_probability": 13.33
-        }
-      },
-      "arb_sum": 0.953005,
-      "is_arbitrage": true,
-      "profit_margin_percent": 4.7
-    },
     {
       "event_id": "90f603711355e10eb78ef195a8c39d84",
       "commence_time": "2026-05-02T09:45:00Z",
       "fight": "Colby Thicknesse vs Vince Morales",
       "fighters": {
         "Colby Thicknesse": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.78,
-          "implied_probability": 56.18
+          "best_bookmaker": "Paddy Power",
+          "best_price": 2.38,
+          "implied_probability": 42.02
         },
         "Vince Morales": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.26,
-          "implied_probability": 44.25
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 3.85,
+          "implied_probability": 25.97
         }
       },
-      "arb_sum": 1.004276,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.43
+      "arb_sum": 0.679908,
+      "is_arbitrage": true,
+      "profit_margin_percent": 32.01
     },
     {
       "event_id": "fbf7ef7423c3133a9a019981db7cb18e",
@@ -94,14 +74,14 @@
           "implied_probability": 62.11
         },
         "Robert Bryczek": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.9,
-          "implied_probability": 34.48
+          "best_bookmaker": "Betfair",
+          "best_price": 2.88,
+          "implied_probability": 34.72
         }
       },
-      "arb_sum": 0.965946,
+      "arb_sum": 0.96834,
       "is_arbitrage": true,
-      "profit_margin_percent": 3.41
+      "profit_margin_percent": 3.17
     },
     {
       "event_id": "6049085de42ddc0b1980dbcdcda70467",
@@ -109,19 +89,19 @@
       "fight": "Louie Sutherland vs Tai Tuivasa",
       "fighters": {
         "Louie Sutherland": {
-          "best_bookmaker": "Betfair",
+          "best_bookmaker": "Matchbook",
           "best_price": 2.94,
           "implied_probability": 34.01
         },
         "Tai Tuivasa": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.51,
-          "implied_probability": 66.23
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.5,
+          "implied_probability": 66.67
         }
       },
-      "arb_sum": 1.002388,
+      "arb_sum": 1.006803,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.24
+      "profit_margin_percent": -0.68
     },
     {
       "event_id": "5df097b38ef78a244dd9274d2ab025ce",
@@ -155,13 +135,13 @@
         },
         "Ollie Schmid": {
           "best_bookmaker": "Betfair",
-          "best_price": 7.2,
-          "implied_probability": 13.89
+          "best_price": 6.6,
+          "implied_probability": 15.15
         }
       },
-      "arb_sum": 1.000958,
+      "arb_sum": 1.013584,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.1
+      "profit_margin_percent": -1.36
     },
     {
       "event_id": "2f4054240d75e5992a009c2eb2886288",
@@ -195,13 +175,13 @@
         },
         "Quillan Salkilld": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.31,
-          "implied_probability": 76.34
+          "best_price": 1.3,
+          "implied_probability": 76.92
         }
       },
-      "arb_sum": 0.994306,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.57
+      "arb_sum": 1.000178,
+      "is_arbitrage": false,
+      "profit_margin_percent": -0.02
     },
     {
       "event_id": "2d2bed66733809597dc7425a6a68eb2b",
@@ -230,18 +210,18 @@
       "fighters": {
         "Carlos Prates": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.98,
-          "implied_probability": 50.51
+          "best_price": 1.94,
+          "implied_probability": 51.55
         },
         "Jack Della Maddalena": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 2.0,
-          "implied_probability": 50.0
+          "best_bookmaker": "Betfair",
+          "best_price": 2.04,
+          "implied_probability": 49.02
         }
       },
-      "arb_sum": 1.005051,
+      "arb_sum": 1.00566,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.51
+      "profit_margin_percent": -0.57
     },
     {
       "event_id": "49bfb2f3e748499cae7c42d0e663c0c4",
@@ -749,9 +729,9 @@
       "fight": "Khamzat Chimaev vs Sean Strickland",
       "fighters": {
         "Khamzat Chimaev": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.24,
-          "implied_probability": 80.65
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.22,
+          "implied_probability": 81.97
         },
         "Sean Strickland": {
           "best_bookmaker": "LeoVegas",
@@ -759,9 +739,9 @@
           "implied_probability": 19.61
         }
       },
-      "arb_sum": 1.00253,
+      "arb_sum": 1.015751,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.25
+      "profit_margin_percent": -1.58
     },
     {
       "event_id": "aaffbaf0057c43a6a2fb2577da294f42",
@@ -1086,24 +1066,24 @@
   ],
   "arbitrage_opportunities": [
     {
-      "event_id": "783061f020d8480cd696d9b91ac0b1c7",
-      "commence_time": "2026-05-02T09:15:00Z",
-      "fight": "Ben Johnston vs Wes Schultz",
+      "event_id": "90f603711355e10eb78ef195a8c39d84",
+      "commence_time": "2026-05-02T09:45:00Z",
+      "fight": "Colby Thicknesse vs Vince Morales",
       "fighters": {
-        "Ben Johnston": {
+        "Colby Thicknesse": {
           "best_bookmaker": "Paddy Power",
-          "best_price": 1.22,
-          "implied_probability": 81.97
+          "best_price": 2.38,
+          "implied_probability": 42.02
         },
-        "Wes Schultz": {
+        "Vince Morales": {
           "best_bookmaker": "LiveScore Bet",
-          "best_price": 7.5,
-          "implied_probability": 13.33
+          "best_price": 3.85,
+          "implied_probability": 25.97
         }
       },
-      "arb_sum": 0.953005,
+      "arb_sum": 0.679908,
       "is_arbitrage": true,
-      "profit_margin_percent": 4.7
+      "profit_margin_percent": 32.01
     },
     {
       "event_id": "7bcb7fecc9f0abb2fa681739960a829c",
@@ -1116,14 +1096,14 @@
           "implied_probability": 62.11
         },
         "Robert Bryczek": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.9,
-          "implied_probability": 34.48
+          "best_bookmaker": "Betfair",
+          "best_price": 2.88,
+          "implied_probability": 34.72
         }
       },
-      "arb_sum": 0.965946,
+      "arb_sum": 0.96834,
       "is_arbitrage": true,
-      "profit_margin_percent": 3.41
+      "profit_margin_percent": 3.17
     },
     {
       "event_id": "5df097b38ef78a244dd9274d2ab025ce",
@@ -1144,26 +1124,6 @@
       "arb_sum": 0.989011,
       "is_arbitrage": true,
       "profit_margin_percent": 1.1
-    },
-    {
-      "event_id": "5c7d9ec8f1e95d64bcead567c0946c1d",
-      "commence_time": "2026-05-02T12:45:00Z",
-      "fight": "Beneil Dariush vs Quillan Salkilld",
-      "fighters": {
-        "Beneil Dariush": {
-          "best_bookmaker": "Betway",
-          "best_price": 4.33,
-          "implied_probability": 23.09
-        },
-        "Quillan Salkilld": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.31,
-          "implied_probability": 76.34
-        }
-      },
-      "arb_sum": 0.994306,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.57
     }
   ]
 }
