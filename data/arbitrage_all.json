@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-05-02T08:50:51.493481+00:00",
-  "total_arbitrage": 4,
+  "updated_at": "2026-05-02T08:59:02.496834+00:00",
+  "total_arbitrage": 3,
   "arbitrage": [
     {
       "sport": "UFC",
       "event": "Jonathan Micallef vs Themba Gorimbo",
       "market": "Moneyline",
       "commence_time": "2026-05-02T08:33:00Z",
-      "profit_margin_percent": 21.71,
-      "arb_sum": 0.782946,
+      "profit_margin_percent": 16.94,
+      "arb_sum": 0.830601,
       "bookmakers": [
         {
           "selection": "Jonathan Micallef",
@@ -18,32 +18,9 @@
         },
         {
           "selection": "Themba Gorimbo",
-          "bookmaker": "Betfair",
-          "odds": 8.6,
-          "implied_probability": 11.63
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "event": "Gerald Meerschaert vs Jacob Malkoun",
-      "market": "Moneyline",
-      "commence_time": "2026-05-02T10:15:00Z",
-      "profit_margin_percent": 0.4,
-      "arb_sum": 0.996047,
-      "bookmakers": [
-        {
-          "selection": "Gerald Meerschaert",
-          "bookmaker": "Matchbook",
-          "odds": 11.5,
-          "implied_probability": 8.7
-        },
-        {
-          "selection": "Jacob Malkoun",
           "bookmaker": "Virgin Bet",
-          "odds": 1.1,
-          "implied_probability": 90.91
+          "odds": 6.1,
+          "implied_probability": 16.39
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
