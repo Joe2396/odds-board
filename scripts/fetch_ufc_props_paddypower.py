@@ -27,7 +27,7 @@ def close_cookie_popup(page):
         try:
             page.locator(selector).first.click(timeout=2500, force=True)
             print("Accepted cookies")
-            time.sleep(1)
+            page.wait_for_timeout(1000)
             return
         except Exception:
             pass
@@ -47,10 +47,14 @@ def open_market(page, market_name):
             """,
             market_name,
         )
-        time.sleep(1)
-        print(f"Tried JS open market: {market_name}")
+
+        print(f"Clicked market: {market_name}")
+
+        page.wait_for_timeout(2500)
+        page.wait_for_selector("span", timeout=5000)
+
     except Exception as e:
-        print(f"Could not JS open market {market_name}: {e}")
+        print(f"Could not open market {market_name}: {e}")
 
 
 def get_text(page):
@@ -65,7 +69,8 @@ def get_section(text, start_word, stop_words):
     if start == -1:
         return ""
 
-    end = start + 1200
+    end = start + 1600
+
     for word in stop_words:
         idx = text.find(word, start + len(start_word))
         if idx != -1:
@@ -131,17 +136,17 @@ def main():
         )
 
         page.goto(FIGHT_URL, timeout=60000, wait_until="domcontentloaded")
-        time.sleep(6)
+        page.wait_for_timeout(7000)
 
         close_cookie_popup(page)
 
         page.mouse.wheel(0, 2500)
-        time.sleep(1)
+        page.wait_for_timeout(1000)
 
         for market in ["Method of Victory", "Total Rounds", "Go The Distance?"]:
             open_market(page, market)
 
-        time.sleep(3)
+        page.wait_for_timeout(4000)
 
         text = get_text(page)
 
