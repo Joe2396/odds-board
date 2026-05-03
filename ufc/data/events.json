@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T21:43:09Z",
+  "generated_at": "2026-05-03T22:43:19Z",
   "events": [
     {
       "id": "2026-04-18-ufc-fight-night-burns-vs-malott",
@@ -1339,25 +1339,6 @@
         },
         {
           "id": "600058517-5",
-          "bout": "Alex Perez vs Sumudaerji",
-          "red": {
-            "name": "Alex Perez",
-            "espn_id": ""
-          },
-          "blue": {
-            "name": "Sumudaerji",
-            "espn_id": ""
-          },
-          "weight_class": "Flyweight",
-          "order": 5,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600058517"
-          }
-        },
-        {
-          "id": "600058517-6",
           "bout": "Zhu Kangjie vs Ramon Taveras",
           "red": {
             "name": "Zhu Kangjie",
@@ -1368,6 +1349,25 @@
             "espn_id": ""
           },
           "weight_class": "Featherweight",
+          "order": 5,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600058517"
+          }
+        },
+        {
+          "id": "600058517-6",
+          "bout": "Alex Perez vs Sumudaerji",
+          "red": {
+            "name": "Alex Perez",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Sumudaerji",
+            "espn_id": ""
+          },
+          "weight_class": "Flyweight",
           "order": 6,
           "status": "scheduled",
           "source": {
@@ -1876,5 +1876,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-05-03T21:43:09Z"
+  "_debug_saved_at": "2026-05-03T22:43:19Z"
 }
