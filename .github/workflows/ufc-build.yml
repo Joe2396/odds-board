@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "0 * * * *" # every hour
+    - cron: "0 * * * *"
 
   push:
     branches: [ main ]
@@ -37,41 +37,31 @@ jobs:
           python-version: "3.11"
 
       - name: Install deps
-        run: pip install requests beautifulsoup4
+        run: |
+          pip install requests beautifulsoup4 playwright
+          playwright install --with-deps chromium
 
-      # -----------------------------
-      # 1) EVENT + FIGHT CARD DATA
-      # -----------------------------
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
 
       - name: Fetch ESPN event fight cards
         run: python scripts/fetch_espn_event_fightcards.py
 
-      # -----------------------------
-      # 2) UFCSTATS FIGHTER DATA
-      # -----------------------------
       - name: Fetch UFCStats fighter stats
         run: python scripts/fetch_ufcstats_fighter_stats.py
 
-      # -----------------------------
-      # 3) ODDS DATA
-      # -----------------------------
       - name: Fetch UFC odds UK bookies
         run: python scripts/fetch_ufc_odds.py
 
-      # -----------------------------
-      # 4) ARBITRAGE ANALYSIS
-      # -----------------------------
+      - name: Fetch UFC props PaddyPower
+        run: python scripts/fetch_ufc_props_paddypower.py
+
       - name: Analyze UFC arbitrage
         run: python scripts/analyze_ufc_arbitrage.py
 
       - name: Build unified arbitrage
         run: python scripts/build_arbitrage_all.py
 
-      # -----------------------------
-      # 5) GENERATE SITE
-      # -----------------------------
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
 
@@ -84,9 +74,6 @@ jobs:
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
 
-      # -----------------------------
-      # DEBUG
-      # -----------------------------
       - name: Debug UFC data counts
         run: |
           python - <<'PY'
@@ -95,6 +82,7 @@ jobs:
           checks = [
               ("fighters", "ufc/data/fighters.json"),
               ("odds", "ufc/data/odds.json"),
+              ("props", "ufc/data/props.json"),
               ("arbitrage", "ufc/data/arbitrage.json"),
               ("arbitrage_all", "data/arbitrage_all.json"),
           ]
@@ -112,41 +100,27 @@ jobs:
 
               elif label == "odds":
                   print("odds events count:", len(data.get("events", [])))
-                  for e in data.get("events", [])[:3]:
-                      print("-", e.get("home_team"), "vs", e.get("away_team"))
+
+              elif label == "props":
+                  print("props fight:", data.get("fight"))
+                  print("props markets:", list((data.get("markets") or {}).keys()))
 
               elif label == "arbitrage":
                   print("fights checked:", data.get("total_fights_checked"))
                   print("arbitrage count:", data.get("arbitrage_count"))
-                  for a in data.get("arbitrage_opportunities", [])[:3]:
-                      print("-", a.get("fight"), "| margin:", a.get("profit_margin_percent"))
 
               elif label == "arbitrage_all":
                   print("total arbitrage:", data.get("total_arbitrage"))
-                  for a in data.get("arbitrage", [])[:3]:
-                      print("-", a.get("sport"), "|", a.get("event"), "| margin:", a.get("profit_margin_percent"))
 
           PY
 
-      # -----------------------------
-      # COMMIT OUTPUT
-      # -----------------------------
       - name: Commit generated output
         run: |
           git config user.name "ufc-bot"
           git config user.email "actions@github.com"
 
-          echo "Status before staging:"
-          git status --short
-
           git add -A ufc data
 
-          echo "Status after staging:"
-          git status --short
+          git commit -m "Auto-generate UFC pages, odds, props and arbitrage" || echo "No changes to commit"
 
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Auto-generate UFC pages, odds and arbitrage"
-            git push origin main
-          fi
+          git push origin main
