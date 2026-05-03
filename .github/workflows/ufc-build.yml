@@ -38,8 +38,7 @@ jobs:
 
       - name: Install deps
         run: |
-          pip install requests beautifulsoup4 playwright
-          playwright install --with-deps chromium
+          pip install requests beautifulsoup4
 
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
@@ -52,9 +51,6 @@ jobs:
 
       - name: Fetch UFC odds UK bookies
         run: python scripts/fetch_ufc_odds.py
-
-      - name: Fetch UFC props PaddyPower
-        run: python scripts/fetch_ufc_props_paddypower.py
 
       - name: Analyze UFC arbitrage
         run: python scripts/analyze_ufc_arbitrage.py
@@ -97,21 +93,16 @@ jobs:
 
               if label == "fighters":
                   print("fighters count:", len(data.get("fighters", [])))
-
               elif label == "odds":
                   print("odds events count:", len(data.get("events", [])))
-
               elif label == "props":
                   print("props fight:", data.get("fight"))
                   print("props markets:", list((data.get("markets") or {}).keys()))
-
               elif label == "arbitrage":
                   print("fights checked:", data.get("total_fights_checked"))
                   print("arbitrage count:", data.get("arbitrage_count"))
-
               elif label == "arbitrage_all":
                   print("total arbitrage:", data.get("total_arbitrage"))
-
           PY
 
       - name: Commit generated output
@@ -121,6 +112,6 @@ jobs:
 
           git add -A ufc data
 
-          git commit -m "Auto-generate UFC pages, odds, props and arbitrage" || echo "No changes to commit"
+          git commit -m "Auto-generate UFC pages, odds and arbitrage" || echo "No changes to commit"
 
           git push origin main
