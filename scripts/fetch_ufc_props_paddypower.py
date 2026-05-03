@@ -1,5 +1,6 @@
 from playwright.sync_api import sync_playwright
 import json
+import re
 import time
 from pathlib import Path
 from datetime import datetime, timezone
@@ -10,88 +11,100 @@ OUT_PATH = ROOT / "ufc" / "data" / "props.json"
 FIGHT_URL = "https://www.paddypower.com/mixed-martial-arts/ufc-matches/khamzat-chimaev-v-sean-strickland-35369952"
 
 
+def is_odds(value):
+    value = str(value).strip()
+    return value == "EVS" or bool(re.match(r"^\d+/\d+$", value))
+
+
 def close_cookie_popup(page):
+    selectors = [
+        "#onetrust-accept-btn-handler",
+        "button:has-text('Accept All Cookies')",
+        "button:has-text('Accept')",
+    ]
+
+    for selector in selectors:
+        try:
+            page.locator(selector).first.click(timeout=2500, force=True)
+            print("Accepted cookies")
+            time.sleep(1)
+            return
+        except Exception:
+            pass
+
+    print("No cookie popup found")
+
+
+def open_market(page, market_name):
     try:
-        page.locator("#onetrust-accept-btn-handler").click(timeout=3000)
-        print("Accepted cookies")
+        page.evaluate(
+            """
+            (name) => {
+              const nodes = [...document.querySelectorAll('span.accordion__title')];
+              const node = nodes.find(n => n.textContent.trim() === name);
+              if (node) node.click();
+            }
+            """,
+            market_name,
+        )
         time.sleep(1)
-    except Exception:
-        print("No cookie popup found")
+        print(f"Tried JS open market: {market_name}")
+    except Exception as e:
+        print(f"Could not JS open market {market_name}: {e}")
 
 
-def click_market(page, market_name):
+def get_text(page):
     try:
-        market = page.locator("span.accordion__title", has_text=market_name).first
-        market.scroll_into_view_if_needed(timeout=5000)
-        time.sleep(0.5)
-        market.click(force=True, timeout=5000)
-        print(f"Opened market: {market_name}")
-        time.sleep(1)
+        return page.locator("body").inner_text(timeout=10000)
     except Exception:
-        print(f"Could not open market: {market_name}")
+        return ""
 
 
-def get_snippet(page, market_name, stop_words):
-    text = page.locator("body").inner_text()
-    start = text.find(market_name)
-
+def get_section(text, start_word, stop_words):
+    start = text.find(start_word)
     if start == -1:
         return ""
 
-    end = start + 900
-
+    end = start + 1200
     for word in stop_words:
-        idx = text.find(word, start + len(market_name))
+        idx = text.find(word, start + len(start_word))
         if idx != -1:
             end = min(end, idx)
 
     return text[start:end].strip()
 
 
-def parse_pairs(snippet, skip_words=None):
-    if skip_words is None:
-        skip_words = []
+def parse_pairs(snippet, title):
+    if not snippet:
+        return []
 
-    lines = [line.strip() for line in snippet.splitlines() if line.strip()]
-
-    junk = [
+    junk = {
+        title,
         "All Markets",
         "Popular",
         "Fight Result",
         "Cash Out",
-    ]
+        "Show More",
+    }
 
-    cleaned = []
-    for line in lines:
-        if line in skip_words:
-            continue
-        if line in junk:
-            continue
-        cleaned.append(line)
-
-    if cleaned:
-        cleaned = cleaned[1:]
+    lines = [line.strip() for line in snippet.splitlines() if line.strip()]
+    lines = [line for line in lines if line not in junk]
 
     results = []
     i = 0
 
-    while i + 1 < len(cleaned):
-        a = cleaned[i]
-        b = cleaned[i + 1]
+    while i + 1 < len(lines):
+        a = lines[i]
+        b = lines[i + 1]
 
-        if "/" in a or a == "EVS":
-            odds = a
-            selection = b
+        if is_odds(a) and not is_odds(b):
+            results.append({"selection": b, "odds": a})
+            i += 2
+        elif not is_odds(a) and is_odds(b):
+            results.append({"selection": a, "odds": b})
+            i += 2
         else:
-            selection = a
-            odds = b
-
-        results.append({
-            "selection": selection,
-            "odds": odds,
-        })
-
-        i += 2
+            i += 1
 
     return results
 
@@ -100,41 +113,54 @@ def main():
     print("Starting PaddyPower props scraper...")
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page(viewport={"width": 1400, "height": 900})
+        browser = p.chromium.launch(
+            headless=True,
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+            ],
+        )
 
-        page.goto(FIGHT_URL, timeout=60000)
-        time.sleep(4)
+        page = browser.new_page(
+            viewport={"width": 1400, "height": 1200},
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+        )
+
+        page.goto(FIGHT_URL, timeout=60000, wait_until="domcontentloaded")
+        time.sleep(6)
 
         close_cookie_popup(page)
 
-        markets = [
+        page.mouse.wheel(0, 2500)
+        time.sleep(1)
+
+        for market in ["Method of Victory", "Total Rounds", "Go The Distance?"]:
+            open_market(page, market)
+
+        time.sleep(3)
+
+        text = get_text(page)
+
+        method_snippet = get_section(
+            text,
             "Method of Victory",
-            "Total Rounds",
-            "Go The Distance?",
-        ]
-
-        for market in markets:
-            click_market(page, market)
-
-        time.sleep(2)
-
-        method_snippet = get_snippet(
-            page,
-            "Method of Victory",
-            stop_words=["Round Betting", "Total Rounds", "Go The Distance?"],
+            ["Round Betting", "Method & Round Combo", "Total Rounds"],
         )
 
-        total_rounds_snippet = get_snippet(
-            page,
+        total_rounds_snippet = get_section(
+            text,
             "Total Rounds",
-            stop_words=["Double Chance", "Go The Distance?", "How fight will End"],
+            ["Double Chance", "Go The Distance?", "How fight will End"],
         )
 
-        go_distance_snippet = get_snippet(
-            page,
+        go_distance_snippet = get_section(
+            text,
             "Go The Distance?",
-            stop_words=["How fight will End", "What Round", "Show More"],
+            ["How fight will End", "What Round", "Show More"],
         )
 
         props = {
@@ -144,9 +170,9 @@ def main():
             "fight": "Khamzat Chimaev vs Sean Strickland",
             "url": FIGHT_URL,
             "markets": {
-                "method_of_victory": parse_pairs(method_snippet, ["Method of Victory"]),
-                "total_rounds": parse_pairs(total_rounds_snippet, ["Total Rounds"]),
-                "go_the_distance": parse_pairs(go_distance_snippet, ["Go The Distance?"]),
+                "method_of_victory": parse_pairs(method_snippet, "Method of Victory"),
+                "total_rounds": parse_pairs(total_rounds_snippet, "Total Rounds"),
+                "go_the_distance": parse_pairs(go_distance_snippet, "Go The Distance?"),
             },
         }
 
