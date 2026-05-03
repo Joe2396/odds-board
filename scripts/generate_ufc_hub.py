@@ -752,7 +752,7 @@ def main():
 
           <div class="actions">
             <a class="btn primary" href="{BASE}/ufc/fighters/">Browse fighters →</a>
-            <a class="btn" href="{BASE}/ufc/events/">View all events →</a>
+            <a class="btn" href="#events">View all events →</a>
           </div>
         </div>
 
@@ -783,7 +783,7 @@ def main():
       <a class="btn" href="{BASE}/ufc/fighters/">Fighter database →</a>
     </div>
 
-    <section class="events-grid">
+ <section id="events" class="events-grid">
       {rows_html}
     </section>
 
