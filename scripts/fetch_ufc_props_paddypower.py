@@ -1,7 +1,6 @@
 from playwright.sync_api import sync_playwright
 import json
 import re
-import time
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -17,13 +16,11 @@ def is_odds(value):
 
 
 def close_cookie_popup(page):
-    selectors = [
+    for selector in [
         "#onetrust-accept-btn-handler",
         "button:has-text('Accept All Cookies')",
         "button:has-text('Accept')",
-    ]
-
-    for selector in selectors:
+    ]:
         try:
             page.locator(selector).first.click(timeout=2500, force=True)
             print("Accepted cookies")
@@ -42,7 +39,10 @@ def open_market(page, market_name):
             (name) => {
               const nodes = [...document.querySelectorAll('span.accordion__title')];
               const node = nodes.find(n => n.textContent.trim() === name);
-              if (node) node.click();
+              if (node) {
+                node.scrollIntoView({ block: 'center' });
+                node.click();
+              }
             }
             """,
             market_name,
@@ -50,8 +50,9 @@ def open_market(page, market_name):
 
         print(f"Clicked market: {market_name}")
 
-        page.wait_for_timeout(2500)
-        page.wait_for_selector("span", timeout=5000)
+        page.wait_for_timeout(2000)
+        page.mouse.wheel(0, 800)
+        page.wait_for_timeout(2000)
 
     except Exception as e:
         print(f"Could not open market {market_name}: {e}")
@@ -69,7 +70,7 @@ def get_section(text, start_word, stop_words):
     if start == -1:
         return ""
 
-    end = start + 1600
+    end = start + 1800
 
     for word in stop_words:
         idx = text.find(word, start + len(start_word))
@@ -121,13 +122,14 @@ def main():
         browser = p.chromium.launch(
             headless=True,
             args=[
-                "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
+                "--disable-blink-features=AutomationControlled",
+                "--disable-dev-shm-usage",
             ],
         )
 
-        page = browser.new_page(
-            viewport={"width": 1400, "height": 1200},
+        context = browser.new_context(
+            viewport={"width": 1400, "height": 1400},
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -135,18 +137,22 @@ def main():
             ),
         )
 
+        page = context.new_page()
+
         page.goto(FIGHT_URL, timeout=60000, wait_until="domcontentloaded")
-        page.wait_for_timeout(7000)
+        page.wait_for_timeout(8000)
 
         close_cookie_popup(page)
 
-        page.mouse.wheel(0, 2500)
-        page.wait_for_timeout(1000)
+        page.mouse.wheel(0, 1500)
+        page.wait_for_timeout(1500)
 
         for market in ["Method of Victory", "Total Rounds", "Go The Distance?"]:
             open_market(page, market)
 
-        page.wait_for_timeout(4000)
+        page.wait_for_timeout(6000)
+        page.mouse.wheel(0, 2000)
+        page.wait_for_timeout(2000)
 
         text = get_text(page)
 
