@@ -85,6 +85,7 @@ jobs:
 
           for label, path in checks:
               print(f"\n--- {label.upper()} ---")
+
               if not os.path.exists(path):
                   print(f"{path} missing")
                   continue
