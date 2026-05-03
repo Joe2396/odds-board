@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T22:43:19Z",
+  "generated_at": "2026-05-03T23:50:02Z",
   "events": [
     {
       "id": "2026-04-18-ufc-fight-night-burns-vs-malott",
@@ -1377,25 +1377,6 @@
         },
         {
           "id": "600058517-7",
-          "bout": "Yi Sak Lee vs Luis Felipe Dias",
-          "red": {
-            "name": "Yi Sak Lee",
-            "espn_id": ""
-          },
-          "blue": {
-            "name": "Luis Felipe Dias",
-            "espn_id": ""
-          },
-          "weight_class": "Middleweight",
-          "order": 7,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600058517"
-          }
-        },
-        {
-          "id": "600058517-8",
           "bout": "Muslim Salikhov vs Jake Matthews",
           "red": {
             "name": "Muslim Salikhov",
@@ -1406,6 +1387,25 @@
             "espn_id": ""
           },
           "weight_class": "Welterweight",
+          "order": 7,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600058517"
+          }
+        },
+        {
+          "id": "600058517-8",
+          "bout": "Yi Sak Lee vs Luis Felipe Dias",
+          "red": {
+            "name": "Yi Sak Lee",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Luis Felipe Dias",
+            "espn_id": ""
+          },
+          "weight_class": "Middleweight",
           "order": 8,
           "status": "scheduled",
           "source": {
@@ -1876,5 +1876,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-05-03T22:43:19Z"
+  "_debug_saved_at": "2026-05-03T23:50:02Z"
 }
