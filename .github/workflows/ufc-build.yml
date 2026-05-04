@@ -4,14 +4,13 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 */3 * * *"
 
   push:
     branches: [ main ]
     paths:
       - "scripts/**"
       - "ufc/**"
-      - "data/**"
       - ".github/workflows/ufc-build.yml"
 
 permissions:
@@ -38,7 +37,12 @@ jobs:
 
       - name: Install deps
         run: |
-          pip install requests beautifulsoup4
+          pip install requests beautifulsoup4 playwright
+          playwright install chromium
+
+      # -----------------------------
+      # 1) EVENT + FIGHT CARD DATA
+      # -----------------------------
 
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
@@ -49,6 +53,10 @@ jobs:
       - name: Fetch UFCStats fighter stats
         run: python scripts/fetch_ufcstats_fighter_stats.py
 
+      # -----------------------------
+      # 2) ODDS + ARBITRAGE DATA
+      # -----------------------------
+
       - name: Fetch UFC odds UK bookies
         run: python scripts/fetch_ufc_odds.py
 
@@ -57,6 +65,23 @@ jobs:
 
       - name: Build unified arbitrage
         run: python scripts/build_arbitrage_all.py
+
+      # -----------------------------
+      # 3) PADDYPOWER UFC PROPS
+      # -----------------------------
+
+      - name: Fetch PaddyPower fight URLs
+        run: python scripts/fetch_paddypower_fight_urls.py
+
+      - name: Fetch PaddyPower props
+        run: python scripts/fetch_ufc_props_paddypower.py
+
+      - name: Filter PaddyPower props
+        run: python scripts/filter_props.py
+
+      # -----------------------------
+      # 4) GENERATE UFC SITE PAGES
+      # -----------------------------
 
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
@@ -70,49 +95,57 @@ jobs:
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
 
+      # -----------------------------
+      # 5) DEBUG COUNTS
+      # -----------------------------
+
       - name: Debug UFC data counts
         run: |
           python - <<'PY'
           import json, os
 
-          checks = [
-              ("fighters", "ufc/data/fighters.json"),
-              ("odds", "ufc/data/odds.json"),
-              ("props", "ufc/data/props.json"),
-              ("arbitrage", "ufc/data/arbitrage.json"),
-              ("arbitrage_all", "data/arbitrage_all.json"),
+          files = [
+              "ufc/data/events.json",
+              "ufc/data/fighters.json",
+              "ufc/data/odds.json",
+              "ufc/data/arbitrage.json",
+              "ufc/data/props.json",
+              "ufc/data/props_filtered.json",
+              "ufc/data/paddypower_fight_urls.json",
           ]
 
-          for label, path in checks:
-              print(f"\n--- {label.upper()} ---")
-
+          for path in files:
               if not os.path.exists(path):
-                  print(f"{path} missing")
+                  print(f"{path}: MISSING")
                   continue
 
-              data = json.load(open(path, encoding="utf-8"))
-
-              if label == "fighters":
-                  print("fighters count:", len(data.get("fighters", [])))
-              elif label == "odds":
-                  print("odds events count:", len(data.get("events", [])))
-              elif label == "props":
-                  print("props fight:", data.get("fight"))
-                  print("props markets:", list((data.get("markets") or {}).keys()))
-              elif label == "arbitrage":
-                  print("fights checked:", data.get("total_fights_checked"))
-                  print("arbitrage count:", data.get("arbitrage_count"))
-              elif label == "arbitrage_all":
-                  print("total arbitrage:", data.get("total_arbitrage"))
+              try:
+                  data = json.load(open(path, encoding="utf-8"))
+                  if isinstance(data, dict):
+                      print(f"{path}: keys={list(data.keys())}")
+                      if "events" in data:
+                          print(f"  events={len(data.get('events') or [])}")
+                      if "fighters" in data:
+                          print(f"  fighters={len(data.get('fighters') or [])}")
+                      if "fights" in data:
+                          print(f"  fights={len(data.get('fights') or [])}")
+                  else:
+                      print(f"{path}: {type(data).__name__} length={len(data)}")
+              except Exception as e:
+                  print(f"{path}: ERROR {e}")
           PY
+
+      # -----------------------------
+      # 6) COMMIT GENERATED OUTPUT
+      # -----------------------------
 
       - name: Commit generated output
         run: |
-          git config user.name "ufc-bot"
+          git config user.name "actions-user"
           git config user.email "actions@github.com"
 
-          git add -A ufc data
+          git add ufc data docs odds scripts index.html 2>/dev/null || true
+          git add .github/workflows/ufc-build.yml
 
-          git commit -m "Auto-generate UFC pages, odds and arbitrage" || echo "No changes to commit"
-
-          git push origin main
+          git commit -m "Auto-generate UFC pages, odds, props and arbitrage" || echo "No changes to commit"
+          git push

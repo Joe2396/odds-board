@@ -2,6 +2,7 @@ from playwright.sync_api import sync_playwright
 import time
 import json
 import re
+import os
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -10,6 +11,10 @@ print("RUNNING SAFE MULTI-FIGHT PADDYPOWER SCRIPT")
 ROOT = Path(__file__).resolve().parents[1]
 URLS_PATH = ROOT / "ufc" / "data" / "paddypower_fight_urls.json"
 OUT_PATH = ROOT / "ufc" / "data" / "props.json"
+
+
+def is_github_actions():
+    return os.getenv("GITHUB_ACTIONS") == "true"
 
 
 def is_odds(x):
@@ -223,6 +228,7 @@ def upsert_fight(output, fight_data):
     url = fight_data.get("url")
 
     updated = False
+
     for i, item in enumerate(existing):
         if item.get("url") == url:
             existing[i] = fight_data
@@ -240,13 +246,14 @@ def main():
         url_data = json.load(f)
 
     fights = url_data.get("fights", [])
+
     if not fights:
         raise SystemExit("No fights found in paddypower_fight_urls.json")
 
     output = load_existing_output()
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=is_github_actions())
         page = browser.new_page(viewport={"width": 1400, "height": 900})
 
         for index, fight in enumerate(fights, start=1):
@@ -260,7 +267,9 @@ def main():
                 print(f"ERROR scraping {fight.get('fight')}: {e}")
                 save_output(output)
 
-        input("\nDone. Press Enter to close browser...")
+        if not is_github_actions():
+            input("\nDone. Press Enter to close browser...")
+
         browser.close()
 
     print(f"\nFinished. Saved props to {OUT_PATH}")
