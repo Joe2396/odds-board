@@ -7,6 +7,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 DATA_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
 ODDS_PATH = os.path.join(ROOT, "ufc", "data", "odds.json")
+PROPS_PATH = os.path.join(ROOT, "ufc", "data", "props_filtered.json")
 OUT_PATH = os.path.join(ROOT, "ufc", "index.html")
 
 BASE = "/odds-board"
@@ -23,6 +24,13 @@ def load_odds():
     if not os.path.exists(ODDS_PATH):
         return {"events": []}
     with open(ODDS_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_props():
+    if not os.path.exists(PROPS_PATH):
+        return {"fights": []}
+    with open(PROPS_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -239,6 +247,94 @@ def render_betting_edge(red, blue, odds_events):
     """
 
 
+def render_props_section(props_payload):
+    fights = props_payload.get("fights", []) or []
+
+    if not fights:
+        return """
+        <section class="props-section">
+          <div class="section-head">
+            <div>
+              <h2>PaddyPower Props</h2>
+              <p class="muted">No props currently available.</p>
+            </div>
+          </div>
+        </section>
+        """
+
+    market_labels = {
+        "method_of_victory": "Method of Victory",
+        "total_rounds": "Total Rounds",
+        "go_the_distance": "Go The Distance?",
+    }
+
+    cards = ""
+
+    for fight in fights:
+        fight_name = esc(str(fight.get("fight") or "").replace("\n", " vs "))
+        markets = fight.get("markets", {}) or {}
+
+        market_html = ""
+
+        for key, label in market_labels.items():
+            selections = markets.get(key, []) or []
+            if not selections:
+                continue
+
+            selection_rows = ""
+
+            for s in selections:
+                selection_rows += f"""
+                <div class="prop-row">
+                  <span>{esc(s.get("selection"))}</span>
+                  <strong>{esc(s.get("odds"))}</strong>
+                </div>
+                """
+
+            market_html += f"""
+            <div class="prop-market">
+              <h4>{esc(label)}</h4>
+              {selection_rows}
+            </div>
+            """
+
+        if not market_html:
+            continue
+
+        cards += f"""
+        <article class="props-card">
+          <div class="props-card-head">
+            <div>
+              <div class="event-kicker">PaddyPower props</div>
+              <h3>{fight_name}</h3>
+            </div>
+            <a href="{esc(fight.get("url"))}" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class="props-markets">
+            {market_html}
+          </div>
+        </article>
+        """
+
+    if not cards:
+        cards = "<div class='empty'>No prop markets currently available.</div>"
+
+    return f"""
+    <section class="props-section">
+      <div class="section-head">
+        <div>
+          <h2>PaddyPower Props</h2>
+          <p class="muted">Current method, rounds and distance markets from fights where props are available.</p>
+        </div>
+      </div>
+
+      <div class="props-grid">
+        {cards}
+      </div>
+    </section>
+    """
+
+
 def main():
     payload = load_events()
     events = payload.get("events", []) or []
@@ -246,6 +342,8 @@ def main():
 
     odds_payload = load_odds()
     odds_events = odds_payload.get("events", []) or []
+
+    props_payload = load_props()
 
     upcoming_events = [ev for ev in events if is_upcoming_event(ev)]
     upcoming_events = sorted(upcoming_events, key=sort_key)
@@ -296,6 +394,8 @@ def main():
       {betting_html}
     </section>
         """
+
+    props_html = render_props_section(props_payload)
 
     rows_html = ""
     if not upcoming_events:
@@ -604,6 +704,71 @@ def main():
       font-size: 14px;
     }}
 
+    .props-section {{
+      margin-top: 36px;
+    }}
+
+    .props-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 16px;
+    }}
+
+    .props-card {{
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      background:
+        radial-gradient(circle at top right, rgba(34,197,94,0.12), transparent 30%),
+        var(--panel);
+    }}
+
+    .props-card-head {{
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }}
+
+    .props-card h3 {{
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.15;
+    }}
+
+    .props-card h4 {{
+      margin: 0 0 10px;
+      color: var(--gold);
+      font-size: 16px;
+    }}
+
+    .prop-market {{
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      margin-top: 14px;
+    }}
+
+    .prop-row {{
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1px solid var(--border);
+      background: #0F1621;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-top: 8px;
+    }}
+
+    .prop-row span {{
+      color: var(--text);
+    }}
+
+    .prop-row strong {{
+      color: var(--green);
+      white-space: nowrap;
+    }}
+
     .section-head {{
       display: flex;
       align-items: end;
@@ -723,11 +888,13 @@ def main():
         grid-template-columns: 1fr;
       }}
 
-      .events-grid {{
+      .events-grid,
+      .props-grid {{
         grid-template-columns: 1fr;
       }}
 
-      .bet-row {{
+      .bet-row,
+      .prop-row {{
         align-items: flex-start;
         flex-direction: column;
       }}
@@ -775,6 +942,8 @@ def main():
 
     {featured_html}
 
+    {props_html}
+
     <div class="section-head">
       <div>
         <h2>Upcoming Events</h2>
@@ -783,7 +952,7 @@ def main():
       <a class="btn" href="{BASE}/ufc/fighters/">Fighter database →</a>
     </div>
 
- <section id="events" class="events-grid">
+    <section id="events" class="events-grid">
       {rows_html}
     </section>
 
@@ -803,6 +972,7 @@ def main():
 
     print(f"Wrote UFC hub: {OUT_PATH}")
     print(f"Upcoming events shown: {len(upcoming_events)}")
+    print(f"Props fights shown: {len(props_payload.get('fights', []) or [])}")
 
 
 if __name__ == "__main__":
