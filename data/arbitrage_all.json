@@ -1,5 +1,29 @@
 {
-  "updated_at": "2026-05-03T23:53:06.567002+00:00",
-  "total_arbitrage": 0,
-  "arbitrage": []
+  "updated_at": "2026-05-04T03:25:08.262350+00:00",
+  "total_arbitrage": 1,
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "event": "Joaquin Buckley vs Sean Brady",
+      "market": "Moneyline",
+      "commence_time": "2026-05-09T20:00:00Z",
+      "profit_margin_percent": 0.93,
+      "arb_sum": 0.990676,
+      "bookmakers": [
+        {
+          "selection": "Joaquin Buckley",
+          "bookmaker": "William Hill",
+          "odds": 2.6,
+          "implied_probability": 38.46
+        },
+        {
+          "selection": "Sean Brady",
+          "bookmaker": "Unibet (UK)",
+          "odds": 1.65,
+          "implied_probability": 60.61
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ]
 }

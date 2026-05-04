@@ -1,7 +1,7 @@
 {
   "source": "odds_json",
   "total_fights_checked": 26,
-  "arbitrage_count": 0,
+  "arbitrage_count": 1,
   "fights": [
     {
       "event_id": "dc70600ccf557c5bce24b0f1e73fa45f",
@@ -94,14 +94,14 @@
           "implied_probability": 38.46
         },
         "Sean Brady": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.62,
-          "implied_probability": 61.73
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.65,
+          "implied_probability": 60.61
         }
       },
-      "arb_sum": 1.001899,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.19
+      "arb_sum": 0.990676,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.93
     },
     {
       "event_id": "7c8d3c42bb7948ac655b45fb75d00ea9",
@@ -150,18 +150,18 @@
       "fighters": {
         "Khamzat Chimaev": {
           "best_bookmaker": "Paddy Power",
-          "best_price": 1.22,
-          "implied_probability": 81.97
+          "best_price": 1.2,
+          "implied_probability": 83.33
         },
         "Sean Strickland": {
           "best_bookmaker": "Betfair",
-          "best_price": 5.5,
-          "implied_probability": 18.18
+          "best_price": 5.7,
+          "implied_probability": 17.54
         }
       },
-      "arb_sum": 1.00149,
+      "arb_sum": 1.008772,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.15
+      "profit_margin_percent": -0.88
     },
     {
       "event_id": "aaffbaf0057c43a6a2fb2577da294f42",
@@ -524,5 +524,26 @@
       "profit_margin_percent": -1.2
     }
   ],
-  "arbitrage_opportunities": []
+  "arbitrage_opportunities": [
+    {
+      "event_id": "a2b05838698a5f914b569f502d372985",
+      "commence_time": "2026-05-09T20:00:00Z",
+      "fight": "Joaquin Buckley vs Sean Brady",
+      "fighters": {
+        "Joaquin Buckley": {
+          "best_bookmaker": "William Hill",
+          "best_price": 2.6,
+          "implied_probability": 38.46
+        },
+        "Sean Brady": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.65,
+          "implied_probability": 60.61
+        }
+      },
+      "arb_sum": 0.990676,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.93
+    }
+  ]
 }
