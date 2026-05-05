@@ -68,13 +68,10 @@ jobs:
 
       # -----------------------------
       # 3) PADDYPOWER UFC PROPS
+      # IMPORTANT:
+      # PaddyPower scraping works locally but returns 0 fights on GitHub.
+      # So we scrape PaddyPower locally, commit the JSON files, and GitHub uses them.
       # -----------------------------
-
-      - name: Fetch PaddyPower fight URLs
-        run: python scripts/fetch_paddypower_fight_urls.py
-
-      - name: Fetch PaddyPower props
-        run: python scripts/fetch_ufc_props_paddypower.py
 
       - name: Filter PaddyPower props
         run: python scripts/filter_props.py
