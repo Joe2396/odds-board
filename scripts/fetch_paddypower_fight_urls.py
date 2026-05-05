@@ -10,6 +10,7 @@ print("FETCHING PADDYPOWER FIGHT URLS")
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_PATH = ROOT / "ufc" / "data" / "paddypower_fight_urls.json"
+DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
 
 PADDYPOWER_MMA_URLS = [
     "https://www.paddypower.com/mixed-martial-arts/ufc-matches",
@@ -57,24 +58,16 @@ def clean_fight_name_from_text(text):
     for phrase in junk_phrases:
         text = text.replace(phrase, "")
 
-    text = text.strip(" -–—|")
-
-    return text.strip()
+    return text.strip(" -–—|").strip()
 
 
 def clean_fight_name_from_url(url):
     slug = str(url or "").rstrip("/").split("/")[-1]
-
-    # Remove trailing PaddyPower numeric id
     slug = re.sub(r"-\d+$", "", slug)
-
-    # Convert v to vs only when used as separator
     slug = slug.replace("-v-", "-vs-")
 
     name = slug.replace("-", " ").title()
-    name = re.sub(r"\s+", " ", name).strip()
-
-    return name
+    return re.sub(r"\s+", " ", name).strip()
 
 
 def looks_like_fight_name(name):
@@ -103,9 +96,8 @@ def looks_like_fight_name(name):
 
 def normalize_fight_name(name):
     name = str(name or "").strip()
-
-    # PaddyPower sometimes returns fighter names on separate lines.
     name = name.replace("\r\n", "\n").replace("\r", "\n")
+
     parts = [p.strip() for p in name.split("\n") if p.strip()]
 
     if len(parts) >= 2:
@@ -114,9 +106,23 @@ def normalize_fight_name(name):
         name = " ".join(name.split())
         name = re.sub(r"\s+v\s+", " vs ", name, flags=re.I)
 
-    name = clean_fight_name_from_text(name)
+    return clean_fight_name_from_text(name)
 
-    return name
+
+def save_debug(page, label):
+    try:
+        DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+
+        html_path = DEBUG_DIR / f"{label}.html"
+        png_path = DEBUG_DIR / f"{label}.png"
+
+        html_path.write_text(page.content(), encoding="utf-8")
+        page.screenshot(path=str(png_path), full_page=True)
+
+        print(f"Saved debug HTML: {html_path}")
+        print(f"Saved debug screenshot: {png_path}")
+    except Exception as e:
+        print(f"Could not save debug files: {e}")
 
 
 def scroll_page(page):
@@ -124,14 +130,17 @@ def scroll_page(page):
 
     last_height = 0
 
-    for _ in range(12):
+    for _ in range(15):
         page.mouse.wheel(0, 3000)
         time.sleep(1)
 
         try:
             height = page.evaluate("document.body.scrollHeight")
+            print(f"Page height: {height}")
+
             if height == last_height:
-                time.sleep(1)
+                time.sleep(2)
+
             last_height = height
         except Exception:
             pass
@@ -192,10 +201,7 @@ def dedupe_fights(raw_links):
         url = item.get("url")
         text = item.get("text") or ""
 
-        if not url:
-            continue
-
-        if url in seen_urls:
+        if not url or url in seen_urls:
             continue
 
         seen_urls.add(url)
@@ -204,7 +210,6 @@ def dedupe_fights(raw_links):
         name_from_url = clean_fight_name_from_url(url)
 
         fight_name = name_from_text if looks_like_fight_name(name_from_text) else name_from_url
-
         fight_name = normalize_fight_name(fight_name)
 
         fights.append({
@@ -236,21 +241,39 @@ def main():
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=is_github_actions()
+            headless=is_github_actions(),
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-blink-features=AutomationControlled",
+            ],
         )
 
-        page = browser.new_page(
-            viewport={"width": 1400, "height": 900}
+        context = browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/147.0.0.0 Safari/537.36"
+            ),
+            viewport={"width": 1365, "height": 768},
+            locale="en-IE",
+            timezone_id="Europe/Dublin",
         )
 
-        for url in PADDYPOWER_MMA_URLS:
+        page = context.new_page()
+
+        for index, url in enumerate(PADDYPOWER_MMA_URLS, start=1):
             try:
                 print(f"\nOpening: {url}")
                 page.goto(url, timeout=60000, wait_until="domcontentloaded")
-                time.sleep(5)
+                time.sleep(8)
 
                 close_cookie_popup(page)
+                time.sleep(3)
+
                 scroll_page(page)
+                save_debug(page, f"paddypower_page_{index}")
 
                 raw_links = collect_links(page)
                 print(f"Raw fight links found on page: {len(raw_links)}")
@@ -259,6 +282,7 @@ def main():
 
             except Exception as e:
                 print(f"Error fetching {url}: {e}")
+                save_debug(page, f"paddypower_error_{index}")
 
         fights = dedupe_fights(all_raw_links)
 
