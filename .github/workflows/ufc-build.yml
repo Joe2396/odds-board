@@ -43,15 +43,31 @@ jobs:
       # -----------------------------
       # 1) PADDYPOWER UFC PROPS
       # -----------------------------
+      # PaddyPower scraping works locally, but GitHub returns 0 fights.
+      # So GitHub must NOT run the PaddyPower scrapers.
+      # It uses the committed files from your local scraper:
+      # - ufc/data/paddypower_fight_urls.json
+      # - ufc/data/props.json
+      # - ufc/data/props_filtered.json
 
-      - name: Fetch PaddyPower fight URLs
-        run: python scripts/fetch_paddypower_fight_urls.py
+      - name: Use committed PaddyPower data
+        run: |
+          echo "Using committed local PaddyPower data"
+          python - <<'PY'
+          import json, os
 
-      - name: Fetch PaddyPower props
-        run: python scripts/fetch_ufc_props_paddypower.py
+          for path in [
+              "ufc/data/paddypower_fight_urls.json",
+              "ufc/data/props.json",
+              "ufc/data/props_filtered.json",
+          ]:
+              if not os.path.exists(path):
+                  print(f"{path}: MISSING")
+                  continue
 
-      - name: Filter PaddyPower props
-        run: python scripts/filter_props.py
+              data = json.load(open(path, encoding="utf-8"))
+              print(f"{path}: fights={len(data.get('fights') or [])}")
+          PY
 
       # -----------------------------
       # 2) EVENT + FIGHT CARD DATA
