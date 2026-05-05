@@ -22,15 +22,9 @@ def is_odds(x):
     return x == "EVS" or bool(re.match(r"^\d+/\d+$", x))
 
 
-def load_existing_output():
-    if OUT_PATH.exists():
-        try:
-            return json.load(open(OUT_PATH, encoding="utf-8"))
-        except Exception:
-            pass
-
+def empty_output():
     return {
-        "updated_at": None,
+        "updated_at": datetime.now(timezone.utc).isoformat(),
         "source": "paddypower",
         "bookmaker": "PaddyPower",
         "markets_scraped": [
@@ -40,6 +34,16 @@ def load_existing_output():
         ],
         "fights": []
     }
+
+
+def load_existing_output():
+    if OUT_PATH.exists():
+        try:
+            return json.load(open(OUT_PATH, encoding="utf-8"))
+        except Exception:
+            pass
+
+    return empty_output()
 
 
 def save_output(output):
@@ -242,19 +246,50 @@ def upsert_fight(output, fight_data):
 
 
 def main():
+    if not URLS_PATH.exists():
+        print(f"Missing fight URL file: {URLS_PATH}")
+        output = empty_output()
+        save_output(output)
+        print("No fight URL file found. Exiting cleanly.")
+        return
+
     with open(URLS_PATH, "r", encoding="utf-8") as f:
         url_data = json.load(f)
 
     fights = url_data.get("fights", [])
 
     if not fights:
-        raise SystemExit("No fights found in paddypower_fight_urls.json")
+        print("No fights found in paddypower_fight_urls.json")
+        output = empty_output()
+        save_output(output)
+        print("Saved empty props.json. Exiting cleanly.")
+        return
 
     output = load_existing_output()
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=is_github_actions())
-        page = browser.new_page(viewport={"width": 1400, "height": 900})
+        browser = p.chromium.launch(
+            headless=is_github_actions(),
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-blink-features=AutomationControlled",
+            ],
+        )
+
+        context = browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/147.0.0.0 Safari/537.36"
+            ),
+            viewport={"width": 1400, "height": 900},
+            locale="en-IE",
+            timezone_id="Europe/Dublin",
+        )
+
+        page = context.new_page()
 
         for index, fight in enumerate(fights, start=1):
             print(f"\nProgress: {index}/{len(fights)}")
