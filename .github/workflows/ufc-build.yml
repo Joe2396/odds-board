@@ -41,7 +41,20 @@ jobs:
           playwright install chromium
 
       # -----------------------------
-      # 1) EVENT + FIGHT CARD DATA
+      # 1) PADDYPOWER UFC PROPS
+      # -----------------------------
+
+      - name: Fetch PaddyPower fight URLs
+        run: python scripts/fetch_paddypower_fight_urls.py
+
+      - name: Fetch PaddyPower props
+        run: python scripts/fetch_ufc_props_paddypower.py
+
+      - name: Filter PaddyPower props
+        run: python scripts/filter_props.py
+
+      # -----------------------------
+      # 2) EVENT + FIGHT CARD DATA
       # -----------------------------
 
       - name: Fetch recent past UFC events
@@ -54,7 +67,7 @@ jobs:
         run: python scripts/fetch_ufcstats_fighter_stats.py
 
       # -----------------------------
-      # 2) ODDS + ARBITRAGE DATA
+      # 3) ODDS + ARBITRAGE DATA
       # -----------------------------
 
       - name: Fetch UFC odds UK bookies
@@ -65,16 +78,6 @@ jobs:
 
       - name: Build unified arbitrage
         run: python scripts/build_arbitrage_all.py
-
-      # -----------------------------
-      # 3) PADDYPOWER UFC PROPS
-      # IMPORTANT:
-      # PaddyPower scraping works locally but returns 0 fights on GitHub.
-      # So we scrape PaddyPower locally, commit the JSON files, and GitHub uses them.
-      # -----------------------------
-
-      - name: Filter PaddyPower props
-        run: python scripts/filter_props.py
 
       # -----------------------------
       # 4) GENERATE UFC SITE PAGES
@@ -106,6 +109,7 @@ jobs:
               "ufc/data/fighters.json",
               "ufc/data/odds.json",
               "ufc/data/arbitrage.json",
+              "ufc/data/arbitrage_all.json",
               "ufc/data/props.json",
               "ufc/data/props_filtered.json",
               "ufc/data/paddypower_fight_urls.json",
@@ -126,6 +130,8 @@ jobs:
                           print(f"  fighters={len(data.get('fighters') or [])}")
                       if "fights" in data:
                           print(f"  fights={len(data.get('fights') or [])}")
+                      if "opportunities" in data:
+                          print(f"  opportunities={len(data.get('opportunities') or [])}")
                   else:
                       print(f"{path}: {type(data).__name__} length={len(data)}")
               except Exception as e:
