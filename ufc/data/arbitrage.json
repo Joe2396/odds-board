@@ -4,6 +4,66 @@
   "arbitrage_count": 0,
   "fights": [
     {
+      "event_id": "9c2b6eafa8037af51c19ea2a7ea43adc",
+      "commence_time": "2026-05-09T21:00:00Z",
+      "fight": "Baysangur Susurkaev vs Djorden Santos",
+      "fighters": {
+        "Baysangur Susurkaev": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.17,
+          "implied_probability": 85.47
+        },
+        "Djorden Santos": {
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 6.25,
+          "implied_probability": 16.0
+        }
+      },
+      "arb_sum": 1.014701,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.47
+    },
+    {
+      "event_id": "b444cdec29968852b6b5d79ff4c629b1",
+      "commence_time": "2026-05-09T21:00:00Z",
+      "fight": "Clayton Carpenter vs Jose Ochoa",
+      "fighters": {
+        "Clayton Carpenter": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 2.52,
+          "implied_probability": 39.68
+        },
+        "Jose Ochoa": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.6,
+          "implied_probability": 62.5
+        }
+      },
+      "arb_sum": 1.021825,
+      "is_arbitrage": false,
+      "profit_margin_percent": -2.18
+    },
+    {
+      "event_id": "40441f037157edfee962060c208291db",
+      "commence_time": "2026-05-09T21:00:00Z",
+      "fight": "Pat Sabatini vs William Gomis",
+      "fighters": {
+        "Pat Sabatini": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.51,
+          "implied_probability": 66.23
+        },
+        "William Gomis": {
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 2.8,
+          "implied_probability": 35.71
+        }
+      },
+      "arb_sum": 1.019395,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.94
+    },
+    {
       "event_id": "aaffbaf0057c43a6a2fb2577da294f42",
       "commence_time": "2026-05-09T22:45:00Z",
       "fight": "Marco Tulio Silva vs Roman Kopylov",
@@ -29,79 +89,19 @@
       "fight": "Ateba Gautier vs Ozzy Diaz",
       "fighters": {
         "Ateba Gautier": {
-          "best_bookmaker": "LeoVegas",
+          "best_bookmaker": "Betfair",
           "best_price": 1.1,
           "implied_probability": 90.91
         },
         "Ozzy Diaz": {
           "best_bookmaker": "LeoVegas",
-          "best_price": 8.0,
-          "implied_probability": 12.5
+          "best_price": 9.5,
+          "implied_probability": 10.53
         }
       },
-      "arb_sum": 1.034091,
+      "arb_sum": 1.014354,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.41
-    },
-    {
-      "event_id": "9c2b6eafa8037af51c19ea2a7ea43adc",
-      "commence_time": "2026-05-09T23:00:00Z",
-      "fight": "Baysangur Susurkaev vs Djorden Santos",
-      "fighters": {
-        "Baysangur Susurkaev": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.17,
-          "implied_probability": 85.47
-        },
-        "Djorden Santos": {
-          "best_bookmaker": "Betfair",
-          "best_price": 6.0,
-          "implied_probability": 16.67
-        }
-      },
-      "arb_sum": 1.021368,
-      "is_arbitrage": false,
-      "profit_margin_percent": -2.14
-    },
-    {
-      "event_id": "b444cdec29968852b6b5d79ff4c629b1",
-      "commence_time": "2026-05-09T23:00:00Z",
-      "fight": "Clayton Carpenter vs Jose Ochoa",
-      "fighters": {
-        "Clayton Carpenter": {
-          "best_bookmaker": "888sport",
-          "best_price": 2.5,
-          "implied_probability": 40.0
-        },
-        "Jose Ochoa": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.6,
-          "implied_probability": 62.5
-        }
-      },
-      "arb_sum": 1.025,
-      "is_arbitrage": false,
-      "profit_margin_percent": -2.5
-    },
-    {
-      "event_id": "40441f037157edfee962060c208291db",
-      "commence_time": "2026-05-09T23:00:00Z",
-      "fight": "Pat Sabatini vs William Gomis",
-      "fighters": {
-        "Pat Sabatini": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.51,
-          "implied_probability": 66.23
-        },
-        "William Gomis": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.8,
-          "implied_probability": 35.71
-        }
-      },
-      "arb_sum": 1.019395,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.94
+      "profit_margin_percent": -1.44
     },
     {
       "event_id": "dd012ae91033b75cbf3eb387e13b575a",
@@ -110,8 +110,8 @@
       "fighters": {
         "Jared Gordon": {
           "best_bookmaker": "Paddy Power",
-          "best_price": 1.33,
-          "implied_probability": 75.19
+          "best_price": 1.3,
+          "implied_probability": 76.92
         },
         "Jim Miller": {
           "best_bookmaker": "Betfair",
@@ -119,9 +119,9 @@
           "implied_probability": 27.03
         }
       },
-      "arb_sum": 1.02215,
+      "arb_sum": 1.039501,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.21
+      "profit_margin_percent": -3.95
     },
     {
       "event_id": "ceef4e8aecdbe54bcef9583189370793",
@@ -129,9 +129,9 @@
       "fight": "Grant Dawson vs Mateusz Rebecki",
       "fighters": {
         "Grant Dawson": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.57,
-          "implied_probability": 63.69
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.56,
+          "implied_probability": 64.1
         },
         "Mateusz Rebecki": {
           "best_bookmaker": "Betfair",
@@ -139,9 +139,9 @@
           "implied_probability": 38.46
         }
       },
-      "arb_sum": 1.021558,
+      "arb_sum": 1.025641,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.16
+      "profit_margin_percent": -2.56
     },
     {
       "event_id": "7c8d3c42bb7948ac655b45fb75d00ea9",
@@ -150,18 +150,18 @@
       "fighters": {
         "Joel Alvarez": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.64,
-          "implied_probability": 37.88
+          "best_price": 2.62,
+          "implied_probability": 38.17
         },
         "Yaroslav Amosov": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.57,
-          "implied_probability": 63.69
+          "best_bookmaker": "Betfair",
+          "best_price": 1.56,
+          "implied_probability": 64.1
         }
       },
-      "arb_sum": 1.015731,
+      "arb_sum": 1.022705,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.57
+      "profit_margin_percent": -2.27
     },
     {
       "event_id": "bca7261228cf53e0ef8c55e76cdf2138",
@@ -170,8 +170,8 @@
       "fighters": {
         "Jeremy Stephens": {
           "best_bookmaker": "Betfair",
-          "best_price": 3.7,
-          "implied_probability": 27.03
+          "best_price": 3.8,
+          "implied_probability": 26.32
         },
         "King Green": {
           "best_bookmaker": "Betfair",
@@ -179,9 +179,9 @@
           "implied_probability": 75.19
         }
       },
-      "arb_sum": 1.02215,
+      "arb_sum": 1.015038,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.21
+      "profit_margin_percent": -1.5
     },
     {
       "event_id": "a2b05838698a5f914b569f502d372985",
