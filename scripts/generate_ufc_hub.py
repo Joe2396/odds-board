@@ -7,7 +7,10 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 DATA_PATH = os.path.join(ROOT, "ufc", "data", "events.json")
 ODDS_PATH = os.path.join(ROOT, "ufc", "data", "odds.json")
-PROPS_PATH = os.path.join(ROOT, "ufc", "data", "props_filtered.json")
+
+PADDYPOWER_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "props_filtered.json")
+BOYLESPORTS_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "boylesports_props_filtered.json")
+
 OUT_PATH = os.path.join(ROOT, "ufc", "index.html")
 
 BASE = "/odds-board"
@@ -27,11 +30,37 @@ def load_odds():
         return json.load(f)
 
 
+def load_json_file(path, fallback):
+    if not os.path.exists(path):
+        return fallback
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return fallback
+
+
 def load_props():
-    if not os.path.exists(PROPS_PATH):
-        return {"fights": []}
-    with open(PROPS_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
+    paddypower = load_json_file(PADDYPOWER_PROPS_PATH, {"fights": []})
+    boylesports = load_json_file(BOYLESPORTS_PROPS_PATH, {"fights": []})
+
+    combined = []
+
+    for fight in paddypower.get("fights", []) or []:
+        item = dict(fight)
+        item["bookmaker"] = item.get("bookmaker") or "PaddyPower"
+        combined.append(item)
+
+    for fight in boylesports.get("fights", []) or []:
+        item = dict(fight)
+        item["bookmaker"] = item.get("bookmaker") or "BoyleSports"
+        combined.append(item)
+
+    return {
+        "fights": combined,
+        "paddypower_count": len(paddypower.get("fights", []) or []),
+        "boylesports_count": len(boylesports.get("fights", []) or []),
+    }
 
 
 def esc(s):
@@ -255,7 +284,7 @@ def render_props_section(props_payload):
         <section class="props-section">
           <div class="section-head">
             <div>
-              <h2>PaddyPower Props</h2>
+              <h2>Bookmaker Props</h2>
               <p class="muted">No props currently available.</p>
             </div>
           </div>
@@ -265,6 +294,7 @@ def render_props_section(props_payload):
     market_labels = {
         "method_of_victory": "Method of Victory",
         "total_rounds": "Total Rounds",
+        "rounds": "Rounds",
         "go_the_distance": "Go The Distance?",
     }
 
@@ -272,6 +302,7 @@ def render_props_section(props_payload):
 
     for fight in fights:
         fight_name = esc(str(fight.get("fight") or "").replace("\n", " vs "))
+        bookmaker = esc(fight.get("bookmaker") or "Unknown Book")
         markets = fight.get("markets", {}) or {}
 
         market_html = ""
@@ -305,7 +336,7 @@ def render_props_section(props_payload):
         <article class="props-card">
           <div class="props-card-head">
             <div>
-              <div class="event-kicker">PaddyPower props</div>
+              <div class="event-kicker">{bookmaker} props</div>
               <h3>{fight_name}</h3>
             </div>
             <a href="{esc(fight.get("url"))}" target="_blank" rel="noopener">Open book →</a>
@@ -323,8 +354,8 @@ def render_props_section(props_payload):
     <section class="props-section">
       <div class="section-head">
         <div>
-          <h2>PaddyPower Props</h2>
-          <p class="muted">Current method, rounds and distance markets from fights where props are available.</p>
+          <h2>Bookmaker Props</h2>
+          <p class="muted">Current method, rounds and distance markets from PaddyPower and BoyleSports.</p>
         </div>
       </div>
 
@@ -973,6 +1004,8 @@ def main():
     print(f"Wrote UFC hub: {OUT_PATH}")
     print(f"Upcoming events shown: {len(upcoming_events)}")
     print(f"Props fights shown: {len(props_payload.get('fights', []) or [])}")
+    print(f"PaddyPower props fights: {props_payload.get('paddypower_count', 0)}")
+    print(f"BoyleSports props fights: {props_payload.get('boylesports_count', 0)}")
 
 
 if __name__ == "__main__":

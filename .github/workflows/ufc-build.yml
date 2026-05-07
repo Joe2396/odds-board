@@ -40,27 +40,22 @@ jobs:
           pip install requests beautifulsoup4 playwright
           playwright install chromium
 
-      # -----------------------------
-      # 1) PADDYPOWER UFC PROPS
-      # -----------------------------
-      # PaddyPower scraping works locally, but GitHub returns 0 fights.
-      # So GitHub must NOT run the PaddyPower scrapers.
-      # It uses the committed files from your local scraper:
-      # - ufc/data/paddypower_fight_urls.json
-      # - ufc/data/props.json
-      # - ufc/data/props_filtered.json
-
-      - name: Use committed PaddyPower data
+      - name: Use committed bookmaker props data
         run: |
-          echo "Using committed local PaddyPower data"
+          echo "Using committed local bookmaker data"
           python - <<'PY'
           import json, os
 
-          for path in [
+          files = [
               "ufc/data/paddypower_fight_urls.json",
               "ufc/data/props.json",
               "ufc/data/props_filtered.json",
-          ]:
+              "ufc/data/boylesports_fight_urls.json",
+              "ufc/data/boylesports_props.json",
+              "ufc/data/boylesports_props_filtered.json",
+          ]
+
+          for path in files:
               if not os.path.exists(path):
                   print(f"{path}: MISSING")
                   continue
@@ -68,10 +63,6 @@ jobs:
               data = json.load(open(path, encoding="utf-8"))
               print(f"{path}: fights={len(data.get('fights') or [])}")
           PY
-
-      # -----------------------------
-      # 2) EVENT + FIGHT CARD DATA
-      # -----------------------------
 
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
@@ -82,10 +73,6 @@ jobs:
       - name: Fetch UFCStats fighter stats
         run: python scripts/fetch_ufcstats_fighter_stats.py
 
-      # -----------------------------
-      # 3) ODDS + ARBITRAGE DATA
-      # -----------------------------
-
       - name: Fetch UFC odds UK bookies
         run: python scripts/fetch_ufc_odds.py
 
@@ -94,10 +81,6 @@ jobs:
 
       - name: Build unified arbitrage
         run: python scripts/build_arbitrage_all.py
-
-      # -----------------------------
-      # 4) GENERATE UFC SITE PAGES
-      # -----------------------------
 
       - name: Generate UFC hub
         run: python scripts/generate_ufc_hub.py
@@ -110,10 +93,6 @@ jobs:
 
       - name: Generate UFC fighters
         run: python scripts/generate_ufc_fighters.py
-
-      # -----------------------------
-      # 5) DEBUG COUNTS
-      # -----------------------------
 
       - name: Debug UFC data counts
         run: |
@@ -129,6 +108,9 @@ jobs:
               "ufc/data/props.json",
               "ufc/data/props_filtered.json",
               "ufc/data/paddypower_fight_urls.json",
+              "ufc/data/boylesports_fight_urls.json",
+              "ufc/data/boylesports_props.json",
+              "ufc/data/boylesports_props_filtered.json",
           ]
 
           for path in files:
@@ -153,10 +135,6 @@ jobs:
               except Exception as e:
                   print(f"{path}: ERROR {e}")
           PY
-
-      # -----------------------------
-      # 6) COMMIT GENERATED OUTPUT
-      # -----------------------------
 
       - name: Commit generated output
         run: |
