@@ -10,6 +10,7 @@ ODDS_PATH = os.path.join(ROOT, "ufc", "data", "odds.json")
 
 PADDYPOWER_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "props_filtered.json")
 BOYLESPORTS_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "boylesports_props_filtered.json")
+BETVICTOR_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "betvictor_props_filtered.json")
 
 OUT_PATH = os.path.join(ROOT, "ufc", "index.html")
 
@@ -43,6 +44,7 @@ def load_json_file(path, fallback):
 def load_props():
     paddypower = load_json_file(PADDYPOWER_PROPS_PATH, {"fights": []})
     boylesports = load_json_file(BOYLESPORTS_PROPS_PATH, {"fights": []})
+    betvictor = load_json_file(BETVICTOR_PROPS_PATH, {"fights": []})
 
     combined = []
 
@@ -56,10 +58,16 @@ def load_props():
         item["bookmaker"] = item.get("bookmaker") or "BoyleSports"
         combined.append(item)
 
+    for fight in betvictor.get("fights", []) or []:
+        item = dict(fight)
+        item["bookmaker"] = item.get("bookmaker") or "BetVictor"
+        combined.append(item)
+
     return {
         "fights": combined,
         "paddypower_count": len(paddypower.get("fights", []) or []),
         "boylesports_count": len(boylesports.get("fights", []) or []),
+        "betvictor_count": len(betvictor.get("fights", []) or []),
     }
 
 
@@ -205,13 +213,11 @@ def best_price_for_fighter(fighter_name, odds_event):
             for outcome in market.get("outcomes", []) or []:
                 if norm_name(outcome.get("name")) == target:
                     try:
-                        prices.append(
-                            {
-                                "bookmaker": bookmaker,
-                                "price": float(outcome.get("price")),
-                                "last_update": book.get("last_update"),
-                            }
-                        )
+                        prices.append({
+                            "bookmaker": bookmaker,
+                            "price": float(outcome.get("price")),
+                            "last_update": book.get("last_update"),
+                        })
                     except Exception:
                         pass
 
@@ -276,6 +282,34 @@ def render_betting_edge(red, blue, odds_events):
     """
 
 
+def render_string_prop_rows(items):
+    rows = ""
+
+    for item in items or []:
+        rows += f"""
+        <div class="prop-row">
+          <span>{esc(item)}</span>
+          <strong>BV</strong>
+        </div>
+        """
+
+    return rows
+
+
+def render_structured_prop_rows(items):
+    rows = ""
+
+    for s in items or []:
+        rows += f"""
+        <div class="prop-row">
+          <span>{esc(s.get("selection"))}</span>
+          <strong>{esc(s.get("odds"))}</strong>
+        </div>
+        """
+
+    return rows
+
+
 def render_props_section(props_payload):
     fights = props_payload.get("fights", []) or []
 
@@ -301,31 +335,58 @@ def render_props_section(props_payload):
     cards = ""
 
     for fight in fights:
-        fight_name = esc(str(fight.get("fight") or "").replace("\n", " vs "))
         bookmaker = esc(fight.get("bookmaker") or "Unknown Book")
-        markets = fight.get("markets", {}) or {}
+
+        fight_name = (
+            fight.get("fight")
+            or fight.get("fight_name")
+            or fight.get("name")
+            or "Unknown fight"
+        )
+
+        fight_name = esc(str(fight_name).replace("\n", " vs "))
 
         market_html = ""
+
+        markets = fight.get("markets", {}) or {}
 
         for key, label in market_labels.items():
             selections = markets.get(key, []) or []
             if not selections:
                 continue
 
-            selection_rows = ""
-
-            for s in selections:
-                selection_rows += f"""
-                <div class="prop-row">
-                  <span>{esc(s.get("selection"))}</span>
-                  <strong>{esc(s.get("odds"))}</strong>
-                </div>
-                """
-
             market_html += f"""
             <div class="prop-market">
               <h4>{esc(label)}</h4>
-              {selection_rows}
+              {render_structured_prop_rows(selections)}
+            </div>
+            """
+
+        method_props = fight.get("method_props", []) or []
+        round_props = fight.get("round_props", []) or []
+        distance_props = fight.get("distance_props", []) or []
+
+        if method_props:
+            market_html += f"""
+            <div class="prop-market">
+              <h4>Method of Victory</h4>
+              {render_string_prop_rows(method_props)}
+            </div>
+            """
+
+        if round_props:
+            market_html += f"""
+            <div class="prop-market">
+              <h4>Rounds</h4>
+              {render_string_prop_rows(round_props)}
+            </div>
+            """
+
+        if distance_props:
+            market_html += f"""
+            <div class="prop-market">
+              <h4>Go The Distance?</h4>
+              {render_string_prop_rows(distance_props)}
             </div>
             """
 
@@ -355,7 +416,9 @@ def render_props_section(props_payload):
       <div class="section-head">
         <div>
           <h2>Bookmaker Props</h2>
-          <p class="muted">Current method, rounds and distance markets from PaddyPower and BoyleSports.</p>
+          <p class="muted">
+            Current method, rounds and distance markets from PaddyPower, BoyleSports and BetVictor.
+          </p>
         </div>
       </div>
 
@@ -960,12 +1023,12 @@ def main():
             <span>Upcoming events</span>
           </div>
           <div class="stat">
-            <strong>10</strong>
-            <span>Recent fights tracked</span>
+            <strong>{len(props_payload.get("fights", []) or [])}</strong>
+            <span>Total prop fights</span>
           </div>
           <div class="stat">
-            <strong>ML</strong>
-            <span>Moneyline odds ready</span>
+            <strong>3</strong>
+            <span>Prop books live</span>
           </div>
         </div>
       </div>
@@ -1006,6 +1069,7 @@ def main():
     print(f"Props fights shown: {len(props_payload.get('fights', []) or [])}")
     print(f"PaddyPower props fights: {props_payload.get('paddypower_count', 0)}")
     print(f"BoyleSports props fights: {props_payload.get('boylesports_count', 0)}")
+    print(f"BetVictor props fights: {props_payload.get('betvictor_count', 0)}")
 
 
 if __name__ == "__main__":
