@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 from datetime import datetime, timezone
 
-print("RUNNING BOYLESPORTS TAB-BASED PROPS SCRIPT")
+print("RUNNING BOYLESPORTS ALL-FIGHTS PROPS SCRIPT")
 
 ROOT = Path(__file__).resolve().parents[1]
 URLS_PATH = ROOT / "ufc" / "data" / "boylesports_fight_urls.json"
@@ -39,16 +39,6 @@ def empty_output():
         ],
         "fights": [],
     }
-
-
-def load_existing_output():
-    if OUT_PATH.exists():
-        try:
-            return json.load(open(OUT_PATH, encoding="utf-8"))
-        except Exception:
-            pass
-
-    return empty_output()
 
 
 def save_output(output):
@@ -134,8 +124,6 @@ def click_tab(page, tab_name):
             print(f"Clicked tab: {tab_name}")
             time.sleep(3)
 
-            # BoyleSports has UFC stats above the actual odds.
-            # Scroll down after tab click so the odds market content loads/enters view.
             page.mouse.wheel(0, 1200)
             time.sleep(2)
 
@@ -155,13 +143,11 @@ def get_body_text(page):
 
 
 def strip_before_useful_market(text):
-    """
-    BoyleSports pages include UFC stats and promo text above the odds.
-    This tries to cut the body text down to the part that actually has market selections.
-    """
     markers = [
+        "Winning Method",
         "Method Of Victory",
         "Method of Victory",
+        "Round Betting",
         "Rounds",
         "Go The Distance",
         "To Go Distance",
@@ -169,8 +155,8 @@ def strip_before_useful_market(text):
     ]
 
     lower_text = text.lower()
-
     starts = []
+
     for marker in markers:
         idx = lower_text.find(marker.lower())
         if idx != -1:
@@ -190,6 +176,7 @@ def clean_lines(snippet):
         "All Markets",
         "Method of Victory",
         "Method Of Victory",
+        "Winning Method",
         "Rounds",
         "Total Rounds",
         "Go The Distance?",
@@ -198,6 +185,12 @@ def clean_lines(snippet):
         "To Go Distance",
         "Go The Distance",
         "Round Betting",
+        "Round Betting Groups",
+        "Grouped Round Betting I",
+        "Grouped Round Betting Ii",
+        "Method & Round Combo",
+        "Round Groups",
+        "Fight To Go The Distance",
         "Show More",
         "Show Less",
         "Bet Builder",
@@ -237,6 +230,11 @@ def clean_lines(snippet):
         "fights ufc",
         "please add one or more selections",
         "ufc stats",
+        "promotions",
+        "casino",
+        "live casino",
+        "sports a-z",
+        "safer gambling",
     ]
 
     cleaned = []
@@ -255,14 +253,19 @@ def clean_lines(snippet):
         if any(j in low for j in junk_contains):
             continue
 
-        # remove bare stats percentages/ranks/numbers from UFC stats area
         if re.match(r"^\d+%$", line):
             continue
 
         if re.match(r"^\d+\s*-\s*\d+\s*-\s*\d+$", line):
             continue
 
-        if line.lower() in ["w-l-d", "previous fights", "middleweight", "rank 3", "usa", "rus"]:
+        if re.match(r"^\d{1,2}:\d{2}$", line):
+            continue
+
+        if re.match(r"^\d+\s*mins?$", low):
+            continue
+
+        if low in ["w-l-d", "previous fights", "middleweight", "rank 3", "usa", "rus"]:
             continue
 
         cleaned.append(line)
@@ -300,6 +303,8 @@ def parse_method_of_victory(text):
             or "ko/tko" in selection
             or "submission" in selection
             or "decision" in selection
+            or "technical decision" in selection
+            or "disqualification" in selection
             or "points" in selection
         ):
             results.append(item)
@@ -312,7 +317,7 @@ def parse_go_distance(text):
     results = []
 
     for item in pairs:
-        selection = item["selection"].lower()
+        selection = item["selection"].strip().lower()
 
         if selection in ["yes", "no"]:
             results.append(item)
@@ -338,7 +343,7 @@ def scrape_tab_market(page, tab_name, fight_name, index, market_key):
     else:
         parsed = parse_pairs_from_text(text)
 
-    return text[:2500], parsed
+    return text[:3000], parsed
 
 
 def scrape_fight(page, fight, index):
@@ -364,9 +369,8 @@ def scrape_fight(page, fight, index):
         "method_of_victory",
     )
 
-    # Go back near top before clicking next tab
     try:
-        page.mouse.wheel(0, -2000)
+        page.mouse.wheel(0, -2500)
         time.sleep(1)
     except Exception:
         pass
@@ -382,12 +386,9 @@ def scrape_fight(page, fight, index):
     go_distance = []
     go_distance_raw = ""
 
-    # BoyleSports often puts distance markets inside Rounds.
-    if rounds:
-        possible_distance = parse_go_distance(rounds_raw)
-        if possible_distance:
-            go_distance = possible_distance
-            go_distance_raw = rounds_raw
+    if rounds_raw:
+        go_distance = parse_go_distance(rounds_raw)
+        go_distance_raw = rounds_raw if go_distance else ""
 
     has_props = bool(method or rounds or go_distance)
 
@@ -450,22 +451,16 @@ def main():
 
     fights = url_data.get("fights", [])
 
-    # TEMP: only known BoyleSports prop fights while we debug.
-    fights = [
-        f for f in fights
-        if "Chimaev" in f.get("fight", "")
-        or "Strickland" in f.get("fight", "")
-        or "Joshua Van" in f.get("fight", "")
-        or "Tatsuro Taira" in f.get("fight", "")
-    ]
-
-    print(f"Testing fights: {len(fights)}")
+    print(f"Scraping fights: {len(fights)}")
 
     if not fights:
-        print("No matching test fights found.")
+        print("No fights found in boylesports_fight_urls.json")
+        output = empty_output()
+        save_output(output)
+        print("Saved empty boylesports_props.json. Exiting cleanly.")
         return
 
-    output = load_existing_output()
+    output = empty_output()
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
