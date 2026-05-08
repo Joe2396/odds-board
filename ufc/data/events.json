@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-08T19:24:50Z",
+  "generated_at": "2026-05-08T19:30:52Z",
   "events": [
     {
       "id": "2026-04-18-ufc-fight-night-burns-vs-malott",
@@ -1358,25 +1358,6 @@
         },
         {
           "id": "600058517-6",
-          "bout": "Zhu Kangjie vs Ramon Taveras",
-          "red": {
-            "name": "Zhu Kangjie",
-            "espn_id": ""
-          },
-          "blue": {
-            "name": "Ramon Taveras",
-            "espn_id": ""
-          },
-          "weight_class": "Featherweight",
-          "order": 6,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600058517"
-          }
-        },
-        {
-          "id": "600058517-7",
           "bout": "Muslim Salikhov vs Jake Matthews",
           "red": {
             "name": "Muslim Salikhov",
@@ -1387,7 +1368,7 @@
             "espn_id": ""
           },
           "weight_class": "Welterweight",
-          "order": 7,
+          "order": 6,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1395,7 +1376,7 @@
           }
         },
         {
-          "id": "600058517-8",
+          "id": "600058517-7",
           "bout": "Yi Sak Lee vs Luis Felipe Dias",
           "red": {
             "name": "Yi Sak Lee",
@@ -1406,7 +1387,7 @@
             "espn_id": ""
           },
           "weight_class": "Middleweight",
-          "order": 8,
+          "order": 7,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1414,7 +1395,7 @@
           }
         },
         {
-          "id": "600058517-9",
+          "id": "600058517-8",
           "bout": "Aoriqileng vs Cody Haddon",
           "red": {
             "name": "Aoriqileng",
@@ -1425,7 +1406,7 @@
             "espn_id": ""
           },
           "weight_class": "Bantamweight",
-          "order": 9,
+          "order": 8,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1433,7 +1414,7 @@
           }
         },
         {
-          "id": "600058517-10",
+          "id": "600058517-9",
           "bout": "Rei Tsuruya vs Jesus Aguilar",
           "red": {
             "name": "Rei Tsuruya",
@@ -1444,6 +1425,25 @@
             "espn_id": ""
           },
           "weight_class": "Flyweight",
+          "order": 9,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600058517"
+          }
+        },
+        {
+          "id": "600058517-10",
+          "bout": "Angela Hill vs Jingnan Xiong",
+          "red": {
+            "name": "Angela Hill",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Jingnan Xiong",
+            "espn_id": ""
+          },
+          "weight_class": "Women's Strawweight",
           "order": 10,
           "status": "scheduled",
           "source": {
@@ -1453,13 +1453,13 @@
         },
         {
           "id": "600058517-11",
-          "bout": "Angela Hill vs Jingnan Xiong",
+          "bout": "Loma Lookboonmee vs Jaqueline Amorim",
           "red": {
-            "name": "Angela Hill",
+            "name": "Loma Lookboonmee",
             "espn_id": ""
           },
           "blue": {
-            "name": "Jingnan Xiong",
+            "name": "Jaqueline Amorim",
             "espn_id": ""
           },
           "weight_class": "Women's Strawweight",
@@ -1472,17 +1472,36 @@
         },
         {
           "id": "600058517-12",
-          "bout": "Loma Lookboonmee vs Jaqueline Amorim",
+          "bout": "Zhu Kangjie vs Ramon Taveras",
           "red": {
-            "name": "Loma Lookboonmee",
+            "name": "Zhu Kangjie",
             "espn_id": ""
           },
           "blue": {
-            "name": "Jaqueline Amorim",
+            "name": "Ramon Taveras",
             "espn_id": ""
           },
-          "weight_class": "Women's Strawweight",
+          "weight_class": "Featherweight",
           "order": 12,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600058517"
+          }
+        },
+        {
+          "id": "600058517-13",
+          "bout": "Ding Meng vs Jose Henrique",
+          "red": {
+            "name": "Ding Meng",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Jose Henrique",
+            "espn_id": ""
+          },
+          "weight_class": "Welterweight",
+          "order": 13,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1876,5 +1895,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-05-08T19:24:50Z"
+  "_debug_saved_at": "2026-05-08T19:30:52Z"
 }
