@@ -1,26 +1,26 @@
 {
-  "updated_at": "2026-05-08T19:55:45.286676+00:00",
+  "updated_at": "2026-05-08T22:04:50.990869+00:00",
   "total_arbitrage": 1,
   "arbitrage": [
     {
       "sport": "UFC",
-      "event": "Jeremy Stephens vs King Green",
+      "event": "Pat Sabatini vs William Gomis",
       "market": "Moneyline",
-      "commence_time": "2026-05-10T01:15:00Z",
-      "profit_margin_percent": 0.26,
-      "arb_sum": 0.997416,
+      "commence_time": "2026-05-09T21:00:00Z",
+      "profit_margin_percent": 1.29,
+      "arb_sum": 0.987115,
       "bookmakers": [
         {
-          "selection": "Jeremy Stephens",
+          "selection": "Pat Sabatini",
           "bookmaker": "Betfair",
-          "odds": 4.5,
-          "implied_probability": 22.22
+          "odds": 1.64,
+          "implied_probability": 60.98
         },
         {
-          "selection": "King Green",
-          "bookmaker": "William Hill",
-          "odds": 1.29,
-          "implied_probability": 77.52
+          "selection": "William Gomis",
+          "bookmaker": "LiveScore Bet",
+          "odds": 2.65,
+          "implied_probability": 37.74
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
