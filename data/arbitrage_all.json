@@ -1,7 +1,30 @@
 {
-  "updated_at": "2026-05-07T22:08:49.436620+00:00",
-  "total_arbitrage": 1,
+  "updated_at": "2026-05-08T03:31:55.164081+00:00",
+  "total_arbitrage": 2,
   "arbitrage": [
+    {
+      "sport": "UFC",
+      "event": "Joshua Van vs Tatsuro Taira",
+      "market": "Moneyline",
+      "commence_time": "2026-05-10T02:45:00Z",
+      "profit_margin_percent": 1.0,
+      "arb_sum": 0.990007,
+      "bookmakers": [
+        {
+          "selection": "Joshua Van",
+          "bookmaker": "Betfair",
+          "odds": 2.58,
+          "implied_probability": 38.76
+        },
+        {
+          "selection": "Tatsuro Taira",
+          "bookmaker": "LeoVegas",
+          "odds": 1.66,
+          "implied_probability": 60.24
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
     {
       "sport": "UFC",
       "event": "Khamzat Chimaev vs Sean Strickland",
