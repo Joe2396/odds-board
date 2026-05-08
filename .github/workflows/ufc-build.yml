@@ -70,12 +70,6 @@ jobs:
               print(f"{path}: fights={len(data.get('fights') or [])}")
           PY
 
-      - name: Fetch Coral UFC props
-        run: |
-          python scripts/fetch_coral_fight_urls.py
-          python scripts/fetch_coral_props.py
-          python scripts/filter_coral_props.py
-
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
 
