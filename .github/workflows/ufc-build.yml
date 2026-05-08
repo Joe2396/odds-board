@@ -56,6 +56,9 @@ jobs:
               "ufc/data/betvictor_fight_urls.json",
               "ufc/data/betvictor_props.json",
               "ufc/data/betvictor_props_filtered.json",
+              "ufc/data/coral_fight_urls.json",
+              "ufc/data/coral_props.json",
+              "ufc/data/coral_props_filtered.json",
           ]
 
           for path in files:
@@ -67,6 +70,12 @@ jobs:
               print(f"{path}: fights={len(data.get('fights') or [])}")
           PY
 
+      - name: Fetch Coral UFC props
+        run: |
+          python scripts/fetch_coral_fight_urls.py
+          python scripts/fetch_coral_props.py
+          python scripts/filter_coral_props.py
+
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
 
@@ -74,7 +83,7 @@ jobs:
         run: python scripts/fetch_espn_event_fightcards.py
 
       - name: Fetch UFCStats fighter stats
-        run: python scripts/fetch_ufcstats_fighter_stats.py
+        run: python scripts/fetch_ufcstats_fighter_stats.py || echo "UFCStats failed, continuing with existing fighter data"
 
       - name: Fetch UFC odds UK bookies
         run: python scripts/fetch_ufc_odds.py
@@ -117,6 +126,9 @@ jobs:
               "ufc/data/betvictor_fight_urls.json",
               "ufc/data/betvictor_props.json",
               "ufc/data/betvictor_props_filtered.json",
+              "ufc/data/coral_fight_urls.json",
+              "ufc/data/coral_props.json",
+              "ufc/data/coral_props_filtered.json",
           ]
 
           for path in files:
