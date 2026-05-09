@@ -8,8 +8,15 @@ ROOT = Path(__file__).resolve().parents[1]
 EVENTS_JSON = ROOT / "ufc" / "data" / "events.json"
 FIGHTERS_JSON = ROOT / "ufc" / "data" / "fighters.json"
 ODDS_JSON = ROOT / "ufc" / "data" / "odds.json"
-FIGHTS_DIR = ROOT / "ufc" / "fights"
 
+PROP_FILES = [
+    ("PaddyPower", ROOT / "ufc" / "data" / "props_filtered.json"),
+    ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props_filtered.json"),
+    ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props_filtered.json"),
+    ("Coral", ROOT / "ufc" / "data" / "coral_props_filtered.json"),
+]
+
+FIGHTS_DIR = ROOT / "ufc" / "fights"
 BASE_PATH = "/odds-board/ufc"
 
 
@@ -28,10 +35,37 @@ def html_escape(s):
 
 def slugify(name):
     name = str(name or "").strip().lower()
+    name = name.replace(" vs ", " v ")
     name = re.sub(r"[^a-z0-9\s-]", "", name)
     name = re.sub(r"\s+", "-", name)
     name = re.sub(r"-+", "-", name)
     return name.strip("-")
+
+
+def norm_name(name):
+    return (
+        str(name or "")
+        .lower()
+        .replace(" vs ", " v ")
+        .replace(" versus ", " v ")
+        .replace("–", "-")
+        .replace("—", "-")
+        .replace("-", " ")
+        .strip()
+    )
+
+
+def fight_key(name):
+    text = norm_name(name)
+    text = re.sub(r"[^a-z0-9\s]", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+
+    if " v " in text:
+        left, right = text.split(" v ", 1)
+        parts = sorted([left.strip(), right.strip()])
+        return " v ".join(parts)
+
+    return text
 
 
 def load_json(path, default):
@@ -47,6 +81,37 @@ def load_events():
 
 def load_odds():
     return load_json(ODDS_JSON, {"events": []}).get("events", [])
+
+
+def load_all_props():
+    props_by_key = {}
+
+    for default_bookmaker, path in PROP_FILES:
+        data = load_json(path, {"fights": []})
+
+        for fight in data.get("fights", []) or []:
+            bookmaker = fight.get("bookmaker") or default_bookmaker
+            name = (
+                fight.get("fight")
+                or fight.get("fight_name")
+                or fight.get("name")
+                or ""
+            )
+
+            if not name:
+                continue
+
+            key = fight_key(name)
+            if not key:
+                continue
+
+            item = dict(fight)
+            item["bookmaker"] = bookmaker
+            item["fight_name"] = name
+
+            props_by_key.setdefault(key, []).append(item)
+
+    return props_by_key
 
 
 def load_fighter_details():
@@ -94,15 +159,12 @@ def enrich_fighter(fighter, fighters_by_slug):
     if not isinstance(details, dict):
         details = {}
 
-    # IMPORTANT: details FIRST so stats don't get wiped
     merged = {**details, **fighter}
 
-    # Ensure key stat blocks are preserved
     merged["stats"] = details.get("stats") or fighter.get("stats") or {}
     merged["methods"] = details.get("methods") or fighter.get("methods") or {}
     merged["recent_fights"] = details.get("recent_fights") or fighter.get("recent_fights") or []
 
-    # Fill missing bio fields from fighter DB
     for key in ["record", "stance", "height", "reach", "weight", "dob", "ufcstats_url"]:
         if not merged.get(key) or merged.get(key) == "—":
             merged[key] = details.get(key) or fighter.get(key)
@@ -283,6 +345,99 @@ def render_recent_fights(recent_fights):
     """
 
 
+def market_rows_from_structured(items):
+    rows = []
+
+    for item in items or []:
+        if isinstance(item, dict):
+            selection = item.get("selection")
+            odds = item.get("odds")
+            if selection and odds:
+                rows.append((selection, odds))
+        elif isinstance(item, str):
+            rows.append((item, ""))
+
+    return rows
+
+
+def render_market_block(label, items):
+    rows = market_rows_from_structured(items)
+
+    if not rows:
+        return ""
+
+    html = f"<div class='prop-market'><h4>{html_escape(label)}</h4>"
+
+    for selection, odds in rows[:30]:
+        html += f"""
+        <div class="prop-row">
+          <span>{html_escape(selection)}</span>
+          <strong>{html_escape(odds)}</strong>
+        </div>
+        """
+
+    html += "</div>"
+    return html
+
+
+def render_fight_props(prop_items):
+    if not prop_items:
+        return """
+      <section class="fight-props">
+        <h2>Bookmaker Props</h2>
+        <p class="muted">No bookmaker props matched for this fight yet.</p>
+      </section>
+        """
+
+    cards = ""
+
+    for item in prop_items:
+        bookmaker = item.get("bookmaker") or "Bookmaker"
+        url = item.get("url") or "#"
+
+        markets = item.get("markets") or {}
+
+        market_html = ""
+
+        if isinstance(markets, dict):
+            market_html += render_market_block("Fight Betting", markets.get("fight_betting"))
+            market_html += render_market_block("Method of Victory", markets.get("method_of_victory"))
+            market_html += render_market_block("Rounds", markets.get("rounds") or markets.get("total_rounds"))
+            market_html += render_market_block("Go The Distance?", markets.get("go_the_distance"))
+
+        market_html += render_market_block("Method of Victory", item.get("method_props"))
+        market_html += render_market_block("Rounds", item.get("round_props"))
+        market_html += render_market_block("Go The Distance?", item.get("distance_props"))
+
+        if not market_html:
+            continue
+
+        cards += f"""
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">{html_escape(bookmaker)} props</div>
+              <h3>{html_escape(item.get("fight_name"))}</h3>
+            </div>
+            <a class="small-link" href="{html_escape(url)}" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          {market_html}
+        </article>
+        """
+
+    if not cards:
+        cards = "<p class='muted'>No displayable prop markets matched for this fight yet.</p>"
+
+    return f"""
+      <section class="fight-props">
+        <h2>Bookmaker Props</h2>
+        <div class="props-grid">
+          {cards}
+        </div>
+      </section>
+    """
+
+
 def fighter_panel(fighter, odds_event, corner_label):
     name_raw = fighter.get("name")
     name = html_escape(name_raw)
@@ -369,7 +524,7 @@ def fighter_panel(fighter, odds_event, corner_label):
     """
 
 
-def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
+def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, props_by_key):
     event_slug = event.get("slug", "")
     event_name = html_escape(event.get("name", "Event"))
 
@@ -379,6 +534,15 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
     odds_event = find_odds_event(red.get("name"), blue.get("name"), odds_events)
 
     title = f"{red.get('name', 'Fighter A')} vs {blue.get('name', 'Fighter B')}"
+    prop_lookup_title = f"{red.get('name')} v {blue.get('name')}"
+    reverse_prop_lookup_title = f"{blue.get('name')} v {red.get('name')}"
+
+    props = (
+        props_by_key.get(fight_key(prop_lookup_title))
+        or props_by_key.get(fight_key(reverse_prop_lookup_title))
+        or []
+    )
+
     weight = html_escape(fight.get("weight_class"))
     bout = html_escape(fight.get("bout"))
     status = html_escape(fight.get("status"))
@@ -448,7 +612,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
       gap: 8px;
     }}
 
-    .meta-pill {{
+    .meta-pill,
+    .pill {{
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 8px 12px;
@@ -465,7 +630,9 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
       width: 100%;
     }}
 
-    .fighter-card {{
+    .fighter-card,
+    .fight-meta,
+    .fight-props {{
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -473,7 +640,12 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
       min-width: 0;
     }}
 
-    .fighter-header {{
+    .fight-props {{
+      margin-top: 22px;
+    }}
+
+    .fighter-header,
+    .prop-card-head {{
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -500,6 +672,16 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
       line-height: 1.05;
     }}
 
+    .fight-props h2 {{
+      margin-top: 0;
+      font-size: 30px;
+    }}
+
+    .prop-card h3 {{
+      margin: 0;
+      font-size: 22px;
+    }}
+
     .small-link {{
       display: inline-block;
       margin-top: 2px;
@@ -512,15 +694,6 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
       margin-top:18px;
     }}
 
-    .pill {{
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:7px 10px;
-      color:var(--muted);
-      font-size:13px;
-      background: rgba(255,255,255,0.015);
-    }}
-
     .quick-summary {{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -529,7 +702,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
     }}
 
     .quick-summary div,
-    .section-block {{
+    .section-block,
+    .prop-card {{
       border:1px solid var(--line);
       border-radius:14px;
       padding:14px;
@@ -551,7 +725,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
       margin-top:14px;
     }}
 
-    .section-block h3 {{
+    .section-block h3,
+    .prop-market h4 {{
       margin: 0 0 10px;
       color: var(--muted);
       font-size: 15px;
@@ -598,11 +773,35 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
     }}
 
     .fight-meta {{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      background:rgba(255,255,255,0.02);
       margin-top:22px;
+    }}
+
+    .props-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 14px;
+    }}
+
+    .prop-market {{
+      border-top: 1px solid var(--line);
+      margin-top: 14px;
+      padding-top: 14px;
+    }}
+
+    .prop-row {{
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 8px;
+      background: rgba(15,22,33,0.75);
+    }}
+
+    .prop-row strong {{
+      color: #22c55e;
+      white-space: nowrap;
     }}
 
     @media (max-width: 1100px) {{
@@ -627,6 +826,10 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
       .quick-summary {{
         grid-template-columns:1fr;
       }}
+
+      .prop-row {{
+        flex-direction: column;
+      }}
     }}
   </style>
 </head>
@@ -648,6 +851,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
             <span class="meta-pill">{bout}</span>
             <span class="meta-pill">Status: {status}</span>
             <span class="meta-pill">Odds Match: {'Yes' if odds_event else 'No'}</span>
+            <span class="meta-pill">Prop Books: {len(props)}</span>
           </div>
         </div>
       </div>
@@ -657,6 +861,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
         {fighter_panel(blue, odds_event, "Right Side")}
       </div>
 
+      {render_fight_props(props)}
+
       <div class="fight-meta">
         <h2>Fight Meta</h2>
         <table>
@@ -664,6 +870,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events):
           <tr><td>Weight Class</td><td>{weight}</td></tr>
           <tr><td>Status</td><td>{status}</td></tr>
           <tr><td>Odds Match</td><td>{'Yes' if odds_event else 'No'}</td></tr>
+          <tr><td>Prop Books Matched</td><td>{len(props)}</td></tr>
         </table>
       </div>
 
@@ -680,6 +887,7 @@ def main():
     events = load_events()
     fighters_by_slug = load_fighter_details()
     odds_events = load_odds()
+    props_by_key = load_all_props()
 
     FIGHTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -704,7 +912,14 @@ def main():
             out_dir = FIGHTS_DIR / fight_id
             out_dir.mkdir(parents=True, exist_ok=True)
 
-            html = build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events)
+            html = build_fight_page(
+                event,
+                fight,
+                fight_id,
+                fighters_by_slug,
+                odds_events,
+                props_by_key,
+            )
 
             (out_dir / "index.html").write_text(html, encoding="utf-8")
             fights_written += 1
