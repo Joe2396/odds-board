@@ -1,49 +1,49 @@
 {
-  "updated_at": "2026-05-09T08:04:42.974074+00:00",
+  "updated_at": "2026-05-09T10:12:49.292162+00:00",
   "total_arbitrage": 2,
   "arbitrage": [
-    {
-      "sport": "UFC",
-      "event": "Jeremy Stephens vs King Green",
-      "market": "Moneyline",
-      "commence_time": "2026-05-10T01:15:00Z",
-      "profit_margin_percent": 0.26,
-      "arb_sum": 0.997416,
-      "bookmakers": [
-        {
-          "selection": "Jeremy Stephens",
-          "bookmaker": "Betfair",
-          "odds": 4.5,
-          "implied_probability": 22.22
-        },
-        {
-          "selection": "King Green",
-          "bookmaker": "William Hill",
-          "odds": 1.29,
-          "implied_probability": 77.52
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
-    },
     {
       "sport": "UFC",
       "event": "Joaquin Buckley vs Sean Brady",
       "market": "Moneyline",
       "commence_time": "2026-05-10T01:45:00Z",
-      "profit_margin_percent": 0.56,
-      "arb_sum": 0.994371,
+      "profit_margin_percent": 0.26,
+      "arb_sum": 0.997353,
       "bookmakers": [
         {
           "selection": "Joaquin Buckley",
           "bookmaker": "Betfair",
-          "odds": 2.6,
-          "implied_probability": 38.46
+          "odds": 2.58,
+          "implied_probability": 38.76
         },
         {
           "selection": "Sean Brady",
           "bookmaker": "LiveScore Bet",
           "odds": 1.64,
           "implied_probability": 60.98
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "UFC",
+      "event": "Joshua Van vs Tatsuro Taira",
+      "market": "Moneyline",
+      "commence_time": "2026-05-10T02:45:00Z",
+      "profit_margin_percent": 0.48,
+      "arb_sum": 0.995238,
+      "bookmakers": [
+        {
+          "selection": "Joshua Van",
+          "bookmaker": "Betfair",
+          "odds": 2.5,
+          "implied_probability": 40.0
+        },
+        {
+          "selection": "Tatsuro Taira",
+          "bookmaker": "LeoVegas",
+          "odds": 1.68,
+          "implied_probability": 59.52
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
