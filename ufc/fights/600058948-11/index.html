@@ -60,7 +60,8 @@
       gap: 8px;
     }
 
-    .meta-pill {
+    .meta-pill,
+    .pill {
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 8px 12px;
@@ -77,7 +78,9 @@
       width: 100%;
     }
 
-    .fighter-card {
+    .fighter-card,
+    .fight-meta,
+    .fight-props {
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -85,7 +88,12 @@
       min-width: 0;
     }
 
-    .fighter-header {
+    .fight-props {
+      margin-top: 22px;
+    }
+
+    .fighter-header,
+    .prop-card-head {
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -112,6 +120,16 @@
       line-height: 1.05;
     }
 
+    .fight-props h2 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    .prop-card h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+
     .small-link {
       display: inline-block;
       margin-top: 2px;
@@ -124,15 +142,6 @@
       margin-top:18px;
     }
 
-    .pill {
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:7px 10px;
-      color:var(--muted);
-      font-size:13px;
-      background: rgba(255,255,255,0.015);
-    }
-
     .quick-summary {
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -141,7 +150,8 @@
     }
 
     .quick-summary div,
-    .section-block {
+    .section-block,
+    .prop-card {
       border:1px solid var(--line);
       border-radius:14px;
       padding:14px;
@@ -163,7 +173,8 @@
       margin-top:14px;
     }
 
-    .section-block h3 {
+    .section-block h3,
+    .prop-market h4 {
       margin: 0 0 10px;
       color: var(--muted);
       font-size: 15px;
@@ -210,11 +221,35 @@
     }
 
     .fight-meta {
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      background:rgba(255,255,255,0.02);
       margin-top:22px;
+    }
+
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 14px;
+    }
+
+    .prop-market {
+      border-top: 1px solid var(--line);
+      margin-top: 14px;
+      padding-top: 14px;
+    }
+
+    .prop-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 8px;
+      background: rgba(15,22,33,0.75);
+    }
+
+    .prop-row strong {
+      color: #22c55e;
+      white-space: nowrap;
     }
 
     @media (max-width: 1100px) {
@@ -239,6 +274,10 @@
       .quick-summary {
         grid-template-columns:1fr;
       }
+
+      .prop-row {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -260,6 +299,7 @@
             <span class="meta-pill">Alice Ardelean vs Polyana Viana</span>
             <span class="meta-pill">Status: scheduled</span>
             <span class="meta-pill">Odds Match: Yes</span>
+            <span class="meta-pill">Prop Books: 0</span>
           </div>
         </div>
       </div>
@@ -298,9 +338,16 @@
       
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
-        <p class="muted">No UK odds found yet.</p>
+        <table>
+          <tr><td><strong>Best Price</strong></td><td><strong>1.53</strong></td></tr>
+          
+        <tr>
+          <td>Betway ⭐ Best</td>
+          <td>1.53</td>
+        </tr>
+        </table>
       </div>
-        
+    
 
       <div class="stats-grid">
         <div class="section-block">
@@ -394,9 +441,16 @@
       
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
-        <p class="muted">No UK odds found yet.</p>
+        <table>
+          <tr><td><strong>Best Price</strong></td><td><strong>2.4</strong></td></tr>
+          
+        <tr>
+          <td>Betway ⭐ Best</td>
+          <td>2.4</td>
+        </tr>
+        </table>
       </div>
-        
+    
 
       <div class="stats-grid">
         <div class="section-block">
@@ -483,6 +537,13 @@
     
       </div>
 
+      
+      <section class="fight-props">
+        <h2>Bookmaker Props</h2>
+        <p class="muted">No bookmaker props matched for this fight yet.</p>
+      </section>
+        
+
       <div class="fight-meta">
         <h2>Fight Meta</h2>
         <table>
@@ -490,11 +551,12 @@
           <tr><td>Weight Class</td><td>Women&#39;s Strawweight</td></tr>
           <tr><td>Status</td><td>scheduled</td></tr>
           <tr><td>Odds Match</td><td>Yes</td></tr>
+          <tr><td>Prop Books Matched</td><td>0</td></tr>
         </table>
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058948-11 • Generated: 2026-05-09 10:12 UTC</p>
+      <p class="muted">Fight ID: 600058948-11 • Generated: 2026-05-09 10:58 UTC</p>
     </div>
   </main>
 </body>

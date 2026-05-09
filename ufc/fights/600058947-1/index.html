@@ -60,7 +60,8 @@
       gap: 8px;
     }
 
-    .meta-pill {
+    .meta-pill,
+    .pill {
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 8px 12px;
@@ -77,7 +78,9 @@
       width: 100%;
     }
 
-    .fighter-card {
+    .fighter-card,
+    .fight-meta,
+    .fight-props {
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -85,7 +88,12 @@
       min-width: 0;
     }
 
-    .fighter-header {
+    .fight-props {
+      margin-top: 22px;
+    }
+
+    .fighter-header,
+    .prop-card-head {
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -112,6 +120,16 @@
       line-height: 1.05;
     }
 
+    .fight-props h2 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    .prop-card h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+
     .small-link {
       display: inline-block;
       margin-top: 2px;
@@ -124,15 +142,6 @@
       margin-top:18px;
     }
 
-    .pill {
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:7px 10px;
-      color:var(--muted);
-      font-size:13px;
-      background: rgba(255,255,255,0.015);
-    }
-
     .quick-summary {
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -141,7 +150,8 @@
     }
 
     .quick-summary div,
-    .section-block {
+    .section-block,
+    .prop-card {
       border:1px solid var(--line);
       border-radius:14px;
       padding:14px;
@@ -163,7 +173,8 @@
       margin-top:14px;
     }
 
-    .section-block h3 {
+    .section-block h3,
+    .prop-market h4 {
       margin: 0 0 10px;
       color: var(--muted);
       font-size: 15px;
@@ -210,11 +221,35 @@
     }
 
     .fight-meta {
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      background:rgba(255,255,255,0.02);
       margin-top:22px;
+    }
+
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 14px;
+    }
+
+    .prop-market {
+      border-top: 1px solid var(--line);
+      margin-top: 14px;
+      padding-top: 14px;
+    }
+
+    .prop-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 8px;
+      background: rgba(15,22,33,0.75);
+    }
+
+    .prop-row strong {
+      color: #22c55e;
+      white-space: nowrap;
     }
 
     @media (max-width: 1100px) {
@@ -239,6 +274,10 @@
       .quick-summary {
         grid-template-columns:1fr;
       }
+
+      .prop-row {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -260,6 +299,7 @@
             <span class="meta-pill">Khamzat Chimaev vs Sean Strickland</span>
             <span class="meta-pill">Status: scheduled</span>
             <span class="meta-pill">Odds Match: Yes</span>
+            <span class="meta-pill">Prop Books: 4</span>
           </div>
         </div>
       </div>
@@ -315,6 +355,10 @@
         </tr>
         <tr>
           <td>888sport</td>
+          <td>1.17</td>
+        </tr>
+        <tr>
+          <td>William Hill</td>
           <td>1.17</td>
         </tr>
         <tr>
@@ -484,6 +528,10 @@
           <td>Paddy Power</td>
           <td>4.5</td>
         </tr>
+        <tr>
+          <td>William Hill</td>
+          <td>4.5</td>
+        </tr>
         </table>
       </div>
     
@@ -573,6 +621,464 @@
     
       </div>
 
+      
+      <section class="fight-props">
+        <h2>Bookmaker Props</h2>
+        <div class="props-grid">
+          
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">PaddyPower props</div>
+              <h3>Khamzat Chimaev vs Sean Strickland</h3>
+            </div>
+            <a class="small-link" href="https://www.paddypower.com/mixed-martial-arts/ufc-matches/khamzat-chimaev-v-sean-strickland-35369952" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Method of Victory</h4>
+        <div class="prop-row">
+          <span>Khamzat Chimaev by KO/TKO</span>
+          <strong>4/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev by Points</span>
+          <strong>3/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev by Submission</span>
+          <strong>EVS</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Draw</span>
+          <strong>45/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland by KO/TKO</span>
+          <strong>7/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Strickland by Dec / Tech Dec</span>
+          <strong>8/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Strickland by Submission</span>
+          <strong>40/1</strong>
+        </div>
+        </div><div class='prop-market'><h4>Rounds</h4>
+        <div class="prop-row">
+          <span>Over (+2.5)</span>
+          <strong>10/11</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Under (+2.5)</span>
+          <strong>5/6</strong>
+        </div>
+        </div><div class='prop-market'><h4>Go The Distance?</h4>
+        <div class="prop-row">
+          <span>Yes</span>
+          <strong>2/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>No</span>
+          <strong>1/3</strong>
+        </div>
+        </div>
+        </article>
+        
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">BoyleSports props</div>
+              <h3>Khamzat Chimaev Vs Sean Strickland</h3>
+            </div>
+            <a class="small-link" href="https://www.boylesports.com/sports/ufc-mma/event/fights-ufc-328-chimaev-vs-strickland/khamzat-chimaev-v-sean-strickland" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Method of Victory</h4>
+        <div class="prop-row">
+          <span>Khamzat Chimaev By KO, TKO or Disqualification</span>
+          <strong>3/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev By Decision or Technical Decision</span>
+          <strong>10/3</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev By Submission</span>
+          <strong>20/21</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Draw</span>
+          <strong>66/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland By Submission</span>
+          <strong>33/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland By Decision or Technical Decision</span>
+          <strong>17/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland By KO, TKO or Disqualification</span>
+          <strong>11/1</strong>
+        </div>
+        </div><div class='prop-market'><h4>Rounds</h4>
+        <div class="prop-row">
+          <span>Khamzat Chimaev Wins In Round 1</span>
+          <strong>5/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev Wins In Round 2</span>
+          <strong>4/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev Wins In Round 3</span>
+          <strong>6/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev Wins In Round 4</span>
+          <strong>9/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev Wins In Round 5</span>
+          <strong>12/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev By Decision</span>
+          <strong>12/5</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Draw</span>
+          <strong>66/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland Wins In Round 1</span>
+          <strong>33/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland Wins In Round 2</span>
+          <strong>40/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland Wins In Round 3</span>
+          <strong>40/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland Wins In Round 4</span>
+          <strong>40/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland Wins In Round 5</span>
+          <strong>40/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland By Decision</span>
+          <strong>17/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev Round 1,2</span>
+          <strong>6/5</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev Round 3,4</span>
+          <strong>7/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev Round 5 or Decision</span>
+          <strong>15/8</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland Round 1,2</span>
+          <strong>25/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland Round 3,4</span>
+          <strong>28/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 1,2,3</span>
+          <strong>8/11</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 4,5 or Decision</span>
+          <strong>20/21</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Draw</span>
+          <strong>66/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Total Rounds U/O 2.5</span>
+          <strong>8/11</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 1</span>
+          <strong>11/5</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 2</span>
+          <strong>7/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 3</span>
+          <strong>5/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 4</span>
+          <strong>15/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 5</span>
+          <strong>9/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev KO/TKO Round 1</span>
+          <strong>9/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev KO/TKO Round 2</span>
+          <strong>12/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev KO/TKO Round 3</span>
+          <strong>18/1</strong>
+        </div>
+        </div><div class='prop-market'><h4>Go The Distance?</h4>
+        <div class="prop-row">
+          <span>Yes</span>
+          <strong>11/5</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>No</span>
+          <strong>1/3</strong>
+        </div>
+        </div>
+        </article>
+        
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">BetVictor props</div>
+              <h3>Khamzat Chimaev v Sean Strickland</h3>
+            </div>
+            <a class="small-link" href="https://www.betvictor.com/en-ie/sports/1327866/meetings/726971410/events/2738867800" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Method of Victory</h4>
+        <div class="prop-row">
+          <span>Khamzat Chimaev to win by Decision 16/5</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev to win by Decision or Technical Decision 16/5</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev to win by KO, TKO or DQ 7/2</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev to win by Submission 19/20</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland to win by Decision 8/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland to win by Decision or Technical Decision 8/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland to win by KO, TKO or DQ 9/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland to win by Submission 33/1</span>
+          <strong>—</strong>
+        </div>
+        </div><div class='prop-market'><h4>Rounds</h4>
+        <div class="prop-row">
+          <span>Khamzat Chimaev to win in Round 1 16/5</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev to win in Round 2 4/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev to win in Round 3 11/2</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev to win in Round 4 8/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev to win in Round 5 11/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland to win in Round 1 25/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland to win in Round 2 30/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland to win in Round 3 33/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland to win in Round 4 33/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland to win in Round 5 33/1</span>
+          <strong>—</strong>
+        </div>
+        </div>
+        </article>
+        
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">Coral props</div>
+              <h3>Khamzat Chimaev v Sean Strickland</h3>
+            </div>
+            <a class="small-link" href="https://www.coral.co.uk/en/sports/event/ufc-mma/ufc-mma/mma-ufc/khamzat-chimaev-v-sean-strickland/42352014/main-markets" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Fight Betting</h4>
+        <div class="prop-row">
+          <span>Khamzat Chimaev</span>
+          <strong>2/11</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland</span>
+          <strong>4/1</strong>
+        </div>
+        </div><div class='prop-market'><h4>Method of Victory</h4>
+        <div class="prop-row">
+          <span>Khamzat Chimaev - Decision</span>
+          <strong>16/5</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev - KO / TKO / Submission</span>
+          <strong>1/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland - Decision</span>
+          <strong>8/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland - KO / TKO / Submission</span>
+          <strong>7/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Fight is a Draw</span>
+          <strong>50/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev - KO / TKO</span>
+          <strong>4/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Khamzat Chimaev - Submission</span>
+          <strong>20/21</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland - KO / TKO</span>
+          <strong>15/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Sean Strickland - Submission</span>
+          <strong>33/1</strong>
+        </div>
+        </div><div class='prop-market'><h4>Go The Distance?</h4>
+        <div class="prop-row">
+          <span>No</span>
+          <strong>4/11</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Yes</span>
+          <strong>2/1</strong>
+        </div>
+        </div>
+        </article>
+        
+        </div>
+      </section>
+    
+
       <div class="fight-meta">
         <h2>Fight Meta</h2>
         <table>
@@ -580,11 +1086,12 @@
           <tr><td>Weight Class</td><td>Middleweight - Main Event - Title Fight</td></tr>
           <tr><td>Status</td><td>scheduled</td></tr>
           <tr><td>Odds Match</td><td>Yes</td></tr>
+          <tr><td>Prop Books Matched</td><td>4</td></tr>
         </table>
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058947-1 • Generated: 2026-05-09 10:12 UTC</p>
+      <p class="muted">Fight ID: 600058947-1 • Generated: 2026-05-09 10:58 UTC</p>
     </div>
   </main>
 </body>

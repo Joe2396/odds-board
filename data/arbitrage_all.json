@@ -1,26 +1,26 @@
 {
-  "updated_at": "2026-05-09T10:12:49.292162+00:00",
+  "updated_at": "2026-05-09T10:58:14.108276+00:00",
   "total_arbitrage": 2,
   "arbitrage": [
     {
       "sport": "UFC",
-      "event": "Joaquin Buckley vs Sean Brady",
+      "event": "Jeremy Stephens vs King Green",
       "market": "Moneyline",
-      "commence_time": "2026-05-10T01:45:00Z",
+      "commence_time": "2026-05-10T01:15:00Z",
       "profit_margin_percent": 0.26,
-      "arb_sum": 0.997353,
+      "arb_sum": 0.997416,
       "bookmakers": [
         {
-          "selection": "Joaquin Buckley",
+          "selection": "Jeremy Stephens",
           "bookmaker": "Betfair",
-          "odds": 2.58,
-          "implied_probability": 38.76
+          "odds": 4.5,
+          "implied_probability": 22.22
         },
         {
-          "selection": "Sean Brady",
-          "bookmaker": "LiveScore Bet",
-          "odds": 1.64,
-          "implied_probability": 60.98
+          "selection": "King Green",
+          "bookmaker": "William Hill",
+          "odds": 1.29,
+          "implied_probability": 77.52
         }
       ],
       "source_file": "ufc/data/arbitrage.json"

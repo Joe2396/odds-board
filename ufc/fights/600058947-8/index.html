@@ -60,7 +60,8 @@
       gap: 8px;
     }
 
-    .meta-pill {
+    .meta-pill,
+    .pill {
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 8px 12px;
@@ -77,7 +78,9 @@
       width: 100%;
     }
 
-    .fighter-card {
+    .fighter-card,
+    .fight-meta,
+    .fight-props {
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -85,7 +88,12 @@
       min-width: 0;
     }
 
-    .fighter-header {
+    .fight-props {
+      margin-top: 22px;
+    }
+
+    .fighter-header,
+    .prop-card-head {
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -112,6 +120,16 @@
       line-height: 1.05;
     }
 
+    .fight-props h2 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    .prop-card h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+
     .small-link {
       display: inline-block;
       margin-top: 2px;
@@ -124,15 +142,6 @@
       margin-top:18px;
     }
 
-    .pill {
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:7px 10px;
-      color:var(--muted);
-      font-size:13px;
-      background: rgba(255,255,255,0.015);
-    }
-
     .quick-summary {
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -141,7 +150,8 @@
     }
 
     .quick-summary div,
-    .section-block {
+    .section-block,
+    .prop-card {
       border:1px solid var(--line);
       border-radius:14px;
       padding:14px;
@@ -163,7 +173,8 @@
       margin-top:14px;
     }
 
-    .section-block h3 {
+    .section-block h3,
+    .prop-market h4 {
       margin: 0 0 10px;
       color: var(--muted);
       font-size: 15px;
@@ -210,11 +221,35 @@
     }
 
     .fight-meta {
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      background:rgba(255,255,255,0.02);
       margin-top:22px;
+    }
+
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 14px;
+    }
+
+    .prop-market {
+      border-top: 1px solid var(--line);
+      margin-top: 14px;
+      padding-top: 14px;
+    }
+
+    .prop-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 8px;
+      background: rgba(15,22,33,0.75);
+    }
+
+    .prop-row strong {
+      color: #22c55e;
+      white-space: nowrap;
     }
 
     @media (max-width: 1100px) {
@@ -239,6 +274,10 @@
       .quick-summary {
         grid-template-columns:1fr;
       }
+
+      .prop-row {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -260,6 +299,7 @@
             <span class="meta-pill">Jim Miller vs Jared Gordon</span>
             <span class="meta-pill">Status: scheduled</span>
             <span class="meta-pill">Odds Match: Yes</span>
+            <span class="meta-pill">Prop Books: 4</span>
           </div>
         </div>
       </div>
@@ -319,19 +359,19 @@
         </tr>
         <tr>
           <td>LiveScore Bet</td>
-          <td>3.15</td>
+          <td>3.25</td>
         </tr>
         <tr>
           <td>Virgin Bet</td>
-          <td>3.15</td>
+          <td>3.25</td>
         </tr>
         <tr>
           <td>LeoVegas</td>
-          <td>3.15</td>
+          <td>3.25</td>
         </tr>
         <tr>
           <td>Grosvenor</td>
-          <td>3.15</td>
+          <td>3.25</td>
         </tr>
         <tr>
           <td>Unibet (UK)</td>
@@ -477,28 +517,28 @@
           <td>1.37</td>
         </tr>
         <tr>
-          <td>LiveScore Bet</td>
-          <td>1.36</td>
-        </tr>
-        <tr>
-          <td>Virgin Bet</td>
-          <td>1.36</td>
-        </tr>
-        <tr>
-          <td>LeoVegas</td>
-          <td>1.36</td>
-        </tr>
-        <tr>
-          <td>Grosvenor</td>
-          <td>1.36</td>
-        </tr>
-        <tr>
           <td>Unibet (UK)</td>
           <td>1.36</td>
         </tr>
         <tr>
           <td>William Hill</td>
           <td>1.36</td>
+        </tr>
+        <tr>
+          <td>LiveScore Bet</td>
+          <td>1.34</td>
+        </tr>
+        <tr>
+          <td>Virgin Bet</td>
+          <td>1.34</td>
+        </tr>
+        <tr>
+          <td>LeoVegas</td>
+          <td>1.34</td>
+        </tr>
+        <tr>
+          <td>Grosvenor</td>
+          <td>1.34</td>
         </tr>
         <tr>
           <td>Paddy Power</td>
@@ -601,6 +641,434 @@
     
       </div>
 
+      
+      <section class="fight-props">
+        <h2>Bookmaker Props</h2>
+        <div class="props-grid">
+          
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">PaddyPower props</div>
+              <h3>Jim Miller vs Jared Gordon</h3>
+            </div>
+            <a class="small-link" href="https://www.paddypower.com/mixed-martial-arts/ufc-matches/jim-miller-v-jared-gordon-35549175" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Method of Victory</h4>
+        <div class="prop-row">
+          <span>Jim Miller by KO/TKO</span>
+          <strong>7/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller by Points</span>
+          <strong>11/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller by Submission</span>
+          <strong>12/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Draw</span>
+          <strong>45/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon by KO/TKO</span>
+          <strong>7/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon by Points</span>
+          <strong>10/11</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon by Submission</span>
+          <strong>7/1</strong>
+        </div>
+        </div><div class='prop-market'><h4>Rounds</h4>
+        <div class="prop-row">
+          <span>Over (+2.5)</span>
+          <strong>8/15</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Under (+2.5)</span>
+          <strong>6/4</strong>
+        </div>
+        </div>
+        </article>
+        
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">BoyleSports props</div>
+              <h3>Jim Miller Vs Jared Gordon</h3>
+            </div>
+            <a class="small-link" href="https://www.boylesports.com/sports/ufc-mma/event/fights-ufc-328-chimaev-vs-strickland/jim-miller-v-jared-gordon" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Method of Victory</h4>
+        <div class="prop-row">
+          <span>Jim Miller By KO, TKO or Disqualification</span>
+          <strong>7/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller By Decision or Technical Decision</span>
+          <strong>11/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller By Submission</span>
+          <strong>12/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Draw</span>
+          <strong>50/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon By Submission</span>
+          <strong>15/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon By Decision or Technical Decision</span>
+          <strong>5/6</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon By KO, TKO or Disqualification</span>
+          <strong>4/1</strong>
+        </div>
+        </div><div class='prop-market'><h4>Rounds</h4>
+        <div class="prop-row">
+          <span>Jim Miller Wins In Round 1</span>
+          <strong>17/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller Wins In Round 2</span>
+          <strong>14/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller Wins In Round 3</span>
+          <strong>20/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller By Decision</span>
+          <strong>11/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Draw</span>
+          <strong>50/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon Wins In Round 1</span>
+          <strong>11/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon Wins In Round 2</span>
+          <strong>8/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon Wins In Round 3</span>
+          <strong>12/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon By Decision</span>
+          <strong>4/5</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller Round 1,2</span>
+          <strong>11/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller Round 3 or Decision</span>
+          <strong>9/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon Round 1,2</span>
+          <strong>10/3</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon Round 3 or Decision</span>
+          <strong>4/6</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Draw</span>
+          <strong>50/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 1,2</span>
+          <strong>15/8</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 3 or Decision</span>
+          <strong>4/11</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Draw</span>
+          <strong>50/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Total Rounds U/O 2.5</span>
+          <strong>1/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 1</span>
+          <strong>10/3</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 2</span>
+          <strong>11/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Round 3</span>
+          <strong>17/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller KO/TKO Round 1</span>
+          <strong>14/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller KO/TKO Round 2</span>
+          <strong>20/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller KO/TKO Round 3</span>
+          <strong>28/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller Submission Round 1</span>
+          <strong>20/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller Submission Round 2</span>
+          <strong>33/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller Submission Round 3</span>
+          <strong>40/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon KO/TKO Round 1</span>
+          <strong>17/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon KO/TKO Round 2</span>
+          <strong>12/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon KO/TKO Round 3</span>
+          <strong>18/1</strong>
+        </div>
+        </div><div class='prop-market'><h4>Go The Distance?</h4>
+        <div class="prop-row">
+          <span>Yes</span>
+          <strong>4/7</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>No</span>
+          <strong>5/4</strong>
+        </div>
+        </div>
+        </article>
+        
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">BetVictor props</div>
+              <h3>Jim Miller v Jared Gordon</h3>
+            </div>
+            <a class="small-link" href="https://www.betvictor.com/en-ie/sports/1327866/meetings/726971410/events/2771894000" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Method of Victory</h4>
+        <div class="prop-row">
+          <span>Jared Gordon to win by Decision 9/10</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon to win by Decision or Technical Decision 9/10</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon to win by KO, TKO or DQ 7/2</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon to win by Submission 8/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller to win by Decision 11/2</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller to win by Decision or Technical Decision 11/2</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller to win by KO, TKO or DQ 7/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller to win by Submission 12/1</span>
+          <strong>—</strong>
+        </div>
+        </div><div class='prop-market'><h4>Rounds</h4>
+        <div class="prop-row">
+          <span>Jared Gordon to win in Round 1 11/2</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon to win in Round 2 8/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon to win in Round 3 12/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller to win in Round 1 19/2</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller to win in Round 2 14/1</span>
+          <strong>—</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller to win in Round 3 22/1</span>
+          <strong>—</strong>
+        </div>
+        </div>
+        </article>
+        
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">Coral props</div>
+              <h3>Jared Gordon v Jim Miller</h3>
+            </div>
+            <a class="small-link" href="https://www.coral.co.uk/en/sports/event/ufc-mma/ufc-mma/mma-ufc/jared-gordon-v-jim-miller/43202666/main-markets" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Fight Betting</h4>
+        <div class="prop-row">
+          <span>Jared Gordon</span>
+          <strong>3/10</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller</span>
+          <strong>5/2</strong>
+        </div>
+        </div><div class='prop-market'><h4>Method of Victory</h4>
+        <div class="prop-row">
+          <span>Jared Gordon - Decision</span>
+          <strong>10/11</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon - KO / TKO / Submission</span>
+          <strong>12/5</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller - Decision</span>
+          <strong>5/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller - KO / TKO / Submission</span>
+          <strong>4/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Fight is a Draw</span>
+          <strong>50/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon - KO / TKO</span>
+          <strong>7/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jared Gordon - Submission</span>
+          <strong>8/1</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller - KO / TKO</span>
+          <strong>11/2</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Jim Miller - Submission</span>
+          <strong>10/1</strong>
+        </div>
+        </div><div class='prop-market'><h4>Go The Distance?</h4>
+        <div class="prop-row">
+          <span>No</span>
+          <strong>6/5</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Yes</span>
+          <strong>20/31</strong>
+        </div>
+        </div>
+        </article>
+        
+        </div>
+      </section>
+    
+
       <div class="fight-meta">
         <h2>Fight Meta</h2>
         <table>
@@ -608,11 +1076,12 @@
           <tr><td>Weight Class</td><td>Lightweight</td></tr>
           <tr><td>Status</td><td>scheduled</td></tr>
           <tr><td>Odds Match</td><td>Yes</td></tr>
+          <tr><td>Prop Books Matched</td><td>4</td></tr>
         </table>
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058947-8 • Generated: 2026-05-09 10:12 UTC</p>
+      <p class="muted">Fight ID: 600058947-8 • Generated: 2026-05-09 10:58 UTC</p>
     </div>
   </main>
 </body>

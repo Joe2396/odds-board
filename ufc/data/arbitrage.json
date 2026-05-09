@@ -1,6 +1,6 @@
 {
   "source": "odds_json",
-  "total_fights_checked": 32,
+  "total_fights_checked": 37,
   "arbitrage_count": 2,
   "fights": [
     {
@@ -10,8 +10,8 @@
       "fighters": {
         "Clayton Carpenter": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.58,
-          "implied_probability": 38.76
+          "best_price": 2.6,
+          "implied_probability": 38.46
         },
         "Jose Ochoa": {
           "best_bookmaker": "Betfair",
@@ -19,9 +19,9 @@
           "implied_probability": 62.11
         }
       },
-      "arb_sum": 1.008715,
+      "arb_sum": 1.005733,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.87
+      "profit_margin_percent": -0.57
     },
     {
       "event_id": "9c2b6eafa8037af51c19ea2a7ea43adc",
@@ -70,18 +70,18 @@
       "fighters": {
         "Marco Tulio Silva": {
           "best_bookmaker": "Matchbook",
-          "best_price": 1.57,
-          "implied_probability": 63.69
+          "best_price": 1.56,
+          "implied_probability": 64.1
         },
         "Roman Kopylov": {
-          "best_bookmaker": "Betfair",
+          "best_bookmaker": "Matchbook",
           "best_price": 2.66,
           "implied_probability": 37.59
         }
       },
-      "arb_sum": 1.012883,
+      "arb_sum": 1.016965,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.29
+      "profit_margin_percent": -1.7
     },
     {
       "event_id": "dd012ae91033b75cbf3eb387e13b575a",
@@ -109,9 +109,9 @@
       "fight": "Grant Dawson vs Mateusz Rebecki",
       "fighters": {
         "Grant Dawson": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.75,
-          "implied_probability": 57.14
+          "best_bookmaker": "Betfair",
+          "best_price": 1.74,
+          "implied_probability": 57.47
         },
         "Mateusz Rebecki": {
           "best_bookmaker": "Matchbook",
@@ -119,9 +119,9 @@
           "implied_probability": 43.48
         }
       },
-      "arb_sum": 1.006211,
+      "arb_sum": 1.009495,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.62
+      "profit_margin_percent": -0.95
     },
     {
       "event_id": "7c8d3c42bb7948ac655b45fb75d00ea9",
@@ -130,8 +130,8 @@
       "fighters": {
         "Joel Alvarez": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.68,
-          "implied_probability": 37.31
+          "best_price": 2.66,
+          "implied_probability": 37.59
         },
         "Yaroslav Amosov": {
           "best_bookmaker": "Betfair",
@@ -139,9 +139,9 @@
           "implied_probability": 63.69
         }
       },
-      "arb_sum": 1.010077,
+      "arb_sum": 1.012883,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.01
+      "profit_margin_percent": -1.29
     },
     {
       "event_id": "d6383c3901d6bb96b5ed6be3c416563a",
@@ -170,8 +170,8 @@
       "fighters": {
         "Jeremy Stephens": {
           "best_bookmaker": "Betfair",
-          "best_price": 4.4,
-          "implied_probability": 22.73
+          "best_price": 4.5,
+          "implied_probability": 22.22
         },
         "King Green": {
           "best_bookmaker": "William Hill",
@@ -179,9 +179,9 @@
           "implied_probability": 77.52
         }
       },
-      "arb_sum": 1.002467,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.25
+      "arb_sum": 0.997416,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.26
     },
     {
       "event_id": "a2b05838698a5f914b569f502d372985",
@@ -190,8 +190,8 @@
       "fighters": {
         "Joaquin Buckley": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.58,
-          "implied_probability": 38.76
+          "best_price": 2.48,
+          "implied_probability": 40.32
         },
         "Sean Brady": {
           "best_bookmaker": "LiveScore Bet",
@@ -199,9 +199,9 @@
           "implied_probability": 60.98
         }
       },
-      "arb_sum": 0.997353,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.26
+      "arb_sum": 1.012982,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.3
     },
     {
       "event_id": "dc70600ccf557c5bce24b0f1e73fa45f",
@@ -215,13 +215,13 @@
         },
         "Waldo Cortes-Acosta": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.28,
-          "implied_probability": 43.86
+          "best_price": 2.32,
+          "implied_probability": 43.1
         }
       },
-      "arb_sum": 1.010025,
+      "arb_sum": 1.002463,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.0
+      "profit_margin_percent": -0.25
     },
     {
       "event_id": "1976a9195475f1efe57d2c1a3a85c019",
@@ -264,14 +264,34 @@
       "profit_margin_percent": -0.5
     },
     {
+      "event_id": "3fac0dd01eb2eed4c9f74430775f2e28",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "fight": "Alice Ardelean vs Polyana Viana",
+      "fighters": {
+        "Alice Ardelean": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.53,
+          "implied_probability": 65.36
+        },
+        "Polyana Viana": {
+          "best_bookmaker": "Betway",
+          "best_price": 2.4,
+          "implied_probability": 41.67
+        }
+      },
+      "arb_sum": 1.070261,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.03
+    },
+    {
       "event_id": "68b76293e37659dbfd7fe46b46a74fd3",
       "commence_time": "2026-05-17T00:00:00Z",
       "fight": "Andre Petroski vs Cody Brundage",
       "fighters": {
         "Andre Petroski": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.45,
-          "implied_probability": 68.97
+          "best_bookmaker": "Betway",
+          "best_price": 1.5,
+          "implied_probability": 66.67
         },
         "Cody Brundage": {
           "best_bookmaker": "Unibet (UK)",
@@ -279,9 +299,9 @@
           "implied_probability": 38.46
         }
       },
-      "arb_sum": 1.074271,
+      "arb_sum": 1.051282,
       "is_arbitrage": false,
-      "profit_margin_percent": -7.43
+      "profit_margin_percent": -5.13
     },
     {
       "event_id": "ca777108e0085b6c5158365c22895c5a",
@@ -289,9 +309,9 @@
       "fight": "Arnold Allen vs Melquizael Costa",
       "fighters": {
         "Arnold Allen": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.56,
-          "implied_probability": 64.1
+          "best_bookmaker": "Betway",
+          "best_price": 1.61,
+          "implied_probability": 62.11
         },
         "Melquizael Costa": {
           "best_bookmaker": "Unibet (UK)",
@@ -299,9 +319,9 @@
           "implied_probability": 43.48
         }
       },
-      "arb_sum": 1.075808,
+      "arb_sum": 1.055901,
       "is_arbitrage": false,
-      "profit_margin_percent": -7.58
+      "profit_margin_percent": -5.59
     },
     {
       "event_id": "72532f14b11dbe0db67fbad8bf733939",
@@ -309,9 +329,9 @@
       "fight": "Benardo Sopaj vs Timothy Cuamba",
       "fighters": {
         "Benardo Sopaj": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.58,
-          "implied_probability": 63.29
+          "best_bookmaker": "Betway",
+          "best_price": 1.61,
+          "implied_probability": 62.11
         },
         "Timothy Cuamba": {
           "best_bookmaker": "Unibet (UK)",
@@ -319,9 +339,9 @@
           "implied_probability": 43.48
         }
       },
-      "arb_sum": 1.067694,
+      "arb_sum": 1.055901,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.77
+      "profit_margin_percent": -5.59
     },
     {
       "event_id": "a6d96d17816e530846e244d0c7226cc0",
@@ -334,14 +354,14 @@
           "implied_probability": 54.64
         },
         "Luis Gurule": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.9,
-          "implied_probability": 52.63
+          "best_bookmaker": "Betway",
+          "best_price": 1.91,
+          "implied_probability": 52.36
         }
       },
-      "arb_sum": 1.072764,
+      "arb_sum": 1.070008,
       "is_arbitrage": false,
-      "profit_margin_percent": -7.28
+      "profit_margin_percent": -7.0
     },
     {
       "event_id": "40e6ab636ccc19dc43b6bac5059736e7",
@@ -349,9 +369,9 @@
       "fight": "Daniel Santos vs Dooho Choi",
       "fighters": {
         "Daniel Santos": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.72,
-          "implied_probability": 58.14
+          "best_bookmaker": "Betway",
+          "best_price": 1.8,
+          "implied_probability": 55.56
         },
         "Dooho Choi": {
           "best_bookmaker": "Unibet (UK)",
@@ -359,9 +379,9 @@
           "implied_probability": 48.78
         }
       },
-      "arb_sum": 1.0692,
+      "arb_sum": 1.04336,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.92
+      "profit_margin_percent": -4.34
     },
     {
       "event_id": "1b275b79bdfb54ec649b1c4a1cd01b60",
@@ -404,6 +424,26 @@
       "profit_margin_percent": -6.06
     },
     {
+      "event_id": "6c2dc5be72620b0dd2721814f77a0f2e",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "fight": "Ivan Erslan vs Tuco Tokkos",
+      "fighters": {
+        "Ivan Erslan": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.61,
+          "implied_probability": 62.11
+        },
+        "Tuco Tokkos": {
+          "best_bookmaker": "Betway",
+          "best_price": 2.2,
+          "implied_probability": 45.45
+        }
+      },
+      "arb_sum": 1.075663,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.57
+    },
+    {
       "event_id": "4411845e84c1602a6cc776db0eb6cef6",
       "commence_time": "2026-05-17T00:00:00Z",
       "fight": "Jacqueline Cavalcanti vs Ketlen Vieira",
@@ -422,6 +462,26 @@
       "arb_sum": 1.068042,
       "is_arbitrage": false,
       "profit_margin_percent": -6.8
+    },
+    {
+      "event_id": "012b59200f05722787e034d649f2f846",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "fight": "Juan Diaz vs Malcolm Wellmaker",
+      "fighters": {
+        "Juan Diaz": {
+          "best_bookmaker": "Betway",
+          "best_price": 2.62,
+          "implied_probability": 38.17
+        },
+        "Malcolm Wellmaker": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.44,
+          "implied_probability": 69.44
+        }
+      },
+      "arb_sum": 1.076124,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.61
     },
     {
       "event_id": "d1e8ff0d03f502811b1edc152b2e842f",
@@ -484,6 +544,26 @@
       "profit_margin_percent": -6.52
     },
     {
+      "event_id": "54c51d010b6ae6cd31451b81ba64d0e4",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "fight": "Modestas Bukauskas vs Rodolfo Bellato",
+      "fighters": {
+        "Modestas Bukauskas": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.8,
+          "implied_probability": 55.56
+        },
+        "Rodolfo Bellato": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.95,
+          "implied_probability": 51.28
+        }
+      },
+      "arb_sum": 1.068376,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.84
+    },
+    {
       "event_id": "c74a1465a2254bcafc56226ac277d87c",
       "commence_time": "2026-05-17T00:00:00Z",
       "fight": "Nicolle Caliari vs Shauna Bannon",
@@ -494,14 +574,34 @@
           "implied_probability": 65.79
         },
         "Shauna Bannon": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.45,
-          "implied_probability": 40.82
+          "best_bookmaker": "Betway",
+          "best_price": 2.62,
+          "implied_probability": 38.17
         }
       },
-      "arb_sum": 1.066058,
+      "arb_sum": 1.039574,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.61
+      "profit_margin_percent": -3.96
+    },
+    {
+      "event_id": "afe4e26d4f1d30c3385ed1984f2eb684",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "fight": "Thomas Gantt vs Trey Ogden",
+      "fighters": {
+        "Thomas Gantt": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.4,
+          "implied_probability": 71.43
+        },
+        "Trey Ogden": {
+          "best_bookmaker": "Betway",
+          "best_price": 2.75,
+          "implied_probability": 36.36
+        }
+      },
+      "arb_sum": 1.077922,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.79
     },
     {
       "event_id": "20d0d02349fe04d63631b1e3f1879fa3",
@@ -646,22 +746,22 @@
   ],
   "arbitrage_opportunities": [
     {
-      "event_id": "a2b05838698a5f914b569f502d372985",
-      "commence_time": "2026-05-10T01:45:00Z",
-      "fight": "Joaquin Buckley vs Sean Brady",
+      "event_id": "bca7261228cf53e0ef8c55e76cdf2138",
+      "commence_time": "2026-05-10T01:15:00Z",
+      "fight": "Jeremy Stephens vs King Green",
       "fighters": {
-        "Joaquin Buckley": {
+        "Jeremy Stephens": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.58,
-          "implied_probability": 38.76
+          "best_price": 4.5,
+          "implied_probability": 22.22
         },
-        "Sean Brady": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.64,
-          "implied_probability": 60.98
+        "King Green": {
+          "best_bookmaker": "William Hill",
+          "best_price": 1.29,
+          "implied_probability": 77.52
         }
       },
-      "arb_sum": 0.997353,
+      "arb_sum": 0.997416,
       "is_arbitrage": true,
       "profit_margin_percent": 0.26
     },
