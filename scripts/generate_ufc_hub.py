@@ -11,6 +11,7 @@ ODDS_PATH = os.path.join(ROOT, "ufc", "data", "odds.json")
 PADDYPOWER_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "props_filtered.json")
 BOYLESPORTS_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "boylesports_props_filtered.json")
 BETVICTOR_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "betvictor_props_filtered.json")
+CORAL_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "coral_props_filtered.json")
 
 OUT_PATH = os.path.join(ROOT, "ufc", "index.html")
 
@@ -45,6 +46,7 @@ def load_props():
     paddypower = load_json_file(PADDYPOWER_PROPS_PATH, {"fights": []})
     boylesports = load_json_file(BOYLESPORTS_PROPS_PATH, {"fights": []})
     betvictor = load_json_file(BETVICTOR_PROPS_PATH, {"fights": []})
+    coral = load_json_file(CORAL_PROPS_PATH, {"fights": []})
 
     combined = []
 
@@ -63,11 +65,17 @@ def load_props():
         item["bookmaker"] = item.get("bookmaker") or "BetVictor"
         combined.append(item)
 
+    for fight in coral.get("fights", []) or []:
+        item = dict(fight)
+        item["bookmaker"] = item.get("bookmaker") or "Coral"
+        combined.append(item)
+
     return {
         "fights": combined,
         "paddypower_count": len(paddypower.get("fights", []) or []),
         "boylesports_count": len(boylesports.get("fights", []) or []),
         "betvictor_count": len(betvictor.get("fights", []) or []),
+        "coral_count": len(coral.get("fights", []) or []),
     }
 
 
@@ -300,6 +308,9 @@ def render_structured_prop_rows(items):
     rows = ""
 
     for s in items or []:
+        if not isinstance(s, dict):
+            continue
+
         rows += f"""
         <div class="prop-row">
           <span>{esc(s.get("selection"))}</span>
@@ -326,6 +337,7 @@ def render_props_section(props_payload):
         """
 
     market_labels = {
+        "fight_betting": "Fight Betting",
         "method_of_victory": "Method of Victory",
         "total_rounds": "Total Rounds",
         "rounds": "Rounds",
@@ -417,7 +429,7 @@ def render_props_section(props_payload):
         <div>
           <h2>Bookmaker Props</h2>
           <p class="muted">
-            Current method, rounds and distance markets from PaddyPower, BoyleSports and BetVictor.
+            Current fight betting, method, rounds and distance markets from PaddyPower, BoyleSports, BetVictor and Coral.
           </p>
         </div>
       </div>
@@ -1027,7 +1039,7 @@ def main():
             <span>Total prop fights</span>
           </div>
           <div class="stat">
-            <strong>3</strong>
+            <strong>4</strong>
             <span>Prop books live</span>
           </div>
         </div>
@@ -1070,6 +1082,7 @@ def main():
     print(f"PaddyPower props fights: {props_payload.get('paddypower_count', 0)}")
     print(f"BoyleSports props fights: {props_payload.get('boylesports_count', 0)}")
     print(f"BetVictor props fights: {props_payload.get('betvictor_count', 0)}")
+    print(f"Coral props fights: {props_payload.get('coral_count', 0)}")
 
 
 if __name__ == "__main__":
