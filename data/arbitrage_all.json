@@ -1,5 +1,29 @@
 {
-  "updated_at": "2026-05-09T22:02:05.428440+00:00",
-  "total_arbitrage": 0,
-  "arbitrage": []
+  "updated_at": "2026-05-10T03:44:40.300509+00:00",
+  "total_arbitrage": 1,
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "event": "Joshua Van vs Tatsuro Taira",
+      "market": "Moneyline",
+      "commence_time": "2026-05-10T03:17:00Z",
+      "profit_margin_percent": 2.62,
+      "arb_sum": 0.973829,
+      "bookmakers": [
+        {
+          "selection": "Joshua Van",
+          "bookmaker": "Betfair",
+          "odds": 1.37,
+          "implied_probability": 72.99
+        },
+        {
+          "selection": "Tatsuro Taira",
+          "bookmaker": "LiveScore Bet",
+          "odds": 4.1,
+          "implied_probability": 24.39
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ]
 }
