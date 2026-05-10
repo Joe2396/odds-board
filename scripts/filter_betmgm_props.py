@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import re
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -17,6 +18,34 @@ def clean(s):
     return " ".join(str(s or "").split())
 
 
+def normalize_bad_betmgm_fight_name(name):
+    name = clean(name)
+
+    if " vs " not in name:
+        return name
+
+    left, right = name.split(" vs ", 1)
+    left = clean(left)
+    right = clean(right)
+
+    # Fix pattern:
+    # "Ciryl Gane Alex Pereira vs Ciryl Gane"
+    # -> "Alex Pereira vs Ciryl Gane"
+    if left.lower().startswith(right.lower() + " "):
+        fixed_left = clean(left[len(right):])
+        if fixed_left:
+            return f"{fixed_left} vs {right}"
+
+    # Fix reverse just in case:
+    # "Alex Pereira vs Ciryl Gane Alex Pereira"
+    if right.lower().startswith(left.lower() + " "):
+        fixed_right = clean(right[len(left):])
+        if fixed_right:
+            return f"{left} vs {fixed_right}"
+
+    return name
+
+
 def main():
     if not IN_PATH.exists():
         raise FileNotFoundError(f"Missing input file: {IN_PATH}")
@@ -29,15 +58,12 @@ def main():
     filtered = []
 
     for p in raw_props:
-        fight = clean(p.get("fight"))
+        fight = normalize_bad_betmgm_fight_name(p.get("fight"))
         market = clean(p.get("market"))
         selection = clean(p.get("selection"))
         odds = clean(p.get("odds"))
 
-        if not market or not selection or not odds:
-            continue
-
-        if not fight:
+        if not fight or not market or not selection or not odds:
             continue
 
         if market not in ["Goes The Distance", "Total Rounds", "Method of Victory"]:
@@ -61,8 +87,6 @@ def main():
         "count": len(filtered),
         "props": filtered,
     }
-
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
