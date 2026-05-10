@@ -14,6 +14,7 @@ PROP_FILES = [
     ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props_filtered.json"),
     ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props_filtered.json"),
     ("Coral", ROOT / "ufc" / "data" / "coral_props_filtered.json"),
+    ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props_filtered.json"),
 ]
 
 FIGHTS_DIR = ROOT / "ufc" / "fights"
@@ -86,9 +87,20 @@ def load_odds():
 def load_all_props():
     props_by_key = {}
 
-    for default_bookmaker, path in PROP_FILES:
-        data = load_json(path, {"fights": []})
+    def add_item(name, item):
+        if not name:
+            return
 
+        key = fight_key(name)
+        if not key:
+            return
+
+        props_by_key.setdefault(key, []).append(item)
+
+    for default_bookmaker, path in PROP_FILES:
+        data = load_json(path, {"fights": [], "props": []})
+
+        # Older format: one object per fight with nested markets
         for fight in data.get("fights", []) or []:
             bookmaker = fight.get("bookmaker") or default_bookmaker
             name = (
@@ -101,15 +113,64 @@ def load_all_props():
             if not name:
                 continue
 
-            key = fight_key(name)
-            if not key:
-                continue
-
             item = dict(fight)
             item["bookmaker"] = bookmaker
             item["fight_name"] = name
 
-            props_by_key.setdefault(key, []).append(item)
+            add_item(name, item)
+
+        # Newer flat format: one object per prop row
+        flat_props = data.get("props", []) or []
+
+        grouped = {}
+
+        for prop in flat_props:
+            name = (
+                prop.get("fight")
+                or prop.get("fight_name")
+                or prop.get("name")
+                or ""
+            )
+
+            if not name:
+                continue
+
+            bookmaker = prop.get("bookmaker") or default_bookmaker
+            key = (bookmaker, fight_key(name))
+
+            grouped.setdefault(
+                key,
+                {
+                    "bookmaker": bookmaker,
+                    "fight_name": name,
+                    "url": prop.get("url") or "#",
+                    "distance_props": [],
+                    "round_props": [],
+                    "method_props": [],
+                },
+            )
+
+            market = str(prop.get("market") or "").lower()
+            selection = prop.get("selection")
+            odds = prop.get("odds")
+
+            if not selection or not odds:
+                continue
+
+            row = {
+                "selection": selection,
+                "odds": odds,
+            }
+
+            if "distance" in market:
+                grouped[key]["distance_props"].append(row)
+            elif "round" in market:
+                grouped[key]["round_props"].append(row)
+            elif "method" in market:
+                grouped[key]["method_props"].append(row)
+
+        for item in grouped.values():
+            add_item(item.get("fight_name"), item)
 
     return props_by_key
 
