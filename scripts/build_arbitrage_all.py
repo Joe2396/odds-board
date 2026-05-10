@@ -22,21 +22,41 @@ def main():
     unified = []
 
     for arb in ufc_arbs:
-        fighters = arb.get("fighters", {})
+        arb_type = arb.get("type") or "moneyline"
+        market = arb.get("market") or "Moneyline"
 
         bookmakers = []
-        for fighter, info in fighters.items():
-            bookmakers.append({
-                "selection": fighter,
-                "bookmaker": info.get("best_bookmaker"),
-                "odds": info.get("best_price"),
-                "implied_probability": info.get("implied_probability"),
-            })
+
+        # Moneyline format
+        if arb.get("fighters"):
+            for fighter, info in arb.get("fighters", {}).items():
+                bookmakers.append({
+                    "selection": fighter,
+                    "bookmaker": info.get("best_bookmaker"),
+                    "odds": info.get("best_price"),
+                    "decimal_odds": info.get("best_price"),
+                    "implied_probability": info.get("implied_probability"),
+                })
+
+        # Prop format
+        elif arb.get("selections"):
+            for selection, info in arb.get("selections", {}).items():
+                bookmakers.append({
+                    "selection": selection,
+                    "bookmaker": info.get("bookmaker"),
+                    "odds": info.get("odds"),
+                    "decimal_odds": info.get("decimal_odds"),
+                    "implied_probability": info.get("implied_probability"),
+                })
+
+        if not bookmakers:
+            continue
 
         unified.append({
             "sport": "UFC",
+            "type": arb_type,
             "event": arb.get("fight"),
-            "market": "Moneyline",
+            "market": market,
             "commence_time": arb.get("commence_time"),
             "profit_margin_percent": arb.get("profit_margin_percent"),
             "arb_sum": arb.get("arb_sum"),
