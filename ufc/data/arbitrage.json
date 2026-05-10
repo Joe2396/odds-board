@@ -1,48 +1,8 @@
 {
   "source": "odds_json",
-  "total_fights_checked": 26,
-  "arbitrage_count": 1,
+  "total_fights_checked": 24,
+  "arbitrage_count": 0,
   "fights": [
-    {
-      "event_id": "1976a9195475f1efe57d2c1a3a85c019",
-      "commence_time": "2026-05-10T03:17:00Z",
-      "fight": "Joshua Van vs Tatsuro Taira",
-      "fighters": {
-        "Joshua Van": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.37,
-          "implied_probability": 72.99
-        },
-        "Tatsuro Taira": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 4.1,
-          "implied_probability": 24.39
-        }
-      },
-      "arb_sum": 0.973829,
-      "is_arbitrage": true,
-      "profit_margin_percent": 2.62
-    },
-    {
-      "event_id": "9572ebf9d60e9a4a050db937e02dcf03",
-      "commence_time": "2026-05-10T03:55:00Z",
-      "fight": "Khamzat Chimaev vs Sean Strickland",
-      "fighters": {
-        "Khamzat Chimaev": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.24,
-          "implied_probability": 80.65
-        },
-        "Sean Strickland": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 5.0,
-          "implied_probability": 20.0
-        }
-      },
-      "arb_sum": 1.006452,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.65
-    },
     {
       "event_id": "3fac0dd01eb2eed4c9f74430775f2e28",
       "commence_time": "2026-05-17T00:00:00Z",
@@ -94,14 +54,14 @@
           "implied_probability": 62.11
         },
         "Melquizael Costa": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 2.5,
-          "implied_probability": 40.0
+          "best_bookmaker": "888sport",
+          "best_price": 2.55,
+          "implied_probability": 39.22
         }
       },
-      "arb_sum": 1.021118,
+      "arb_sum": 1.013275,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.11
+      "profit_margin_percent": -1.33
     },
     {
       "event_id": "72532f14b11dbe0db67fbad8bf733939",
@@ -154,14 +114,14 @@
           "implied_probability": 55.56
         },
         "Dooho Choi": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 2.07,
-          "implied_probability": 48.31
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.12,
+          "implied_probability": 47.17
         }
       },
-      "arb_sum": 1.038647,
+      "arb_sum": 1.027254,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.86
+      "profit_margin_percent": -2.73
     },
     {
       "event_id": "1b275b79bdfb54ec649b1c4a1cd01b60",
@@ -234,14 +194,14 @@
           "implied_probability": 59.88
         },
         "Ketlen Vieira": {
-          "best_bookmaker": "Betway",
-          "best_price": 2.2,
-          "implied_probability": 45.45
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.25,
+          "implied_probability": 44.44
         }
       },
-      "arb_sum": 1.053348,
+      "arb_sum": 1.043247,
       "is_arbitrage": false,
-      "profit_margin_percent": -5.33
+      "profit_margin_percent": -4.32
     },
     {
       "event_id": "012b59200f05722787e034d649f2f846",
@@ -249,9 +209,9 @@
       "fight": "Juan Diaz vs Malcolm Wellmaker",
       "fighters": {
         "Juan Diaz": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.88,
-          "implied_probability": 34.72
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 3.05,
+          "implied_probability": 32.79
         },
         "Malcolm Wellmaker": {
           "best_bookmaker": "Betway",
@@ -259,9 +219,9 @@
           "implied_probability": 69.44
         }
       },
-      "arb_sum": 1.041667,
+      "arb_sum": 1.022313,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.17
+      "profit_margin_percent": -2.23
     },
     {
       "event_id": "d1e8ff0d03f502811b1edc152b2e842f",
@@ -369,19 +329,19 @@
       "fight": "Thomas Gantt vs Trey Ogden",
       "fighters": {
         "Thomas Gantt": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.4,
-          "implied_probability": 71.43
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.48,
+          "implied_probability": 67.57
         },
         "Trey Ogden": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 3.1,
-          "implied_probability": 32.26
+          "best_bookmaker": "Betway",
+          "best_price": 2.75,
+          "implied_probability": 36.36
         }
       },
-      "arb_sum": 1.036866,
+      "arb_sum": 1.039312,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.69
+      "profit_margin_percent": -3.93
     },
     {
       "event_id": "20d0d02349fe04d63631b1e3f1879fa3",
@@ -409,9 +369,9 @@
       "fight": "Alex Pereira vs Ciryl Gane",
       "fighters": {
         "Alex Pereira": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.06,
-          "implied_probability": 48.54
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.9,
+          "implied_probability": 52.63
         },
         "Ciryl Gane": {
           "best_bookmaker": "LiveScore Bet",
@@ -419,9 +379,9 @@
           "implied_probability": 52.36
         }
       },
-      "arb_sum": 1.008997,
+      "arb_sum": 1.049876,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.9
+      "profit_margin_percent": -4.99
     },
     {
       "event_id": "e34a17d5cf2a82a5161a54631e06770c",
@@ -469,9 +429,9 @@
       "fight": "Derrick Lewis vs Josh Hokit",
       "fighters": {
         "Derrick Lewis": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 3.4,
-          "implied_probability": 29.41
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 3.45,
+          "implied_probability": 28.99
         },
         "Josh Hokit": {
           "best_bookmaker": "LeoVegas",
@@ -479,9 +439,9 @@
           "implied_probability": 75.19
         }
       },
-      "arb_sum": 1.045997,
+      "arb_sum": 1.041735,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.6
+      "profit_margin_percent": -4.17
     },
     {
       "event_id": "9cf76c6ecde4824965ca04da644dfefa",
@@ -524,26 +484,5 @@
       "profit_margin_percent": -4.94
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "event_id": "1976a9195475f1efe57d2c1a3a85c019",
-      "commence_time": "2026-05-10T03:17:00Z",
-      "fight": "Joshua Van vs Tatsuro Taira",
-      "fighters": {
-        "Joshua Van": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.37,
-          "implied_probability": 72.99
-        },
-        "Tatsuro Taira": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 4.1,
-          "implied_probability": 24.39
-        }
-      },
-      "arb_sum": 0.973829,
-      "is_arbitrage": true,
-      "profit_margin_percent": 2.62
-    }
-  ]
+  "arbitrage_opportunities": []
 }
