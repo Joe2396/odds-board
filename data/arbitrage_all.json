@@ -1,5 +1,29 @@
 {
-  "updated_at": "2026-05-10T07:36:08.492440+00:00",
-  "total_arbitrage": 0,
-  "arbitrage": []
+  "updated_at": "2026-05-10T08:02:51.033958+00:00",
+  "total_arbitrage": 1,
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "event": "Kenneth Cross vs Salahdine Parnasse",
+      "market": "Moneyline",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "profit_margin_percent": 0.39,
+      "arb_sum": 0.996067,
+      "bookmakers": [
+        {
+          "selection": "Kenneth Cross",
+          "bookmaker": "William Hill",
+          "odds": 9.0,
+          "implied_probability": 11.11
+        },
+        {
+          "selection": "Salahdine Parnasse",
+          "bookmaker": "LeoVegas",
+          "odds": 1.13,
+          "implied_probability": 88.5
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ]
 }

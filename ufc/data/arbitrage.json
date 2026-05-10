@@ -1,7 +1,7 @@
 {
   "source": "odds_json",
   "total_fights_checked": 24,
-  "arbitrage_count": 0,
+  "arbitrage_count": 1,
   "fights": [
     {
       "event_id": "3fac0dd01eb2eed4c9f74430775f2e28",
@@ -149,9 +149,9 @@
       "fight": "Gina Carano vs Ronda Rousey",
       "fighters": {
         "Gina Carano": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 4.4,
-          "implied_probability": 22.73
+          "best_bookmaker": "William Hill",
+          "best_price": 4.5,
+          "implied_probability": 22.22
         },
         "Ronda Rousey": {
           "best_bookmaker": "LeoVegas",
@@ -159,9 +159,9 @@
           "implied_probability": 83.33
         }
       },
-      "arb_sum": 1.060606,
+      "arb_sum": 1.055556,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.06
+      "profit_margin_percent": -5.56
     },
     {
       "event_id": "6c2dc5be72620b0dd2721814f77a0f2e",
@@ -234,14 +234,14 @@
           "implied_probability": 20.83
         },
         "Robelis Despaigne": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.16,
-          "implied_probability": 86.21
+          "best_bookmaker": "William Hill",
+          "best_price": 1.17,
+          "implied_probability": 85.47
         }
       },
-      "arb_sum": 1.070402,
+      "arb_sum": 1.063034,
       "is_arbitrage": false,
-      "profit_margin_percent": -7.04
+      "profit_margin_percent": -6.3
     },
     {
       "event_id": "b14ca50bcde757d3508c70099e4fdba5",
@@ -249,9 +249,9 @@
       "fight": "Kenneth Cross vs Salahdine Parnasse",
       "fighters": {
         "Kenneth Cross": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 5.75,
-          "implied_probability": 17.39
+          "best_bookmaker": "William Hill",
+          "best_price": 9.0,
+          "implied_probability": 11.11
         },
         "Salahdine Parnasse": {
           "best_bookmaker": "LeoVegas",
@@ -259,9 +259,9 @@
           "implied_probability": 88.5
         }
       },
-      "arb_sum": 1.058869,
-      "is_arbitrage": false,
-      "profit_margin_percent": -5.89
+      "arb_sum": 0.996067,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.39
     },
     {
       "event_id": "0068bfd36cef60b3e373c762b5b6338a",
@@ -269,9 +269,9 @@
       "fight": "Mike Perry vs Nate Diaz",
       "fighters": {
         "Mike Perry": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.4,
-          "implied_probability": 71.43
+          "best_bookmaker": "William Hill",
+          "best_price": 1.5,
+          "implied_probability": 66.67
         },
         "Nate Diaz": {
           "best_bookmaker": "LeoVegas",
@@ -279,9 +279,9 @@
           "implied_probability": 35.09
         }
       },
-      "arb_sum": 1.065163,
+      "arb_sum": 1.017544,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.52
+      "profit_margin_percent": -1.75
     },
     {
       "event_id": "54c51d010b6ae6cd31451b81ba64d0e4",
@@ -484,5 +484,26 @@
       "profit_margin_percent": -4.94
     }
   ],
-  "arbitrage_opportunities": []
+  "arbitrage_opportunities": [
+    {
+      "event_id": "b14ca50bcde757d3508c70099e4fdba5",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "fight": "Kenneth Cross vs Salahdine Parnasse",
+      "fighters": {
+        "Kenneth Cross": {
+          "best_bookmaker": "William Hill",
+          "best_price": 9.0,
+          "implied_probability": 11.11
+        },
+        "Salahdine Parnasse": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.13,
+          "implied_probability": 88.5
+        }
+      },
+      "arb_sum": 0.996067,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.39
+    }
+  ]
 }
