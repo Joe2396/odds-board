@@ -80,7 +80,8 @@
 
     .fighter-card,
     .fight-meta,
-    .fight-props {
+    .fight-props,
+    .best-props {
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -88,12 +89,14 @@
       min-width: 0;
     }
 
-    .fight-props {
+    .fight-props,
+    .best-props {
       margin-top: 22px;
     }
 
     .fighter-header,
-    .prop-card-head {
+    .prop-card-head,
+    .best-props-head {
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -120,7 +123,8 @@
       line-height: 1.05;
     }
 
-    .fight-props h2 {
+    .fight-props h2,
+    .best-props h2 {
       margin-top: 0;
       font-size: 30px;
     }
@@ -151,7 +155,8 @@
 
     .quick-summary div,
     .section-block,
-    .prop-card {
+    .prop-card,
+    .best-market {
       border:1px solid var(--line);
       border-radius:14px;
       padding:14px;
@@ -174,7 +179,8 @@
     }
 
     .section-block h3,
-    .prop-market h4 {
+    .prop-market h4,
+    .best-market h3 {
       margin: 0 0 10px;
       color: var(--muted);
       font-size: 15px;
@@ -230,6 +236,37 @@
       gap: 14px;
     }
 
+    .best-props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .best-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 8px;
+      background: rgba(15,22,33,0.85);
+    }
+
+    .best-row span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .best-price {
+      color: #22c55e;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
     .prop-market {
       border-top: 1px solid var(--line);
       margin-top: 14px;
@@ -275,7 +312,8 @@
         grid-template-columns:1fr;
       }
 
-      .prop-row {
+      .prop-row,
+      .best-row {
         flex-direction: column;
       }
     }
@@ -546,6 +584,577 @@
     </section>
     
       </div>
+
+      
+      <section class="best-props">
+        <div class="best-props-head">
+          <div>
+            <div class="corner-label">Best odds</div>
+            <h2>Best Available Prop Odds</h2>
+            <p class="muted">Highest available price per prop selection across matched bookmakers.</p>
+          </div>
+        </div>
+        <div class="best-props-grid">
+          
+        <div class="best-market">
+          <h3>Fight Betting</h3>
+          <div class="best-rows">
+        
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 2/11</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Sean Strickland</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 4/1</div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="best-market">
+          <h3>Go The Distance?</h3>
+          <div class="best-rows">
+        
+            <div class="best-row">
+              <div>
+                <strong>No</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 4/11</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Yes</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 11/5</div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="best-market">
+          <h3>Method of Victory</h3>
+          <div class="best-rows">
+        
+            <div class="best-row">
+              <div>
+                <strong>Draw</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 66/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Fight is a Draw</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 50/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev - Decision</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 16/5</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev - KO / TKO</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 4/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev - KO / TKO / Submission</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 1/2</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev - Submission</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 20/21</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev By Decision or Technical Decision</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 10/3</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev By KO, TKO or Disqualification</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 3/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev by KO/TKO</strong>
+                <span>PaddyPower</span>
+              </div>
+              <div class="best-price">⭐ 4/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev by Points</strong>
+                <span>PaddyPower</span>
+              </div>
+              <div class="best-price">⭐ 3/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev by Submission</strong>
+                <span>PaddyPower</span>
+              </div>
+              <div class="best-price">⭐ EVS</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev By Submission</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 20/21</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Sean Strickland - Decision</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 8/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Sean Strickland - KO / TKO</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 15/2</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Sean Strickland - KO / TKO / Submission</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 7/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Sean Strickland - Submission</strong>
+                <span>Coral</span>
+              </div>
+              <div class="best-price">⭐ 33/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Sean Strickland By Decision or Technical Decision</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 17/2</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Sean Strickland By KO, TKO or Disqualification</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 11/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Sean Strickland by KO/TKO</strong>
+                <span>PaddyPower</span>
+              </div>
+              <div class="best-price">⭐ 7/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Sean Strickland By Submission</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 33/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Strickland by Dec / Tech Dec</strong>
+                <span>PaddyPower</span>
+              </div>
+              <div class="best-price">⭐ 8/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Strickland by Submission</strong>
+                <span>PaddyPower</span>
+              </div>
+              <div class="best-price">⭐ 40/1</div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="best-market">
+          <h3>Rounds</h3>
+          <div class="best-rows">
+        
+            <div class="best-row">
+              <div>
+                <strong>Al Hilal Omdurman</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 11/5</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Al-Baqaa</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 5/6</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Deportivo Espanol Reserves</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 8/5</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Deportivo Flandria Reserves</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 10/3</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Draw</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 66/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Grobinas</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 4/11</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Jitex BK Women</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 4/9</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Kecioerengucu</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 4/6</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev By Decision</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 12/5</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev KO/TKO Round 1</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 9/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev KO/TKO Round 2</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 12/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev KO/TKO Round 3</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 18/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev KO/TKO Round 4</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 22/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev KO/TKO Round 5</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 28/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Round 1,2</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 6/5</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Round 3,4</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 7/2</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Round 5 or Decision</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 15/8</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Submission Round 1</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 4/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Submission Round 2</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 6/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Submission Round 3</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 9/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Submission Round 4</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 12/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Submission Round 5</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 16/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Wins In Round 1</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 5/2</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Wins In Round 2</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 4/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Wins In Round 3</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 6/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Wins In Round 4</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 9/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Khamzat Chimaev Wins In Round 5</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 12/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Leandro N. Alem Reserves</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 1/4</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Maroons</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 4/11</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Masr</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 21/20</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Over 2.5</strong>
+                <span>PaddyPower</span>
+              </div>
+              <div class="best-price">⭐ 10/11</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Pendikspor</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 6/5</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>PPJ Lauttasaari</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 19/10</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Round 1</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 11/5</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Round 1,2,3</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 8/11</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Round 2</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 7/2</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Round 3</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 5/1</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Round 4</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 15/2</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Round 4,5 or Decision</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 20/21</div>
+            </div>
+            
+            <div class="best-row">
+              <div>
+                <strong>Round 5</strong>
+                <span>BoyleSports</span>
+              </div>
+              <div class="best-price">⭐ 9/1</div>
+            </div>
+            
+          </div>
+        </div>
+        
+        </div>
+      </section>
+    
 
       
       <section class="fight-props">
@@ -1017,7 +1626,7 @@
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058947-1 • Generated: 2026-05-10 16:02 UTC</p>
+      <p class="muted">Fight ID: 600058947-1 • Generated: 2026-05-10 16:41 UTC</p>
     </div>
   </main>
 </body>

@@ -80,7 +80,8 @@
 
     .fighter-card,
     .fight-meta,
-    .fight-props {
+    .fight-props,
+    .best-props {
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -88,12 +89,14 @@
       min-width: 0;
     }
 
-    .fight-props {
+    .fight-props,
+    .best-props {
       margin-top: 22px;
     }
 
     .fighter-header,
-    .prop-card-head {
+    .prop-card-head,
+    .best-props-head {
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -120,7 +123,8 @@
       line-height: 1.05;
     }
 
-    .fight-props h2 {
+    .fight-props h2,
+    .best-props h2 {
       margin-top: 0;
       font-size: 30px;
     }
@@ -151,7 +155,8 @@
 
     .quick-summary div,
     .section-block,
-    .prop-card {
+    .prop-card,
+    .best-market {
       border:1px solid var(--line);
       border-radius:14px;
       padding:14px;
@@ -174,7 +179,8 @@
     }
 
     .section-block h3,
-    .prop-market h4 {
+    .prop-market h4,
+    .best-market h3 {
       margin: 0 0 10px;
       color: var(--muted);
       font-size: 15px;
@@ -230,6 +236,37 @@
       gap: 14px;
     }
 
+    .best-props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .best-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 8px;
+      background: rgba(15,22,33,0.85);
+    }
+
+    .best-row span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .best-price {
+      color: #22c55e;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
     .prop-market {
       border-top: 1px solid var(--line);
       margin-top: 14px;
@@ -275,7 +312,8 @@
         grid-template-columns:1fr;
       }
 
-      .prop-row {
+      .prop-row,
+      .best-row {
         flex-direction: column;
       }
     }
@@ -480,6 +518,18 @@
       </div>
 
       
+      <section class="best-props">
+        <div class="best-props-head">
+          <div>
+            <div class="corner-label">Best odds</div>
+            <h2>Best Available Prop Odds</h2>
+            <p class="muted">No comparable prop odds found yet.</p>
+          </div>
+        </div>
+      </section>
+        
+
+      
       <section class="fight-props">
         <h2>Bookmaker Props</h2>
         <p class="muted">No bookmaker props matched for this fight yet.</p>
@@ -498,7 +548,7 @@
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058949-7 • Generated: 2026-05-10 16:02 UTC</p>
+      <p class="muted">Fight ID: 600058949-7 • Generated: 2026-05-10 16:41 UTC</p>
     </div>
   </main>
 </body>
