@@ -12,6 +12,7 @@ PADDYPOWER_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "props_filtered.json")
 BOYLESPORTS_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "boylesports_props_filtered.json")
 BETVICTOR_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "betvictor_props_filtered.json")
 CORAL_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "coral_props_filtered.json")
+BETMGM_PROPS_PATH = os.path.join(ROOT, "ufc", "data", "betmgm_props_filtered.json")
 
 OUT_PATH = os.path.join(ROOT, "ufc", "index.html")
 
@@ -42,40 +43,25 @@ def load_json_file(path, fallback):
         return fallback
 
 
+def count_props(data):
+    fights_count = len(data.get("fights", []) or [])
+    props_count = len(data.get("props", []) or [])
+    return max(fights_count, props_count)
+
+
 def load_props():
-    paddypower = load_json_file(PADDYPOWER_PROPS_PATH, {"fights": []})
-    boylesports = load_json_file(BOYLESPORTS_PROPS_PATH, {"fights": []})
-    betvictor = load_json_file(BETVICTOR_PROPS_PATH, {"fights": []})
-    coral = load_json_file(CORAL_PROPS_PATH, {"fights": []})
-
-    combined = []
-
-    for fight in paddypower.get("fights", []) or []:
-        item = dict(fight)
-        item["bookmaker"] = item.get("bookmaker") or "PaddyPower"
-        combined.append(item)
-
-    for fight in boylesports.get("fights", []) or []:
-        item = dict(fight)
-        item["bookmaker"] = item.get("bookmaker") or "BoyleSports"
-        combined.append(item)
-
-    for fight in betvictor.get("fights", []) or []:
-        item = dict(fight)
-        item["bookmaker"] = item.get("bookmaker") or "BetVictor"
-        combined.append(item)
-
-    for fight in coral.get("fights", []) or []:
-        item = dict(fight)
-        item["bookmaker"] = item.get("bookmaker") or "Coral"
-        combined.append(item)
+    paddypower = load_json_file(PADDYPOWER_PROPS_PATH, {"fights": [], "props": []})
+    boylesports = load_json_file(BOYLESPORTS_PROPS_PATH, {"fights": [], "props": []})
+    betvictor = load_json_file(BETVICTOR_PROPS_PATH, {"fights": [], "props": []})
+    coral = load_json_file(CORAL_PROPS_PATH, {"fights": [], "props": []})
+    betmgm = load_json_file(BETMGM_PROPS_PATH, {"fights": [], "props": []})
 
     return {
-        "fights": combined,
-        "paddypower_count": len(paddypower.get("fights", []) or []),
-        "boylesports_count": len(boylesports.get("fights", []) or []),
-        "betvictor_count": len(betvictor.get("fights", []) or []),
-        "coral_count": len(coral.get("fights", []) or []),
+        "paddypower_count": count_props(paddypower),
+        "boylesports_count": count_props(boylesports),
+        "betvictor_count": count_props(betvictor),
+        "coral_count": count_props(coral),
+        "betmgm_count": count_props(betmgm),
     }
 
 
@@ -283,161 +269,9 @@ def render_betting_edge(red, blue, odds_events):
       {row(blue, blue_best)}
 
       <p class="muted betting-note">
-        This currently shows best available UK moneyline odds and implied probability.
-        True +EV needs a fair-probability model.
+        This hub only shows a light odds preview. Full bookmaker odds, props and fight data live inside each fight page.
       </p>
     </div>
-    """
-
-
-def render_string_prop_rows(items):
-    rows = ""
-
-    for item in items or []:
-        rows += f"""
-        <div class="prop-row">
-          <span>{esc(item)}</span>
-          <strong>BV</strong>
-        </div>
-        """
-
-    return rows
-
-
-def render_structured_prop_rows(items):
-    rows = ""
-
-    for s in items or []:
-        if not isinstance(s, dict):
-            continue
-
-        rows += f"""
-        <div class="prop-row">
-          <span>{esc(s.get("selection"))}</span>
-          <strong>{esc(s.get("odds"))}</strong>
-        </div>
-        """
-
-    return rows
-
-
-def render_props_section(props_payload):
-    fights = props_payload.get("fights", []) or []
-
-    if not fights:
-        return """
-        <section class="props-section">
-          <div class="section-head">
-            <div>
-              <h2>Bookmaker Props</h2>
-              <p class="muted">No props currently available.</p>
-            </div>
-          </div>
-        </section>
-        """
-
-    market_labels = {
-        "fight_betting": "Fight Betting",
-        "method_of_victory": "Method of Victory",
-        "total_rounds": "Total Rounds",
-        "rounds": "Rounds",
-        "go_the_distance": "Go The Distance?",
-    }
-
-    cards = ""
-
-    for fight in fights:
-        bookmaker = esc(fight.get("bookmaker") or "Unknown Book")
-
-        fight_name = (
-            fight.get("fight")
-            or fight.get("fight_name")
-            or fight.get("name")
-            or "Unknown fight"
-        )
-
-        fight_name = esc(str(fight_name).replace("\n", " vs "))
-
-        market_html = ""
-
-        markets = fight.get("markets", {}) or {}
-
-        for key, label in market_labels.items():
-            selections = markets.get(key, []) or []
-            if not selections:
-                continue
-
-            market_html += f"""
-            <div class="prop-market">
-              <h4>{esc(label)}</h4>
-              {render_structured_prop_rows(selections)}
-            </div>
-            """
-
-        method_props = fight.get("method_props", []) or []
-        round_props = fight.get("round_props", []) or []
-        distance_props = fight.get("distance_props", []) or []
-
-        if method_props:
-            market_html += f"""
-            <div class="prop-market">
-              <h4>Method of Victory</h4>
-              {render_string_prop_rows(method_props)}
-            </div>
-            """
-
-        if round_props:
-            market_html += f"""
-            <div class="prop-market">
-              <h4>Rounds</h4>
-              {render_string_prop_rows(round_props)}
-            </div>
-            """
-
-        if distance_props:
-            market_html += f"""
-            <div class="prop-market">
-              <h4>Go The Distance?</h4>
-              {render_string_prop_rows(distance_props)}
-            </div>
-            """
-
-        if not market_html:
-            continue
-
-        cards += f"""
-        <article class="props-card">
-          <div class="props-card-head">
-            <div>
-              <div class="event-kicker">{bookmaker} props</div>
-              <h3>{fight_name}</h3>
-            </div>
-            <a href="{esc(fight.get("url"))}" target="_blank" rel="noopener">Open book →</a>
-          </div>
-          <div class="props-markets">
-            {market_html}
-          </div>
-        </article>
-        """
-
-    if not cards:
-        cards = "<div class='empty'>No prop markets currently available.</div>"
-
-    return f"""
-    <section class="props-section">
-      <div class="section-head">
-        <div>
-          <h2>Bookmaker Props</h2>
-          <p class="muted">
-            Current fight betting, method, rounds and distance markets from PaddyPower, BoyleSports, BetVictor and Coral.
-          </p>
-        </div>
-      </div>
-
-      <div class="props-grid">
-        {cards}
-      </div>
-    </section>
     """
 
 
@@ -450,6 +284,14 @@ def main():
     odds_events = odds_payload.get("events", []) or []
 
     props_payload = load_props()
+
+    total_prop_items = (
+        props_payload.get("paddypower_count", 0)
+        + props_payload.get("boylesports_count", 0)
+        + props_payload.get("betvictor_count", 0)
+        + props_payload.get("coral_count", 0)
+        + props_payload.get("betmgm_count", 0)
+    )
 
     upcoming_events = [ev for ev in events if is_upcoming_event(ev)]
     upcoming_events = sorted(upcoming_events, key=sort_key)
@@ -500,8 +342,6 @@ def main():
       {betting_html}
     </section>
         """
-
-    props_html = render_props_section(props_payload)
 
     rows_html = ""
     if not upcoming_events:
@@ -617,7 +457,7 @@ def main():
     }}
 
     .subtitle {{
-      max-width: 780px;
+      max-width: 820px;
       margin: 18px 0 0;
       color: var(--muted);
       font-size: 18px;
@@ -653,7 +493,7 @@ def main():
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      min-width: 360px;
+      min-width: 420px;
     }}
 
     .stat {{
@@ -810,71 +650,6 @@ def main():
       font-size: 14px;
     }}
 
-    .props-section {{
-      margin-top: 36px;
-    }}
-
-    .props-grid {{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 16px;
-    }}
-
-    .props-card {{
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 22px;
-      background:
-        radial-gradient(circle at top right, rgba(34,197,94,0.12), transparent 30%),
-        var(--panel);
-    }}
-
-    .props-card-head {{
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: flex-start;
-      margin-bottom: 18px;
-    }}
-
-    .props-card h3 {{
-      margin: 0;
-      font-size: 24px;
-      line-height: 1.15;
-    }}
-
-    .props-card h4 {{
-      margin: 0 0 10px;
-      color: var(--gold);
-      font-size: 16px;
-    }}
-
-    .prop-market {{
-      border-top: 1px solid var(--border);
-      padding-top: 14px;
-      margin-top: 14px;
-    }}
-
-    .prop-row {{
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      border: 1px solid var(--border);
-      background: #0F1621;
-      border-radius: 12px;
-      padding: 10px 12px;
-      margin-top: 8px;
-    }}
-
-    .prop-row span {{
-      color: var(--text);
-    }}
-
-    .prop-row strong {{
-      color: var(--green);
-      white-space: nowrap;
-    }}
-
     .section-head {{
       display: flex;
       align-items: end;
@@ -994,13 +769,11 @@ def main():
         grid-template-columns: 1fr;
       }}
 
-      .events-grid,
-      .props-grid {{
+      .events-grid {{
         grid-template-columns: 1fr;
       }}
 
-      .bet-row,
-      .prop-row {{
+      .bet-row {{
         align-items: flex-start;
         flex-direction: column;
       }}
@@ -1020,7 +793,7 @@ def main():
           <div class="eyebrow">🥊 UFC Lab</div>
           <h1>UFC Hub</h1>
           <p class="subtitle">
-            Full-width UFC research dashboard for upcoming events, fight cards, fighter profiles and betting prep.
+            Research upcoming UFC cards, compare fight-level stats, and open individual matchups for bookmaker odds, props and betting analysis.
           </p>
 
           <div class="actions">
@@ -1035,11 +808,11 @@ def main():
             <span>Upcoming events</span>
           </div>
           <div class="stat">
-            <strong>{len(props_payload.get("fights", []) or [])}</strong>
-            <span>Total prop fights</span>
+            <strong>{total_prop_items}</strong>
+            <span>Prop markets tracked</span>
           </div>
           <div class="stat">
-            <strong>4</strong>
+            <strong>5</strong>
             <span>Prop books live</span>
           </div>
         </div>
@@ -1048,12 +821,10 @@ def main():
 
     {featured_html}
 
-    {props_html}
-
     <div class="section-head">
       <div>
         <h2>Upcoming Events</h2>
-        <p class="muted">Select an event to view fight cards and matchup pages.</p>
+        <p class="muted">Select an event to view fight cards. Full odds and props are shown inside each fight page.</p>
       </div>
       <a class="btn" href="{BASE}/ufc/fighters/">Fighter database →</a>
     </div>
@@ -1078,11 +849,12 @@ def main():
 
     print(f"Wrote UFC hub: {OUT_PATH}")
     print(f"Upcoming events shown: {len(upcoming_events)}")
-    print(f"Props fights shown: {len(props_payload.get('fights', []) or [])}")
-    print(f"PaddyPower props fights: {props_payload.get('paddypower_count', 0)}")
-    print(f"BoyleSports props fights: {props_payload.get('boylesports_count', 0)}")
-    print(f"BetVictor props fights: {props_payload.get('betvictor_count', 0)}")
-    print(f"Coral props fights: {props_payload.get('coral_count', 0)}")
+    print(f"Prop items tracked: {total_prop_items}")
+    print(f"PaddyPower prop items: {props_payload.get('paddypower_count', 0)}")
+    print(f"BoyleSports prop items: {props_payload.get('boylesports_count', 0)}")
+    print(f"BetVictor prop items: {props_payload.get('betvictor_count', 0)}")
+    print(f"Coral prop items: {props_payload.get('coral_count', 0)}")
+    print(f"BetMGM prop items: {props_payload.get('betmgm_count', 0)}")
 
 
 if __name__ == "__main__":
