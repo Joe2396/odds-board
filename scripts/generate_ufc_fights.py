@@ -69,6 +69,57 @@ def fight_key(name):
     return text
 
 
+def fractional_to_decimal(value):
+    value = str(value or "").strip().upper()
+
+    if not value:
+        return 0
+
+    if value == "EVS":
+        return 2.0
+
+    if "/" in value:
+        try:
+            a, b = value.split("/", 1)
+            return (float(a) / float(b)) + 1
+        except Exception:
+            return 0
+
+    try:
+        val = float(value)
+        if val > 1:
+            return val
+    except Exception:
+        pass
+
+    return 0
+
+
+def clean_selection(selection):
+    text = str(selection or "").strip()
+    text = re.sub(r"\s+", " ", text)
+    text = text.replace("Over (+", "Over ")
+    text = text.replace("Under (+", "Under ")
+    text = text.replace(")", "")
+    text = text.replace("+", "")
+    return text
+
+
+def canonical_market_label(label):
+    text = str(label or "").lower()
+
+    if "method" in text:
+        return "Method of Victory"
+    if "round" in text:
+        return "Rounds"
+    if "distance" in text:
+        return "Go The Distance?"
+    if "fight betting" in text:
+        return "Fight Betting"
+
+    return label or "Props"
+
+
 def load_json(path, default):
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -100,15 +151,9 @@ def load_all_props():
     for default_bookmaker, path in PROP_FILES:
         data = load_json(path, {"fights": [], "props": []})
 
-        # Older format: one object per fight with nested markets
         for fight in data.get("fights", []) or []:
             bookmaker = fight.get("bookmaker") or default_bookmaker
-            name = (
-                fight.get("fight")
-                or fight.get("fight_name")
-                or fight.get("name")
-                or ""
-            )
+            name = fight.get("fight") or fight.get("fight_name") or fight.get("name") or ""
 
             if not name:
                 continue
@@ -119,18 +164,11 @@ def load_all_props():
 
             add_item(name, item)
 
-        # Newer flat format: one object per prop row
         flat_props = data.get("props", []) or []
-
         grouped = {}
 
         for prop in flat_props:
-            name = (
-                prop.get("fight")
-                or prop.get("fight_name")
-                or prop.get("name")
-                or ""
-            )
+            name = prop.get("fight") or prop.get("fight_name") or prop.get("name") or ""
 
             if not name:
                 continue
@@ -157,10 +195,7 @@ def load_all_props():
             if not selection or not odds:
                 continue
 
-            row = {
-                "selection": selection,
-                "odds": odds,
-            }
+            row = {"selection": selection, "odds": odds}
 
             if "distance" in market:
                 grouped[key]["distance_props"].append(row)
@@ -178,7 +213,6 @@ def load_all_props():
 def load_fighter_details():
     raw = load_json(FIGHTERS_JSON, {"fighters": []})
     fighters_raw = raw.get("fighters", [])
-
     fighters_by_slug = {}
 
     if isinstance(fighters_raw, dict):
@@ -221,7 +255,6 @@ def enrich_fighter(fighter, fighters_by_slug):
         details = {}
 
     merged = {**details, **fighter}
-
     merged["stats"] = details.get("stats") or fighter.get("stats") or {}
     merged["methods"] = details.get("methods") or fighter.get("methods") or {}
     merged["recent_fights"] = details.get("recent_fights") or fighter.get("recent_fights") or []
@@ -232,7 +265,6 @@ def enrich_fighter(fighter, fighters_by_slug):
 
     merged["slug"] = slug
     merged["name"] = fighter.get("name") or details.get("name")
-
     return merged
 
 
@@ -334,8 +366,8 @@ def render_odds(fighter_name, odds_event):
         """
 
     best = odds_rows[0]
-
     rows_html = []
+
     for row in odds_rows:
         marker = " ⭐ Best" if row == best else ""
         rows_html.append(
@@ -421,6 +453,111 @@ def market_rows_from_structured(items):
     return rows
 
 
+def collect_prop_rows(prop_items):
+    rows = []
+
+    for item in prop_items or []:
+        bookmaker = item.get("bookmaker") or "Bookmaker"
+        markets = item.get("markets") or {}
+
+        def add_rows(label, items):
+            for selection, odds in market_rows_from_structured(items):
+                rows.append(
+                    {
+                        "bookmaker": bookmaker,
+                        "market": canonical_market_label(label),
+                        "selection": clean_selection(selection),
+                        "odds": odds,
+                        "decimal": fractional_to_decimal(odds),
+                    }
+                )
+
+        if isinstance(markets, dict):
+            add_rows("Fight Betting", markets.get("fight_betting"))
+            add_rows("Method of Victory", markets.get("method_of_victory"))
+            add_rows("Rounds", markets.get("rounds") or markets.get("total_rounds"))
+            add_rows("Go The Distance?", markets.get("go_the_distance"))
+
+        add_rows("Method of Victory", item.get("method_props"))
+        add_rows("Rounds", item.get("round_props"))
+        add_rows("Go The Distance?", item.get("distance_props"))
+
+    return [r for r in rows if r["selection"] and r["odds"] and r["decimal"] > 0]
+
+
+def render_best_prop_odds(prop_items):
+    rows = collect_prop_rows(prop_items)
+
+    if not rows:
+        return """
+      <section class="best-props">
+        <div class="best-props-head">
+          <div>
+            <div class="corner-label">Best odds</div>
+            <h2>Best Available Prop Odds</h2>
+            <p class="muted">No comparable prop odds found yet.</p>
+          </div>
+        </div>
+      </section>
+        """
+
+    grouped = {}
+
+    for row in rows:
+        key = (row["market"], row["selection"])
+        if key not in grouped or row["decimal"] > grouped[key]["decimal"]:
+            grouped[key] = row
+
+    ordered = sorted(
+        grouped.values(),
+        key=lambda r: (r["market"], r["selection"].lower())
+    )
+
+    by_market = {}
+    for row in ordered:
+        by_market.setdefault(row["market"], []).append(row)
+
+    market_html = ""
+
+    for market, items in by_market.items():
+        market_html += f"""
+        <div class="best-market">
+          <h3>{html_escape(market)}</h3>
+          <div class="best-rows">
+        """
+
+        for row in items[:40]:
+            market_html += f"""
+            <div class="best-row">
+              <div>
+                <strong>{html_escape(row["selection"])}</strong>
+                <span>{html_escape(row["bookmaker"])}</span>
+              </div>
+              <div class="best-price">⭐ {html_escape(row["odds"])}</div>
+            </div>
+            """
+
+        market_html += """
+          </div>
+        </div>
+        """
+
+    return f"""
+      <section class="best-props">
+        <div class="best-props-head">
+          <div>
+            <div class="corner-label">Best odds</div>
+            <h2>Best Available Prop Odds</h2>
+            <p class="muted">Highest available price per prop selection across matched bookmakers.</p>
+          </div>
+        </div>
+        <div class="best-props-grid">
+          {market_html}
+        </div>
+      </section>
+    """
+
+
 def render_market_block(label, items):
     rows = market_rows_from_structured(items)
 
@@ -455,9 +592,7 @@ def render_fight_props(prop_items):
     for item in prop_items:
         bookmaker = item.get("bookmaker") or "Bookmaker"
         url = item.get("url") or "#"
-
         markets = item.get("markets") or {}
-
         market_html = ""
 
         if isinstance(markets, dict):
@@ -693,7 +828,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
 
     .fighter-card,
     .fight-meta,
-    .fight-props {{
+    .fight-props,
+    .best-props {{
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -701,12 +837,14 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       min-width: 0;
     }}
 
-    .fight-props {{
+    .fight-props,
+    .best-props {{
       margin-top: 22px;
     }}
 
     .fighter-header,
-    .prop-card-head {{
+    .prop-card-head,
+    .best-props-head {{
       display: flex;
       justify-content: space-between;
       gap: 12px;
@@ -733,7 +871,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       line-height: 1.05;
     }}
 
-    .fight-props h2 {{
+    .fight-props h2,
+    .best-props h2 {{
       margin-top: 0;
       font-size: 30px;
     }}
@@ -764,7 +903,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
 
     .quick-summary div,
     .section-block,
-    .prop-card {{
+    .prop-card,
+    .best-market {{
       border:1px solid var(--line);
       border-radius:14px;
       padding:14px;
@@ -787,7 +927,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
     }}
 
     .section-block h3,
-    .prop-market h4 {{
+    .prop-market h4,
+    .best-market h3 {{
       margin: 0 0 10px;
       color: var(--muted);
       font-size: 15px;
@@ -843,6 +984,37 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       gap: 14px;
     }}
 
+    .best-props-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }}
+
+    .best-row {{
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 8px;
+      background: rgba(15,22,33,0.85);
+    }}
+
+    .best-row span {{
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }}
+
+    .best-price {{
+      color: #22c55e;
+      font-weight: 900;
+      white-space: nowrap;
+    }}
+
     .prop-market {{
       border-top: 1px solid var(--line);
       margin-top: 14px;
@@ -888,7 +1060,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
         grid-template-columns:1fr;
       }}
 
-      .prop-row {{
+      .prop-row,
+      .best-row {{
         flex-direction: column;
       }}
     }}
@@ -921,6 +1094,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
         {fighter_panel(red, odds_event, "Left Side")}
         {fighter_panel(blue, odds_event, "Right Side")}
       </div>
+
+      {render_best_prop_odds(props)}
 
       {render_fight_props(props)}
 
