@@ -50,15 +50,22 @@ jobs:
               "ufc/data/paddypower_fight_urls.json",
               "ufc/data/props.json",
               "ufc/data/props_filtered.json",
+
               "ufc/data/boylesports_fight_urls.json",
               "ufc/data/boylesports_props.json",
               "ufc/data/boylesports_props_filtered.json",
+
               "ufc/data/betvictor_fight_urls.json",
               "ufc/data/betvictor_props.json",
               "ufc/data/betvictor_props_filtered.json",
+
               "ufc/data/coral_fight_urls.json",
               "ufc/data/coral_props.json",
               "ufc/data/coral_props_filtered.json",
+
+              "ufc/data/betmgm_fight_urls.json",
+              "ufc/data/betmgm_props.json",
+              "ufc/data/betmgm_props_filtered.json",
           ]
 
           for path in files:
@@ -67,7 +74,9 @@ jobs:
                   continue
 
               data = json.load(open(path, encoding="utf-8"))
-              print(f"{path}: fights={len(data.get('fights') or [])}")
+              fights_count = len(data.get("fights") or [])
+              props_count = len(data.get("props") or [])
+              print(f"{path}: fights={fights_count} props={props_count}")
           PY
 
       - name: Fetch recent past UFC events
@@ -111,18 +120,26 @@ jobs:
               "ufc/data/odds.json",
               "ufc/data/arbitrage.json",
               "ufc/data/arbitrage_all.json",
+
+              "ufc/data/paddypower_fight_urls.json",
               "ufc/data/props.json",
               "ufc/data/props_filtered.json",
-              "ufc/data/paddypower_fight_urls.json",
+
               "ufc/data/boylesports_fight_urls.json",
               "ufc/data/boylesports_props.json",
               "ufc/data/boylesports_props_filtered.json",
+
               "ufc/data/betvictor_fight_urls.json",
               "ufc/data/betvictor_props.json",
               "ufc/data/betvictor_props_filtered.json",
+
               "ufc/data/coral_fight_urls.json",
               "ufc/data/coral_props.json",
               "ufc/data/coral_props_filtered.json",
+
+              "ufc/data/betmgm_fight_urls.json",
+              "ufc/data/betmgm_props.json",
+              "ufc/data/betmgm_props_filtered.json",
           ]
 
           for path in files:
@@ -140,6 +157,8 @@ jobs:
                           print(f"  fighters={len(data.get('fighters') or [])}")
                       if "fights" in data:
                           print(f"  fights={len(data.get('fights') or [])}")
+                      if "props" in data:
+                          print(f"  props={len(data.get('props') or [])}")
                       if "opportunities" in data:
                           print(f"  opportunities={len(data.get('opportunities') or [])}")
                   else:
