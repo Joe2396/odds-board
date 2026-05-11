@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-11T19:56:41.382732+00:00",
-  "total_arbitrage": 1,
+  "updated_at": "2026-05-11T22:14:30.890892+00:00",
+  "total_arbitrage": 2,
   "arbitrage": [
     {
       "sport": "UFC",
@@ -8,8 +8,8 @@
       "event": "Daniel Santos vs Dooho Choi",
       "market": "Moneyline",
       "commence_time": "2026-05-17T00:00:00Z",
-      "profit_margin_percent": 3.44,
-      "arb_sum": 0.965632,
+      "profit_margin_percent": 2.51,
+      "arb_sum": 0.97486,
       "bookmakers": [
         {
           "selection": "Daniel Santos",
@@ -21,9 +21,35 @@
         {
           "selection": "Dooho Choi",
           "bookmaker": "Betfair",
-          "odds": 2.58,
-          "decimal_odds": 2.58,
-          "implied_probability": 38.76
+          "odds": 2.52,
+          "decimal_odds": 2.52,
+          "implied_probability": 39.68
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "UFC",
+      "type": "moneyline",
+      "event": "Kenneth Cross vs Salahdine Parnasse",
+      "market": "Moneyline",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "profit_margin_percent": 0.39,
+      "arb_sum": 0.996067,
+      "bookmakers": [
+        {
+          "selection": "Kenneth Cross",
+          "bookmaker": "William Hill",
+          "odds": 9.0,
+          "decimal_odds": 9.0,
+          "implied_probability": 11.11
+        },
+        {
+          "selection": "Salahdine Parnasse",
+          "bookmaker": "LeoVegas",
+          "odds": 1.13,
+          "decimal_odds": 1.13,
+          "implied_probability": 88.5
         }
       ],
       "source_file": "ufc/data/arbitrage.json"

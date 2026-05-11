@@ -3,10 +3,32 @@
   "total_moneyline_fights_checked": 25,
   "total_prop_markets_checked": 18,
   "total_prop_rows_loaded": 75,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 2,
+  "moneyline_arbitrage_count": 2,
   "prop_arbitrage_count": 0,
   "fights": [
+    {
+      "type": "moneyline",
+      "event_id": "afe4e26d4f1d30c3385ed1984f2eb684",
+      "commence_time": "2026-05-16T22:00:00Z",
+      "fight": "Thomas Gantt vs Trey Ogden",
+      "market": "Moneyline",
+      "fighters": {
+        "Thomas Gantt": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.41,
+          "implied_probability": 70.92
+        },
+        "Trey Ogden": {
+          "best_bookmaker": "888sport",
+          "best_price": 2.95,
+          "implied_probability": 33.9
+        }
+      },
+      "arb_sum": 1.048203,
+      "is_arbitrage": false,
+      "profit_margin_percent": -4.82
+    },
     {
       "type": "moneyline",
       "event_id": "3fac0dd01eb2eed4c9f74430775f2e28",
@@ -37,9 +59,9 @@
       "market": "Moneyline",
       "fighters": {
         "Andre Petroski": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.52,
-          "implied_probability": 65.79
+          "best_bookmaker": "Betway",
+          "best_price": 1.5,
+          "implied_probability": 66.67
         },
         "Cody Brundage": {
           "best_bookmaker": "Paddy Power",
@@ -47,9 +69,9 @@
           "implied_probability": 36.36
         }
       },
-      "arb_sum": 1.021531,
+      "arb_sum": 1.030303,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.15
+      "profit_margin_percent": -3.03
     },
     {
       "type": "moneyline",
@@ -86,14 +108,14 @@
           "implied_probability": 60.98
         },
         "Timothy Cuamba": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.3,
-          "implied_probability": 43.48
+          "best_bookmaker": "Betfair",
+          "best_price": 2.44,
+          "implied_probability": 40.98
         }
       },
-      "arb_sum": 1.044539,
+      "arb_sum": 1.019592,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.45
+      "profit_margin_percent": -1.96
     },
     {
       "type": "moneyline",
@@ -131,13 +153,13 @@
         },
         "Dooho Choi": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.58,
-          "implied_probability": 38.76
+          "best_price": 2.52,
+          "implied_probability": 39.68
         }
       },
-      "arb_sum": 0.965632,
+      "arb_sum": 0.97486,
       "is_arbitrage": true,
-      "profit_margin_percent": 3.44
+      "profit_margin_percent": 2.51
     },
     {
       "type": "moneyline",
@@ -280,8 +302,8 @@
       "fighters": {
         "Kenneth Cross": {
           "best_bookmaker": "William Hill",
-          "best_price": 8.0,
-          "implied_probability": 12.5
+          "best_price": 9.0,
+          "implied_probability": 11.11
         },
         "Salahdine Parnasse": {
           "best_bookmaker": "LeoVegas",
@@ -289,9 +311,9 @@
           "implied_probability": 88.5
         }
       },
-      "arb_sum": 1.009956,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.0
+      "arb_sum": 0.996067,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.39
     },
     {
       "type": "moneyline",
@@ -301,9 +323,9 @@
       "market": "Moneyline",
       "fighters": {
         "Khaos Williams": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.83,
-          "implied_probability": 54.64
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.81,
+          "implied_probability": 55.25
         },
         "Nikolay Veretennikov": {
           "best_bookmaker": "Paddy Power",
@@ -311,9 +333,9 @@
           "implied_probability": 50.0
         }
       },
-      "arb_sum": 1.046448,
+      "arb_sum": 1.052486,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.64
+      "profit_margin_percent": -5.25
     },
     {
       "type": "moneyline",
@@ -345,9 +367,9 @@
       "market": "Moneyline",
       "fighters": {
         "Modestas Bukauskas": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.83,
-          "implied_probability": 54.64
+          "best_bookmaker": "Betfair",
+          "best_price": 1.85,
+          "implied_probability": 54.05
         },
         "Rodolfo Bellato": {
           "best_bookmaker": "Paddy Power",
@@ -355,9 +377,9 @@
           "implied_probability": 47.62
         }
       },
-      "arb_sum": 1.022639,
+      "arb_sum": 1.016731,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.26
+      "profit_margin_percent": -1.67
     },
     {
       "type": "moneyline",
@@ -373,35 +395,13 @@
         },
         "Shauna Bannon": {
           "best_bookmaker": "Betfair",
-          "best_price": 3.0,
-          "implied_probability": 33.33
+          "best_price": 3.05,
+          "implied_probability": 32.79
         }
       },
-      "arb_sum": 1.027778,
+      "arb_sum": 1.022313,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.78
-    },
-    {
-      "type": "moneyline",
-      "event_id": "afe4e26d4f1d30c3385ed1984f2eb684",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Thomas Gantt vs Trey Ogden",
-      "market": "Moneyline",
-      "fighters": {
-        "Thomas Gantt": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.4,
-          "implied_probability": 71.43
-        },
-        "Trey Ogden": {
-          "best_bookmaker": "Betfair",
-          "best_price": 3.0,
-          "implied_probability": 33.33
-        }
-      },
-      "arb_sum": 1.047619,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.76
+      "profit_margin_percent": -2.23
     },
     {
       "type": "moneyline",
@@ -989,13 +989,35 @@
         },
         "Dooho Choi": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.58,
-          "implied_probability": 38.76
+          "best_price": 2.52,
+          "implied_probability": 39.68
         }
       },
-      "arb_sum": 0.965632,
+      "arb_sum": 0.97486,
       "is_arbitrage": true,
-      "profit_margin_percent": 3.44
+      "profit_margin_percent": 2.51
+    },
+    {
+      "type": "moneyline",
+      "event_id": "b14ca50bcde757d3508c70099e4fdba5",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "fight": "Kenneth Cross vs Salahdine Parnasse",
+      "market": "Moneyline",
+      "fighters": {
+        "Kenneth Cross": {
+          "best_bookmaker": "William Hill",
+          "best_price": 9.0,
+          "implied_probability": 11.11
+        },
+        "Salahdine Parnasse": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.13,
+          "implied_probability": 88.5
+        }
+      },
+      "arb_sum": 0.996067,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.39
     }
   ]
 }

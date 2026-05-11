@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-11T19:53:25Z",
+  "generated_at": "2026-05-11T22:10:30Z",
   "events": [
     {
       "id": "2026-04-18-ufc-fight-night-burns-vs-malott",
@@ -1097,13 +1097,13 @@
         },
         {
           "id": "600058948-6",
-          "bout": "Jeremiah Wells vs Nicolas Dalby",
+          "bout": "Nikolay Veretennikov vs Khaos Williams",
           "red": {
-            "name": "Jeremiah Wells",
+            "name": "Nikolay Veretennikov",
             "espn_id": ""
           },
           "blue": {
-            "name": "Nicolas Dalby",
+            "name": "Khaos Williams",
             "espn_id": ""
           },
           "weight_class": "Welterweight",
@@ -1116,6 +1116,25 @@
         },
         {
           "id": "600058948-7",
+          "bout": "Jeremiah Wells vs Nicolas Dalby",
+          "red": {
+            "name": "Jeremiah Wells",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Nicolas Dalby",
+            "espn_id": ""
+          },
+          "weight_class": "Welterweight",
+          "order": 7,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600058948"
+          }
+        },
+        {
+          "id": "600058948-8",
           "bout": "Tuco Tokkos vs Ivan Erslan",
           "red": {
             "name": "Tuco Tokkos",
@@ -1126,7 +1145,7 @@
             "espn_id": ""
           },
           "weight_class": "Light Heavyweight",
-          "order": 7,
+          "order": 8,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1134,7 +1153,7 @@
           }
         },
         {
-          "id": "600058948-8",
+          "id": "600058948-9",
           "bout": "Ketlen Vieira vs Jacqueline Cavalcanti",
           "red": {
             "name": "Ketlen Vieira",
@@ -1145,7 +1164,7 @@
             "espn_id": ""
           },
           "weight_class": "Women's Bantamweight",
-          "order": 8,
+          "order": 9,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1153,7 +1172,7 @@
           }
         },
         {
-          "id": "600058948-9",
+          "id": "600058948-10",
           "bout": "Cody Brundage vs Andre Petroski",
           "red": {
             "name": "Cody Brundage",
@@ -1164,7 +1183,7 @@
             "espn_id": ""
           },
           "weight_class": "Middleweight",
-          "order": 9,
+          "order": 10,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1172,7 +1191,7 @@
           }
         },
         {
-          "id": "600058948-10",
+          "id": "600058948-11",
           "bout": "Alice Ardelean vs Polyana Viana",
           "red": {
             "name": "Alice Ardelean",
@@ -1183,7 +1202,7 @@
             "espn_id": ""
           },
           "weight_class": "Women's Strawweight",
-          "order": 10,
+          "order": 11,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1191,7 +1210,7 @@
           }
         },
         {
-          "id": "600058948-11",
+          "id": "600058948-12",
           "bout": "Daniel Barez vs Luis Gurule",
           "red": {
             "name": "Daniel Barez",
@@ -1202,7 +1221,7 @@
             "espn_id": ""
           },
           "weight_class": "Flyweight",
-          "order": 11,
+          "order": 12,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1210,7 +1229,7 @@
           }
         },
         {
-          "id": "600058948-12",
+          "id": "600058948-13",
           "bout": "Shauna Bannon vs Nicolle Caliari",
           "red": {
             "name": "Shauna Bannon",
@@ -1221,7 +1240,26 @@
             "espn_id": ""
           },
           "weight_class": "Women's Strawweight",
-          "order": 12,
+          "order": 13,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600058948"
+          }
+        },
+        {
+          "id": "600058948-14",
+          "bout": "Trey Ogden vs Tommy Gantt",
+          "red": {
+            "name": "Trey Ogden",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Tommy Gantt",
+            "espn_id": ""
+          },
+          "weight_class": "Lightweight",
+          "order": 14,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -1876,5 +1914,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-05-11T19:53:25Z"
+  "_debug_saved_at": "2026-05-11T22:10:30Z"
 }
