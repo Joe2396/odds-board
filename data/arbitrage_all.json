@@ -1,5 +1,32 @@
 {
-  "updated_at": "2026-05-11T17:09:00.177214+00:00",
-  "total_arbitrage": 0,
-  "arbitrage": []
+  "updated_at": "2026-05-11T19:39:46.084202+00:00",
+  "total_arbitrage": 1,
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "type": "moneyline",
+      "event": "Daniel Santos vs Dooho Choi",
+      "market": "Moneyline",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "profit_margin_percent": 1.21,
+      "arb_sum": 0.987871,
+      "bookmakers": [
+        {
+          "selection": "Daniel Santos",
+          "bookmaker": "Betway",
+          "odds": 1.73,
+          "decimal_odds": 1.73,
+          "implied_probability": 57.8
+        },
+        {
+          "selection": "Dooho Choi",
+          "bookmaker": "Betfair",
+          "odds": 2.44,
+          "decimal_odds": 2.44,
+          "implied_probability": 40.98
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ]
 }
