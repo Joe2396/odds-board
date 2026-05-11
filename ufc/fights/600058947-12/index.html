@@ -262,10 +262,33 @@
       margin-top: 4px;
     }
 
+    .best-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
     .best-price {
       color: #22c55e;
       font-weight: 900;
       white-space: nowrap;
+    }
+
+    .ev-load-btn {
+      border: 1px solid rgba(96,165,250,0.4);
+      background: rgba(96,165,250,0.12);
+      color: #93c5fd;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .ev-load-btn:hover {
+      background: rgba(96,165,250,0.22);
     }
 
     .summary-strip {
@@ -333,6 +356,33 @@
       padding: 22px;
       background: rgba(255,255,255,0.025);
       margin-top: 0;
+    }
+
+    .ev-picked {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .ev-picked div {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(15,22,33,0.75);
+    }
+
+    .ev-picked span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    .ev-picked strong {
+      color: #93c5fd;
+      font-size: 18px;
     }
 
     .ev-grid {
@@ -433,6 +483,10 @@
       .prop-row,
       .best-row {
         flex-direction: column;
+      }
+
+      .best-right {
+        align-items: flex-start;
       }
     }
   </style>
@@ -713,7 +767,7 @@
           <div>
             <div class="corner-label">Best odds</div>
             <h2>Best Available Prop Odds</h2>
-            <p class="muted">Highest available price per prop selection across matched bookmakers.</p>
+            <p class="muted">Highest available price per prop selection across matched bookmakers. Click any price to test it in the EV Tool.</p>
           </div>
         </div>
         <div class="best-props-grid">
@@ -727,7 +781,19 @@
                 <strong>Clayton Carpenter</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 11/8</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 11/8</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter"
+                  data-bookmaker="Coral"
+                  data-odds="2.38"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -735,7 +801,19 @@
                 <strong>Jose Ochoa</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 4/7</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 4/7</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa"
+                  data-bookmaker="Coral"
+                  data-odds="1.57"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
           </div>
@@ -750,7 +828,19 @@
                 <strong>No</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 5/4</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 5/4</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="No"
+                  data-bookmaker="BoyleSports"
+                  data-odds="2.25"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -758,7 +848,19 @@
                 <strong>Yes</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 20/31</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 20/31</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Yes"
+                  data-bookmaker="Coral"
+                  data-odds="1.65"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
           </div>
@@ -773,7 +875,19 @@
                 <strong>Clayton Carpenter - Decision</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 13/5</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 13/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter - Decision"
+                  data-bookmaker="Coral"
+                  data-odds="3.60"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -781,7 +895,19 @@
                 <strong>Clayton Carpenter - KO / TKO</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 10/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 10/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter - KO / TKO"
+                  data-bookmaker="Coral"
+                  data-odds="11.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -789,7 +915,19 @@
                 <strong>Clayton Carpenter - KO / TKO / Submission</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 4/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 4/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter - KO / TKO / Submission"
+                  data-bookmaker="Coral"
+                  data-odds="5.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -797,7 +935,19 @@
                 <strong>Clayton Carpenter - Submission</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 6/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 6/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter - Submission"
+                  data-bookmaker="Coral"
+                  data-odds="7.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -805,7 +955,19 @@
                 <strong>Clayton Carpenter By Decision or Technical Decision</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 13/5</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 13/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter By Decision or Technical Decision"
+                  data-bookmaker="BoyleSports"
+                  data-odds="3.60"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -813,7 +975,19 @@
                 <strong>Clayton Carpenter By KO, TKO or Disqualification</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 10/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 10/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter By KO, TKO or Disqualification"
+                  data-bookmaker="BoyleSports"
+                  data-odds="11.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -821,7 +995,19 @@
                 <strong>Clayton Carpenter by KO/TKO</strong>
                 <span>PaddyPower</span>
               </div>
-              <div class="best-price">⭐ 11/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 11/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter by KO/TKO"
+                  data-bookmaker="PaddyPower"
+                  data-odds="12.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -829,7 +1015,19 @@
                 <strong>Clayton Carpenter by Points</strong>
                 <span>PaddyPower</span>
               </div>
-              <div class="best-price">⭐ 11/4</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 11/4</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter by Points"
+                  data-bookmaker="PaddyPower"
+                  data-odds="3.75"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -837,7 +1035,19 @@
                 <strong>Clayton Carpenter by Submission</strong>
                 <span>PaddyPower</span>
               </div>
-              <div class="best-price">⭐ 15/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 15/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter by Submission"
+                  data-bookmaker="PaddyPower"
+                  data-odds="8.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -845,7 +1055,19 @@
                 <strong>Clayton Carpenter By Submission</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 7/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 7/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter By Submission"
+                  data-bookmaker="BoyleSports"
+                  data-odds="8.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -853,7 +1075,19 @@
                 <strong>Draw</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 50/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 50/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Draw"
+                  data-bookmaker="BoyleSports"
+                  data-odds="51.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -861,7 +1095,19 @@
                 <strong>Fight is a Draw</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 50/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 50/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Fight is a Draw"
+                  data-bookmaker="Coral"
+                  data-odds="51.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -869,7 +1115,19 @@
                 <strong>Jose Ochoa - Decision</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 3/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 3/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa - Decision"
+                  data-bookmaker="Coral"
+                  data-odds="2.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -877,7 +1135,19 @@
                 <strong>Jose Ochoa - KO / TKO</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 3/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 3/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa - KO / TKO"
+                  data-bookmaker="Coral"
+                  data-odds="4.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -885,7 +1155,19 @@
                 <strong>Jose Ochoa - KO / TKO / Submission</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 5/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 5/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa - KO / TKO / Submission"
+                  data-bookmaker="Coral"
+                  data-odds="3.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -893,7 +1175,19 @@
                 <strong>Jose Ochoa - Submission</strong>
                 <span>Coral</span>
               </div>
-              <div class="best-price">⭐ 12/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 12/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa - Submission"
+                  data-bookmaker="Coral"
+                  data-odds="13.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -901,7 +1195,19 @@
                 <strong>Jose Ochoa By Decision or Technical Decision</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 6/4</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 6/4</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa By Decision or Technical Decision"
+                  data-bookmaker="BoyleSports"
+                  data-odds="2.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -909,7 +1215,19 @@
                 <strong>Jose Ochoa By KO, TKO or Disqualification</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 29/10</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 29/10</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa By KO, TKO or Disqualification"
+                  data-bookmaker="BoyleSports"
+                  data-odds="3.90"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -917,7 +1235,19 @@
                 <strong>Jose Ochoa by KO/TKO</strong>
                 <span>PaddyPower</span>
               </div>
-              <div class="best-price">⭐ 11/4</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 11/4</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa by KO/TKO"
+                  data-bookmaker="PaddyPower"
+                  data-odds="3.75"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -925,7 +1255,19 @@
                 <strong>Jose Ochoa by Points</strong>
                 <span>PaddyPower</span>
               </div>
-              <div class="best-price">⭐ 6/4</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 6/4</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa by Points"
+                  data-bookmaker="PaddyPower"
+                  data-odds="2.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -933,7 +1275,19 @@
                 <strong>Jose Ochoa by Submission</strong>
                 <span>PaddyPower</span>
               </div>
-              <div class="best-price">⭐ 12/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 12/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa by Submission"
+                  data-bookmaker="PaddyPower"
+                  data-odds="13.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -941,7 +1295,19 @@
                 <strong>Jose Ochoa By Submission</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 12/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 12/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa By Submission"
+                  data-bookmaker="BoyleSports"
+                  data-odds="13.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
           </div>
@@ -956,7 +1322,19 @@
                 <strong>Al Hilal Omdurman</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 11/5</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 11/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Al Hilal Omdurman"
+                  data-bookmaker="BoyleSports"
+                  data-odds="3.20"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -964,7 +1342,19 @@
                 <strong>Al-Baqaa</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 4/6</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 4/6</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Al-Baqaa"
+                  data-bookmaker="BoyleSports"
+                  data-odds="1.67"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -972,7 +1362,19 @@
                 <strong>Bouri</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 6/5</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 6/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Bouri"
+                  data-bookmaker="BoyleSports"
+                  data-odds="2.20"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -980,7 +1382,19 @@
                 <strong>Clayton Carpenter By Decision</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 13/5</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 13/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter By Decision"
+                  data-bookmaker="BoyleSports"
+                  data-odds="3.60"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -988,7 +1402,19 @@
                 <strong>Clayton Carpenter KO/TKO Round 1</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 18/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 18/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter KO/TKO Round 1"
+                  data-bookmaker="BoyleSports"
+                  data-odds="19.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -996,7 +1422,19 @@
                 <strong>Clayton Carpenter KO/TKO Round 2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 28/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 28/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter KO/TKO Round 2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="29.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1004,7 +1442,19 @@
                 <strong>Clayton Carpenter KO/TKO Round 3</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 40/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 40/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter KO/TKO Round 3"
+                  data-bookmaker="BoyleSports"
+                  data-odds="41.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1012,7 +1462,19 @@
                 <strong>Clayton Carpenter Round 1,2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 11/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 11/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter Round 1,2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="6.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1020,7 +1482,19 @@
                 <strong>Clayton Carpenter Round 3 or Decision</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 9/4</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 9/4</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter Round 3 or Decision"
+                  data-bookmaker="BoyleSports"
+                  data-odds="3.25"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1028,7 +1502,19 @@
                 <strong>Clayton Carpenter Submission Round 1</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 14/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 14/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter Submission Round 1"
+                  data-bookmaker="BoyleSports"
+                  data-odds="15.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1036,7 +1522,19 @@
                 <strong>Clayton Carpenter Submission Round 2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 22/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 22/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter Submission Round 2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="23.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1044,7 +1542,19 @@
                 <strong>Clayton Carpenter Submission Round 3</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 33/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 33/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter Submission Round 3"
+                  data-bookmaker="BoyleSports"
+                  data-odds="34.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1052,7 +1562,19 @@
                 <strong>Clayton Carpenter Wins In Round 1</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 17/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 17/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter Wins In Round 1"
+                  data-bookmaker="BoyleSports"
+                  data-odds="9.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1060,7 +1582,19 @@
                 <strong>Clayton Carpenter Wins In Round 2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 14/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 14/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter Wins In Round 2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="15.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1068,7 +1602,19 @@
                 <strong>Clayton Carpenter Wins In Round 3</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 22/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 22/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Clayton Carpenter Wins In Round 3"
+                  data-bookmaker="BoyleSports"
+                  data-odds="23.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1076,7 +1622,19 @@
                 <strong>Draw</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 50/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 50/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Draw"
+                  data-bookmaker="BoyleSports"
+                  data-odds="51.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1084,7 +1642,19 @@
                 <strong>Grobinas</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 4/11</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 4/11</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Grobinas"
+                  data-bookmaker="BoyleSports"
+                  data-odds="1.36"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1092,7 +1662,19 @@
                 <strong>Jose Ochoa By Decision</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 7/5</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 7/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa By Decision"
+                  data-bookmaker="BoyleSports"
+                  data-odds="2.40"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1100,7 +1682,19 @@
                 <strong>Jose Ochoa KO/TKO Round 1</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 7/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 7/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa KO/TKO Round 1"
+                  data-bookmaker="BoyleSports"
+                  data-odds="8.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1108,7 +1702,19 @@
                 <strong>Jose Ochoa KO/TKO Round 2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 19/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 19/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa KO/TKO Round 2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="10.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1116,7 +1722,19 @@
                 <strong>Jose Ochoa KO/TKO Round 3</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 14/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 14/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa KO/TKO Round 3"
+                  data-bookmaker="BoyleSports"
+                  data-odds="15.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1124,7 +1742,19 @@
                 <strong>Jose Ochoa Round 1,2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 3/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 3/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa Round 1,2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="4.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1132,7 +1762,19 @@
                 <strong>Jose Ochoa Round 3 or Decision</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 23/20</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 23/20</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa Round 3 or Decision"
+                  data-bookmaker="BoyleSports"
+                  data-odds="2.15"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1140,7 +1782,19 @@
                 <strong>Jose Ochoa Submission Round 1</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 22/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 22/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa Submission Round 1"
+                  data-bookmaker="BoyleSports"
+                  data-odds="23.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1148,7 +1802,19 @@
                 <strong>Jose Ochoa Submission Round 2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 28/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 28/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa Submission Round 2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="29.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1156,7 +1822,19 @@
                 <strong>Jose Ochoa Submission Round 3</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 40/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 40/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa Submission Round 3"
+                  data-bookmaker="BoyleSports"
+                  data-odds="41.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1164,7 +1842,19 @@
                 <strong>Jose Ochoa Wins In Round 1</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 11/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 11/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa Wins In Round 1"
+                  data-bookmaker="BoyleSports"
+                  data-odds="6.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1172,7 +1862,19 @@
                 <strong>Jose Ochoa Wins In Round 2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 15/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 15/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa Wins In Round 2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="8.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1180,7 +1882,19 @@
                 <strong>Jose Ochoa Wins In Round 3</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 12/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 12/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Jose Ochoa Wins In Round 3"
+                  data-bookmaker="BoyleSports"
+                  data-odds="13.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1188,7 +1902,19 @@
                 <strong>Leandro N. Alem Reserves</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 1/4</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 1/4</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Leandro N. Alem Reserves"
+                  data-bookmaker="BoyleSports"
+                  data-odds="1.25"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1196,7 +1922,19 @@
                 <strong>NuPS</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 1/4</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 1/4</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="NuPS"
+                  data-bookmaker="BoyleSports"
+                  data-odds="1.25"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1204,7 +1942,19 @@
                 <strong>Over 2.5</strong>
                 <span>PaddyPower</span>
               </div>
-              <div class="best-price">⭐ 8/15</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 8/15</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Over 2.5"
+                  data-bookmaker="PaddyPower"
+                  data-odds="1.53"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1212,7 +1962,19 @@
                 <strong>Posavje Krsko</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 4/9</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 4/9</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Posavje Krsko"
+                  data-bookmaker="BoyleSports"
+                  data-odds="1.44"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1220,7 +1982,19 @@
                 <strong>PPJ Lauttasaari</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 19/10</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 19/10</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="PPJ Lauttasaari"
+                  data-bookmaker="BoyleSports"
+                  data-odds="2.90"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1228,7 +2002,19 @@
                 <strong>Round 1</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 10/3</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 10/3</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Round 1"
+                  data-bookmaker="BoyleSports"
+                  data-odds="4.33"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1236,7 +2022,19 @@
                 <strong>Round 1,2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 7/4</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 7/4</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Round 1,2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="2.75"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1244,7 +2042,19 @@
                 <strong>Round 2</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 5/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 5/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Round 2"
+                  data-bookmaker="BoyleSports"
+                  data-odds="6.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1252,7 +2062,19 @@
                 <strong>Round 3</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 17/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 17/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Round 3"
+                  data-bookmaker="BoyleSports"
+                  data-odds="9.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1260,7 +2082,19 @@
                 <strong>Round 3 or Decision</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 2/5</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 2/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Round 3 or Decision"
+                  data-bookmaker="BoyleSports"
+                  data-odds="1.40"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
@@ -1268,7 +2102,19 @@
                 <strong>Sepsi Sfantu Gheorghe</strong>
                 <span>BoyleSports</span>
               </div>
-              <div class="best-price">⭐ 12/5</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 12/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Sepsi Sfantu Gheorghe"
+                  data-bookmaker="BoyleSports"
+                  data-odds="3.40"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
           </div>
@@ -1921,8 +2767,19 @@
           <div class="corner-label">Value tool</div>
           <h2>EV Calculator</h2>
           <p class="muted">
-            Enter your estimated fair probability and the available decimal odds to calculate implied probability, edge, expected value and a simple Kelly stake guide.
+            Click “Use in EV Tool” from Best Odds to auto-load a selection, then enter your estimated fair probability.
           </p>
+        </div>
+
+        <div class="ev-picked">
+          <div>
+            <span>Selected Bet</span>
+            <strong id="ev-selection">No selection loaded</strong>
+          </div>
+          <div>
+            <span>Bookmaker</span>
+            <strong id="ev-bookmaker">—</strong>
+          </div>
         </div>
 
         <div class="ev-grid">
@@ -1986,26 +2843,30 @@
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058947-12 • Generated: 2026-05-11 16:48 UTC</p>
+      <p class="muted">Fight ID: 600058947-12 • Generated: 2026-05-11 17:09 UTC</p>
     </div>
   </main>
 
   <script>
+    function activateTab(tabName) {
+      document.querySelectorAll(".tab-btn").forEach(b => {
+        b.classList.remove("active");
+      });
+
+      document.querySelectorAll(".tab-panel").forEach(p => {
+        p.classList.remove("active");
+      });
+
+      const btn = document.querySelector('.tab-btn[data-tab="' + tabName + '"]');
+      const panel = document.getElementById("tab-" + tabName);
+
+      if (btn) btn.classList.add("active");
+      if (panel) panel.classList.add("active");
+    }
+
     document.querySelectorAll(".tab-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".tab-btn").forEach(b => {
-          b.classList.remove("active");
-        });
-
-        document.querySelectorAll(".tab-panel").forEach(p => {
-          p.classList.remove("active");
-        });
-
-        btn.classList.add("active");
-
-        document
-          .getElementById("tab-" + btn.dataset.tab)
-          .classList.add("active");
+        activateTab(btn.dataset.tab);
       });
     });
 
@@ -2081,6 +2942,31 @@
       setBoxState(edgeOut.closest(".ev-result"), edge);
       setBoxState(evOut.closest(".ev-result"), ev);
     }
+
+    document.querySelectorAll(".ev-load-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const selection = btn.dataset.selection || "Selected bet";
+        const bookmaker = btn.dataset.bookmaker || "—";
+        const odds = btn.dataset.odds || "2.00";
+
+        activateTab("value");
+
+        const selectionBox = document.getElementById("ev-selection");
+        const bookmakerBox = document.getElementById("ev-bookmaker");
+        const oddsInput = document.getElementById("ev-odds");
+
+        if (selectionBox) selectionBox.textContent = selection;
+        if (bookmakerBox) bookmakerBox.textContent = bookmaker;
+        if (oddsInput) oddsInput.value = odds;
+
+        updateEV();
+
+        const valuePanel = document.getElementById("tab-value");
+        if (valuePanel) {
+          valuePanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
 
     document.addEventListener("input", updateEV);
     updateEV();

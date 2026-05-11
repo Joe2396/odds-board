@@ -262,10 +262,33 @@
       margin-top: 4px;
     }
 
+    .best-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
     .best-price {
       color: #22c55e;
       font-weight: 900;
       white-space: nowrap;
+    }
+
+    .ev-load-btn {
+      border: 1px solid rgba(96,165,250,0.4);
+      background: rgba(96,165,250,0.12);
+      color: #93c5fd;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .ev-load-btn:hover {
+      background: rgba(96,165,250,0.22);
     }
 
     .summary-strip {
@@ -333,6 +356,33 @@
       padding: 22px;
       background: rgba(255,255,255,0.025);
       margin-top: 0;
+    }
+
+    .ev-picked {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .ev-picked div {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(15,22,33,0.75);
+    }
+
+    .ev-picked span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    .ev-picked strong {
+      color: #93c5fd;
+      font-size: 18px;
     }
 
     .ev-grid {
@@ -433,6 +483,10 @@
       .prop-row,
       .best-row {
         flex-direction: column;
+      }
+
+      .best-right {
+        align-items: flex-start;
       }
     }
   </style>
@@ -982,8 +1036,19 @@
           <div class="corner-label">Value tool</div>
           <h2>EV Calculator</h2>
           <p class="muted">
-            Enter your estimated fair probability and the available decimal odds to calculate implied probability, edge, expected value and a simple Kelly stake guide.
+            Click “Use in EV Tool” from Best Odds to auto-load a selection, then enter your estimated fair probability.
           </p>
+        </div>
+
+        <div class="ev-picked">
+          <div>
+            <span>Selected Bet</span>
+            <strong id="ev-selection">No selection loaded</strong>
+          </div>
+          <div>
+            <span>Bookmaker</span>
+            <strong id="ev-bookmaker">—</strong>
+          </div>
         </div>
 
         <div class="ev-grid">
@@ -1047,26 +1112,30 @@
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058807-8 • Generated: 2026-05-11 16:48 UTC</p>
+      <p class="muted">Fight ID: 600058807-8 • Generated: 2026-05-11 17:09 UTC</p>
     </div>
   </main>
 
   <script>
+    function activateTab(tabName) {
+      document.querySelectorAll(".tab-btn").forEach(b => {
+        b.classList.remove("active");
+      });
+
+      document.querySelectorAll(".tab-panel").forEach(p => {
+        p.classList.remove("active");
+      });
+
+      const btn = document.querySelector('.tab-btn[data-tab="' + tabName + '"]');
+      const panel = document.getElementById("tab-" + tabName);
+
+      if (btn) btn.classList.add("active");
+      if (panel) panel.classList.add("active");
+    }
+
     document.querySelectorAll(".tab-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".tab-btn").forEach(b => {
-          b.classList.remove("active");
-        });
-
-        document.querySelectorAll(".tab-panel").forEach(p => {
-          p.classList.remove("active");
-        });
-
-        btn.classList.add("active");
-
-        document
-          .getElementById("tab-" + btn.dataset.tab)
-          .classList.add("active");
+        activateTab(btn.dataset.tab);
       });
     });
 
@@ -1142,6 +1211,31 @@
       setBoxState(edgeOut.closest(".ev-result"), edge);
       setBoxState(evOut.closest(".ev-result"), ev);
     }
+
+    document.querySelectorAll(".ev-load-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const selection = btn.dataset.selection || "Selected bet";
+        const bookmaker = btn.dataset.bookmaker || "—";
+        const odds = btn.dataset.odds || "2.00";
+
+        activateTab("value");
+
+        const selectionBox = document.getElementById("ev-selection");
+        const bookmakerBox = document.getElementById("ev-bookmaker");
+        const oddsInput = document.getElementById("ev-odds");
+
+        if (selectionBox) selectionBox.textContent = selection;
+        if (bookmakerBox) bookmakerBox.textContent = bookmaker;
+        if (oddsInput) oddsInput.value = odds;
+
+        updateEV();
+
+        const valuePanel = document.getElementById("tab-value");
+        if (valuePanel) {
+          valuePanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
 
     document.addEventListener("input", updateEV);
     updateEV();
