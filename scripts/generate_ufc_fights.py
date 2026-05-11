@@ -34,6 +34,10 @@ def html_escape(s):
     )
 
 
+def attr_escape(s):
+    return html_escape(s).replace("\n", " ").replace("\r", " ")
+
+
 def slugify(name):
     name = str(name or "").strip().lower()
     name = name.replace(" vs ", " v ")
@@ -530,7 +534,19 @@ def render_best_prop_odds(prop_items):
                 <strong>{html_escape(row["selection"])}</strong>
                 <span>{html_escape(row["bookmaker"])}</span>
               </div>
-              <div class="best-price">⭐ {html_escape(row["odds"])}</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ {html_escape(row["odds"])}</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="{attr_escape(row["selection"])}"
+                  data-bookmaker="{attr_escape(row["bookmaker"])}"
+                  data-odds="{row["decimal"]:.2f}"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             """
 
@@ -545,7 +561,7 @@ def render_best_prop_odds(prop_items):
           <div>
             <div class="corner-label">Best odds</div>
             <h2>Best Available Prop Odds</h2>
-            <p class="muted">Highest available price per prop selection across matched bookmakers.</p>
+            <p class="muted">Highest available price per prop selection across matched bookmakers. Click any price to test it in the EV Tool.</p>
           </div>
         </div>
         <div class="best-props-grid">
@@ -621,8 +637,19 @@ def render_ev_calculator():
           <div class="corner-label">Value tool</div>
           <h2>EV Calculator</h2>
           <p class="muted">
-            Enter your estimated fair probability and the available decimal odds to calculate implied probability, edge, expected value and a simple Kelly stake guide.
+            Click “Use in EV Tool” from Best Odds to auto-load a selection, then enter your estimated fair probability.
           </p>
+        </div>
+
+        <div class="ev-picked">
+          <div>
+            <span>Selected Bet</span>
+            <strong id="ev-selection">No selection loaded</strong>
+          </div>
+          <div>
+            <span>Bookmaker</span>
+            <strong id="ev-bookmaker">—</strong>
+          </div>
         </div>
 
         <div class="ev-grid">
@@ -1126,10 +1153,33 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       margin-top: 4px;
     }}
 
+    .best-right {{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }}
+
     .best-price {{
       color: #22c55e;
       font-weight: 900;
       white-space: nowrap;
+    }}
+
+    .ev-load-btn {{
+      border: 1px solid rgba(96,165,250,0.4);
+      background: rgba(96,165,250,0.12);
+      color: #93c5fd;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }}
+
+    .ev-load-btn:hover {{
+      background: rgba(96,165,250,0.22);
     }}
 
     .summary-strip {{
@@ -1197,6 +1247,33 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       padding: 22px;
       background: rgba(255,255,255,0.025);
       margin-top: 0;
+    }}
+
+    .ev-picked {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }}
+
+    .ev-picked div {{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(15,22,33,0.75);
+    }}
+
+    .ev-picked span {{
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+      font-weight: 800;
+    }}
+
+    .ev-picked strong {{
+      color: #93c5fd;
+      font-size: 18px;
     }}
 
     .ev-grid {{
@@ -1298,6 +1375,10 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       .best-row {{
         flex-direction: column;
       }}
+
+      .best-right {{
+        align-items: flex-start;
+      }}
     }}
   </style>
 </head>
@@ -1377,21 +1458,25 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
   </main>
 
   <script>
+    function activateTab(tabName) {{
+      document.querySelectorAll(".tab-btn").forEach(b => {{
+        b.classList.remove("active");
+      }});
+
+      document.querySelectorAll(".tab-panel").forEach(p => {{
+        p.classList.remove("active");
+      }});
+
+      const btn = document.querySelector('.tab-btn[data-tab="' + tabName + '"]');
+      const panel = document.getElementById("tab-" + tabName);
+
+      if (btn) btn.classList.add("active");
+      if (panel) panel.classList.add("active");
+    }}
+
     document.querySelectorAll(".tab-btn").forEach(btn => {{
       btn.addEventListener("click", () => {{
-        document.querySelectorAll(".tab-btn").forEach(b => {{
-          b.classList.remove("active");
-        }});
-
-        document.querySelectorAll(".tab-panel").forEach(p => {{
-          p.classList.remove("active");
-        }});
-
-        btn.classList.add("active");
-
-        document
-          .getElementById("tab-" + btn.dataset.tab)
-          .classList.add("active");
+        activateTab(btn.dataset.tab);
       }});
     }});
 
@@ -1467,6 +1552,31 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       setBoxState(edgeOut.closest(".ev-result"), edge);
       setBoxState(evOut.closest(".ev-result"), ev);
     }}
+
+    document.querySelectorAll(".ev-load-btn").forEach(btn => {{
+      btn.addEventListener("click", () => {{
+        const selection = btn.dataset.selection || "Selected bet";
+        const bookmaker = btn.dataset.bookmaker || "—";
+        const odds = btn.dataset.odds || "2.00";
+
+        activateTab("value");
+
+        const selectionBox = document.getElementById("ev-selection");
+        const bookmakerBox = document.getElementById("ev-bookmaker");
+        const oddsInput = document.getElementById("ev-odds");
+
+        if (selectionBox) selectionBox.textContent = selection;
+        if (bookmakerBox) bookmakerBox.textContent = bookmaker;
+        if (oddsInput) oddsInput.value = odds;
+
+        updateEV();
+
+        const valuePanel = document.getElementById("tab-value");
+        if (valuePanel) {{
+          valuePanel.scrollIntoView({{ behavior: "smooth", block: "start" }});
+        }}
+      }});
+    }});
 
     document.addEventListener("input", updateEV);
     updateEV();
