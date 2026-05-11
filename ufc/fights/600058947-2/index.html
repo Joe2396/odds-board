@@ -91,7 +91,7 @@
 
     .fight-props,
     .best-props {
-      margin-top: 22px;
+      margin-top: 0;
     }
 
     .fighter-header,
@@ -124,7 +124,8 @@
     }
 
     .fight-props h2,
-    .best-props h2 {
+    .best-props h2,
+    .ev-panel h2 {
       margin-top: 0;
       font-size: 30px;
     }
@@ -267,6 +268,113 @@
       white-space: nowrap;
     }
 
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .summary-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .summary-card span,
+    .summary-card small {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary-card strong {
+      display: block;
+      margin: 8px 0 4px;
+      font-size: 18px;
+      color: #22c55e;
+    }
+
+    .fight-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 22px 0;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.025);
+      color: var(--muted);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: rgba(96,165,250,0.18);
+      border-color: rgba(96,165,250,0.65);
+      color: #93c5fd;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .ev-panel {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(255,255,255,0.025);
+      margin-top: 0;
+    }
+
+    .ev-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .ev-grid label,
+    .ev-result {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(15,22,33,0.75);
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .ev-grid input {
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #0F1621;
+      color: white;
+      font-size: 16px;
+    }
+
+    .ev-result span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .ev-result strong {
+      font-size: 28px;
+      color: #22c55e;
+    }
+
     .prop-market {
       border-top: 1px solid var(--line);
       margin-top: 14px;
@@ -342,8 +450,50 @@
         </div>
       </div>
 
-      <div class="matchup-grid">
+      
+      <section class="summary-strip">
         
+        <div class="summary-card">
+          <span>Best Method Price</span>
+          <strong>Fight is a Draw @ 50/1</strong>
+          <small>Coral</small>
+        </div>
+        
+        
+        <div class="summary-card">
+          <span>Best Rounds Price</span>
+          <strong>Joshua Van Submission Round 2 @ 50/1</strong>
+          <small>BoyleSports</small>
+        </div>
+        
+        
+        <div class="summary-card">
+          <span>Best Distance Yes</span>
+          <strong>Yes @ 6/4</strong>
+          <small>PaddyPower</small>
+        </div>
+        
+        
+        <div class="summary-card">
+          <span>Best Distance No</span>
+          <strong>No @ 4/7</strong>
+          <small>Coral</small>
+        </div>
+        
+      </section>
+    
+
+      <nav class="fight-tabs">
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="best-odds">Best Odds</button>
+        <button class="tab-btn" data-tab="props">Bookmaker Props</button>
+        <button class="tab-btn" data-tab="stats">Stats & Form</button>
+        <button class="tab-btn" data-tab="value">EV Tool</button>
+      </nav>
+
+      <section class="tab-panel active" id="tab-overview">
+        <div class="matchup-grid">
+          
     <section class="fighter-card">
       <div class="fighter-header">
         <div>
@@ -463,7 +613,7 @@
     
     </section>
     
-        
+          
     <section class="fighter-card">
       <div class="fighter-header">
         <div>
@@ -583,9 +733,11 @@
     
     </section>
     
-      </div>
+        </div>
+      </section>
 
-      
+      <section class="tab-panel" id="tab-best-odds">
+        
       <section class="best-props">
         <div class="best-props-head">
           <div>
@@ -1155,8 +1307,10 @@
         </div>
       </section>
     
+      </section>
 
-      
+      <section class="tab-panel" id="tab-props">
+        
       <section class="fight-props">
         <h2>Bookmaker Props</h2>
         <div class="props-grid">
@@ -1613,6 +1767,281 @@
         </div>
       </section>
     
+      </section>
+
+      <section class="tab-panel" id="tab-stats">
+        <div class="matchup-grid">
+          
+    <section class="fighter-card">
+      <div class="fighter-header">
+        <div>
+          <div class="corner-label">Left Side</div>
+          <h2><a href="/odds-board/ufc/fighters/joshua-van/">Joshua Van</a></h2>
+          <a class="small-link" href="http://ufcstats.com/fighter-details/17e97649403ba428">UFCStats profile →</a>
+        </div>
+      </div>
+
+      <div class="pillrow">
+        <span class="pill">Record: 17-2-0</span>
+        <span class="pill">Weight: 125 lbs.</span>
+        <span class="pill">Stance: Orthodox</span>
+        <span class="pill">Height: 5&#39; 5&quot;</span>
+        <span class="pill">Reach: 65&quot;</span>
+        <span class="pill">DOB: Oct 10, 2001</span>
+      </div>
+
+      <div class="quick-summary">
+        <div>
+          <span class="muted">Recent Form</span>
+          <strong>W W W W W W W L W W</strong>
+        </div>
+        <div>
+          <span class="muted">Finish Rate</span>
+          <strong>40%</strong>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <p class="muted">No UK odds found yet.</p>
+      </div>
+        
+
+      <div class="stats-grid">
+        <div class="section-block">
+          <h3>Striking</h3>
+          <table>
+            <tr><td>SLpM</td><td>8.43</td></tr>
+            <tr><td>Str. Acc.</td><td>57%</td></tr>
+            <tr><td>SApM</td><td>5.82</td></tr>
+            <tr><td>Str. Def.</td><td>—</td></tr>
+          </table>
+        </div>
+
+        <div class="section-block">
+          <h3>Grappling</h3>
+          <table>
+            <tr><td>TD Avg.</td><td>0.82</td></tr>
+            <tr><td>TD Acc.</td><td>61%</td></tr>
+            <tr><td>TD Def.</td><td>75%</td></tr>
+            <tr><td>Sub. Avg.</td><td>0.2</td></tr>
+          </table>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>Method Breakdown</h3>
+        <table>
+          <tr><td>KO/TKO</td><td>4 W • 1 L</td></tr>
+          <tr><td>Submission</td><td>0 W • 0 L</td></tr>
+          <tr><td>Decision</td><td>6 W • 0 L</td></tr>
+          <tr><td>Other</td><td>0 W • 0 L</td></tr>
+        </table>
+      </div>
+    
+      
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <div class="recent-list">
+          
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Tatsuro Taira
+          <div class="muted">KO/TKO Punches • R5 • 1:32 • UFC 328: Chimaev vs. Strickland May. 09, 2026</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Alexandre Pantoja
+          <div class="muted">KO/TKO • R1 • 0:26 • UFC 323: Dvalishvili vs. Yan 2 Dec. 06, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Brandon Royval
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 317: Topuria vs. Oliveira Jun. 28, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Bruno Silva
+          <div class="muted">KO/TKO Punches • R3 • 4:01 • UFC 316: Dvalishvili vs. O&#39;Malley 2 Jun. 07, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Rei Tsuruya
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 313: Pereira vs. Ankalaev Mar. 08, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Cody Durden
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 310: Pantoja vs. Asakura Dec. 07, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Edgar Chairez
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 306: Riyadh Season Noche UFC Sep. 14, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Charles Johnson
+          <div class="muted">KO/TKO Punch • R3 • 0:20 • UFC Fight Night: Namajunas vs. Cortez Jul. 13, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Felipe Bunes
+          <div class="muted">KO/TKO Punches • R2 • 4:31 • UFC Fight Night: Ankalaev vs. Walker 2 Jan. 13, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Kevin Borjas
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 295: Prochazka vs. Pereira Nov. 11, 2023</div>
+        </div>
+        </div>
+      </div>
+    
+    </section>
+    
+          
+    <section class="fighter-card">
+      <div class="fighter-header">
+        <div>
+          <div class="corner-label">Right Side</div>
+          <h2><a href="/odds-board/ufc/fighters/tatsuro-taira/">Tatsuro Taira</a></h2>
+          <a class="small-link" href="http://ufcstats.com/fighter-details/4461d7e47375a895">UFCStats profile →</a>
+        </div>
+      </div>
+
+      <div class="pillrow">
+        <span class="pill">Record: 18-2-0</span>
+        <span class="pill">Weight: 125 lbs.</span>
+        <span class="pill">Stance: Orthodox</span>
+        <span class="pill">Height: 5&#39; 7&quot;</span>
+        <span class="pill">Reach: 70&quot;</span>
+        <span class="pill">DOB: Jan 27, 2000</span>
+      </div>
+
+      <div class="quick-summary">
+        <div>
+          <span class="muted">Recent Form</span>
+          <strong>L W W L W W W W W W</strong>
+        </div>
+        <div>
+          <span class="muted">Finish Rate</span>
+          <strong>75%</strong>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <p class="muted">No UK odds found yet.</p>
+      </div>
+        
+
+      <div class="stats-grid">
+        <div class="section-block">
+          <h3>Striking</h3>
+          <table>
+            <tr><td>SLpM</td><td>2.87</td></tr>
+            <tr><td>Str. Acc.</td><td>54%</td></tr>
+            <tr><td>SApM</td><td>3.10</td></tr>
+            <tr><td>Str. Def.</td><td>—</td></tr>
+          </table>
+        </div>
+
+        <div class="section-block">
+          <h3>Grappling</h3>
+          <table>
+            <tr><td>TD Avg.</td><td>3.57</td></tr>
+            <tr><td>TD Acc.</td><td>43%</td></tr>
+            <tr><td>TD Def.</td><td>46%</td></tr>
+            <tr><td>Sub. Avg.</td><td>1.3</td></tr>
+          </table>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>Method Breakdown</h3>
+        <table>
+          <tr><td>KO/TKO</td><td>3 W • 1 L</td></tr>
+          <tr><td>Submission</td><td>3 W • 0 L</td></tr>
+          <tr><td>Decision</td><td>2 W • 1 L</td></tr>
+          <tr><td>Other</td><td>0 W • 0 L</td></tr>
+        </table>
+      </div>
+    
+      
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <div class="recent-list">
+          
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Joshua Van
+          <div class="muted">KO/TKO Punches • R5 • 1:32 • UFC 328: Chimaev vs. Strickland May. 09, 2026</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Brandon Moreno
+          <div class="muted">KO/TKO Punches • R2 • 2:24 • UFC 323: Dvalishvili vs. Yan 2 Dec. 06, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs HyunSung Park
+          <div class="muted">SUB Neck Crank • R2 • 1:06 • UFC Fight Night: Taira vs. Park Aug. 02, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Brandon Royval
+          <div class="muted">S-DEC • R5 • 5:00 • UFC Fight Night: Royval vs. Taira Oct. 12, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Alex Perez
+          <div class="muted">KO/TKO • R2 • 2:59 • UFC Fight Night: Perez vs. Taira Jun. 15, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Carlos Hernandez
+          <div class="muted">KO/TKO Punches • R2 • 0:55 • UFC Fight Night: Song vs. Gutierrez Dec. 09, 2023</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Edgar Chairez
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 290: Volkanovski vs. Rodriguez Jul. 08, 2023</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Jesus Aguilar
+          <div class="muted">SUB Triangle Armbar • R1 • 4:20 • UFC Fight Night: Lewis vs. Spivac Feb. 04, 2023</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs CJ Vergara
+          <div class="muted">SUB Armbar • R2 • 4:19 • UFC Fight Night: Grasso vs. Araujo Oct. 15, 2022</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Carlos Candelario
+          <div class="muted">U-DEC • R3 • 5:00 • UFC Fight Night: Blachowicz vs. Rakic May. 14, 2022</div>
+        </div>
+        </div>
+      </div>
+    
+    </section>
+    
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-value">
+        
+      <section class="ev-panel">
+        <div>
+          <div class="corner-label">Value tool</div>
+          <h2>EV Calculator</h2>
+          <p class="muted">Enter your estimated probability and the available decimal odds.</p>
+        </div>
+
+        <div class="ev-grid">
+          <label>
+            Fair Probability %
+            <input id="ev-prob" type="number" min="1" max="99" step="0.1" value="50">
+          </label>
+
+          <label>
+            Decimal Odds
+            <input id="ev-odds" type="number" min="1.01" step="0.01" value="2.00">
+          </label>
+
+          <div class="ev-result">
+            <span>Estimated EV</span>
+            <strong id="ev-output">0.00%</strong>
+          </div>
+        </div>
+      </section>
+    
+      </section>
 
       <div class="fight-meta">
         <h2>Fight Meta</h2>
@@ -1626,8 +2055,50 @@
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058947-2 • Generated: 2026-05-11 15:24 UTC</p>
+      <p class="muted">Fight ID: 600058947-2 • Generated: 2026-05-11 16:22 UTC</p>
     </div>
   </main>
+
+  <script>
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach(b => {
+          b.classList.remove("active");
+        });
+
+        document.querySelectorAll(".tab-panel").forEach(p => {
+          p.classList.remove("active");
+        });
+
+        btn.classList.add("active");
+
+        document
+          .getElementById("tab-" + btn.dataset.tab)
+          .classList.add("active");
+      });
+    });
+
+    function updateEV() {
+      const prob =
+        Number(document.getElementById("ev-prob")?.value || 0) / 100;
+
+      const odds =
+        Number(document.getElementById("ev-odds")?.value || 0);
+
+      const out = document.getElementById("ev-output");
+
+      if (!out || !prob || !odds) return;
+
+      const ev = ((prob * odds) - 1) * 100;
+
+      out.textContent = ev.toFixed(2) + "%";
+
+      out.style.color =
+        ev >= 0 ? "#22c55e" : "#ef4444";
+    }
+
+    document.addEventListener("input", updateEV);
+    updateEV();
+  </script>
 </body>
 </html>

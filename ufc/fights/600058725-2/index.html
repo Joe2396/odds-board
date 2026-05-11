@@ -91,7 +91,7 @@
 
     .fight-props,
     .best-props {
-      margin-top: 22px;
+      margin-top: 0;
     }
 
     .fighter-header,
@@ -124,7 +124,8 @@
     }
 
     .fight-props h2,
-    .best-props h2 {
+    .best-props h2,
+    .ev-panel h2 {
       margin-top: 0;
       font-size: 30px;
     }
@@ -267,6 +268,113 @@
       white-space: nowrap;
     }
 
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .summary-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .summary-card span,
+    .summary-card small {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary-card strong {
+      display: block;
+      margin: 8px 0 4px;
+      font-size: 18px;
+      color: #22c55e;
+    }
+
+    .fight-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 22px 0;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.025);
+      color: var(--muted);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: rgba(96,165,250,0.18);
+      border-color: rgba(96,165,250,0.65);
+      color: #93c5fd;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .ev-panel {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(255,255,255,0.025);
+      margin-top: 0;
+    }
+
+    .ev-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .ev-grid label,
+    .ev-result {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(15,22,33,0.75);
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .ev-grid input {
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #0F1621;
+      color: white;
+      font-size: 16px;
+    }
+
+    .ev-result span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .ev-result strong {
+      font-size: 28px;
+      color: #22c55e;
+    }
+
     .prop-market {
       border-top: 1px solid var(--line);
       margin-top: 14px;
@@ -342,8 +450,19 @@
         </div>
       </div>
 
-      <div class="matchup-grid">
-        
+      
+
+      <nav class="fight-tabs">
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="best-odds">Best Odds</button>
+        <button class="tab-btn" data-tab="props">Bookmaker Props</button>
+        <button class="tab-btn" data-tab="stats">Stats & Form</button>
+        <button class="tab-btn" data-tab="value">EV Tool</button>
+      </nav>
+
+      <section class="tab-panel active" id="tab-overview">
+        <div class="matchup-grid">
+          
     <section class="fighter-card">
       <div class="fighter-header">
         <div>
@@ -463,7 +582,7 @@
     
     </section>
     
-        
+          
     <section class="fighter-card">
       <div class="fighter-header">
         <div>
@@ -583,9 +702,11 @@
     
     </section>
     
-      </div>
+        </div>
+      </section>
 
-      
+      <section class="tab-panel" id="tab-best-odds">
+        
       <section class="best-props">
         <div class="best-props-head">
           <div>
@@ -596,13 +717,290 @@
         </div>
       </section>
         
+      </section>
 
-      
+      <section class="tab-panel" id="tab-props">
+        
       <section class="fight-props">
         <h2>Bookmaker Props</h2>
         <p class="muted">No bookmaker props matched for this fight yet.</p>
       </section>
         
+      </section>
+
+      <section class="tab-panel" id="tab-stats">
+        <div class="matchup-grid">
+          
+    <section class="fighter-card">
+      <div class="fighter-header">
+        <div>
+          <div class="corner-label">Left Side</div>
+          <h2><a href="/odds-board/ufc/fighters/kyler-phillips/">Kyler Phillips</a></h2>
+          <a class="small-link" href="http://ufcstats.com/fighter-details/60425d07ef4b91a7">UFCStats profile →</a>
+        </div>
+      </div>
+
+      <div class="pillrow">
+        <span class="pill">Record: 12-5-0</span>
+        <span class="pill">Weight: 135 lbs.</span>
+        <span class="pill">Stance: Orthodox</span>
+        <span class="pill">Height: 5&#39; 8&quot;</span>
+        <span class="pill">Reach: 72&quot;</span>
+        <span class="pill">DOB: Jun 12, 1995</span>
+      </div>
+
+      <div class="quick-summary">
+        <div>
+          <span class="muted">Recent Form</span>
+          <strong>L L L W W W L W W W</strong>
+        </div>
+        <div>
+          <span class="muted">Finish Rate</span>
+          <strong>43%</strong>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <p class="muted">No UK odds found yet.</p>
+      </div>
+        
+
+      <div class="stats-grid">
+        <div class="section-block">
+          <h3>Striking</h3>
+          <table>
+            <tr><td>SLpM</td><td>4.75</td></tr>
+            <tr><td>Str. Acc.</td><td>43%</td></tr>
+            <tr><td>SApM</td><td>3.83</td></tr>
+            <tr><td>Str. Def.</td><td>—</td></tr>
+          </table>
+        </div>
+
+        <div class="section-block">
+          <h3>Grappling</h3>
+          <table>
+            <tr><td>TD Avg.</td><td>2.82</td></tr>
+            <tr><td>TD Acc.</td><td>47%</td></tr>
+            <tr><td>TD Def.</td><td>75%</td></tr>
+            <tr><td>Sub. Avg.</td><td>0.3</td></tr>
+          </table>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>Method Breakdown</h3>
+        <table>
+          <tr><td>KO/TKO</td><td>2 W • 0 L</td></tr>
+          <tr><td>Submission</td><td>1 W • 0 L</td></tr>
+          <tr><td>Decision</td><td>4 W • 4 L</td></tr>
+          <tr><td>Other</td><td>0 W • 0 L</td></tr>
+        </table>
+      </div>
+    
+      
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <div class="recent-list">
+          
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Charles Jourdain
+          <div class="muted">U-DEC • R3 • 5:00 • UFC Fight Night: Burns vs. Malott Apr. 18, 2026</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Vinicius Oliveira
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 318: Holloway vs. Poirier 3 Jul. 19, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Rob Font
+          <div class="muted">U-DEC • R3 • 5:00 • UFC Fight Night: Hernandez vs. Pereira Oct. 19, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Pedro Munhoz
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 299: O&#39;Malley vs. Vera 2 Mar. 09, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Raoni Barcelos
+          <div class="muted">U-DEC • R3 • 5:00 • UFC Fight Night: Sandhagen vs. Font Aug. 05, 2023</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Marcelo Rojo
+          <div class="muted">SUB Triangle Armbar • R3 • 1:48 • UFC 271: Adesanya vs. Whittaker 2 Feb. 12, 2022</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Raulian Paiva
+          <div class="muted">M-DEC • R3 • 5:00 • UFC Fight Night: Sandhagen vs. Dillashaw Jul. 24, 2021</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Song Yadong
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 259: Blachowicz vs. Adesanya Mar. 06, 2021</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Cameron Else
+          <div class="muted">KO/TKO Elbows • R2 • 0:44 • UFC Fight Night: Holm vs. Aldana Oct. 03, 2020</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Gabriel Silva
+          <div class="muted">U-DEC • R3 • 5:00 • UFC Fight Night: Benavidez vs. Figueiredo Feb. 29, 2020</div>
+        </div>
+        </div>
+      </div>
+    
+    </section>
+    
+          
+    <section class="fighter-card">
+      <div class="fighter-header">
+        <div>
+          <div class="corner-label">Right Side</div>
+          <h2><a href="/odds-board/ufc/fighters/charles-jourdain/">Charles Jourdain</a></h2>
+          <a class="small-link" href="http://ufcstats.com/fighter-details/f1d64ae34e088832">UFCStats profile →</a>
+        </div>
+      </div>
+
+      <div class="pillrow">
+        <span class="pill">Record: 18-8-1</span>
+        <span class="pill">Weight: 135 lbs.</span>
+        <span class="pill">Stance: Switch</span>
+        <span class="pill">Height: 5&#39; 9&quot;</span>
+        <span class="pill">Reach: 69&quot;</span>
+        <span class="pill">DOB: Nov 27, 1995</span>
+      </div>
+
+      <div class="quick-summary">
+        <div>
+          <span class="muted">Recent Form</span>
+          <strong>W W W L L W W L L W</strong>
+        </div>
+        <div>
+          <span class="muted">Finish Rate</span>
+          <strong>67%</strong>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>UK Moneyline Odds</h3>
+        <p class="muted">No UK odds found yet.</p>
+      </div>
+        
+
+      <div class="stats-grid">
+        <div class="section-block">
+          <h3>Striking</h3>
+          <table>
+            <tr><td>SLpM</td><td>5.36</td></tr>
+            <tr><td>Str. Acc.</td><td>49%</td></tr>
+            <tr><td>SApM</td><td>4.11</td></tr>
+            <tr><td>Str. Def.</td><td>—</td></tr>
+          </table>
+        </div>
+
+        <div class="section-block">
+          <h3>Grappling</h3>
+          <table>
+            <tr><td>TD Avg.</td><td>0.38</td></tr>
+            <tr><td>TD Acc.</td><td>21%</td></tr>
+            <tr><td>TD Def.</td><td>46%</td></tr>
+            <tr><td>Sub. Avg.</td><td>0.6</td></tr>
+          </table>
+        </div>
+      </div>
+
+      
+      <div class="section-block">
+        <h3>Method Breakdown</h3>
+        <table>
+          <tr><td>KO/TKO</td><td>2 W • 1 L</td></tr>
+          <tr><td>Submission</td><td>4 W • 1 L</td></tr>
+          <tr><td>Decision</td><td>3 W • 5 L</td></tr>
+          <tr><td>Other</td><td>0 W • 0 L</td></tr>
+        </table>
+      </div>
+    
+      
+      <div class="section-block">
+        <h3>Recent Fights</h3>
+        <div class="recent-list">
+          
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Kyler Phillips
+          <div class="muted">U-DEC • R3 • 5:00 • UFC Fight Night: Burns vs. Malott Apr. 18, 2026</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Davey Grant
+          <div class="muted">SUB Guillotine Choke • R1 • 3:05 • UFC Fight Night: De Ridder vs. Allen Oct. 18, 2025</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Victor Henry
+          <div class="muted">SUB Guillotine Choke • R2 • 3:43 • UFC Fight Night: Moreno vs. Albazi Nov. 02, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Jean Silva
+          <div class="muted">KO/TKO Punch • R2 • 1:22 • UFC 303: Pereira vs. Prochazka 2 Jun. 29, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Sean Woodson
+          <div class="muted">S-DEC • R3 • 5:00 • UFC 297: Strickland vs. Du Plessis Jan. 20, 2024</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Ricardo Ramos
+          <div class="muted">SUB Guillotine Choke • R1 • 3:12 • UFC Fight Night: Fiziev vs. Gamrot Sep. 23, 2023</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Kron Gracie
+          <div class="muted">U-DEC • R3 • 5:00 • UFC 288: Sterling vs. Cejudo May. 06, 2023</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Nathaniel Wood
+          <div class="muted">U-DEC • R3 • 5:00 • UFC Fight Night: Gane vs. Tuivasa Sep. 03, 2022</div>
+        </div>
+        <div class="recent-fight">
+          <strong>LOSS</strong> vs Shane Burgos
+          <div class="muted">M-DEC • R3 • 5:00 • UFC Fight Night: Ortega vs. Rodriguez Jul. 16, 2022</div>
+        </div>
+        <div class="recent-fight">
+          <strong>WIN</strong> vs Lando Vannata
+          <div class="muted">SUB Guillotine Choke • R1 • 2:32 • UFC Fight Night: Lemos vs. Andrade Apr. 23, 2022</div>
+        </div>
+        </div>
+      </div>
+    
+    </section>
+    
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-value">
+        
+      <section class="ev-panel">
+        <div>
+          <div class="corner-label">Value tool</div>
+          <h2>EV Calculator</h2>
+          <p class="muted">Enter your estimated probability and the available decimal odds.</p>
+        </div>
+
+        <div class="ev-grid">
+          <label>
+            Fair Probability %
+            <input id="ev-prob" type="number" min="1" max="99" step="0.1" value="50">
+          </label>
+
+          <label>
+            Decimal Odds
+            <input id="ev-odds" type="number" min="1.01" step="0.01" value="2.00">
+          </label>
+
+          <div class="ev-result">
+            <span>Estimated EV</span>
+            <strong id="ev-output">0.00%</strong>
+          </div>
+        </div>
+      </section>
+    
+      </section>
 
       <div class="fight-meta">
         <h2>Fight Meta</h2>
@@ -616,8 +1014,50 @@
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058725-2 • Generated: 2026-05-11 15:24 UTC</p>
+      <p class="muted">Fight ID: 600058725-2 • Generated: 2026-05-11 16:22 UTC</p>
     </div>
   </main>
+
+  <script>
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach(b => {
+          b.classList.remove("active");
+        });
+
+        document.querySelectorAll(".tab-panel").forEach(p => {
+          p.classList.remove("active");
+        });
+
+        btn.classList.add("active");
+
+        document
+          .getElementById("tab-" + btn.dataset.tab)
+          .classList.add("active");
+      });
+    });
+
+    function updateEV() {
+      const prob =
+        Number(document.getElementById("ev-prob")?.value || 0) / 100;
+
+      const odds =
+        Number(document.getElementById("ev-odds")?.value || 0);
+
+      const out = document.getElementById("ev-output");
+
+      if (!out || !prob || !odds) return;
+
+      const ev = ((prob * odds) - 1) * 100;
+
+      out.textContent = ev.toFixed(2) + "%";
+
+      out.style.color =
+        ev >= 0 ? "#22c55e" : "#ef4444";
+    }
+
+    document.addEventListener("input", updateEV);
+    updateEV();
+  </script>
 </body>
 </html>

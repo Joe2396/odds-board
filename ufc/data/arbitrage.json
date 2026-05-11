@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 25,
   "total_prop_markets_checked": 18,
   "total_prop_rows_loaded": 75,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 0,
+  "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -42,7 +42,7 @@
           "implied_probability": 66.67
         },
         "Cody Brundage": {
-          "best_bookmaker": "Paddy Power",
+          "best_bookmaker": "888sport",
           "best_price": 2.75,
           "implied_probability": 36.36
         }
@@ -64,14 +64,14 @@
           "implied_probability": 62.11
         },
         "Melquizael Costa": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.56,
-          "implied_probability": 39.06
+          "best_bookmaker": "888sport",
+          "best_price": 2.55,
+          "implied_probability": 39.22
         }
       },
-      "arb_sum": 1.011743,
+      "arb_sum": 1.013275,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.17
+      "profit_margin_percent": -1.33
     },
     {
       "type": "moneyline",
@@ -87,13 +87,13 @@
         },
         "Timothy Cuamba": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.25,
-          "implied_probability": 44.44
+          "best_price": 2.3,
+          "implied_probability": 43.48
         }
       },
-      "arb_sum": 1.043247,
+      "arb_sum": 1.033585,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.32
+      "profit_margin_percent": -3.36
     },
     {
       "type": "moneyline",
@@ -169,19 +169,19 @@
       "market": "Moneyline",
       "fighters": {
         "Gina Carano": {
-          "best_bookmaker": "William Hill",
-          "best_price": 4.5,
-          "implied_probability": 22.22
+          "best_bookmaker": "LeoVegas",
+          "best_price": 5.0,
+          "implied_probability": 20.0
         },
         "Ronda Rousey": {
           "best_bookmaker": "LeoVegas",
-          "best_price": 1.2,
-          "implied_probability": 83.33
+          "best_price": 1.18,
+          "implied_probability": 84.75
         }
       },
-      "arb_sum": 1.055556,
+      "arb_sum": 1.047458,
       "is_arbitrage": false,
-      "profit_margin_percent": -5.56
+      "profit_margin_percent": -4.75
     },
     {
       "type": "moneyline",
@@ -280,8 +280,8 @@
       "fighters": {
         "Kenneth Cross": {
           "best_bookmaker": "William Hill",
-          "best_price": 9.0,
-          "implied_probability": 11.11
+          "best_price": 8.0,
+          "implied_probability": 12.5
         },
         "Salahdine Parnasse": {
           "best_bookmaker": "LeoVegas",
@@ -289,9 +289,9 @@
           "implied_probability": 88.5
         }
       },
-      "arb_sum": 0.996067,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.39
+      "arb_sum": 1.009956,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.0
     },
     {
       "type": "moneyline",
@@ -323,9 +323,9 @@
       "market": "Moneyline",
       "fighters": {
         "Mike Perry": {
-          "best_bookmaker": "William Hill",
-          "best_price": 1.5,
-          "implied_probability": 66.67
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.4,
+          "implied_probability": 71.43
         },
         "Nate Diaz": {
           "best_bookmaker": "LeoVegas",
@@ -333,9 +333,9 @@
           "implied_probability": 35.09
         }
       },
-      "arb_sum": 1.017544,
+      "arb_sum": 1.065163,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.75
+      "profit_margin_percent": -6.52
     },
     {
       "type": "moneyline",
@@ -394,14 +394,14 @@
           "implied_probability": 71.43
         },
         "Trey Ogden": {
-          "best_bookmaker": "888sport",
-          "best_price": 2.95,
-          "implied_probability": 33.9
+          "best_bookmaker": "Betfair",
+          "best_price": 3.0,
+          "implied_probability": 33.33
         }
       },
-      "arb_sum": 1.053269,
+      "arb_sum": 1.047619,
       "is_arbitrage": false,
-      "profit_margin_percent": -5.33
+      "profit_margin_percent": -4.76
     },
     {
       "type": "moneyline",
@@ -455,9 +455,9 @@
       "market": "Moneyline",
       "fighters": {
         "Derrick Lewis": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 3.45,
-          "implied_probability": 28.99
+          "best_bookmaker": "LeoVegas",
+          "best_price": 3.4,
+          "implied_probability": 29.41
         },
         "Josh Hokit": {
           "best_bookmaker": "LeoVegas",
@@ -465,9 +465,9 @@
           "implied_probability": 75.19
         }
       },
-      "arb_sum": 1.041735,
+      "arb_sum": 1.045997,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.17
+      "profit_margin_percent": -4.6
     },
     {
       "type": "moneyline",
@@ -974,28 +974,5 @@
       "profit_margin_percent": -6.09
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "b14ca50bcde757d3508c70099e4fdba5",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Kenneth Cross vs Salahdine Parnasse",
-      "market": "Moneyline",
-      "fighters": {
-        "Kenneth Cross": {
-          "best_bookmaker": "William Hill",
-          "best_price": 9.0,
-          "implied_probability": 11.11
-        },
-        "Salahdine Parnasse": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.13,
-          "implied_probability": 88.5
-        }
-      },
-      "arb_sum": 0.996067,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.39
-    }
-  ]
+  "arbitrage_opportunities": []
 }
