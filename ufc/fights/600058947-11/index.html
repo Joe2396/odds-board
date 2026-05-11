@@ -89,11 +89,6 @@
       min-width: 0;
     }
 
-    .fight-props,
-    .best-props {
-      margin-top: 0;
-    }
-
     .fighter-header,
     .prop-card-head,
     .best-props-head {
@@ -255,6 +250,11 @@
       background: rgba(15,22,33,0.85);
     }
 
+    .best-row.outlier-row {
+      border-color: rgba(249,115,22,0.65);
+      background: rgba(249,115,22,0.08);
+    }
+
     .best-row span {
       display: block;
       color: var(--muted);
@@ -262,10 +262,51 @@
       margin-top: 4px;
     }
 
+    .outlier-badge {
+      display: inline-flex;
+      margin-top: 8px;
+      border: 1px solid rgba(249,115,22,0.65);
+      background: rgba(249,115,22,0.16);
+      color: #fdba74;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .value-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .best-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
     .best-price {
       color: #22c55e;
       font-weight: 900;
       white-space: nowrap;
+    }
+
+    .ev-load-btn {
+      border: 1px solid rgba(96,165,250,0.4);
+      background: rgba(96,165,250,0.12);
+      color: #93c5fd;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .ev-load-btn:hover {
+      background: rgba(96,165,250,0.22);
     }
 
     .summary-strip {
@@ -333,6 +374,33 @@
       padding: 22px;
       background: rgba(255,255,255,0.025);
       margin-top: 0;
+    }
+
+    .ev-picked {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .ev-picked div {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(15,22,33,0.75);
+    }
+
+    .ev-picked span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    .ev-picked strong {
+      color: #93c5fd;
+      font-size: 18px;
     }
 
     .ev-grid {
@@ -434,6 +502,10 @@
       .best-row {
         flex-direction: column;
       }
+
+      .best-right {
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -456,6 +528,7 @@
             <span class="meta-pill">Status: completed</span>
             <span class="meta-pill">Odds Match: No</span>
             <span class="meta-pill">Prop Books: 2</span>
+            <span class="meta-pill">Value Spots: 0</span>
           </div>
         </div>
       </div>
@@ -463,31 +536,31 @@
       
       <section class="summary-strip">
         
+            <div class="summary-card">
+              <span>Best Value Spot</span>
+              <strong>—</strong>
+              <small>No market found</small>
+            </div>
+            
+        
         <div class="summary-card">
           <span>Best Method Price</span>
           <strong>Fight is a Draw @ 50/1</strong>
-          <small>Coral</small>
-        </div>
-        
-        
-        <div class="summary-card">
-          <span>Best Rounds Price</span>
-          <strong>Over 2.5 @ 6/5</strong>
-          <small>PaddyPower</small>
+          <small>Coral </small>
         </div>
         
         
         <div class="summary-card">
           <span>Best Distance Yes</span>
           <strong>Yes @ 13/8</strong>
-          <small>Coral</small>
+          <small>Coral </small>
         </div>
         
         
         <div class="summary-card">
           <span>Best Distance No</span>
           <strong>No @ 10/21</strong>
-          <small>Coral</small>
+          <small>Coral </small>
         </div>
         
       </section>
@@ -705,7 +778,7 @@
           <div>
             <div class="corner-label">Best odds</div>
             <h2>Best Available Prop Odds</h2>
-            <p class="muted">Highest available price per prop selection across matched bookmakers.</p>
+            <p class="muted">Highest available price per prop selection across matched bookmakers. 🔥 Outlier means the best price is at least 10% above the market average.</p>
           </div>
         </div>
         <div class="best-props-grid">
@@ -717,17 +790,43 @@
             <div class="best-row">
               <div>
                 <strong>Baisangur Susurkaev</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 2/13</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 2/13</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Baisangur Susurkaev"
+                  data-bookmaker="Coral"
+                  data-odds="1.15"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Djorden Santos</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 9/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 9/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Djorden Santos"
+                  data-bookmaker="Coral"
+                  data-odds="5.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
           </div>
@@ -740,17 +839,43 @@
             <div class="best-row">
               <div>
                 <strong>No</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 10/21</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 10/21</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="No"
+                  data-bookmaker="Coral"
+                  data-odds="1.48"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Yes</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 13/8</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 13/8</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Yes"
+                  data-bookmaker="Coral"
+                  data-odds="2.62"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
           </div>
@@ -763,129 +888,337 @@
             <div class="best-row">
               <div>
                 <strong>Baisangur Susurkaev - Decision</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 19/10</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 19/10</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Baisangur Susurkaev - Decision"
+                  data-bookmaker="Coral"
+                  data-odds="2.90"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Baisangur Susurkaev - KO / TKO</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 11/10</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 11/10</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Baisangur Susurkaev - KO / TKO"
+                  data-bookmaker="Coral"
+                  data-odds="2.10"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Baisangur Susurkaev - KO / TKO / Submission</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 10/13</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 10/13</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Baisangur Susurkaev - KO / TKO / Submission"
+                  data-bookmaker="Coral"
+                  data-odds="1.77"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Baisangur Susurkaev - Submission</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 9/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 9/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Baisangur Susurkaev - Submission"
+                  data-bookmaker="Coral"
+                  data-odds="5.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Baisangur Susurkaev by KO/TKO</strong>
-                <span>PaddyPower</span>
+                <span>PaddyPower • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 11/10</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 11/10</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Baisangur Susurkaev by KO/TKO"
+                  data-bookmaker="PaddyPower"
+                  data-odds="2.10"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Baisangur Susurkaev by Points</strong>
-                <span>PaddyPower</span>
+                <span>PaddyPower • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 2/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 2/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Baisangur Susurkaev by Points"
+                  data-bookmaker="PaddyPower"
+                  data-odds="3.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Baisangur Susurkaev by Submission</strong>
-                <span>PaddyPower</span>
+                <span>PaddyPower • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 9/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 9/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Baisangur Susurkaev by Submission"
+                  data-bookmaker="PaddyPower"
+                  data-odds="5.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Djorden Santos - Decision</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 12/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 12/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Djorden Santos - Decision"
+                  data-bookmaker="Coral"
+                  data-odds="13.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Djorden Santos - KO / TKO</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 15/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 15/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Djorden Santos - KO / TKO"
+                  data-bookmaker="Coral"
+                  data-odds="8.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Djorden Santos - KO / TKO / Submission</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 9/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 9/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Djorden Santos - KO / TKO / Submission"
+                  data-bookmaker="Coral"
+                  data-odds="5.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Djorden Santos - Submission</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 20/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 20/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Djorden Santos - Submission"
+                  data-bookmaker="Coral"
+                  data-odds="21.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Djorden Santos by KO/TKO</strong>
-                <span>PaddyPower</span>
+                <span>PaddyPower • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 17/2</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 17/2</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Djorden Santos by KO/TKO"
+                  data-bookmaker="PaddyPower"
+                  data-odds="9.50"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Djorden Santos by Points</strong>
-                <span>PaddyPower</span>
+                <span>PaddyPower • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 12/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 12/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Djorden Santos by Points"
+                  data-bookmaker="PaddyPower"
+                  data-odds="13.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Djorden Santos by Submission</strong>
-                <span>PaddyPower</span>
+                <span>PaddyPower • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 20/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 20/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Djorden Santos by Submission"
+                  data-bookmaker="PaddyPower"
+                  data-odds="21.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Draw</strong>
-                <span>PaddyPower</span>
+                <span>PaddyPower • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 45/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 45/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Draw"
+                  data-bookmaker="PaddyPower"
+                  data-odds="46.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Fight is a Draw</strong>
-                <span>Coral</span>
+                <span>Coral • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 50/1</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 50/1</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Fight is a Draw"
+                  data-bookmaker="Coral"
+                  data-odds="51.00"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
           </div>
@@ -898,17 +1231,43 @@
             <div class="best-row">
               <div>
                 <strong>Over 2.5</strong>
-                <span>PaddyPower</span>
+                <span>PaddyPower • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 6/5</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 6/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Over 2.5"
+                  data-bookmaker="PaddyPower"
+                  data-odds="2.20"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
             <div class="best-row">
               <div>
                 <strong>Under 2.5</strong>
-                <span>PaddyPower</span>
+                <span>PaddyPower • 1 book(s)</span>
+                
               </div>
-              <div class="best-price">⭐ 4/6</div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 4/6</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Under 2.5"
+                  data-bookmaker="PaddyPower"
+                  data-odds="1.67"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
             </div>
             
           </div>
@@ -1266,8 +1625,19 @@
           <div class="corner-label">Value tool</div>
           <h2>EV Calculator</h2>
           <p class="muted">
-            Enter your estimated fair probability and the available decimal odds to calculate implied probability, edge, expected value and a simple Kelly stake guide.
+            Click “Use in EV Tool” from Best Odds to auto-load a selection, then enter your estimated fair probability.
           </p>
+        </div>
+
+        <div class="ev-picked">
+          <div>
+            <span>Selected Bet</span>
+            <strong id="ev-selection">No selection loaded</strong>
+          </div>
+          <div>
+            <span>Bookmaker</span>
+            <strong id="ev-bookmaker">—</strong>
+          </div>
         </div>
 
         <div class="ev-grid">
@@ -1327,30 +1697,35 @@
           <tr><td>Status</td><td>completed</td></tr>
           <tr><td>Odds Match</td><td>No</td></tr>
           <tr><td>Prop Books Matched</td><td>2</td></tr>
+          <tr><td>Value Spots</td><td>0</td></tr>
         </table>
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058947-11 • Generated: 2026-05-11 16:48 UTC</p>
+      <p class="muted">Fight ID: 600058947-11 • Generated: 2026-05-11 19:32 UTC</p>
     </div>
   </main>
 
   <script>
+    function activateTab(tabName) {
+      document.querySelectorAll(".tab-btn").forEach(b => {
+        b.classList.remove("active");
+      });
+
+      document.querySelectorAll(".tab-panel").forEach(p => {
+        p.classList.remove("active");
+      });
+
+      const btn = document.querySelector('.tab-btn[data-tab="' + tabName + '"]');
+      const panel = document.getElementById("tab-" + tabName);
+
+      if (btn) btn.classList.add("active");
+      if (panel) panel.classList.add("active");
+    }
+
     document.querySelectorAll(".tab-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".tab-btn").forEach(b => {
-          b.classList.remove("active");
-        });
-
-        document.querySelectorAll(".tab-panel").forEach(p => {
-          p.classList.remove("active");
-        });
-
-        btn.classList.add("active");
-
-        document
-          .getElementById("tab-" + btn.dataset.tab)
-          .classList.add("active");
+        activateTab(btn.dataset.tab);
       });
     });
 
@@ -1426,6 +1801,31 @@
       setBoxState(edgeOut.closest(".ev-result"), edge);
       setBoxState(evOut.closest(".ev-result"), ev);
     }
+
+    document.querySelectorAll(".ev-load-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const selection = btn.dataset.selection || "Selected bet";
+        const bookmaker = btn.dataset.bookmaker || "—";
+        const odds = btn.dataset.odds || "2.00";
+
+        activateTab("value");
+
+        const selectionBox = document.getElementById("ev-selection");
+        const bookmakerBox = document.getElementById("ev-bookmaker");
+        const oddsInput = document.getElementById("ev-odds");
+
+        if (selectionBox) selectionBox.textContent = selection;
+        if (bookmakerBox) bookmakerBox.textContent = bookmaker;
+        if (oddsInput) oddsInput.value = odds;
+
+        updateEV();
+
+        const valuePanel = document.getElementById("tab-value");
+        if (valuePanel) {
+          valuePanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
 
     document.addEventListener("input", updateEV);
     updateEV();

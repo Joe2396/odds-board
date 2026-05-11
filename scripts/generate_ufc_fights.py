@@ -1,3 +1,6 @@
+# FULL UPDATED SCRIPT
+# NOTE: remove any stray character after main(), like the "7" currently at the very end.
+
 import json
 import re
 from pathlib import Path
@@ -19,6 +22,8 @@ PROP_FILES = [
 
 FIGHTS_DIR = ROOT / "ufc" / "fights"
 BASE_PATH = "/odds-board/ufc"
+
+OUTLIER_THRESHOLD_PERCENT = 10
 
 
 def html_escape(s):
@@ -106,6 +111,18 @@ def clean_selection(selection):
     text = text.replace("Under (+", "Under ")
     text = text.replace(")", "")
     text = text.replace("+", "")
+    return text.strip()
+
+
+def selection_key(selection):
+    text = clean_selection(selection).lower()
+    text = text.replace("ko/tko", "ko")
+    text = text.replace("tko/ko", "ko")
+    text = text.replace("knockout", "ko")
+    text = text.replace("submission", "sub")
+    text = text.replace("decision", "dec")
+    text = re.sub(r"[^a-z0-9\s\.]", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
     return text
 
 
@@ -122,6 +139,10 @@ def canonical_market_label(label):
         return "Fight Betting"
 
     return label or "Props"
+
+
+def market_key(label):
+    return canonical_market_label(label).lower().strip()
 
 
 def load_json(path, default):
@@ -466,13 +487,21 @@ def collect_prop_rows(prop_items):
 
         def add_rows(label, items):
             for selection, odds in market_rows_from_structured(items):
+                clean = clean_selection(selection)
+                decimal = fractional_to_decimal(odds)
+
+                if not clean or not odds or decimal <= 0:
+                    continue
+
                 rows.append(
                     {
                         "bookmaker": bookmaker,
                         "market": canonical_market_label(label),
-                        "selection": clean_selection(selection),
+                        "market_key": market_key(label),
+                        "selection": clean,
+                        "selection_key": selection_key(clean),
                         "odds": odds,
-                        "decimal": fractional_to_decimal(odds),
+                        "decimal": decimal,
                     }
                 )
 
@@ -486,13 +515,71 @@ def collect_prop_rows(prop_items):
         add_rows("Rounds", item.get("round_props"))
         add_rows("Go The Distance?", item.get("distance_props"))
 
-    return [r for r in rows if r["selection"] and r["odds"] and r["decimal"] > 0]
+    return rows
+
+
+def get_best_prop_rows_with_value(prop_items):
+    rows = collect_prop_rows(prop_items)
+
+    grouped = {}
+
+    for row in rows:
+        key = (row["market_key"], row["selection_key"])
+        grouped.setdefault(key, []).append(row)
+
+    best_rows = []
+
+    for key, items in grouped.items():
+        if not items:
+            continue
+
+        best = max(items, key=lambda r: r["decimal"])
+        decimals = [r["decimal"] for r in items if r["decimal"] > 0]
+        avg_decimal = sum(decimals) / len(decimals) if decimals else 0
+
+        value_percent = 0
+        is_outlier = False
+
+        if avg_decimal > 0 and len(decimals) >= 2:
+            value_percent = ((best["decimal"] / avg_decimal) - 1) * 100
+            is_outlier = value_percent >= OUTLIER_THRESHOLD_PERCENT
+
+        best = dict(best)
+        best["book_count"] = len(set(r["bookmaker"] for r in items))
+        best["market_average"] = avg_decimal
+        best["value_percent"] = value_percent
+        best["is_outlier"] = is_outlier
+        best["comparison_count"] = len(decimals)
+
+        best_rows.append(best)
+
+    return best_rows
+
+
+def render_value_badge(row):
+    if not row.get("is_outlier"):
+        if row.get("comparison_count", 0) >= 2:
+            return f"""
+              <div class="value-note">
+                Market avg: {row.get("market_average", 0):.2f}
+              </div>
+            """
+        return ""
+
+    return f"""
+      <div class="outlier-badge">
+        🔥 Outlier +{row.get("value_percent", 0):.0f}% vs market avg
+      </div>
+      <div class="value-note">
+        Avg price: {row.get("market_average", 0):.2f} • {row.get("comparison_count", 0)} prices compared
+      </div>
+    """
 
 
 def render_best_prop_odds(prop_items):
-    rows = collect_prop_rows(prop_items)
+    ordered = get_best_prop_rows_with_value(prop_items)
 
-    if not rows:
+    if not ordered:
         return """
       <section class="best-props">
         <div class="best-props-head">
@@ -505,14 +592,14 @@ def render_best_prop_odds(prop_items):
       </section>
         """
 
-    grouped = {}
-
-    for row in rows:
-        key = (row["market"], row["selection"])
-        if key not in grouped or row["decimal"] > grouped[key]["decimal"]:
-            grouped[key] = row
-
-    ordered = sorted(grouped.values(), key=lambda r: (r["market"], r["selection"].lower()))
+    ordered = sorted(
+        ordered,
+        key=lambda r: (
+            not r.get("is_outlier"),
+            r["market"],
+            r["selection"].lower(),
+        ),
+    )
 
     by_market = {}
     for row in ordered:
@@ -528,11 +615,14 @@ def render_best_prop_odds(prop_items):
         """
 
         for row in items[:40]:
+            outlier_class = " outlier-row" if row.get("is_outlier") else ""
+
             market_html += f"""
-            <div class="best-row">
+            <div class="best-row{outlier_class}">
               <div>
                 <strong>{html_escape(row["selection"])}</strong>
-                <span>{html_escape(row["bookmaker"])}</span>
+                <span>{html_escape(row["bookmaker"])} • {row.get("book_count", 1)} book(s)</span>
+                {render_value_badge(row)}
               </div>
 
               <div class="best-right">
@@ -561,7 +651,7 @@ def render_best_prop_odds(prop_items):
           <div>
             <div class="corner-label">Best odds</div>
             <h2>Best Available Prop Odds</h2>
-            <p class="muted">Highest available price per prop selection across matched bookmakers. Click any price to test it in the EV Tool.</p>
+            <p class="muted">Highest available price per prop selection across matched bookmakers. 🔥 Outlier means the best price is at least {OUTLIER_THRESHOLD_PERCENT}% above the market average.</p>
           </div>
         </div>
         <div class="best-props-grid">
@@ -572,7 +662,7 @@ def render_best_prop_odds(prop_items):
 
 
 def render_market_summary_cards(prop_items):
-    rows = collect_prop_rows(prop_items)
+    rows = get_best_prop_rows_with_value(prop_items)
 
     if not rows:
         return ""
@@ -581,10 +671,15 @@ def render_market_summary_cards(prop_items):
     best_round = None
     best_distance_yes = None
     best_distance_no = None
+    best_outlier = None
 
     for row in rows:
         market = row["market"]
         selection = row["selection"].lower()
+
+        if row.get("is_outlier"):
+            if best_outlier is None or row.get("value_percent", 0) > best_outlier.get("value_percent", 0):
+                best_outlier = row
 
         if market == "Method of Victory":
             if best_method is None or row["decimal"] > best_method["decimal"]:
@@ -602,7 +697,7 @@ def render_market_summary_cards(prop_items):
                 if best_distance_no is None or row["decimal"] > best_distance_no["decimal"]:
                     best_distance_no = row
 
-    def card(title, row):
+    def card(title, row, value_mode=False):
         if not row:
             return f"""
             <div class="summary-card">
@@ -612,18 +707,22 @@ def render_market_summary_cards(prop_items):
             </div>
             """
 
+        extra = ""
+        if value_mode:
+            extra = f"🔥 +{row.get('value_percent', 0):.0f}% vs avg"
+
         return f"""
         <div class="summary-card">
           <span>{html_escape(title)}</span>
           <strong>{html_escape(row["selection"])} @ {html_escape(row["odds"])}</strong>
-          <small>{html_escape(row["bookmaker"])}</small>
+          <small>{html_escape(row["bookmaker"])} {extra}</small>
         </div>
         """
 
     return f"""
       <section class="summary-strip">
+        {card("Best Value Spot", best_outlier, True)}
         {card("Best Method Price", best_method)}
-        {card("Best Rounds Price", best_round)}
         {card("Best Distance Yes", best_distance_yes)}
         {card("Best Distance No", best_distance_no)}
       </section>
@@ -882,6 +981,9 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
         or []
     )
 
+    value_rows = get_best_prop_rows_with_value(props)
+    outlier_count = len([r for r in value_rows if r.get("is_outlier")])
+
     weight = html_escape(fight.get("weight_class"))
     bout = html_escape(fight.get("bout"))
     status = html_escape(fight.get("status"))
@@ -978,11 +1080,6 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       padding: 22px;
       background: rgba(255,255,255,0.025);
       min-width: 0;
-    }}
-
-    .fight-props,
-    .best-props {{
-      margin-top: 0;
     }}
 
     .fighter-header,
@@ -1146,11 +1243,34 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       background: rgba(15,22,33,0.85);
     }}
 
+    .best-row.outlier-row {{
+      border-color: rgba(249,115,22,0.65);
+      background: rgba(249,115,22,0.08);
+    }}
+
     .best-row span {{
       display: block;
       color: var(--muted);
       font-size: 13px;
       margin-top: 4px;
+    }}
+
+    .outlier-badge {{
+      display: inline-flex;
+      margin-top: 8px;
+      border: 1px solid rgba(249,115,22,0.65);
+      background: rgba(249,115,22,0.16);
+      color: #fdba74;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 900;
+    }}
+
+    .value-note {{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
     }}
 
     .best-right {{
@@ -1401,6 +1521,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
             <span class="meta-pill">Status: {status}</span>
             <span class="meta-pill">Odds Match: {'Yes' if odds_event else 'No'}</span>
             <span class="meta-pill">Prop Books: {len(props)}</span>
+            <span class="meta-pill">Value Spots: {outlier_count}</span>
           </div>
         </div>
       </div>
@@ -1449,6 +1570,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
           <tr><td>Status</td><td>{status}</td></tr>
           <tr><td>Odds Match</td><td>{'Yes' if odds_event else 'No'}</td></tr>
           <tr><td>Prop Books Matched</td><td>{len(props)}</td></tr>
+          <tr><td>Value Spots</td><td>{outlier_count}</td></tr>
         </table>
       </div>
 
