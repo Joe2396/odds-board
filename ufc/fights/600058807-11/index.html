@@ -375,6 +375,16 @@
       color: #22c55e;
     }
 
+    .ev-result.positive {
+      border-color: rgba(34,197,94,0.45);
+      background: rgba(34,197,94,0.08);
+    }
+
+    .ev-result.negative {
+      border-color: rgba(239,68,68,0.45);
+      background: rgba(239,68,68,0.08);
+    }
+
     .prop-market {
       border-top: 1px solid var(--line);
       margin-top: 14px;
@@ -915,7 +925,9 @@
         <div>
           <div class="corner-label">Value tool</div>
           <h2>EV Calculator</h2>
-          <p class="muted">Enter your estimated probability and the available decimal odds.</p>
+          <p class="muted">
+            Enter your estimated fair probability and the available decimal odds to calculate implied probability, edge, expected value and a simple Kelly stake guide.
+          </p>
         </div>
 
         <div class="ev-grid">
@@ -929,11 +941,40 @@
             <input id="ev-odds" type="number" min="1.01" step="0.01" value="2.00">
           </label>
 
+          <label>
+            Bankroll £
+            <input id="ev-bankroll" type="number" min="1" step="1" value="100">
+          </label>
+
           <div class="ev-result">
-            <span>Estimated EV</span>
+            <span>Result</span>
+            <strong id="ev-verdict">Break-even</strong>
+          </div>
+
+          <div class="ev-result">
+            <span>Implied Probability</span>
+            <strong id="ev-implied">50.00%</strong>
+          </div>
+
+          <div class="ev-result">
+            <span>Edge</span>
+            <strong id="ev-edge">0.00%</strong>
+          </div>
+
+          <div class="ev-result">
+            <span>Expected Value</span>
             <strong id="ev-output">0.00%</strong>
           </div>
+
+          <div class="ev-result">
+            <span>Kelly Stake Guide</span>
+            <strong id="ev-kelly">£0.00</strong>
+          </div>
         </div>
+
+        <p class="muted betting-note">
+          EV = fair probability × decimal odds − 1. Kelly is a guide only, not betting advice.
+        </p>
       </section>
     
       </section>
@@ -950,7 +991,7 @@
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058807-11 • Generated: 2026-05-11 16:22 UTC</p>
+      <p class="muted">Fight ID: 600058807-11 • Generated: 2026-05-11 16:48 UTC</p>
     </div>
   </main>
 
@@ -973,23 +1014,77 @@
       });
     });
 
+    function setBoxState(element, value) {
+      if (!element) return;
+
+      element.classList.remove("positive");
+      element.classList.remove("negative");
+
+      if (value > 0) {
+        element.classList.add("positive");
+      } else if (value < 0) {
+        element.classList.add("negative");
+      }
+    }
+
+    function money(value) {
+      return "£" + Number(value || 0).toFixed(2);
+    }
+
     function updateEV() {
-      const prob =
-        Number(document.getElementById("ev-prob")?.value || 0) / 100;
+      const probPercent = Number(document.getElementById("ev-prob")?.value || 0);
+      const prob = probPercent / 100;
+      const odds = Number(document.getElementById("ev-odds")?.value || 0);
+      const bankroll = Number(document.getElementById("ev-bankroll")?.value || 0);
 
-      const odds =
-        Number(document.getElementById("ev-odds")?.value || 0);
+      const verdict = document.getElementById("ev-verdict");
+      const impliedOut = document.getElementById("ev-implied");
+      const edgeOut = document.getElementById("ev-edge");
+      const evOut = document.getElementById("ev-output");
+      const kellyOut = document.getElementById("ev-kelly");
 
-      const out = document.getElementById("ev-output");
+      if (!verdict || !impliedOut || !edgeOut || !evOut || !kellyOut) return;
 
-      if (!out || !prob || !odds) return;
+      if (!prob || !odds || odds <= 1) {
+        verdict.textContent = "Enter valid numbers";
+        impliedOut.textContent = "—";
+        edgeOut.textContent = "—";
+        evOut.textContent = "—";
+        kellyOut.textContent = "—";
+        return;
+      }
 
-      const ev = ((prob * odds) - 1) * 100;
+      const implied = 1 / odds;
+      const edge = prob - implied;
+      const ev = ((prob * odds) - 1);
 
-      out.textContent = ev.toFixed(2) + "%";
+      const b = odds - 1;
+      const q = 1 - prob;
+      let kellyFraction = 0;
 
-      out.style.color =
-        ev >= 0 ? "#22c55e" : "#ef4444";
+      if (b > 0) {
+        kellyFraction = ((b * prob) - q) / b;
+      }
+
+      if (kellyFraction < 0) {
+        kellyFraction = 0;
+      }
+
+      const kellyStake = bankroll * kellyFraction;
+
+      verdict.textContent = ev > 0 ? "Positive EV" : ev < 0 ? "Negative EV" : "Break-even";
+      impliedOut.textContent = (implied * 100).toFixed(2) + "%";
+      edgeOut.textContent = (edge * 100).toFixed(2) + "%";
+      evOut.textContent = (ev * 100).toFixed(2) + "%";
+      kellyOut.textContent = money(kellyStake);
+
+      verdict.style.color = ev >= 0 ? "#22c55e" : "#ef4444";
+      edgeOut.style.color = edge >= 0 ? "#22c55e" : "#ef4444";
+      evOut.style.color = ev >= 0 ? "#22c55e" : "#ef4444";
+
+      setBoxState(verdict.closest(".ev-result"), ev);
+      setBoxState(edgeOut.closest(".ev-result"), edge);
+      setBoxState(evOut.closest(".ev-result"), ev);
     }
 
     document.addEventListener("input", updateEV);
