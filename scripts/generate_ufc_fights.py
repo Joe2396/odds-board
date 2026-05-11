@@ -508,10 +508,7 @@ def render_best_prop_odds(prop_items):
         if key not in grouped or row["decimal"] > grouped[key]["decimal"]:
             grouped[key] = row
 
-    ordered = sorted(
-        grouped.values(),
-        key=lambda r: (r["market"], r["selection"].lower())
-    )
+    ordered = sorted(grouped.values(), key=lambda r: (r["market"], r["selection"].lower()))
 
     by_market = {}
     for row in ordered:
@@ -553,6 +550,94 @@ def render_best_prop_odds(prop_items):
         </div>
         <div class="best-props-grid">
           {market_html}
+        </div>
+      </section>
+    """
+
+
+def render_market_summary_cards(prop_items):
+    rows = collect_prop_rows(prop_items)
+
+    if not rows:
+        return ""
+
+    best_method = None
+    best_round = None
+    best_distance_yes = None
+    best_distance_no = None
+
+    for row in rows:
+        market = row["market"]
+        selection = row["selection"].lower()
+
+        if market == "Method of Victory":
+            if best_method is None or row["decimal"] > best_method["decimal"]:
+                best_method = row
+
+        if market == "Rounds":
+            if best_round is None or row["decimal"] > best_round["decimal"]:
+                best_round = row
+
+        if market == "Go The Distance?":
+            if selection == "yes":
+                if best_distance_yes is None or row["decimal"] > best_distance_yes["decimal"]:
+                    best_distance_yes = row
+            elif selection == "no":
+                if best_distance_no is None or row["decimal"] > best_distance_no["decimal"]:
+                    best_distance_no = row
+
+    def card(title, row):
+        if not row:
+            return f"""
+            <div class="summary-card">
+              <span>{html_escape(title)}</span>
+              <strong>—</strong>
+              <small>No market found</small>
+            </div>
+            """
+
+        return f"""
+        <div class="summary-card">
+          <span>{html_escape(title)}</span>
+          <strong>{html_escape(row["selection"])} @ {html_escape(row["odds"])}</strong>
+          <small>{html_escape(row["bookmaker"])}</small>
+        </div>
+        """
+
+    return f"""
+      <section class="summary-strip">
+        {card("Best Method Price", best_method)}
+        {card("Best Rounds Price", best_round)}
+        {card("Best Distance Yes", best_distance_yes)}
+        {card("Best Distance No", best_distance_no)}
+      </section>
+    """
+
+
+def render_ev_calculator():
+    return """
+      <section class="ev-panel">
+        <div>
+          <div class="corner-label">Value tool</div>
+          <h2>EV Calculator</h2>
+          <p class="muted">Enter your estimated probability and the available decimal odds.</p>
+        </div>
+
+        <div class="ev-grid">
+          <label>
+            Fair Probability %
+            <input id="ev-prob" type="number" min="1" max="99" step="0.1" value="50">
+          </label>
+
+          <label>
+            Decimal Odds
+            <input id="ev-odds" type="number" min="1.01" step="0.01" value="2.00">
+          </label>
+
+          <div class="ev-result">
+            <span>Estimated EV</span>
+            <strong id="ev-output">0.00%</strong>
+          </div>
         </div>
       </section>
     """
@@ -839,7 +924,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
 
     .fight-props,
     .best-props {{
-      margin-top: 22px;
+      margin-top: 0;
     }}
 
     .fighter-header,
@@ -872,7 +957,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
     }}
 
     .fight-props h2,
-    .best-props h2 {{
+    .best-props h2,
+    .ev-panel h2 {{
       margin-top: 0;
       font-size: 30px;
     }}
@@ -1015,6 +1101,113 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       white-space: nowrap;
     }}
 
+    .summary-strip {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }}
+
+    .summary-card {{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,0.025);
+    }}
+
+    .summary-card span,
+    .summary-card small {{
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }}
+
+    .summary-card strong {{
+      display: block;
+      margin: 8px 0 4px;
+      font-size: 18px;
+      color: #22c55e;
+    }}
+
+    .fight-tabs {{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 22px 0;
+    }}
+
+    .tab-btn {{
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.025);
+      color: var(--muted);
+      font-weight: 800;
+      cursor: pointer;
+    }}
+
+    .tab-btn.active {{
+      background: rgba(96,165,250,0.18);
+      border-color: rgba(96,165,250,0.65);
+      color: #93c5fd;
+    }}
+
+    .tab-panel {{
+      display: none;
+    }}
+
+    .tab-panel.active {{
+      display: block;
+    }}
+
+    .ev-panel {{
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: rgba(255,255,255,0.025);
+      margin-top: 0;
+    }}
+
+    .ev-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }}
+
+    .ev-grid label,
+    .ev-result {{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(15,22,33,0.75);
+      color: var(--muted);
+      font-weight: 800;
+    }}
+
+    .ev-grid input {{
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #0F1621;
+      color: white;
+      font-size: 16px;
+    }}
+
+    .ev-result span {{
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }}
+
+    .ev-result strong {{
+      font-size: 28px;
+      color: #22c55e;
+    }}
+
     .prop-market {{
       border-top: 1px solid var(--line);
       margin-top: 14px;
@@ -1090,14 +1283,41 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
         </div>
       </div>
 
-      <div class="matchup-grid">
-        {fighter_panel(red, odds_event, "Left Side")}
-        {fighter_panel(blue, odds_event, "Right Side")}
-      </div>
+      {render_market_summary_cards(props)}
 
-      {render_best_prop_odds(props)}
+      <nav class="fight-tabs">
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="best-odds">Best Odds</button>
+        <button class="tab-btn" data-tab="props">Bookmaker Props</button>
+        <button class="tab-btn" data-tab="stats">Stats & Form</button>
+        <button class="tab-btn" data-tab="value">EV Tool</button>
+      </nav>
 
-      {render_fight_props(props)}
+      <section class="tab-panel active" id="tab-overview">
+        <div class="matchup-grid">
+          {fighter_panel(red, odds_event, "Left Side")}
+          {fighter_panel(blue, odds_event, "Right Side")}
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-best-odds">
+        {render_best_prop_odds(props)}
+      </section>
+
+      <section class="tab-panel" id="tab-props">
+        {render_fight_props(props)}
+      </section>
+
+      <section class="tab-panel" id="tab-stats">
+        <div class="matchup-grid">
+          {fighter_panel(red, odds_event, "Left Side")}
+          {fighter_panel(blue, odds_event, "Right Side")}
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-value">
+        {render_ev_calculator()}
+      </section>
 
       <div class="fight-meta">
         <h2>Fight Meta</h2>
@@ -1114,6 +1334,48 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       <p class="muted">Fight ID: {html_escape(fight_id)} • Generated: {generated}</p>
     </div>
   </main>
+
+  <script>
+    document.querySelectorAll(".tab-btn").forEach(btn => {{
+      btn.addEventListener("click", () => {{
+        document.querySelectorAll(".tab-btn").forEach(b => {{
+          b.classList.remove("active");
+        }});
+
+        document.querySelectorAll(".tab-panel").forEach(p => {{
+          p.classList.remove("active");
+        }});
+
+        btn.classList.add("active");
+
+        document
+          .getElementById("tab-" + btn.dataset.tab)
+          .classList.add("active");
+      }});
+    }});
+
+    function updateEV() {{
+      const prob =
+        Number(document.getElementById("ev-prob")?.value || 0) / 100;
+
+      const odds =
+        Number(document.getElementById("ev-odds")?.value || 0);
+
+      const out = document.getElementById("ev-output");
+
+      if (!out || !prob || !odds) return;
+
+      const ev = ((prob * odds) - 1) * 100;
+
+      out.textContent = ev.toFixed(2) + "%";
+
+      out.style.color =
+        ev >= 0 ? "#22c55e" : "#ef4444";
+    }}
+
+    document.addEventListener("input", updateEV);
+    updateEV();
+  </script>
 </body>
 </html>
 """
