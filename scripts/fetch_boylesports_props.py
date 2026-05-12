@@ -19,11 +19,12 @@ def is_github_actions():
 
 
 def is_odds(x):
-    x = str(x).strip()
+    x = str(x).strip().upper()
     return (
         x == "EVS"
         or bool(re.match(r"^\d+/\d+$", x))
         or bool(re.match(r"^\d+\.\d+$", x))
+        or bool(re.match(r"^\d+$", x))
     )
 
 
@@ -33,6 +34,7 @@ def empty_output():
         "source": "boylesports",
         "bookmaker": "BoyleSports",
         "markets_scraped": [
+            "fight_betting",
             "method_of_victory",
             "rounds",
             "go_the_distance",
@@ -135,6 +137,14 @@ def click_tab(page, tab_name):
     return False
 
 
+def click_first_available_tab(page, tab_names):
+    for tab_name in tab_names:
+        if click_tab(page, tab_name):
+            return tab_name
+
+    return None
+
+
 def get_body_text(page):
     try:
         return page.locator("body").inner_text(timeout=10000)
@@ -142,8 +152,32 @@ def get_body_text(page):
         return ""
 
 
+def get_fighters_from_fight_name(fight_name):
+    fight_name = str(fight_name or "").strip()
+
+    if " vs " in fight_name.lower():
+        fighters = re.split(r"\s+vs\s+", fight_name, flags=re.I)
+    elif " v " in fight_name.lower():
+        fighters = re.split(r"\s+v\s+", fight_name, flags=re.I)
+    else:
+        fighters = []
+
+    return [f.strip() for f in fighters if f.strip()]
+
+
+def normalize_text(text):
+    text = str(text or "").lower()
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
 def strip_before_useful_market(text):
     markers = [
+        "To Win Fight",
+        "Fight Betting",
+        "Match Betting",
+        "Fight Result",
         "Winning Method",
         "Method Of Victory",
         "Method of Victory",
@@ -195,6 +229,9 @@ def clean_lines(snippet):
         "Show Less",
         "Bet Builder",
         "To Win Fight",
+        "Fight Betting",
+        "Match Betting",
+        "Fight Result",
         "Show UFC Stats",
         "Hide UFC Stats",
         "Bet Builder Boost",
@@ -290,6 +327,168 @@ def parse_pairs_from_text(text):
     return results
 
 
+def parse_fight_betting(text, fight_name):
+    fighters = get_fighters_from_fight_name(fight_name)
+    pairs = parse_pairs_from_text(text)
+
+    if len(fighters) < 2:
+        return pairs[:2]
+
+    results = []
+
+    for fighter in fighters:
+        fighter_norm = normalize_text(fighter)
+
+        for item in pairs:
+            selection_norm = normalize_text(item.get("selection"))
+
+            if (
+                selection_norm == fighter_norm
+                or fighter_norm in selection_norm
+                or selection_norm in fighter_norm
+            ):
+                results.append({
+                    "selection": fighter,
+                    "odds": item.get("odds"),
+                })
+                break
+
+    if len(results) == 2:
+        return results
+
+    lines = clean_lines(strip_before_useful_market(text))
+    odds_lines = [line for line in lines if is_odds(line)]
+    combined = normalize_text(" ".join(lines))
+
+    if len(odds_lines) >= 2 and all(normalize_text(f) in combined for f in fighters):
+        return [
+            {"selection": fighters[0], "odds": odds_lines[0]},
+            {"selection": fighters[1], "odds": odds_lines[1]},
+        ]
+
+    return results[:2]
+
+
+def extract_visible_moneyline_buttons(page, fight_name):
+    fighters = get_fighters_from_fight_name(fight_name)
+
+    if len(fighters) < 2:
+        return []
+
+    try:
+        items = page.evaluate(
+            """
+            () => {
+              const out = [];
+
+              function visible(el) {
+                const rect = el.getBoundingClientRect();
+                const style = window.getComputedStyle(el);
+                return (
+                  rect.width > 0 &&
+                  rect.height > 0 &&
+                  style.visibility !== "hidden" &&
+                  style.display !== "none"
+                );
+              }
+
+              document.querySelectorAll("body *").forEach((el) => {
+                if (!visible(el)) return;
+
+                const text = (el.innerText || el.textContent || "").trim();
+                if (!text) return;
+                if (text.length > 120) return;
+
+                const rect = el.getBoundingClientRect();
+
+                out.push({
+                  text,
+                  x: rect.x,
+                  y: rect.y,
+                  w: rect.width,
+                  h: rect.height
+                });
+              });
+
+              return out;
+            }
+            """
+        )
+    except Exception:
+        return []
+
+    fighter_boxes = []
+    odds_boxes = []
+
+    for item in items:
+        text = str(item.get("text") or "").strip()
+        norm = normalize_text(text)
+
+        if is_odds(text):
+            odds_boxes.append(item)
+            continue
+
+        for fighter in fighters:
+            fighter_norm = normalize_text(fighter)
+
+            if norm == fighter_norm or fighter_norm in norm or norm in fighter_norm:
+                fighter_boxes.append({
+                    **item,
+                    "fighter": fighter,
+                })
+
+    results = []
+
+    for fighter in fighters:
+        candidates = [
+            b for b in fighter_boxes
+            if normalize_text(b.get("fighter")) == normalize_text(fighter)
+        ]
+
+        if not candidates:
+            continue
+
+        fighter_box = sorted(candidates, key=lambda b: b.get("y", 999999))[0]
+        fx = fighter_box.get("x", 0) + fighter_box.get("w", 0) / 2
+        fy = fighter_box.get("y", 0)
+
+        possible_odds = []
+
+        for odds in odds_boxes:
+            ox = odds.get("x", 0) + odds.get("w", 0) / 2
+            oy = odds.get("y", 0)
+
+            if oy < fy:
+                continue
+
+            if oy - fy > 220:
+                continue
+
+            score = abs(ox - fx) + ((oy - fy) * 0.25)
+            possible_odds.append((score, odds))
+
+        if possible_odds:
+            possible_odds.sort(key=lambda x: x[0])
+            best_odds = possible_odds[0][1].get("text")
+
+            results.append({
+                "selection": fighter,
+                "odds": best_odds,
+            })
+
+    seen = set()
+    unique = []
+
+    for row in results:
+        key = row["selection"].lower()
+
+        if key not in seen and is_odds(row.get("odds")):
+            seen.add(key)
+            unique.append(row)
+
+    return unique[:2]
+
+
 def parse_method_of_victory(text):
     pairs = parse_pairs_from_text(text)
     results = []
@@ -336,7 +535,15 @@ def scrape_tab_market(page, tab_name, fight_name, index, market_key):
     safe_label = re.sub(r"[^a-zA-Z0-9]+", "_", fight_name).strip("_").lower()
     save_debug(page, f"boylesports_{index}_{safe_label}_{market_key}")
 
-    if market_key == "method_of_victory":
+    if market_key == "fight_betting":
+        parsed = parse_fight_betting(text, fight_name)
+
+        if len(parsed) < 2:
+            dom_moneyline = extract_visible_moneyline_buttons(page, fight_name)
+            if len(dom_moneyline) == 2:
+                parsed = dom_moneyline
+
+    elif market_key == "method_of_victory":
         parsed = parse_method_of_victory(text)
     elif market_key == "go_the_distance":
         parsed = parse_go_distance(text)
@@ -344,6 +551,43 @@ def scrape_tab_market(page, tab_name, fight_name, index, market_key):
         parsed = parse_pairs_from_text(text)
 
     return text[:3000], parsed
+
+
+def scrape_moneyline_market(page, fight_name, index):
+    moneyline_tabs = [
+        "To Win Fight",
+        "Match Betting",
+        "Fight Betting",
+        "Fight Result",
+        "Winner",
+    ]
+
+    clicked_tab = click_first_available_tab(page, moneyline_tabs)
+
+    if not clicked_tab:
+        text = get_body_text(page)
+        parsed = parse_fight_betting(text, fight_name)
+
+        if len(parsed) < 2:
+            dom_moneyline = extract_visible_moneyline_buttons(page, fight_name)
+            if len(dom_moneyline) == 2:
+                parsed = dom_moneyline
+
+        return text[:3000], parsed, None
+
+    text = get_body_text(page)
+
+    safe_label = re.sub(r"[^a-zA-Z0-9]+", "_", fight_name).strip("_").lower()
+    save_debug(page, f"boylesports_{index}_{safe_label}_fight_betting")
+
+    parsed = parse_fight_betting(text, fight_name)
+
+    if len(parsed) < 2:
+        dom_moneyline = extract_visible_moneyline_buttons(page, fight_name)
+        if len(dom_moneyline) == 2:
+            parsed = dom_moneyline
+
+    return text[:3000], parsed, clicked_tab
 
 
 def scrape_fight(page, fight, index):
@@ -360,6 +604,18 @@ def scrape_fight(page, fight, index):
 
     close_cookie_popup(page)
     time.sleep(2)
+
+    fight_betting_raw, fight_betting, moneyline_tab = scrape_moneyline_market(
+        page,
+        fight_name,
+        index,
+    )
+
+    try:
+        page.mouse.wheel(0, -2500)
+        time.sleep(1)
+    except Exception:
+        pass
 
     method_raw, method = scrape_tab_market(
         page,
@@ -390,8 +646,9 @@ def scrape_fight(page, fight, index):
         go_distance = parse_go_distance(rounds_raw)
         go_distance_raw = rounds_raw if go_distance else ""
 
-    has_props = bool(method or rounds or go_distance)
+    has_props = bool(fight_betting or method or rounds or go_distance)
 
+    print(f"Fight Betting: {len(fight_betting)}")
     print(f"Method Of Victory: {len(method)}")
     print(f"Rounds: {len(rounds)}")
     print(f"Go The Distance: {len(go_distance)}")
@@ -408,11 +665,14 @@ def scrape_fight(page, fight, index):
         "has_props": has_props,
         "scraped_at": datetime.now(timezone.utc).isoformat(),
         "markets": {
+            "fight_betting": fight_betting,
             "method_of_victory": method,
             "rounds": rounds,
             "go_the_distance": go_distance,
         },
         "raw_markets": {
+            "moneyline_tab": moneyline_tab,
+            "fight_betting": fight_betting_raw,
             "method_of_victory": method_raw,
             "rounds": rounds_raw,
             "go_the_distance": go_distance_raw,
