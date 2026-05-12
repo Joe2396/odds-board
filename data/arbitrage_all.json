@@ -1,7 +1,33 @@
 {
-  "updated_at": "2026-05-12T14:36:25.636141+00:00",
-  "total_arbitrage": 1,
+  "updated_at": "2026-05-12T17:18:16.211517+00:00",
+  "total_arbitrage": 2,
   "arbitrage": [
+    {
+      "sport": "UFC",
+      "type": "moneyline",
+      "event": "Arnold Allen vs Melquizael Costa",
+      "market": "Moneyline",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "profit_margin_percent": 0.12,
+      "arb_sum": 0.998802,
+      "bookmakers": [
+        {
+          "selection": "Arnold Allen",
+          "bookmaker": "Betfair",
+          "odds": 1.67,
+          "decimal_odds": 1.67,
+          "implied_probability": 59.88
+        },
+        {
+          "selection": "Melquizael Costa",
+          "bookmaker": "Virgin Bet",
+          "odds": 2.5,
+          "decimal_odds": 2.5,
+          "implied_probability": 40.0
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
     {
       "sport": "UFC",
       "type": "moneyline",
