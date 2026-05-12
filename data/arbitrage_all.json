@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-12T03:40:37.583663+00:00",
-  "total_arbitrage": 2,
+  "updated_at": "2026-05-12T08:48:42.379287+00:00",
+  "total_arbitrage": 3,
   "arbitrage": [
     {
       "sport": "UFC",
@@ -24,6 +24,32 @@
           "odds": 2.52,
           "decimal_odds": 2.52,
           "implied_probability": 39.68
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "UFC",
+      "type": "moneyline",
+      "event": "Ivan Erslan vs Tuco Tokkos",
+      "market": "Moneyline",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "profit_margin_percent": 0.29,
+      "arb_sum": 0.997058,
+      "bookmakers": [
+        {
+          "selection": "Ivan Erslan",
+          "bookmaker": "Betway",
+          "odds": 1.61,
+          "decimal_odds": 1.61,
+          "implied_probability": 62.11
+        },
+        {
+          "selection": "Tuco Tokkos",
+          "bookmaker": "Betfair",
+          "odds": 2.66,
+          "decimal_odds": 2.66,
+          "implied_probability": 37.59
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
