@@ -6,10 +6,11 @@ import re
 from pathlib import Path
 from datetime import datetime, timezone
 
-print("FETCHING BOYLESPORTS FIGHT URLS")
+print("FETCHING CURRENT BOYLESPORTS FIGHT URLS")
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_PATH = ROOT / "ufc" / "data" / "boylesports_fight_urls.json"
+EVENTS_PATH = ROOT / "ufc" / "data" / "events.json"
 DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
 
 BOYLESPORTS_MMA_URLS = [
@@ -21,6 +22,61 @@ BOYLESPORTS_MMA_URLS = [
 
 def is_github_actions():
     return os.getenv("GITHUB_ACTIONS") == "true"
+
+
+def now_iso():
+    return datetime.now(timezone.utc).isoformat()
+
+
+def fight_key(name):
+    text = str(name or "").lower()
+    text = text.replace(" versus ", " v ")
+    text = text.replace(" vs ", " v ")
+    text = text.replace("–", " ")
+    text = text.replace("—", " ")
+    text = text.replace("-", " ")
+    text = re.sub(r"[^a-z0-9\s]", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+
+    if " v " in text:
+        left, right = text.split(" v ", 1)
+        fighters = sorted([left.strip(), right.strip()])
+        return " v ".join(fighters)
+
+    return text
+
+
+def get_corner_name(corner):
+    if isinstance(corner, dict):
+        return corner.get("name") or ""
+    if isinstance(corner, str):
+        return corner
+    return ""
+
+
+def load_current_event_fight_keys():
+    keys = set()
+
+    if not EVENTS_PATH.exists():
+        print(f"WARNING: Missing events file: {EVENTS_PATH}")
+        return keys
+
+    try:
+        data = json.load(open(EVENTS_PATH, encoding="utf-8"))
+    except Exception as e:
+        print(f"WARNING: Could not read events.json: {e}")
+        return keys
+
+    for event in data.get("events", []) or []:
+        for fight in event.get("fights", []) or []:
+            red = get_corner_name(fight.get("red", {}))
+            blue = get_corner_name(fight.get("blue", {}))
+
+            if red and blue:
+                keys.add(fight_key(f"{red} v {blue}"))
+
+    print(f"Loaded {len(keys)} current ESPN fight keys")
+    return keys
 
 
 def close_cookie_popup(page):
@@ -64,6 +120,9 @@ def clean_fight_name_from_text(text):
         "MVP",
         "Competition",
         "Day",
+        "Today",
+        "Tomorrow",
+        "Live",
     ]
 
     for phrase in junk_phrases:
@@ -74,13 +133,14 @@ def clean_fight_name_from_text(text):
 
 def clean_fight_name_from_url(url):
     slug = str(url or "").rstrip("/").split("/")[-1]
+    slug = re.sub(r"\?.*$", "", slug)
     slug = slug.replace("-v-", "-vs-")
     slug = slug.replace("-vs.", "-vs-")
+    slug = re.sub(r"-\d+$", "", slug)
 
     name = slug.replace("-", " ").title()
-
     name = re.sub(r"^Fights\s+", "", name, flags=re.I)
-    name = re.sub(r"^Ufc\s+", "UFC ", name, flags=re.I)
+    name = re.sub(r"^Ufc\s+", "", name, flags=re.I)
 
     return re.sub(r"\s+", " ", name).strip()
 
@@ -106,6 +166,7 @@ def looks_like_fight_name(name):
         "mvp",
         "freedom fights",
         "day",
+        "outright",
     ]
 
     if any(term in n for term in bad_terms):
@@ -150,8 +211,8 @@ def scroll_page(page):
 
     last_height = 0
 
-    for _ in range(15):
-        page.mouse.wheel(0, 3000)
+    for _ in range(12):
+        page.mouse.wheel(0, 2500)
         time.sleep(1)
 
         try:
@@ -159,7 +220,7 @@ def scroll_page(page):
             print(f"Page height: {height}")
 
             if height == last_height:
-                time.sleep(2)
+                time.sleep(1)
 
             last_height = height
         except Exception:
@@ -173,6 +234,22 @@ def collect_links(page):
         "a[href*='/sports/ufc-mma/competition/']",
         "a[href*='/sports/ufc-mma/']",
         "a[href*='ufc-mma']",
+    ]
+
+    blocked_exact = {
+        "https://www.boylesports.com/sports/ufc-mma",
+        "https://www.boylesports.com/sports/ufc-mma/day",
+        "https://www.boylesports.com/sports/ufc-mma/in-play",
+        "https://www.boylesports.com/sports/ufc-mma/competition",
+    }
+
+    blocked_terms = [
+        "special",
+        "boost",
+        "mvp",
+        "outright",
+        "freedom-fights",
+        "in-play",
     ]
 
     for selector in locators:
@@ -193,18 +270,18 @@ def collect_links(page):
                     if href.startswith("/"):
                         href = "https://www.boylesports.com" + href
 
+                    href = href.split("?")[0].rstrip("/")
+
                     if "boylesports.com" not in href:
                         continue
 
                     if "/sports/ufc-mma/" not in href:
                         continue
 
-                    if href.rstrip("/") in [
-                        "https://www.boylesports.com/sports/ufc-mma",
-                        "https://www.boylesports.com/sports/ufc-mma/day",
-                        "https://www.boylesports.com/sports/ufc-mma/in-play",
-                        "https://www.boylesports.com/sports/ufc-mma/competition",
-                    ]:
+                    if href in blocked_exact:
+                        continue
+
+                    if any(term in href.lower() for term in blocked_terms):
                         continue
 
                     hrefs.append({
@@ -221,9 +298,10 @@ def collect_links(page):
     return hrefs
 
 
-def dedupe_fights(raw_links):
+def dedupe_and_filter_fights(raw_links, current_fight_keys):
     fights = []
     seen_urls = set()
+    seen_keys = set()
 
     for item in raw_links:
         url = item.get("url")
@@ -243,6 +321,7 @@ def dedupe_fights(raw_links):
             "competition",
             "outright",
             "freedom-fights",
+            "in-play",
         ]
 
         if any(term in lower_name for term in skip_terms):
@@ -251,13 +330,26 @@ def dedupe_fights(raw_links):
         if any(term in lower_url for term in skip_terms):
             continue
 
-        seen_urls.add(url)
-
         name_from_text = normalize_fight_name(text)
         name_from_url = clean_fight_name_from_url(url)
 
         fight_name = name_from_text if looks_like_fight_name(name_from_text) else name_from_url
         fight_name = normalize_fight_name(fight_name)
+
+        key = fight_key(fight_name)
+
+        if not key or " v " not in key:
+            continue
+
+        if current_fight_keys and key not in current_fight_keys:
+            print(f"Skipping stale/non-current BoyleSports fight: {fight_name}")
+            continue
+
+        if key in seen_keys:
+            continue
+
+        seen_urls.add(url)
+        seen_keys.add(key)
 
         fights.append({
             "fight": fight_name,
@@ -271,7 +363,7 @@ def save_output(fights):
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     output = {
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": now_iso(),
         "source": "boylesports",
         "count": len(fights),
         "fights": fights,
@@ -284,6 +376,7 @@ def save_output(fights):
 
 
 def main():
+    current_fight_keys = load_current_event_fight_keys()
     all_raw_links = []
 
     with sync_playwright() as p:
@@ -317,7 +410,7 @@ def main():
                 time.sleep(8)
 
                 close_cookie_popup(page)
-                time.sleep(3)
+                time.sleep(2)
 
                 scroll_page(page)
                 save_debug(page, f"boylesports_page_{index}")
@@ -331,9 +424,9 @@ def main():
                 print(f"Error fetching {url}: {e}")
                 save_debug(page, f"boylesports_error_{index}")
 
-        fights = dedupe_fights(all_raw_links)
+        fights = dedupe_and_filter_fights(all_raw_links, current_fight_keys)
 
-        print(f"\nFound {len(fights)} unique BoyleSports fight/event links")
+        print(f"\nFound {len(fights)} current BoyleSports fights")
 
         for fight in fights:
             print(f"- {fight['fight']}")
