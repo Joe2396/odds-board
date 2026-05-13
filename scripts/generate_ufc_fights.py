@@ -1,10 +1,11 @@
 # FULL UPDATED SCRIPT
 # Changes:
-#   - PaddyPower props now load from ufc/data/props.json
-#   - Fight Betting removed from Best Prop Odds comparison logic
-#   - OddsAPI remains the main moneyline comparison source
-#   - PaddyPower/BoyleSports/etc props still render in Bookmaker Props
-#   - EV tool, arbitrage, summary cards, and upgraded UI preserved
+#   - PaddyPower props stay in ufc/data/props.json
+#   - PaddyPower moneylines now load separately from ufc/data/paddypower_moneylines.json
+#   - Moneylines from paddypower_moneylines.json render in Bookmaker Props as Fight Betting
+#   - Fight Betting is still excluded from Best Prop Odds comparison
+#   - OddsAPI remains main Best Odds moneyline source
+#   - Props are protected from being overwritten by moneyline scraping
 
 import json
 import re
@@ -16,6 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 EVENTS_JSON = ROOT / "ufc" / "data" / "events.json"
 FIGHTERS_JSON = ROOT / "ufc" / "data" / "fighters.json"
 ODDS_JSON = ROOT / "ufc" / "data" / "odds.json"
+
+PADDYPOWER_MONEYLINES_JSON = ROOT / "ufc" / "data" / "paddypower_moneylines.json"
 
 PROP_FILES = [
     ("PaddyPower", ROOT / "ufc" / "data" / "props.json"),
@@ -72,14 +75,21 @@ def norm_name(name):
 
 
 def fight_key(name):
-    text = norm_name(name)
+    text = str(name or "").lower()
+
+    text = text.replace(" versus ", " v ")
+    text = text.replace(" vs ", " v ")
+    text = text.replace("–", " ")
+    text = text.replace("—", " ")
+    text = text.replace("-", " ")
+
     text = re.sub(r"[^a-z0-9\s]", "", text)
     text = re.sub(r"\s+", " ", text).strip()
 
     if " v " in text:
         left, right = text.split(" v ", 1)
-        parts = sorted([left.strip(), right.strip()])
-        return " v ".join(parts)
+        fighters = sorted([left.strip(), right.strip()])
+        return " v ".join(fighters)
 
     return text
 
@@ -179,6 +189,7 @@ def load_all_props():
 
         props_by_key.setdefault(key, []).append(item)
 
+    # Normal prop files
     for default_bookmaker, path in PROP_FILES:
         data = load_json(path, {"fights": [], "props": []})
 
@@ -237,6 +248,32 @@ def load_all_props():
 
         for item in grouped.values():
             add_item(item.get("fight_name"), item)
+
+    # Separate PaddyPower moneyline file
+    moneyline_data = load_json(PADDYPOWER_MONEYLINES_JSON, {"fights": []})
+
+    for fight in moneyline_data.get("fights", []) or []:
+        name = fight.get("fight") or fight.get("fight_name") or fight.get("name") or ""
+        markets = fight.get("markets") or {}
+        fight_betting = markets.get("fight_betting") or []
+
+        if not name or not fight_betting:
+            continue
+
+        item = {
+            "bookmaker": "PaddyPower",
+            "fight_name": name,
+            "url": fight.get("url") or "#",
+            "has_props": True,
+            "markets": {
+                "fight_betting": fight_betting,
+                "method_of_victory": [],
+                "total_rounds": [],
+                "go_the_distance": [],
+            },
+        }
+
+        add_item(name, item)
 
     return props_by_key
 
@@ -439,7 +476,7 @@ def render_moneyline_comparison(red_name, blue_name, odds_event):
           <div class="corner-label">Fight Winner</div>
         </div>
         <h2>Moneyline Odds</h2>
-        <p class="muted">Odds data found but no valid prices after filtering. This can happen with exchange lay prices.</p>
+        <p class="muted">Odds data found but no valid prices after filtering.</p>
       </section>
         """
 
@@ -712,6 +749,8 @@ def collect_prop_rows(prop_items):
                     }
                 )
 
+        # Fight Betting intentionally excluded here.
+        # It renders in Bookmaker Props, but not in Best Prop Odds.
         if isinstance(markets, dict):
             add_rows("Method of Victory", markets.get("method_of_victory"))
             add_rows("Rounds", markets.get("rounds") or markets.get("total_rounds"))
