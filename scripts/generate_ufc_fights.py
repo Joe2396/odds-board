@@ -1,5 +1,10 @@
 # FULL UPDATED SCRIPT
-# NOTE: remove any stray character after main(), like the "7" currently at the very end.
+# Changes:
+#   - PaddyPower props now load from ufc/data/props.json
+#   - Fight Betting removed from Best Prop Odds comparison logic
+#   - OddsAPI remains the main moneyline comparison source
+#   - PaddyPower/BoyleSports/etc props still render in Bookmaker Props
+#   - EV tool, arbitrage, summary cards, and upgraded UI preserved
 
 import json
 import re
@@ -13,7 +18,7 @@ FIGHTERS_JSON = ROOT / "ufc" / "data" / "fighters.json"
 ODDS_JSON = ROOT / "ufc" / "data" / "odds.json"
 
 PROP_FILES = [
-    ("PaddyPower", ROOT / "ufc" / "data" / "props_filtered.json"),
+    ("PaddyPower", ROOT / "ufc" / "data" / "props.json"),
     ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props_filtered.json"),
     ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props_filtered.json"),
     ("Coral", ROOT / "ufc" / "data" / "coral_props_filtered.json"),
@@ -24,6 +29,7 @@ FIGHTS_DIR = ROOT / "ufc" / "fights"
 BASE_PATH = "/odds-board/ufc"
 
 OUTLIER_THRESHOLD_PERCENT = 10
+MIN_VALID_PRICE = 1.06
 
 
 def html_escape(s):
@@ -351,12 +357,11 @@ def find_odds_event(red_name, blue_name, odds_events):
     return None
 
 
-def get_fighter_odds(fighter_name, odds_event):
+def get_all_moneyline_odds(odds_event):
     if not odds_event:
-        return []
+        return {}
 
-    fighter_slug = slugify(fighter_name)
-    rows = []
+    by_fighter = {}
 
     for bookmaker in odds_event.get("bookmakers", []):
         book_title = bookmaker.get("title") or bookmaker.get("key")
@@ -366,21 +371,223 @@ def get_fighter_odds(fighter_name, odds_event):
                 continue
 
             for outcome in market.get("outcomes", []):
-                if slugify(outcome.get("name")) == fighter_slug:
-                    rows.append(
-                        {
-                            "bookmaker": book_title,
-                            "price": outcome.get("price"),
-                            "last_update": bookmaker.get("last_update"),
-                        }
-                    )
+                name = outcome.get("name")
+                price = outcome.get("price")
 
-    rows.sort(key=lambda r: float(r.get("price") or 0), reverse=True)
-    return rows
+                if not name or not price:
+                    continue
+
+                try:
+                    price_f = float(price)
+                except (ValueError, TypeError):
+                    continue
+
+                if price_f <= MIN_VALID_PRICE:
+                    continue
+
+                by_fighter.setdefault(name, []).append({
+                    "bookmaker": book_title,
+                    "price": price_f,
+                })
+
+    for name in by_fighter:
+        by_fighter[name].sort(key=lambda r: r["price"], reverse=True)
+
+    return by_fighter
+
+
+def check_arbitrage(fighter_a_name, fighter_b_name, odds_by_fighter):
+    a_odds = odds_by_fighter.get(fighter_a_name, [])
+    b_odds = odds_by_fighter.get(fighter_b_name, [])
+
+    if not a_odds or not b_odds:
+        return False, None, None, 0
+
+    best_a = a_odds[0]
+    best_b = b_odds[0]
+
+    implied_sum = (1 / best_a["price"]) + (1 / best_b["price"])
+
+    if implied_sum < 1.0:
+        arb_percent = (1 - implied_sum) * 100
+        return True, best_a, best_b, arb_percent
+
+    return False, best_a, best_b, 0
+
+
+def render_moneyline_comparison(red_name, blue_name, odds_event):
+    if not odds_event:
+        return """
+      <section class="moneyline-section">
+        <div class="section-label-row">
+          <div class="corner-label">Fight Winner</div>
+        </div>
+        <h2>Moneyline Odds</h2>
+        <p class="muted">No UK odds found for this fight yet. Check back closer to fight night.</p>
+      </section>
+        """
+
+    odds_by_fighter = get_all_moneyline_odds(odds_event)
+
+    red_odds = odds_by_fighter.get(red_name, [])
+    blue_odds = odds_by_fighter.get(blue_name, [])
+
+    if not red_odds and not blue_odds:
+        return """
+      <section class="moneyline-section">
+        <div class="section-label-row">
+          <div class="corner-label">Fight Winner</div>
+        </div>
+        <h2>Moneyline Odds</h2>
+        <p class="muted">Odds data found but no valid prices after filtering. This can happen with exchange lay prices.</p>
+      </section>
+        """
+
+    all_books = {}
+
+    for row in red_odds:
+        all_books[row["bookmaker"]] = {"red": row["price"], "blue": None}
+
+    for row in blue_odds:
+        book = row["bookmaker"]
+
+        if book in all_books:
+            all_books[book]["blue"] = row["price"]
+        else:
+            all_books[book] = {"red": None, "blue": row["price"]}
+
+    best_red = max((r["price"] for r in red_odds), default=0)
+    best_blue = max((r["price"] for r in blue_odds), default=0)
+
+    is_arb, arb_a, arb_b, arb_pct = check_arbitrage(red_name, blue_name, odds_by_fighter)
+
+    sorted_books = sorted(
+        all_books.items(),
+        key=lambda kv: (kv[1]["red"] or 0),
+        reverse=True
+    )
+
+    rows_html = f"""
+        <div class="ml-row ml-header">
+          <div class="ml-book">Bookmaker</div>
+          <div class="ml-price">{html_escape(red_name)}</div>
+          <div class="ml-price">{html_escape(blue_name)}</div>
+        </div>
+    """
+
+    for book_name, prices in sorted_books:
+        red_p = prices["red"]
+        blue_p = prices["blue"]
+
+        red_class = " ml-best" if red_p and red_p == best_red else ""
+        blue_class = " ml-best" if blue_p and blue_p == best_blue else ""
+
+        red_str = f"{red_p:.2f}" if red_p else "—"
+        blue_str = f"{blue_p:.2f}" if blue_p else "—"
+
+        red_star = " ⭐" if red_p and red_p == best_red else ""
+        blue_star = " ⭐" if blue_p and blue_p == best_blue else ""
+
+        rows_html += f"""
+        <div class="ml-row">
+          <div class="ml-book">{html_escape(book_name)}</div>
+          <div class="ml-price{red_class}">{red_str}{red_star}</div>
+          <div class="ml-price{blue_class}">{blue_str}{blue_star}</div>
+        </div>
+        """
+
+    if best_red > 0 and best_blue > 0:
+        implied_red = round((1 / best_red) * 100, 1)
+        implied_blue = round((1 / best_blue) * 100, 1)
+        total_implied = round(implied_red + implied_blue, 1)
+        overround = round(total_implied - 100, 1)
+
+        implied_row = f"""
+        <div class="ml-row ml-implied">
+          <div class="ml-book">Implied Prob (best prices)</div>
+          <div class="ml-price">{implied_red}%</div>
+          <div class="ml-price">{implied_blue}%</div>
+        </div>
+        <div class="ml-row ml-overround">
+          <div class="ml-book">Total implied / Book overround</div>
+          <div class="ml-price" style="grid-column: span 2;">{total_implied}% &nbsp;|&nbsp; +{overround}%</div>
+        </div>
+        """
+    else:
+        implied_row = ""
+
+    if is_arb:
+        arb_html = f"""
+        <div class="arb-banner">
+          🎯 <strong>Arbitrage detected!</strong>
+          Back {html_escape(red_name)} @ {arb_a["price"]:.2f} ({html_escape(arb_a["bookmaker"])})
+          + {html_escape(blue_name)} @ {arb_b["price"]:.2f} ({html_escape(arb_b["bookmaker"])})
+          = <strong>+{arb_pct:.2f}% guaranteed profit</strong>
+        </div>
+        """
+    else:
+        overround_val = round(((1 / best_red) + (1 / best_blue) - 1) * 100, 2) if best_red and best_blue else 0
+        arb_html = f"""
+        <div class="no-arb-note">
+          No arbitrage at current best prices. Book margin: {overround_val:.2f}%
+        </div>
+        """
+
+    summary_html = ""
+
+    if best_red > 0 or best_blue > 0:
+        red_book = red_odds[0]["bookmaker"] if red_odds else "—"
+        blue_book = blue_odds[0]["bookmaker"] if blue_odds else "—"
+
+        summary_html = f"""
+        <div class="ml-best-strip">
+          <div class="ml-best-card">
+            <span>Best price — {html_escape(red_name)}</span>
+            <strong>{best_red:.2f}</strong>
+            <small>{html_escape(red_book)}</small>
+          </div>
+          <div class="ml-best-card">
+            <span>Best price — {html_escape(blue_name)}</span>
+            <strong>{best_blue:.2f}</strong>
+            <small>{html_escape(blue_book)}</small>
+          </div>
+        </div>
+        """
+
+    return f"""
+      <section class="moneyline-section">
+        <div class="section-label-row">
+          <div class="corner-label">Fight Winner</div>
+        </div>
+        <h2>Moneyline Odds</h2>
+        <p class="muted">All UK bookmaker prices for the fight winner market. ⭐ marks the best available price per fighter.</p>
+
+        {arb_html}
+        {summary_html}
+
+        <div class="ml-table">
+          {rows_html}
+          {implied_row}
+        </div>
+      </section>
+    """
+
+
+def render_best_odds_tab(red_name, blue_name, odds_event, props):
+    moneyline_html = render_moneyline_comparison(red_name, blue_name, odds_event)
+    props_html = render_best_prop_odds(props)
+
+    return f"""
+      {moneyline_html}
+      <div style="margin-top: 28px;">
+        {props_html}
+      </div>
+    """
 
 
 def render_odds(fighter_name, odds_event):
-    odds_rows = get_fighter_odds(fighter_name, odds_event)
+    odds_by_fighter = get_all_moneyline_odds(odds_event)
+    odds_rows = odds_by_fighter.get(fighter_name, [])
 
     if not odds_rows:
         return """
@@ -394,12 +601,12 @@ def render_odds(fighter_name, odds_event):
     rows_html = []
 
     for row in odds_rows:
-        marker = " ⭐ Best" if row == best else ""
+        marker = " ⭐ Best" if row["price"] == best["price"] and row["bookmaker"] == best["bookmaker"] else ""
         rows_html.append(
             f"""
         <tr>
           <td>{html_escape(row.get("bookmaker"))}{marker}</td>
-          <td>{html_escape(row.get("price"))}</td>
+          <td>{row["price"]:.2f}</td>
         </tr>
             """.rstrip()
         )
@@ -408,7 +615,7 @@ def render_odds(fighter_name, odds_event):
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>{html_escape(best.get("price"))}</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>{best["price"]:.2f}</strong></td></tr>
           {"".join(rows_html)}
         </table>
       </div>
@@ -506,7 +713,6 @@ def collect_prop_rows(prop_items):
                 )
 
         if isinstance(markets, dict):
-            add_rows("Fight Betting", markets.get("fight_betting"))
             add_rows("Method of Victory", markets.get("method_of_victory"))
             add_rows("Rounds", markets.get("rounds") or markets.get("total_rounds"))
             add_rows("Go The Distance?", markets.get("go_the_distance"))
@@ -520,7 +726,6 @@ def collect_prop_rows(prop_items):
 
 def get_best_prop_rows_with_value(prop_items):
     rows = collect_prop_rows(prop_items)
-
     grouped = {}
 
     for row in rows:
@@ -584,7 +789,7 @@ def render_best_prop_odds(prop_items):
       <section class="best-props">
         <div class="best-props-head">
           <div>
-            <div class="corner-label">Best odds</div>
+            <div class="corner-label">Prop odds</div>
             <h2>Best Available Prop Odds</h2>
             <p class="muted">No comparable prop odds found yet.</p>
           </div>
@@ -602,6 +807,7 @@ def render_best_prop_odds(prop_items):
     )
 
     by_market = {}
+
     for row in ordered:
         by_market.setdefault(row["market"], []).append(row)
 
@@ -649,7 +855,7 @@ def render_best_prop_odds(prop_items):
       <section class="best-props">
         <div class="best-props-head">
           <div>
-            <div class="corner-label">Best odds</div>
+            <div class="corner-label">Prop odds</div>
             <h2>Best Available Prop Odds</h2>
             <p class="muted">Highest available price per prop selection across matched bookmakers. 🔥 Outlier means the best price is at least {OUTLIER_THRESHOLD_PERCENT}% above the market average.</p>
           </div>
@@ -661,21 +867,18 @@ def render_best_prop_odds(prop_items):
     """
 
 
-def render_market_summary_cards(prop_items):
-    rows = get_best_prop_rows_with_value(prop_items)
+def render_market_summary_cards(props, odds_event, red_name, blue_name):
+    rows = get_best_prop_rows_with_value(props)
 
-    if not rows:
-        return ""
+    odds_by_fighter = get_all_moneyline_odds(odds_event)
+    red_ml = odds_by_fighter.get(red_name, [])
+    blue_ml = odds_by_fighter.get(blue_name, [])
 
     best_method = None
-    best_round = None
-    best_distance_yes = None
-    best_distance_no = None
     best_outlier = None
 
     for row in rows:
         market = row["market"]
-        selection = row["selection"].lower()
 
         if row.get("is_outlier"):
             if best_outlier is None or row.get("value_percent", 0) > best_outlier.get("value_percent", 0):
@@ -685,17 +888,25 @@ def render_market_summary_cards(prop_items):
             if best_method is None or row["decimal"] > best_method["decimal"]:
                 best_method = row
 
-        if market == "Rounds":
-            if best_round is None or row["decimal"] > best_round["decimal"]:
-                best_round = row
+    def ml_card(name, ml_rows):
+        if not ml_rows:
+            return f"""
+            <div class="summary-card">
+              <span>{html_escape(name)}</span>
+              <strong>—</strong>
+              <small>No odds yet</small>
+            </div>
+            """
 
-        if market == "Go The Distance?":
-            if selection == "yes":
-                if best_distance_yes is None or row["decimal"] > best_distance_yes["decimal"]:
-                    best_distance_yes = row
-            elif selection == "no":
-                if best_distance_no is None or row["decimal"] > best_distance_no["decimal"]:
-                    best_distance_no = row
+        best = ml_rows[0]
+
+        return f"""
+        <div class="summary-card">
+          <span>Best price — {html_escape(name)}</span>
+          <strong>{best["price"]:.2f}</strong>
+          <small>{html_escape(best["bookmaker"])}</small>
+        </div>
+        """
 
     def card(title, row, value_mode=False):
         if not row:
@@ -708,6 +919,7 @@ def render_market_summary_cards(prop_items):
             """
 
         extra = ""
+
         if value_mode:
             extra = f"🔥 +{row.get('value_percent', 0):.0f}% vs avg"
 
@@ -719,12 +931,17 @@ def render_market_summary_cards(prop_items):
         </div>
         """
 
+    has_data = red_ml or blue_ml or best_method or best_outlier
+
+    if not has_data:
+        return ""
+
     return f"""
       <section class="summary-strip">
-        {card("Best Value Spot", best_outlier, True)}
+        {ml_card(red_name, red_ml)}
+        {ml_card(blue_name, blue_ml)}
         {card("Best Method Price", best_method)}
-        {card("Best Distance Yes", best_distance_yes)}
-        {card("Best Distance No", best_distance_no)}
+        {card("Best Value Spot", best_outlier, True)}
       </section>
     """
 
@@ -736,7 +953,7 @@ def render_ev_calculator():
           <div class="corner-label">Value tool</div>
           <h2>EV Calculator</h2>
           <p class="muted">
-            Click “Use in EV Tool” from Best Odds to auto-load a selection, then enter your estimated fair probability.
+            Click "Use in EV Tool" from Best Odds to auto-load a selection, then enter your estimated fair probability.
           </p>
         </div>
 
@@ -969,11 +1186,14 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
     red = enrich_fighter(normalize_corner(fight.get("red", {})), fighters_by_slug)
     blue = enrich_fighter(normalize_corner(fight.get("blue", {})), fighters_by_slug)
 
-    odds_event = find_odds_event(red.get("name"), blue.get("name"), odds_events)
+    red_name = red.get("name") or "Fighter A"
+    blue_name = blue.get("name") or "Fighter B"
 
-    title = f"{red.get('name', 'Fighter A')} vs {blue.get('name', 'Fighter B')}"
-    prop_lookup_title = f"{red.get('name')} v {blue.get('name')}"
-    reverse_prop_lookup_title = f"{blue.get('name')} v {red.get('name')}"
+    odds_event = find_odds_event(red_name, blue_name, odds_events)
+
+    title = f"{red_name} vs {blue_name}"
+    prop_lookup_title = f"{red_name} v {blue_name}"
+    reverse_prop_lookup_title = f"{blue_name} v {red_name}"
 
     props = (
         props_by_key.get(fight_key(prop_lookup_title))
@@ -983,6 +1203,13 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
 
     value_rows = get_best_prop_rows_with_value(props)
     outlier_count = len([r for r in value_rows if r.get("is_outlier")])
+
+    odds_by_fighter = get_all_moneyline_odds(odds_event)
+    ml_book_count = len(set(
+        r["bookmaker"]
+        for rows in odds_by_fighter.values()
+        for r in rows
+    ))
 
     weight = html_escape(fight.get("weight_class"))
     bout = html_escape(fight.get("bout"))
@@ -1074,7 +1301,9 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
     .fighter-card,
     .fight-meta,
     .fight-props,
-    .best-props {{
+    .best-props,
+    .moneyline-section,
+    .ev-panel {{
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -1089,6 +1318,10 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       justify-content: space-between;
       gap: 12px;
       align-items: flex-start;
+    }}
+
+    .section-label-row {{
+      margin-bottom: 10px;
     }}
 
     .corner-label {{
@@ -1111,6 +1344,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       line-height: 1.05;
     }}
 
+    .moneyline-section h2,
     .fight-props h2,
     .best-props h2,
     .ev-panel h2 {{
@@ -1199,6 +1433,110 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
     td:last-child {{
       text-align:right;
       font-weight:700;
+    }}
+
+    .ml-table {{
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }}
+
+    .ml-row {{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+    }}
+
+    .ml-row:last-child {{
+      border-bottom: none;
+    }}
+
+    .ml-header {{
+      background: rgba(255,255,255,0.04);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+    }}
+
+    .ml-implied {{
+      background: rgba(96,165,250,0.06);
+      color: var(--muted);
+      font-size: 13px;
+    }}
+
+    .ml-overround {{
+      background: rgba(96,165,250,0.04);
+      color: var(--muted);
+      font-size: 13px;
+    }}
+
+    .ml-book,
+    .ml-price {{
+      padding: 10px 12px;
+    }}
+
+    .ml-price {{
+      text-align: right;
+      font-weight: 700;
+      font-size: 15px;
+    }}
+
+    .ml-price.ml-best {{
+      color: #22c55e;
+    }}
+
+    .ml-best-strip {{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }}
+
+    .ml-best-card {{
+      border: 1px solid rgba(34,197,94,0.35);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(34,197,94,0.07);
+    }}
+
+    .ml-best-card span {{
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }}
+
+    .ml-best-card strong {{
+      display: block;
+      font-size: 28px;
+      color: #22c55e;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }}
+
+    .ml-best-card small {{
+      color: var(--muted);
+      font-size: 13px;
+    }}
+
+    .arb-banner {{
+      margin: 14px 0;
+      padding: 14px 16px;
+      border: 1px solid rgba(34,197,94,0.6);
+      border-radius: 14px;
+      background: rgba(34,197,94,0.1);
+      color: #86efac;
+      font-size: 14px;
+      line-height: 1.6;
+    }}
+
+    .no-arb-note {{
+      margin: 10px 0;
+      color: var(--muted);
+      font-size: 13px;
     }}
 
     .recent-list {{
@@ -1362,10 +1700,6 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
     }}
 
     .ev-panel {{
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 22px;
-      background: rgba(255,255,255,0.025);
       margin-top: 0;
     }}
 
@@ -1476,6 +1810,10 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       .stats-grid {{
         grid-template-columns:1fr;
       }}
+
+      .ml-best-strip {{
+        grid-template-columns: 1fr;
+      }}
     }}
 
     @media (max-width: 720px) {{
@@ -1499,6 +1837,16 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       .best-right {{
         align-items: flex-start;
       }}
+
+      .ml-row {{
+        grid-template-columns: 1fr 1fr 1fr;
+        font-size: 13px;
+      }}
+
+      .ml-book,
+      .ml-price {{
+        padding: 8px 8px;
+      }}
     }}
   </style>
 </head>
@@ -1519,20 +1867,20 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
             <span class="meta-pill">{weight}</span>
             <span class="meta-pill">{bout}</span>
             <span class="meta-pill">Status: {status}</span>
-            <span class="meta-pill">Odds Match: {'Yes' if odds_event else 'No'}</span>
+            <span class="meta-pill">Odds: {'✅ ' + str(ml_book_count) + ' books' if ml_book_count else '⏳ None yet'}</span>
             <span class="meta-pill">Prop Books: {len(props)}</span>
             <span class="meta-pill">Value Spots: {outlier_count}</span>
           </div>
         </div>
       </div>
 
-      {render_market_summary_cards(props)}
+      {render_market_summary_cards(props, odds_event, red_name, blue_name)}
 
       <nav class="fight-tabs">
         <button class="tab-btn active" data-tab="overview">Overview</button>
         <button class="tab-btn" data-tab="best-odds">Best Odds</button>
         <button class="tab-btn" data-tab="props">Bookmaker Props</button>
-        <button class="tab-btn" data-tab="stats">Stats & Form</button>
+        <button class="tab-btn" data-tab="stats">Stats &amp; Form</button>
         <button class="tab-btn" data-tab="value">EV Tool</button>
       </nav>
 
@@ -1544,7 +1892,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       </section>
 
       <section class="tab-panel" id="tab-best-odds">
-        {render_best_prop_odds(props)}
+        {render_best_odds_tab(red_name, blue_name, odds_event, props)}
       </section>
 
       <section class="tab-panel" id="tab-props">
@@ -1568,7 +1916,7 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
           <tr><td>Bout</td><td>{bout}</td></tr>
           <tr><td>Weight Class</td><td>{weight}</td></tr>
           <tr><td>Status</td><td>{status}</td></tr>
-          <tr><td>Odds Match</td><td>{'Yes' if odds_event else 'No'}</td></tr>
+          <tr><td>Odds Books</td><td>{ml_book_count}</td></tr>
           <tr><td>Prop Books Matched</td><td>{len(props)}</td></tr>
           <tr><td>Value Spots</td><td>{outlier_count}</td></tr>
         </table>
@@ -1717,6 +2065,7 @@ def main():
     FIGHTS_DIR.mkdir(parents=True, exist_ok=True)
 
     keep = FIGHTS_DIR / ".keep"
+
     if not keep.exists():
         keep.write_text("", encoding="utf-8")
 

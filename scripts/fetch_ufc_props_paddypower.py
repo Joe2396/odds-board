@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 from datetime import datetime, timezone
 
-print("RUNNING SAFE MULTI-FIGHT PADDYPOWER SCRIPT")
+print("RUNNING CLEAN PADDYPOWER PROPS-ONLY SCRIPT")
 
 ROOT = Path(__file__).resolve().parents[1]
 URLS_PATH = ROOT / "ufc" / "data" / "paddypower_fight_urls.json"
@@ -17,8 +17,12 @@ def is_github_actions():
     return os.getenv("GITHUB_ACTIONS") == "true"
 
 
+def now_iso():
+    return datetime.now(timezone.utc).isoformat()
+
+
 def is_odds(x):
-    x = str(x).strip().upper()
+    x = str(x or "").strip().upper()
 
     if not x:
         return False
@@ -40,11 +44,11 @@ def is_odds(x):
 
 def empty_output():
     return {
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": now_iso(),
         "source": "paddypower",
         "bookmaker": "PaddyPower",
+        "note": "PaddyPower moneylines are intentionally disabled because page text can produce fake duplicated odds. Use OddsAPI for fight winner odds.",
         "markets_scraped": [
-            "fight_betting",
             "method_of_victory",
             "total_rounds",
             "go_the_distance"
@@ -56,7 +60,19 @@ def empty_output():
 def load_existing_output():
     if OUT_PATH.exists():
         try:
-            return json.load(open(OUT_PATH, encoding="utf-8"))
+            with open(OUT_PATH, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            data["source"] = "paddypower"
+            data["bookmaker"] = "PaddyPower"
+            data["markets_scraped"] = [
+                "method_of_victory",
+                "total_rounds",
+                "go_the_distance"
+            ]
+            data["note"] = "PaddyPower moneylines are intentionally disabled because page text can produce fake duplicated odds. Use OddsAPI for fight winner odds."
+
+            return data
         except Exception:
             pass
 
@@ -64,7 +80,7 @@ def load_existing_output():
 
 
 def save_output(output):
-    output["updated_at"] = datetime.now(timezone.utc).isoformat()
+    output["updated_at"] = now_iso()
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
@@ -74,31 +90,42 @@ def save_output(output):
 
 
 def close_cookie_popup(page):
-    try:
-        page.locator("#onetrust-accept-btn-handler").click(timeout=3000)
-        print("Accepted cookies")
-        time.sleep(1)
-    except Exception:
-        print("No cookie popup found")
+    selectors = [
+        "#onetrust-accept-btn-handler",
+        "button:has-text('Accept All Cookies')",
+        "button:has-text('Accept')",
+        "button:has-text('I Accept')",
+    ]
+
+    for selector in selectors:
+        try:
+            page.locator(selector).first.click(timeout=2500, force=True)
+            print("Accepted cookies")
+            time.sleep(1)
+            return
+        except Exception:
+            continue
+
+    print("No cookie popup found")
 
 
 def click_market(page, market_name):
     selectors = [
-        f"span.accordion__title:text-is('{market_name}')",
         f"text='{market_name}'",
         f"span:text('{market_name}')",
         f"div:text('{market_name}')",
+        f"button:text('{market_name}')",
+        f"[aria-label*='{market_name}']",
     ]
 
     for selector in selectors:
         try:
             locator = page.locator(selector).first
             locator.scroll_into_view_if_needed(timeout=5000)
-            time.sleep(0.75)
-            locator.click(force=True, timeout=8000)
-
+            time.sleep(0.5)
+            locator.click(force=True, timeout=7000)
             print(f"Opened market: {market_name}")
-            time.sleep(1.5)
+            time.sleep(1.25)
             return True
         except Exception:
             continue
@@ -107,17 +134,27 @@ def click_market(page, market_name):
     return False
 
 
+def get_body_text(page):
+    try:
+        return page.locator("body").inner_text(timeout=10000)
+    except Exception:
+        return ""
+
+
 def get_market_snippet(page, market_name, stop_words=None):
     if stop_words is None:
         stop_words = []
 
-    text = page.locator("body").inner_text()
+    text = get_body_text(page)
+    if not text:
+        return ""
+
     start = text.find(market_name)
 
     if start == -1:
         return ""
 
-    end = start + 3000
+    end = start + 3500
 
     for word in stop_words:
         idx = text.find(word, start + len(market_name))
@@ -128,7 +165,7 @@ def get_market_snippet(page, market_name, stop_words=None):
 
 
 def clean_lines(snippet):
-    junk = {
+    junk_exact = {
         "Popular",
         "Fight Result",
         "Match Betting",
@@ -139,322 +176,176 @@ def clean_lines(snippet):
         "Go The Distance?",
         "Will the fight go the distance?",
         "Round & Minute",
+        "Round Betting",
         "UFC Matches",
         "Bet Builder",
         "Show More",
+        "Show Less",
+        "Suspended",
     }
 
-    return [
-        line.strip()
-        for line in snippet.splitlines()
-        if line.strip() and line.strip() not in junk
+    junk_contains = [
+        "if you bet",
+        "current odds",
+        "odds of",
+        "payout",
+        "powered by",
+        "gambling can be addictive",
+        "please gamble responsibly",
+        "acca",
+        "promotion",
+        "boost",
     ]
 
+    cleaned = []
 
-def get_fighters_from_fight_name(fight_name):
-    fight_name = str(fight_name or "").strip()
+    for line in snippet.splitlines():
+        line = line.strip()
 
-    if " vs " in fight_name.lower():
-        fighters = re.split(r"\s+vs\s+", fight_name, flags=re.I)
-    elif " v " in fight_name.lower():
-        fighters = re.split(r"\s+v\s+", fight_name, flags=re.I)
-    else:
-        fighters = []
+        if not line:
+            continue
 
-    return [f.strip() for f in fighters if f.strip()]
+        if line in junk_exact:
+            continue
 
+        low = line.lower()
 
-def normalize_text(text):
-    text = str(text or "").lower()
-    text = re.sub(r"[^a-z0-9\s]", " ", text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
+        if any(j in low for j in junk_contains):
+            continue
+
+        if len(line) > 90:
+            continue
+
+        cleaned.append(line)
+
+    return cleaned
 
 
 def parse_method_of_victory(snippet):
     lines = clean_lines(snippet)
     results = []
 
-    for i in range(len(lines) - 1):
-        selection = lines[i]
-        odds = lines[i + 1]
-
-        if is_odds(odds) and (
-            " by " in selection
-            or "Draw" in selection
-            or "KO/TKO" in selection
-            or "Submission" in selection
-            or "Dec" in selection
-            or "Points" in selection
-        ):
-            results.append({
-                "selection": selection,
-                "odds": odds
-            })
-
-    return results
-
-
-def parse_simple_pairs(snippet):
-    lines = clean_lines(snippet)
-    results = []
+    allowed_terms = [
+        " by ko",
+        " ko/tko",
+        " tko",
+        "submission",
+        "points",
+        "decision",
+        "draw",
+        "technical decision",
+    ]
 
     for i in range(len(lines) - 1):
-        selection = lines[i]
-        odds = lines[i + 1]
+        selection = lines[i].strip()
+        odds = lines[i + 1].strip()
 
-        if not is_odds(selection) and is_odds(odds):
-            results.append({
-                "selection": selection,
-                "odds": odds
-            })
-
-    return results
-
-
-def extract_decimal_sentence_odds(snippet, fight_name):
-    fighters = get_fighters_from_fight_name(fight_name)
-    results = []
-
-    if len(fighters) < 2:
-        return []
-
-    for fighter in fighters:
-        patterns = [
-            re.compile(
-                re.escape(fighter) + r".{0,180}?odds of\s+(\d+(?:\.\d+)?)",
-                re.I | re.S,
-            ),
-            re.compile(
-                r"If you bet\s+£?\d+(?:\.\d+)?\s+on\s+"
-                + re.escape(fighter)
-                + r".{0,260}?current odds of\s+(\d+(?:\.\d+)?)",
-                re.I | re.S,
-            ),
-        ]
-
-        for pattern in patterns:
-            match = pattern.search(snippet)
-            if match:
-                results.append({
-                    "selection": fighter,
-                    "odds": match.group(1)
-                })
-                break
-
-    return results[:2]
-
-
-def parse_fight_result(snippet, fight_name):
-    lines = clean_lines(snippet)
-    fighters = get_fighters_from_fight_name(fight_name)
-
-    if len(fighters) < 2:
-        return parse_simple_pairs(snippet)[:2]
-
-    sentence_odds = extract_decimal_sentence_odds(snippet, fight_name)
-    if len(sentence_odds) == 2:
-        return sentence_odds
-
-    fighter_1 = fighters[0]
-    fighter_2 = fighters[1]
-
-    fighter_1_norm = normalize_text(fighter_1)
-    fighter_2_norm = normalize_text(fighter_2)
-
-    odds_lines = [line for line in lines if is_odds(line)]
-
-    if len(odds_lines) >= 2:
-        combined = normalize_text(" ".join(lines))
-
-        if fighter_1_norm in combined and fighter_2_norm in combined:
-            return [
-                {"selection": fighter_1, "odds": odds_lines[0]},
-                {"selection": fighter_2, "odds": odds_lines[1]},
-            ]
-
-    results = []
-
-    for fighter in fighters:
-        found = None
-        fighter_norm = normalize_text(fighter)
-
-        for i, line in enumerate(lines):
-            line_norm = normalize_text(line)
-
-            if line_norm == fighter_norm or fighter_norm in line_norm or line_norm in fighter_norm:
-                for j in range(i + 1, min(i + 8, len(lines))):
-                    if is_odds(lines[j]):
-                        found = {
-                            "selection": fighter,
-                            "odds": lines[j]
-                        }
-                        break
-
-            if found:
-                break
-
-        if found:
-            results.append(found)
-
-    if len(results) == 2:
-        return results
-
-    fallback = []
-
-    for i in range(len(lines) - 1):
-        selection = lines[i]
-        odds = lines[i + 1]
+        selection_low = selection.lower()
 
         if not is_odds(odds):
             continue
 
-        selection_norm = normalize_text(selection)
+        if is_odds(selection):
+            continue
 
-        matched = any(
-            normalize_text(fighter) in selection_norm
-            or selection_norm in normalize_text(fighter)
-            for fighter in fighters
-        )
-
-        if matched:
-            fallback.append({
+        if any(term in selection_low for term in allowed_terms):
+            results.append({
                 "selection": selection,
                 "odds": odds
             })
 
-    seen = set()
-    unique = []
-
-    for item in results + fallback:
-        key = item["selection"].lower()
-
-        if key not in seen:
-            seen.add(key)
-            unique.append(item)
-
-    return unique[:2]
+    return dedupe_results(results)
 
 
-def extract_visible_moneyline_buttons(page, fight_name):
-    fighters = get_fighters_from_fight_name(fight_name)
-
-    if len(fighters) < 2:
-        return []
-
-    try:
-        items = page.evaluate(
-            """
-            () => {
-              const out = [];
-
-              function visible(el) {
-                const rect = el.getBoundingClientRect();
-                const style = window.getComputedStyle(el);
-                return (
-                  rect.width > 0 &&
-                  rect.height > 0 &&
-                  style.visibility !== "hidden" &&
-                  style.display !== "none"
-                );
-              }
-
-              document.querySelectorAll("body *").forEach((el) => {
-                if (!visible(el)) return;
-
-                const text = (el.innerText || el.textContent || "").trim();
-                if (!text) return;
-                if (text.length > 120) return;
-
-                const rect = el.getBoundingClientRect();
-
-                out.push({
-                  text,
-                  x: rect.x,
-                  y: rect.y,
-                  w: rect.width,
-                  h: rect.height
-                });
-              });
-
-              return out;
-            }
-            """
-        )
-    except Exception:
-        return []
-
-    fighter_boxes = []
-    odds_boxes = []
-
-    for item in items:
-        text = str(item.get("text") or "").strip()
-        norm = normalize_text(text)
-
-        if is_odds(text):
-            odds_boxes.append(item)
-            continue
-
-        for fighter in fighters:
-            fighter_norm = normalize_text(fighter)
-
-            if norm == fighter_norm or fighter_norm in norm or norm in fighter_norm:
-                fighter_boxes.append({
-                    **item,
-                    "fighter": fighter,
-                })
-
+def parse_total_rounds(snippet):
+    lines = clean_lines(snippet)
     results = []
 
-    for fighter in fighters:
-        candidates = [
-            b for b in fighter_boxes
-            if normalize_text(b.get("fighter")) == normalize_text(fighter)
-        ]
+    for i in range(len(lines) - 1):
+        selection = lines[i].strip()
+        odds = lines[i + 1].strip()
 
-        if not candidates:
+        if not is_odds(odds):
             continue
 
-        fighter_box = sorted(candidates, key=lambda b: b.get("y", 999999))[0]
-        fx = fighter_box.get("x", 0) + fighter_box.get("w", 0) / 2
-        fy = fighter_box.get("y", 0)
+        if is_odds(selection):
+            continue
 
-        possible_odds = []
+        selection_low = selection.lower()
 
-        for odds in odds_boxes:
-            ox = odds.get("x", 0) + odds.get("w", 0) / 2
-            oy = odds.get("y", 0)
+        valid = (
+            "over" in selection_low
+            or "under" in selection_low
+            or "rounds" in selection_low
+            or re.search(r"\d+\.\d+", selection_low)
+        )
 
-            if oy < fy:
-                continue
-
-            if oy - fy > 180:
-                continue
-
-            score = abs(ox - fx) + ((oy - fy) * 0.25)
-
-            possible_odds.append((score, odds))
-
-        if possible_odds:
-            possible_odds.sort(key=lambda x: x[0])
-            best_odds = possible_odds[0][1].get("text")
-
+        if valid:
             results.append({
-                "selection": fighter,
-                "odds": best_odds,
+                "selection": selection,
+                "odds": odds
             })
 
+    return dedupe_results(results)
+
+
+def parse_go_distance(snippet):
+    lines = clean_lines(snippet)
+    results = []
+
+    for i in range(len(lines) - 1):
+        selection = lines[i].strip()
+        odds = lines[i + 1].strip()
+
+        if not is_odds(odds):
+            continue
+
+        if is_odds(selection):
+            continue
+
+        selection_low = selection.lower()
+
+        valid = (
+            selection_low in ["yes", "no"]
+            or "yes" == selection_low
+            or "no" == selection_low
+            or "go the distance" in selection_low
+            or "fight to go the distance" in selection_low
+            or "fight not to go the distance" in selection_low
+        )
+
+        if valid:
+            results.append({
+                "selection": selection,
+                "odds": odds
+            })
+
+    return dedupe_results(results)
+
+
+def dedupe_results(results):
     seen = set()
     unique = []
 
-    for row in results:
-        key = row["selection"].lower()
+    for item in results:
+        selection = str(item.get("selection", "")).strip()
+        odds = str(item.get("odds", "")).strip()
 
-        if key not in seen and is_odds(row.get("odds")):
-            seen.add(key)
-            unique.append(row)
+        if not selection or not odds:
+            continue
 
-    return unique[:2]
+        key = (selection.lower(), odds.upper())
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+        unique.append({
+            "selection": selection,
+            "odds": odds
+        })
+
+    return unique
 
 
 def scrape_fight(page, fight):
@@ -465,63 +356,19 @@ def scrape_fight(page, fight):
     print(f"Scraping: {fight_name}")
     print("==============================")
 
-    page.goto(fight_url, timeout=60000)
-    time.sleep(7)
+    page.goto(fight_url, timeout=70000, wait_until="domcontentloaded")
+    time.sleep(6)
 
     close_cookie_popup(page)
 
-    moneyline_markets = [
-        "Fight Result",
-        "Match Betting",
-    ]
-
-    opened_moneyline_market = None
-
-    for market_name in moneyline_markets:
-        opened = click_market(page, market_name)
-
-        if opened:
-            opened_moneyline_market = market_name
-            break
-
-    time.sleep(1)
-
-    fight_result_raw = ""
-
-    if opened_moneyline_market:
-        fight_result_raw = get_market_snippet(
-            page,
-            opened_moneyline_market,
-            stop_words=[
-                "Method of Victory",
-                "Total Rounds",
-                "Go The Distance?",
-                "Will the fight go the distance?",
-                "Round Betting",
-                "Round & Minute",
-                "Method & Round Combo",
-                "Double Chance",
-                "How fight will End",
-            ],
-        )
-
-    fight_betting = parse_fight_result(
-        fight_result_raw,
-        fight_name
-    )
-
-    if len(fight_betting) < 2:
-        dom_moneyline = extract_visible_moneyline_buttons(page, fight_name)
-
-        if len(dom_moneyline) == 2:
-            fight_betting = dom_moneyline
-
-    for market in [
+    markets_to_open = [
         "Method of Victory",
         "Total Rounds",
         "Go The Distance?",
         "Will the fight go the distance?",
-    ]:
+    ]
+
+    for market in markets_to_open:
         click_market(page, market)
 
     time.sleep(2)
@@ -534,6 +381,8 @@ def scrape_fight(page, fight):
             "Total Rounds",
             "Go The Distance?",
             "Will the fight go the distance?",
+            "Method & Round Combo",
+            "Round & Minute",
         ],
     )
 
@@ -545,6 +394,8 @@ def scrape_fight(page, fight):
             "Go The Distance?",
             "Will the fight go the distance?",
             "How fight will End",
+            "Round Betting",
+            "Method & Round Combo",
         ],
     )
 
@@ -556,6 +407,8 @@ def scrape_fight(page, fight):
                 "How fight will End",
                 "What Round",
                 "Show More",
+                "Method & Round Combo",
+                "Round Betting",
             ],
         )
         or
@@ -566,22 +419,18 @@ def scrape_fight(page, fight):
                 "How fight will End",
                 "What Round",
                 "Show More",
+                "Method & Round Combo",
+                "Round Betting",
             ],
         )
     )
 
     method = parse_method_of_victory(method_raw)
-    total_rounds = parse_simple_pairs(total_rounds_raw)
-    go_distance = parse_simple_pairs(go_distance_raw)
+    total_rounds = parse_total_rounds(total_rounds_raw)
+    go_distance = parse_go_distance(go_distance_raw)
 
-    has_props = bool(
-        fight_betting
-        or method
-        or total_rounds
-        or go_distance
-    )
+    has_props = bool(method or total_rounds or go_distance)
 
-    print(f"Fight Betting: {len(fight_betting)}")
     print(f"Method of Victory: {len(method)}")
     print(f"Total Rounds: {len(total_rounds)}")
     print(f"Go The Distance: {len(go_distance)}")
@@ -590,17 +439,17 @@ def scrape_fight(page, fight):
     return {
         "fight": fight_name,
         "url": fight_url,
+        "bookmaker": "PaddyPower",
         "has_props": has_props,
-        "scraped_at": datetime.now(timezone.utc).isoformat(),
+        "scraped_at": now_iso(),
         "markets": {
-            "fight_betting": fight_betting,
+            "fight_betting": [],
             "method_of_victory": method,
             "total_rounds": total_rounds,
             "go_the_distance": go_distance,
         },
         "raw_markets": {
-            "moneyline_market_name": opened_moneyline_market,
-            "fight_betting": fight_result_raw,
+            "fight_betting": "",
             "method_of_victory": method_raw,
             "total_rounds": total_rounds_raw,
             "go_the_distance": go_distance_raw,
@@ -631,7 +480,6 @@ def main():
         print(f"Missing fight URL file: {URLS_PATH}")
         output = empty_output()
         save_output(output)
-        print("No fight URL file found. Exiting cleanly.")
         return
 
     with open(URLS_PATH, "r", encoding="utf-8") as f:
@@ -643,7 +491,6 @@ def main():
         print("No fights found in paddypower_fight_urls.json")
         output = empty_output()
         save_output(output)
-        print("Saved empty props.json. Exiting cleanly.")
         return
 
     output = load_existing_output()
