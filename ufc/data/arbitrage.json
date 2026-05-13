@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 23,
   "total_prop_markets_checked": 18,
   "total_prop_rows_loaded": 75,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 0,
+  "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -21,13 +21,13 @@
         },
         "Polyana Viana": {
           "best_bookmaker": "Matchbook",
-          "best_price": 2.88,
-          "implied_probability": 34.72
+          "best_price": 2.84,
+          "implied_probability": 35.21
         }
       },
-      "arb_sum": 1.000817,
+      "arb_sum": 1.005707,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.08
+      "profit_margin_percent": -0.57
     },
     {
       "type": "moneyline",
@@ -42,14 +42,14 @@
           "implied_probability": 66.67
         },
         "Cody Brundage": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.76,
-          "implied_probability": 36.23
+          "best_bookmaker": "888sport",
+          "best_price": 2.75,
+          "implied_probability": 36.36
         }
       },
-      "arb_sum": 1.028986,
+      "arb_sum": 1.030303,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.9
+      "profit_margin_percent": -3.03
     },
     {
       "type": "moneyline",
@@ -59,19 +59,19 @@
       "market": "Moneyline",
       "fighters": {
         "Arnold Allen": {
-          "best_bookmaker": "888sport",
+          "best_bookmaker": "Paddy Power",
           "best_price": 1.62,
           "implied_probability": 61.73
         },
         "Melquizael Costa": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.34,
-          "implied_probability": 42.74
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.35,
+          "implied_probability": 42.55
         }
       },
-      "arb_sum": 1.044634,
+      "arb_sum": 1.042816,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.46
+      "profit_margin_percent": -4.28
     },
     {
       "type": "moneyline",
@@ -86,7 +86,7 @@
           "implied_probability": 60.98
         },
         "Timothy Cuamba": {
-          "best_bookmaker": "Unibet (UK)",
+          "best_bookmaker": "Betway",
           "best_price": 2.3,
           "implied_probability": 43.48
         }
@@ -218,14 +218,14 @@
           "implied_probability": 61.73
         },
         "Ketlen Vieira": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.4,
-          "implied_probability": 41.67
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.38,
+          "implied_probability": 42.02
         }
       },
-      "arb_sum": 1.033951,
+      "arb_sum": 1.037452,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.4
+      "profit_margin_percent": -3.75
     },
     {
       "type": "moneyline",
@@ -263,13 +263,13 @@
         },
         "Robelis Despaigne": {
           "best_bookmaker": "William Hill",
-          "best_price": 1.29,
-          "implied_probability": 77.52
+          "best_price": 1.22,
+          "implied_probability": 81.97
         }
       },
-      "arb_sum": 0.992585,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.74
+      "arb_sum": 1.037063,
+      "is_arbitrage": false,
+      "profit_margin_percent": -3.71
     },
     {
       "type": "moneyline",
@@ -306,14 +306,14 @@
           "implied_probability": 52.36
         },
         "Nikolay Veretennikov": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.05,
-          "implied_probability": 48.78
+          "best_bookmaker": "Betfair",
+          "best_price": 2.04,
+          "implied_probability": 49.02
         }
       },
-      "arb_sum": 1.011365,
+      "arb_sum": 1.013756,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.14
+      "profit_margin_percent": -1.38
     },
     {
       "type": "moneyline",
@@ -412,8 +412,8 @@
       "fighters": {
         "Derrick Lewis": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 3.5,
-          "implied_probability": 28.57
+          "best_price": 3.4,
+          "implied_probability": 29.41
         },
         "Josh Hokit": {
           "best_bookmaker": "LeoVegas",
@@ -421,9 +421,9 @@
           "implied_probability": 75.19
         }
       },
-      "arb_sum": 1.037594,
+      "arb_sum": 1.045997,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.76
+      "profit_margin_percent": -4.6
     },
     {
       "type": "moneyline",
@@ -482,14 +482,14 @@
           "implied_probability": 49.5
         },
         "Ciryl Gane": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.95,
-          "implied_probability": 51.28
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 1.91,
+          "implied_probability": 52.36
         }
       },
-      "arb_sum": 1.00787,
+      "arb_sum": 1.01861,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.79
+      "profit_margin_percent": -1.86
     },
     {
       "type": "moneyline",
@@ -930,28 +930,5 @@
       "profit_margin_percent": -6.09
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "d1e8ff0d03f502811b1edc152b2e842f",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Junior dos Santos vs Robelis Despaigne",
-      "market": "Moneyline",
-      "fighters": {
-        "Junior dos Santos": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 4.6,
-          "implied_probability": 21.74
-        },
-        "Robelis Despaigne": {
-          "best_bookmaker": "William Hill",
-          "best_price": 1.29,
-          "implied_probability": 77.52
-        }
-      },
-      "arb_sum": 0.992585,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.74
-    }
-  ]
+  "arbitrage_opportunities": []
 }
