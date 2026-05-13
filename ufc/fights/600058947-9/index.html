@@ -81,7 +81,9 @@
     .fighter-card,
     .fight-meta,
     .fight-props,
-    .best-props {
+    .best-props,
+    .moneyline-section,
+    .ev-panel {
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -96,6 +98,10 @@
       justify-content: space-between;
       gap: 12px;
       align-items: flex-start;
+    }
+
+    .section-label-row {
+      margin-bottom: 10px;
     }
 
     .corner-label {
@@ -118,6 +124,7 @@
       line-height: 1.05;
     }
 
+    .moneyline-section h2,
     .fight-props h2,
     .best-props h2,
     .ev-panel h2 {
@@ -206,6 +213,110 @@
     td:last-child {
       text-align:right;
       font-weight:700;
+    }
+
+    .ml-table {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .ml-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ml-row:last-child {
+      border-bottom: none;
+    }
+
+    .ml-header {
+      background: rgba(255,255,255,0.04);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+    }
+
+    .ml-implied {
+      background: rgba(96,165,250,0.06);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .ml-overround {
+      background: rgba(96,165,250,0.04);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .ml-book,
+    .ml-price {
+      padding: 10px 12px;
+    }
+
+    .ml-price {
+      text-align: right;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .ml-price.ml-best {
+      color: #22c55e;
+    }
+
+    .ml-best-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .ml-best-card {
+      border: 1px solid rgba(34,197,94,0.35);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(34,197,94,0.07);
+    }
+
+    .ml-best-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .ml-best-card strong {
+      display: block;
+      font-size: 28px;
+      color: #22c55e;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .ml-best-card small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .arb-banner {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border: 1px solid rgba(34,197,94,0.6);
+      border-radius: 14px;
+      background: rgba(34,197,94,0.1);
+      color: #86efac;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .no-arb-note {
+      margin: 10px 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .recent-list {
@@ -369,10 +480,6 @@
     }
 
     .ev-panel {
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 22px;
-      background: rgba(255,255,255,0.025);
       margin-top: 0;
     }
 
@@ -483,6 +590,10 @@
       .stats-grid {
         grid-template-columns:1fr;
       }
+
+      .ml-best-strip {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 720px) {
@@ -506,6 +617,16 @@
       .best-right {
         align-items: flex-start;
       }
+
+      .ml-row {
+        grid-template-columns: 1fr 1fr 1fr;
+        font-size: 13px;
+      }
+
+      .ml-book,
+      .ml-price {
+        padding: 8px 8px;
+      }
     }
   </style>
 </head>
@@ -526,8 +647,8 @@
             <span class="meta-pill">Middleweight</span>
             <span class="meta-pill">Roman Kopylov vs Marco Tulio</span>
             <span class="meta-pill">Status: completed</span>
-            <span class="meta-pill">Odds Match: No</span>
-            <span class="meta-pill">Prop Books: 4</span>
+            <span class="meta-pill">Odds: ⏳ None yet</span>
+            <span class="meta-pill">Prop Books: 3</span>
             <span class="meta-pill">Value Spots: 0</span>
           </div>
         </div>
@@ -537,9 +658,16 @@
       <section class="summary-strip">
         
             <div class="summary-card">
-              <span>Best Value Spot</span>
+              <span>Roman Kopylov</span>
               <strong>—</strong>
-              <small>No market found</small>
+              <small>No odds yet</small>
+            </div>
+            
+        
+            <div class="summary-card">
+              <span>Marco Tulio</span>
+              <strong>—</strong>
+              <small>No odds yet</small>
             </div>
             
         
@@ -550,19 +678,12 @@
         </div>
         
         
-        <div class="summary-card">
-          <span>Best Distance Yes</span>
-          <strong>Yes @ 5/4</strong>
-          <small>BoyleSports </small>
-        </div>
-        
-        
-        <div class="summary-card">
-          <span>Best Distance No</span>
-          <strong>No @ 20/31</strong>
-          <small>Coral </small>
-        </div>
-        
+            <div class="summary-card">
+              <span>Best Value Spot</span>
+              <strong>—</strong>
+              <small>No market found</small>
+            </div>
+            
       </section>
     
 
@@ -570,7 +691,7 @@
         <button class="tab-btn active" data-tab="overview">Overview</button>
         <button class="tab-btn" data-tab="best-odds">Best Odds</button>
         <button class="tab-btn" data-tab="props">Bookmaker Props</button>
-        <button class="tab-btn" data-tab="stats">Stats & Form</button>
+        <button class="tab-btn" data-tab="stats">Stats &amp; Form</button>
         <button class="tab-btn" data-tab="value">EV Tool</button>
       </nav>
 
@@ -805,65 +926,27 @@
 
       <section class="tab-panel" id="tab-best-odds">
         
+      
+      <section class="moneyline-section">
+        <div class="section-label-row">
+          <div class="corner-label">Fight Winner</div>
+        </div>
+        <h2>Moneyline Odds</h2>
+        <p class="muted">No UK odds found for this fight yet. Check back closer to fight night.</p>
+      </section>
+        
+      <div style="margin-top: 28px;">
+        
       <section class="best-props">
         <div class="best-props-head">
           <div>
-            <div class="corner-label">Best odds</div>
+            <div class="corner-label">Prop odds</div>
             <h2>Best Available Prop Odds</h2>
             <p class="muted">Highest available price per prop selection across matched bookmakers. 🔥 Outlier means the best price is at least 10% above the market average.</p>
           </div>
         </div>
         <div class="best-props-grid">
           
-        <div class="best-market">
-          <h3>Fight Betting</h3>
-          <div class="best-rows">
-        
-            <div class="best-row">
-              <div>
-                <strong>Marco Tulio</strong>
-                <span>Coral • 1 book(s)</span>
-                
-              </div>
-
-              <div class="best-right">
-                <div class="best-price">⭐ 1/2</div>
-                <button
-                  type="button"
-                  class="ev-load-btn"
-                  data-selection="Marco Tulio"
-                  data-bookmaker="Coral"
-                  data-odds="1.50"
-                >
-                  Use in EV Tool →
-                </button>
-              </div>
-            </div>
-            
-            <div class="best-row">
-              <div>
-                <strong>Roman Kopylov</strong>
-                <span>Coral • 1 book(s)</span>
-                
-              </div>
-
-              <div class="best-right">
-                <div class="best-price">⭐ 13/8</div>
-                <button
-                  type="button"
-                  class="ev-load-btn"
-                  data-selection="Roman Kopylov"
-                  data-bookmaker="Coral"
-                  data-odds="2.62"
-                >
-                  Use in EV Tool →
-                </button>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        
         <div class="best-market">
           <h3>Go The Distance?</h3>
           <div class="best-rows">
@@ -928,12 +1011,8 @@
             <div class="best-row">
               <div>
                 <strong>Draw</strong>
-                <span>BoyleSports • 2 book(s)</span>
+                <span>BoyleSports • 1 book(s)</span>
                 
-              <div class="value-note">
-                Market avg: 48.50
-              </div>
-            
               </div>
 
               <div class="best-right">
@@ -1099,55 +1178,9 @@
             
             <div class="best-row">
               <div>
-                <strong>Marco Tulio by KO/TKO</strong>
-                <span>PaddyPower • 1 book(s)</span>
+                <strong>Marco Tulio By Submission</strong>
+                <span>BoyleSports • 1 book(s)</span>
                 
-              </div>
-
-              <div class="best-right">
-                <div class="best-price">⭐ 9/5</div>
-                <button
-                  type="button"
-                  class="ev-load-btn"
-                  data-selection="Marco Tulio by KO/TKO"
-                  data-bookmaker="PaddyPower"
-                  data-odds="2.80"
-                >
-                  Use in EV Tool →
-                </button>
-              </div>
-            </div>
-            
-            <div class="best-row">
-              <div>
-                <strong>Marco Tulio by Points</strong>
-                <span>PaddyPower • 1 book(s)</span>
-                
-              </div>
-
-              <div class="best-right">
-                <div class="best-price">⭐ 3/1</div>
-                <button
-                  type="button"
-                  class="ev-load-btn"
-                  data-selection="Marco Tulio by Points"
-                  data-bookmaker="PaddyPower"
-                  data-odds="4.00"
-                >
-                  Use in EV Tool →
-                </button>
-              </div>
-            </div>
-            
-            <div class="best-row">
-              <div>
-                <strong>Marco Tulio by Submission</strong>
-                <span>PaddyPower • 2 book(s)</span>
-                
-              <div class="value-note">
-                Market avg: 6.50
-              </div>
-            
               </div>
 
               <div class="best-right">
@@ -1155,8 +1188,8 @@
                 <button
                   type="button"
                   class="ev-load-btn"
-                  data-selection="Marco Tulio by Submission"
-                  data-bookmaker="PaddyPower"
+                  data-selection="Marco Tulio By Submission"
+                  data-bookmaker="BoyleSports"
                   data-odds="6.50"
                 >
                   Use in EV Tool →
@@ -1292,55 +1325,9 @@
             
             <div class="best-row">
               <div>
-                <strong>Roman Kopylov by KO/TKO</strong>
-                <span>PaddyPower • 1 book(s)</span>
+                <strong>Roman Kopylov By Submission</strong>
+                <span>BoyleSports • 1 book(s)</span>
                 
-              </div>
-
-              <div class="best-right">
-                <div class="best-price">⭐ 9/2</div>
-                <button
-                  type="button"
-                  class="ev-load-btn"
-                  data-selection="Roman Kopylov by KO/TKO"
-                  data-bookmaker="PaddyPower"
-                  data-odds="5.50"
-                >
-                  Use in EV Tool →
-                </button>
-              </div>
-            </div>
-            
-            <div class="best-row">
-              <div>
-                <strong>Roman Kopylov by Points</strong>
-                <span>PaddyPower • 1 book(s)</span>
-                
-              </div>
-
-              <div class="best-right">
-                <div class="best-price">⭐ 7/2</div>
-                <button
-                  type="button"
-                  class="ev-load-btn"
-                  data-selection="Roman Kopylov by Points"
-                  data-bookmaker="PaddyPower"
-                  data-odds="4.50"
-                >
-                  Use in EV Tool →
-                </button>
-              </div>
-            </div>
-            
-            <div class="best-row">
-              <div>
-                <strong>Roman Kopylov by Submission</strong>
-                <span>PaddyPower • 2 book(s)</span>
-                
-              <div class="value-note">
-                Market avg: 21.00
-              </div>
-            
               </div>
 
               <div class="best-right">
@@ -1348,8 +1335,8 @@
                 <button
                   type="button"
                   class="ev-load-btn"
-                  data-selection="Roman Kopylov by Submission"
-                  data-bookmaker="PaddyPower"
+                  data-selection="Roman Kopylov By Submission"
+                  data-bookmaker="BoyleSports"
                   data-odds="21.00"
                 >
                   Use in EV Tool →
@@ -1790,27 +1777,6 @@
             
             <div class="best-row">
               <div>
-                <strong>Over 2.5</strong>
-                <span>PaddyPower • 1 book(s)</span>
-                
-              </div>
-
-              <div class="best-right">
-                <div class="best-price">⭐ EVS</div>
-                <button
-                  type="button"
-                  class="ev-load-btn"
-                  data-selection="Over 2.5"
-                  data-bookmaker="PaddyPower"
-                  data-odds="2.00"
-                >
-                  Use in EV Tool →
-                </button>
-              </div>
-            </div>
-            
-            <div class="best-row">
-              <div>
                 <strong>Pendikspor</strong>
                 <span>BoyleSports • 1 book(s)</span>
                 
@@ -2208,11 +2174,34 @@
               </div>
             </div>
             
+            <div class="best-row">
+              <div>
+                <strong>Sepsi Sfantu Gheorghe</strong>
+                <span>BoyleSports • 1 book(s)</span>
+                
+              </div>
+
+              <div class="best-right">
+                <div class="best-price">⭐ 12/5</div>
+                <button
+                  type="button"
+                  class="ev-load-btn"
+                  data-selection="Sepsi Sfantu Gheorghe"
+                  data-bookmaker="BoyleSports"
+                  data-odds="3.40"
+                >
+                  Use in EV Tool →
+                </button>
+              </div>
+            </div>
+            
           </div>
         </div>
         
         </div>
       </section>
+    
+      </div>
     
       </section>
 
@@ -2222,62 +2211,6 @@
         <h2>Bookmaker Props</h2>
         <div class="props-grid">
           
-        <article class="prop-card">
-          <div class="prop-card-head">
-            <div>
-              <div class="corner-label">PaddyPower props</div>
-              <h3>Roman Kopylov vs Marco Tulio</h3>
-            </div>
-            <a class="small-link" href="https://www.paddypower.com/mixed-martial-arts/ufc-matches/roman-kopylov-v-marco-tulio-35549178" target="_blank" rel="noopener">Open book →</a>
-          </div>
-          <div class='prop-market'><h4>Method of Victory</h4>
-        <div class="prop-row">
-          <span>Roman Kopylov by KO/TKO</span>
-          <strong>9/2</strong>
-        </div>
-        
-        <div class="prop-row">
-          <span>Roman Kopylov by Points</span>
-          <strong>7/2</strong>
-        </div>
-        
-        <div class="prop-row">
-          <span>Roman Kopylov by Submission</span>
-          <strong>20/1</strong>
-        </div>
-        
-        <div class="prop-row">
-          <span>Draw</span>
-          <strong>45/1</strong>
-        </div>
-        
-        <div class="prop-row">
-          <span>Marco Tulio by KO/TKO</span>
-          <strong>9/5</strong>
-        </div>
-        
-        <div class="prop-row">
-          <span>Marco Tulio by Points</span>
-          <strong>3/1</strong>
-        </div>
-        
-        <div class="prop-row">
-          <span>Marco Tulio by Submission</span>
-          <strong>11/2</strong>
-        </div>
-        </div><div class='prop-market'><h4>Rounds</h4>
-        <div class="prop-row">
-          <span>Over (+2.5)</span>
-          <strong>EVS</strong>
-        </div>
-        
-        <div class="prop-row">
-          <span>Under (+2.5)</span>
-          <strong>4/5</strong>
-        </div>
-        </div>
-        </article>
-        
         <article class="prop-card">
           <div class="prop-card-head">
             <div>
@@ -2902,7 +2835,7 @@
           <div class="corner-label">Value tool</div>
           <h2>EV Calculator</h2>
           <p class="muted">
-            Click “Use in EV Tool” from Best Odds to auto-load a selection, then enter your estimated fair probability.
+            Click "Use in EV Tool" from Best Odds to auto-load a selection, then enter your estimated fair probability.
           </p>
         </div>
 
@@ -2972,14 +2905,14 @@
           <tr><td>Bout</td><td>Roman Kopylov vs Marco Tulio</td></tr>
           <tr><td>Weight Class</td><td>Middleweight</td></tr>
           <tr><td>Status</td><td>completed</td></tr>
-          <tr><td>Odds Match</td><td>No</td></tr>
-          <tr><td>Prop Books Matched</td><td>4</td></tr>
+          <tr><td>Odds Books</td><td>0</td></tr>
+          <tr><td>Prop Books Matched</td><td>3</td></tr>
           <tr><td>Value Spots</td><td>0</td></tr>
         </table>
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058947-9 • Generated: 2026-05-13 14:47 UTC</p>
+      <p class="muted">Fight ID: 600058947-9 • Generated: 2026-05-13 16:54 UTC</p>
     </div>
   </main>
 

@@ -81,7 +81,9 @@
     .fighter-card,
     .fight-meta,
     .fight-props,
-    .best-props {
+    .best-props,
+    .moneyline-section,
+    .ev-panel {
       border: 1px solid var(--line);
       border-radius: 20px;
       padding: 22px;
@@ -96,6 +98,10 @@
       justify-content: space-between;
       gap: 12px;
       align-items: flex-start;
+    }
+
+    .section-label-row {
+      margin-bottom: 10px;
     }
 
     .corner-label {
@@ -118,6 +124,7 @@
       line-height: 1.05;
     }
 
+    .moneyline-section h2,
     .fight-props h2,
     .best-props h2,
     .ev-panel h2 {
@@ -206,6 +213,110 @@
     td:last-child {
       text-align:right;
       font-weight:700;
+    }
+
+    .ml-table {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .ml-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ml-row:last-child {
+      border-bottom: none;
+    }
+
+    .ml-header {
+      background: rgba(255,255,255,0.04);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+    }
+
+    .ml-implied {
+      background: rgba(96,165,250,0.06);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .ml-overround {
+      background: rgba(96,165,250,0.04);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .ml-book,
+    .ml-price {
+      padding: 10px 12px;
+    }
+
+    .ml-price {
+      text-align: right;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .ml-price.ml-best {
+      color: #22c55e;
+    }
+
+    .ml-best-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .ml-best-card {
+      border: 1px solid rgba(34,197,94,0.35);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(34,197,94,0.07);
+    }
+
+    .ml-best-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .ml-best-card strong {
+      display: block;
+      font-size: 28px;
+      color: #22c55e;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .ml-best-card small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .arb-banner {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border: 1px solid rgba(34,197,94,0.6);
+      border-radius: 14px;
+      background: rgba(34,197,94,0.1);
+      color: #86efac;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .no-arb-note {
+      margin: 10px 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .recent-list {
@@ -369,10 +480,6 @@
     }
 
     .ev-panel {
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 22px;
-      background: rgba(255,255,255,0.025);
       margin-top: 0;
     }
 
@@ -483,6 +590,10 @@
       .stats-grid {
         grid-template-columns:1fr;
       }
+
+      .ml-best-strip {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 720px) {
@@ -506,6 +617,16 @@
       .best-right {
         align-items: flex-start;
       }
+
+      .ml-row {
+        grid-template-columns: 1fr 1fr 1fr;
+        font-size: 13px;
+      }
+
+      .ml-book,
+      .ml-price {
+        padding: 8px 8px;
+      }
     }
   </style>
 </head>
@@ -526,8 +647,8 @@
             <span class="meta-pill">Bantamweight</span>
             <span class="meta-pill">Sean O&#39;Malley vs Aiemann Zahabi</span>
             <span class="meta-pill">Status: scheduled</span>
-            <span class="meta-pill">Odds Match: Yes</span>
-            <span class="meta-pill">Prop Books: 1</span>
+            <span class="meta-pill">Odds: ✅ 7 books</span>
+            <span class="meta-pill">Prop Books: 2</span>
             <span class="meta-pill">Value Spots: 0</span>
           </div>
         </div>
@@ -536,12 +657,19 @@
       
       <section class="summary-strip">
         
-            <div class="summary-card">
-              <span>Best Value Spot</span>
-              <strong>—</strong>
-              <small>No market found</small>
-            </div>
-            
+        <div class="summary-card">
+          <span>Best price — Sean O&#39;Malley</span>
+          <strong>1.25</strong>
+          <small>Paddy Power</small>
+        </div>
+        
+        
+        <div class="summary-card">
+          <span>Best price — Aiemann Zahabi</span>
+          <strong>4.20</strong>
+          <small>888sport</small>
+        </div>
+        
         
             <div class="summary-card">
               <span>Best Method Price</span>
@@ -551,14 +679,7 @@
             
         
             <div class="summary-card">
-              <span>Best Distance Yes</span>
-              <strong>—</strong>
-              <small>No market found</small>
-            </div>
-            
-        
-            <div class="summary-card">
-              <span>Best Distance No</span>
+              <span>Best Value Spot</span>
               <strong>—</strong>
               <small>No market found</small>
             </div>
@@ -570,7 +691,7 @@
         <button class="tab-btn active" data-tab="overview">Overview</button>
         <button class="tab-btn" data-tab="best-odds">Best Odds</button>
         <button class="tab-btn" data-tab="props">Bookmaker Props</button>
-        <button class="tab-btn" data-tab="stats">Stats & Form</button>
+        <button class="tab-btn" data-tab="stats">Stats &amp; Form</button>
         <button class="tab-btn" data-tab="value">EV Tool</button>
       </nav>
 
@@ -761,31 +882,31 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>4.2</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>4.20</strong></td></tr>
           
         <tr>
           <td>888sport ⭐ Best</td>
-          <td>4.2</td>
+          <td>4.20</td>
         </tr>
         <tr>
           <td>Grosvenor</td>
-          <td>4.1</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>LiveScore Bet</td>
-          <td>4.1</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>Virgin Bet</td>
-          <td>4.1</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>LeoVegas</td>
-          <td>4.1</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>Unibet (UK)</td>
-          <td>3.9</td>
+          <td>3.90</td>
         </tr>
         <tr>
           <td>Paddy Power</td>
@@ -883,67 +1004,111 @@
 
       <section class="tab-panel" id="tab-best-odds">
         
-      <section class="best-props">
-        <div class="best-props-head">
-          <div>
-            <div class="corner-label">Best odds</div>
-            <h2>Best Available Prop Odds</h2>
-            <p class="muted">Highest available price per prop selection across matched bookmakers. 🔥 Outlier means the best price is at least 10% above the market average.</p>
+      
+      <section class="moneyline-section">
+        <div class="section-label-row">
+          <div class="corner-label">Fight Winner</div>
+        </div>
+        <h2>Moneyline Odds</h2>
+        <p class="muted">All UK bookmaker prices for the fight winner market. ⭐ marks the best available price per fighter.</p>
+
+        
+        <div class="no-arb-note">
+          No arbitrage at current best prices. Book margin: 3.81%
+        </div>
+        
+        
+        <div class="ml-best-strip">
+          <div class="ml-best-card">
+            <span>Best price — Sean O&#39;Malley</span>
+            <strong>1.25</strong>
+            <small>Paddy Power</small>
+          </div>
+          <div class="ml-best-card">
+            <span>Best price — Aiemann Zahabi</span>
+            <strong>4.20</strong>
+            <small>888sport</small>
           </div>
         </div>
-        <div class="best-props-grid">
-          
-        <div class="best-market">
-          <h3>Fight Betting</h3>
-          <div class="best-rows">
         
-            <div class="best-row">
-              <div>
-                <strong>Aiemann Zahabi</strong>
-                <span>Coral • 1 book(s)</span>
-                
-              </div>
 
-              <div class="best-right">
-                <div class="best-price">⭐ 11/4</div>
-                <button
-                  type="button"
-                  class="ev-load-btn"
-                  data-selection="Aiemann Zahabi"
-                  data-bookmaker="Coral"
-                  data-odds="3.75"
-                >
-                  Use in EV Tool →
-                </button>
-              </div>
-            </div>
-            
-            <div class="best-row">
-              <div>
-                <strong>Sean O&#39;Malley</strong>
-                <span>Coral • 1 book(s)</span>
-                
-              </div>
-
-              <div class="best-right">
-                <div class="best-price">⭐ 2/7</div>
-                <button
-                  type="button"
-                  class="ev-load-btn"
-                  data-selection="Sean O&#39;Malley"
-                  data-bookmaker="Coral"
-                  data-odds="1.29"
-                >
-                  Use in EV Tool →
-                </button>
-              </div>
-            </div>
-            
-          </div>
+        <div class="ml-table">
+          
+        <div class="ml-row ml-header">
+          <div class="ml-book">Bookmaker</div>
+          <div class="ml-price">Sean O&#39;Malley</div>
+          <div class="ml-price">Aiemann Zahabi</div>
+        </div>
+    
+        <div class="ml-row">
+          <div class="ml-book">Paddy Power</div>
+          <div class="ml-price ml-best">1.25 ⭐</div>
+          <div class="ml-price">3.75</div>
+        </div>
+        
+        <div class="ml-row">
+          <div class="ml-book">Grosvenor</div>
+          <div class="ml-price">1.24</div>
+          <div class="ml-price">4.10</div>
+        </div>
+        
+        <div class="ml-row">
+          <div class="ml-book">LiveScore Bet</div>
+          <div class="ml-price">1.24</div>
+          <div class="ml-price">4.10</div>
+        </div>
+        
+        <div class="ml-row">
+          <div class="ml-book">Virgin Bet</div>
+          <div class="ml-price">1.24</div>
+          <div class="ml-price">4.10</div>
+        </div>
+        
+        <div class="ml-row">
+          <div class="ml-book">LeoVegas</div>
+          <div class="ml-price">1.24</div>
+          <div class="ml-price">4.10</div>
+        </div>
+        
+        <div class="ml-row">
+          <div class="ml-book">Unibet (UK)</div>
+          <div class="ml-price">1.22</div>
+          <div class="ml-price">3.90</div>
+        </div>
+        
+        <div class="ml-row">
+          <div class="ml-book">888sport</div>
+          <div class="ml-price">1.22</div>
+          <div class="ml-price ml-best">4.20 ⭐</div>
+        </div>
+        
+          
+        <div class="ml-row ml-implied">
+          <div class="ml-book">Implied Prob (best prices)</div>
+          <div class="ml-price">80.0%</div>
+          <div class="ml-price">23.8%</div>
+        </div>
+        <div class="ml-row ml-overround">
+          <div class="ml-book">Total implied / Book overround</div>
+          <div class="ml-price" style="grid-column: span 2;">103.8% &nbsp;|&nbsp; +3.8%</div>
         </div>
         
         </div>
       </section>
+    
+      <div style="margin-top: 28px;">
+        
+      <section class="best-props">
+        <div class="best-props-head">
+          <div>
+            <div class="corner-label">Prop odds</div>
+            <h2>Best Available Prop Odds</h2>
+            <p class="muted">No comparable prop odds found yet.</p>
+          </div>
+        </div>
+      </section>
+        
+      </div>
     
       </section>
 
@@ -953,6 +1118,27 @@
         <h2>Bookmaker Props</h2>
         <div class="props-grid">
           
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">PaddyPower props</div>
+              <h3>Sean O&#39;Malley vs Aiemann Zahabi</h3>
+            </div>
+            <a class="small-link" href="https://www.paddypower.com/mixed-martial-arts/ufc-matches/sean-o&#39;malley-v-aiemann-zahabi-35350852" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Fight Betting</h4>
+        <div class="prop-row">
+          <span>Sean O&#39;Malley</span>
+          <strong>1/4</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Aiemann Zahabi</span>
+          <strong>1/4</strong>
+        </div>
+        </div>
+        </article>
+        
         <article class="prop-card">
           <div class="prop-card-head">
             <div>
@@ -1166,31 +1352,31 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>4.2</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>4.20</strong></td></tr>
           
         <tr>
           <td>888sport ⭐ Best</td>
-          <td>4.2</td>
+          <td>4.20</td>
         </tr>
         <tr>
           <td>Grosvenor</td>
-          <td>4.1</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>LiveScore Bet</td>
-          <td>4.1</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>Virgin Bet</td>
-          <td>4.1</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>LeoVegas</td>
-          <td>4.1</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>Unibet (UK)</td>
-          <td>3.9</td>
+          <td>3.90</td>
         </tr>
         <tr>
           <td>Paddy Power</td>
@@ -1293,7 +1479,7 @@
           <div class="corner-label">Value tool</div>
           <h2>EV Calculator</h2>
           <p class="muted">
-            Click “Use in EV Tool” from Best Odds to auto-load a selection, then enter your estimated fair probability.
+            Click "Use in EV Tool" from Best Odds to auto-load a selection, then enter your estimated fair probability.
           </p>
         </div>
 
@@ -1363,14 +1549,14 @@
           <tr><td>Bout</td><td>Sean O&#39;Malley vs Aiemann Zahabi</td></tr>
           <tr><td>Weight Class</td><td>Bantamweight</td></tr>
           <tr><td>Status</td><td>scheduled</td></tr>
-          <tr><td>Odds Match</td><td>Yes</td></tr>
-          <tr><td>Prop Books Matched</td><td>1</td></tr>
+          <tr><td>Odds Books</td><td>7</td></tr>
+          <tr><td>Prop Books Matched</td><td>2</td></tr>
           <tr><td>Value Spots</td><td>0</td></tr>
         </table>
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058854-3 • Generated: 2026-05-13 14:47 UTC</p>
+      <p class="muted">Fight ID: 600058854-3 • Generated: 2026-05-13 16:54 UTC</p>
     </div>
   </main>
 
