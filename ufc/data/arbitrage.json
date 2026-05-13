@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 18,
   "total_prop_rows_loaded": 75,
-  "arbitrage_count": 0,
-  "moneyline_arbitrage_count": 0,
+  "arbitrage_count": 1,
+  "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -21,13 +21,13 @@
         },
         "Polyana Viana": {
           "best_bookmaker": "Matchbook",
-          "best_price": 2.78,
-          "implied_probability": 35.97
+          "best_price": 2.88,
+          "implied_probability": 34.72
         }
       },
-      "arb_sum": 1.013307,
+      "arb_sum": 1.000817,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.33
+      "profit_margin_percent": -0.08
     },
     {
       "type": "moneyline",
@@ -65,13 +65,13 @@
         },
         "Melquizael Costa": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.34,
-          "implied_probability": 42.74
+          "best_price": 2.36,
+          "implied_probability": 42.37
         }
       },
-      "arb_sum": 1.044634,
+      "arb_sum": 1.041013,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.46
+      "profit_margin_percent": -4.1
     },
     {
       "type": "moneyline",
@@ -263,13 +263,13 @@
         },
         "Robelis Despaigne": {
           "best_bookmaker": "William Hill",
-          "best_price": 1.22,
-          "implied_probability": 81.97
+          "best_price": 1.29,
+          "implied_probability": 77.52
         }
       },
-      "arb_sum": 1.037063,
-      "is_arbitrage": false,
-      "profit_margin_percent": -3.71
+      "arb_sum": 0.992585,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.74
     },
     {
       "type": "moneyline",
@@ -952,5 +952,28 @@
       "profit_margin_percent": -6.09
     }
   ],
-  "arbitrage_opportunities": []
+  "arbitrage_opportunities": [
+    {
+      "type": "moneyline",
+      "event_id": "d1e8ff0d03f502811b1edc152b2e842f",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "fight": "Junior dos Santos vs Robelis Despaigne",
+      "market": "Moneyline",
+      "fighters": {
+        "Junior dos Santos": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 4.6,
+          "implied_probability": 21.74
+        },
+        "Robelis Despaigne": {
+          "best_bookmaker": "William Hill",
+          "best_price": 1.29,
+          "implied_probability": 77.52
+        }
+      },
+      "arb_sum": 0.992585,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.74
+    }
+  ]
 }
