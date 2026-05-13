@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 18,
   "total_prop_rows_loaded": 75,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 0,
+  "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -42,14 +42,14 @@
           "implied_probability": 66.67
         },
         "Cody Brundage": {
-          "best_bookmaker": "888sport",
-          "best_price": 2.75,
-          "implied_probability": 36.36
+          "best_bookmaker": "Matchbook",
+          "best_price": 2.76,
+          "implied_probability": 36.23
         }
       },
-      "arb_sum": 1.030303,
+      "arb_sum": 1.028986,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.03
+      "profit_margin_percent": -2.9
     },
     {
       "type": "moneyline",
@@ -59,19 +59,19 @@
       "market": "Moneyline",
       "fighters": {
         "Arnold Allen": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.66,
-          "implied_probability": 60.24
+          "best_bookmaker": "888sport",
+          "best_price": 1.62,
+          "implied_probability": 61.73
         },
         "Melquizael Costa": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 2.43,
-          "implied_probability": 41.15
+          "best_bookmaker": "Betfair",
+          "best_price": 2.34,
+          "implied_probability": 42.74
         }
       },
-      "arb_sum": 1.013932,
+      "arb_sum": 1.044634,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.39
+      "profit_margin_percent": -4.46
     },
     {
       "type": "moneyline",
@@ -81,9 +81,9 @@
       "market": "Moneyline",
       "fighters": {
         "Benardo Sopaj": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 1.64,
-          "implied_probability": 60.98
+          "best_bookmaker": "Betfair",
+          "best_price": 1.65,
+          "implied_probability": 60.61
         },
         "Timothy Cuamba": {
           "best_bookmaker": "Betfair",
@@ -91,9 +91,9 @@
           "implied_probability": 41.32
         }
       },
-      "arb_sum": 1.022979,
+      "arb_sum": 1.019284,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.3
+      "profit_margin_percent": -1.93
     },
     {
       "type": "moneyline",
@@ -196,14 +196,14 @@
           "implied_probability": 62.11
         },
         "Tuco Tokkos": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.66,
-          "implied_probability": 37.59
+          "best_bookmaker": "Grosvenor",
+          "best_price": 2.55,
+          "implied_probability": 39.22
         }
       },
-      "arb_sum": 0.997058,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.29
+      "arb_sum": 1.013275,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.33
     },
     {
       "type": "moneyline",
@@ -236,8 +236,8 @@
       "fighters": {
         "Juan Diaz": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 3.15,
-          "implied_probability": 31.75
+          "best_price": 3.2,
+          "implied_probability": 31.25
         },
         "Malcolm Wellmaker": {
           "best_bookmaker": "Paddy Power",
@@ -245,9 +245,9 @@
           "implied_probability": 71.43
         }
       },
-      "arb_sum": 1.031746,
+      "arb_sum": 1.026786,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.17
+      "profit_margin_percent": -2.68
     },
     {
       "type": "moneyline",
@@ -262,14 +262,14 @@
           "implied_probability": 21.74
         },
         "Robelis Despaigne": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.17,
-          "implied_probability": 85.47
+          "best_bookmaker": "William Hill",
+          "best_price": 1.22,
+          "implied_probability": 81.97
         }
       },
-      "arb_sum": 1.072092,
+      "arb_sum": 1.037063,
       "is_arbitrage": false,
-      "profit_margin_percent": -7.21
+      "profit_margin_percent": -3.71
     },
     {
       "type": "moneyline",
@@ -323,24 +323,46 @@
       "market": "Moneyline",
       "fighters": {
         "Mike Perry": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.42,
-          "implied_probability": 70.42
+          "best_bookmaker": "William Hill",
+          "best_price": 1.5,
+          "implied_probability": 66.67
         },
         "Nate Diaz": {
           "best_bookmaker": "LeoVegas",
-          "best_price": 2.75,
-          "implied_probability": 36.36
+          "best_price": 2.5,
+          "implied_probability": 40.0
         }
       },
-      "arb_sum": 1.067862,
+      "arb_sum": 1.066667,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.79
+      "profit_margin_percent": -6.67
+    },
+    {
+      "type": "moneyline",
+      "event_id": "c74a1465a2254bcafc56226ac277d87c",
+      "commence_time": "2026-05-17T00:00:00Z",
+      "fight": "Nicolle Caliari vs Shauna Bannon",
+      "market": "Moneyline",
+      "fighters": {
+        "Nicolle Caliari": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.46,
+          "implied_probability": 68.49
+        },
+        "Shauna Bannon": {
+          "best_bookmaker": "Betfair",
+          "best_price": 3.0,
+          "implied_probability": 33.33
+        }
+      },
+      "arb_sum": 1.018265,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.83
     },
     {
       "type": "moneyline",
       "event_id": "54c51d010b6ae6cd31451b81ba64d0e4",
-      "commence_time": "2026-05-17T00:00:00Z",
+      "commence_time": "2026-05-17T00:45:00Z",
       "fight": "Modestas Bukauskas vs Rodolfo Bellato",
       "market": "Moneyline",
       "fighters": {
@@ -358,28 +380,6 @@
       "arb_sum": 1.070008,
       "is_arbitrage": false,
       "profit_margin_percent": -7.0
-    },
-    {
-      "type": "moneyline",
-      "event_id": "c74a1465a2254bcafc56226ac277d87c",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Nicolle Caliari vs Shauna Bannon",
-      "market": "Moneyline",
-      "fighters": {
-        "Nicolle Caliari": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.47,
-          "implied_probability": 68.03
-        },
-        "Shauna Bannon": {
-          "best_bookmaker": "Betfair",
-          "best_price": 3.0,
-          "implied_probability": 33.33
-        }
-      },
-      "arb_sum": 1.013605,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.36
     },
     {
       "type": "moneyline",
@@ -434,8 +434,8 @@
       "fighters": {
         "Derrick Lewis": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 3.45,
-          "implied_probability": 28.99
+          "best_price": 3.5,
+          "implied_probability": 28.57
         },
         "Josh Hokit": {
           "best_bookmaker": "LeoVegas",
@@ -443,9 +443,9 @@
           "implied_probability": 75.19
         }
       },
-      "arb_sum": 1.041735,
+      "arb_sum": 1.037594,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.17
+      "profit_margin_percent": -3.76
     },
     {
       "type": "moneyline",
@@ -500,18 +500,18 @@
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.98,
-          "implied_probability": 50.51
+          "best_price": 2.02,
+          "implied_probability": 49.5
         },
         "Ciryl Gane": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.91,
-          "implied_probability": 52.36
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.95,
+          "implied_probability": 51.28
         }
       },
-      "arb_sum": 1.028611,
+      "arb_sum": 1.00787,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.86
+      "profit_margin_percent": -0.79
     },
     {
       "type": "moneyline",
@@ -952,28 +952,5 @@
       "profit_margin_percent": -6.09
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "6c2dc5be72620b0dd2721814f77a0f2e",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Ivan Erslan vs Tuco Tokkos",
-      "market": "Moneyline",
-      "fighters": {
-        "Ivan Erslan": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.61,
-          "implied_probability": 62.11
-        },
-        "Tuco Tokkos": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.66,
-          "implied_probability": 37.59
-        }
-      },
-      "arb_sum": 0.997058,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.29
-    }
-  ]
+  "arbitrage_opportunities": []
 }
