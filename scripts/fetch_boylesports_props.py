@@ -92,64 +92,20 @@ def close_cookie_popup(page):
 
 
 def wait_for_boylesports_page(page):
-    print("Waiting for BoyleSports React app...")
-    time.sleep(10)
+    print("Waiting for BoyleSports page to load...")
+    time.sleep(8)
 
     try:
         page.wait_for_selector("body", timeout=15000)
     except Exception:
         pass
 
-    try:
-        body_text = page.locator("body").inner_text(timeout=10000)
-        print(f"Body text length after wait: {len(body_text)}")
-    except Exception:
-        print("Could not read body text after wait")
 
-
-def click_tab(page, tab_name):
-    print(f"Trying tab: {tab_name}")
-
-    selectors = [
-        f"button:has-text('{tab_name}')",
-        f"a:has-text('{tab_name}')",
-        f"div[role='tab']:has-text('{tab_name}')",
-        f"text={tab_name}",
-    ]
-
-    for selector in selectors:
-        try:
-            tab = page.locator(selector).first
-            tab.scroll_into_view_if_needed(timeout=5000)
-            time.sleep(0.5)
-            tab.click(force=True, timeout=5000)
-            print(f"Clicked tab: {tab_name}")
-            time.sleep(3)
-
-            page.mouse.wheel(0, 1200)
-            time.sleep(2)
-
-            return True
-        except Exception:
-            pass
-
-    print(f"Could not click tab: {tab_name}")
-    return False
-
-
-def click_first_available_tab(page, tab_names):
-    for tab_name in tab_names:
-        if click_tab(page, tab_name):
-            return tab_name
-
-    return None
-
-
-def get_body_text(page):
-    try:
-        return page.locator("body").inner_text(timeout=10000)
-    except Exception:
-        return ""
+def normalize_text(text):
+    text = str(text or "").lower()
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
 
 def get_fighters_from_fight_name(fight_name):
@@ -165,328 +121,361 @@ def get_fighters_from_fight_name(fight_name):
     return [f.strip() for f in fighters if f.strip()]
 
 
-def normalize_text(text):
-    text = str(text or "").lower()
-    text = re.sub(r"[^a-z0-9\s]", " ", text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
+# ─────────────────────────────────────────────
+# MONEYLINE: Direct DOM row extraction
+# ─────────────────────────────────────────────
 
+def extract_moneyline_dom(page, fight_name):
+    """
+    Primary method: walk every visible DOM element.
+    Find rows where a fighter name appears on the LEFT
+    and a fractional/decimal odd appears on the RIGHT,
+    both sharing roughly the same vertical position.
 
-def strip_before_useful_market(text):
-    markers = [
-        "To Win Fight",
-        "Fight Betting",
-        "Match Betting",
-        "Fight Result",
-        "Winning Method",
-        "Method Of Victory",
-        "Method of Victory",
-        "Round Betting",
-        "Rounds",
-        "Go The Distance",
-        "To Go Distance",
-        "Fight Goes The Distance",
-    ]
+    This matches the BoyleSports layout seen in the screenshot:
+      [Alice Ardelean]          [4/9]
+      [Polyana Viana]           [13/8]
 
-    lower_text = text.lower()
-    starts = []
+    No tab clicking needed — "To Win Fight" is open by default.
+    """
+    fighters = get_fighters_from_fight_name(fight_name)
 
-    for marker in markers:
-        idx = lower_text.find(marker.lower())
-        if idx != -1:
-            starts.append(idx)
+    if len(fighters) < 2:
+        print(f"  Could not parse fighters from: {fight_name}")
+        return []
 
-    if starts:
-        return text[min(starts):]
+    print(f"  Looking for fighters: {fighters}")
 
-    return text
+    try:
+        elements = page.evaluate("""
+            () => {
+                const results = [];
 
+                function isVisible(el) {
+                    const rect = el.getBoundingClientRect();
+                    const style = window.getComputedStyle(el);
+                    return (
+                        rect.width > 0 &&
+                        rect.height > 0 &&
+                        style.visibility !== 'hidden' &&
+                        style.display !== 'none' &&
+                        style.opacity !== '0'
+                    );
+                }
 
-def clean_lines(snippet):
-    junk_exact = {
-        "",
-        "Popular",
-        "Cash Out",
-        "All Markets",
-        "Method of Victory",
-        "Method Of Victory",
-        "Winning Method",
-        "Rounds",
-        "Total Rounds",
-        "Go The Distance?",
-        "Fight Goes The Distance",
-        "Fight To Go The Distance",
-        "To Go Distance",
-        "Go The Distance",
-        "Round Betting",
-        "Round Betting Groups",
-        "Grouped Round Betting I",
-        "Grouped Round Betting Ii",
-        "Method & Round Combo",
-        "Round Groups",
-        "Fight To Go The Distance",
-        "Show More",
-        "Show Less",
-        "Bet Builder",
-        "To Win Fight",
-        "Fight Betting",
-        "Match Betting",
-        "Fight Result",
-        "Show UFC Stats",
-        "Hide UFC Stats",
-        "Bet Builder Boost",
-        "Get a Boost on this match",
-        "Full T&Cs",
-        "Close",
-        "All competitions",
-        "Betslip",
-        "My Bets",
-        "Betslip Empty",
-        "Please add one or more selections in order to place a bet.",
-        "Back To Fight Card",
-        "BACK TO FIGHT CARD",
-        "MATCHUP",
-        "TAPE",
-        "FORM",
-        "SIGNIFICANT STRIKES",
-        "GRAPPLING",
-        "UFC WINS BY",
-        "KO/TKO",
-        "SUBMISSION",
-        "DECISION",
-    }
+                function getLeafText(el) {
+                    // Get text only from this element, not children
+                    let text = '';
+                    for (const node of el.childNodes) {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            text += node.textContent;
+                        }
+                    }
+                    return text.trim() || el.innerText?.trim() || '';
+                }
 
-    junk_contains = [
-        "create your bet builder",
-        "min odds for boost",
-        "apply on betslip",
-        "enjoy your boosted winnings",
-        "receive more in cash",
-        "gaming quick links",
-        "home / ufc",
-        "fights ufc",
-        "please add one or more selections",
-        "ufc stats",
-        "promotions",
-        "casino",
-        "live casino",
-        "sports a-z",
-        "safer gambling",
-    ]
+                document.querySelectorAll('*').forEach(el => {
+                    if (!isVisible(el)) return;
 
-    cleaned = []
+                    const text = (el.innerText || el.textContent || '').trim();
+                    if (!text || text.length > 200) return;
 
-    for line in snippet.splitlines():
-        line = line.strip()
+                    const rect = el.getBoundingClientRect();
 
-        if not line:
+                    // Exclude nav/header/sidebar elements
+                    if (rect.y < 200) return;
+                    if (rect.x < 150) return;    // sidebar
+                    if (rect.x > 960) return;    // betslip panel
+
+                    results.push({
+                        tag: el.tagName,
+                        text: text,
+                        x: Math.round(rect.x),
+                        y: Math.round(rect.y),
+                        w: Math.round(rect.width),
+                        h: Math.round(rect.height),
+                        cx: Math.round(rect.x + rect.width / 2),
+                        cy: Math.round(rect.y + rect.height / 2),
+                    });
+                });
+
+                return results;
+            }
+        """)
+    except Exception as e:
+        print(f"  DOM evaluation failed: {e}")
+        return []
+
+    if not elements:
+        print("  No DOM elements returned")
+        return []
+
+    print(f"  DOM elements found: {len(elements)}")
+
+    # Separate into fighter name candidates and odds candidates
+    fighter_nodes = []
+    odds_nodes = []
+
+    for el in elements:
+        text = str(el.get("text") or "").strip()
+        norm = normalize_text(text)
+
+        if is_odds(text):
+            odds_nodes.append(el)
             continue
 
-        if line in junk_exact:
-            continue
+        for fighter in fighters:
+            fighter_norm = normalize_text(fighter)
+            # Match if fighter name is contained in or matches the element text
+            if (
+                norm == fighter_norm
+                or fighter_norm in norm
+                and len(norm) < len(fighter_norm) + 20
+            ):
+                fighter_nodes.append({**el, "fighter": fighter})
+                break
 
-        low = line.lower()
+    print(f"  Fighter nodes found: {len(fighter_nodes)}")
+    print(f"  Odds nodes found: {len(odds_nodes)}")
 
-        if any(j in low for j in junk_contains):
-            continue
-
-        if re.match(r"^\d+%$", line):
-            continue
-
-        if re.match(r"^\d+\s*-\s*\d+\s*-\s*\d+$", line):
-            continue
-
-        if re.match(r"^\d{1,2}:\d{2}$", line):
-            continue
-
-        if re.match(r"^\d+\s*mins?$", low):
-            continue
-
-        if low in ["w-l-d", "previous fights", "middleweight", "rank 3", "usa", "rus"]:
-            continue
-
-        cleaned.append(line)
-
-    return cleaned
-
-
-def parse_pairs_from_text(text):
-    lines = clean_lines(strip_before_useful_market(text))
+    # For each fighter, find the odds element on the SAME ROW (similar Y)
+    # and to the RIGHT of the fighter name
     results = []
+    used_odds = set()
 
-    for i in range(len(lines) - 1):
-        selection = lines[i]
-        odds = lines[i + 1]
+    for fighter in fighters:
+        candidates = [n for n in fighter_nodes if n.get("fighter") == fighter]
 
-        if not is_odds(selection) and is_odds(odds):
-            results.append({
-                "selection": selection,
-                "odds": odds,
-            })
+        if not candidates:
+            print(f"  No node found for fighter: {fighter}")
+            continue
+
+        # Pick the highest fighter node (closest to top of "To Win Fight" section)
+        fighter_node = sorted(candidates, key=lambda n: n.get("y", 999999))[0]
+        fy = fighter_node.get("cy", 0)
+        fx_right = fighter_node.get("x", 0) + fighter_node.get("w", 0)
+
+        print(f"  Fighter '{fighter}' at y={fy}, right edge x={fx_right}")
+
+        # Find odds on same row: within 60px vertically, to the right of fighter
+        same_row_odds = []
+
+        for odds_node in odds_nodes:
+            oy = odds_node.get("cy", 0)
+            ox = odds_node.get("x", 0)
+            node_id = (odds_node.get("x"), odds_node.get("y"), odds_node.get("text"))
+
+            if node_id in used_odds:
+                continue
+
+            # Must be on roughly the same row
+            if abs(oy - fy) > 60:
+                continue
+
+            # Must be to the right of fighter name
+            if ox < fx_right - 20:
+                continue
+
+            same_row_odds.append(odds_node)
+
+        if not same_row_odds:
+            print(f"  No same-row odds found for: {fighter}")
+            continue
+
+        # Pick the leftmost (closest to fighter name) odds on this row
+        best_odds_node = sorted(same_row_odds, key=lambda n: n.get("x", 0))[0]
+        odds_text = best_odds_node.get("text", "").strip()
+
+        node_id = (best_odds_node.get("x"), best_odds_node.get("y"), odds_text)
+        used_odds.add(node_id)
+
+        print(f"  Matched: {fighter} → {odds_text}")
+        results.append({"selection": fighter, "odds": odds_text})
 
     return results
 
 
-def parse_fight_betting(text, fight_name):
-    fighters = get_fighters_from_fight_name(fight_name)
-    pairs = parse_pairs_from_text(text)
-
-    if len(fighters) < 2:
-        return pairs[:2]
-
-    results = []
-
-    for fighter in fighters:
-        fighter_norm = normalize_text(fighter)
-
-        for item in pairs:
-            selection_norm = normalize_text(item.get("selection"))
-
-            if (
-                selection_norm == fighter_norm
-                or fighter_norm in selection_norm
-                or selection_norm in fighter_norm
-            ):
-                results.append({
-                    "selection": fighter,
-                    "odds": item.get("odds"),
-                })
-                break
-
-    if len(results) == 2:
-        return results
-
-    lines = clean_lines(strip_before_useful_market(text))
-    odds_lines = [line for line in lines if is_odds(line)]
-    combined = normalize_text(" ".join(lines))
-
-    if len(odds_lines) >= 2 and all(normalize_text(f) in combined for f in fighters):
-        return [
-            {"selection": fighters[0], "odds": odds_lines[0]},
-            {"selection": fighters[1], "odds": odds_lines[1]},
-        ]
-
-    return results[:2]
-
-
-def extract_visible_moneyline_buttons(page, fight_name):
+def extract_moneyline_fallback_text(page, fight_name):
+    """
+    Fallback: grab all page text, strip to the 'To Win Fight' section,
+    then do conservative line-pair matching.
+    Only used if DOM method fails.
+    """
     fighters = get_fighters_from_fight_name(fight_name)
 
     if len(fighters) < 2:
         return []
 
     try:
-        items = page.evaluate(
-            """
-            () => {
-              const out = [];
-
-              function visible(el) {
-                const rect = el.getBoundingClientRect();
-                const style = window.getComputedStyle(el);
-                return (
-                  rect.width > 0 &&
-                  rect.height > 0 &&
-                  style.visibility !== "hidden" &&
-                  style.display !== "none"
-                );
-              }
-
-              document.querySelectorAll("body *").forEach((el) => {
-                if (!visible(el)) return;
-
-                const text = (el.innerText || el.textContent || "").trim();
-                if (!text) return;
-                if (text.length > 120) return;
-
-                const rect = el.getBoundingClientRect();
-
-                out.push({
-                  text,
-                  x: rect.x,
-                  y: rect.y,
-                  w: rect.width,
-                  h: rect.height
-                });
-              });
-
-              return out;
-            }
-            """
-        )
+        body_text = page.locator("body").inner_text(timeout=10000)
     except Exception:
         return []
 
-    fighter_boxes = []
-    odds_boxes = []
+    # Find the To Win Fight section
+    lower = body_text.lower()
+    start = lower.find("to win fight")
 
-    for item in items:
-        text = str(item.get("text") or "").strip()
-        norm = normalize_text(text)
+    if start == -1:
+        # Try other headings
+        for heading in ["match betting", "fight betting", "fight result", "winner"]:
+            idx = lower.find(heading)
+            if idx != -1:
+                start = idx
+                break
 
-        if is_odds(text):
-            odds_boxes.append(item)
-            continue
+    if start == -1:
+        print("  Fallback: Could not locate moneyline section in page text")
+        return []
 
-        for fighter in fighters:
-            fighter_norm = normalize_text(fighter)
-
-            if norm == fighter_norm or fighter_norm in norm or norm in fighter_norm:
-                fighter_boxes.append({
-                    **item,
-                    "fighter": fighter,
-                })
+    # Take a short snippet after the heading (300 chars is enough for 2 fighters)
+    snippet = body_text[start:start + 600]
+    lines = [l.strip() for l in snippet.splitlines() if l.strip()]
 
     results = []
 
     for fighter in fighters:
-        candidates = [
-            b for b in fighter_boxes
-            if normalize_text(b.get("fighter")) == normalize_text(fighter)
-        ]
+        fighter_norm = normalize_text(fighter)
 
-        if not candidates:
-            continue
-
-        fighter_box = sorted(candidates, key=lambda b: b.get("y", 999999))[0]
-        fx = fighter_box.get("x", 0) + fighter_box.get("w", 0) / 2
-        fy = fighter_box.get("y", 0)
-
-        possible_odds = []
-
-        for odds in odds_boxes:
-            ox = odds.get("x", 0) + odds.get("w", 0) / 2
-            oy = odds.get("y", 0)
-
-            if oy < fy:
-                continue
-
-            if oy - fy > 220:
-                continue
-
-            score = abs(ox - fx) + ((oy - fy) * 0.25)
-            possible_odds.append((score, odds))
-
-        if possible_odds:
-            possible_odds.sort(key=lambda x: x[0])
-            best_odds = possible_odds[0][1].get("text")
-
-            results.append({
-                "selection": fighter,
-                "odds": best_odds,
-            })
+        for i, line in enumerate(lines):
+            if fighter_norm in normalize_text(line):
+                # Next odds line after fighter name
+                for j in range(i + 1, min(i + 5, len(lines))):
+                    candidate = lines[j].strip()
+                    if is_odds(candidate):
+                        results.append({"selection": fighter, "odds": candidate})
+                        break
+                break
 
     seen = set()
     unique = []
+    for r in results:
+        if r["selection"] not in seen:
+            seen.add(r["selection"])
+            unique.append(r)
 
-    for row in results:
-        key = row["selection"].lower()
+    return unique
 
-        if key not in seen and is_odds(row.get("odds")):
-            seen.add(key)
-            unique.append(row)
 
-    return unique[:2]
+def scrape_moneyline(page, fight_name, index):
+    """
+    Main moneyline extraction.
+    Tries DOM method first, falls back to text parsing.
+    No tab clicking needed — To Win Fight is open by default on BoyleSports fight pages.
+    """
+    print(f"\n  --- Moneyline extraction for: {fight_name} ---")
+
+    # Scroll to top so the To Win Fight section is in the viewport
+    try:
+        page.evaluate("window.scrollTo(0, 0)")
+        time.sleep(1)
+    except Exception:
+        pass
+
+    # Primary: DOM position method
+    result = extract_moneyline_dom(page, fight_name)
+
+    if len(result) == 2 and all(is_odds(r.get("odds")) for r in result):
+        print(f"  ✅ DOM method succeeded: {result}")
+        return result
+
+    print(f"  ⚠️ DOM method returned {len(result)} results, trying fallback...")
+
+    # Fallback: text parsing
+    result = extract_moneyline_fallback_text(page, fight_name)
+
+    if len(result) == 2 and all(is_odds(r.get("odds")) for r in result):
+        print(f"  ✅ Fallback method succeeded: {result}")
+        return result
+
+    print(f"  ❌ Both methods failed. Got: {result}")
+    return result
+
+
+# ─────────────────────────────────────────────
+# PROPS: Tab-based scraping (unchanged logic, cleaned up)
+# ─────────────────────────────────────────────
+
+def click_tab(page, tab_name):
+    print(f"  Clicking tab: {tab_name}")
+
+    selectors = [
+        f"button:has-text('{tab_name}')",
+        f"a:has-text('{tab_name}')",
+        f"div[role='tab']:has-text('{tab_name}')",
+        f"text={tab_name}",
+    ]
+
+    for selector in selectors:
+        try:
+            tab = page.locator(selector).first
+            tab.scroll_into_view_if_needed(timeout=5000)
+            time.sleep(0.5)
+            tab.click(force=True, timeout=5000)
+            print(f"  Clicked: {tab_name}")
+            time.sleep(3)
+            page.mouse.wheel(0, 1200)
+            time.sleep(2)
+            return True
+        except Exception:
+            pass
+
+    print(f"  Could not click tab: {tab_name}")
+    return False
+
+
+def get_body_text(page):
+    try:
+        return page.locator("body").inner_text(timeout=10000)
+    except Exception:
+        return ""
+
+
+def parse_pairs_from_text(text):
+    """
+    Generic: walk lines, yield (selection, odds) pairs where
+    selection is NOT odds and the next line IS odds.
+    """
+    junk = {
+        "", "Popular", "Cash Out", "All Markets",
+        "Method of Victory", "Method Of Victory", "Winning Method",
+        "Rounds", "Total Rounds", "Go The Distance?",
+        "Fight Goes The Distance", "Fight To Go The Distance",
+        "To Go Distance", "Go The Distance", "Round Betting",
+        "Show More", "Show Less", "Bet Builder", "To Win Fight",
+        "Fight Betting", "Match Betting", "Fight Result",
+        "Show UFC Stats", "Hide UFC Stats", "Bet Builder Boost",
+        "Full T&Cs", "Close", "All competitions",
+    }
+
+    junk_contains = [
+        "create your bet builder", "min odds for boost", "apply on betslip",
+        "enjoy your boosted", "gaming quick links", "home / ufc",
+        "please add one or more", "ufc stats", "promotions",
+        "casino", "sports a-z", "safer gambling",
+    ]
+
+    lines = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line or line in junk:
+            continue
+        low = line.lower()
+        if any(j in low for j in junk_contains):
+            continue
+        if re.match(r"^\d+%$", line):
+            continue
+        if re.match(r"^\d+\s*-\s*\d+\s*-\s*\d+$", line):
+            continue
+        lines.append(line)
+
+    results = []
+    for i in range(len(lines) - 1):
+        selection = lines[i]
+        odds = lines[i + 1]
+        if not is_odds(selection) and is_odds(odds):
+            results.append({"selection": selection, "odds": odds})
+
+    return results
 
 
 def parse_method_of_victory(text):
@@ -494,17 +483,14 @@ def parse_method_of_victory(text):
     results = []
 
     for item in pairs:
-        selection = item["selection"].lower()
-
+        sel = item["selection"].lower()
         if (
-            " by " in selection
-            or "draw" in selection
-            or "ko/tko" in selection
-            or "submission" in selection
-            or "decision" in selection
-            or "technical decision" in selection
-            or "disqualification" in selection
-            or "points" in selection
+            " by " in sel
+            or "draw" in sel
+            or "ko/tko" in sel
+            or "submission" in sel
+            or "decision" in sel
+            or "disqualification" in sel
         ):
             results.append(item)
 
@@ -516,147 +502,122 @@ def parse_go_distance(text):
     results = []
 
     for item in pairs:
-        selection = item["selection"].strip().lower()
-
-        if selection in ["yes", "no"]:
+        sel = item["selection"].strip().lower()
+        if sel in ["yes", "no"]:
             results.append(item)
 
     return results
 
 
-def scrape_tab_market(page, tab_name, fight_name, index, market_key):
+def parse_rounds(text):
+    pairs = parse_pairs_from_text(text)
+    results = []
+
+    for item in pairs:
+        sel = item["selection"].strip().lower()
+        # Round selections look like "Round 1", "Over 1.5", "Under 2.5", etc.
+        if (
+            re.match(r"^round\s+\d", sel)
+            or re.match(r"^over\s+[\d\.]+", sel)
+            or re.match(r"^under\s+[\d\.]+", sel)
+            or re.match(r"^\d+\s*-\s*\d+", sel)
+            or "round" in sel
+        ):
+            results.append(item)
+
+    return results
+
+
+def scrape_prop_tab(page, tab_name, fight_name, index, market_key):
     clicked = click_tab(page, tab_name)
 
     if not clicked:
-        return "", []
+        return []
 
     text = get_body_text(page)
 
     safe_label = re.sub(r"[^a-zA-Z0-9]+", "_", fight_name).strip("_").lower()
     save_debug(page, f"boylesports_{index}_{safe_label}_{market_key}")
 
-    if market_key == "fight_betting":
-        parsed = parse_fight_betting(text, fight_name)
-
-        if len(parsed) < 2:
-            dom_moneyline = extract_visible_moneyline_buttons(page, fight_name)
-            if len(dom_moneyline) == 2:
-                parsed = dom_moneyline
-
-    elif market_key == "method_of_victory":
-        parsed = parse_method_of_victory(text)
+    if market_key == "method_of_victory":
+        return parse_method_of_victory(text)
     elif market_key == "go_the_distance":
-        parsed = parse_go_distance(text)
+        return parse_go_distance(text)
+    elif market_key == "rounds":
+        parsed = parse_rounds(text)
+        return parsed
     else:
-        parsed = parse_pairs_from_text(text)
-
-    return text[:3000], parsed
+        return parse_pairs_from_text(text)
 
 
-def scrape_moneyline_market(page, fight_name, index):
-    moneyline_tabs = [
-        "To Win Fight",
-        "Match Betting",
-        "Fight Betting",
-        "Fight Result",
-        "Winner",
-    ]
-
-    clicked_tab = click_first_available_tab(page, moneyline_tabs)
-
-    if not clicked_tab:
-        text = get_body_text(page)
-        parsed = parse_fight_betting(text, fight_name)
-
-        if len(parsed) < 2:
-            dom_moneyline = extract_visible_moneyline_buttons(page, fight_name)
-            if len(dom_moneyline) == 2:
-                parsed = dom_moneyline
-
-        return text[:3000], parsed, None
-
-    text = get_body_text(page)
-
-    safe_label = re.sub(r"[^a-zA-Z0-9]+", "_", fight_name).strip("_").lower()
-    save_debug(page, f"boylesports_{index}_{safe_label}_fight_betting")
-
-    parsed = parse_fight_betting(text, fight_name)
-
-    if len(parsed) < 2:
-        dom_moneyline = extract_visible_moneyline_buttons(page, fight_name)
-        if len(dom_moneyline) == 2:
-            parsed = dom_moneyline
-
-    return text[:3000], parsed, clicked_tab
-
+# ─────────────────────────────────────────────
+# Main fight scraper
+# ─────────────────────────────────────────────
 
 def scrape_fight(page, fight, index):
     fight_name = fight["fight"]
     fight_url = fight["url"]
 
-    print("\n==============================")
-    print(f"Scraping BoyleSports: {fight_name}")
-    print("==============================")
+    print(f"\n{'='*50}")
+    print(f"Scraping: {fight_name}")
+    print(f"URL: {fight_url}")
+    print(f"{'='*50}")
 
     page.goto(fight_url, timeout=60000, wait_until="domcontentloaded")
-
     wait_for_boylesports_page(page)
-
     close_cookie_popup(page)
     time.sleep(2)
 
-    fight_betting_raw, fight_betting, moneyline_tab = scrape_moneyline_market(
-        page,
-        fight_name,
-        index,
-    )
+    # Save initial debug screenshot
+    safe_label = re.sub(r"[^a-zA-Z0-9]+", "_", fight_name).strip("_").lower()
+    save_debug(page, f"boylesports_{index}_{safe_label}_initial")
 
+    # ── Moneyline (To Win Fight is open by default — no tab click needed) ──
+    fight_betting = scrape_moneyline(page, fight_name, index)
+
+    print(f"\n  Fight Betting result: {fight_betting}")
+
+    # ── Props: scroll back up before each tab click ──
     try:
-        page.mouse.wheel(0, -2500)
+        page.evaluate("window.scrollTo(0, 0)")
         time.sleep(1)
     except Exception:
         pass
 
-    method_raw, method = scrape_tab_market(
-        page,
-        "Method Of Victory",
-        fight_name,
-        index,
-        "method_of_victory",
-    )
+    method = scrape_prop_tab(page, "Method Of Victory", fight_name, index, "method_of_victory")
 
     try:
-        page.mouse.wheel(0, -2500)
+        page.evaluate("window.scrollTo(0, 0)")
         time.sleep(1)
     except Exception:
         pass
 
-    rounds_raw, rounds = scrape_tab_market(
-        page,
-        "Rounds",
-        fight_name,
-        index,
-        "rounds",
-    )
+    rounds = scrape_prop_tab(page, "Rounds", fight_name, index, "rounds")
 
-    go_distance = []
-    go_distance_raw = ""
+    # Go The Distance is usually inside the Rounds tab on BoyleSports
+    go_distance = parse_go_distance(get_body_text(page)) if rounds else []
 
-    if rounds_raw:
-        go_distance = parse_go_distance(rounds_raw)
-        go_distance_raw = rounds_raw if go_distance else ""
+    if not go_distance:
+        # Try a dedicated tab if it exists
+        try:
+            page.evaluate("window.scrollTo(0, 0)")
+            time.sleep(0.5)
+        except Exception:
+            pass
+        go_distance = scrape_prop_tab(page, "Go The Distance", fight_name, index, "go_the_distance")
 
     has_props = bool(fight_betting or method or rounds or go_distance)
 
-    print(f"Fight Betting: {len(fight_betting)}")
-    print(f"Method Of Victory: {len(method)}")
-    print(f"Rounds: {len(rounds)}")
-    print(f"Go The Distance: {len(go_distance)}")
-    print(f"Has props: {has_props}")
+    print(f"\n  ── Summary for {fight_name} ──")
+    print(f"  Fight Betting:      {len(fight_betting)}")
+    print(f"  Method Of Victory:  {len(method)}")
+    print(f"  Rounds:             {len(rounds)}")
+    print(f"  Go The Distance:    {len(go_distance)}")
+    print(f"  Has props:          {has_props}")
 
     if not has_props:
         body_text = get_body_text(page)
-        print("No props parsed. Body text sample:")
+        print("  No props parsed. Body text sample:")
         print(body_text[:1500])
 
     return {
@@ -670,20 +631,12 @@ def scrape_fight(page, fight, index):
             "rounds": rounds,
             "go_the_distance": go_distance,
         },
-        "raw_markets": {
-            "moneyline_tab": moneyline_tab,
-            "fight_betting": fight_betting_raw,
-            "method_of_victory": method_raw,
-            "rounds": rounds_raw,
-            "go_the_distance": go_distance_raw,
-        },
     }
 
 
 def upsert_fight(output, fight_data):
     existing = output.get("fights", [])
     url = fight_data.get("url")
-
     updated = False
 
     for i, item in enumerate(existing):
@@ -703,21 +656,18 @@ def main():
         print(f"Missing fight URL file: {URLS_PATH}")
         output = empty_output()
         save_output(output)
-        print("No fight URL file found. Exiting cleanly.")
         return
 
     with open(URLS_PATH, "r", encoding="utf-8") as f:
         url_data = json.load(f)
 
     fights = url_data.get("fights", [])
-
-    print(f"Scraping fights: {len(fights)}")
+    print(f"Fights to scrape: {len(fights)}")
 
     if not fights:
-        print("No fights found in boylesports_fight_urls.json")
+        print("No fights in boylesports_fight_urls.json")
         output = empty_output()
         save_output(output)
-        print("Saved empty boylesports_props.json. Exiting cleanly.")
         return
 
     output = empty_output()
@@ -755,6 +705,8 @@ def main():
                 save_output(output)
             except Exception as e:
                 print(f"ERROR scraping {fight.get('fight')}: {e}")
+                import traceback
+                traceback.print_exc()
                 save_output(output)
 
         if not is_github_actions():
@@ -762,7 +714,7 @@ def main():
 
         browser.close()
 
-    print(f"\nFinished. Saved BoyleSports props to {OUT_PATH}")
+    print(f"\nFinished. Saved to {OUT_PATH}")
 
 
 if __name__ == "__main__":
