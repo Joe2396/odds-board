@@ -1,452 +1,436 @@
-#!/usr/bin/env python3
+from playwright.sync_api import sync_playwright
 import json
-import re
 import time
+import re
+import os
 from pathlib import Path
 from datetime import datetime, timezone
-
-from playwright.sync_api import sync_playwright
-
 
 print("FETCHING BETMGM UFC PROPS")
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_PATH = ROOT / "ufc" / "data" / "betmgm_props.json"
-DEBUG_PATH = ROOT / "ufc" / "data" / "betmgm_props_debug.txt"
+DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
 
-BETMGM_URLS = [
-    "https://www.betmgm.co.uk/sports/mma/ufc",
-    "https://www.betmgm.co.uk/sports/mma",
-]
-
-ODDS_RE = re.compile(r"^(?:EVS|\d+/\d+)$", re.I)
-
-DATE_RE = re.compile(r"^(?:\d{1,2})$")
-MONTH_RE = re.compile(r"^(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)$", re.I)
-CLOCK_RE = re.compile(r"^\d{1,2}:\d{2}$")
-
-MARKET_WORDS = {
-    "Yes",
-    "No",
-    "Over",
-    "Under",
-}
-
-STOP_WORDS = {
-    "SPORTS",
-    "CASINO",
-    "LIVE",
-    "LOG",
-    "IN",
-    "SIGN",
-    "UP",
-    "FEATURED",
-    "ALL",
-    "IN-PLAY",
-    "GOLDEN",
-    "GOALS",
-    "SEARCH",
-    "MY",
-    "BETS",
-    "UFC/MMA",
-    "UFC",
-    "MVP",
-    "MMA",
-    "Outrights",
-    "Bout",
-    "Odds",
-    "Distance",
-    "Total",
-    "Rounds",
-    "Method",
-    "Victory",
-    "MORE",
-    "BETS",
-}
+HUB_URL = "https://www.betmgm.co.uk/sports/mma/ufc"
 
 
-def utc_now():
-    return datetime.now(timezone.utc).isoformat()
+def is_github_actions():
+    return os.getenv("GITHUB_ACTIONS") == "true"
 
 
-def clean(text):
-    return re.sub(r"\s+", " ", text or "").strip()
+def is_odds(x):
+    x = str(x).strip().upper()
+    return (
+        x == "EVS"
+        or bool(re.match(r"^\d+/\d+$", x))
+        or bool(re.match(r"^\d+\.\d+$", x))
+    )
 
 
-def wait(page):
+def empty_output():
+    return {
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "source": "betmgm",
+        "bookmaker": "BetMGM",
+        "fights": [],
+    }
+
+
+def save_output(output):
+    output["updated_at"] = datetime.now(timezone.utc).isoformat()
+    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(OUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
+    print(f"  Saved to {OUT_PATH}")
+
+
+def save_debug(page, label):
     try:
-        page.wait_for_load_state("domcontentloaded", timeout=20000)
-    except Exception:
-        pass
-
-    try:
-        page.wait_for_load_state("networkidle", timeout=15000)
-    except Exception:
-        pass
-
-    time.sleep(5)
+        DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+        page.screenshot(path=str(DEBUG_DIR / f"{label}.png"), full_page=True)
+        print(f"  Debug: {label}")
+    except Exception as e:
+        print(f"  Debug failed: {e}")
 
 
-def close_popups(page):
-    selectors = [
+def accept_cookies(page):
+    for selector in [
         "#onetrust-accept-btn-handler",
-        "button:has-text('Accept')",
+        "button:has-text('Accept All Cookies')",
         "button:has-text('Accept All')",
+        "button:has-text('Accept')",
         "button:has-text('I Accept')",
         "button:has-text('Agree')",
-        "button:has-text('Continue')",
-    ]
-
-    for sel in selectors:
+    ]:
         try:
-            page.locator(sel).first.click(timeout=2500, force=True)
-            print(f"Clicked popup: {sel}")
+            page.locator(selector).first.click(timeout=3000, force=True)
+            print("  Accepted cookies")
             time.sleep(1)
+            return
         except Exception:
             pass
 
 
-def scroll(page):
-    for _ in range(8):
-        try:
-            page.mouse.wheel(0, 1100)
-            time.sleep(0.7)
-        except Exception:
-            pass
-
-
-def get_body_text(page):
+def get_fight_event_ids(page):
+    print("  Extracting fight event IDs from hub...")
     try:
-        return clean(page.locator("body").inner_text(timeout=8000))
-    except Exception:
-        return ""
+        event_ids = page.evaluate("""
+            () => {
+                const ids = new Set();
+                document.querySelectorAll('a[href]').forEach(a => {
+                    const match = a.href.match(/#event\\/(\d+)/);
+                    if (match) ids.add(match[1]);
+                });
+                document.querySelectorAll('[data-event-id]').forEach(el => {
+                    ids.add(el.dataset.eventId);
+                });
+                return Array.from(ids);
+            }
+        """)
+        if event_ids:
+            print(f"  Found {len(event_ids)} event IDs from DOM")
+            return event_ids
+    except Exception as e:
+        print(f"  DOM extraction failed: {e}")
 
-
-def save_debug(label, page, body):
     try:
-        title = page.title()
-    except Exception:
-        title = ""
+        content = page.content()
+        ids = list(set(re.findall(r'#event/(\d+)', content)))
+        print(f"  Found {len(ids)} event IDs from HTML")
+        return ids
+    except Exception as e:
+        print(f"  HTML extraction failed: {e}")
 
-    block = []
-    block.append("=" * 100)
-    block.append(f"TIME: {utc_now()}")
-    block.append(f"LABEL: {label}")
-    block.append(f"URL: {page.url}")
-    block.append(f"TITLE: {title}")
-    block.append(f"BODY LENGTH: {len(body)}")
-    block.append("-" * 100)
-    block.append(body[:16000])
-    block.append("\n")
-
-    with open(DEBUG_PATH, "a", encoding="utf-8") as f:
-        f.write("\n".join(block))
-
-    print("\n--- DEBUG SAMPLE ---")
-    print("\n".join(block)[:2500])
-    print("--- END DEBUG SAMPLE ---\n")
+    return []
 
 
-def is_name_token(tok):
-    if not tok:
-        return False
+def parse_page_text(page):
+    """
+    BetMGM text structure (confirmed from debug):
 
-    if tok in STOP_WORDS:
-        return False
+    Bout Odds
+    Fighter A          <- selection
+    4/9                <- odds (next line)
+    Fighter B
+    7/4
 
-    if ODDS_RE.match(tok):
-        return False
+    To go the distance
+    Yes
+    13/25
+    No
+    29/20
 
-    if tok in MARKET_WORDS:
-        return False
+    Winning method
+    Fighter A by Decision       <- all selections first
+    Fighter A by KO, TKO or DQ
+    Fighter A by Submission
+    Draw
+    Fighter B by Decision
+    Fighter B by KO, TKO or DQ
+    Fighter B by Submission
+    Winner                      <- column header (skip)
+    21/20                       <- then all odds in same order
+    17/2
+    6/1
+    35/1
+    4/1
+    21/2
+    6/1
+    """
+    try:
+        body_text = page.locator("body").inner_text(timeout=15000)
+    except Exception as e:
+        print(f"  Could not get body text: {e}")
+        return {}, ""
 
-    if DATE_RE.match(tok):
-        return False
+    lines = [l.strip() for l in body_text.splitlines() if l.strip()]
+    print(f"  Text lines: {len(lines)}")
 
-    if MONTH_RE.match(tok):
-        return False
+    # Section headings
+    section_starts = {
+        "bout odds": "fight_betting",
+        "to go the distance": "go_the_distance",
+        "winning method": "method_of_victory",
+        "round betting": "rounds",
+    }
 
-    if CLOCK_RE.match(tok):
-        return False
+    # Lines to skip entirely
+    skip_lines = {
+        "+0", "sports", "casino", "live casino", "log in", "sign up",
+        "featured", "all sports", "in-play", "golden goals", "search",
+        "my bets", "ufc/mma", "ufc", "mma", "outrights",
+        "most popular", "fight parlays", "match events & statistics",
+        "all", "method", "fight lines", "round", "winner",
+        "previous", "next", "fight parlay", "fight lines",
+        "match events & statistics",
+    }
 
-    if re.fullmatch(r"\d+\.\d+", tok):
-        return False
+    # Try to get fight name from lines like "Alice Ardelean - Polyana Viana Mota"
+    # It appears as three separate lines: name, "-", name
+    fight_name = ""
+    for idx, line in enumerate(lines):
+        if line == "-" and idx > 0 and idx + 1 < len(lines):
+            prev = lines[idx - 1].strip()
+            nxt = lines[idx + 1].strip()
+            if prev and nxt and not is_odds(prev) and not is_odds(nxt):
+                fight_name = f"{prev} v {nxt}"
+                break
 
-    return bool(re.match(r"^[A-ZÁÉÍÓÚÑÄËÏÖÜ][A-Za-zÁÉÍÓÚáéíóúÑñÄËÏÖÜäëïöü.'\-]+$", tok))
+    results = {
+        "fight_betting": [],
+        "method_of_victory": [],
+        "rounds": [],
+        "go_the_distance": [],
+    }
 
+    # Find section boundaries
+    section_indices = []
+    for i, line in enumerate(lines):
+        lower = line.lower().strip()
+        for heading, key in section_starts.items():
+            if lower == heading:
+                section_indices.append((i, key))
+                break
 
-def find_event_time(tokens, idx):
-    for i in range(idx, max(-1, idx - 30), -1):
-        if i + 2 < len(tokens):
-            if DATE_RE.match(tokens[i]) and MONTH_RE.match(tokens[i + 1]) and CLOCK_RE.match(tokens[i + 2]):
-                return f"{tokens[i]} {tokens[i + 1]} {tokens[i + 2]}"
-        if i + 1 < len(tokens):
-            if tokens[i] in ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] and CLOCK_RE.match(tokens[i + 1]):
-                return f"{tokens[i]} {tokens[i + 1]}"
-    return ""
-
-
-def collect_name_before(tokens, idx, max_words=4):
-    words = []
-    i = idx - 1
-
-    while i >= 0 and len(words) < max_words:
-        if is_name_token(tokens[i]):
-            words.insert(0, tokens[i])
-            i -= 1
+    # Process each section
+    for sec_num, (start_idx, section_key) in enumerate(section_indices):
+        # Section content runs from start_idx+1 to the next section start (or end)
+        if sec_num + 1 < len(section_indices):
+            end_idx = section_indices[sec_num + 1][0]
         else:
+            end_idx = len(lines)
+
+        section_lines = lines[start_idx + 1:end_idx]
+
+        print(f"  Section '{section_key}' has {len(section_lines)} lines")
+
+        if section_key in ["fight_betting", "go_the_distance"]:
+            # Simple alternating: selection, odds, selection, odds
+            i = 0
+            while i < len(section_lines) - 1:
+                sel = section_lines[i].strip()
+                odds = section_lines[i + 1].strip()
+                sel_lower = sel.lower()
+
+                if sel_lower in skip_lines or is_odds(sel):
+                    i += 1
+                    continue
+
+                if is_odds(odds):
+                    results[section_key].append({
+                        "selection": sel,
+                        "odds": odds,
+                    })
+                    i += 2
+                else:
+                    i += 1
+
+        elif section_key == "method_of_victory":
+            # BetMGM puts all selections first, then "Winner", then all odds
+            # Collect selections (non-odds, non-junk lines before "Winner")
+            selections = []
+            odds_list = []
+            past_winner = False
+
+            for line in section_lines:
+                lower = line.lower().strip()
+
+                if lower in skip_lines:
+                    if lower == "winner":
+                        past_winner = True
+                    continue
+
+                if is_odds(line):
+                    odds_list.append(line.strip())
+                elif not past_winner:
+                    selections.append(line.strip())
+
+            print(f"    Selections: {len(selections)}, Odds: {len(odds_list)}")
+
+            # Pair selections with odds in order
+            for sel, odds in zip(selections, odds_list):
+                results["method_of_victory"].append({
+                    "selection": sel,
+                    "odds": odds,
+                })
+
+        elif section_key == "rounds":
+            # Round betting — try alternating first, then split approach
+            i = 0
+            while i < len(section_lines) - 1:
+                sel = section_lines[i].strip()
+                odds = section_lines[i + 1].strip()
+                sel_lower = sel.lower()
+
+                if sel_lower in skip_lines or is_odds(sel):
+                    i += 1
+                    continue
+
+                if is_odds(odds):
+                    results["rounds"].append({
+                        "selection": sel,
+                        "odds": odds,
+                    })
+                    i += 2
+                else:
+                    i += 1
+
+    return results, fight_name
+
+
+def scrape_fight(page, event_id, index):
+    fight_url = f"https://www.betmgm.co.uk/sports/mma/ufc#event/{event_id}"
+
+    print(f"\n{'='*50}")
+    print(f"[{index}] Event ID: {event_id}")
+    print(f"URL: {fight_url}")
+    print(f"{'='*50}")
+
+    try:
+        page.goto(fight_url, timeout=60000, wait_until="domcontentloaded")
+    except Exception as e:
+        print(f"  Page load failed: {e}")
+        return None
+
+    print("  Waiting for page...")
+    time.sleep(8)
+    accept_cookies(page)
+    time.sleep(2)
+
+    for _ in range(5):
+        page.mouse.wheel(0, 1200)
+        time.sleep(0.8)
+
+    page.evaluate("window.scrollTo(0, 0)")
+    time.sleep(1)
+
+    safe_label = f"betmgm_{index}_{event_id}"
+    save_debug(page, safe_label)
+
+    markets, fight_name = parse_page_text(page)
+
+    if not fight_name:
+        fight_name = f"BetMGM Event {event_id}"
+
+    fight_betting = markets.get("fight_betting", [])
+    method = markets.get("method_of_victory", [])
+    rounds = markets.get("rounds", [])
+    go_distance = markets.get("go_the_distance", [])
+
+    has_props = bool(fight_betting or method or rounds or go_distance)
+
+    print(f"\n  -- {fight_name} --")
+    print(f"  Fight Betting:     {len(fight_betting)}")
+    print(f"  Method of Victory: {len(method)}")
+    print(f"  Rounds:            {len(rounds)}")
+    print(f"  Go The Distance:   {len(go_distance)}")
+    print(f"  Has props:         {has_props}")
+
+    return {
+        "fight": fight_name,
+        "url": fight_url,
+        "event_id": event_id,
+        "has_props": has_props,
+        "scraped_at": datetime.now(timezone.utc).isoformat(),
+        "markets": {
+            "fight_betting": fight_betting,
+            "method_of_victory": method,
+            "rounds": rounds,
+            "go_the_distance": go_distance,
+        },
+    }
+
+
+def upsert_fight(output, fight_data):
+    existing = output.get("fights", [])
+    event_id = fight_data.get("event_id")
+    updated = False
+    for i, item in enumerate(existing):
+        if item.get("event_id") == event_id:
+            existing[i] = fight_data
+            updated = True
             break
-
-    return " ".join(words)
-
-
-def parse_distance_and_totals(tokens):
-    """
-    Parses visible market blocks like:
-    Fighter A 6/5 Fighter B 4/6 1 MORE BETS
-    Yes 21/10 No 7/20 Over 2.5 4/5 Under 2.5 23/25
-
-    This creates simple prop entries for:
-    - Goes Distance / Distance
-    - Total Rounds
-    """
-    props = []
-
-    for i, tok in enumerate(tokens):
-        # Goes distance / distance market
-        if tok == "Yes" and i + 3 < len(tokens):
-            yes_odd = tokens[i + 1]
-            no_word = tokens[i + 2]
-            no_odd = tokens[i + 3]
-
-            if ODDS_RE.match(yes_odd) and no_word == "No" and ODDS_RE.match(no_odd):
-                props.append({
-                    "market": "Goes The Distance",
-                    "selection": "Yes",
-                    "odds": yes_odd,
-                    "event_time": find_event_time(tokens, i),
-                    "raw_index": i,
-                    "source": "betmgm",
-                })
-                props.append({
-                    "market": "Goes The Distance",
-                    "selection": "No",
-                    "odds": no_odd,
-                    "event_time": find_event_time(tokens, i),
-                    "raw_index": i,
-                    "source": "betmgm",
-                })
-
-        # Total rounds market
-        if tok in ["Over", "Under"] and i + 2 < len(tokens):
-            line = tokens[i + 1]
-            odd = tokens[i + 2]
-
-            if re.fullmatch(r"\d+\.\d+", line) and ODDS_RE.match(odd):
-                props.append({
-                    "market": "Total Rounds",
-                    "selection": f"{tok} {line}",
-                    "odds": odd,
-                    "event_time": find_event_time(tokens, i),
-                    "raw_index": i,
-                    "source": "betmgm",
-                })
-
-    return props
-
-
-def parse_moneyline_fights(tokens):
-    """
-    Lightweight fight detector to help attach props nearby later.
-    """
-    fights = []
-
-    odds_positions = [i for i, t in enumerate(tokens) if ODDS_RE.match(t)]
-
-    for p in range(len(odds_positions) - 1):
-        a_odd_i = odds_positions[p]
-        b_odd_i = odds_positions[p + 1]
-
-        gap = b_odd_i - a_odd_i
-        if gap < 2 or gap > 6:
-            continue
-
-        between = tokens[a_odd_i + 1:b_odd_i]
-        if not between or not all(is_name_token(t) for t in between):
-            continue
-
-        fighter_b = " ".join(between)
-        fighter_a = collect_name_before(tokens, a_odd_i, max_words=4)
-
-        if not fighter_a or not fighter_b:
-            continue
-
-        if fighter_a == fighter_b:
-            continue
-
-        if len(fighter_a.split()) > 4 or len(fighter_b.split()) > 4:
-            continue
-
-        fights.append({
-            "fight": f"{fighter_a} vs {fighter_b}",
-            "fighter_a": fighter_a,
-            "fighter_b": fighter_b,
-            "event_time": find_event_time(tokens, a_odd_i),
-            "moneyline": {
-                fighter_a: tokens[a_odd_i],
-                fighter_b: tokens[b_odd_i],
-            },
-            "raw_index": a_odd_i,
-        })
-
-    return fights
-
-
-def attach_props_to_nearest_fight(props, fights):
-    if not fights:
-        return props
-
-    for prop in props:
-        idx = prop.get("raw_index", 0)
-
-        nearest = None
-        nearest_dist = 999999
-
-        for fight in fights:
-            dist = abs(idx - fight.get("raw_index", 0))
-            if dist < nearest_dist:
-                nearest = fight
-                nearest_dist = dist
-
-        if nearest and nearest_dist < 35:
-            prop["fight"] = nearest["fight"]
-            prop["fighter_a"] = nearest["fighter_a"]
-            prop["fighter_b"] = nearest["fighter_b"]
-        else:
-            prop["fight"] = ""
-            prop["fighter_a"] = ""
-            prop["fighter_b"] = ""
-
-    return props
-
-
-def dedupe_props(props):
-    seen = set()
-    out = []
-
-    for p in props:
-        key = (
-            p.get("fight", ""),
-            p.get("event_time", ""),
-            p.get("market", ""),
-            p.get("selection", ""),
-            p.get("odds", ""),
-        )
-
-        if key in seen:
-            continue
-
-        seen.add(key)
-
-        p.pop("raw_index", None)
-        out.append(p)
-
-    return out
-
-
-def parse_props_from_text(body):
-    tokens = body.split()
-
-    fights = parse_moneyline_fights(tokens)
-    print(f"Detected nearby fights: {len(fights)}")
-
-    props = parse_distance_and_totals(tokens)
-    print(f"Detected raw props: {len(props)}")
-
-    props = attach_props_to_nearest_fight(props, fights)
-    props = dedupe_props(props)
-
-    return fights, props
+    if not updated:
+        existing.append(fight_data)
+    output["fights"] = existing
 
 
 def main():
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-
-    if DEBUG_PATH.exists():
-        DEBUG_PATH.unlink()
-
-    all_fights = []
-    all_props = []
+    output = empty_output()
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=False,
+            headless=is_github_actions(),
             args=[
-                "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
+                "--disable-setuid-sandbox",
                 "--disable-dev-shm-usage",
+                "--disable-blink-features=AutomationControlled",
             ],
         )
 
         context = browser.new_context(
-            viewport={"width": 1450, "height": 1000},
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/122.0.0.0 Safari/537.36"
+                "Chrome/147.0.0.0 Safari/537.36"
             ),
+            viewport={"width": 1400, "height": 900},
+            locale="en-GB",
+            timezone_id="Europe/London",
         )
 
         page = context.new_page()
 
-        for url in BETMGM_URLS:
-            print(f"\nOpening: {url}")
+        print(f"\nLoading hub: {HUB_URL}")
+        try:
+            page.goto(HUB_URL, timeout=60000, wait_until="domcontentloaded")
+            print("  Waiting for hub page...")
+            time.sleep(10)
+            accept_cookies(page)
+            time.sleep(2)
 
+            for _ in range(6):
+                page.mouse.wheel(0, 1200)
+                time.sleep(0.8)
+
+            save_debug(page, "betmgm_hub")
+            event_ids = get_fight_event_ids(page)
+
+        except Exception as e:
+            print(f"  Hub page failed: {e}")
+            event_ids = []
+
+        if not event_ids:
+            print("  No event IDs found.")
+            save_output(output)
+            if not is_github_actions():
+                input("\nDone. Press Enter to close browser...")
+            browser.close()
+            return
+
+        print(f"\nFound {len(event_ids)} fights to scrape")
+
+        for index, event_id in enumerate(event_ids, start=1):
+            print(f"\nProgress: {index}/{len(event_ids)}")
             try:
-                page.goto(url, timeout=60000)
-                wait(page)
-                close_popups(page)
-                scroll(page)
-
-                body = get_body_text(page)
-                save_debug(url, page, body)
-
-                fights, props = parse_props_from_text(body)
-
-                print(f"Parsed fights: {len(fights)}")
-                print(f"Parsed props: {len(props)}")
-
-                all_fights.extend(fights)
-                all_props.extend(props)
-
+                fight_data = scrape_fight(page, event_id, index)
+                if fight_data:
+                    upsert_fight(output, fight_data)
+                    save_output(output)
             except Exception as e:
-                print(f"ERROR opening {url}: {e}")
+                print(f"ERROR: event {event_id}: {e}")
+                import traceback
+                traceback.print_exc()
+                save_output(output)
 
-        input("Press ENTER to close browser...")
+        if not is_github_actions():
+            input("\nDone. Press Enter to close browser...")
+
         browser.close()
 
-    all_props = dedupe_props(all_props)
-
-    output = {
-        "updated_at": utc_now(),
-        "source": "betmgm",
-        "count": len(all_props),
-        "props": all_props,
-    }
-
-    with open(OUT_PATH, "w", encoding="utf-8") as f:
-        json.dump(output, f, indent=2, ensure_ascii=False)
-
-    print(f"\nSaved {len(all_props)} BetMGM props to {OUT_PATH}")
-
-    if all_props:
-        print("\nSample props:")
-        for p in all_props[:40]:
-            fight = p.get("fight") or "UNKNOWN FIGHT"
-            print(f"- {fight} | {p['market']} | {p['selection']} | {p['odds']}")
-    else:
-        print("\nNo BetMGM props found.")
-        print(f"Check debug file: {DEBUG_PATH}")
+    print(f"\nFinished. Saved to {OUT_PATH}")
 
 
 if __name__ == "__main__":
