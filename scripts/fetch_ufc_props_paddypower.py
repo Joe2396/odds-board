@@ -166,7 +166,7 @@ def find_section_after_last(lines, start_terms, stop_terms):
     for i, line in enumerate(lines):
         low = line.lower()
         if any(term.lower() == low or term.lower() in low for term in start_terms):
-            start_idx = i  # keep updating — want LAST occurrence
+            start_idx = i
 
     if start_idx is None:
         return []
@@ -198,6 +198,20 @@ def dedupe_results(results):
 
 
 def parse_fight_betting(lines, fight_name):
+    """
+    PaddyPower shows fight result as:
+      Fighter A    Fighter B
+      odds_a       odds_b
+
+    In text this comes out as:
+      Fighter A
+      Fighter B
+      odds_a
+      odds_b
+
+    So we find both fighter name positions first,
+    then collect odds in order after the last fighter name.
+    """
     fighters = get_fighters_from_fight_name(fight_name)
     if len(fighters) != 2:
         return []
@@ -215,20 +229,38 @@ def parse_fight_betting(lines, fight_name):
     if not section:
         section = lines[:80]
 
+    # Find positions of both fighter names
+    fighter_positions = {}
+    for i, line in enumerate(section):
+        low = line.lower()
+        for fighter in fighters:
+            if fighter.lower() == low or fighter.lower() in low:
+                if fighter not in fighter_positions:
+                    fighter_positions[fighter] = i
+
+    if len(fighter_positions) < 2:
+        return []
+
+    # Find the last fighter name position
+    last_pos = max(fighter_positions.values())
+
+    # Collect odds that appear AFTER both fighter names
+    odds_after = []
+    for i in range(last_pos + 1, len(section)):
+        if is_odds(section[i]):
+            odds_after.append(section[i])
+        if len(odds_after) >= 2:
+            break
+
+    if len(odds_after) < 2:
+        return []
+
+    # Sort fighters by position so first fighter gets first odds
+    sorted_fighters = sorted(fighter_positions.items(), key=lambda x: x[1])
+
     results = []
-    for fighter in fighters:
-        found = None
-        fighter_low = fighter.lower()
-        for i, line in enumerate(section):
-            if line.lower() == fighter_low:
-                for j in range(i + 1, min(i + 8, len(section))):
-                    if is_odds(section[j]):
-                        found = {"selection": fighter, "odds": section[j]}
-                        break
-            if found:
-                break
-        if found:
-            results.append(found)
+    for (fighter, _), odds in zip(sorted_fighters, odds_after):
+        results.append({"selection": fighter, "odds": odds})
 
     return dedupe_results(results)
 
@@ -313,16 +345,14 @@ def scrape_fight(page, fight):
     close_cookie_popup(page)
     time.sleep(1)
 
-    # Step 1: Click Popular tab — Fight Result is expanded here by default
+    # Step 1: Popular tab — Fight Result is here
     click_tab(page, "Popular")
-
-    # Get moneylines from Popular tab
     text = get_body_text(page)
     lines = normalize_lines(text)
     fight_betting = parse_fight_betting(lines, fight_name)
     print(f"  Moneylines after Popular tab: {len(fight_betting)}")
 
-    # Step 2: Scroll back up and click Method of Victory tab
+    # Step 2: Method of Victory tab
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(0.5)
     click_tab(page, "Method of Victory")
@@ -331,17 +361,13 @@ def scrape_fight(page, fight):
     method = parse_method_of_victory(lines_method)
     print(f"  Method of Victory: {len(method)}")
 
-    # Step 3: Go back to All Markets and expand Total Rounds + GTD
+    # Step 3: All Markets — expand Total Rounds + GTD
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(0.5)
     click_tab(page, "All Markets")
-
-    # Expand Total Rounds
     expand_section(page, "Total Rounds")
-    # Expand Go The Distance
     expand_section(page, "Go The Distance?")
 
-    # Scroll to load content
     for _ in range(4):
         page.mouse.wheel(0, 1200)
         time.sleep(0.5)
