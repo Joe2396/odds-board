@@ -9,13 +9,12 @@ ODDS_JSON = ROOT / "ufc" / "data" / "odds.json"
 OUT_PATH = ROOT / "ufc" / "data" / "arbitrage.json"
 
 PROP_FILES = [
-    ("PaddyPower", ROOT / "ufc" / "data" / "props_filtered.json"),
-    ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props_filtered.json"),
-    ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props_filtered.json"),
-    ("Coral", ROOT / "ufc" / "data" / "coral_props_filtered.json"),
-    ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props_filtered.json"),
+    ("PaddyPower", ROOT / "ufc" / "data" / "props.json"),
+    ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props.json"),
+    ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props.json"),
+    ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
+    ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
 ]
-
 
 def load_json(path, default):
     try:
