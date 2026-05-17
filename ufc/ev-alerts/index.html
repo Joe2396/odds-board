@@ -43,19 +43,10 @@
       flex-wrap: wrap;
     }
 
-    .nav-link {
-      color: var(--muted);
-      font-size: 14px;
-    }
+    .nav-link { color: var(--muted); font-size: 14px; }
+    .nav-link.active { color: white; font-weight: 700; }
 
-    .nav-link.active {
-      color: white;
-      font-weight: 700;
-    }
-
-    .page-header {
-      margin-bottom: 32px;
-    }
+    .page-header { margin-bottom: 32px; }
 
     .header-eyebrow {
       display: inline-flex;
@@ -89,10 +80,7 @@
       margin-bottom: 8px;
     }
 
-    .header-meta {
-      color: var(--muted);
-      font-size: 13px;
-    }
+    .header-meta { color: var(--muted); font-size: 13px; }
 
     .summary-bar {
       display: grid;
@@ -116,14 +104,9 @@
       margin-bottom: 4px;
     }
 
-    .summary-stat span {
-      color: var(--muted);
-      font-size: 13px;
-    }
+    .summary-stat span { color: var(--muted); font-size: 13px; }
 
-    .fight-group {
-      margin-bottom: 36px;
-    }
+    .fight-group { margin-bottom: 36px; }
 
     .fight-group-header {
       display: flex;
@@ -173,11 +156,7 @@
       gap: 12px;
     }
 
-    .spot-left {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
+    .spot-left { display: flex; align-items: flex-start; gap: 12px; }
 
     .spot-rank {
       border: 1px solid var(--border);
@@ -190,18 +169,8 @@
       margin-top: 2px;
     }
 
-    .spot-fight {
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .spot-market {
-      color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-    }
+    .spot-fight { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+    .spot-market { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; }
 
     .spot-badge {
       border-radius: 999px;
@@ -211,33 +180,13 @@
       white-space: nowrap;
     }
 
-    .badge-fire {
-      border: 1px solid rgba(239,68,68,0.6);
-      background: rgba(239,68,68,0.12);
-      color: #fca5a5;
-    }
+    .badge-fire { border: 1px solid rgba(239,68,68,0.6); background: rgba(239,68,68,0.12); color: #fca5a5; }
+    .badge-hot { border: 1px solid rgba(249,115,22,0.6); background: rgba(249,115,22,0.12); color: #fdba74; }
+    .badge-value { border: 1px solid rgba(250,204,21,0.5); background: rgba(250,204,21,0.1); color: #fde68a; }
 
-    .badge-hot {
-      border: 1px solid rgba(249,115,22,0.6);
-      background: rgba(249,115,22,0.12);
-      color: #fdba74;
-    }
+    .spot-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 
-    .badge-value {
-      border: 1px solid rgba(250,204,21,0.5);
-      background: rgba(250,204,21,0.1);
-      color: #fde68a;
-    }
-
-    .spot-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-    }
-
-    .spot-selection,
-    .spot-best,
-    .spot-avg {
+    .spot-selection, .spot-best, .spot-avg {
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 12px;
@@ -253,32 +202,12 @@
       margin-bottom: 6px;
     }
 
-    .spot-selection strong,
-    .spot-avg strong {
-      display: block;
-      font-size: 15px;
-      font-weight: 700;
-    }
+    .spot-selection strong, .spot-avg strong { display: block; font-size: 15px; font-weight: 700; }
 
-    .spot-odds {
-      display: block;
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--green);
-      margin-bottom: 4px;
-    }
+    .spot-odds { display: block; font-size: 22px; font-weight: 900; color: var(--green); margin-bottom: 4px; }
+    .spot-book { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
 
-    .spot-book {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 4px;
-    }
-
-    .spot-prices {
-      border-top: 1px solid var(--border);
-      padding-top: 12px;
-    }
+    .spot-prices { border-top: 1px solid var(--border); padding-top: 12px; }
 
     .prices-label {
       color: var(--muted);
@@ -288,11 +217,7 @@
       margin-bottom: 8px;
     }
 
-    .prices-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
+    .prices-grid { display: flex; flex-direction: column; gap: 5px; }
 
     .price-row {
       display: flex;
@@ -304,19 +229,14 @@
       font-size: 13px;
     }
 
-    .price-row strong {
-      font-weight: 700;
-      color: var(--muted);
-    }
+    .price-row strong { font-weight: 700; color: var(--muted); }
 
     .price-row.best-price-row {
       background: rgba(34,197,94,0.08);
       border: 1px solid rgba(34,197,94,0.3);
     }
 
-    .price-row.best-price-row strong {
-      color: var(--green);
-    }
+    .price-row.best-price-row strong { color: var(--green); }
 
     .empty-state {
       text-align: center;
@@ -325,22 +245,9 @@
       border-radius: 24px;
     }
 
-    .empty-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-    }
-
-    .empty-state h2 {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
-
-    .empty-state p {
-      color: var(--muted);
-      max-width: 500px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
+    .empty-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-state h2 { font-size: 28px; margin-bottom: 12px; }
+    .empty-state p { color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.6; }
 
     @media (max-width: 768px) {
       .page { padding: 20px 16px 48px; }
@@ -352,7 +259,6 @@
 </head>
 <body>
   <main class="page">
-
     <nav class="top-nav">
       <a class="nav-link" href="/odds-board/ufc/">UFC Hub</a>
       <span class="nav-link">›</span>
@@ -365,492 +271,19 @@
       <p class="page-subtitle">
         Prop selections where one bookmaker is pricing significantly better than the rest.
         Only spots where the best price is at least 10% above the market average are shown.
+        Upcoming fights only — past events are automatically removed.
       </p>
-      <p class="header-meta">Updated: 2026-05-17 09:43 UTC &nbsp;•&nbsp; 8 spots across 7 fights</p>
+      <p class="header-meta">Updated: 2026-05-17 14:05 UTC &nbsp;•&nbsp; 0 spots across 0 fights</p>
     </header>
 
     
-        <div class="summary-bar">
-          <div class="summary-stat">
-            <strong>8</strong>
-            <span>Value spots</span>
-          </div>
-          <div class="summary-stat">
-            <strong>7</strong>
-            <span>Fights with value</span>
-          </div>
-          <div class="summary-stat">
-            <strong>19%</strong>
-            <span>Best edge found</span>
-          </div>
-          <div class="summary-stat">
-            <strong>10%+</strong>
-            <span>Min edge threshold</span>
-          </div>
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <h2>No value spots right now</h2>
+          <p>Value spots appear when one bookmaker is pricing significantly better than the rest.
+          Check back closer to fight night when more books price up.</p>
         </div>
         
-            <div class="fight-group">
-              <div class="fight-group-header">
-                <h2>Ketlen Vieira Vs Jacqueline Cavalcanti</h2>
-                <span class="fight-spot-count">1 spot</span>
-              </div>
-              <div class="spots-grid">
-                
-    <article class="spot-card">
-      <div class="spot-header">
-        <div class="spot-left">
-          <div class="spot-rank">#1</div>
-          <div>
-            <div class="spot-fight">Ketlen Vieira Vs Jacqueline Cavalcanti</div>
-            <div class="spot-market">Method of Victory</div>
-          </div>
-        </div>
-        <div class="spot-badge badge-hot">
-          🔥 +19% vs avg
-        </div>
-      </div>
-
-      <div class="spot-body">
-        <div class="spot-selection">
-          <span class="spot-label">Selection</span>
-          <strong>Draw</strong>
-        </div>
-        <div class="spot-best">
-          <span class="spot-label">Best Price</span>
-          <strong class="spot-odds">⭐ 50/1</strong>
-          <span class="spot-book">BoyleSports</span>
-        </div>
-        <div class="spot-avg">
-          <span class="spot-label">Market Avg</span>
-          <strong>43.00</strong>
-          <span class="spot-book">2 books</span>
-        </div>
-      </div>
-
-      <div class="spot-prices">
-        <div class="prices-label">All prices</div>
-        <div class="prices-grid">
-          
-        <div class="price-row best-price-row">
-          <span>BoyleSports</span>
-          <strong>50/1</strong>
-        </div>
-        
-        <div class="price-row">
-          <span>BetMGM</span>
-          <strong>34/1</strong>
-        </div>
-        
-        </div>
-      </div>
-    </article>
-    
-              </div>
-            </div>
-            
-            <div class="fight-group">
-              <div class="fight-group-header">
-                <h2>Cody Brundage Vs Andre Petroski</h2>
-                <span class="fight-spot-count">1 spot</span>
-              </div>
-              <div class="spots-grid">
-                
-    <article class="spot-card">
-      <div class="spot-header">
-        <div class="spot-left">
-          <div class="spot-rank">#2</div>
-          <div>
-            <div class="spot-fight">Cody Brundage Vs Andre Petroski</div>
-            <div class="spot-market">Method of Victory</div>
-          </div>
-        </div>
-        <div class="spot-badge badge-hot">
-          🔥 +17% vs avg
-        </div>
-      </div>
-
-      <div class="spot-body">
-        <div class="spot-selection">
-          <span class="spot-label">Selection</span>
-          <strong>Draw</strong>
-        </div>
-        <div class="spot-best">
-          <span class="spot-label">Best Price</span>
-          <strong class="spot-odds">⭐ 50/1</strong>
-          <span class="spot-book">BoyleSports</span>
-        </div>
-        <div class="spot-avg">
-          <span class="spot-label">Market Avg</span>
-          <strong>43.50</strong>
-          <span class="spot-book">2 books</span>
-        </div>
-      </div>
-
-      <div class="spot-prices">
-        <div class="prices-label">All prices</div>
-        <div class="prices-grid">
-          
-        <div class="price-row best-price-row">
-          <span>BoyleSports</span>
-          <strong>50/1</strong>
-        </div>
-        
-        <div class="price-row">
-          <span>BetMGM</span>
-          <strong>35/1</strong>
-        </div>
-        
-        </div>
-      </div>
-    </article>
-    
-              </div>
-            </div>
-            
-            <div class="fight-group">
-              <div class="fight-group-header">
-                <h2>Malcolm Wellmaker Vs Juan Diaz</h2>
-                <span class="fight-spot-count">1 spot</span>
-              </div>
-              <div class="spots-grid">
-                
-    <article class="spot-card">
-      <div class="spot-header">
-        <div class="spot-left">
-          <div class="spot-rank">#3</div>
-          <div>
-            <div class="spot-fight">Malcolm Wellmaker Vs Juan Diaz</div>
-            <div class="spot-market">Method of Victory</div>
-          </div>
-        </div>
-        <div class="spot-badge badge-hot">
-          🔥 +17% vs avg
-        </div>
-      </div>
-
-      <div class="spot-body">
-        <div class="spot-selection">
-          <span class="spot-label">Selection</span>
-          <strong>Draw</strong>
-        </div>
-        <div class="spot-best">
-          <span class="spot-label">Best Price</span>
-          <strong class="spot-odds">⭐ 50/1</strong>
-          <span class="spot-book">BoyleSports</span>
-        </div>
-        <div class="spot-avg">
-          <span class="spot-label">Market Avg</span>
-          <strong>43.50</strong>
-          <span class="spot-book">2 books</span>
-        </div>
-      </div>
-
-      <div class="spot-prices">
-        <div class="prices-label">All prices</div>
-        <div class="prices-grid">
-          
-        <div class="price-row best-price-row">
-          <span>BoyleSports</span>
-          <strong>50/1</strong>
-        </div>
-        
-        <div class="price-row">
-          <span>BetMGM</span>
-          <strong>35/1</strong>
-        </div>
-        
-        </div>
-      </div>
-    </article>
-    
-              </div>
-            </div>
-            
-            <div class="fight-group">
-              <div class="fight-group-header">
-                <h2>Arnold Allen v Melquizael Costa</h2>
-                <span class="fight-spot-count">1 spot</span>
-              </div>
-              <div class="spots-grid">
-                
-    <article class="spot-card">
-      <div class="spot-header">
-        <div class="spot-left">
-          <div class="spot-rank">#4</div>
-          <div>
-            <div class="spot-fight">Arnold Allen v Melquizael Costa</div>
-            <div class="spot-market">Method of Victory</div>
-          </div>
-        </div>
-        <div class="spot-badge badge-hot">
-          🔥 +17% vs avg
-        </div>
-      </div>
-
-      <div class="spot-body">
-        <div class="spot-selection">
-          <span class="spot-label">Selection</span>
-          <strong>Arnold Allen by Submission</strong>
-        </div>
-        <div class="spot-best">
-          <span class="spot-label">Best Price</span>
-          <strong class="spot-odds">⭐ 16/1</strong>
-          <span class="spot-book">BetMGM</span>
-        </div>
-        <div class="spot-avg">
-          <span class="spot-label">Market Avg</span>
-          <strong>14.50</strong>
-          <span class="spot-book">2 books</span>
-        </div>
-      </div>
-
-      <div class="spot-prices">
-        <div class="prices-label">All prices</div>
-        <div class="prices-grid">
-          
-        <div class="price-row best-price-row">
-          <span>BetMGM</span>
-          <strong>16/1</strong>
-        </div>
-        
-        <div class="price-row">
-          <span>BoyleSports</span>
-          <strong>11/1</strong>
-        </div>
-        
-        </div>
-      </div>
-    </article>
-    
-              </div>
-            </div>
-            
-            <div class="fight-group">
-              <div class="fight-group-header">
-                <h2>Arnold Allen Vs Melquizael Costa</h2>
-                <span class="fight-spot-count">1 spot</span>
-              </div>
-              <div class="spots-grid">
-                
-    <article class="spot-card">
-      <div class="spot-header">
-        <div class="spot-left">
-          <div class="spot-rank">#5</div>
-          <div>
-            <div class="spot-fight">Arnold Allen Vs Melquizael Costa</div>
-            <div class="spot-market">Method of Victory</div>
-          </div>
-        </div>
-        <div class="spot-badge badge-hot">
-          🔥 +17% vs avg
-        </div>
-      </div>
-
-      <div class="spot-body">
-        <div class="spot-selection">
-          <span class="spot-label">Selection</span>
-          <strong>Draw</strong>
-        </div>
-        <div class="spot-best">
-          <span class="spot-label">Best Price</span>
-          <strong class="spot-odds">⭐ 50/1</strong>
-          <span class="spot-book">BoyleSports</span>
-        </div>
-        <div class="spot-avg">
-          <span class="spot-label">Market Avg</span>
-          <strong>43.50</strong>
-          <span class="spot-book">2 books</span>
-        </div>
-      </div>
-
-      <div class="spot-prices">
-        <div class="prices-label">All prices</div>
-        <div class="prices-grid">
-          
-        <div class="price-row best-price-row">
-          <span>BoyleSports</span>
-          <strong>50/1</strong>
-        </div>
-        
-        <div class="price-row">
-          <span>BetMGM</span>
-          <strong>35/1</strong>
-        </div>
-        
-        </div>
-      </div>
-    </article>
-    
-              </div>
-            </div>
-            
-            <div class="fight-group">
-              <div class="fight-group-header">
-                <h2>Nikolay Veretennikov v Khaos Williams</h2>
-                <span class="fight-spot-count">2 spots</span>
-              </div>
-              <div class="spots-grid">
-                
-    <article class="spot-card">
-      <div class="spot-header">
-        <div class="spot-left">
-          <div class="spot-rank">#6</div>
-          <div>
-            <div class="spot-fight">Nikolay Veretennikov v Khaos Williams</div>
-            <div class="spot-market">Method of Victory</div>
-          </div>
-        </div>
-        <div class="spot-badge badge-hot">
-          🔥 +16% vs avg
-        </div>
-      </div>
-
-      <div class="spot-body">
-        <div class="spot-selection">
-          <span class="spot-label">Selection</span>
-          <strong>Nikolay Veretennikov by Submission</strong>
-        </div>
-        <div class="spot-best">
-          <span class="spot-label">Best Price</span>
-          <strong class="spot-odds">⭐ 25/1</strong>
-          <span class="spot-book">BetMGM</span>
-        </div>
-        <div class="spot-avg">
-          <span class="spot-label">Market Avg</span>
-          <strong>22.50</strong>
-          <span class="spot-book">2 books</span>
-        </div>
-      </div>
-
-      <div class="spot-prices">
-        <div class="prices-label">All prices</div>
-        <div class="prices-grid">
-          
-        <div class="price-row best-price-row">
-          <span>BetMGM</span>
-          <strong>25/1</strong>
-        </div>
-        
-        <div class="price-row">
-          <span>BoyleSports</span>
-          <strong>18/1</strong>
-        </div>
-        
-        </div>
-      </div>
-    </article>
-    
-    <article class="spot-card">
-      <div class="spot-header">
-        <div class="spot-left">
-          <div class="spot-rank">#7</div>
-          <div>
-            <div class="spot-fight">Nikolay Veretennikov v Khaos Williams</div>
-            <div class="spot-market">Method of Victory</div>
-          </div>
-        </div>
-        <div class="spot-badge badge-value">
-          ⚡ +14% vs avg
-        </div>
-      </div>
-
-      <div class="spot-body">
-        <div class="spot-selection">
-          <span class="spot-label">Selection</span>
-          <strong>Khaos Williams by Submission</strong>
-        </div>
-        <div class="spot-best">
-          <span class="spot-label">Best Price</span>
-          <strong class="spot-odds">⭐ 24/1</strong>
-          <span class="spot-book">BetMGM</span>
-        </div>
-        <div class="spot-avg">
-          <span class="spot-label">Market Avg</span>
-          <strong>22.00</strong>
-          <span class="spot-book">2 books</span>
-        </div>
-      </div>
-
-      <div class="spot-prices">
-        <div class="prices-label">All prices</div>
-        <div class="prices-grid">
-          
-        <div class="price-row best-price-row">
-          <span>BetMGM</span>
-          <strong>24/1</strong>
-        </div>
-        
-        <div class="price-row">
-          <span>BoyleSports</span>
-          <strong>18/1</strong>
-        </div>
-        
-        </div>
-      </div>
-    </article>
-    
-              </div>
-            </div>
-            
-            <div class="fight-group">
-              <div class="fight-group-header">
-                <h2>Malcolm Wellmaker v Juan Diaz</h2>
-                <span class="fight-spot-count">1 spot</span>
-              </div>
-              <div class="spots-grid">
-                
-    <article class="spot-card">
-      <div class="spot-header">
-        <div class="spot-left">
-          <div class="spot-rank">#8</div>
-          <div>
-            <div class="spot-fight">Malcolm Wellmaker v Juan Diaz</div>
-            <div class="spot-market">Method of Victory</div>
-          </div>
-        </div>
-        <div class="spot-badge badge-value">
-          ⚡ +13% vs avg
-        </div>
-      </div>
-
-      <div class="spot-body">
-        <div class="spot-selection">
-          <span class="spot-label">Selection</span>
-          <strong>Juan Diaz by Submission</strong>
-        </div>
-        <div class="spot-best">
-          <span class="spot-label">Best Price</span>
-          <strong class="spot-odds">⭐ 16/1</strong>
-          <span class="spot-book">BetMGM</span>
-        </div>
-        <div class="spot-avg">
-          <span class="spot-label">Market Avg</span>
-          <strong>15.00</strong>
-          <span class="spot-book">2 books</span>
-        </div>
-      </div>
-
-      <div class="spot-prices">
-        <div class="prices-label">All prices</div>
-        <div class="prices-grid">
-          
-        <div class="price-row best-price-row">
-          <span>BetMGM</span>
-          <strong>16/1</strong>
-        </div>
-        
-        <div class="price-row">
-          <span>BoyleSports</span>
-          <strong>12/1</strong>
-        </div>
-        
-        </div>
-      </div>
-    </article>
-    
-              </div>
-            </div>
-            
 
   </main>
 </body>
