@@ -1,7 +1,33 @@
 {
-  "updated_at": "2026-05-17T19:51:28.063716+00:00",
-  "total_arbitrage": 1,
+  "updated_at": "2026-05-17T21:14:47.282066+00:00",
+  "total_arbitrage": 2,
   "arbitrage": [
+    {
+      "sport": "UFC",
+      "type": "moneyline",
+      "event": "Jaqueline Amorim vs Loma Lookboonmee",
+      "market": "Moneyline",
+      "commence_time": "2026-05-30T08:00:00Z",
+      "profit_margin_percent": 0.83,
+      "arb_sum": 0.991654,
+      "bookmakers": [
+        {
+          "selection": "Jaqueline Amorim",
+          "bookmaker": "Virgin Bet",
+          "odds": 1.94,
+          "decimal_odds": 1.94,
+          "implied_probability": 51.55
+        },
+        {
+          "selection": "Loma Lookboonmee",
+          "bookmaker": "Betway",
+          "odds": 2.1,
+          "decimal_odds": 2.1,
+          "implied_probability": 47.62
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
     {
       "sport": "UFC",
       "type": "moneyline",

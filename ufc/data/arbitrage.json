@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 22,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 30,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 2,
+  "moneyline_arbitrage_count": 2,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -15,9 +15,9 @@
       "market": "Moneyline",
       "fighters": {
         "Jaqueline Amorim": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.79,
-          "implied_probability": 55.87
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 1.94,
+          "implied_probability": 51.55
         },
         "Loma Lookboonmee": {
           "best_bookmaker": "Betway",
@@ -25,9 +25,9 @@
           "implied_probability": 47.62
         }
       },
-      "arb_sum": 1.03485,
-      "is_arbitrage": false,
-      "profit_margin_percent": -3.48
+      "arb_sum": 0.991654,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.83
     },
     {
       "type": "moneyline",
@@ -346,18 +346,18 @@
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.96,
-          "implied_probability": 51.02
+          "best_price": 1.98,
+          "implied_probability": 50.51
         },
         "Ciryl Gane": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.91,
-          "implied_probability": 52.36
+          "best_bookmaker": "Betfair",
+          "best_price": 1.96,
+          "implied_probability": 51.02
         }
       },
-      "arb_sum": 1.033764,
+      "arb_sum": 1.015255,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.38
+      "profit_margin_percent": -1.53
     },
     {
       "type": "moneyline",
@@ -840,6 +840,28 @@
     }
   ],
   "arbitrage_opportunities": [
+    {
+      "type": "moneyline",
+      "event_id": "cbab69c179be988e710daca0234cc2d7",
+      "commence_time": "2026-05-30T08:00:00Z",
+      "fight": "Jaqueline Amorim vs Loma Lookboonmee",
+      "market": "Moneyline",
+      "fighters": {
+        "Jaqueline Amorim": {
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 1.94,
+          "implied_probability": 51.55
+        },
+        "Loma Lookboonmee": {
+          "best_bookmaker": "Betway",
+          "best_price": 2.1,
+          "implied_probability": 47.62
+        }
+      },
+      "arb_sum": 0.991654,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.83
+    },
     {
       "type": "moneyline",
       "event_id": "2c982ef7f30e521915fb0c82ffdaf4ba",
