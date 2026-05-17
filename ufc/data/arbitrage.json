@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 22,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 30,
-  "arbitrage_count": 0,
-  "moneyline_arbitrage_count": 0,
+  "arbitrage_count": 1,
+  "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -346,18 +346,18 @@
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.93,
-          "implied_probability": 51.81
+          "best_price": 1.96,
+          "implied_probability": 51.02
         },
         "Ciryl Gane": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.04,
-          "implied_probability": 49.02
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 1.91,
+          "implied_probability": 52.36
         }
       },
-      "arb_sum": 1.008331,
+      "arb_sum": 1.033764,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.83
+      "profit_margin_percent": -3.38
     },
     {
       "type": "moneyline",
@@ -478,18 +478,18 @@
       "fighters": {
         "Conor McGregor": {
           "best_bookmaker": "Virgin Bet",
-          "best_price": 5.0,
-          "implied_probability": 20.0
+          "best_price": 4.75,
+          "implied_probability": 21.05
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.24,
-          "implied_probability": 80.65
+          "best_price": 1.28,
+          "implied_probability": 78.12
         }
       },
-      "arb_sum": 1.006452,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.65
+      "arb_sum": 0.991776,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.82
     }
   ],
   "prop_markets": [
@@ -839,5 +839,28 @@
       "profit_margin_percent": -6.44
     }
   ],
-  "arbitrage_opportunities": []
+  "arbitrage_opportunities": [
+    {
+      "type": "moneyline",
+      "event_id": "2c982ef7f30e521915fb0c82ffdaf4ba",
+      "commence_time": "2026-07-12T04:00:00Z",
+      "fight": "Conor McGregor vs Max Holloway",
+      "market": "Moneyline",
+      "fighters": {
+        "Conor McGregor": {
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 4.75,
+          "implied_probability": 21.05
+        },
+        "Max Holloway": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.28,
+          "implied_probability": 78.12
+        }
+      },
+      "arb_sum": 0.991776,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.82
+    }
+  ]
 }
