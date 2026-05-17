@@ -46,6 +46,9 @@ jobs:
       - name: Fetch ESPN event fight cards
         run: python scripts/fetch_espn_event_fightcards.py
 
+      - name: Fetch upcoming UFC events
+        run: python scripts/fetch_upcoming_events.py
+
       - name: Fetch UFCStats fighter stats
         run: python scripts/fetch_ufcstats_fighter_stats.py || echo "UFCStats failed, continuing with existing fighter data"
 
@@ -111,7 +114,6 @@ jobs:
               "ufc/data/boylesports_props.json",
               "ufc/data/boylesports_props_filtered.json",
 
-              "ufc/data/betvictor_fight_urls.json",
               "ufc/data/betvictor_props.json",
               "ufc/data/betvictor_props_filtered.json",
 
