@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Fetch upcoming UFC events + fight cards using ESPN calendar API.
-Uses the calendar[] array from the scoreboard endpoint which contains
-all upcoming events, then fetches fight cards for each.
+Fetch upcoming UFC events + fight cards using ESPN scoreboard API.
+Uses calendar[] to find upcoming events, then fetches each event's
+fight card using the scoreboard?dates= endpoint which returns full
+competitor data with fighter names directly.
 
 Writes:
   ufc/data/events.json
@@ -25,7 +26,6 @@ HEADERS = {
 }
 
 ESPN_SCOREBOARD = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard"
-ESPN_EVENT = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/summary?event={event_id}"
 
 
 def now_iso():
@@ -65,37 +65,15 @@ def parse_date(dt_str):
 
 
 def extract_event_id(ref_url):
-    """Pull numeric event ID from ESPN $ref URL."""
     m = re.search(r"/events/(\d+)", str(ref_url or ""))
     return m.group(1) if m else None
 
 
-def fetch_fight_card(event_id):
-    """
-    Use ESPN site summary API to get fight card for an event.
-    Returns list of fight dicts.
-    """
-    url = ESPN_EVENT.format(event_id=event_id)
-    status, body = http_get(url)
-    if status != 200:
-        print(f"  Fight card fetch failed for {event_id}: {status}")
-        return []
-
-    data = safe_json(body)
-    if not isinstance(data, dict):
-        return []
-
+def extract_fights_from_event(ev_data):
+    """Pull fights from an ESPN event dict (competitions array with competitors)."""
     fights = []
+    competitions = ev_data.get("competitions") or []
     order = 0
-
-    # Summary API returns competitors under header.competitions
-    competitions = []
-    header = data.get("header") or {}
-    competitions = header.get("competitions") or []
-
-    # Also try top-level competitions
-    if not competitions:
-        competitions = data.get("competitions") or []
 
     for comp in competitions:
         if not isinstance(comp, dict):
@@ -113,7 +91,6 @@ def fetch_fight_card(event_id):
                 c.get("displayName") or ""
             )
 
-        # Sort by order field
         competitors_sorted = sorted(competitors, key=lambda x: int(x.get("order", 99)))
         a = competitors_sorted[0]
         b = competitors_sorted[1]
@@ -127,7 +104,7 @@ def fetch_fight_card(event_id):
         order += 1
         wc = (comp.get("type") or {}).get("text") or (comp.get("type") or {}).get("abbreviation") or ""
         bout = f"{a_name} vs {b_name}"
-        fight_id = str(comp.get("id") or f"{event_id}-{order}")
+        fight_id = str(comp.get("id") or f"{ev_data.get('id', '')}-{order}")
 
         fights.append({
             "id": fight_id,
@@ -137,10 +114,35 @@ def fetch_fight_card(event_id):
             "weight_class": wc,
             "order": order,
             "status": "scheduled",
-            "source": {"provider": "espn", "event_id": event_id},
+            "source": {"provider": "espn", "event_id": str(ev_data.get("id") or "")},
         })
 
     return fights
+
+
+def fetch_fights_for_date(event_date_str):
+    """
+    Fetch the ESPN scoreboard for a specific date (YYYYMMDD).
+    Returns dict of {event_id: [fights]} for events on that date.
+    """
+    date_key = event_date_str.replace("-", "")
+    url = f"{ESPN_SCOREBOARD}?dates={date_key}"
+    status, body = http_get(url)
+    if status != 200:
+        print(f"  Scoreboard fetch failed for {event_date_str}: {status}")
+        return {}
+
+    data = safe_json(body)
+    if not isinstance(data, dict):
+        return {}
+
+    result = {}
+    for ev in data.get("events") or []:
+        ev_id = str(ev.get("id") or "")
+        if ev_id:
+            result[ev_id] = extract_fights_from_event(ev)
+
+    return result
 
 
 def main():
@@ -148,7 +150,7 @@ def main():
     today = date.today()
 
     # Step 1: Fetch scoreboard to get calendar
-    print(f"Fetching ESPN scoreboard...")
+    print("Fetching ESPN scoreboard calendar...")
     status, body = http_get(ESPN_SCOREBOARD)
     if status != 200:
         print(f"ESPN scoreboard failed: {status}")
@@ -159,49 +161,66 @@ def main():
         print("ESPN scoreboard returned invalid JSON")
         sys.exit(0)
 
-    # Step 2: Use calendar array (has ALL upcoming events, not just today)
+    # Step 2: Get calendar from leagues
     leagues = data.get("leagues") or []
     calendar = []
     for league in leagues:
         if isinstance(league, dict):
-            calendar = league.get("calendar") or []
-            if calendar:
+            cal = league.get("calendar") or []
+            if cal:
+                calendar = cal
                 break
 
     print(f"Calendar entries found: {len(calendar)}")
 
-    events_out = []
-
+    # Step 3: Filter upcoming, group by date
+    upcoming = []
     for entry in calendar:
         if not isinstance(entry, dict):
             continue
-
         label = entry.get("label") or ""
         start_date = parse_date(entry.get("startDate"))
-
         if not start_date:
             continue
-
-        # Skip past events
         try:
             if datetime.fromisoformat(start_date).date() < today:
                 continue
         except Exception:
             continue
 
-        # Get event ID from $ref
         event_ref = entry.get("event") or {}
         ref_url = event_ref.get("$ref") or event_ref.get("href") or ""
         event_id = extract_event_id(ref_url)
-
         if not event_id:
             continue
 
-        slug = f"{start_date}-{slugify(label)}"
+        upcoming.append({
+            "label": label,
+            "date": start_date,
+            "event_id": event_id,
+        })
 
-        print(f"  Fetching fight card: {label} ({start_date}, id={event_id})")
-        fights = fetch_fight_card(event_id)
-        print(f"    -> {len(fights)} fights found")
+    print(f"Upcoming events: {len(upcoming)}")
+
+    # Step 4: Fetch fight cards — group by date to minimise API calls
+    dates_needed = sorted(set(e["date"] for e in upcoming))
+    fights_by_event = {}
+
+    for d in dates_needed:
+        print(f"  Fetching scoreboard for {d}...")
+        day_fights = fetch_fights_for_date(d)
+        fights_by_event.update(day_fights)
+        total = sum(len(v) for v in day_fights.values())
+        print(f"    -> {len(day_fights)} events, {total} fights")
+
+    # Step 5: Build output
+    events_out = []
+    for entry in upcoming:
+        event_id = entry["event_id"]
+        label = entry["label"]
+        start_date = entry["date"]
+        fights = fights_by_event.get(event_id, [])
+        slug = f"{start_date}-{slugify(label)}"
 
         events_out.append({
             "id": slug,
