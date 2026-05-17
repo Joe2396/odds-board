@@ -40,45 +40,6 @@ jobs:
           pip install requests beautifulsoup4 playwright
           playwright install chromium
 
-      - name: Use committed bookmaker props data
-        run: |
-          echo "Using committed local bookmaker data"
-          python - <<'PY'
-          import json, os
-
-          files = [
-              "ufc/data/paddypower_fight_urls.json",
-              "ufc/data/props.json",
-              "ufc/data/props_filtered.json",
-
-              "ufc/data/boylesports_fight_urls.json",
-              "ufc/data/boylesports_props.json",
-              "ufc/data/boylesports_props_filtered.json",
-
-              "ufc/data/betvictor_fight_urls.json",
-              "ufc/data/betvictor_props.json",
-              "ufc/data/betvictor_props_filtered.json",
-
-              "ufc/data/coral_fight_urls.json",
-              "ufc/data/coral_props.json",
-              "ufc/data/coral_props_filtered.json",
-
-              "ufc/data/betmgm_fight_urls.json",
-              "ufc/data/betmgm_props.json",
-              "ufc/data/betmgm_props_filtered.json",
-          ]
-
-          for path in files:
-              if not os.path.exists(path):
-                  print(f"{path}: MISSING")
-                  continue
-
-              data = json.load(open(path, encoding="utf-8"))
-              fights_count = len(data.get("fights") or [])
-              props_count = len(data.get("props") or [])
-              print(f"{path}: fights={fights_count} props={props_count}")
-          PY
-
       - name: Fetch recent past UFC events
         run: python scripts/fetch_recent_past_events.py
 
@@ -90,6 +51,24 @@ jobs:
 
       - name: Fetch UFC odds UK bookies
         run: python scripts/fetch_ufc_odds.py
+
+      - name: Fetch PaddyPower fight URLs
+        run: python scripts/fetch_paddypower_fight_urls.py || echo "PaddyPower URLs failed"
+
+      - name: Fetch PaddyPower props
+        run: python scripts/fetch_ufc_props_paddypower.py || echo "PaddyPower props failed"
+
+      - name: Fetch BoyleSports props
+        run: python scripts/fetch_boylesports_props.py || echo "BoyleSports failed"
+
+      - name: Fetch BetVictor props
+        run: python scripts/fetch_betvictor_props.py || echo "BetVictor failed"
+
+      - name: Fetch Coral props
+        run: python scripts/fetch_coral_props.py || echo "Coral failed"
+
+      - name: Fetch BetMGM props
+        run: python scripts/fetch_betmgm_props.py || echo "BetMGM failed"
 
       - name: Analyze UFC arbitrage
         run: python scripts/analyze_ufc_arbitrage.py

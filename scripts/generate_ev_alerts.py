@@ -15,6 +15,7 @@ PROP_FILES = [
     ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
 ]
 
+EVENTS_PATH = ROOT / "ufc" / "data" / "events.json"
 OUT_PATH = ROOT / "ufc" / "ev-alerts" / "index.html"
 BASE = "/odds-board"
 OUTLIER_THRESHOLD = 10
@@ -73,9 +74,64 @@ def load_json(path):
         return {}
 
 
+def get_upcoming_fight_keys():
+    """
+    Load events.json and return a set of fight_keys for upcoming fights only.
+    If events.json is missing or has no dates, return None (meaning no filter).
+    """
+    try:
+        data = load_json(EVENTS_PATH)
+        events = data.get("events") or []
+        now = datetime.now(timezone.utc)
+        upcoming_keys = set()
+
+        for event in events:
+            # Parse event date
+            date_str = str(event.get("date") or "").strip()
+            if not date_str:
+                continue
+
+            try:
+                date_str_iso = date_str.replace("Z", "+00:00")
+                event_dt = datetime.fromisoformat(date_str_iso)
+                if event_dt.tzinfo is None:
+                    event_dt = event_dt.replace(tzinfo=timezone.utc)
+            except Exception:
+                try:
+                    event_dt = datetime.strptime(date_str[:10], "%Y-%m-%d")
+                    event_dt = event_dt.replace(tzinfo=timezone.utc)
+                except Exception:
+                    continue
+
+            # Include events up to 6 hours after start (in case fights run late)
+            from datetime import timedelta
+            cutoff = event_dt + timedelta(hours=6)
+            if now > cutoff:
+                continue
+
+            # Add all fights from this event
+            for fight in event.get("fights") or []:
+                red = fight.get("red")
+                blue = fight.get("blue")
+                if isinstance(red, dict):
+                    red = red.get("name", "")
+                if isinstance(blue, dict):
+                    blue = blue.get("name", "")
+                if red and blue:
+                    fkey = fight_key(f"{red} v {blue}")
+                    upcoming_keys.add(fkey)
+
+        print(f"Upcoming fight keys: {len(upcoming_keys)}")
+        return upcoming_keys if upcoming_keys else None
+
+    except Exception as e:
+        print(f"Could not load events for date filtering: {e}")
+        return None
+
+
 def canonical_market(label):
     text = str(label or "").lower()
-    if "method" in text or "victory" in text or "winning" in text:
+    if "method" in text or "victory" in text or "winning" in text or "result" in text:
         return "Method of Victory"
     if "round" in text:
         return "Rounds"
@@ -99,7 +155,7 @@ def selection_key(s):
     return re.sub(r"\s+", " ", text).strip()
 
 
-def collect_all_rows():
+def collect_all_rows(upcoming_keys):
     rows = []
 
     for default_bookmaker, path in PROP_FILES:
@@ -121,6 +177,11 @@ def collect_all_rows():
                 continue
 
             fkey = fight_key(fight_name)
+
+            # Skip fights that have already happened
+            if upcoming_keys is not None and fkey not in upcoming_keys:
+                continue
+
             markets = fight.get("markets") or {}
 
             def add_rows(market_label, items):
@@ -150,14 +211,13 @@ def collect_all_rows():
             if isinstance(markets, dict):
                 add_rows("Fight Betting", markets.get("fight_betting"))
                 add_rows("Method of Victory", markets.get("method_of_victory"))
-                add_rows("Rounds", markets.get("rounds"))
+                add_rows("Rounds", markets.get("rounds") or markets.get("total_rounds"))
                 add_rows("Go The Distance", markets.get("go_the_distance"))
 
             add_rows("Method of Victory", fight.get("method_props"))
             add_rows("Rounds", fight.get("round_props"))
             add_rows("Go The Distance", fight.get("distance_props"))
 
-        # Flat props array (BetMGM style)
         props = data.get("props", []) or []
         for prop in props:
             bookmaker = prop.get("bookmaker") or default_bookmaker
@@ -165,6 +225,10 @@ def collect_all_rows():
             if not fight_name:
                 continue
             fkey = fight_key(fight_name)
+
+            if upcoming_keys is not None and fkey not in upcoming_keys:
+                continue
+
             market = prop.get("market") or ""
             sel = prop.get("selection") or ""
             odds = prop.get("odds") or ""
@@ -301,14 +365,13 @@ def render_spot_card(spot, index):
 
 def generate_page(spots):
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-
     unique_fights = len(set(s["fight"] for s in spots)) if spots else 0
 
     if not spots:
         body = """
         <div class="empty-state">
           <div class="empty-icon">🔍</div>
-          <h2>No value spots found right now</h2>
+          <h2>No value spots right now</h2>
           <p>Value spots appear when one bookmaker is pricing significantly better than the rest.
           Check back closer to fight night when more books price up.</p>
         </div>
@@ -403,19 +466,10 @@ def generate_page(spots):
       flex-wrap: wrap;
     }}
 
-    .nav-link {{
-      color: var(--muted);
-      font-size: 14px;
-    }}
+    .nav-link {{ color: var(--muted); font-size: 14px; }}
+    .nav-link.active {{ color: white; font-weight: 700; }}
 
-    .nav-link.active {{
-      color: white;
-      font-weight: 700;
-    }}
-
-    .page-header {{
-      margin-bottom: 32px;
-    }}
+    .page-header {{ margin-bottom: 32px; }}
 
     .header-eyebrow {{
       display: inline-flex;
@@ -449,10 +503,7 @@ def generate_page(spots):
       margin-bottom: 8px;
     }}
 
-    .header-meta {{
-      color: var(--muted);
-      font-size: 13px;
-    }}
+    .header-meta {{ color: var(--muted); font-size: 13px; }}
 
     .summary-bar {{
       display: grid;
@@ -476,14 +527,9 @@ def generate_page(spots):
       margin-bottom: 4px;
     }}
 
-    .summary-stat span {{
-      color: var(--muted);
-      font-size: 13px;
-    }}
+    .summary-stat span {{ color: var(--muted); font-size: 13px; }}
 
-    .fight-group {{
-      margin-bottom: 36px;
-    }}
+    .fight-group {{ margin-bottom: 36px; }}
 
     .fight-group-header {{
       display: flex;
@@ -533,11 +579,7 @@ def generate_page(spots):
       gap: 12px;
     }}
 
-    .spot-left {{
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }}
+    .spot-left {{ display: flex; align-items: flex-start; gap: 12px; }}
 
     .spot-rank {{
       border: 1px solid var(--border);
@@ -550,18 +592,8 @@ def generate_page(spots):
       margin-top: 2px;
     }}
 
-    .spot-fight {{
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }}
-
-    .spot-market {{
-      color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-    }}
+    .spot-fight {{ font-weight: 700; font-size: 14px; margin-bottom: 4px; }}
+    .spot-market {{ color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; }}
 
     .spot-badge {{
       border-radius: 999px;
@@ -571,33 +603,13 @@ def generate_page(spots):
       white-space: nowrap;
     }}
 
-    .badge-fire {{
-      border: 1px solid rgba(239,68,68,0.6);
-      background: rgba(239,68,68,0.12);
-      color: #fca5a5;
-    }}
+    .badge-fire {{ border: 1px solid rgba(239,68,68,0.6); background: rgba(239,68,68,0.12); color: #fca5a5; }}
+    .badge-hot {{ border: 1px solid rgba(249,115,22,0.6); background: rgba(249,115,22,0.12); color: #fdba74; }}
+    .badge-value {{ border: 1px solid rgba(250,204,21,0.5); background: rgba(250,204,21,0.1); color: #fde68a; }}
 
-    .badge-hot {{
-      border: 1px solid rgba(249,115,22,0.6);
-      background: rgba(249,115,22,0.12);
-      color: #fdba74;
-    }}
+    .spot-body {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }}
 
-    .badge-value {{
-      border: 1px solid rgba(250,204,21,0.5);
-      background: rgba(250,204,21,0.1);
-      color: #fde68a;
-    }}
-
-    .spot-body {{
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-    }}
-
-    .spot-selection,
-    .spot-best,
-    .spot-avg {{
+    .spot-selection, .spot-best, .spot-avg {{
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 12px;
@@ -613,32 +625,12 @@ def generate_page(spots):
       margin-bottom: 6px;
     }}
 
-    .spot-selection strong,
-    .spot-avg strong {{
-      display: block;
-      font-size: 15px;
-      font-weight: 700;
-    }}
+    .spot-selection strong, .spot-avg strong {{ display: block; font-size: 15px; font-weight: 700; }}
 
-    .spot-odds {{
-      display: block;
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--green);
-      margin-bottom: 4px;
-    }}
+    .spot-odds {{ display: block; font-size: 22px; font-weight: 900; color: var(--green); margin-bottom: 4px; }}
+    .spot-book {{ display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }}
 
-    .spot-book {{
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 4px;
-    }}
-
-    .spot-prices {{
-      border-top: 1px solid var(--border);
-      padding-top: 12px;
-    }}
+    .spot-prices {{ border-top: 1px solid var(--border); padding-top: 12px; }}
 
     .prices-label {{
       color: var(--muted);
@@ -648,11 +640,7 @@ def generate_page(spots):
       margin-bottom: 8px;
     }}
 
-    .prices-grid {{
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }}
+    .prices-grid {{ display: flex; flex-direction: column; gap: 5px; }}
 
     .price-row {{
       display: flex;
@@ -664,19 +652,14 @@ def generate_page(spots):
       font-size: 13px;
     }}
 
-    .price-row strong {{
-      font-weight: 700;
-      color: var(--muted);
-    }}
+    .price-row strong {{ font-weight: 700; color: var(--muted); }}
 
     .price-row.best-price-row {{
       background: rgba(34,197,94,0.08);
       border: 1px solid rgba(34,197,94,0.3);
     }}
 
-    .price-row.best-price-row strong {{
-      color: var(--green);
-    }}
+    .price-row.best-price-row strong {{ color: var(--green); }}
 
     .empty-state {{
       text-align: center;
@@ -685,22 +668,9 @@ def generate_page(spots):
       border-radius: 24px;
     }}
 
-    .empty-icon {{
-      font-size: 48px;
-      margin-bottom: 16px;
-    }}
-
-    .empty-state h2 {{
-      font-size: 28px;
-      margin-bottom: 12px;
-    }}
-
-    .empty-state p {{
-      color: var(--muted);
-      max-width: 500px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }}
+    .empty-icon {{ font-size: 48px; margin-bottom: 16px; }}
+    .empty-state h2 {{ font-size: 28px; margin-bottom: 12px; }}
+    .empty-state p {{ color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.6; }}
 
     @media (max-width: 768px) {{
       .page {{ padding: 20px 16px 48px; }}
@@ -712,7 +682,6 @@ def generate_page(spots):
 </head>
 <body>
   <main class="page">
-
     <nav class="top-nav">
       <a class="nav-link" href="{BASE}/ufc/">UFC Hub</a>
       <span class="nav-link">›</span>
@@ -725,6 +694,7 @@ def generate_page(spots):
       <p class="page-subtitle">
         Prop selections where one bookmaker is pricing significantly better than the rest.
         Only spots where the best price is at least {OUTLIER_THRESHOLD}% above the market average are shown.
+        Upcoming fights only — past events are automatically removed.
       </p>
       <p class="header-meta">Updated: {generated} &nbsp;•&nbsp; {len(spots)} spots across {unique_fights} fights</p>
     </header>
@@ -738,8 +708,11 @@ def generate_page(spots):
 
 
 def main():
+    print("Loading upcoming fight keys for date filtering...")
+    upcoming_keys = get_upcoming_fight_keys()
+
     print("Collecting props from all bookmakers...")
-    rows = collect_all_rows()
+    rows = collect_all_rows(upcoming_keys)
     print(f"Total prop rows: {len(rows)}")
 
     print("Finding value spots...")
