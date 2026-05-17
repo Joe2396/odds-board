@@ -1,385 +1,231 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 24,
-  "total_prop_markets_checked": 35,
-  "total_prop_rows_loaded": 130,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "total_moneyline_fights_checked": 19,
+  "total_prop_markets_checked": 14,
+  "total_prop_rows_loaded": 28,
+  "arbitrage_count": 0,
+  "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
     {
       "type": "moneyline",
-      "event_id": "fc932630635d48806a13403e6bc8f0ca",
-      "commence_time": "2026-05-16T22:00:00Z",
-      "fight": "Christian Edwards vs Modestas Bukauskas",
+      "event_id": "cbab69c179be988e710daca0234cc2d7",
+      "commence_time": "2026-05-30T08:00:00Z",
+      "fight": "Jaqueline Amorim vs Loma Lookboonmee",
       "market": "Moneyline",
       "fighters": {
-        "Christian Edwards": {
+        "Jaqueline Amorim": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 3.2,
-          "implied_probability": 31.25
+          "best_price": 1.75,
+          "implied_probability": 57.14
         },
-        "Modestas Bukauskas": {
+        "Loma Lookboonmee": {
+          "best_bookmaker": "Betway",
+          "best_price": 2.1,
+          "implied_probability": 47.62
+        }
+      },
+      "arb_sum": 1.047619,
+      "is_arbitrage": false,
+      "profit_margin_percent": -4.76
+    },
+    {
+      "type": "moneyline",
+      "event_id": "80630708caf0340ecb71797ab841bc9c",
+      "commence_time": "2026-05-30T08:00:00Z",
+      "fight": "Jesus Santos Aguilar vs Rei Tsuruya",
+      "market": "Moneyline",
+      "fighters": {
+        "Jesus Santos Aguilar": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.33,
-          "implied_probability": 75.19
+          "best_price": 3.3,
+          "implied_probability": 30.3
+        },
+        "Rei Tsuruya": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.3,
+          "implied_probability": 76.92
         }
       },
-      "arb_sum": 1.06438,
+      "arb_sum": 1.072261,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.44
+      "profit_margin_percent": -7.23
     },
     {
       "type": "moneyline",
-      "event_id": "3fac0dd01eb2eed4c9f74430775f2e28",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Alice Ardelean vs Polyana Viana",
+      "event_id": "a4b4900eee63e6c81e720895861a7f32",
+      "commence_time": "2026-05-30T08:00:00Z",
+      "fight": "José Henrique vs Meng Ding",
       "market": "Moneyline",
       "fighters": {
-        "Alice Ardelean": {
+        "José Henrique": {
           "best_bookmaker": "Betway",
-          "best_price": 1.53,
-          "implied_probability": 65.36
+          "best_price": 1.95,
+          "implied_probability": 51.28
         },
-        "Polyana Viana": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.84,
-          "implied_probability": 35.21
-        }
-      },
-      "arb_sum": 1.005707,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.57
-    },
-    {
-      "type": "moneyline",
-      "event_id": "68b76293e37659dbfd7fe46b46a74fd3",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Andre Petroski vs Cody Brundage",
-      "market": "Moneyline",
-      "fighters": {
-        "Andre Petroski": {
+        "Meng Ding": {
           "best_bookmaker": "Betway",
-          "best_price": 1.5,
-          "implied_probability": 66.67
-        },
-        "Cody Brundage": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 2.75,
-          "implied_probability": 36.36
+          "best_price": 1.8,
+          "implied_probability": 55.56
         }
       },
-      "arb_sum": 1.030303,
+      "arb_sum": 1.068376,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.03
+      "profit_margin_percent": -6.84
     },
     {
       "type": "moneyline",
-      "event_id": "ca777108e0085b6c5158365c22895c5a",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Arnold Allen vs Melquizael Costa",
+      "event_id": "a409b20d9cab669d50db14c9a7ce1a1b",
+      "commence_time": "2026-05-30T10:00:00Z",
+      "fight": "Aori Qileng vs Cody Haddon",
       "market": "Moneyline",
       "fighters": {
-        "Arnold Allen": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.62,
-          "implied_probability": 61.73
+        "Aori Qileng": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 3.6,
+          "implied_probability": 27.78
         },
-        "Melquizael Costa": {
-          "best_bookmaker": "888sport",
+        "Cody Haddon": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.3,
+          "implied_probability": 76.92
+        }
+      },
+      "arb_sum": 1.047009,
+      "is_arbitrage": false,
+      "profit_margin_percent": -4.7
+    },
+    {
+      "type": "moneyline",
+      "event_id": "7ba015886a163ee334a3c9b34c706621",
+      "commence_time": "2026-05-30T10:00:00Z",
+      "fight": "Jake Matthews vs Muslim Salikhov",
+      "market": "Moneyline",
+      "fighters": {
+        "Jake Matthews": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.55,
+          "implied_probability": 64.52
+        },
+        "Muslim Salikhov": {
+          "best_bookmaker": "Unibet (UK)",
           "best_price": 2.35,
           "implied_probability": 42.55
         }
       },
-      "arb_sum": 1.042816,
+      "arb_sum": 1.070693,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.28
+      "profit_margin_percent": -7.07
     },
     {
       "type": "moneyline",
-      "event_id": "72532f14b11dbe0db67fbad8bf733939",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Benardo Sopaj vs Timothy Cuamba",
+      "event_id": "b41f98f0c942159705d3cebdaa3edc9c",
+      "commence_time": "2026-05-30T11:00:00Z",
+      "fight": "Alex Perez vs Su Mudaerji",
       "market": "Moneyline",
       "fighters": {
-        "Benardo Sopaj": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 1.64,
-          "implied_probability": 60.98
-        },
-        "Timothy Cuamba": {
-          "best_bookmaker": "Betway",
-          "best_price": 2.3,
-          "implied_probability": 43.48
-        }
-      },
-      "arb_sum": 1.044539,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.45
-    },
-    {
-      "type": "moneyline",
-      "event_id": "a6d96d17816e530846e244d0c7226cc0",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Daniel Barez vs Luis Gurule",
-      "market": "Moneyline",
-      "fighters": {
-        "Daniel Barez": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.02,
-          "implied_probability": 49.5
-        },
-        "Luis Gurule": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.91,
-          "implied_probability": 52.36
-        }
-      },
-      "arb_sum": 1.01861,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.86
-    },
-    {
-      "type": "moneyline",
-      "event_id": "40e6ab636ccc19dc43b6bac5059736e7",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Daniel Santos vs Dooho Choi",
-      "market": "Moneyline",
-      "fighters": {
-        "Daniel Santos": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.62,
-          "implied_probability": 61.73
-        },
-        "Dooho Choi": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.48,
-          "implied_probability": 40.32
-        }
-      },
-      "arb_sum": 1.02051,
-      "is_arbitrage": false,
-      "profit_margin_percent": -2.05
-    },
-    {
-      "type": "moneyline",
-      "event_id": "1b275b79bdfb54ec649b1c4a1cd01b60",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Francis Ngannou vs Philipe Lins",
-      "market": "Moneyline",
-      "fighters": {
-        "Francis Ngannou": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.06,
-          "implied_probability": 94.34
-        },
-        "Philipe Lins": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 9.0,
-          "implied_probability": 11.11
-        }
-      },
-      "arb_sum": 1.054507,
-      "is_arbitrage": false,
-      "profit_margin_percent": -5.45
-    },
-    {
-      "type": "moneyline",
-      "event_id": "a39fe54b3c38dbba822aaa3d29cca5dd",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Gina Carano vs Ronda Rousey",
-      "market": "Moneyline",
-      "fighters": {
-        "Gina Carano": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 5.0,
-          "implied_probability": 20.0
-        },
-        "Ronda Rousey": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.18,
-          "implied_probability": 84.75
-        }
-      },
-      "arb_sum": 1.047458,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.75
-    },
-    {
-      "type": "moneyline",
-      "event_id": "6c2dc5be72620b0dd2721814f77a0f2e",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Ivan Erslan vs Tuco Tokkos",
-      "market": "Moneyline",
-      "fighters": {
-        "Ivan Erslan": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.61,
-          "implied_probability": 62.11
-        },
-        "Tuco Tokkos": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 2.55,
-          "implied_probability": 39.22
-        }
-      },
-      "arb_sum": 1.013275,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.33
-    },
-    {
-      "type": "moneyline",
-      "event_id": "4411845e84c1602a6cc776db0eb6cef6",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Jacqueline Cavalcanti vs Ketlen Vieira",
-      "market": "Moneyline",
-      "fighters": {
-        "Jacqueline Cavalcanti": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.62,
-          "implied_probability": 61.73
-        },
-        "Ketlen Vieira": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.38,
-          "implied_probability": 42.02
-        }
-      },
-      "arb_sum": 1.037452,
-      "is_arbitrage": false,
-      "profit_margin_percent": -3.75
-    },
-    {
-      "type": "moneyline",
-      "event_id": "012b59200f05722787e034d649f2f846",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Juan Diaz vs Malcolm Wellmaker",
-      "market": "Moneyline",
-      "fighters": {
-        "Juan Diaz": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 3.25,
-          "implied_probability": 30.77
-        },
-        "Malcolm Wellmaker": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.38,
-          "implied_probability": 72.46
-        }
-      },
-      "arb_sum": 1.03233,
-      "is_arbitrage": false,
-      "profit_margin_percent": -3.23
-    },
-    {
-      "type": "moneyline",
-      "event_id": "d1e8ff0d03f502811b1edc152b2e842f",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Junior dos Santos vs Robelis Despaigne",
-      "market": "Moneyline",
-      "fighters": {
-        "Junior dos Santos": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 4.6,
-          "implied_probability": 21.74
-        },
-        "Robelis Despaigne": {
-          "best_bookmaker": "William Hill",
-          "best_price": 1.29,
-          "implied_probability": 77.52
-        }
-      },
-      "arb_sum": 0.992585,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.74
-    },
-    {
-      "type": "moneyline",
-      "event_id": "b14ca50bcde757d3508c70099e4fdba5",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Kenneth Cross vs Salahdine Parnasse",
-      "market": "Moneyline",
-      "fighters": {
-        "Kenneth Cross": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 8.5,
-          "implied_probability": 11.76
-        },
-        "Salahdine Parnasse": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.08,
-          "implied_probability": 92.59
-        }
-      },
-      "arb_sum": 1.043573,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.36
-    },
-    {
-      "type": "moneyline",
-      "event_id": "11f1f6ad671bf2a26f4a7406aaa47c5e",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Khaos Williams vs Nikolay Veretennikov",
-      "market": "Moneyline",
-      "fighters": {
-        "Khaos Williams": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.91,
-          "implied_probability": 52.36
-        },
-        "Nikolay Veretennikov": {
+        "Alex Perez": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.05,
-          "implied_probability": 48.78
+          "best_price": 1.8,
+          "implied_probability": 55.56
+        },
+        "Su Mudaerji": {
+          "best_bookmaker": "Betway",
+          "best_price": 2.2,
+          "implied_probability": 45.45
         }
       },
-      "arb_sum": 1.011365,
+      "arb_sum": 1.010101,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.14
+      "profit_margin_percent": -1.01
     },
     {
       "type": "moneyline",
-      "event_id": "0068bfd36cef60b3e373c762b5b6338a",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Mike Perry vs Nate Diaz",
+      "event_id": "9491c31da52bf6a09c24af58d4546139",
+      "commence_time": "2026-05-30T11:00:00Z",
+      "fight": "Alonzo Menifield vs Zhang Mingyang",
       "market": "Moneyline",
       "fighters": {
-        "Mike Perry": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.54,
-          "implied_probability": 64.94
+        "Alonzo Menifield": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.65,
+          "implied_probability": 37.74
         },
-        "Nate Diaz": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.5,
-          "implied_probability": 40.0
+        "Zhang Mingyang": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.44,
+          "implied_probability": 69.44
         }
       },
-      "arb_sum": 1.049351,
+      "arb_sum": 1.071803,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.94
+      "profit_margin_percent": -7.18
     },
     {
       "type": "moneyline",
-      "event_id": "c74a1465a2254bcafc56226ac277d87c",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Nicolle Caliari vs Shauna Bannon",
+      "event_id": "a89ce2c4544384b51adb32e09f0953d9",
+      "commence_time": "2026-05-30T11:00:00Z",
+      "fight": "Cameron Smotherman vs Kai Asakura",
       "market": "Moneyline",
       "fighters": {
-        "Nicolle Caliari": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.49,
-          "implied_probability": 67.11
+        "Cameron Smotherman": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 3.3,
+          "implied_probability": 30.3
         },
-        "Shauna Bannon": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.96,
-          "implied_probability": 33.78
+        "Kai Asakura": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.36,
+          "implied_probability": 73.53
         }
       },
-      "arb_sum": 1.008979,
+      "arb_sum": 1.038324,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.9
+      "profit_margin_percent": -3.83
+    },
+    {
+      "type": "moneyline",
+      "event_id": "a4776337215e434e60d95be6d087e953",
+      "commence_time": "2026-05-30T11:00:00Z",
+      "fight": "Deiveson Figueiredo vs Song Yadong",
+      "market": "Moneyline",
+      "fighters": {
+        "Deiveson Figueiredo": {
+          "best_bookmaker": "888sport",
+          "best_price": 4.2,
+          "implied_probability": 23.81
+        },
+        "Song Yadong": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.25,
+          "implied_probability": 80.0
+        }
+      },
+      "arb_sum": 1.038095,
+      "is_arbitrage": false,
+      "profit_margin_percent": -3.81
+    },
+    {
+      "type": "moneyline",
+      "event_id": "46c477fdf7a9c1048ddb2d7a6dea9480",
+      "commence_time": "2026-05-30T11:00:00Z",
+      "fight": "Sergey Pavlovich vs Tallison Teixeira",
+      "market": "Moneyline",
+      "fighters": {
+        "Sergey Pavlovich": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.25,
+          "implied_probability": 80.0
+        },
+        "Tallison Teixeira": {
+          "best_bookmaker": "Betway",
+          "best_price": 3.75,
+          "implied_probability": 26.67
+        }
+      },
+      "arb_sum": 1.066667,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.67
     },
     {
       "type": "moneyline",
@@ -500,18 +346,18 @@
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.02,
-          "implied_probability": 49.5
+          "best_price": 1.93,
+          "implied_probability": 51.81
         },
         "Ciryl Gane": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.95,
-          "implied_probability": 51.28
+          "best_bookmaker": "Betfair",
+          "best_price": 2.04,
+          "implied_probability": 49.02
         }
       },
-      "arb_sum": 1.00787,
+      "arb_sum": 1.008331,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.79
+      "profit_margin_percent": -0.83
     },
     {
       "type": "moneyline",
@@ -522,66 +368,110 @@
       "fighters": {
         "Ilia Topuria": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.16,
-          "implied_probability": 86.21
+          "best_price": 1.17,
+          "implied_probability": 85.47
         },
         "Justin Gaethje": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 6.25,
-          "implied_probability": 16.0
+          "best_bookmaker": "Betfair",
+          "best_price": 6.4,
+          "implied_probability": 15.62
         }
       },
-      "arb_sum": 1.022069,
+      "arb_sum": 1.010951,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.21
+      "profit_margin_percent": -1.1
+    },
+    {
+      "type": "moneyline",
+      "event_id": "8ea7b2765e5de9ce31d512d1a6c1a138",
+      "commence_time": "2026-07-12T03:00:00Z",
+      "fight": "Benoit Saint-Denis vs Paddy Pimblett",
+      "market": "Moneyline",
+      "fighters": {
+        "Benoit Saint-Denis": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.56,
+          "implied_probability": 64.1
+        },
+        "Paddy Pimblett": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.43,
+          "implied_probability": 41.15
+        }
+      },
+      "arb_sum": 1.052548,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.25
+    },
+    {
+      "type": "moneyline",
+      "event_id": "2c982ef7f30e521915fb0c82ffdaf4ba",
+      "commence_time": "2026-07-12T04:00:00Z",
+      "fight": "Conor McGregor vs Max Holloway",
+      "market": "Moneyline",
+      "fighters": {
+        "Conor McGregor": {
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 4.9,
+          "implied_probability": 20.41
+        },
+        "Max Holloway": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.22,
+          "implied_probability": 81.97
+        }
+      },
+      "arb_sum": 1.023754,
+      "is_arbitrage": false,
+      "profit_margin_percent": -2.38
     }
   ],
   "prop_markets": [
     {
       "type": "prop",
-      "fight": "Shauna Bannon vs Nicolle Caliari",
+      "fight": "Nicolle Caliari v Shauna Bannon",
       "fight_key": "nicolle caliari v shauna bannon",
       "market": "Goes The Distance",
       "selections": {
-        "Yes": {
-          "bookmaker": "PaddyPower",
-          "odds": "4/11",
-          "decimal_odds": 1.363636,
-          "implied_probability": 73.33
-        },
         "No": {
           "bookmaker": "Coral",
           "odds": "5/2",
           "decimal_odds": 3.5,
           "implied_probability": 28.57
+        },
+        "Yes": {
+          "bookmaker": "Coral",
+          "odds": "3/10",
+          "decimal_odds": 1.3,
+          "implied_probability": 76.92
         }
       },
-      "arb_sum": 1.019048,
+      "arb_sum": 1.054945,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.9
+      "profit_margin_percent": -5.49
     },
     {
       "type": "prop",
-      "fight": "Daniel Barez vs Luis Gurule",
+      "fight": "Daniel Barez v Luis Gurule",
       "fight_key": "daniel barez v luis gurule",
       "market": "Goes The Distance",
       "selections": {
-        "Yes": {
-          "bookmaker": "PaddyPower",
-          "odds": "4/6",
-          "decimal_odds": 1.666667,
-          "implied_probability": 60.0
-        },
         "No": {
           "bookmaker": "Coral",
           "odds": "13/10",
           "decimal_odds": 2.3,
           "implied_probability": 43.48
+        },
+        "Yes": {
+          "bookmaker": "Coral",
+          "odds": "10/17",
+          "decimal_odds": 1.588235,
+          "implied_probability": 62.96
         }
       },
-      "arb_sum": 1.034782,
+      "arb_sum": 1.064412,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.48
+      "profit_margin_percent": -6.44
     },
     {
       "type": "prop",
@@ -589,197 +479,13 @@
       "fight_key": "alice ardelean v polyana viana",
       "market": "Goes The Distance",
       "selections": {
-        "Yes": {
-          "bookmaker": "BetVictor",
-          "odds": "11/20",
-          "decimal_odds": 1.55,
-          "implied_probability": 64.52
-        },
         "No": {
           "bookmaker": "Coral",
           "odds": "3/2",
           "decimal_odds": 2.5,
           "implied_probability": 40.0
-        }
-      },
-      "arb_sum": 1.045161,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.52
-    },
-    {
-      "type": "prop",
-      "fight": "Andre Petroski v Cody Brundage",
-      "fight_key": "andre petroski v cody brundage",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "Coral",
-          "odds": "5/4",
-          "decimal_odds": 2.25,
-          "implied_probability": 44.44
         },
-        "No": {
-          "bookmaker": "BetVictor",
-          "odds": "4/6",
-          "decimal_odds": 1.666667,
-          "implied_probability": 60.0
-        }
-      },
-      "arb_sum": 1.044444,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.44
-    },
-    {
-      "type": "prop",
-      "fight": "Ketlen Vieira vs Jacqueline Cavalcanti",
-      "fight_key": "jacqueline cavalcanti v ketlen vieira",
-      "market": "Goes The Distance",
-      "selections": {
         "Yes": {
-          "bookmaker": "PaddyPower",
-          "odds": "2/9",
-          "decimal_odds": 1.222222,
-          "implied_probability": 81.82
-        },
-        "No": {
-          "bookmaker": "BetVictor",
-          "odds": "3/1",
-          "decimal_odds": 4.0,
-          "implied_probability": 25.0
-        }
-      },
-      "arb_sum": 1.068182,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.82
-    },
-    {
-      "type": "prop",
-      "fight": "Thomas Gantt vs Artur Minev",
-      "fight_key": "artur minev v thomas gantt",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "PaddyPower",
-          "odds": "11/8",
-          "decimal_odds": 2.375,
-          "implied_probability": 42.11
-        },
-        "No": {
-          "bookmaker": "BetMGM",
-          "odds": "11/20",
-          "decimal_odds": 1.55,
-          "implied_probability": 64.52
-        }
-      },
-      "arb_sum": 1.066214,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.62
-    },
-    {
-      "type": "prop",
-      "fight": "Tuco Tokkos vs Ivan Erslan",
-      "fight_key": "ivan erslan v tuco tokkos",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "PaddyPower",
-          "odds": "13/8",
-          "decimal_odds": 2.625,
-          "implied_probability": 38.1
-        },
-        "No": {
-          "bookmaker": "Coral",
-          "odds": "10/21",
-          "decimal_odds": 1.47619,
-          "implied_probability": 67.74
-        }
-      },
-      "arb_sum": 1.058372,
-      "is_arbitrage": false,
-      "profit_margin_percent": -5.84
-    },
-    {
-      "type": "prop",
-      "fight": "Nikolay Veretennikov v Khaos Williams",
-      "fight_key": "khaos williams v nikolay veretennikov",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "BetVictor",
-          "odds": "13/10",
-          "decimal_odds": 2.3,
-          "implied_probability": 43.48
-        },
-        "No": {
-          "bookmaker": "BetMGM",
-          "odds": "3/4",
-          "decimal_odds": 1.75,
-          "implied_probability": 57.14
-        }
-      },
-      "arb_sum": 1.006211,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.62
-    },
-    {
-      "type": "prop",
-      "fight": "Timmy Cuamba v Benardo Sopaj",
-      "fight_key": "benardo sopaj v timmy cuamba",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "BetMGM",
-          "odds": "3/5",
-          "decimal_odds": 1.6,
-          "implied_probability": 62.5
-        },
-        "No": {
-          "bookmaker": "PaddyPower",
-          "odds": "6/4",
-          "decimal_odds": 2.5,
-          "implied_probability": 40.0
-        }
-      },
-      "arb_sum": 1.025,
-      "is_arbitrage": false,
-      "profit_margin_percent": -2.5
-    },
-    {
-      "type": "prop",
-      "fight": "Modestas Bukauskas v Christian Edwards",
-      "fight_key": "christian edwards v modestas bukauskas",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "BetVictor",
-          "odds": "31/20",
-          "decimal_odds": 2.55,
-          "implied_probability": 39.22
-        },
-        "No": {
-          "bookmaker": "PaddyPower",
-          "odds": "4/7",
-          "decimal_odds": 1.571429,
-          "implied_probability": 63.64
-        }
-      },
-      "arb_sum": 1.02852,
-      "is_arbitrage": false,
-      "profit_margin_percent": -2.85
-    },
-    {
-      "type": "prop",
-      "fight": "Malcolm Wellmaker vs Juan Diaz",
-      "fight_key": "juan diaz v malcolm wellmaker",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "PaddyPower",
-          "odds": "6/4",
-          "decimal_odds": 2.5,
-          "implied_probability": 40.0
-        },
-        "No": {
           "bookmaker": "Coral",
           "odds": "10/19",
           "decimal_odds": 1.526316,
@@ -792,394 +498,26 @@
     },
     {
       "type": "prop",
-      "fight": "Dooho Choi vs Daniel Santos",
-      "fight_key": "daniel santos v dooho choi",
+      "fight": "Andre Petroski v Cody Brundage",
+      "fight_key": "andre petroski v cody brundage",
       "market": "Goes The Distance",
       "selections": {
-        "Yes": {
-          "bookmaker": "PaddyPower",
-          "odds": "11/8",
-          "decimal_odds": 2.375,
-          "implied_probability": 42.11
-        },
         "No": {
           "bookmaker": "Coral",
-          "odds": "4/7",
-          "decimal_odds": 1.571429,
-          "implied_probability": 63.64
-        }
-      },
-      "arb_sum": 1.057416,
-      "is_arbitrage": false,
-      "profit_margin_percent": -5.74
-    },
-    {
-      "type": "prop",
-      "fight": "Arnold Allen Vs Melquizael Costa",
-      "fight_key": "arnold allen v melquizael costa",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "BoyleSports",
-          "odds": "8/11",
-          "decimal_odds": 1.727273,
-          "implied_probability": 57.89
-        },
-        "No": {
-          "bookmaker": "PaddyPower",
-          "odds": "11/10",
-          "decimal_odds": 2.1,
-          "implied_probability": 47.62
-        }
-      },
-      "arb_sum": 1.055138,
-      "is_arbitrage": false,
-      "profit_margin_percent": -5.51
-    },
-    {
-      "type": "prop",
-      "fight": "Alex Pereira v Ciryl Gane",
-      "fight_key": "alex pereira v ciryl gane",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "BetMGM",
-          "odds": "21/10",
-          "decimal_odds": 3.1,
-          "implied_probability": 32.26
-        },
-        "No": {
-          "bookmaker": "BetMGM",
-          "odds": "7/20",
-          "decimal_odds": 1.35,
-          "implied_probability": 74.07
-        }
-      },
-      "arb_sum": 1.063321,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.33
-    },
-    {
-      "type": "prop",
-      "fight": "Ilia Topuria vs Justin Gaethje",
-      "fight_key": "ilia topuria v justin gaethje",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "PaddyPower",
-          "odds": "11/2",
-          "decimal_odds": 6.5,
-          "implied_probability": 15.38
-        },
-        "No": {
-          "bookmaker": "BetMGM",
-          "odds": "2/15",
-          "decimal_odds": 1.133333,
-          "implied_probability": 88.24
-        }
-      },
-      "arb_sum": 1.036199,
-      "is_arbitrage": false,
-      "profit_margin_percent": -3.62
-    },
-    {
-      "type": "prop",
-      "fight": "Doo Ho Choi v Daniel Santos",
-      "fight_key": "daniel santos v doo ho choi",
-      "market": "Goes The Distance",
-      "selections": {
-        "Yes": {
-          "bookmaker": "BetVictor",
-          "odds": "6/4",
-          "decimal_odds": 2.5,
-          "implied_probability": 40.0
-        },
-        "No": {
-          "bookmaker": "BetMGM",
-          "odds": "8/15",
-          "decimal_odds": 1.533333,
-          "implied_probability": 65.22
-        }
-      },
-      "arb_sum": 1.052174,
-      "is_arbitrage": false,
-      "profit_margin_percent": -5.22
-    },
-    {
-      "type": "prop",
-      "fight": "Doo Ho Choi v Daniel Santos",
-      "fight_key": "daniel santos v doo ho choi",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "4/6",
-          "decimal_odds": 1.666667,
-          "implied_probability": 60.0
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "23/20",
-          "decimal_odds": 2.15,
-          "implied_probability": 46.51
-        }
-      },
-      "arb_sum": 1.065116,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.51
-    },
-    {
-      "type": "prop",
-      "fight": "Malcolm Wellmaker v Juan Diaz",
-      "fight_key": "juan diaz v malcolm wellmaker",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
           "odds": "8/13",
           "decimal_odds": 1.615385,
           "implied_probability": 61.9
         },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "6/5",
-          "decimal_odds": 2.2,
-          "implied_probability": 45.45
-        }
-      },
-      "arb_sum": 1.073593,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.36
-    },
-    {
-      "type": "prop",
-      "fight": "Modestas Bukauskas v Christian Edwards",
-      "fight_key": "christian edwards v modestas bukauskas",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "4/6",
-          "decimal_odds": 1.666667,
-          "implied_probability": 60.0
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "6/5",
-          "decimal_odds": 2.2,
-          "implied_probability": 45.45
-        }
-      },
-      "arb_sum": 1.054545,
-      "is_arbitrage": false,
-      "profit_margin_percent": -5.45
-    },
-    {
-      "type": "prop",
-      "fight": "Timothy Angel Cuamba v Bernardo Sopaj",
-      "fight_key": "bernardo sopaj v timothy angel cuamba",
-      "market": "Goes The Distance",
-      "selections": {
         "Yes": {
-          "bookmaker": "BetVictor",
-          "odds": "1/2",
-          "decimal_odds": 1.5,
-          "implied_probability": 66.67
-        },
-        "No": {
-          "bookmaker": "BetVictor",
-          "odds": "6/4",
-          "decimal_odds": 2.5,
-          "implied_probability": 40.0
+          "bookmaker": "Coral",
+          "odds": "5/4",
+          "decimal_odds": 2.25,
+          "implied_probability": 44.44
         }
       },
-      "arb_sum": 1.066667,
+      "arb_sum": 1.063492,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.67
-    },
-    {
-      "type": "prop",
-      "fight": "Timothy Angel Cuamba v Bernardo Sopaj",
-      "fight_key": "bernardo sopaj v timothy angel cuamba",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "17/10",
-          "decimal_odds": 2.7,
-          "implied_probability": 37.04
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "4/9",
-          "decimal_odds": 1.444444,
-          "implied_probability": 69.23
-        }
-      },
-      "arb_sum": 1.062678,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.27
-    },
-    {
-      "type": "prop",
-      "fight": "Nikolay Veretennikov v Khaos Williams",
-      "fight_key": "khaos williams v nikolay veretennikov",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "4/5",
-          "decimal_odds": 1.8,
-          "implied_probability": 55.56
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "9/10",
-          "decimal_odds": 1.9,
-          "implied_probability": 52.63
-        }
-      },
-      "arb_sum": 1.081871,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.19
-    },
-    {
-      "type": "prop",
-      "fight": "Tuco Tokkos v Ivan Erslan",
-      "fight_key": "ivan erslan v tuco tokkos",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "8/15",
-          "decimal_odds": 1.533333,
-          "implied_probability": 65.22
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "11/8",
-          "decimal_odds": 2.375,
-          "implied_probability": 42.11
-        }
-      },
-      "arb_sum": 1.073227,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.32
-    },
-    {
-      "type": "prop",
-      "fight": "Ketlen Vieira v Jacqueline Cavalcanti",
-      "fight_key": "jacqueline cavalcanti v ketlen vieira",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "14/5",
-          "decimal_odds": 3.8,
-          "implied_probability": 26.32
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "2/9",
-          "decimal_odds": 1.222222,
-          "implied_probability": 81.82
-        }
-      },
-      "arb_sum": 1.08134,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.13
-    },
-    {
-      "type": "prop",
-      "fight": "Cody Brundage v Andre Petroski",
-      "fight_key": "andre petroski v cody brundage",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "17/20",
-          "decimal_odds": 1.85,
-          "implied_probability": 54.05
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "17/20",
-          "decimal_odds": 1.85,
-          "implied_probability": 54.05
-        }
-      },
-      "arb_sum": 1.081081,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.11
-    },
-    {
-      "type": "prop",
-      "fight": "Alice Ardelean v Polyana Viana",
-      "fight_key": "alice ardelean v polyana viana",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "9/5",
-          "decimal_odds": 2.8,
-          "implied_probability": 35.71
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "2/5",
-          "decimal_odds": 1.4,
-          "implied_probability": 71.43
-        }
-      },
-      "arb_sum": 1.071429,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.14
-    },
-    {
-      "type": "prop",
-      "fight": "Daniel Barez v Luis Gurule",
-      "fight_key": "daniel barez v luis gurule",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "7/5",
-          "decimal_odds": 2.4,
-          "implied_probability": 41.67
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "8/15",
-          "decimal_odds": 1.533333,
-          "implied_probability": 65.22
-        }
-      },
-      "arb_sum": 1.068841,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.88
-    },
-    {
-      "type": "prop",
-      "fight": "Shauna Bannon v Nicolle Caliari",
-      "fight_key": "nicolle caliari v shauna bannon",
-      "market": "Goes The Distance",
-      "selections": {
-        "Under 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "12/5",
-          "decimal_odds": 3.4,
-          "implied_probability": 29.41
-        },
-        "Over 2.5": {
-          "bookmaker": "BetVictor",
-          "odds": "2/7",
-          "decimal_odds": 1.285714,
-          "implied_probability": 77.78
-        }
-      },
-      "arb_sum": 1.071896,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.19
+      "profit_margin_percent": -6.35
     },
     {
       "type": "prop",
@@ -1203,6 +541,29 @@
       "arb_sum": 1.059524,
       "is_arbitrage": false,
       "profit_margin_percent": -5.95
+    },
+    {
+      "type": "prop",
+      "fight": "Ivan Erslan v Tuco Tokkos",
+      "fight_key": "ivan erslan v tuco tokkos",
+      "market": "Goes The Distance",
+      "selections": {
+        "No": {
+          "bookmaker": "Coral",
+          "odds": "10/21",
+          "decimal_odds": 1.47619,
+          "implied_probability": 67.74
+        },
+        "Yes": {
+          "bookmaker": "Coral",
+          "odds": "13/8",
+          "decimal_odds": 2.625,
+          "implied_probability": 38.1
+        }
+      },
+      "arb_sum": 1.058372,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.84
     },
     {
       "type": "prop",
@@ -1298,73 +659,96 @@
     },
     {
       "type": "prop",
-      "fight": "BetMGM Event 1027576742",
-      "fight_key": "betmgm event 1027576742",
+      "fight": "Malcolm Wellmaker v Juan Diaz",
+      "fight_key": "juan diaz v malcolm wellmaker",
       "market": "Goes The Distance",
       "selections": {
-        "Yes": {
-          "bookmaker": "BetMGM",
-          "odds": "2/5",
-          "decimal_odds": 1.4,
-          "implied_probability": 71.43
-        },
         "No": {
-          "bookmaker": "BetMGM",
-          "odds": "9/5",
-          "decimal_odds": 2.8,
-          "implied_probability": 35.71
+          "bookmaker": "Coral",
+          "odds": "10/19",
+          "decimal_odds": 1.526316,
+          "implied_probability": 65.52
+        },
+        "Yes": {
+          "bookmaker": "Coral",
+          "odds": "3/2",
+          "decimal_odds": 2.5,
+          "implied_probability": 40.0
         }
       },
-      "arb_sum": 1.071429,
+      "arb_sum": 1.055172,
       "is_arbitrage": false,
-      "profit_margin_percent": -7.14
+      "profit_margin_percent": -5.52
     },
     {
       "type": "prop",
-      "fight": "Alice Ardelean v Polyana Viana Mota",
-      "fight_key": "alice ardelean v polyana viana mota",
+      "fight": "Daniel Santos v Dooho Choi",
+      "fight_key": "daniel santos v dooho choi",
+      "market": "Goes The Distance",
+      "selections": {
+        "No": {
+          "bookmaker": "Coral",
+          "odds": "4/7",
+          "decimal_odds": 1.571429,
+          "implied_probability": 63.64
+        },
+        "Yes": {
+          "bookmaker": "Coral",
+          "odds": "11/8",
+          "decimal_odds": 2.375,
+          "implied_probability": 42.11
+        }
+      },
+      "arb_sum": 1.057416,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.74
+    },
+    {
+      "type": "prop",
+      "fight": "Alex Pereira v Ciryl Gane",
+      "fight_key": "alex pereira v ciryl gane",
       "market": "Goes The Distance",
       "selections": {
         "Yes": {
           "bookmaker": "BetMGM",
-          "odds": "13/25",
-          "decimal_odds": 1.52,
-          "implied_probability": 65.79
+          "odds": "21/10",
+          "decimal_odds": 3.1,
+          "implied_probability": 32.26
         },
         "No": {
           "bookmaker": "BetMGM",
-          "odds": "29/20",
-          "decimal_odds": 2.45,
-          "implied_probability": 40.82
+          "odds": "7/20",
+          "decimal_odds": 1.35,
+          "implied_probability": 74.07
         }
       },
-      "arb_sum": 1.066058,
+      "arb_sum": 1.063321,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.61
+      "profit_margin_percent": -6.33
+    },
+    {
+      "type": "prop",
+      "fight": "Ilia Topuria v Justin Gaethje",
+      "fight_key": "ilia topuria v justin gaethje",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "BetMGM",
+          "odds": "23/5",
+          "decimal_odds": 5.6,
+          "implied_probability": 17.86
+        },
+        "No": {
+          "bookmaker": "BetMGM",
+          "odds": "2/15",
+          "decimal_odds": 1.133333,
+          "implied_probability": 88.24
+        }
+      },
+      "arb_sum": 1.060925,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.09
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "d1e8ff0d03f502811b1edc152b2e842f",
-      "commence_time": "2026-05-17T00:00:00Z",
-      "fight": "Junior dos Santos vs Robelis Despaigne",
-      "market": "Moneyline",
-      "fighters": {
-        "Junior dos Santos": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 4.6,
-          "implied_probability": 21.74
-        },
-        "Robelis Despaigne": {
-          "best_bookmaker": "William Hill",
-          "best_price": 1.29,
-          "implied_probability": 77.52
-        }
-      },
-      "arb_sum": 0.992585,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.74
-    }
-  ]
+  "arbitrage_opportunities": []
 }
