@@ -1,8 +1,8 @@
 {
   "source": "odds_json_plus_bookmaker_props",
   "total_moneyline_fights_checked": 22,
-  "total_prop_markets_checked": 14,
-  "total_prop_rows_loaded": 28,
+  "total_prop_markets_checked": 15,
+  "total_prop_rows_loaded": 30,
   "arbitrage_count": 0,
   "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
@@ -814,6 +814,29 @@
       "arb_sum": 1.060925,
       "is_arbitrage": false,
       "profit_margin_percent": -6.09
+    },
+    {
+      "type": "prop",
+      "fight": "Conor McGregor v Max Holloway",
+      "fight_key": "conor mcgregor v max holloway",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "BetMGM",
+          "odds": "11/5",
+          "decimal_odds": 3.2,
+          "implied_probability": 31.25
+        },
+        "No": {
+          "bookmaker": "BetMGM",
+          "odds": "33/100",
+          "decimal_odds": 1.33,
+          "implied_probability": 75.19
+        }
+      },
+      "arb_sum": 1.06438,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.44
     }
   ],
   "arbitrage_opportunities": []
