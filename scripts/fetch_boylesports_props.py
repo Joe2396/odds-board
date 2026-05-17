@@ -3,9 +3,8 @@ import time
 import json
 import re
 import os
-import requests
 from pathlib import Path
-from datetime import datetime, timezone, date
+from datetime import datetime, timezone, date, timedelta
 
 print("FETCHING BOYLESPORTS UFC PROPS")
 
@@ -65,15 +64,12 @@ def save_debug(page, label):
 # ─────────────────────────────────────────────
 
 def slugify_name(name):
-    """Convert fighter name to URL slug: 'Song Yadong' -> 'song-yadong'"""
     name = str(name or "").lower().strip()
     name = re.sub(r"[^a-z0-9 ]", "", name)
-    name = re.sub(r"\s+", "-", name).strip("-")
-    return name
+    return re.sub(r"\s+", "-", name).strip("-")
 
 
 def slugify_event(event_name):
-    """Convert event name to URL slug: 'UFC Fight Night: Song vs. Figueiredo' -> 'fights-ufc-fight-night-song-vs-figueiredo'"""
     name = str(event_name or "").lower().strip()
     name = re.sub(r"[^a-z0-9 ]", " ", name)
     name = re.sub(r"\s+", "-", name).strip("-")
@@ -87,15 +83,8 @@ def build_boylesports_url(event_name, fighter1, fighter2):
     return f"{BOYLESPORTS_BASE}/sports/ufc-mma/event/{event_slug}/{f1_slug}-v-{f2_slug}"
 
 
-def event_is_upcoming(event_date_str):
-    try:
-        event_date = datetime.strptime(str(event_date_str or "")[:10], "%Y-%m-%d").date()
-        return event_date > date.today()
-    except Exception:
-        return True
-
-
 def load_upcoming_fights():
+    """Load fights from all events within the next 30 days."""
     if not EVENTS_PATH.exists():
         print(f"ERROR: events.json not found at {EVENTS_PATH}")
         return []
@@ -104,52 +93,57 @@ def load_upcoming_fights():
         data = json.load(f)
 
     events = data if isinstance(data, list) else data.get("events", [])
-    upcoming = []
+    today = date.today()
+    cutoff = today + timedelta(days=30)
+
+    result = []
 
     for event in events:
-        event_date = event.get("date") or ""
+        event_date_str = event.get("date") or ""
         event_name = event.get("name") or ""
 
-        if not event_is_upcoming(event_date):
-            print(f"  Skipping past event: {event_name} ({event_date})")
+        try:
+            event_date = datetime.strptime(event_date_str[:10], "%Y-%m-%d").date()
+        except Exception:
+            continue
+
+        if event_date <= today:
+            print(f"  Skipping past event: {event_name} ({event_date_str})")
+            continue
+
+        if event_date > cutoff:
+            print(f"  Skipping future event (>30 days): {event_name} ({event_date_str})")
             continue
 
         fights = event.get("fights") or []
+        if not fights:
+            print(f"  No fights yet for: {event_name} ({event_date_str})")
+            continue
+
+        print(f"  Including event: {event_name} ({event_date_str}) - {len(fights)} fights")
+
         for fight in fights:
-            # Support red/blue format (from fetch_upcoming_events.py)
             red = fight.get("red") or {}
             blue = fight.get("blue") or {}
-            f1 = red.get("name") or fight.get("fighter1") or fight.get("fighter_1") or ""
-            f2 = blue.get("name") or fight.get("fighter2") or fight.get("fighter_2") or ""
+            f1 = red.get("name") or fight.get("fighter1") or ""
+            f2 = blue.get("name") or fight.get("fighter2") or ""
 
             if f1 and f2:
                 url = build_boylesports_url(event_name, f1, f2)
-                upcoming.append({
+                result.append({
                     "fighter1": f1.strip(),
                     "fighter2": f2.strip(),
                     "event_name": event_name,
-                    "date": event_date,
                     "fight_name": f"{f1} vs {f2}",
                     "url": url,
                 })
 
-    print(f"Upcoming fights from events.json: {len(upcoming)}")
-    return upcoming
-
-
-def verify_url(url):
-    """Quick HEAD request to check if URL exists before scraping."""
-    try:
-        resp = requests.head(url, timeout=10, headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }, allow_redirects=True)
-        return resp.status_code < 400
-    except Exception:
-        return True  # assume valid if check fails
+    print(f"Upcoming fights from events.json: {len(result)}")
+    return result
 
 
 # ─────────────────────────────────────────────
-# Page scraping (unchanged logic)
+# Page scraping
 # ─────────────────────────────────────────────
 
 def accept_cookies(page):
@@ -366,13 +360,13 @@ def scrape_fight(page, fight, index):
     print(f"{'='*50}")
 
     try:
-        page.goto(fight_url, timeout=60000, wait_until="domcontentloaded")
+        page.goto(fight_url, timeout=60000, wait_until="networkidle")
     except Exception as e:
         print(f"  Page load failed: {e}")
         return None
 
     print("  Waiting for page...")
-    time.sleep(10)
+    time.sleep(15)
     accept_cookies(page)
     time.sleep(2)
 
@@ -444,12 +438,7 @@ def upsert_fight(output, fight_data):
     output["fights"] = existing
 
 
-# ─────────────────────────────────────────────
-# Main
-# ─────────────────────────────────────────────
-
 def main():
-    # 1. Load upcoming fights from events.json and build URLs
     fights = load_upcoming_fights()
     if not fights:
         print("No upcoming fights found.")
@@ -457,7 +446,6 @@ def main():
         return
 
     print(f"\nFights to scrape: {len(fights)}")
-
     output = empty_output()
 
     with sync_playwright() as p:
@@ -470,7 +458,6 @@ def main():
                 "--disable-blink-features=AutomationControlled",
             ],
         )
-
         context = browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -481,7 +468,6 @@ def main():
             locale="en-IE",
             timezone_id="Europe/Dublin",
         )
-
         page = context.new_page()
 
         for index, fight in enumerate(fights, start=1):
@@ -499,7 +485,6 @@ def main():
 
         if not is_github_actions():
             input("\nDone. Press Enter to close browser...")
-
         browser.close()
 
     print(f"\nFinished. Saved to {OUT_PATH}")
