@@ -65,6 +65,7 @@ def accept_cookies(page):
         "button:has-text('Accept')",
         "button:has-text('I Accept')",
         "button:has-text('Got it')",
+        "button:has-text('Essential Only')",
     ]:
         try:
             page.locator(selector).first.click(timeout=3000, force=True)
@@ -75,19 +76,27 @@ def accept_cookies(page):
             pass
 
 
-def get_fight_urls(page):
-    """
-    Wait for fight links to appear on the hub page then extract them.
-    BoyleSports fight links contain /event/ in the path.
-    """
-    print("  Waiting for fight links to load...")
-
-    # Wait for at least one fight link to appear
+def get_fight_urls_from_hub(page):
+    """Load hub page and extract real fight URLs."""
+    print(f"Loading hub: {HUB_URL}")
     try:
-        page.wait_for_selector("a[href*='/event/']", timeout=30000)
-        print("  Fight links found in DOM")
-    except Exception:
-        print("  Timed out waiting for fight links")
+        page.goto(HUB_URL, timeout=60000, wait_until="domcontentloaded")
+    except Exception as e:
+        print(f"  Hub load failed: {e}")
+        return []
+
+    time.sleep(4)
+    accept_cookies(page)
+    time.sleep(2)
+
+    # Scroll to trigger lazy loading
+    for _ in range(6):
+        page.mouse.wheel(0, 1500)
+        time.sleep(0.8)
+    page.evaluate("window.scrollTo(0, 0)")
+    time.sleep(2)
+
+    save_debug(page, "boylesports_hub")
 
     blocked_terms = ["special", "boost", "mvp", "outright", "in-play", "competition"]
     blocked_exact = {
@@ -113,7 +122,7 @@ def get_fight_urls(page):
         print(f"  Link extraction failed: {e}")
         return []
 
-    seen_urls = set()
+    seen = set()
     fights = []
 
     for link in links:
@@ -126,23 +135,19 @@ def get_fight_urls(page):
             continue
         if "/event/" not in href:
             continue
-        if href in seen_urls:
+        if href in seen:
             continue
 
-        # Build fight name from URL slug
+        # Build fight name from slug
         slug = href.rstrip("/").split("/")[-1]
         fight_name = slug.replace("-v-", " vs ").replace("-", " ").title()
 
-        # Use link text if it looks like a fight name
-        if " v " in text.lower() or " vs " in text.lower():
-            fight_name = text
-
-        seen_urls.add(href)
+        seen.add(href)
         fights.append({"fight": fight_name, "url": href})
 
-    print(f"  Found {len(fights)} fight URLs")
+    print(f"Found {len(fights)} fight URLs from hub")
     for f in fights:
-        print(f"    - {f['fight']}: {f['url']}")
+        print(f"  - {f['fight']}")
     return fights
 
 
@@ -155,12 +160,8 @@ def get_body_text(page):
 
 def normalize_lines(text):
     junk_exact = {
-        "popular", "cash out", "all markets", "method of victory",
-        "method of result", "winning method", "rounds", "total rounds",
-        "go the distance?", "fight goes the distance", "to go distance",
-        "go the distance", "round betting", "show more", "show less",
-        "bet builder", "fight betting", "match betting",
-        "fight result", "show ufc stats", "hide ufc stats",
+        "popular", "cash out", "all markets",
+        "show more", "show less", "bet builder",
         "bet builder boost", "full t&cs", "close", "all competitions",
         "ufc and mma", "ufc", "mma", "in-play", "sports a-z",
         "safer gambling", "promotions", "casino",
@@ -223,15 +224,7 @@ def dedupe(results):
     return unique
 
 
-def parse_fight_betting(lines, fight_name):
-    fighters = []
-    for sep in [" vs ", " v "]:
-        if sep in fight_name.lower():
-            parts = re.split(sep, fight_name, flags=re.I)
-            fighters = [p.strip() for p in parts if p.strip()]
-            break
-    if len(fighters) != 2:
-        return []
+def parse_fight_betting(lines):
     section = find_section_last(
         lines,
         ["To Win Fight", "Fight Betting", "Match Betting", "Fight Result", "Bout Betting"],
@@ -246,14 +239,11 @@ def parse_fight_betting(lines, fight_name):
         sel = section[i].strip()
         odds = section[i + 1].strip()
         if not is_odds(sel) and is_odds(odds):
-            for fighter in fighters:
-                if fighter.lower() in sel.lower() or sel.lower() in fighter.lower():
-                    results.append({"selection": fighter, "odds": odds})
-                    break
+            results.append({"selection": sel, "odds": odds})
             i += 2
         else:
             i += 1
-    return dedupe(results)
+    return dedupe(results)[:2]
 
 
 def parse_method_of_victory(lines):
@@ -340,25 +330,19 @@ def scrape_fight(page, fight_name, fight_url, index):
     print(f"{'='*50}")
 
     try:
-        page.goto(fight_url, timeout=60000, wait_until="networkidle")
+        page.goto(fight_url, timeout=60000, wait_until="domcontentloaded")
     except Exception as e:
         print(f"  Page load failed: {e}")
         return None
 
-    # Wait for odds to appear
-    try:
-        page.wait_for_selector("text=To Win Fight", timeout=20000)
-        print("  Odds loaded")
-    except Exception:
-        print("  Odds not found, trying anyway...")
-
-    time.sleep(3)
+    print("  Waiting for page...")
+    time.sleep(8)
     accept_cookies(page)
-    time.sleep(1)
+    time.sleep(2)
 
     for _ in range(4):
         page.mouse.wheel(0, 1200)
-        time.sleep(0.5)
+        time.sleep(0.8)
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(1)
 
@@ -367,7 +351,7 @@ def scrape_fight(page, fight_name, fight_url, index):
 
     text = get_body_text(page)
     lines = normalize_lines(text)
-    fight_betting = parse_fight_betting(lines, fight_name)
+    fight_betting = parse_fight_betting(lines)
     print(f"  Fight Betting: {len(fight_betting)}")
 
     page.evaluate("window.scrollTo(0, 0)")
@@ -449,30 +433,14 @@ def main():
         )
         page = context.new_page()
 
-        # Step 1: Load hub page and get fight links
-        print(f"\nLoading hub: {HUB_URL}")
-        try:
-            page.goto(HUB_URL, timeout=60000, wait_until="networkidle")
-        except Exception as e:
-            print(f"  Hub load failed: {e}")
-            save_output(output)
-            browser.close()
-            return
-
-        accept_cookies(page)
-        time.sleep(2)
-
-        # Scroll to trigger lazy loading
-        for _ in range(6):
-            page.mouse.wheel(0, 1500)
-            time.sleep(0.8)
-
-        save_debug(page, "boylesports_hub")
-        fight_links = get_fight_urls(page)
+        # Step 1: Get real fight URLs from hub page
+        fight_links = get_fight_urls_from_hub(page)
 
         if not fight_links:
-            print("No fight URLs found.")
+            print("No fight URLs found on hub page.")
             save_output(output)
+            if not is_github_actions():
+                input("\nDone. Press Enter to close browser...")
             browser.close()
             return
 
