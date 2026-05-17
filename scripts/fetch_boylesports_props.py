@@ -3,19 +3,18 @@ import time
 import json
 import re
 import os
+import requests
 from pathlib import Path
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone, date
 
 print("FETCHING BOYLESPORTS UFC PROPS")
 
 ROOT = Path(__file__).resolve().parents[1]
+EVENTS_PATH = ROOT / "ufc" / "data" / "events.json"
 OUT_PATH = ROOT / "ufc" / "data" / "boylesports_props.json"
 DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
 
-HUB_URLS = [
-    "https://www.boylesports.com/sports/ufc-mma",
-    "https://www.boylesports.com/sports/ufc-mma/day",
-]
+BOYLESPORTS_BASE = "https://www.boylesports.com"
 
 
 def is_github_actions():
@@ -33,17 +32,6 @@ def is_odds(x):
         or bool(re.match(r"^\d+/\d+$", x))
         or bool(re.match(r"^\d+\.\d+$", x))
     )
-
-
-def fight_key(name):
-    text = str(name or "").lower()
-    text = re.sub(r"\s+(versus|vs\.?|v\.?)\s+", " v ", text)
-    text = re.sub(r"[^a-z0-9\s]", "", text)
-    text = re.sub(r"\s+", " ", text).strip()
-    if " v " in text:
-        left, right = text.split(" v ", 1)
-        return " v ".join(sorted([left.strip(), right.strip()]))
-    return text
 
 
 def empty_output():
@@ -72,6 +60,98 @@ def save_debug(page, label):
         pass
 
 
+# ─────────────────────────────────────────────
+# URL construction from events.json
+# ─────────────────────────────────────────────
+
+def slugify_name(name):
+    """Convert fighter name to URL slug: 'Song Yadong' -> 'song-yadong'"""
+    name = str(name or "").lower().strip()
+    name = re.sub(r"[^a-z0-9 ]", "", name)
+    name = re.sub(r"\s+", "-", name).strip("-")
+    return name
+
+
+def slugify_event(event_name):
+    """Convert event name to URL slug: 'UFC Fight Night: Song vs. Figueiredo' -> 'fights-ufc-fight-night-song-vs-figueiredo'"""
+    name = str(event_name or "").lower().strip()
+    name = re.sub(r"[^a-z0-9 ]", " ", name)
+    name = re.sub(r"\s+", "-", name).strip("-")
+    return f"fights-{name}"
+
+
+def build_boylesports_url(event_name, fighter1, fighter2):
+    event_slug = slugify_event(event_name)
+    f1_slug = slugify_name(fighter1)
+    f2_slug = slugify_name(fighter2)
+    return f"{BOYLESPORTS_BASE}/sports/ufc-mma/event/{event_slug}/{f1_slug}-v-{f2_slug}"
+
+
+def event_is_upcoming(event_date_str):
+    try:
+        event_date = datetime.strptime(str(event_date_str or "")[:10], "%Y-%m-%d").date()
+        return event_date > date.today()
+    except Exception:
+        return True
+
+
+def load_upcoming_fights():
+    if not EVENTS_PATH.exists():
+        print(f"ERROR: events.json not found at {EVENTS_PATH}")
+        return []
+
+    with open(EVENTS_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    events = data if isinstance(data, list) else data.get("events", [])
+    upcoming = []
+
+    for event in events:
+        event_date = event.get("date") or ""
+        event_name = event.get("name") or ""
+
+        if not event_is_upcoming(event_date):
+            print(f"  Skipping past event: {event_name} ({event_date})")
+            continue
+
+        fights = event.get("fights") or []
+        for fight in fights:
+            # Support red/blue format (from fetch_upcoming_events.py)
+            red = fight.get("red") or {}
+            blue = fight.get("blue") or {}
+            f1 = red.get("name") or fight.get("fighter1") or fight.get("fighter_1") or ""
+            f2 = blue.get("name") or fight.get("fighter2") or fight.get("fighter_2") or ""
+
+            if f1 and f2:
+                url = build_boylesports_url(event_name, f1, f2)
+                upcoming.append({
+                    "fighter1": f1.strip(),
+                    "fighter2": f2.strip(),
+                    "event_name": event_name,
+                    "date": event_date,
+                    "fight_name": f"{f1} vs {f2}",
+                    "url": url,
+                })
+
+    print(f"Upcoming fights from events.json: {len(upcoming)}")
+    return upcoming
+
+
+def verify_url(url):
+    """Quick HEAD request to check if URL exists before scraping."""
+    try:
+        resp = requests.head(url, timeout=10, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }, allow_redirects=True)
+        return resp.status_code < 400
+    except Exception:
+        return True  # assume valid if check fails
+
+
+# ─────────────────────────────────────────────
+# Page scraping (unchanged logic)
+# ─────────────────────────────────────────────
+
 def accept_cookies(page):
     for selector in [
         "#onetrust-accept-btn-handler",
@@ -87,82 +167,6 @@ def accept_cookies(page):
             return
         except Exception:
             pass
-
-
-def get_fight_urls(page):
-    print("  Extracting fight URLs...")
-
-    blocked_terms = ["special", "boost", "mvp", "outright", "in-play", "competition"]
-    blocked_exact = {
-        "https://www.boylesports.com/sports/ufc-mma",
-        "https://www.boylesports.com/sports/ufc-mma/day",
-        "https://www.boylesports.com/sports/ufc-mma/in-play",
-    }
-
-    try:
-        links = page.evaluate("""
-            () => {
-                const results = [];
-                document.querySelectorAll('a[href*="ufc-mma"]').forEach(a => {
-                    results.push({
-                        href: a.href,
-                        text: (a.innerText || a.textContent || '').trim()
-                    });
-                });
-                return results;
-            }
-        """)
-    except Exception as e:
-        print(f"  Link extraction failed: {e}")
-        try:
-            content = page.content()
-            matches = re.findall(r'href="(/sports/ufc-mma/[^"]+)"', content)
-            links = [{"href": f"https://www.boylesports.com{m}", "text": ""} for m in matches]
-        except Exception:
-            links = []
-
-    seen_urls = set()
-    seen_keys = set()
-    fights = []
-
-    for link in links:
-        href = str(link.get("href", "")).split("?")[0].rstrip("/")
-        text = str(link.get("text", "")).strip()
-
-        if not href or href in blocked_exact:
-            continue
-        if any(t in href.lower() for t in blocked_terms):
-            continue
-        if "/sports/ufc-mma/" not in href:
-            continue
-        if href in seen_urls:
-            continue
-
-        slug = href.rstrip("/").split("/")[-1]
-        slug = slug.replace("-v-", " v ").replace("-vs-", " v ").replace("-", " ")
-        name_from_url = slug.title()
-
-        name_from_text = re.sub(r"\s+", " ", text.replace("\n", " ")).strip()
-        if " v " not in name_from_text.lower() and " vs " not in name_from_text.lower():
-            name_from_text = ""
-
-        fight_name = name_from_text or name_from_url
-        fkey = fight_key(fight_name)
-
-        if not fkey or " v " not in fkey:
-            continue
-
-        if fkey in seen_keys:
-            continue
-
-        seen_urls.add(href)
-        seen_keys.add(fkey)
-        fights.append({"fight": fight_name, "url": href})
-
-    print(f"  Found {len(fights)} fight URLs")
-    for f in fights:
-        print(f"    - {f['fight']}")
-    return fights
 
 
 def get_body_text(page):
@@ -191,7 +195,6 @@ def normalize_lines(text):
         "back to fight card", "matchup", "tape", "significant strikes",
         "grappling", "previous fights", "ufc wins by",
     ]
-
     lines = []
     for line in str(text or "").splitlines():
         line = line.strip()
@@ -250,10 +253,8 @@ def parse_fight_betting(lines, fight_name):
             parts = re.split(sep, fight_name, flags=re.I)
             fighters = [p.strip() for p in parts if p.strip()]
             break
-
     if len(fighters) != 2:
         return []
-
     section = find_section_last(
         lines,
         ["To Win Fight", "Fight Betting", "Match Betting", "Fight Result", "Bout Betting"],
@@ -262,7 +263,6 @@ def parse_fight_betting(lines, fight_name):
     )
     if not section:
         section = lines[:60]
-
     results = []
     i = 0
     while i < len(section) - 1:
@@ -276,7 +276,6 @@ def parse_fight_betting(lines, fight_name):
             i += 2
         else:
             i += 1
-
     return dedupe(results)
 
 
@@ -357,7 +356,10 @@ def click_tab(page, tab_name):
     return False
 
 
-def scrape_fight(page, fight_name, fight_url, index):
+def scrape_fight(page, fight, index):
+    fight_name = fight["fight_name"]
+    fight_url = fight["url"]
+
     print(f"\n{'='*50}")
     print(f"[{index}] {fight_name}")
     print(f"URL: {fight_url}")
@@ -380,7 +382,8 @@ def scrape_fight(page, fight_name, fight_url, index):
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(1)
 
-    save_debug(page, f"boylesports_{index}_initial")
+    safe_label = re.sub(r"[^a-zA-Z0-9]+", "_", fight_name).strip("_").lower()
+    save_debug(page, f"boylesports_{index}_{safe_label}")
 
     text = get_body_text(page)
     lines = normalize_lines(text)
@@ -433,18 +436,28 @@ def scrape_fight(page, fight_name, fight_url, index):
 def upsert_fight(output, fight_data):
     existing = output.get("fights", [])
     url = fight_data.get("url")
-    updated = False
     for i, item in enumerate(existing):
         if item.get("url") == url:
             existing[i] = fight_data
-            updated = True
-            break
-    if not updated:
-        existing.append(fight_data)
+            return
+    existing.append(fight_data)
     output["fights"] = existing
 
 
+# ─────────────────────────────────────────────
+# Main
+# ─────────────────────────────────────────────
+
 def main():
+    # 1. Load upcoming fights from events.json and build URLs
+    fights = load_upcoming_fights()
+    if not fights:
+        print("No upcoming fights found.")
+        save_output(empty_output())
+        return
+
+    print(f"\nFights to scrape: {len(fights)}")
+
     output = empty_output()
 
     with sync_playwright() as p:
@@ -462,7 +475,7 @@ def main():
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/147.0.0.0 Safari/537.36"
+                "Chrome/124.0.0.0 Safari/537.36"
             ),
             viewport={"width": 1400, "height": 900},
             locale="en-IE",
@@ -471,50 +484,15 @@ def main():
 
         page = context.new_page()
 
-        fight_links = []
-        for hub_url in HUB_URLS:
-            print(f"\nLoading hub: {hub_url}")
+        for index, fight in enumerate(fights, start=1):
+            print(f"\nProgress: {index}/{len(fights)}")
             try:
-                page.goto(hub_url, timeout=60000, wait_until="domcontentloaded")
-                time.sleep(10)
-                accept_cookies(page)
-                time.sleep(2)
-                for _ in range(6):
-                    page.mouse.wheel(0, 1500)
-                    time.sleep(0.8)
-                save_debug(page, f"boylesports_hub_{hub_url.split('/')[-1]}")
-                links = get_fight_urls(page)
-                fight_links.extend(links)
-            except Exception as e:
-                print(f"  Hub failed: {e}")
-
-        seen = set()
-        unique_links = []
-        for f in fight_links:
-            if f["url"] not in seen:
-                seen.add(f["url"])
-                unique_links.append(f)
-        fight_links = unique_links
-
-        if not fight_links:
-            print("No fight URLs found.")
-            save_output(output)
-            if not is_github_actions():
-                input("\nDone. Press Enter to close browser...")
-            browser.close()
-            return
-
-        print(f"\nFound {len(fight_links)} fights to scrape")
-
-        for index, fight in enumerate(fight_links, start=1):
-            print(f"\nProgress: {index}/{len(fight_links)}")
-            try:
-                fight_data = scrape_fight(page, fight["fight"], fight["url"], index)
+                fight_data = scrape_fight(page, fight, index)
                 if fight_data:
                     upsert_fight(output, fight_data)
                     save_output(output)
             except Exception as e:
-                print(f"ERROR: {e}")
+                print(f"ERROR on {fight.get('fight_name')}: {e}")
                 import traceback
                 traceback.print_exc()
                 save_output(output)
