@@ -38,18 +38,18 @@
       "fighters": {
         "Jaqueline Amorim": {
           "best_bookmaker": "888sport",
-          "best_price": 2.0,
-          "implied_probability": 50.0
+          "best_price": 2.1,
+          "implied_probability": 47.62
         },
         "Loma Lookboonmee": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.95,
-          "implied_probability": 51.28
+          "best_bookmaker": "Betway",
+          "best_price": 1.91,
+          "implied_probability": 52.36
         }
       },
-      "arb_sum": 1.012821,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.28
+      "arb_sum": 0.999751,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.02
     },
     {
       "type": "moneyline",
@@ -522,8 +522,8 @@
       "fighters": {
         "Conor McGregor": {
           "best_bookmaker": "Virgin Bet",
-          "best_price": 4.75,
-          "implied_probability": 21.05
+          "best_price": 4.3,
+          "implied_probability": 23.26
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
@@ -531,9 +531,9 @@
           "implied_probability": 78.74
         }
       },
-      "arb_sum": 0.997928,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.21
+      "arb_sum": 1.01996,
+      "is_arbitrage": false,
+      "profit_margin_percent": -2.0
     }
   ],
   "prop_markets": [
@@ -886,6 +886,28 @@
   "arbitrage_opportunities": [
     {
       "type": "moneyline",
+      "event_id": "cbab69c179be988e710daca0234cc2d7",
+      "commence_time": "2026-05-30T08:00:00Z",
+      "fight": "Jaqueline Amorim vs Loma Lookboonmee",
+      "market": "Moneyline",
+      "fighters": {
+        "Jaqueline Amorim": {
+          "best_bookmaker": "888sport",
+          "best_price": 2.1,
+          "implied_probability": 47.62
+        },
+        "Loma Lookboonmee": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.91,
+          "implied_probability": 52.36
+        }
+      },
+      "arb_sum": 0.999751,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.02
+    },
+    {
+      "type": "moneyline",
       "event_id": "a4776337215e434e60d95be6d087e953",
       "commence_time": "2026-05-30T11:00:00Z",
       "fight": "Deiveson Figueiredo vs Song Yadong",
@@ -905,28 +927,6 @@
       "arb_sum": 0.996078,
       "is_arbitrage": true,
       "profit_margin_percent": 0.39
-    },
-    {
-      "type": "moneyline",
-      "event_id": "2c982ef7f30e521915fb0c82ffdaf4ba",
-      "commence_time": "2026-07-12T04:00:00Z",
-      "fight": "Conor McGregor vs Max Holloway",
-      "market": "Moneyline",
-      "fighters": {
-        "Conor McGregor": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 4.75,
-          "implied_probability": 21.05
-        },
-        "Max Holloway": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.27,
-          "implied_probability": 78.74
-        }
-      },
-      "arb_sum": 0.997928,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.21
     }
   ]
 }
