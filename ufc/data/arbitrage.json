@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 30,
-  "arbitrage_count": 2,
-  "moneyline_arbitrage_count": 2,
+  "arbitrage_count": 1,
+  "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -521,19 +521,19 @@
       "market": "Moneyline",
       "fighters": {
         "Conor McGregor": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 4.75,
-          "implied_probability": 21.05
+          "best_bookmaker": "Matchbook",
+          "best_price": 4.4,
+          "implied_probability": 22.73
         },
         "Max Holloway": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.28,
-          "implied_probability": 78.12
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.27,
+          "implied_probability": 78.74
         }
       },
-      "arb_sum": 0.991776,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.82
+      "arb_sum": 1.014674,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.47
     }
   ],
   "prop_markets": [
@@ -905,28 +905,6 @@
       "arb_sum": 0.996078,
       "is_arbitrage": true,
       "profit_margin_percent": 0.39
-    },
-    {
-      "type": "moneyline",
-      "event_id": "2c982ef7f30e521915fb0c82ffdaf4ba",
-      "commence_time": "2026-07-12T04:00:00Z",
-      "fight": "Conor McGregor vs Max Holloway",
-      "market": "Moneyline",
-      "fighters": {
-        "Conor McGregor": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 4.75,
-          "implied_probability": 21.05
-        },
-        "Max Holloway": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.28,
-          "implied_probability": 78.12
-        }
-      },
-      "arb_sum": 0.991776,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.82
     }
   ]
 }
