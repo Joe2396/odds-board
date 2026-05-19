@@ -1,6 +1,6 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 24,
+  "total_moneyline_fights_checked": 23,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 36,
   "arbitrage_count": 1,
@@ -59,19 +59,19 @@
       "market": "Moneyline",
       "fighters": {
         "Jesus Santos Aguilar": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 3.5,
-          "implied_probability": 28.57
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 3.75,
+          "implied_probability": 26.67
         },
         "Rei Tsuruya": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.33,
-          "implied_probability": 75.19
+          "best_bookmaker": "Betway",
+          "best_price": 1.3,
+          "implied_probability": 76.92
         }
       },
-      "arb_sum": 1.037594,
+      "arb_sum": 1.035897,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.76
+      "profit_margin_percent": -3.59
     },
     {
       "type": "moneyline",
@@ -109,13 +109,13 @@
         },
         "Yi Sak Lee": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.25,
-          "implied_probability": 44.44
+          "best_price": 2.3,
+          "implied_probability": 43.48
         }
       },
-      "arb_sum": 1.043247,
+      "arb_sum": 1.033585,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.32
+      "profit_margin_percent": -3.36
     },
     {
       "type": "moneyline",
@@ -138,28 +138,6 @@
       "arb_sum": 1.035897,
       "is_arbitrage": false,
       "profit_margin_percent": -3.59
-    },
-    {
-      "type": "moneyline",
-      "event_id": "7ba015886a163ee334a3c9b34c706621",
-      "commence_time": "2026-05-30T10:00:00Z",
-      "fight": "Jake Matthews vs Muslim Salikhov",
-      "market": "Moneyline",
-      "fighters": {
-        "Jake Matthews": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.95,
-          "implied_probability": 51.28
-        },
-        "Muslim Salikhov": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.8,
-          "implied_probability": 55.56
-        }
-      },
-      "arb_sum": 1.068376,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.84
     },
     {
       "type": "moneyline",
@@ -521,7 +499,7 @@
       "market": "Moneyline",
       "fighters": {
         "Conor McGregor": {
-          "best_bookmaker": "Matchbook",
+          "best_bookmaker": "Betfair",
           "best_price": 4.3,
           "implied_probability": 23.26
         },
