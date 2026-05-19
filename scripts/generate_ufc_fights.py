@@ -1,14 +1,8 @@
-# FULL UPDATED SCRIPT
-# Changes:
-#   - PaddyPower props stay in ufc/data/props.json
-#   - PaddyPower moneylines now load separately from ufc/data/paddypower_moneylines.json
-#   - Moneylines from paddypower_moneylines.json render in Bookmaker Props as Fight Betting
-#   - Fight Betting is still excluded from Best Prop Odds comparison
-#   - OddsAPI remains main Best Odds moneyline source
-#   - Props are protected from being overwritten by moneyline scraping
+#!/usr/bin/env python3
 
 import json
 import re
+import unicodedata
 from pathlib import Path
 from datetime import datetime
 
@@ -18,13 +12,11 @@ EVENTS_JSON = ROOT / "ufc" / "data" / "events.json"
 FIGHTERS_JSON = ROOT / "ufc" / "data" / "fighters.json"
 ODDS_JSON = ROOT / "ufc" / "data" / "odds.json"
 
-PADDYPOWER_MONEYLINES_JSON = ROOT / "ufc" / "data" / "paddypower_moneylines.json"
-
 PROP_FILES = [
     ("PaddyPower", ROOT / "ufc" / "data" / "props.json"),
     ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props.json"),
     ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props.json"),
-   ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
+    ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
     ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
 ]
 
@@ -33,6 +25,7 @@ BASE_PATH = "/odds-board/ufc"
 
 OUTLIER_THRESHOLD_PERCENT = 10
 MIN_VALID_PRICE = 1.06
+DEBUG_PROP_MATCHING = True
 
 
 def html_escape(s):
@@ -61,37 +54,61 @@ def slugify(name):
     return name.strip("-")
 
 
-def norm_name(name):
-    return (
-        str(name or "")
-        .lower()
-        .replace(" vs ", " v ")
-        .replace(" versus ", " v ")
-        .replace("–", "-")
-        .replace("—", "-")
-        .replace("-", " ")
-        .strip()
-    )
+def normalize_person_name(name):
+    text = unicodedata.normalize("NFKD", str(name or ""))
+    text = text.encode("ascii", "ignore").decode("ascii")
+    text = text.lower()
+    text = text.replace("'", "")
+    text = text.replace("’", "")
+    text = text.replace(".", "")
+    text = text.replace("-", " ")
+    text = re.sub(r"\([^)]*\)", " ", text)
+    text = re.sub(r'"[^"]*"', " ", text)
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
 
 def fight_key(name):
-    text = str(name or "").lower()
+    text = unicodedata.normalize("NFKD", str(name or ""))
+    text = text.encode("ascii", "ignore").decode("ascii")
+    text = text.lower()
 
     text = text.replace(" versus ", " v ")
+    text = text.replace(" vs. ", " v ")
     text = text.replace(" vs ", " v ")
+    text = text.replace(" v. ", " v ")
     text = text.replace("–", " ")
     text = text.replace("—", " ")
-    text = text.replace("-", " ")
 
-    text = re.sub(r"[^a-z0-9\s]", "", text)
+    text = re.sub(r"\bversus\b", " v ", text)
+    text = re.sub(r"\bvs\b", " v ", text)
     text = re.sub(r"\s+", " ", text).strip()
 
     if " v " in text:
         left, right = text.split(" v ", 1)
-        fighters = sorted([left.strip(), right.strip()])
+        left = normalize_person_name(left)
+        right = normalize_person_name(right)
+        fighters = sorted([left, right])
         return " v ".join(fighters)
 
-    return text
+    return normalize_person_name(text)
+
+
+def loose_fight_tokens(name):
+    key = fight_key(name)
+    return set(re.findall(r"[a-z0-9]+", key))
+
+
+def keys_probably_match(event_name, prop_name):
+    event_tokens = loose_fight_tokens(event_name)
+    prop_tokens = loose_fight_tokens(prop_name)
+
+    if not event_tokens or not prop_tokens:
+        return False
+
+    shared = event_tokens.intersection(prop_tokens)
+    return len(shared) >= 3
 
 
 def fractional_to_decimal(value):
@@ -145,14 +162,14 @@ def selection_key(selection):
 def canonical_market_label(label):
     text = str(label or "").lower()
 
+    if "fight betting" in text or text == "fight_betting":
+        return "Fight Betting"
     if "method" in text:
         return "Method of Victory"
     if "round" in text:
         return "Rounds"
     if "distance" in text:
         return "Go The Distance?"
-    if "fight betting" in text:
-        return "Fight Betting"
 
     return label or "Props"
 
@@ -187,9 +204,10 @@ def load_all_props():
         if not key:
             return
 
+        item = dict(item)
+        item["match_key"] = key
         props_by_key.setdefault(key, []).append(item)
 
-    # Normal prop files
     for default_bookmaker, path in PROP_FILES:
         data = load_json(path, {"fights": [], "props": []})
 
@@ -203,6 +221,30 @@ def load_all_props():
             item = dict(fight)
             item["bookmaker"] = bookmaker
             item["fight_name"] = name
+
+            markets = item.get("markets")
+            if not isinstance(markets, dict):
+                markets = {}
+
+            normalized_markets = {}
+
+            if markets.get("fight_betting"):
+                normalized_markets["fight_betting"] = markets.get("fight_betting") or []
+
+            if markets.get("method_of_victory"):
+                normalized_markets["method_of_victory"] = markets.get("method_of_victory") or []
+
+            if markets.get("total_rounds"):
+                normalized_markets["total_rounds"] = markets.get("total_rounds") or []
+
+            if markets.get("rounds"):
+                normalized_markets["rounds"] = markets.get("rounds") or []
+
+            if markets.get("go_the_distance"):
+                normalized_markets["go_the_distance"] = markets.get("go_the_distance") or []
+
+            if normalized_markets:
+                item["markets"] = normalized_markets
 
             add_item(name, item)
 
@@ -224,9 +266,15 @@ def load_all_props():
                     "bookmaker": bookmaker,
                     "fight_name": name,
                     "url": prop.get("url") or "#",
-                    "distance_props": [],
-                    "round_props": [],
+                    "markets": {
+                        "fight_betting": [],
+                        "method_of_victory": [],
+                        "total_rounds": [],
+                        "go_the_distance": [],
+                    },
                     "method_props": [],
+                    "round_props": [],
+                    "distance_props": [],
                 },
             )
 
@@ -239,41 +287,20 @@ def load_all_props():
 
             row = {"selection": selection, "odds": odds}
 
-            if "distance" in market:
+            if "fight betting" in market or "moneyline" in market or "winner" in market:
+                grouped[key]["markets"]["fight_betting"].append(row)
+            elif "distance" in market:
+                grouped[key]["markets"]["go_the_distance"].append(row)
                 grouped[key]["distance_props"].append(row)
             elif "round" in market:
+                grouped[key]["markets"]["total_rounds"].append(row)
                 grouped[key]["round_props"].append(row)
             elif "method" in market:
+                grouped[key]["markets"]["method_of_victory"].append(row)
                 grouped[key]["method_props"].append(row)
 
         for item in grouped.values():
             add_item(item.get("fight_name"), item)
-
-    # Separate PaddyPower moneyline file
-    moneyline_data = load_json(PADDYPOWER_MONEYLINES_JSON, {"fights": []})
-
-    for fight in moneyline_data.get("fights", []) or []:
-        name = fight.get("fight") or fight.get("fight_name") or fight.get("name") or ""
-        markets = fight.get("markets") or {}
-        fight_betting = markets.get("fight_betting") or []
-
-        if not name or not fight_betting:
-            continue
-
-        item = {
-            "bookmaker": "PaddyPower",
-            "fight_name": name,
-            "url": fight.get("url") or "#",
-            "has_props": True,
-            "markets": {
-                "fight_betting": fight_betting,
-                "method_of_victory": [],
-                "total_rounds": [],
-                "go_the_distance": [],
-            },
-        }
-
-        add_item(name, item)
 
     return props_by_key
 
@@ -749,9 +776,9 @@ def collect_prop_rows(prop_items):
                     }
                 )
 
-        # Fight Betting intentionally excluded here.
-        # It renders in Bookmaker Props, but not in Best Prop Odds.
         if isinstance(markets, dict):
+            # Fight Betting renders in Bookmaker Props, but stays out of Best Prop Odds
+            # because OddsAPI remains the main clean moneyline source.
             add_rows("Method of Victory", markets.get("method_of_victory"))
             add_rows("Rounds", markets.get("rounds") or markets.get("total_rounds"))
             add_rows("Go The Distance?", markets.get("go_the_distance"))
@@ -1218,6 +1245,33 @@ def fighter_panel(fighter, odds_event, corner_label):
     """
 
 
+def get_matched_props(red_name, blue_name, props_by_key):
+    title_a = f"{red_name} v {blue_name}"
+    title_b = f"{blue_name} v {red_name}"
+
+    key_a = fight_key(title_a)
+    key_b = fight_key(title_b)
+
+    props = props_by_key.get(key_a) or props_by_key.get(key_b) or []
+
+    if props:
+        return props, key_a, key_b, "exact"
+
+    loose_matches = []
+
+    for key, items in props_by_key.items():
+        for item in items:
+            prop_name = item.get("fight_name") or item.get("fight") or item.get("name") or key
+            if keys_probably_match(title_a, prop_name):
+                loose_matches.extend(items)
+                break
+
+    if loose_matches:
+        return loose_matches, key_a, key_b, "loose"
+
+    return [], key_a, key_b, "none"
+
+
 def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, props_by_key):
     event_slug = event.get("slug", "")
     event_name = html_escape(event.get("name", "Event"))
@@ -1231,14 +1285,21 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
     odds_event = find_odds_event(red_name, blue_name, odds_events)
 
     title = f"{red_name} vs {blue_name}"
-    prop_lookup_title = f"{red_name} v {blue_name}"
-    reverse_prop_lookup_title = f"{blue_name} v {red_name}"
 
-    props = (
-        props_by_key.get(fight_key(prop_lookup_title))
-        or props_by_key.get(fight_key(reverse_prop_lookup_title))
-        or []
-    )
+    props, lookup_a, lookup_b, match_type = get_matched_props(red_name, blue_name, props_by_key)
+
+    if DEBUG_PROP_MATCHING:
+        print("")
+        print("DEBUG PROP MATCH")
+        print(f"EVENT: {title}")
+        print(f"KEY A: {lookup_a}")
+        print(f"KEY B: {lookup_b}")
+        print(f"MATCH TYPE: {match_type}")
+        print(f"MATCHED PROP BOOKS: {len(props)}")
+        if not props:
+            print("NO MATCH. SAMPLE AVAILABLE PROP KEYS:")
+            for k in list(props_by_key.keys())[:25]:
+                print(f" - {k}")
 
     value_rows = get_best_prop_rows_with_value(props)
     outlier_count = len([r for r in value_rows if r.get("is_outlier")])
@@ -2100,6 +2161,16 @@ def main():
     fighters_by_slug = load_fighter_details()
     odds_events = load_odds()
     props_by_key = load_all_props()
+
+    print(f"✅ Loaded {len(events)} events")
+    print(f"✅ Loaded {len(odds_events)} OddsAPI moneyline events")
+    print(f"✅ Loaded {len(props_by_key)} unique prop fight keys")
+
+    if DEBUG_PROP_MATCHING:
+        print("")
+        print("PROP KEYS LOADED:")
+        for key in list(props_by_key.keys())[:40]:
+            print(f" - {key}")
 
     FIGHTS_DIR.mkdir(parents=True, exist_ok=True)
 
