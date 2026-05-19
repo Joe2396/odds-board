@@ -420,6 +420,27 @@
       background: rgba(96,165,250,0.22);
     }
 
+    .tracker-link-btn {
+      border: 1px solid rgba(34,197,94,0.45);
+      background: rgba(34,197,94,0.12);
+      color: #86efac;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tracker-link-btn:hover {
+      background: rgba(34,197,94,0.22);
+      text-decoration: none;
+    }
+
     .summary-strip {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -1178,7 +1199,7 @@
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 401871106 • Generated: 2026-05-19 09:55 UTC</p>
+      <p class="muted">Fight ID: 401871106 • Generated: 2026-05-19 18:27 UTC</p>
     </div>
   </main>
 
@@ -1302,6 +1323,56 @@
         }
       });
     });
+
+
+
+    function addBetTrackerLinks() {
+      const fightTitle = document.querySelector("h1")?.textContent?.trim() || "";
+
+      document.querySelectorAll(".ev-load-btn").forEach(btn => {
+        if (btn.parentElement.querySelector(".tracker-link-btn")) return;
+
+        const row = btn.closest(".best-row");
+        const market = row?.closest(".best-market")?.querySelector("h3")?.textContent?.trim() || "";
+        const selection = btn.dataset.selection || "";
+        const bookmaker = btn.dataset.bookmaker || "";
+        const oddsText = row?.querySelector(".best-price")?.textContent?.replace("⭐", "")?.trim() || btn.dataset.odds || "";
+
+        const params = new URLSearchParams({
+          sport: "UFC",
+          event: fightTitle,
+          market: market,
+          selection: selection,
+          bookmaker: bookmaker,
+          odds: oddsText
+        });
+
+        const trackerBase = window.location.protocol === "file:"
+          ? "../../tracker/index.html"
+          : "/odds-board/ufc/tracker/";
+
+        const link = document.createElement("a");
+        link.className = "tracker-link-btn";
+        link.href = trackerBase + "?" + params.toString();
+        link.textContent = "Add to Bet Tracker →";
+        link.style.border = "1px solid rgba(34,197,94,0.45)";
+        link.style.background = "rgba(34,197,94,0.12)";
+        link.style.color = "#86efac";
+        link.style.borderRadius = "10px";
+        link.style.padding = "6px 10px";
+        link.style.fontSize = "12px";
+        link.style.fontWeight = "700";
+        link.style.textDecoration = "none";
+        link.style.whiteSpace = "nowrap";
+        link.style.display = "inline-flex";
+        link.style.alignItems = "center";
+        link.style.justifyContent = "center";
+
+        btn.parentElement.appendChild(link);
+      });
+    }
+
+    addBetTrackerLinks();
 
     document.addEventListener("input", updateEV);
     updateEV();

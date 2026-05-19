@@ -5,6 +5,7 @@ import re
 import unicodedata
 from pathlib import Path
 from datetime import datetime
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,6 +44,26 @@ def html_escape(s):
 
 def attr_escape(s):
     return html_escape(s).replace("\n", " ").replace("\r", " ")
+
+
+def url_quote(s):
+    return quote(str(s or ""), safe="")
+
+
+def url_param(s):
+    return quote(str(s or ""), safe="")
+
+
+def build_tracker_href(sport, event_name, market, selection, bookmaker, odds):
+    return (
+        f"{BASE_PATH}/tracker/"
+        f"?sport={url_param(sport)}"
+        f"&event={url_param(event_name)}"
+        f"&market={url_param(market)}"
+        f"&selection={url_param(selection)}"
+        f"&bookmaker={url_param(bookmaker)}"
+        f"&odds={url_param(odds)}"
+    )
 
 
 def slugify(name):
@@ -639,7 +660,7 @@ def render_moneyline_comparison(red_name, blue_name, odds_event):
 
 def render_best_odds_tab(red_name, blue_name, odds_event, props):
     moneyline_html = render_moneyline_comparison(red_name, blue_name, odds_event)
-    props_html = render_best_prop_odds(props)
+    props_html = render_best_prop_odds(props, red_name, blue_name)
 
     return f"""
       {moneyline_html}
@@ -847,7 +868,7 @@ def render_value_badge(row):
     """
 
 
-def render_best_prop_odds(prop_items):
+def render_best_prop_odds(prop_items, red_name="", blue_name=""):
     ordered = get_best_prop_rows_with_value(prop_items)
 
     if not ordered:
@@ -862,6 +883,8 @@ def render_best_prop_odds(prop_items):
         </div>
       </section>
         """
+
+    fight_title = f"{red_name} vs {blue_name}".strip(" vs ")
 
     ordered = sorted(
         ordered,
@@ -888,6 +911,14 @@ def render_best_prop_odds(prop_items):
 
         for row in items[:40]:
             outlier_class = " outlier-row" if row.get("is_outlier") else ""
+            tracker_href = build_tracker_href(
+                "UFC",
+                fight_title,
+                row["market"],
+                row["selection"],
+                row["bookmaker"],
+                row["odds"],
+            )
 
             market_html += f"""
             <div class="best-row{outlier_class}">
@@ -899,6 +930,7 @@ def render_best_prop_odds(prop_items):
 
               <div class="best-right">
                 <div class="best-price">⭐ {html_escape(row["odds"])}</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -908,6 +940,13 @@ def render_best_prop_odds(prop_items):
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="{html_escape(tracker_href)}"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             """
@@ -1740,6 +1779,27 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       background: rgba(96,165,250,0.22);
     }}
 
+    .tracker-link-btn {{
+      border: 1px solid rgba(34,197,94,0.45);
+      background: rgba(34,197,94,0.12);
+      color: #86efac;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }}
+
+    .tracker-link-btn:hover {{
+      background: rgba(34,197,94,0.22);
+      text-decoration: none;
+    }}
+
     .summary-strip {{
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -2147,6 +2207,56 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
         }}
       }});
     }});
+
+
+
+    function addBetTrackerLinks() {{
+      const fightTitle = document.querySelector("h1")?.textContent?.trim() || "";
+
+      document.querySelectorAll(".ev-load-btn").forEach(btn => {{
+        if (btn.parentElement.querySelector(".tracker-link-btn")) return;
+
+        const row = btn.closest(".best-row");
+        const market = row?.closest(".best-market")?.querySelector("h3")?.textContent?.trim() || "";
+        const selection = btn.dataset.selection || "";
+        const bookmaker = btn.dataset.bookmaker || "";
+        const oddsText = row?.querySelector(".best-price")?.textContent?.replace("⭐", "")?.trim() || btn.dataset.odds || "";
+
+        const params = new URLSearchParams({{
+          sport: "UFC",
+          event: fightTitle,
+          market: market,
+          selection: selection,
+          bookmaker: bookmaker,
+          odds: oddsText
+        }});
+
+        const trackerBase = window.location.protocol === "file:"
+          ? "../../tracker/index.html"
+          : "/odds-board/ufc/tracker/";
+
+        const link = document.createElement("a");
+        link.className = "tracker-link-btn";
+        link.href = trackerBase + "?" + params.toString();
+        link.textContent = "Add to Bet Tracker →";
+        link.style.border = "1px solid rgba(34,197,94,0.45)";
+        link.style.background = "rgba(34,197,94,0.12)";
+        link.style.color = "#86efac";
+        link.style.borderRadius = "10px";
+        link.style.padding = "6px 10px";
+        link.style.fontSize = "12px";
+        link.style.fontWeight = "700";
+        link.style.textDecoration = "none";
+        link.style.whiteSpace = "nowrap";
+        link.style.display = "inline-flex";
+        link.style.alignItems = "center";
+        link.style.justifyContent = "center";
+
+        btn.parentElement.appendChild(link);
+      }});
+    }}
+
+    addBetTrackerLinks();
 
     document.addEventListener("input", updateEV);
     updateEV();
