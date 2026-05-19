@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-19T06:34:29.660810+00:00",
-  "total_arbitrage": 2,
+  "updated_at": "2026-05-19T09:55:28.373323+00:00",
+  "total_arbitrage": 1,
   "arbitrage": [
     {
       "sport": "UFC",
@@ -24,32 +24,6 @@
           "odds": 1.91,
           "decimal_odds": 1.91,
           "implied_probability": 52.36
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "type": "moneyline",
-      "event": "Deiveson Figueiredo vs Song Yadong",
-      "market": "Moneyline",
-      "commence_time": "2026-05-30T11:00:00Z",
-      "profit_margin_percent": 0.39,
-      "arb_sum": 0.996078,
-      "bookmakers": [
-        {
-          "selection": "Deiveson Figueiredo",
-          "bookmaker": "888sport",
-          "odds": 5.1,
-          "decimal_odds": 5.1,
-          "implied_probability": 19.61
-        },
-        {
-          "selection": "Song Yadong",
-          "bookmaker": "Betway",
-          "odds": 1.25,
-          "decimal_odds": 1.25,
-          "implied_probability": 80.0
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
