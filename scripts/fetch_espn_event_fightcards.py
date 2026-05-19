@@ -57,6 +57,82 @@ KNOWN_WEIGHT_CLASSES = {
     "open weight",
 }
 
+# Hardcoded fight cards for events ESPN API doesn't return data for
+HARDCODED_FIGHT_CARDS = {
+    "600058854": [
+        {
+            "id": "600058854-1",
+            "bout": "Ilia Topuria vs Justin Gaethje",
+            "red": {"name": "Ilia Topuria", "espn_id": ""},
+            "blue": {"name": "Justin Gaethje", "espn_id": ""},
+            "weight_class": "Lightweight",
+            "order": 1,
+            "status": "scheduled",
+            "source": {"provider": "espn", "event_id": "600058854"},
+        },
+        {
+            "id": "600058854-2",
+            "bout": "Alex Pereira vs Ciryl Gane",
+            "red": {"name": "Alex Pereira", "espn_id": ""},
+            "blue": {"name": "Ciryl Gane", "espn_id": ""},
+            "weight_class": "Heavyweight",
+            "order": 2,
+            "status": "scheduled",
+            "source": {"provider": "espn", "event_id": "600058854"},
+        },
+        {
+            "id": "600058854-3",
+            "bout": "Sean O'Malley vs Aiemann Zahabi",
+            "red": {"name": "Sean O'Malley", "espn_id": ""},
+            "blue": {"name": "Aiemann Zahabi", "espn_id": ""},
+            "weight_class": "Bantamweight",
+            "order": 3,
+            "status": "scheduled",
+            "source": {"provider": "espn", "event_id": "600058854"},
+        },
+        {
+            "id": "600058854-4",
+            "bout": "Mauricio Ruffy vs Michael Chandler",
+            "red": {"name": "Mauricio Ruffy", "espn_id": ""},
+            "blue": {"name": "Michael Chandler", "espn_id": ""},
+            "weight_class": "Lightweight",
+            "order": 4,
+            "status": "scheduled",
+            "source": {"provider": "espn", "event_id": "600058854"},
+        },
+        {
+            "id": "600058854-5",
+            "bout": "Bo Nickal vs Kyle Daukaus",
+            "red": {"name": "Bo Nickal", "espn_id": ""},
+            "blue": {"name": "Kyle Daukaus", "espn_id": ""},
+            "weight_class": "Middleweight",
+            "order": 5,
+            "status": "scheduled",
+            "source": {"provider": "espn", "event_id": "600058854"},
+        },
+        {
+            "id": "600058854-6",
+            "bout": "Diego Lopes vs Steve Garcia",
+            "red": {"name": "Diego Lopes", "espn_id": ""},
+            "blue": {"name": "Steve Garcia", "espn_id": ""},
+            "weight_class": "Featherweight",
+            "order": 6,
+            "status": "scheduled",
+            "source": {"provider": "espn", "event_id": "600058854"},
+        },
+        {
+            "id": "600058854-7",
+            "bout": "Derrick Lewis vs Josh Hokit",
+            "red": {"name": "Derrick Lewis", "espn_id": ""},
+            "blue": {"name": "Josh Hokit", "espn_id": ""},
+            "weight_class": "Heavyweight",
+            "order": 7,
+            "status": "scheduled",
+            "source": {"provider": "espn", "event_id": "600058854"},
+        },
+    ],
+}
+
 
 def load_events() -> Dict[str, Any]:
     if not os.path.exists(EVENTS_PATH):
@@ -657,6 +733,19 @@ def fill_missing_ids_from_html(event_id: str, fights: List[Dict[str, Any]]) -> L
 
 
 def fetch_event_fights(event_id: str, session: requests.Session) -> List[Dict[str, Any]]:
+    # Check hardcoded fallback first for known problem events
+    if event_id in HARDCODED_FIGHT_CARDS:
+        # Still try ESPN first — hardcoded is only used if ESPN returns nothing
+        fights = fetch_fights_from_core_event(event_id, session)
+        if not fights:
+            fights = fetch_fights_from_site_summary(event_id, session)
+        if not fights:
+            fights = parse_fights_from_fightcenter_html(event_id)
+        if not fights:
+            print(f"  Using hardcoded fight card for event {event_id}")
+            return HARDCODED_FIGHT_CARDS[event_id]
+        return fill_missing_ids_from_html(event_id, fights)
+
     fights = fetch_fights_from_core_event(event_id, session)
     if fights:
         return fill_missing_ids_from_html(event_id, fights)
@@ -715,9 +804,12 @@ def main() -> None:
         suspicious = looks_suspicious(existing_fights, new_fights)
         print(f"{name}: suspicious={suspicious}")
 
-        # TEMP DEBUG MODE:
-        # If we got new fights, write them so we can verify events.json is updating.
-        fights = new_fights if new_fights else existing_fights
+        # Only update if new data is not suspicious
+        if suspicious:
+            fights = existing_fights
+            print(f"  Keeping existing fights for {name} (new data looks suspicious)")
+        else:
+            fights = new_fights
 
         ev["fights"] = fights
 
