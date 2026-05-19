@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 30,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 2,
+  "moneyline_arbitrage_count": 2,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -38,18 +38,18 @@
       "fighters": {
         "Jaqueline Amorim": {
           "best_bookmaker": "888sport",
-          "best_price": 2.05,
-          "implied_probability": 48.78
+          "best_price": 2.1,
+          "implied_probability": 47.62
         },
         "Loma Lookboonmee": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.95,
-          "implied_probability": 51.28
+          "best_bookmaker": "Betway",
+          "best_price": 1.91,
+          "implied_probability": 52.36
         }
       },
-      "arb_sum": 1.000625,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.06
+      "arb_sum": 0.999751,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.02
     },
     {
       "type": "moneyline",
@@ -59,9 +59,9 @@
       "market": "Moneyline",
       "fighters": {
         "Jesus Santos Aguilar": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 3.4,
-          "implied_probability": 29.41
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 3.45,
+          "implied_probability": 28.99
         },
         "Rei Tsuruya": {
           "best_bookmaker": "LiveScore Bet",
@@ -69,9 +69,9 @@
           "implied_probability": 75.19
         }
       },
-      "arb_sum": 1.045997,
+      "arb_sum": 1.041735,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.6
+      "profit_margin_percent": -4.17
     },
     {
       "type": "moneyline",
@@ -417,13 +417,13 @@
         },
         "Justin Gaethje": {
           "best_bookmaker": "Betfair",
-          "best_price": 6.8,
-          "implied_probability": 14.71
+          "best_price": 7.0,
+          "implied_probability": 14.29
         }
       },
-      "arb_sum": 1.009128,
+      "arb_sum": 1.004926,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.91
+      "profit_margin_percent": -0.49
     },
     {
       "type": "moneyline",
@@ -521,19 +521,19 @@
       "market": "Moneyline",
       "fighters": {
         "Conor McGregor": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 4.4,
-          "implied_probability": 22.73
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 4.3,
+          "implied_probability": 23.26
         },
         "Max Holloway": {
-          "best_bookmaker": "Matchbook",
+          "best_bookmaker": "Betfair",
           "best_price": 1.27,
           "implied_probability": 78.74
         }
       },
-      "arb_sum": 1.014674,
+      "arb_sum": 1.01996,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.47
+      "profit_margin_percent": -2.0
     }
   ],
   "prop_markets": [
@@ -884,6 +884,28 @@
     }
   ],
   "arbitrage_opportunities": [
+    {
+      "type": "moneyline",
+      "event_id": "cbab69c179be988e710daca0234cc2d7",
+      "commence_time": "2026-05-30T08:00:00Z",
+      "fight": "Jaqueline Amorim vs Loma Lookboonmee",
+      "market": "Moneyline",
+      "fighters": {
+        "Jaqueline Amorim": {
+          "best_bookmaker": "888sport",
+          "best_price": 2.1,
+          "implied_probability": 47.62
+        },
+        "Loma Lookboonmee": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.91,
+          "implied_probability": 52.36
+        }
+      },
+      "arb_sum": 0.999751,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.02
+    },
     {
       "type": "moneyline",
       "event_id": "a4776337215e434e60d95be6d087e953",
