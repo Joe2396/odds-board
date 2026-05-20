@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 25,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 36,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 0,
+  "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -37,9 +37,9 @@
       "market": "Moneyline",
       "fighters": {
         "Jaqueline Amorim": {
-          "best_bookmaker": "888sport",
-          "best_price": 2.1,
-          "implied_probability": 47.62
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 2.0,
+          "implied_probability": 50.0
         },
         "Loma Lookboonmee": {
           "best_bookmaker": "Betway",
@@ -47,9 +47,9 @@
           "implied_probability": 52.36
         }
       },
-      "arb_sum": 0.999751,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.02
+      "arb_sum": 1.02356,
+      "is_arbitrage": false,
+      "profit_margin_percent": -2.36
     },
     {
       "type": "moneyline",
@@ -174,14 +174,14 @@
           "implied_probability": 61.73
         },
         "Yi Sak Lee": {
-          "best_bookmaker": "888sport",
-          "best_price": 2.35,
-          "implied_probability": 42.55
+          "best_bookmaker": "Betfair",
+          "best_price": 2.38,
+          "implied_probability": 42.02
         }
       },
-      "arb_sum": 1.042816,
+      "arb_sum": 1.037452,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.28
+      "profit_margin_percent": -3.75
     },
     {
       "type": "moneyline",
@@ -213,19 +213,19 @@
       "market": "Moneyline",
       "fighters": {
         "Alonzo Menifield": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 2.8,
-          "implied_probability": 35.71
+          "best_bookmaker": "Betfair",
+          "best_price": 2.88,
+          "implied_probability": 34.72
         },
         "Zhang Mingyang": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.48,
-          "implied_probability": 67.57
+          "best_bookmaker": "Betway",
+          "best_price": 1.44,
+          "implied_probability": 69.44
         }
       },
-      "arb_sum": 1.032819,
+      "arb_sum": 1.041667,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.28
+      "profit_margin_percent": -4.17
     },
     {
       "type": "moneyline",
@@ -235,9 +235,9 @@
       "market": "Moneyline",
       "fighters": {
         "Cameron Smotherman": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 3.4,
-          "implied_probability": 29.41
+          "best_bookmaker": "Betfair",
+          "best_price": 3.5,
+          "implied_probability": 28.57
         },
         "Kai Asakura": {
           "best_bookmaker": "Betway",
@@ -245,9 +245,9 @@
           "implied_probability": 73.53
         }
       },
-      "arb_sum": 1.029412,
+      "arb_sum": 1.021008,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.94
+      "profit_margin_percent": -2.1
     },
     {
       "type": "moneyline",
@@ -280,8 +280,8 @@
       "fighters": {
         "Sergey Pavlovich": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.25,
-          "implied_probability": 80.0
+          "best_price": 1.22,
+          "implied_probability": 81.97
         },
         "Tallison Teixeira": {
           "best_bookmaker": "LiveScore Bet",
@@ -289,9 +289,9 @@
           "implied_probability": 20.83
         }
       },
-      "arb_sum": 1.008333,
+      "arb_sum": 1.028005,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.83
+      "profit_margin_percent": -2.8
     },
     {
       "type": "moneyline",
@@ -417,13 +417,13 @@
         },
         "Ciryl Gane": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.97,
-          "implied_probability": 50.76
+          "best_price": 1.98,
+          "implied_probability": 50.51
         }
       },
-      "arb_sum": 1.007614,
+      "arb_sum": 1.005051,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.76
+      "profit_margin_percent": -0.51
     },
     {
       "type": "moneyline",
@@ -439,13 +439,13 @@
         },
         "Justin Gaethje": {
           "best_bookmaker": "Betfair",
-          "best_price": 6.8,
-          "implied_probability": 14.71
+          "best_price": 7.0,
+          "implied_probability": 14.29
         }
       },
-      "arb_sum": 1.009128,
+      "arb_sum": 1.004926,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.91
+      "profit_margin_percent": -0.49
     },
     {
       "type": "moneyline",
@@ -543,19 +543,19 @@
       "market": "Moneyline",
       "fighters": {
         "Conor McGregor": {
-          "best_bookmaker": "Betfair",
-          "best_price": 4.2,
-          "implied_probability": 23.81
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 4.1,
+          "implied_probability": 24.39
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.27,
-          "implied_probability": 78.74
+          "best_price": 1.28,
+          "implied_probability": 78.12
         }
       },
-      "arb_sum": 1.025497,
+      "arb_sum": 1.025152,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.55
+      "profit_margin_percent": -2.52
     }
   ],
   "prop_markets": [
@@ -905,28 +905,5 @@
       "profit_margin_percent": -5.74
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "cbab69c179be988e710daca0234cc2d7",
-      "commence_time": "2026-05-30T08:00:00Z",
-      "fight": "Jaqueline Amorim vs Loma Lookboonmee",
-      "market": "Moneyline",
-      "fighters": {
-        "Jaqueline Amorim": {
-          "best_bookmaker": "888sport",
-          "best_price": 2.1,
-          "implied_probability": 47.62
-        },
-        "Loma Lookboonmee": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.91,
-          "implied_probability": 52.36
-        }
-      },
-      "arb_sum": 0.999751,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.02
-    }
-  ]
+  "arbitrage_opportunities": []
 }
