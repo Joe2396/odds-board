@@ -1,0 +1,1704 @@
+{
+  "_typ": "LobbyPageViewResponse",
+  "view": {
+    "_typ": "LobbyPageView",
+    "lgHeaderImageId": "ixdopjqvx3",
+    "smHeaderImageId": "e0oj0a9kl7",
+    "featuredMatches": [],
+    "marketFilters": [
+      {
+        "_typ": "LobbyMarketFilter",
+        "propositionType": "winner",
+        "displayName": "Fight Result (Draw No Bet)",
+        "active": true,
+        "key": "winner"
+      }
+    ],
+    "pageHeader": {
+      "_typ": "PageHeader",
+      "breadcrumbs": [
+        {
+          "_typ": "Breadcrumb",
+          "displayName": "MMA",
+          "categoryRn": "mma"
+        }
+      ],
+      "contestType": "Mma",
+      "headerText": "UFC",
+      "categoryRn": "mma:ufc"
+    },
+    "lobbyType": "leagueLobby",
+    "matches": [
+      {
+        "_typ": "AccordionItem",
+        "contestGroups": [
+          {
+            "_typ": "LobbyContestByGroupHeader",
+            "identifier": "30 May 2026",
+            "contests": [
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780171200000,
+                  "value": "2026-05-30T20:00:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:13:11.606Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780171200000,
+                      "value": "2026-05-30T20:00:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T04:41:11.274Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T14:14:05.143Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Loma Lookboonmee",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "1874zv2dfc1gt9pnk9vjas0z4",
+                        "priceKey": "8d3527fb9792dfeb12e4382ed8f138f4:base:winner:1874zv2dfc1gt9pnk9vjas0z4:plain:offering",
+                        "price": 1.9
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T14:14:05.143Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Jaqueline Amorim",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "1l9dbmwznk7hrlfdtrf39qq8f",
+                        "priceKey": "8d3527fb9792dfeb12e4382ed8f138f4:base:winner:1l9dbmwznk7hrlfdtrf39qq8f:plain:offering",
+                        "price": 1.83
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "8d3527fb9792dfeb12e4382ed8f138f4:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "8d3527fb9792dfeb12e4382ed8f138f4",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Loma Lookboonmee vs Jaqueline Amorim"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780173600000,
+                  "value": "2026-05-30T20:40:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:13:37.194Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780173600000,
+                      "value": "2026-05-30T20:40:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T03:14:14.193Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T13:51:05.863Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Angela Hill",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "5tf03k0snftiw6rros2ahr6zu",
+                        "priceKey": "6d107beeb7e83753439134e743988e8e:base:winner:5tf03k0snftiw6rros2ahr6zu:plain:offering",
+                        "price": 2.85
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T13:51:05.863Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Xiong Jing Nan",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "35wlbe3c07ps2e1e7s215jzgk",
+                        "priceKey": "6d107beeb7e83753439134e743988e8e:base:winner:35wlbe3c07ps2e1e7s215jzgk:plain:offering",
+                        "price": 1.4
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "6d107beeb7e83753439134e743988e8e:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "6d107beeb7e83753439134e743988e8e",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Angela Hill vs Xiong Jing Nan"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780174800000,
+                  "value": "2026-05-30T21:00:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-15T10:48:59.799Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780174800000,
+                      "value": "2026-05-30T21:00:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-15T10:48:53.695Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-18T22:55:09.538Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Rei Tsuruya",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "68rv42fx8cjjqtmefky9cls6j",
+                        "priceKey": "ba30971b48b6c7d66e215517154394cb:base:winner:68rv42fx8cjjqtmefky9cls6j:plain:offering",
+                        "price": 1.28
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-18T22:55:09.538Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Jesus Santos Aguilar",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "4bhohty2836rr2q5miief1396",
+                        "priceKey": "ba30971b48b6c7d66e215517154394cb:base:winner:4bhohty2836rr2q5miief1396:plain:offering",
+                        "price": 3.45
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "ba30971b48b6c7d66e215517154394cb:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "ba30971b48b6c7d66e215517154394cb",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Rei Tsuruya vs Jesus Santos Aguilar"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780176000000,
+                  "value": "2026-05-30T21:20:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:14:29.925Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780176000000,
+                      "value": "2026-05-30T21:20:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-15T10:51:31.279Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-18T03:14:23.955Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Qileng Aori",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "39gscirfhrgf94hemiqjk337b",
+                        "priceKey": "6a5849a79b67f360e0a01aaf42eefda5:base:winner:39gscirfhrgf94hemiqjk337b:plain:offering",
+                        "price": 3.6
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-18T03:14:23.955Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Cody Haddon",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "5b5f3gskznr2e5gten2l8e7xa",
+                        "priceKey": "6a5849a79b67f360e0a01aaf42eefda5:base:winner:5b5f3gskznr2e5gten2l8e7xa:plain:offering",
+                        "price": 1.27
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "6a5849a79b67f360e0a01aaf42eefda5:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "6a5849a79b67f360e0a01aaf42eefda5",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Qileng Aori vs Cody Haddon"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780177200000,
+                  "value": "2026-05-30T21:40:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:14:30.420Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780177200000,
+                      "value": "2026-05-30T21:40:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-19T08:17:12.294Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T13:51:05.847Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Meng Ding",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "7c3q9oxxp35q7jpyh2a3e3i68",
+                        "priceKey": "56f3bb7ed48f89068ea8989ab541e01d:base:winner:7c3q9oxxp35q7jpyh2a3e3i68:plain:offering",
+                        "price": 1.72
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T13:51:05.847Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Jose Henrique Souza",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "2x4n8iqi5fqrm09w0eduv87f7",
+                        "priceKey": "56f3bb7ed48f89068ea8989ab541e01d:base:winner:2x4n8iqi5fqrm09w0eduv87f7:plain:offering",
+                        "price": 2.02
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "56f3bb7ed48f89068ea8989ab541e01d:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "56f3bb7ed48f89068ea8989ab541e01d",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Meng Ding vs Jose Henrique Nascimento De Souza"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780178400000,
+                  "value": "2026-05-30T22:00:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:14:41.506Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780178400000,
+                      "value": "2026-05-30T22:00:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-19T11:07:12.455Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T08:21:12.869Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Yi SAK Lee",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "4cxbczu69g5o0uytshepqz2o0",
+                        "priceKey": "0d5b74d5543d1578c9da6ded3770cd07:base:winner:4cxbczu69g5o0uytshepqz2o0:plain:offering",
+                        "price": 2.25
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T08:21:12.869Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Luis Felipe Dias",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "za7fa17y4v4cog698opsj1kx",
+                        "priceKey": "0d5b74d5543d1578c9da6ded3770cd07:base:winner:za7fa17y4v4cog698opsj1kx:plain:offering",
+                        "price": 1.6
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "0d5b74d5543d1578c9da6ded3770cd07:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "0d5b74d5543d1578c9da6ded3770cd07",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Yi SAK Lee vs Luis Felipe Dias"
+              }
+            ],
+            "header": ""
+          }
+        ],
+        "identifier": "30 May 2026",
+        "header": "30 May 2026",
+        "number": 6
+      },
+      {
+        "_typ": "AccordionItem",
+        "contestGroups": [
+          {
+            "_typ": "LobbyContestByGroupHeader",
+            "identifier": "31 May 2026",
+            "contests": [
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780182000000,
+                  "value": "2026-05-30T23:00:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:55:06.965Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780182000000,
+                      "value": "2026-05-30T23:00:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T15:05:11.557Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T13:51:05.863Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Alex Perez",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "2g1el1gmvor3zc6hvk0atspah",
+                        "priceKey": "b6eb8c3b9b5156c2aa0160cd681d9501:base:winner:2g1el1gmvor3zc6hvk0atspah:plain:offering",
+                        "price": 1.67
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T13:51:05.863Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Su Mudaerji",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "5hz5pl1k7lbm3wgn36ytgazem",
+                        "priceKey": "b6eb8c3b9b5156c2aa0160cd681d9501:base:winner:5hz5pl1k7lbm3wgn36ytgazem:plain:offering",
+                        "price": 2.12
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "b6eb8c3b9b5156c2aa0160cd681d9501:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "b6eb8c3b9b5156c2aa0160cd681d9501",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Alex Perez vs Su Mudaerji"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780184400000,
+                  "value": "2026-05-30T23:40:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:55:29.992Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780184400000,
+                      "value": "2026-05-30T23:40:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T03:56:18.066Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-19T12:23:26.642Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Kai Asakura",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "2cwbjhun2pysi6qwif7ail96",
+                        "priceKey": "2a05262b28d933aa71899b21b1cfa41b:base:winner:2cwbjhun2pysi6qwif7ail96:plain:offering",
+                        "price": 1.3
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-19T12:23:26.642Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Cameron Smotherman",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "5m7hccnow2qcoikqw3vaup0c9",
+                        "priceKey": "2a05262b28d933aa71899b21b1cfa41b:base:winner:5m7hccnow2qcoikqw3vaup0c9:plain:offering",
+                        "price": 3.3
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "2a05262b28d933aa71899b21b1cfa41b:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "2a05262b28d933aa71899b21b1cfa41b",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Kai Asakura vs Cameron Smotherman"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780185600000,
+                  "value": "2026-05-31T00:00:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [
+                  "5cdcd58ca6bef9188f82a27240d36ab2"
+                ],
+                "timeStampBFFUtc": "2026-05-18T03:55:41.420Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780185600000,
+                      "value": "2026-05-31T00:00:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T03:56:17.390Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T13:51:05.916Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Sergei Pavlovich",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "4rh7p2ux4qbp4co8snvccfq74",
+                        "priceKey": "b46dbd0ee0c2558c52ed2b50755b64a8:base:winner:4rh7p2ux4qbp4co8snvccfq74:plain:offering",
+                        "price": 1.18
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T13:51:05.916Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Talisson Teixeira",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "7661gafzk8o9fxd4ozvngi50p",
+                        "priceKey": "b46dbd0ee0c2558c52ed2b50755b64a8:base:winner:7661gafzk8o9fxd4ozvngi50p:plain:offering",
+                        "price": 4.4
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "b46dbd0ee0c2558c52ed2b50755b64a8:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "b46dbd0ee0c2558c52ed2b50755b64a8",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Sergei Pavlovich vs Tallison Teixeira"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780186800000,
+                  "value": "2026-05-31T00:20:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [
+                  "5cdcd58ca6bef9188f82a27240d36ab2"
+                ],
+                "timeStampBFFUtc": "2026-05-18T03:56:37.794Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780186800000,
+                      "value": "2026-05-31T00:20:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T03:57:12.872Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-18T13:19:09.917Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Zhang Mingyang",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "ifm7mfkkrrveyakq5h9kb7gk",
+                        "priceKey": "35cbe9ebb0c517ab550ea2a74cc6a4ee:base:winner:ifm7mfkkrrveyakq5h9kb7gk:plain:offering",
+                        "price": 1.42
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-18T13:19:09.917Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Alonzo Menifield",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "2kd3p45w5yet3nyajjj77yps5",
+                        "priceKey": "35cbe9ebb0c517ab550ea2a74cc6a4ee:base:winner:2kd3p45w5yet3nyajjj77yps5:plain:offering",
+                        "price": 2.75
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "35cbe9ebb0c517ab550ea2a74cc6a4ee:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "35cbe9ebb0c517ab550ea2a74cc6a4ee",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Zhang Mingyang vs Alonzo Menifield"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1780188000000,
+                  "value": "2026-05-31T00:40:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:56:41.325Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1780188000000,
+                      "value": "2026-05-31T00:40:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T03:57:12.503Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T13:51:06.015Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Yadong Song",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "6xr7k8xm7t7phmkllq71wdz0s",
+                        "priceKey": "e666a72b62c06fba2eaa21528e2eb935:base:winner:6xr7k8xm7t7phmkllq71wdz0s:plain:offering",
+                        "price": 1.17
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T13:51:06.015Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Deiveson Figueiredo",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "3fswef9ig9rkzdt93wsoccxmj",
+                        "priceKey": "e666a72b62c06fba2eaa21528e2eb935:base:winner:3fswef9ig9rkzdt93wsoccxmj:plain:offering",
+                        "price": 4.6
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "e666a72b62c06fba2eaa21528e2eb935:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "e666a72b62c06fba2eaa21528e2eb935",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Yadong Song vs Deiveson Figueiredo"
+              }
+            ],
+            "header": ""
+          }
+        ],
+        "identifier": "31 May 2026",
+        "header": "31 May 2026",
+        "number": 5
+      },
+      {
+        "_typ": "AccordionItem",
+        "contestGroups": [
+          {
+            "_typ": "LobbyContestByGroupHeader",
+            "identifier": "15 Jun 2026",
+            "contests": [
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1781481600000,
+                  "value": "2026-06-15T00:00:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-03-09T16:26:50.447Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1781481600000,
+                      "value": "2026-06-15T00:00:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-03-09T16:26:44.393Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-11T15:23:18.815Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Diego Lopes",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "5oxozq1tkw1ox126eljj9wz5n",
+                        "priceKey": "0523bbce941ec2abcd2b9d40137cc6f1:base:winner:5oxozq1tkw1ox126eljj9wz5n:plain:offering",
+                        "price": 1.52
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-11T15:23:18.815Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Steve Garcia",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "6so9ouua7hcotdgdp73knieln",
+                        "priceKey": "0523bbce941ec2abcd2b9d40137cc6f1:base:winner:6so9ouua7hcotdgdp73knieln:plain:offering",
+                        "price": 2.45
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "0523bbce941ec2abcd2b9d40137cc6f1:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "0523bbce941ec2abcd2b9d40137cc6f1",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Diego Lopes vs Steve Garcia"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1781482800000,
+                  "value": "2026-06-15T00:20:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-03-09T16:27:07.295Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1781482800000,
+                      "value": "2026-06-15T00:20:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-03-09T16:27:01.166Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T13:53:08.377Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Bo Nickal",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "5knqn475abomfgpgcaczbl8l8",
+                        "priceKey": "b145a354e9f9e3857eae24c888d82529:base:winner:5knqn475abomfgpgcaczbl8l8:plain:offering",
+                        "price": 1.3
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T13:53:08.377Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Kyle Daukaus",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "1tsfepxfrbyit9d480ez5kbad",
+                        "priceKey": "b145a354e9f9e3857eae24c888d82529:base:winner:1tsfepxfrbyit9d480ez5kbad:plain:offering",
+                        "price": 3.25
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "b145a354e9f9e3857eae24c888d82529:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "b145a354e9f9e3857eae24c888d82529",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Bo Nickal vs Kyle Daukaus"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1781484000000,
+                  "value": "2026-06-15T00:40:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-03-09T16:27:22.127Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1781484000000,
+                      "value": "2026-06-15T00:40:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-03-09T16:27:16.022Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-09T17:39:08.928Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Mauricio Ruffy",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "173qsz8o1j6993ip0ej9yo3eh",
+                        "priceKey": "6d7dc6f33abb84fcec7994da7c9e0eea:base:winner:173qsz8o1j6993ip0ej9yo3eh:plain:offering",
+                        "price": 1.15
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-09T17:39:08.928Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Michael Chandler",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "6bz04nc9tsusuzkrxdmqnzrwn",
+                        "priceKey": "6d7dc6f33abb84fcec7994da7c9e0eea:base:winner:6bz04nc9tsusuzkrxdmqnzrwn:plain:offering",
+                        "price": 5
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "6d7dc6f33abb84fcec7994da7c9e0eea:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "6d7dc6f33abb84fcec7994da7c9e0eea",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Mauricio Ruffy vs Michael Chandler"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1781485200000,
+                  "value": "2026-06-15T01:00:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:10:41.703Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1781485200000,
+                      "value": "2026-06-15T01:00:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T03:10:49.030Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-18T03:10:49.061Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Josh Hokit",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "6f9biql2omjsau629estykmnb",
+                        "priceKey": "b4409f4d8af03ea63180407370b1c77a:base:winner:6f9biql2omjsau629estykmnb:plain:offering",
+                        "price": 1.27
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-18T03:10:49.061Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Derrick Lewis",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "45toqydzv7ws7he9ippobtc3v",
+                        "priceKey": "b4409f4d8af03ea63180407370b1c77a:base:winner:45toqydzv7ws7he9ippobtc3v:plain:offering",
+                        "price": 3.5
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "b4409f4d8af03ea63180407370b1c77a:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "b4409f4d8af03ea63180407370b1c77a",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Josh Hokit vs Derrick Lewis"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1781486400000,
+                  "value": "2026-06-15T01:20:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:11:11.719Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1781486400000,
+                      "value": "2026-06-15T01:20:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-03-09T16:27:51.053Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-18T03:11:05.775Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Sean O'Malley",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "6n3g13m2a3e6wauczd0a47etz",
+                        "priceKey": "be21fe25feb8c05e48ddef3fde232411:base:winner:6n3g13m2a3e6wauczd0a47etz:plain:offering",
+                        "price": 1.22
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-18T03:11:05.775Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Aiemann Zahabi",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "16e63580rn2vfyq6lutn6ht4",
+                        "priceKey": "be21fe25feb8c05e48ddef3fde232411:base:winner:16e63580rn2vfyq6lutn6ht4:plain:offering",
+                        "price": 3.9
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "be21fe25feb8c05e48ddef3fde232411:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "be21fe25feb8c05e48ddef3fde232411",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Sean O'Malley vs Aiemann Zahabi"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1781487600000,
+                  "value": "2026-06-15T01:40:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:11:07.122Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1781487600000,
+                      "value": "2026-06-15T01:40:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T03:12:04.597Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T13:53:08.541Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Alex Pereira",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "313q37q88fz4ush27jm12qrhg",
+                        "priceKey": "fee61ae26d5c97cb8c44738749e1d402:base:winner:313q37q88fz4ush27jm12qrhg:plain:offering",
+                        "price": 1.88
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T13:53:08.541Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Ciryl Gane",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "1udqvv8n5z2n9eugv0sxamw32",
+                        "priceKey": "fee61ae26d5c97cb8c44738749e1d402:base:winner:1udqvv8n5z2n9eugv0sxamw32:plain:offering",
+                        "price": 1.87
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "fee61ae26d5c97cb8c44738749e1d402:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "fee61ae26d5c97cb8c44738749e1d402",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Alex Pereira vs Ciryl Gane"
+              },
+              {
+                "_typ": "LobbyFixtureContest",
+                "categoriesDetailed": [
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma:ufc",
+                    "name": "UFC"
+                  },
+                  {
+                    "_typ": "CategoryDetailed",
+                    "categoryRn": "mma",
+                    "name": "MMA"
+                  }
+                ],
+                "startDateTimeUtc": {
+                  "_typ": "Date",
+                  "unixms": 1781489400000,
+                  "value": "2026-06-15T02:10:00.000Z"
+                },
+                "propositionCount": 1,
+                "relatedContests": [],
+                "timeStampBFFUtc": "2026-05-18T03:11:30.030Z",
+                "liveOddsBooked": false,
+                "propositions": [
+                  {
+                    "_typ": "LobbyFixtureContestProposition",
+                    "marketCountFilter": {
+                      "_typ": "PropositionMarketCountFilters",
+                      "pricesCount": 1,
+                      "tenantKey": "base"
+                    },
+                    "startDateTimeUtc": {
+                      "_typ": "Date",
+                      "unixms": 1781489400000,
+                      "value": "2026-06-15T02:10:00.000Z"
+                    },
+                    "propositionType": "winner",
+                    "timeStampBFFUtc": "2026-05-18T03:11:56.317Z",
+                    "propositionKey": "winner",
+                    "displayName": "Fight Result (Draw No Bet)",
+                    "bettingOpen": false,
+                    "allowMulti": "Always",
+                    "options": [
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "1",
+                        "optionDisplayName": "1",
+                        "timeStampBFFUtc": "2026-05-20T13:53:11.376Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Ilia Topuria",
+                        "optionType": "T1",
+                        "variantKey": "plain",
+                        "optionKey": "1im2dvq9xp97k8zowm6jmnle1",
+                        "priceKey": "0e7fe732c221e0b5cc40e09b0c47a77e:base:winner:1im2dvq9xp97k8zowm6jmnle1:plain:offering",
+                        "price": 1.11
+                      },
+                      {
+                        "_typ": "FixtureContestPropositionOption",
+                        "optionDisplayBetName": "2",
+                        "optionDisplayName": "2",
+                        "timeStampBFFUtc": "2026-05-20T13:53:11.376Z",
+                        "bettingOpen": true,
+                        "variantName": "Plain",
+                        "variantType": "Plain",
+                        "optionName": "Justin Gaethje",
+                        "optionType": "T2",
+                        "variantKey": "plain",
+                        "optionKey": "1j5bkibdzy7j9jfa040czz0tu",
+                        "priceKey": "0e7fe732c221e0b5cc40e09b0c47a77e:base:winner:1j5bkibdzy7j9jfa040czz0tu:plain:offering",
+                        "price": 6
+                      }
+                    ],
+                    "status": "Active",
+                    "key": "0e7fe732c221e0b5cc40e09b0c47a77e:winner"
+                  }
+                ],
+                "contestType": "Mma",
+                "contestKey": "0e7fe732c221e0b5cc40e09b0c47a77e",
+                "categories": [
+                  "mma:ufc",
+                  "mma"
+                ],
+                "allowMulti": "Always",
+                "hasStream": false,
+                "category": "mma:ufc",
+                "status": "PreGame",
+                "name": "Ilia Topuria vs Justin Gaethje"
+              }
+            ],
+            "header": ""
+          }
+        ],
+        "identifier": "15 Jun 2026",
+        "header": "15 Jun 2026",
+        "number": 7
+      }
+    ],
+    "tab": "matches"
+  }
+}
