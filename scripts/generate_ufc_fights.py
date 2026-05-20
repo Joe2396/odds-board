@@ -20,6 +20,7 @@ PROP_FILES = [
     ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
     ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
     ("Unibet", ROOT / "ufc" / "data" / "unibet_props.json"),
+    ("WilliamHill", ROOT / "ufc" / "data" / "williamhill_props.json"),
 ]
 
 FIGHTS_DIR = ROOT / "ufc" / "fights"
@@ -91,6 +92,23 @@ def normalize_person_name(name):
     return text
 
 
+def canonical_person_key(name):
+    """
+    Normalises a fighter name for cross-book matching.
+    This fixes books that reverse first/last name order, e.g.
+    William Hill: "Yadong Song" vs ESPN/site: "Song Yadong".
+    """
+    text = normalize_person_name(name)
+    words = [w for w in text.split() if w]
+
+    if not words:
+        return ""
+
+    # Sort words inside the fighter name so reversed first/last names match.
+    # Example: "song yadong" and "yadong song" both become "song yadong".
+    return " ".join(sorted(words))
+
+
 def fight_key(name):
     text = unicodedata.normalize("NFKD", str(name or ""))
     text = text.encode("ascii", "ignore").decode("ascii")
@@ -109,12 +127,12 @@ def fight_key(name):
 
     if " v " in text:
         left, right = text.split(" v ", 1)
-        left = normalize_person_name(left)
-        right = normalize_person_name(right)
+        left = canonical_person_key(left)
+        right = canonical_person_key(right)
         fighters = sorted([left, right])
-        return " v ".join(fighters)
+        return " v ".join([f for f in fighters if f])
 
-    return normalize_person_name(text)
+    return canonical_person_key(text)
 
 
 def loose_fight_tokens(name):
@@ -1292,19 +1310,62 @@ def get_matched_props(red_name, blue_name, props_by_key):
     key_a = fight_key(title_a)
     key_b = fight_key(title_b)
 
-    props = props_by_key.get(key_a) or props_by_key.get(key_b) or []
+    matched = []
 
-    if props:
-        return props, key_a, key_b, "exact"
+    # Exact key matches first. Because fight_key() now sorts name words,
+    # this catches cases like Song Yadong vs Yadong Song.
+    if key_a in props_by_key:
+        matched.extend(props_by_key[key_a])
 
+    if key_b in props_by_key:
+        matched.extend(props_by_key[key_b])
+
+    def dedupe(items):
+        seen = set()
+        out = []
+
+        for item in items:
+            sig = (
+                item.get("bookmaker"),
+                item.get("fight_name") or item.get("fight") or item.get("name"),
+            )
+
+            if sig in seen:
+                continue
+
+            seen.add(sig)
+            out.append(item)
+
+        return out
+
+    matched = dedupe(matched)
+
+    if matched:
+        return matched, key_a, key_b, "exact"
+
+    # Loose fallback: useful when ESPN/site and bookmaker spell names slightly differently.
     loose_matches = []
+    target_tokens = loose_fight_tokens(title_a)
 
     for key, items in props_by_key.items():
-        for item in items:
-            prop_name = item.get("fight_name") or item.get("fight") or item.get("name") or key
-            if keys_probably_match(title_a, prop_name):
-                loose_matches.extend(items)
-                break
+        prop_tokens = loose_fight_tokens(key)
+
+        if not target_tokens or not prop_tokens:
+            continue
+
+        shared = target_tokens.intersection(prop_tokens)
+
+        # Strong overlap: normally means same two-fighter matchup.
+        if len(shared) >= 3:
+            loose_matches.extend(items)
+            continue
+
+        # For very short names, allow 2 shared tokens when one side is a 2-word fighter
+        # and the other side clearly shares an opponent.
+        if len(shared) >= 2 and len(target_tokens) <= 4:
+            loose_matches.extend(items)
+
+    loose_matches = dedupe(loose_matches)
 
     if loose_matches:
         return loose_matches, key_a, key_b, "loose"
