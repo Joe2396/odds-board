@@ -1,5 +1,32 @@
 {
-  "updated_at": "2026-05-20T22:27:14.275111+00:00",
-  "total_arbitrage": 0,
-  "arbitrage": []
+  "updated_at": "2026-05-21T04:07:29.954228+00:00",
+  "total_arbitrage": 1,
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "type": "moneyline",
+      "event": "Conor McGregor vs Max Holloway",
+      "market": "Moneyline",
+      "commence_time": "2026-07-12T04:00:00Z",
+      "profit_margin_percent": 0.42,
+      "arb_sum": 0.995782,
+      "bookmakers": [
+        {
+          "selection": "Conor McGregor",
+          "bookmaker": "Virgin Bet",
+          "odds": 4.1,
+          "decimal_odds": 4.1,
+          "implied_probability": 24.39
+        },
+        {
+          "selection": "Max Holloway",
+          "bookmaker": "Betfair",
+          "odds": 1.33,
+          "decimal_odds": 1.33,
+          "implied_probability": 75.19
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ]
 }
