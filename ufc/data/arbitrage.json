@@ -1,12 +1,100 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 25,
+  "total_moneyline_fights_checked": 29,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 36,
   "arbitrage_count": 1,
   "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
+    {
+      "type": "moneyline",
+      "event_id": "a93562d8480cee4aa2d4ee21d69cdf51",
+      "commence_time": "2026-05-23T16:00:00Z",
+      "fight": "Baris Adiguzel vs Gustavo Oliveira",
+      "market": "Moneyline",
+      "fighters": {
+        "Baris Adiguzel": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.57,
+          "implied_probability": 63.69
+        },
+        "Gustavo Oliveira": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.23,
+          "implied_probability": 44.84
+        }
+      },
+      "arb_sum": 1.085373,
+      "is_arbitrage": false,
+      "profit_margin_percent": -8.54
+    },
+    {
+      "type": "moneyline",
+      "event_id": "d43f9ab9178aca47aaeeff61ec3787dd",
+      "commence_time": "2026-05-23T16:00:00Z",
+      "fight": "Benson Henderson vs Patrick Habirora",
+      "market": "Moneyline",
+      "fighters": {
+        "Benson Henderson": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 11.0,
+          "implied_probability": 9.09
+        },
+        "Patrick Habirora": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.05,
+          "implied_probability": 95.24
+        }
+      },
+      "arb_sum": 1.04329,
+      "is_arbitrage": false,
+      "profit_margin_percent": -4.33
+    },
+    {
+      "type": "moneyline",
+      "event_id": "b54f4201035fab0868890ac5d320a14a",
+      "commence_time": "2026-05-23T16:00:00Z",
+      "fight": "Boris Mbarga Atangana vs Jared Gooden",
+      "market": "Moneyline",
+      "fighters": {
+        "Boris Mbarga Atangana": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.11,
+          "implied_probability": 90.09
+        },
+        "Jared Gooden": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 6.5,
+          "implied_probability": 15.38
+        }
+      },
+      "arb_sum": 1.054747,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.47
+    },
+    {
+      "type": "moneyline",
+      "event_id": "0c10836d02438e0fb8c271b966491c6d",
+      "commence_time": "2026-05-23T16:00:00Z",
+      "fight": "Jake Hadley vs Taylor Lapilus",
+      "market": "Moneyline",
+      "fighters": {
+        "Jake Hadley": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 5.75,
+          "implied_probability": 17.39
+        },
+        "Taylor Lapilus": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.13,
+          "implied_probability": 88.5
+        }
+      },
+      "arb_sum": 1.058869,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.89
+    },
     {
       "type": "moneyline",
       "event_id": "fb980c337447d29bc46dc377d0970a99",
@@ -37,19 +125,19 @@
       "market": "Moneyline",
       "fighters": {
         "Jaqueline Amorim": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.92,
-          "implied_probability": 52.08
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.9,
+          "implied_probability": 52.63
         },
         "Loma Lookboonmee": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.95,
-          "implied_probability": 51.28
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 1.96,
+          "implied_probability": 51.02
         }
       },
-      "arb_sum": 1.033654,
+      "arb_sum": 1.03652,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.37
+      "profit_margin_percent": -3.65
     },
     {
       "type": "moneyline",
@@ -412,8 +500,8 @@
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.96,
-          "implied_probability": 51.02
+          "best_price": 1.95,
+          "implied_probability": 51.28
         },
         "Ciryl Gane": {
           "best_bookmaker": "Betfair",
@@ -421,9 +509,9 @@
           "implied_probability": 50.25
         }
       },
-      "arb_sum": 1.012717,
+      "arb_sum": 1.015333,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.27
+      "profit_margin_percent": -1.53
     },
     {
       "type": "moneyline",
