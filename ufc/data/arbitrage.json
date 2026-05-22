@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 36,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 36,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 0,
+  "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -236,18 +236,18 @@
       "fighters": {
         "Marcirley Alves da Silva": {
           "best_bookmaker": "LeoVegas",
-          "best_price": 1.63,
-          "implied_probability": 61.35
+          "best_price": 1.78,
+          "implied_probability": 56.18
         },
         "Naoki Inoue": {
           "best_bookmaker": "LeoVegas",
-          "best_price": 2.2,
-          "implied_probability": 45.45
+          "best_price": 1.96,
+          "implied_probability": 51.02
         }
       },
-      "arb_sum": 1.068042,
+      "arb_sum": 1.072002,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.8
+      "profit_margin_percent": -7.2
     },
     {
       "type": "moneyline",
@@ -307,13 +307,13 @@
         },
         "Meng Ding": {
           "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.78,
-          "implied_probability": 56.18
+          "best_price": 1.76,
+          "implied_probability": 56.82
         }
       },
-      "arb_sum": 1.037988,
+      "arb_sum": 1.044372,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.8
+      "profit_margin_percent": -4.44
     },
     {
       "type": "moneyline",
@@ -323,9 +323,9 @@
       "market": "Moneyline",
       "fighters": {
         "Luis Felipe Dias": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.64,
-          "implied_probability": 60.98
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 1.58,
+          "implied_probability": 63.29
         },
         "Yi Sak Lee": {
           "best_bookmaker": "Betway",
@@ -333,9 +333,9 @@
           "implied_probability": 41.67
         }
       },
-      "arb_sum": 1.026423,
+      "arb_sum": 1.049578,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.64
+      "profit_margin_percent": -4.96
     },
     {
       "type": "moneyline",
@@ -345,19 +345,19 @@
       "market": "Moneyline",
       "fighters": {
         "Jesus Santos Aguilar": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 3.75,
-          "implied_probability": 26.67
+          "best_bookmaker": "Betway",
+          "best_price": 3.5,
+          "implied_probability": 28.57
         },
         "Rei Tsuruya": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.34,
-          "implied_probability": 74.63
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 1.36,
+          "implied_probability": 73.53
         }
       },
-      "arb_sum": 1.012935,
+      "arb_sum": 1.021008,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.29
+      "profit_margin_percent": -2.1
     },
     {
       "type": "moneyline",
@@ -433,19 +433,19 @@
       "market": "Moneyline",
       "fighters": {
         "Alex Perez": {
-          "best_bookmaker": "888sport",
-          "best_price": 1.73,
-          "implied_probability": 57.8
+          "best_bookmaker": "Virgin Bet",
+          "best_price": 1.77,
+          "implied_probability": 56.5
         },
         "Su Mudaerji": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 2.2,
-          "implied_probability": 45.45
+          "best_bookmaker": "Betfair",
+          "best_price": 2.16,
+          "implied_probability": 46.3
         }
       },
-      "arb_sum": 1.03258,
+      "arb_sum": 1.027935,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.26
+      "profit_margin_percent": -2.79
     },
     {
       "type": "moneyline",
@@ -565,12 +565,12 @@
       "market": "Moneyline",
       "fighters": {
         "Bo Nickal": {
-          "best_bookmaker": "Grosvenor",
+          "best_bookmaker": "Paddy Power",
           "best_price": 1.33,
           "implied_probability": 75.19
         },
         "Kyle Daukaus": {
-          "best_bookmaker": "Unibet (UK)",
+          "best_bookmaker": "Grosvenor",
           "best_price": 3.5,
           "implied_probability": 28.57
         }
@@ -786,8 +786,8 @@
       "fighters": {
         "Conor McGregor": {
           "best_bookmaker": "Virgin Bet",
-          "best_price": 4.1,
-          "implied_probability": 24.39
+          "best_price": 3.85,
+          "implied_probability": 25.97
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
@@ -795,9 +795,9 @@
           "implied_probability": 74.07
         }
       },
-      "arb_sum": 0.984643,
-      "is_arbitrage": true,
-      "profit_margin_percent": 1.54
+      "arb_sum": 1.000481,
+      "is_arbitrage": false,
+      "profit_margin_percent": -0.05
     }
   ],
   "prop_markets": [
@@ -1147,28 +1147,5 @@
       "profit_margin_percent": -5.74
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "2c982ef7f30e521915fb0c82ffdaf4ba",
-      "commence_time": "2026-07-12T03:30:00Z",
-      "fight": "Conor McGregor vs Max Holloway",
-      "market": "Moneyline",
-      "fighters": {
-        "Conor McGregor": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 4.1,
-          "implied_probability": 24.39
-        },
-        "Max Holloway": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.35,
-          "implied_probability": 74.07
-        }
-      },
-      "arb_sum": 0.984643,
-      "is_arbitrage": true,
-      "profit_margin_percent": 1.54
-    }
-  ]
+  "arbitrage_opportunities": []
 }
