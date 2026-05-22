@@ -1,12 +1,34 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 36,
+  "total_moneyline_fights_checked": 37,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 36,
   "arbitrage_count": 0,
   "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
+    {
+      "type": "moneyline",
+      "event_id": "2fb7b2217633f2cdd0e426e0ebf23ce2",
+      "commence_time": "2026-05-23T02:50:00Z",
+      "fight": "Diego Bianchini vs Jonathan Piersma",
+      "market": "Moneyline",
+      "fighters": {
+        "Diego Bianchini": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 2.95,
+          "implied_probability": 33.9
+        },
+        "Jonathan Piersma": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.35,
+          "implied_probability": 74.07
+        }
+      },
+      "arb_sum": 1.079724,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.97
+    },
     {
       "type": "moneyline",
       "event_id": "a93562d8480cee4aa2d4ee21d69cdf51",
@@ -170,18 +192,18 @@
       "fighters": {
         "Khamzat Abaev": {
           "best_bookmaker": "LeoVegas",
-          "best_price": 2.43,
-          "implied_probability": 41.15
+          "best_price": 2.3,
+          "implied_probability": 43.48
         },
         "Luca Poclit": {
           "best_bookmaker": "LeoVegas",
-          "best_price": 1.5,
-          "implied_probability": 66.67
+          "best_price": 1.55,
+          "implied_probability": 64.52
         }
       },
-      "arb_sum": 1.078189,
+      "arb_sum": 1.079944,
       "is_arbitrage": false,
-      "profit_margin_percent": -7.82
+      "profit_margin_percent": -7.99
     },
     {
       "type": "moneyline",
@@ -433,9 +455,9 @@
       "market": "Moneyline",
       "fighters": {
         "Alex Perez": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 1.77,
-          "implied_probability": 56.5
+          "best_bookmaker": "888sport",
+          "best_price": 1.73,
+          "implied_probability": 57.8
         },
         "Su Mudaerji": {
           "best_bookmaker": "Betfair",
@@ -443,9 +465,9 @@
           "implied_probability": 46.3
         }
       },
-      "arb_sum": 1.027935,
+      "arb_sum": 1.040998,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.79
+      "profit_margin_percent": -4.1
     },
     {
       "type": "moneyline",
