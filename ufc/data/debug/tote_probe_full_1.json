@@ -1,0 +1,25 @@
+{
+  "url": "https://tote-prod.abetting.co/sportsbook/api/public/currencies?BrandCode=AMELCO",
+  "method": "GET",
+  "post_data": null,
+  "response": [
+    {
+      "name": "Sterling",
+      "code": "GBP",
+      "symbol": "£",
+      "active": true,
+      "principal": true,
+      "virtual": false,
+      "externalId": null
+    },
+    {
+      "name": "Euro",
+      "code": "EUR",
+      "symbol": "€",
+      "active": true,
+      "principal": false,
+      "virtual": false,
+      "externalId": null
+    }
+  ]
+}

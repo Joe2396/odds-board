@@ -1,0 +1,43 @@
+{
+  "url": "https://tote-prod.abetting.co/sportsbook/v1/api/listCountries?locale=en-gb-x-amelco",
+  "method": "GET",
+  "post_data": null,
+  "response": {
+    "Result": {
+      "countries": [
+        {
+          "id": 84,
+          "name": "HUNGARY",
+          "code2": "HU",
+          "code3": "HUN",
+          "active": true,
+          "currencies": []
+        },
+        {
+          "id": 91,
+          "name": "IRELAND",
+          "code2": "IE",
+          "code3": "IRL",
+          "active": true,
+          "currencies": []
+        },
+        {
+          "id": 151,
+          "name": "POLAND",
+          "code2": "PL",
+          "code3": "POL",
+          "active": true,
+          "currencies": []
+        },
+        {
+          "id": 197,
+          "name": "UNITED KINGDOM",
+          "code2": "GB",
+          "code3": "GBR",
+          "active": true,
+          "currencies": []
+        }
+      ]
+    }
+  }
+}

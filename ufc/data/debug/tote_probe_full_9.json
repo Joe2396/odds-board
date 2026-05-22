@@ -1,0 +1,166 @@
+{
+  "url": "https://tote-prod.abetting.co/java-graphql/graphql",
+  "method": "POST",
+  "post_data": "{\"operationName\":\"betSync\",\"variables\":{\"sort\":{\"field\":\"eventTime\",\"descending\":true},\"filters\":[{\"field\":\"outright\",\"value\":\"false\"}],\"keyMarkets\":true,\"slice\":null,\"timeInterval\":null,\"competitionIds\":[],\"sports\":[\"MMA\"],\"locale\":\"en-ie-x-tote-ie\",\"channel\":\"TOTE_MASTER\"},\"query\":\"query betSync($day: Int, $filters: [Filter], $sports: [String], $locale: String, $slice: Interval, $timeInterval: Interval, $nonTradingFilters: [NodeFilterType], $channel: String) {\\n  betSync(\\n    locale: $locale\\n    channel: $channel\\n    eventParams: {filters: $filters, day: $day, sportList: $sports, slice: $slice, timeInterval: $timeInterval}\\n  ) {\\n    numMarkets\\n    sports(filters: $nonTradingFilters) {\\n      id\\n      code\\n      numEventsToday\\n      numEventsInplay\\n      numEventsDisplayed\\n      weighting\\n      groups {\\n        name\\n        __typename\\n      }\\n      keyMarkets {\\n        type\\n        __typename\\n      }\\n      categories(filters: $nonTradingFilters) {\\n        id\\n        name\\n        numEvents\\n        numEventsInplay\\n        numEventsDisplayed\\n        weighting\\n        competitions(filters: $nonTradingFilters) {\\n          id\\n          name\\n          highlight\\n          weighting\\n          numEvents\\n          numOutrightEvents\\n          numEventsDisplayed\\n          numEventsInplay\\n          numEventsToday\\n          events {\\n            count\\n            __typename\\n          }\\n          __typename\\n        }\\n        __typename\\n      }\\n      events {\\n        count\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\"}",
+  "response": {
+    "data": {
+      "betSync": {
+        "numMarkets": 89344,
+        "sports": [
+          {
+            "id": "96272",
+            "code": "MMA",
+            "numEventsToday": 0,
+            "numEventsInplay": 0,
+            "numEventsDisplayed": 55,
+            "weighting": 40.0,
+            "groups": [],
+            "keyMarkets": [
+              {
+                "type": "MMA:FT:ML",
+                "__typename": "KeyMarket"
+              }
+            ],
+            "categories": [
+              {
+                "id": "96274",
+                "name": "UFC",
+                "numEvents": 23,
+                "numEventsInplay": 0,
+                "numEventsDisplayed": 23,
+                "weighting": 40.0,
+                "competitions": [
+                  {
+                    "id": "2815175",
+                    "name": "UFC Freedom Fights 250: Topuria vs. Gaethje",
+                    "highlight": false,
+                    "weighting": 40.0,
+                    "numEvents": 7,
+                    "numOutrightEvents": 0,
+                    "numEventsDisplayed": 7,
+                    "numEventsInplay": 0,
+                    "numEventsToday": 0,
+                    "events": {
+                      "count": 7,
+                      "__typename": "EventsData"
+                    },
+                    "__typename": "Competition"
+                  },
+                  {
+                    "id": "2851830",
+                    "name": "UFC Fight Night: Song vs. Figueiredo",
+                    "highlight": false,
+                    "weighting": 40.0,
+                    "numEvents": 11,
+                    "numOutrightEvents": 0,
+                    "numEventsDisplayed": 11,
+                    "numEventsInplay": 0,
+                    "numEventsToday": 0,
+                    "events": {
+                      "count": 11,
+                      "__typename": "EventsData"
+                    },
+                    "__typename": "Competition"
+                  },
+                  {
+                    "id": "3126781",
+                    "name": "UFC 329: McGregor vs. Holloway 2",
+                    "highlight": false,
+                    "weighting": 40.0,
+                    "numEvents": 5,
+                    "numOutrightEvents": 0,
+                    "numEventsDisplayed": 5,
+                    "numEventsInplay": 0,
+                    "numEventsToday": 0,
+                    "events": {
+                      "count": 5,
+                      "__typename": "EventsData"
+                    },
+                    "__typename": "Competition"
+                  }
+                ],
+                "__typename": "Category"
+              },
+              {
+                "id": "113201",
+                "name": "PFL",
+                "numEvents": 22,
+                "numEventsInplay": 0,
+                "numEventsDisplayed": 22,
+                "weighting": 40.0,
+                "competitions": [
+                  {
+                    "id": "3072671",
+                    "name": "PFL Brussels: Habirora vs Henderson",
+                    "highlight": false,
+                    "weighting": 40.0,
+                    "numEvents": 11,
+                    "numOutrightEvents": 0,
+                    "numEventsDisplayed": 11,
+                    "numEventsInplay": 0,
+                    "numEventsToday": 0,
+                    "events": {
+                      "count": 11,
+                      "__typename": "EventsData"
+                    },
+                    "__typename": "Competition"
+                  },
+                  {
+                    "id": "3130751",
+                    "name": "PFL MENA 9: Yahya vs Saadi",
+                    "highlight": false,
+                    "weighting": 40.0,
+                    "numEvents": 11,
+                    "numOutrightEvents": 0,
+                    "numEventsDisplayed": 11,
+                    "numEventsInplay": 0,
+                    "numEventsToday": 0,
+                    "events": {
+                      "count": 11,
+                      "__typename": "EventsData"
+                    },
+                    "__typename": "Competition"
+                  }
+                ],
+                "__typename": "Category"
+              },
+              {
+                "id": "1999766",
+                "name": "LFA",
+                "numEvents": 10,
+                "numEventsInplay": 0,
+                "numEventsDisplayed": 10,
+                "weighting": 40.0,
+                "competitions": [
+                  {
+                    "id": "3140961",
+                    "name": "LFA 233",
+                    "highlight": false,
+                    "weighting": 40.0,
+                    "numEvents": 10,
+                    "numOutrightEvents": 0,
+                    "numEventsDisplayed": 10,
+                    "numEventsInplay": 0,
+                    "numEventsToday": 0,
+                    "events": {
+                      "count": 10,
+                      "__typename": "EventsData"
+                    },
+                    "__typename": "Competition"
+                  }
+                ],
+                "__typename": "Category"
+              }
+            ],
+            "events": {
+              "count": 55,
+              "__typename": "EventsData"
+            },
+            "__typename": "Sport"
+          }
+        ],
+        "__typename": "EventTree"
+      }
+    }
+  }
+}

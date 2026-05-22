@@ -1,0 +1,636 @@
+{
+  "url": "https://tote-prod.abetting.co/java-graphql/graphql",
+  "method": "POST",
+  "post_data": "{\"operationName\":\"betSync\",\"query\":\"query betSync(\\n  $sort: Sort\\n  $segment: String\\n  $region: String\\n  $language: String\\n  $filters: [Filter]\\n  $search: String\\n  $slice: Interval\\n  $timeInterval: Interval\\n  $channel: String\\n  $sports: [String]\\n  $nonTradingFilters: [NodeFilterType]\\n) {\\n    betSync(cmsSegment: $segment, region: $region, language: $language, channel: $channel) {\\n      sports(sports: $sports, filters: $nonTradingFilters, eSports: false) {\\n        code\\n        events(filters: $filters, slice: $slice, timeInterval: $timeInterval, search: $search, sort: $sort) {\\n          data {\\n  id\\n  compId\\n  compName\\n  betradarId\\n  simplebetId\\n  globalAtsId\\n  eventTime\\n  sport\\n  inplay\\n  outright\\n  numMarkets\\n  name\\n  displayed\\n  blurb\\n  path\\n  streamingAvailable\\n  streaming\\n  offeredInplay\\n  countryCode\\n  raceNumber\\n  resulted\\n  \\n  participants {\\n    id\\n    name\\n    preview\\n    shortName\\n    veryshortName\\n    iconUrl\\n  }\\n  \\n}\\n          count\\n        }\\n      }\\n    }\\n  }\\n\",\"variables\":{\"channel\":\"TOTE_MASTER\",\"segment\":\"tote-ie\",\"region\":\"ie\",\"language\":\"en\",\"filters\":[{\"field\":\"outright\",\"value\":\"false\"},{\"field\":\"displayed\",\"value\":\"true\"},{\"field\":\"displayed\",\"value\":\"true\"}],\"timeInterval\":{},\"slice\":{\"from\":0,\"to\":14,\"ignoreUndisplayed\":true},\"sort\":{\"field\":\"eventTime\",\"descending\":true},\"sortDescending\":true,\"marketTypes\":[\"MMA:FT:ML\"],\"keyMarkets\":false,\"sports\":[\"MMA\"],\"nonTradingFilters\":[\"DISPLAYED\"]}}",
+  "response": {
+    "data": {
+      "betSync": {
+        "sports": [
+          {
+            "code": "MMA",
+            "events": {
+              "data": [
+                {
+                  "id": "3140993",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533530",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779487200000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Miranda, Richie vs. Varricchio, Robert",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140993",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "714120",
+                      "name": "Miranda, Richie",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "714121",
+                      "name": "Varricchio, Robert",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3140963",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533508",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779489000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Lee, Clayton vs. Edmond, Easton",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140963",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "714109",
+                      "name": "Lee, Clayton",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "714110",
+                      "name": "Edmond, Easton",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3140965",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533514",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779489000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Sheehan, Jack vs. Zeruth, Xavier",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140965",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "714111",
+                      "name": "Sheehan, Jack",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "714112",
+                      "name": "Zeruth, Xavier",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3140967",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533510",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779489000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Hixenbaugh, Jake vs. Holloway, Allen",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140967",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "714113",
+                      "name": "Hixenbaugh, Jake",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "714114",
+                      "name": "Holloway, Allen",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3140969",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533516",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779489000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Carrier, Kevin vs. Mohsin, Zaki",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140969",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "595695",
+                      "name": "Carrier, Kevin",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "714115",
+                      "name": "Mohsin, Zaki",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3140973",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533522",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779489000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Kabil, Soufiane vs. Evangelista, Eliab",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140973",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "714116",
+                      "name": "Kabil, Soufiane",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "714117",
+                      "name": "Evangelista, Eliab",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3140977",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533512",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779489000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Santos, Ednilson vs. Santana, Shaheen",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140977",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "586980",
+                      "name": "Santos, Ednilson",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "632823",
+                      "name": "Santana, Shaheen",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3140987",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533526",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779489000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Dorsainvil, Stanley vs. Holt, Daniel",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140987",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "714118",
+                      "name": "Dorsainvil, Stanley",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "464463",
+                      "name": "Holt, Daniel",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3140989",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533528",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779489000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Kurashvili, Roman vs. Peralta, Ezequiel",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140989",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "714119",
+                      "name": "Kurashvili, Roman",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "675263",
+                      "name": "Peralta, Ezequiel",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3140995",
+                  "compId": "3140961",
+                  "compName": "LFA 233",
+                  "betradarId": "71533532",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779489000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Piersma, Jonathan Hauk vs. Bianchini, Diego",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:1999766:3140961:3140995",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "595702",
+                      "name": "Piersma, Jonathan Hauk",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "595698",
+                      "name": "Bianchini, Diego",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3073488",
+                  "compId": "3072671",
+                  "compName": "PFL Brussels: Habirora vs Henderson",
+                  "betradarId": "71309570",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779553800000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Serbiev, Rustam vs. Reece, Ashley",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:113201:3072671:3073488",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "704618",
+                      "name": "Serbiev, Rustam",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "196463",
+                      "name": "Reece, Ashley",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3073486",
+                  "compId": "3072671",
+                  "compName": "PFL Brussels: Habirora vs Henderson",
+                  "betradarId": "71309568",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779555000000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Meskini, Adam vs. Lopes, Keweny",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:113201:3072671:3073486",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "410907",
+                      "name": "Meskini, Adam",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "350447",
+                      "name": "Lopes, Keweny",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3072693",
+                  "compId": "3072671",
+                  "compName": "PFL Brussels: Habirora vs Henderson",
+                  "betradarId": "71305962",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779556200000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Abaev, Khamzat vs. Poclit, Luca",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:113201:3072671:3072693",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "410894",
+                      "name": "Abaev, Khamzat",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "188335",
+                      "name": "Poclit, Luca",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3072691",
+                  "compId": "3072671",
+                  "compName": "PFL Brussels: Habirora vs Henderson",
+                  "betradarId": "71305868",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779557400000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Ibragimov, Movsar vs. Binate, Youssouf",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:113201:3072671:3072691",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "410895",
+                      "name": "Ibragimov, Movsar",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "704477",
+                      "name": "Binate, Youssouf",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                },
+                {
+                  "id": "3072687",
+                  "compId": "3072671",
+                  "compName": "PFL Brussels: Habirora vs Henderson",
+                  "betradarId": "71305864",
+                  "simplebetId": null,
+                  "globalAtsId": null,
+                  "eventTime": 1779558600000.0,
+                  "sport": "MMA",
+                  "inplay": false,
+                  "outright": false,
+                  "numMarkets": 1,
+                  "name": "Abena, Donegi vs. Schilling, Joe",
+                  "displayed": true,
+                  "blurb": null,
+                  "path": "96272:113201:3072671:3072687",
+                  "streamingAvailable": null,
+                  "streaming": null,
+                  "offeredInplay": false,
+                  "countryCode": null,
+                  "raceNumber": null,
+                  "resulted": false,
+                  "participants": [
+                    {
+                      "id": "704476",
+                      "name": "Abena, Donegi",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    },
+                    {
+                      "id": "704475",
+                      "name": "Schilling, Joe",
+                      "preview": null,
+                      "shortName": null,
+                      "veryshortName": null,
+                      "iconUrl": null
+                    }
+                  ]
+                }
+              ],
+              "count": 55
+            }
+          }
+        ]
+      }
+    }
+  }
+}

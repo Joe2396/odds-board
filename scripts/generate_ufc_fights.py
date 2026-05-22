@@ -21,6 +21,7 @@ PROP_FILES = [
     ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
     ("Unibet", ROOT / "ufc" / "data" / "unibet_props.json"),
     ("WilliamHill", ROOT / "ufc" / "data" / "williamhill_props.json"),
+    ("888Sport", ROOT / "ufc" / "data" / "888sport_props.json"),
 ]
 
 FIGHTS_DIR = ROOT / "ufc" / "fights"

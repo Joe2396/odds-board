@@ -1,0 +1,354 @@
+{
+  "name": "/sports/mma",
+  "layouts": [
+    {
+      "cols": [
+        {
+          "rows": [
+            {
+              "modules": [
+                null,
+                null,
+                null
+              ]
+            },
+            {
+              "modules": []
+            },
+            {
+              "modules": [
+                {
+                  "data": {
+                    "attributes": [
+                      {
+                        "name": "tilespan",
+                        "value": "3"
+                      },
+                      {
+                        "name": "title",
+                        "value": "{\"multilingual\":true,\"default\":\"Specials\"}"
+                      },
+                      {
+                        "name": "subTitle",
+                        "value": "{\"multilingual\":true,\"default\":\"\"}"
+                      },
+                      {
+                        "name": "columnCount",
+                        "value": "\"2\""
+                      },
+                      {
+                        "name": "emptyContentMessage",
+                        "value": "{\"multilingual\":true,\"default\":\"\"}"
+                      },
+                      {
+                        "name": "path",
+                        "value": "[\"52:101738:142424\",\"52:101738:834443\"]"
+                      },
+                      {
+                        "name": "excludedPaths",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "displayType",
+                        "value": "\"tabs\""
+                      },
+                      {
+                        "name": "compOrder",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "compOrderDirection",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "tabs",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "isSpecials",
+                        "value": "true"
+                      },
+                      {
+                        "name": "showOddsFilterTabs",
+                        "value": "\"\""
+                      }
+                    ]
+                  },
+                  "settings": [
+                    {
+                      "component": "leagueSchedule/LeagueScheduleWidget",
+                      "namespace": "leagueSchedule"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "modules": [
+                null,
+                null,
+                null
+              ]
+            },
+            {
+              "modules": [
+                {
+                  "data": {
+                    "attributes": [
+                      {
+                        "name": "title",
+                        "value": "{\"multilingual\":true,\"default\":\"Next Up\"}"
+                      },
+                      {
+                        "name": "tilespan",
+                        "value": "3"
+                      },
+                      {
+                        "name": "fontSize",
+                        "value": "16"
+                      }
+                    ]
+                  },
+                  "settings": [
+                    {
+                      "component": "title/TitleWidget",
+                      "namespace": "title"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "modules": [
+                {
+                  "data": {
+                    "attributes": [
+                      {
+                        "name": "tilespan",
+                        "value": "3"
+                      },
+                      {
+                        "name": "tabs",
+                        "value": "{\"multilingual\":true,\"default\":[{\"label\":\"All Fights\",\"route\":\"\",\"icon\":\"none\",\"eventsDisplayed\":\"none\"},{\"label\":\"UFC\",\"route\":\"topleagues\",\"icon\":\"none\",\"eventsDisplayed\":\"numEventsDisplayed\"},{\"label\":\"All Fight Cards\",\"route\":\"leagues\",\"icon\":\"none\",\"eventsDisplayed\":\"none\"}]}"
+                      },
+                      {
+                        "name": "subRoutes",
+                        "value": "true"
+                      },
+                      {
+                        "name": "displaySearchBar",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "isLiveCasino",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "allowNoSelection",
+                        "value": "\"\""
+                      }
+                    ]
+                  },
+                  "settings": [
+                    {
+                      "component": "tabs/TabsWidget",
+                      "namespace": "tabs"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "modules": [
+                {
+                  "data": {
+                    "attributes": [
+                      {
+                        "name": "tilespan",
+                        "value": "3"
+                      },
+                      {
+                        "name": "title",
+                        "value": "{\"multilingual\":true,\"default\":\"\"}"
+                      },
+                      {
+                        "name": "subTitle",
+                        "value": "{\"multilingual\":true,\"default\":\"\"}"
+                      },
+                      {
+                        "name": "emptyContentMessage",
+                        "value": "{\"multilingual\":true,\"default\":\"\"}"
+                      },
+                      {
+                        "name": "subTitleLink",
+                        "value": "{\"multilingual\":true,\"default\":\"\"}"
+                      },
+                      {
+                        "name": "footerTitle",
+                        "value": "{\"multilingual\":true,\"default\":\"\"}"
+                      },
+                      {
+                        "name": "footerTitleLink",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "sports",
+                        "value": "{\"sports\":[\"MMA\"]}"
+                      },
+                      {
+                        "name": "eventState",
+                        "value": "\"all\""
+                      },
+                      {
+                        "name": "displayType",
+                        "value": "\"list\""
+                      },
+                      {
+                        "name": "competitionTabs",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "displayCompetitionTabsForHighlights",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "showAllSports",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "tabsType",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "initNbrEvents",
+                        "value": "\"15\""
+                      },
+                      {
+                        "name": "showMoreNbr",
+                        "value": "\"20\""
+                      },
+                      {
+                        "name": "path",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "marketTypeSelector",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "marketTypes",
+                        "value": "[{\"label\":\"Win\",\"type\":\"MMA:FT:ML\"},{\"label\":\"OU\",\"type\":\"MMA:FT:OU\"}]"
+                      },
+                      {
+                        "name": "groupBy",
+                        "value": "\"day\""
+                      },
+                      {
+                        "name": "eventOrder",
+                        "value": "\"eventTime\""
+                      },
+                      {
+                        "name": "eventOrderDir",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "collapseGroups",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "showMarketSelector",
+                        "value": "true"
+                      },
+                      {
+                        "name": "horizontalDisplay",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "filterBy",
+                        "value": "\"no\""
+                      },
+                      {
+                        "name": "filterText",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "Contains",
+                        "value": "true"
+                      },
+                      {
+                        "name": "day",
+                        "value": "-1"
+                      },
+                      {
+                        "name": "fromDay",
+                        "value": "-1"
+                      },
+                      {
+                        "name": "toDay",
+                        "value": "-1"
+                      },
+                      {
+                        "name": "showFilters",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "showTreeWidget",
+                        "value": "\"\""
+                      },
+                      {
+                        "name": "showDateFilter",
+                        "value": "\"\""
+                      }
+                    ]
+                  },
+                  "settings": [
+                    {
+                      "component": "sports/SportsWidget",
+                      "namespace": "sports"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "modules": [
+                null,
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        {
+          "rows": [
+            {
+              "modules": []
+            }
+          ]
+        }
+      ],
+      "title": {
+        "locale": null,
+        "text": null
+      },
+      "titles": [],
+      "type": "Regular",
+      "route": "/sports/mma",
+      "brand": "TOTE",
+      "segment": "default",
+      "fallback": null,
+      "id": 0
+    }
+  ],
+  "metaTags": [
+    {
+      "keywords": [],
+      "locale": "default",
+      "description": ""
+    }
+  ],
+  "title": null,
+  "lastUpdated": "2025-06-27T09:13:10.736+0000",
+  "pageLayoutsId": "/sports/mma$desktop||tote::default",
+  "id": 0
+}
