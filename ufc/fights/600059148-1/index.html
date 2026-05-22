@@ -420,6 +420,27 @@
       background: rgba(96,165,250,0.22);
     }
 
+    .tracker-link-btn {
+      border: 1px solid rgba(34,197,94,0.45);
+      background: rgba(34,197,94,0.12);
+      color: #86efac;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tracker-link-btn:hover {
+      background: rgba(34,197,94,0.22);
+      text-decoration: none;
+    }
+
     .summary-strip {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -648,7 +669,7 @@
             <span class="meta-pill">Conor McGregor vs Max Holloway</span>
             <span class="meta-pill">Status: scheduled</span>
             <span class="meta-pill">Odds: ✅ 9 books</span>
-            <span class="meta-pill">Prop Books: 2</span>
+            <span class="meta-pill">Prop Books: 3</span>
             <span class="meta-pill">Value Spots: 3</span>
           </div>
         </div>
@@ -659,14 +680,14 @@
         
         <div class="summary-card">
           <span>Best price — Conor McGregor</span>
-          <strong>4.30</strong>
+          <strong>4.10</strong>
           <small>Virgin Bet</small>
         </div>
         
         
         <div class="summary-card">
           <span>Best price — Max Holloway</span>
-          <strong>1.27</strong>
+          <strong>1.34</strong>
           <small>Betfair</small>
         </div>
         
@@ -731,43 +752,43 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>4.30</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>4.10</strong></td></tr>
           
         <tr>
           <td>Virgin Bet ⭐ Best</td>
-          <td>4.30</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>LiveScore Bet</td>
-          <td>4.30</td>
-        </tr>
-        <tr>
-          <td>Betfair</td>
-          <td>4.30</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>Grosvenor</td>
-          <td>4.30</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>LeoVegas</td>
-          <td>4.30</td>
+          <td>4.10</td>
         </tr>
         <tr>
-          <td>Matchbook</td>
-          <td>4.30</td>
+          <td>Betfair</td>
+          <td>3.80</td>
         </tr>
         <tr>
           <td>888sport</td>
-          <td>4.00</td>
+          <td>3.80</td>
         </tr>
         <tr>
           <td>William Hill</td>
-          <td>4.00</td>
+          <td>3.75</td>
+        </tr>
+        <tr>
+          <td>Matchbook</td>
+          <td>3.45</td>
         </tr>
         <tr>
           <td>Paddy Power</td>
-          <td>3.75</td>
+          <td>3.40</td>
         </tr>
         </table>
       </div>
@@ -890,43 +911,43 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>1.27</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>1.34</strong></td></tr>
           
         <tr>
           <td>Betfair ⭐ Best</td>
-          <td>1.27</td>
-        </tr>
-        <tr>
-          <td>Matchbook</td>
-          <td>1.27</td>
+          <td>1.34</td>
         </tr>
         <tr>
           <td>Paddy Power</td>
-          <td>1.25</td>
+          <td>1.30</td>
+        </tr>
+        <tr>
+          <td>Matchbook</td>
+          <td>1.30</td>
         </tr>
         <tr>
           <td>888sport</td>
+          <td>1.27</td>
+        </tr>
+        <tr>
+          <td>William Hill</td>
           <td>1.25</td>
         </tr>
         <tr>
           <td>Virgin Bet</td>
-          <td>1.22</td>
+          <td>1.24</td>
         </tr>
         <tr>
           <td>LiveScore Bet</td>
-          <td>1.22</td>
+          <td>1.24</td>
         </tr>
         <tr>
           <td>Grosvenor</td>
-          <td>1.22</td>
+          <td>1.24</td>
         </tr>
         <tr>
           <td>LeoVegas</td>
-          <td>1.22</td>
-        </tr>
-        <tr>
-          <td>William Hill</td>
-          <td>1.22</td>
+          <td>1.24</td>
         </tr>
         </table>
       </div>
@@ -1029,20 +1050,23 @@
         <p class="muted">All UK bookmaker prices for the fight winner market. ⭐ marks the best available price per fighter.</p>
 
         
-        <div class="no-arb-note">
-          No arbitrage at current best prices. Book margin: 2.00%
+        <div class="arb-banner">
+          🎯 <strong>Arbitrage detected!</strong>
+          Back Conor McGregor @ 4.10 (Virgin Bet)
+          + Max Holloway @ 1.34 (Betfair)
+          = <strong>+0.98% guaranteed profit</strong>
         </div>
         
         
         <div class="ml-best-strip">
           <div class="ml-best-card">
             <span>Best price — Conor McGregor</span>
-            <strong>4.30</strong>
+            <strong>4.10</strong>
             <small>Virgin Bet</small>
           </div>
           <div class="ml-best-card">
             <span>Best price — Max Holloway</span>
-            <strong>1.27</strong>
+            <strong>1.34</strong>
             <small>Betfair</small>
           </div>
         </div>
@@ -1058,67 +1082,67 @@
     
         <div class="ml-row">
           <div class="ml-book">Virgin Bet</div>
-          <div class="ml-price ml-best">4.30 ⭐</div>
-          <div class="ml-price">1.22</div>
+          <div class="ml-price ml-best">4.10 ⭐</div>
+          <div class="ml-price">1.24</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">LiveScore Bet</div>
-          <div class="ml-price ml-best">4.30 ⭐</div>
-          <div class="ml-price">1.22</div>
-        </div>
-        
-        <div class="ml-row">
-          <div class="ml-book">Betfair</div>
-          <div class="ml-price ml-best">4.30 ⭐</div>
-          <div class="ml-price ml-best">1.27 ⭐</div>
+          <div class="ml-price ml-best">4.10 ⭐</div>
+          <div class="ml-price">1.24</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">Grosvenor</div>
-          <div class="ml-price ml-best">4.30 ⭐</div>
-          <div class="ml-price">1.22</div>
+          <div class="ml-price ml-best">4.10 ⭐</div>
+          <div class="ml-price">1.24</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">LeoVegas</div>
-          <div class="ml-price ml-best">4.30 ⭐</div>
-          <div class="ml-price">1.22</div>
+          <div class="ml-price ml-best">4.10 ⭐</div>
+          <div class="ml-price">1.24</div>
         </div>
         
         <div class="ml-row">
-          <div class="ml-book">Matchbook</div>
-          <div class="ml-price ml-best">4.30 ⭐</div>
-          <div class="ml-price ml-best">1.27 ⭐</div>
+          <div class="ml-book">Betfair</div>
+          <div class="ml-price">3.80</div>
+          <div class="ml-price ml-best">1.34 ⭐</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">888sport</div>
-          <div class="ml-price">4.00</div>
-          <div class="ml-price">1.25</div>
+          <div class="ml-price">3.80</div>
+          <div class="ml-price">1.27</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">William Hill</div>
-          <div class="ml-price">4.00</div>
-          <div class="ml-price">1.22</div>
+          <div class="ml-price">3.75</div>
+          <div class="ml-price">1.25</div>
+        </div>
+        
+        <div class="ml-row">
+          <div class="ml-book">Matchbook</div>
+          <div class="ml-price">3.45</div>
+          <div class="ml-price">1.30</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">Paddy Power</div>
-          <div class="ml-price">3.75</div>
-          <div class="ml-price">1.25</div>
+          <div class="ml-price">3.40</div>
+          <div class="ml-price">1.30</div>
         </div>
         
           
         <div class="ml-row ml-implied">
           <div class="ml-book">Implied Prob (best prices)</div>
-          <div class="ml-price">23.3%</div>
-          <div class="ml-price">78.7%</div>
+          <div class="ml-price">24.4%</div>
+          <div class="ml-price">74.6%</div>
         </div>
         <div class="ml-row ml-overround">
           <div class="ml-book">Total implied / Book overround</div>
-          <div class="ml-price" style="grid-column: span 2;">102.0% &nbsp;|&nbsp; +2.0%</div>
+          <div class="ml-price" style="grid-column: span 2;">99.0% &nbsp;|&nbsp; +-1.0%</div>
         </div>
         
         </div>
@@ -1156,6 +1180,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 3/1</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1165,6 +1190,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Go%20The%20Distance%3F&amp;selection=Yes&amp;bookmaker=PaddyPower&amp;odds=3%2F1"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1181,6 +1213,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 33/100</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1190,6 +1223,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Go%20The%20Distance%3F&amp;selection=No&amp;bookmaker=BetMGM&amp;odds=33%2F100"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1216,6 +1256,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 30/1</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1225,6 +1266,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Conor%20McGregor%20by%20Submission&amp;bookmaker=BetMGM&amp;odds=30%2F1"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1244,6 +1292,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 45/1</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1253,6 +1302,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Draw&amp;bookmaker=PaddyPower&amp;odds=45%2F1"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1265,6 +1321,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 21/2</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1274,6 +1331,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Conor%20McGregor%20by%20Decision&amp;bookmaker=BetMGM&amp;odds=21%2F2"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1286,6 +1350,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 5/1</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1295,6 +1360,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Conor%20McGregor%20by%20KO%2C%20TKO%20or%20DQ&amp;bookmaker=BetMGM&amp;odds=5%2F1"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1307,6 +1379,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 4/1</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1316,6 +1389,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Conor%20McGregor%20by%20KO%2FTKO&amp;bookmaker=PaddyPower&amp;odds=4%2F1"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1328,6 +1408,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 12/1</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1337,6 +1418,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Conor%20McGregor%20by%20Points&amp;bookmaker=PaddyPower&amp;odds=12%2F1"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1349,6 +1437,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 3/1</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1358,6 +1447,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Max%20Holloway%20by%20Decision&amp;bookmaker=BetMGM&amp;odds=3%2F1"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1370,6 +1466,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 3/4</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1379,6 +1476,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Max%20Holloway%20by%20KO%2C%20TKO%20or%20DQ&amp;bookmaker=BetMGM&amp;odds=3%2F4"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1391,6 +1495,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 4/6</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1400,6 +1505,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Max%20Holloway%20by%20KO%2FTKO&amp;bookmaker=PaddyPower&amp;odds=4%2F6"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1412,6 +1524,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 4/1</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1421,6 +1534,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Max%20Holloway%20by%20Points&amp;bookmaker=PaddyPower&amp;odds=4%2F1"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1437,6 +1557,7 @@
 
               <div class="best-right">
                 <div class="best-price">⭐ 23/2</div>
+
                 <button
                   type="button"
                   class="ev-load-btn"
@@ -1446,6 +1567,13 @@
                 >
                   Use in EV Tool →
                 </button>
+
+                <a
+                  class="tracker-link-btn"
+                  href="/odds-board/ufc/tracker/?sport=UFC&amp;event=Conor%20McGregor%20vs%20Max%20Holloway&amp;market=Method%20of%20Victory&amp;selection=Max%20Holloway%20by%20Submission&amp;bookmaker=BetMGM&amp;odds=23%2F2"
+                >
+                  Add to Bet Tracker →
+                </a>
               </div>
             </div>
             
@@ -1597,6 +1725,27 @@
         </div>
         </article>
         
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">WilliamHill props</div>
+              <h3>Conor McGregor vs Max Holloway</h3>
+            </div>
+            <a class="small-link" href="https://sports.williamhill.com/betting/en-gb/ufc/matches/competition/future/match-betting" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Fight Betting</h4>
+        <div class="prop-row">
+          <span>Conor McGregor</span>
+          <strong>11/4</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Max Holloway</span>
+          <strong>1/4</strong>
+        </div>
+        </div>
+        </article>
+        
         </div>
       </section>
     
@@ -1638,43 +1787,43 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>4.30</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>4.10</strong></td></tr>
           
         <tr>
           <td>Virgin Bet ⭐ Best</td>
-          <td>4.30</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>LiveScore Bet</td>
-          <td>4.30</td>
-        </tr>
-        <tr>
-          <td>Betfair</td>
-          <td>4.30</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>Grosvenor</td>
-          <td>4.30</td>
+          <td>4.10</td>
         </tr>
         <tr>
           <td>LeoVegas</td>
-          <td>4.30</td>
+          <td>4.10</td>
         </tr>
         <tr>
-          <td>Matchbook</td>
-          <td>4.30</td>
+          <td>Betfair</td>
+          <td>3.80</td>
         </tr>
         <tr>
           <td>888sport</td>
-          <td>4.00</td>
+          <td>3.80</td>
         </tr>
         <tr>
           <td>William Hill</td>
-          <td>4.00</td>
+          <td>3.75</td>
+        </tr>
+        <tr>
+          <td>Matchbook</td>
+          <td>3.45</td>
         </tr>
         <tr>
           <td>Paddy Power</td>
-          <td>3.75</td>
+          <td>3.40</td>
         </tr>
         </table>
       </div>
@@ -1797,43 +1946,43 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>1.27</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>1.34</strong></td></tr>
           
         <tr>
           <td>Betfair ⭐ Best</td>
-          <td>1.27</td>
-        </tr>
-        <tr>
-          <td>Matchbook</td>
-          <td>1.27</td>
+          <td>1.34</td>
         </tr>
         <tr>
           <td>Paddy Power</td>
-          <td>1.25</td>
+          <td>1.30</td>
+        </tr>
+        <tr>
+          <td>Matchbook</td>
+          <td>1.30</td>
         </tr>
         <tr>
           <td>888sport</td>
+          <td>1.27</td>
+        </tr>
+        <tr>
+          <td>William Hill</td>
           <td>1.25</td>
         </tr>
         <tr>
           <td>Virgin Bet</td>
-          <td>1.22</td>
+          <td>1.24</td>
         </tr>
         <tr>
           <td>LiveScore Bet</td>
-          <td>1.22</td>
+          <td>1.24</td>
         </tr>
         <tr>
           <td>Grosvenor</td>
-          <td>1.22</td>
+          <td>1.24</td>
         </tr>
         <tr>
           <td>LeoVegas</td>
-          <td>1.22</td>
-        </tr>
-        <tr>
-          <td>William Hill</td>
-          <td>1.22</td>
+          <td>1.24</td>
         </tr>
         </table>
       </div>
@@ -2003,13 +2152,13 @@
           <tr><td>Weight Class</td><td>Welterweight - Main Event</td></tr>
           <tr><td>Status</td><td>scheduled</td></tr>
           <tr><td>Odds Books</td><td>9</td></tr>
-          <tr><td>Prop Books Matched</td><td>2</td></tr>
+          <tr><td>Prop Books Matched</td><td>3</td></tr>
           <tr><td>Value Spots</td><td>3</td></tr>
         </table>
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600059148-1 • Generated: 2026-05-19 07:00 UTC</p>
+      <p class="muted">Fight ID: 600059148-1 • Generated: 2026-05-22 15:45 UTC</p>
     </div>
   </main>
 
@@ -2134,56 +2283,58 @@
       });
     });
 
+
+
+    function addBetTrackerLinks() {
+      const fightTitle = document.querySelector("h1")?.textContent?.trim() || "";
+
+      document.querySelectorAll(".ev-load-btn").forEach(btn => {
+        if (btn.parentElement.querySelector(".tracker-link-btn")) return;
+
+        const row = btn.closest(".best-row");
+        const market = row?.closest(".best-market")?.querySelector("h3")?.textContent?.trim() || "";
+        const selection = btn.dataset.selection || "";
+        const bookmaker = btn.dataset.bookmaker || "";
+        const oddsText = row?.querySelector(".best-price")?.textContent?.replace("⭐", "")?.trim() || btn.dataset.odds || "";
+
+        const params = new URLSearchParams({
+          sport: "UFC",
+          event: fightTitle,
+          market: market,
+          selection: selection,
+          bookmaker: bookmaker,
+          odds: oddsText
+        });
+
+        const trackerBase = window.location.protocol === "file:"
+          ? "../../tracker/index.html"
+          : "/odds-board/ufc/tracker/";
+
+        const link = document.createElement("a");
+        link.className = "tracker-link-btn";
+        link.href = trackerBase + "?" + params.toString();
+        link.textContent = "Add to Bet Tracker →";
+        link.style.border = "1px solid rgba(34,197,94,0.45)";
+        link.style.background = "rgba(34,197,94,0.12)";
+        link.style.color = "#86efac";
+        link.style.borderRadius = "10px";
+        link.style.padding = "6px 10px";
+        link.style.fontSize = "12px";
+        link.style.fontWeight = "700";
+        link.style.textDecoration = "none";
+        link.style.whiteSpace = "nowrap";
+        link.style.display = "inline-flex";
+        link.style.alignItems = "center";
+        link.style.justifyContent = "center";
+
+        btn.parentElement.appendChild(link);
+      });
+    }
+
+    addBetTrackerLinks();
+
     document.addEventListener("input", updateEV);
     updateEV();
   </script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".ev-load-btn").forEach(function (btn) {
-    if (btn.parentElement.querySelector(".tracker-link-btn")) return;
-
-    const row = btn.closest(".best-row") || btn.closest(".best-card");
-    const market = row?.closest(".best-market")?.querySelector("h3")?.textContent?.trim() || "";
-    const fightTitle = document.querySelector("h1")?.textContent?.trim() || "";
-    const selection = btn.dataset.selection || "";
-    const bookmaker = btn.dataset.bookmaker || "";
-    const oddsText = row?.querySelector(".best-price")?.textContent?.replace("⭐", "")?.trim() || btn.dataset.odds || "";
-
-    const params = new URLSearchParams({
-      sport: "UFC",
-      event: fightTitle,
-      market: market,
-      selection: selection,
-      bookmaker: bookmaker,
-      odds: oddsText
-    });
-
-    const trackerBase = window.location.protocol === "file:"
-      ? "../../tracker/index.html"
-      : "/odds-board/ufc/tracker/";
-
-    const link = document.createElement("a");
-    link.className = "tracker-link-btn";
-    link.href = trackerBase + "?" + params.toString();
-    link.textContent = "Add to Bet Tracker →";
-    link.style.border = "1px solid rgba(34,197,94,0.45)";
-    link.style.background = "rgba(34,197,94,0.12)";
-    link.style.color = "#86efac";
-    link.style.borderRadius = "10px";
-    link.style.padding = "6px 10px";
-    link.style.fontSize = "12px";
-    link.style.fontWeight = "700";
-    link.style.textDecoration = "none";
-    link.style.whiteSpace = "nowrap";
-    link.style.display = "inline-flex";
-    link.style.alignItems = "center";
-    link.style.justifyContent = "center";
-
-    btn.parentElement.appendChild(link);
-  });
-});
-</script>
-
 </body>
 </html>

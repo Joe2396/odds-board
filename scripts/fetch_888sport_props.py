@@ -2,11 +2,14 @@ from pathlib import Path
 from datetime import datetime, timezone
 import json
 import re
+import unicodedata
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+
 OUT_PATH = ROOT / "ufc" / "data" / "888sport_props.json"
 DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
+FIGHTERS_JSON = ROOT / "ufc" / "data" / "fighters.json"
 
 URL = "https://www.888sport.com/ufc-mma/"
 
@@ -17,6 +20,19 @@ def clean(text):
     return re.sub(r"\s+", " ", str(text or "")).strip()
 
 
+def normalize_name(name):
+    text = unicodedata.normalize("NFKD", str(name or ""))
+    text = text.encode("ascii", "ignore").decode("ascii")
+    text = text.lower()
+    text = text.replace("'", "")
+    text = text.replace("’", "")
+    text = text.replace(".", "")
+    text = text.replace("-", " ")
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
 def is_fractional(text):
     text = clean(text).upper()
     return bool(re.fullmatch(r"\d+/\d+", text)) or text == "EVS"
@@ -24,10 +40,101 @@ def is_fractional(text):
 
 def parse_fighter_name(text):
     text = clean(text)
+
+    # 888 usually shows "Surname, Initial" or "Surname, Firstname"
     if "," in text:
         last, first = [clean(x) for x in text.split(",", 1)]
         return clean(f"{first} {last}")
+
     return text
+
+
+def load_known_fighters():
+    raw = {}
+    try:
+        raw = json.loads(FIGHTERS_JSON.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+    fighters = raw.get("fighters", [])
+
+    if isinstance(fighters, dict):
+        fighters = list(fighters.values())
+
+    names = []
+
+    for fighter in fighters or []:
+        if isinstance(fighter, dict) and fighter.get("name"):
+            names.append(clean(fighter["name"]))
+
+    return sorted(set(names))
+
+
+KNOWN_FIGHTERS = load_known_fighters()
+
+
+def expand_initial_name(short_name):
+    """
+    Turns:
+      I Topuria -> Ilia Topuria
+      J Gaethje -> Justin Gaethje
+      S O'Malley -> Sean O'Malley
+      L Lookboonmee -> Loma Lookboonmee
+    using ufc/data/fighters.json.
+    """
+    short_name = clean(short_name)
+
+    parts = short_name.split()
+    if len(parts) < 2:
+        return short_name
+
+    first = parts[0].replace(".", "")
+    surname = " ".join(parts[1:])
+
+    # Only expand names that start with a single-letter initial
+    if len(first) != 1:
+        return short_name
+
+    initial = normalize_name(first)
+    surname_norm = normalize_name(surname)
+
+    matches = []
+
+    for full in KNOWN_FIGHTERS:
+        full_norm = normalize_name(full)
+        full_parts = full_norm.split()
+
+        if not full_parts:
+            continue
+
+        full_first = full_parts[0]
+        full_surname = " ".join(full_parts[1:])
+
+        if full_first.startswith(initial) and surname_norm == full_surname:
+            matches.append(full)
+
+    if len(matches) == 1:
+        return matches[0]
+
+    # Fallback: allow matching on final surname token
+    matches = []
+
+    short_surname_last = surname_norm.split()[-1] if surname_norm.split() else ""
+
+    for full in KNOWN_FIGHTERS:
+        full_norm = normalize_name(full)
+        full_parts = full_norm.split()
+
+        if len(full_parts) < 2:
+            continue
+
+        if full_parts[0].startswith(initial) and full_parts[-1] == short_surname_last:
+            matches.append(full)
+
+    if len(matches) == 1:
+        return matches[0]
+
+    return short_name
 
 
 def looks_like_time(text):
@@ -64,7 +171,7 @@ def click_upcoming(page):
 
 def scroll_page(page):
     print("SCROLLING PAGE TO LOAD MORE FIGHTS")
-    for n in range(12):
+    for _ in range(12):
         page.mouse.wheel(0, 900)
         page.wait_for_timeout(1000)
 
@@ -94,8 +201,12 @@ def extract_fights_from_lines(lines):
                     odds.append(clean(lines[j]))
 
             if len(odds) >= 2:
-                left = parse_fighter_name(a)
-                right = parse_fighter_name(b)
+                raw_left = parse_fighter_name(a)
+                raw_right = parse_fighter_name(b)
+
+                left = expand_initial_name(raw_left)
+                right = expand_initial_name(raw_right)
+
                 fight_name = f"{left} vs {right}"
 
                 nearby = " ".join(lines[max(0, i - 20):min(len(lines), i + 35)]).lower()
@@ -114,7 +225,8 @@ def extract_fights_from_lines(lines):
                             {"selection": left, "odds": odds[0]},
                             {"selection": right, "odds": odds[1]},
                         ]
-                    }
+                    },
+                    "raw_fight_name": f"{raw_left} vs {raw_right}",
                 })
 
                 i += 8
@@ -127,6 +239,8 @@ def extract_fights_from_lines(lines):
 
 def main():
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+
+    print(f"KNOWN FIGHTERS LOADED: {len(KNOWN_FIGHTERS)}")
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
@@ -192,6 +306,9 @@ def main():
     print(f"✅ Saved {len(fights)} 888Sport UFC fights")
     print(f"📁 {OUT_PATH}")
     print(f"🧪 Debug lines: {DEBUG_DIR / '888sport_lines.txt'}")
+
+    for fight in fights:
+        print(f" - {fight['fight_name']} ({fight.get('raw_fight_name')})")
 
 
 if __name__ == "__main__":

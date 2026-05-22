@@ -420,6 +420,27 @@
       background: rgba(96,165,250,0.22);
     }
 
+    .tracker-link-btn {
+      border: 1px solid rgba(34,197,94,0.45);
+      background: rgba(34,197,94,0.12);
+      color: #86efac;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tracker-link-btn:hover {
+      background: rgba(34,197,94,0.22);
+      text-decoration: none;
+    }
+
     .summary-strip {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -647,8 +668,8 @@
             <span class="meta-pill">Light Heavyweight</span>
             <span class="meta-pill">Zhang Mingyang vs Alonzo Menifield</span>
             <span class="meta-pill">Status: scheduled</span>
-            <span class="meta-pill">Odds: ✅ 6 books</span>
-            <span class="meta-pill">Prop Books: 1</span>
+            <span class="meta-pill">Odds: ✅ 8 books</span>
+            <span class="meta-pill">Prop Books: 3</span>
             <span class="meta-pill">Value Spots: 0</span>
           </div>
         </div>
@@ -666,8 +687,8 @@
         
         <div class="summary-card">
           <span>Best price — Alonzo Menifield</span>
-          <strong>2.80</strong>
-          <small>LiveScore Bet</small>
+          <strong>2.88</strong>
+          <small>Betfair</small>
         </div>
         
         
@@ -738,6 +759,10 @@
           <td>1.44</td>
         </tr>
         <tr>
+          <td>Paddy Power</td>
+          <td>1.44</td>
+        </tr>
+        <tr>
           <td>LiveScore Bet</td>
           <td>1.43</td>
         </tr>
@@ -756,6 +781,10 @@
         <tr>
           <td>Unibet (UK)</td>
           <td>1.42</td>
+        </tr>
+        <tr>
+          <td>Betfair</td>
+          <td>1.26</td>
         </tr>
         </table>
       </div>
@@ -858,10 +887,14 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>2.80</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>2.88</strong></td></tr>
           
         <tr>
-          <td>LiveScore Bet ⭐ Best</td>
+          <td>Betfair ⭐ Best</td>
+          <td>2.88</td>
+        </tr>
+        <tr>
+          <td>LiveScore Bet</td>
           <td>2.80</td>
         </tr>
         <tr>
@@ -882,7 +915,11 @@
         </tr>
         <tr>
           <td>Betway</td>
-          <td>2.62</td>
+          <td>2.75</td>
+        </tr>
+        <tr>
+          <td>Paddy Power</td>
+          <td>2.75</td>
         </tr>
         </table>
       </div>
@@ -986,7 +1023,7 @@
 
         
         <div class="no-arb-note">
-          No arbitrage at current best prices. Book margin: 5.16%
+          No arbitrage at current best prices. Book margin: 4.17%
         </div>
         
         
@@ -998,8 +1035,8 @@
           </div>
           <div class="ml-best-card">
             <span>Best price — Alonzo Menifield</span>
-            <strong>2.80</strong>
-            <small>LiveScore Bet</small>
+            <strong>2.88</strong>
+            <small>Betfair</small>
           </div>
         </div>
         
@@ -1015,31 +1052,37 @@
         <div class="ml-row">
           <div class="ml-book">Betway</div>
           <div class="ml-price ml-best">1.44 ⭐</div>
-          <div class="ml-price">2.62</div>
+          <div class="ml-price">2.75</div>
+        </div>
+        
+        <div class="ml-row">
+          <div class="ml-book">Paddy Power</div>
+          <div class="ml-price ml-best">1.44 ⭐</div>
+          <div class="ml-price">2.75</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">LiveScore Bet</div>
           <div class="ml-price">1.43</div>
-          <div class="ml-price ml-best">2.80 ⭐</div>
+          <div class="ml-price">2.80</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">LeoVegas</div>
           <div class="ml-price">1.43</div>
-          <div class="ml-price ml-best">2.80 ⭐</div>
+          <div class="ml-price">2.80</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">Grosvenor</div>
           <div class="ml-price">1.43</div>
-          <div class="ml-price ml-best">2.80 ⭐</div>
+          <div class="ml-price">2.80</div>
         </div>
         
         <div class="ml-row">
           <div class="ml-book">Virgin Bet</div>
           <div class="ml-price">1.43</div>
-          <div class="ml-price ml-best">2.80 ⭐</div>
+          <div class="ml-price">2.80</div>
         </div>
         
         <div class="ml-row">
@@ -1048,15 +1091,21 @@
           <div class="ml-price">2.75</div>
         </div>
         
+        <div class="ml-row">
+          <div class="ml-book">Betfair</div>
+          <div class="ml-price">1.26</div>
+          <div class="ml-price ml-best">2.88 ⭐</div>
+        </div>
+        
           
         <div class="ml-row ml-implied">
           <div class="ml-book">Implied Prob (best prices)</div>
           <div class="ml-price">69.4%</div>
-          <div class="ml-price">35.7%</div>
+          <div class="ml-price">34.7%</div>
         </div>
         <div class="ml-row ml-overround">
           <div class="ml-book">Total implied / Book overround</div>
-          <div class="ml-price" style="grid-column: span 2;">105.1% &nbsp;|&nbsp; +5.1%</div>
+          <div class="ml-price" style="grid-column: span 2;">104.1% &nbsp;|&nbsp; +4.1%</div>
         </div>
         
         </div>
@@ -1101,6 +1150,48 @@
         <div class="prop-row">
           <span>Alonzo Menifield</span>
           <strong>9/5</strong>
+        </div>
+        </div>
+        </article>
+        
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">Unibet props</div>
+              <h3>Zhang Mingyang vs Alonzo Menifield</h3>
+            </div>
+            <a class="small-link" href="https://www.unibet.ie/betting/odds/mma/ufc" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Fight Betting</h4>
+        <div class="prop-row">
+          <span>Zhang Mingyang</span>
+          <strong>1.42</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Alonzo Menifield</span>
+          <strong>2.75</strong>
+        </div>
+        </div>
+        </article>
+        
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">WilliamHill props</div>
+              <h3>Zhang Mingyang vs Alonzo Menifield</h3>
+            </div>
+            <a class="small-link" href="https://sports.williamhill.com/betting/en-gb/ufc/matches/competition/future/match-betting" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Fight Betting</h4>
+        <div class="prop-row">
+          <span>Zhang Mingyang</span>
+          <strong>2/5</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Alonzo Menifield</span>
+          <strong>7/4</strong>
         </div>
         </div>
         </article>
@@ -1153,6 +1244,10 @@
           <td>1.44</td>
         </tr>
         <tr>
+          <td>Paddy Power</td>
+          <td>1.44</td>
+        </tr>
+        <tr>
           <td>LiveScore Bet</td>
           <td>1.43</td>
         </tr>
@@ -1171,6 +1266,10 @@
         <tr>
           <td>Unibet (UK)</td>
           <td>1.42</td>
+        </tr>
+        <tr>
+          <td>Betfair</td>
+          <td>1.26</td>
         </tr>
         </table>
       </div>
@@ -1273,10 +1372,14 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>2.80</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>2.88</strong></td></tr>
           
         <tr>
-          <td>LiveScore Bet ⭐ Best</td>
+          <td>Betfair ⭐ Best</td>
+          <td>2.88</td>
+        </tr>
+        <tr>
+          <td>LiveScore Bet</td>
           <td>2.80</td>
         </tr>
         <tr>
@@ -1297,7 +1400,11 @@
         </tr>
         <tr>
           <td>Betway</td>
-          <td>2.62</td>
+          <td>2.75</td>
+        </tr>
+        <tr>
+          <td>Paddy Power</td>
+          <td>2.75</td>
         </tr>
         </table>
       </div>
@@ -1466,14 +1573,14 @@
           <tr><td>Bout</td><td>Zhang Mingyang vs Alonzo Menifield</td></tr>
           <tr><td>Weight Class</td><td>Light Heavyweight</td></tr>
           <tr><td>Status</td><td>scheduled</td></tr>
-          <tr><td>Odds Books</td><td>6</td></tr>
-          <tr><td>Prop Books Matched</td><td>1</td></tr>
+          <tr><td>Odds Books</td><td>8</td></tr>
+          <tr><td>Prop Books Matched</td><td>3</td></tr>
           <tr><td>Value Spots</td><td>0</td></tr>
         </table>
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058517-2 • Generated: 2026-05-19 07:00 UTC</p>
+      <p class="muted">Fight ID: 600058517-2 • Generated: 2026-05-22 15:45 UTC</p>
     </div>
   </main>
 
@@ -1598,56 +1705,58 @@
       });
     });
 
+
+
+    function addBetTrackerLinks() {
+      const fightTitle = document.querySelector("h1")?.textContent?.trim() || "";
+
+      document.querySelectorAll(".ev-load-btn").forEach(btn => {
+        if (btn.parentElement.querySelector(".tracker-link-btn")) return;
+
+        const row = btn.closest(".best-row");
+        const market = row?.closest(".best-market")?.querySelector("h3")?.textContent?.trim() || "";
+        const selection = btn.dataset.selection || "";
+        const bookmaker = btn.dataset.bookmaker || "";
+        const oddsText = row?.querySelector(".best-price")?.textContent?.replace("⭐", "")?.trim() || btn.dataset.odds || "";
+
+        const params = new URLSearchParams({
+          sport: "UFC",
+          event: fightTitle,
+          market: market,
+          selection: selection,
+          bookmaker: bookmaker,
+          odds: oddsText
+        });
+
+        const trackerBase = window.location.protocol === "file:"
+          ? "../../tracker/index.html"
+          : "/odds-board/ufc/tracker/";
+
+        const link = document.createElement("a");
+        link.className = "tracker-link-btn";
+        link.href = trackerBase + "?" + params.toString();
+        link.textContent = "Add to Bet Tracker →";
+        link.style.border = "1px solid rgba(34,197,94,0.45)";
+        link.style.background = "rgba(34,197,94,0.12)";
+        link.style.color = "#86efac";
+        link.style.borderRadius = "10px";
+        link.style.padding = "6px 10px";
+        link.style.fontSize = "12px";
+        link.style.fontWeight = "700";
+        link.style.textDecoration = "none";
+        link.style.whiteSpace = "nowrap";
+        link.style.display = "inline-flex";
+        link.style.alignItems = "center";
+        link.style.justifyContent = "center";
+
+        btn.parentElement.appendChild(link);
+      });
+    }
+
+    addBetTrackerLinks();
+
     document.addEventListener("input", updateEV);
     updateEV();
   </script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".ev-load-btn").forEach(function (btn) {
-    if (btn.parentElement.querySelector(".tracker-link-btn")) return;
-
-    const row = btn.closest(".best-row") || btn.closest(".best-card");
-    const market = row?.closest(".best-market")?.querySelector("h3")?.textContent?.trim() || "";
-    const fightTitle = document.querySelector("h1")?.textContent?.trim() || "";
-    const selection = btn.dataset.selection || "";
-    const bookmaker = btn.dataset.bookmaker || "";
-    const oddsText = row?.querySelector(".best-price")?.textContent?.replace("⭐", "")?.trim() || btn.dataset.odds || "";
-
-    const params = new URLSearchParams({
-      sport: "UFC",
-      event: fightTitle,
-      market: market,
-      selection: selection,
-      bookmaker: bookmaker,
-      odds: oddsText
-    });
-
-    const trackerBase = window.location.protocol === "file:"
-      ? "../../tracker/index.html"
-      : "/odds-board/ufc/tracker/";
-
-    const link = document.createElement("a");
-    link.className = "tracker-link-btn";
-    link.href = trackerBase + "?" + params.toString();
-    link.textContent = "Add to Bet Tracker →";
-    link.style.border = "1px solid rgba(34,197,94,0.45)";
-    link.style.background = "rgba(34,197,94,0.12)";
-    link.style.color = "#86efac";
-    link.style.borderRadius = "10px";
-    link.style.padding = "6px 10px";
-    link.style.fontSize = "12px";
-    link.style.fontWeight = "700";
-    link.style.textDecoration = "none";
-    link.style.whiteSpace = "nowrap";
-    link.style.display = "inline-flex";
-    link.style.alignItems = "center";
-    link.style.justifyContent = "center";
-
-    btn.parentElement.appendChild(link);
-  });
-});
-</script>
-
 </body>
 </html>

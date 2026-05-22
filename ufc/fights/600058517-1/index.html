@@ -420,6 +420,27 @@
       background: rgba(96,165,250,0.22);
     }
 
+    .tracker-link-btn {
+      border: 1px solid rgba(34,197,94,0.45);
+      background: rgba(34,197,94,0.12);
+      color: #86efac;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tracker-link-btn:hover {
+      background: rgba(34,197,94,0.22);
+      text-decoration: none;
+    }
+
     .summary-strip {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -647,8 +668,8 @@
             <span class="meta-pill">Bantamweight - Main Event</span>
             <span class="meta-pill">Song Yadong vs Deiveson Figueiredo</span>
             <span class="meta-pill">Status: scheduled</span>
-            <span class="meta-pill">Odds: ✅ 7 books</span>
-            <span class="meta-pill">Prop Books: 1</span>
+            <span class="meta-pill">Odds: ✅ 9 books</span>
+            <span class="meta-pill">Prop Books: 3</span>
             <span class="meta-pill">Value Spots: 0</span>
           </div>
         </div>
@@ -659,15 +680,15 @@
         
         <div class="summary-card">
           <span>Best price — Song Yadong</span>
-          <strong>1.25</strong>
-          <small>Betway</small>
+          <strong>1.20</strong>
+          <small>Paddy Power</small>
         </div>
         
         
         <div class="summary-card">
           <span>Best price — Deiveson Figueiredo</span>
           <strong>5.10</strong>
-          <small>Grosvenor</small>
+          <small>888sport</small>
         </div>
         
         
@@ -731,14 +752,14 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>1.25</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>1.20</strong></td></tr>
           
         <tr>
-          <td>Betway ⭐ Best</td>
-          <td>1.25</td>
+          <td>Paddy Power ⭐ Best</td>
+          <td>1.20</td>
         </tr>
         <tr>
-          <td>888sport</td>
+          <td>Betway</td>
           <td>1.18</td>
         </tr>
         <tr>
@@ -756,6 +777,14 @@
         <tr>
           <td>LiveScore Bet</td>
           <td>1.18</td>
+        </tr>
+        <tr>
+          <td>Betfair</td>
+          <td>1.18</td>
+        </tr>
+        <tr>
+          <td>888sport</td>
+          <td>1.17</td>
         </tr>
         <tr>
           <td>Unibet (UK)</td>
@@ -885,7 +914,11 @@
           <tr><td><strong>Best Price</strong></td><td><strong>5.10</strong></td></tr>
           
         <tr>
-          <td>Grosvenor ⭐ Best</td>
+          <td>888sport ⭐ Best</td>
+          <td>5.10</td>
+        </tr>
+        <tr>
+          <td>Grosvenor</td>
           <td>5.10</td>
         </tr>
         <tr>
@@ -901,16 +934,20 @@
           <td>5.10</td>
         </tr>
         <tr>
-          <td>888sport</td>
-          <td>4.80</td>
-        </tr>
-        <tr>
           <td>Unibet (UK)</td>
           <td>4.75</td>
         </tr>
         <tr>
           <td>Betway</td>
-          <td>4.00</td>
+          <td>4.75</td>
+        </tr>
+        <tr>
+          <td>Betfair</td>
+          <td>4.70</td>
+        </tr>
+        <tr>
+          <td>Paddy Power</td>
+          <td>4.50</td>
         </tr>
         </table>
       </div>
@@ -1013,24 +1050,21 @@
         <p class="muted">All UK bookmaker prices for the fight winner market. ⭐ marks the best available price per fighter.</p>
 
         
-        <div class="arb-banner">
-          🎯 <strong>Arbitrage detected!</strong>
-          Back Song Yadong @ 1.25 (Betway)
-          + Deiveson Figueiredo @ 5.10 (Grosvenor)
-          = <strong>+0.39% guaranteed profit</strong>
+        <div class="no-arb-note">
+          No arbitrage at current best prices. Book margin: 2.94%
         </div>
         
         
         <div class="ml-best-strip">
           <div class="ml-best-card">
             <span>Best price — Song Yadong</span>
-            <strong>1.25</strong>
-            <small>Betway</small>
+            <strong>1.20</strong>
+            <small>Paddy Power</small>
           </div>
           <div class="ml-best-card">
             <span>Best price — Deiveson Figueiredo</span>
             <strong>5.10</strong>
-            <small>Grosvenor</small>
+            <small>888sport</small>
           </div>
         </div>
         
@@ -1044,15 +1078,15 @@
         </div>
     
         <div class="ml-row">
-          <div class="ml-book">Betway</div>
-          <div class="ml-price ml-best">1.25 ⭐</div>
-          <div class="ml-price">4.00</div>
+          <div class="ml-book">Paddy Power</div>
+          <div class="ml-price ml-best">1.20 ⭐</div>
+          <div class="ml-price">4.50</div>
         </div>
         
         <div class="ml-row">
-          <div class="ml-book">888sport</div>
+          <div class="ml-book">Betway</div>
           <div class="ml-price">1.18</div>
-          <div class="ml-price">4.80</div>
+          <div class="ml-price">4.75</div>
         </div>
         
         <div class="ml-row">
@@ -1080,6 +1114,18 @@
         </div>
         
         <div class="ml-row">
+          <div class="ml-book">Betfair</div>
+          <div class="ml-price">1.18</div>
+          <div class="ml-price">4.70</div>
+        </div>
+        
+        <div class="ml-row">
+          <div class="ml-book">888sport</div>
+          <div class="ml-price">1.17</div>
+          <div class="ml-price ml-best">5.10 ⭐</div>
+        </div>
+        
+        <div class="ml-row">
           <div class="ml-book">Unibet (UK)</div>
           <div class="ml-price">1.16</div>
           <div class="ml-price">4.75</div>
@@ -1088,12 +1134,12 @@
           
         <div class="ml-row ml-implied">
           <div class="ml-book">Implied Prob (best prices)</div>
-          <div class="ml-price">80.0%</div>
+          <div class="ml-price">83.3%</div>
           <div class="ml-price">19.6%</div>
         </div>
         <div class="ml-row ml-overround">
           <div class="ml-book">Total implied / Book overround</div>
-          <div class="ml-price" style="grid-column: span 2;">99.6% &nbsp;|&nbsp; +-0.4%</div>
+          <div class="ml-price" style="grid-column: span 2;">102.9% &nbsp;|&nbsp; +2.9%</div>
         </div>
         
         </div>
@@ -1142,6 +1188,48 @@
         </div>
         </article>
         
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">Unibet props</div>
+              <h3>Yadong Song vs Deiveson Figueiredo</h3>
+            </div>
+            <a class="small-link" href="https://www.unibet.ie/betting/odds/mma/ufc" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Fight Betting</h4>
+        <div class="prop-row">
+          <span>Yadong Song</span>
+          <strong>1.17</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Deiveson Figueiredo</span>
+          <strong>4.6</strong>
+        </div>
+        </div>
+        </article>
+        
+        <article class="prop-card">
+          <div class="prop-card-head">
+            <div>
+              <div class="corner-label">WilliamHill props</div>
+              <h3>Yadong Song vs Deiveson Figueiredo</h3>
+            </div>
+            <a class="small-link" href="https://sports.williamhill.com/betting/en-gb/ufc/matches/competition/future/match-betting" target="_blank" rel="noopener">Open book →</a>
+          </div>
+          <div class='prop-market'><h4>Fight Betting</h4>
+        <div class="prop-row">
+          <span>Yadong Song</span>
+          <strong>1/6</strong>
+        </div>
+        
+        <div class="prop-row">
+          <span>Deiveson Figueiredo</span>
+          <strong>7/2</strong>
+        </div>
+        </div>
+        </article>
+        
         </div>
       </section>
     
@@ -1183,14 +1271,14 @@
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>1.25</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>1.20</strong></td></tr>
           
         <tr>
-          <td>Betway ⭐ Best</td>
-          <td>1.25</td>
+          <td>Paddy Power ⭐ Best</td>
+          <td>1.20</td>
         </tr>
         <tr>
-          <td>888sport</td>
+          <td>Betway</td>
           <td>1.18</td>
         </tr>
         <tr>
@@ -1208,6 +1296,14 @@
         <tr>
           <td>LiveScore Bet</td>
           <td>1.18</td>
+        </tr>
+        <tr>
+          <td>Betfair</td>
+          <td>1.18</td>
+        </tr>
+        <tr>
+          <td>888sport</td>
+          <td>1.17</td>
         </tr>
         <tr>
           <td>Unibet (UK)</td>
@@ -1337,7 +1433,11 @@
           <tr><td><strong>Best Price</strong></td><td><strong>5.10</strong></td></tr>
           
         <tr>
-          <td>Grosvenor ⭐ Best</td>
+          <td>888sport ⭐ Best</td>
+          <td>5.10</td>
+        </tr>
+        <tr>
+          <td>Grosvenor</td>
           <td>5.10</td>
         </tr>
         <tr>
@@ -1353,16 +1453,20 @@
           <td>5.10</td>
         </tr>
         <tr>
-          <td>888sport</td>
-          <td>4.80</td>
-        </tr>
-        <tr>
           <td>Unibet (UK)</td>
           <td>4.75</td>
         </tr>
         <tr>
           <td>Betway</td>
-          <td>4.00</td>
+          <td>4.75</td>
+        </tr>
+        <tr>
+          <td>Betfair</td>
+          <td>4.70</td>
+        </tr>
+        <tr>
+          <td>Paddy Power</td>
+          <td>4.50</td>
         </tr>
         </table>
       </div>
@@ -1531,14 +1635,14 @@
           <tr><td>Bout</td><td>Song Yadong vs Deiveson Figueiredo</td></tr>
           <tr><td>Weight Class</td><td>Bantamweight - Main Event</td></tr>
           <tr><td>Status</td><td>scheduled</td></tr>
-          <tr><td>Odds Books</td><td>7</td></tr>
-          <tr><td>Prop Books Matched</td><td>1</td></tr>
+          <tr><td>Odds Books</td><td>9</td></tr>
+          <tr><td>Prop Books Matched</td><td>3</td></tr>
           <tr><td>Value Spots</td><td>0</td></tr>
         </table>
       </div>
 
       <hr style="margin:24px 0; border-color:#1f2a3a;">
-      <p class="muted">Fight ID: 600058517-1 • Generated: 2026-05-19 07:00 UTC</p>
+      <p class="muted">Fight ID: 600058517-1 • Generated: 2026-05-22 15:45 UTC</p>
     </div>
   </main>
 
@@ -1663,56 +1767,58 @@
       });
     });
 
+
+
+    function addBetTrackerLinks() {
+      const fightTitle = document.querySelector("h1")?.textContent?.trim() || "";
+
+      document.querySelectorAll(".ev-load-btn").forEach(btn => {
+        if (btn.parentElement.querySelector(".tracker-link-btn")) return;
+
+        const row = btn.closest(".best-row");
+        const market = row?.closest(".best-market")?.querySelector("h3")?.textContent?.trim() || "";
+        const selection = btn.dataset.selection || "";
+        const bookmaker = btn.dataset.bookmaker || "";
+        const oddsText = row?.querySelector(".best-price")?.textContent?.replace("⭐", "")?.trim() || btn.dataset.odds || "";
+
+        const params = new URLSearchParams({
+          sport: "UFC",
+          event: fightTitle,
+          market: market,
+          selection: selection,
+          bookmaker: bookmaker,
+          odds: oddsText
+        });
+
+        const trackerBase = window.location.protocol === "file:"
+          ? "../../tracker/index.html"
+          : "/odds-board/ufc/tracker/";
+
+        const link = document.createElement("a");
+        link.className = "tracker-link-btn";
+        link.href = trackerBase + "?" + params.toString();
+        link.textContent = "Add to Bet Tracker →";
+        link.style.border = "1px solid rgba(34,197,94,0.45)";
+        link.style.background = "rgba(34,197,94,0.12)";
+        link.style.color = "#86efac";
+        link.style.borderRadius = "10px";
+        link.style.padding = "6px 10px";
+        link.style.fontSize = "12px";
+        link.style.fontWeight = "700";
+        link.style.textDecoration = "none";
+        link.style.whiteSpace = "nowrap";
+        link.style.display = "inline-flex";
+        link.style.alignItems = "center";
+        link.style.justifyContent = "center";
+
+        btn.parentElement.appendChild(link);
+      });
+    }
+
+    addBetTrackerLinks();
+
     document.addEventListener("input", updateEV);
     updateEV();
   </script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".ev-load-btn").forEach(function (btn) {
-    if (btn.parentElement.querySelector(".tracker-link-btn")) return;
-
-    const row = btn.closest(".best-row") || btn.closest(".best-card");
-    const market = row?.closest(".best-market")?.querySelector("h3")?.textContent?.trim() || "";
-    const fightTitle = document.querySelector("h1")?.textContent?.trim() || "";
-    const selection = btn.dataset.selection || "";
-    const bookmaker = btn.dataset.bookmaker || "";
-    const oddsText = row?.querySelector(".best-price")?.textContent?.replace("⭐", "")?.trim() || btn.dataset.odds || "";
-
-    const params = new URLSearchParams({
-      sport: "UFC",
-      event: fightTitle,
-      market: market,
-      selection: selection,
-      bookmaker: bookmaker,
-      odds: oddsText
-    });
-
-    const trackerBase = window.location.protocol === "file:"
-      ? "../../tracker/index.html"
-      : "/odds-board/ufc/tracker/";
-
-    const link = document.createElement("a");
-    link.className = "tracker-link-btn";
-    link.href = trackerBase + "?" + params.toString();
-    link.textContent = "Add to Bet Tracker →";
-    link.style.border = "1px solid rgba(34,197,94,0.45)";
-    link.style.background = "rgba(34,197,94,0.12)";
-    link.style.color = "#86efac";
-    link.style.borderRadius = "10px";
-    link.style.padding = "6px 10px";
-    link.style.fontSize = "12px";
-    link.style.fontWeight = "700";
-    link.style.textDecoration = "none";
-    link.style.whiteSpace = "nowrap";
-    link.style.display = "inline-flex";
-    link.style.alignItems = "center";
-    link.style.justifyContent = "center";
-
-    btn.parentElement.appendChild(link);
-  });
-});
-</script>
-
 </body>
 </html>

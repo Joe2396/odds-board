@@ -1185,6 +1185,7 @@ def render_fight_props(prop_items):
             market_html += render_market_block("Rounds", markets.get("rounds") or markets.get("total_rounds"))
             market_html += render_market_block("Go The Distance?", markets.get("go_the_distance"))
 
+        market_html += render_market_block("Fight Betting", item.get("fight_betting"))
         market_html += render_market_block("Method of Victory", item.get("method_props"))
         market_html += render_market_block("Rounds", item.get("round_props"))
         market_html += render_market_block("Go The Distance?", item.get("distance_props"))
@@ -1197,7 +1198,7 @@ def render_fight_props(prop_items):
           <div class="prop-card-head">
             <div>
               <div class="corner-label">{html_escape(bookmaker)} props</div>
-              <h3>{html_escape(item.get("fight_name"))}</h3>
+              <h3>{html_escape(item.get("fight_name") or item.get("fight") or item.get("name"))}</h3>
             </div>
             <a class="small-link" href="{html_escape(url)}" target="_blank" rel="noopener">Open book →</a>
           </div>
