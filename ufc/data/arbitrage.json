@@ -1,6 +1,6 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 29,
+  "total_moneyline_fights_checked": 36,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 36,
   "arbitrage_count": 1,
@@ -97,6 +97,160 @@
     },
     {
       "type": "moneyline",
+      "event_id": "b4462029e1b23308cddd3c91b775a454",
+      "commence_time": "2026-05-23T16:30:00Z",
+      "fight": "Adam Meskini vs Keweny Lopes",
+      "market": "Moneyline",
+      "fighters": {
+        "Adam Meskini": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.47,
+          "implied_probability": 68.03
+        },
+        "Keweny Lopes": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.5,
+          "implied_probability": 40.0
+        }
+      },
+      "arb_sum": 1.080272,
+      "is_arbitrage": false,
+      "profit_margin_percent": -8.03
+    },
+    {
+      "type": "moneyline",
+      "event_id": "8e5fd43386d04b83c864e846105b7cee",
+      "commence_time": "2026-05-23T16:30:00Z",
+      "fight": "Ashley Reece vs Rustam Serbiev",
+      "market": "Moneyline",
+      "fighters": {
+        "Ashley Reece": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.1,
+          "implied_probability": 47.62
+        },
+        "Rustam Serbiev": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.66,
+          "implied_probability": 60.24
+        }
+      },
+      "arb_sum": 1.0786,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.86
+    },
+    {
+      "type": "moneyline",
+      "event_id": "fbaac9923c64c62ac21ee320853c670a",
+      "commence_time": "2026-05-23T16:30:00Z",
+      "fight": "Donegi Abena vs Joe Schilling",
+      "market": "Moneyline",
+      "fighters": {
+        "Donegi Abena": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.08,
+          "implied_probability": 92.59
+        },
+        "Joe Schilling": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 7.5,
+          "implied_probability": 13.33
+        }
+      },
+      "arb_sum": 1.059259,
+      "is_arbitrage": false,
+      "profit_margin_percent": -5.93
+    },
+    {
+      "type": "moneyline",
+      "event_id": "4a4911f7f26916674e6e12aa37198e7b",
+      "commence_time": "2026-05-23T16:30:00Z",
+      "fight": "Khamzat Abaev vs Luca Poclit",
+      "market": "Moneyline",
+      "fighters": {
+        "Khamzat Abaev": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.43,
+          "implied_probability": 41.15
+        },
+        "Luca Poclit": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.5,
+          "implied_probability": 66.67
+        }
+      },
+      "arb_sum": 1.078189,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.82
+    },
+    {
+      "type": "moneyline",
+      "event_id": "0054863714604ed7946b1f878145fff8",
+      "commence_time": "2026-05-23T16:30:00Z",
+      "fight": "Movsar Ibragimov vs Youssouf Binate",
+      "market": "Moneyline",
+      "fighters": {
+        "Movsar Ibragimov": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.51,
+          "implied_probability": 66.23
+        },
+        "Youssouf Binate": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.38,
+          "implied_probability": 42.02
+        }
+      },
+      "arb_sum": 1.08242,
+      "is_arbitrage": false,
+      "profit_margin_percent": -8.24
+    },
+    {
+      "type": "moneyline",
+      "event_id": "0aebdc4ffec7711962a32bb997ee321b",
+      "commence_time": "2026-05-23T19:00:00Z",
+      "fight": "Asael Adjoudj vs Keisuke Sasu",
+      "market": "Moneyline",
+      "fighters": {
+        "Asael Adjoudj": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.24,
+          "implied_probability": 80.65
+        },
+        "Keisuke Sasu": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 3.85,
+          "implied_probability": 25.97
+        }
+      },
+      "arb_sum": 1.066192,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.62
+    },
+    {
+      "type": "moneyline",
+      "event_id": "350e4836d1b0972d27f93d2b272dab4c",
+      "commence_time": "2026-05-23T19:00:00Z",
+      "fight": "Marcirley Alves da Silva vs Naoki Inoue",
+      "market": "Moneyline",
+      "fighters": {
+        "Marcirley Alves da Silva": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.63,
+          "implied_probability": 61.35
+        },
+        "Naoki Inoue": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.2,
+          "implied_probability": 45.45
+        }
+      },
+      "arb_sum": 1.068042,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.8
+    },
+    {
+      "type": "moneyline",
       "event_id": "fb980c337447d29bc46dc377d0970a99",
       "commence_time": "2026-05-30T08:00:00Z",
       "fight": "Angela Hill vs Jingnan Xiong",
@@ -141,28 +295,6 @@
     },
     {
       "type": "moneyline",
-      "event_id": "80630708caf0340ecb71797ab841bc9c",
-      "commence_time": "2026-05-30T08:00:00Z",
-      "fight": "Jesus Santos Aguilar vs Rei Tsuruya",
-      "market": "Moneyline",
-      "fighters": {
-        "Jesus Santos Aguilar": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 3.75,
-          "implied_probability": 26.67
-        },
-        "Rei Tsuruya": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.34,
-          "implied_probability": 74.63
-        }
-      },
-      "arb_sum": 1.012935,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.29
-    },
-    {
-      "type": "moneyline",
       "event_id": "a4b4900eee63e6c81e720895861a7f32",
       "commence_time": "2026-05-30T08:00:00Z",
       "fight": "José Henrique vs Meng Ding",
@@ -204,6 +336,28 @@
       "arb_sum": 1.026423,
       "is_arbitrage": false,
       "profit_margin_percent": -2.64
+    },
+    {
+      "type": "moneyline",
+      "event_id": "80630708caf0340ecb71797ab841bc9c",
+      "commence_time": "2026-05-30T09:25:00Z",
+      "fight": "Jesus Santos Aguilar vs Rei Tsuruya",
+      "market": "Moneyline",
+      "fighters": {
+        "Jesus Santos Aguilar": {
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 3.75,
+          "implied_probability": 26.67
+        },
+        "Rei Tsuruya": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.34,
+          "implied_probability": 74.63
+        }
+      },
+      "arb_sum": 1.012935,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.29
     },
     {
       "type": "moneyline",
@@ -637,13 +791,13 @@
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.34,
-          "implied_probability": 74.63
+          "best_price": 1.35,
+          "implied_probability": 74.07
         }
       },
-      "arb_sum": 0.990171,
+      "arb_sum": 0.984643,
       "is_arbitrage": true,
-      "profit_margin_percent": 0.98
+      "profit_margin_percent": 1.54
     }
   ],
   "prop_markets": [
@@ -1008,13 +1162,13 @@
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.34,
-          "implied_probability": 74.63
+          "best_price": 1.35,
+          "implied_probability": 74.07
         }
       },
-      "arb_sum": 0.990171,
+      "arb_sum": 0.984643,
       "is_arbitrage": true,
-      "profit_margin_percent": 0.98
+      "profit_margin_percent": 1.54
     }
   ]
 }
