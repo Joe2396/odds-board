@@ -83,7 +83,7 @@ jobs:
 
      
       - name: Fetch UFC odds UK bookies
-        run: python scripts/fetch_ufc_odds.py
+        run: python scripts/fetch_ufc_odds.py || echo "OddsAPI failed, continuing with existing odds data"
 
       - name: Analyze UFC arbitrage
         run: python scripts/analyze_ufc_arbitrage.py
