@@ -385,23 +385,23 @@ def normalize_corner(corner):
 
 
 def enrich_fighter(fighter, fighters_by_slug):
-    slug = fighter.get("slug", "")
-    details = fighters_by_slug.get(slug, {})
+    if not fighter:
+        return {}
 
-    if not isinstance(details, dict):
-        details = {}
+    name = get_corner_name(fighter)
+    slug = fighter.get("slug") or slugify(name)
 
-    merged = {**details, **fighter}
-    merged["stats"] = details.get("stats") or fighter.get("stats") or {}
-    merged["methods"] = details.get("methods") or fighter.get("methods") or {}
-    merged["recent_fights"] = details.get("recent_fights") or fighter.get("recent_fights") or []
+    details = (
+        fighters_by_slug.get(slug)
+        or fighters_by_slug.get(slugify(name))
+        or {}
+    )
 
-    for key in ["record", "stance", "height", "reach", "weight", "dob", "ufcstats_url"]:
-        if not merged.get(key) or merged.get(key) == "—":
-            merged[key] = details.get(key) or fighter.get(key)
+    merged = dict(fighter)
+    merged.update(details)
+    merged["name"] = name or details.get("name") or fighter.get("name") or ""
+    merged["slug"] = slugify(merged["name"])
 
-    merged["slug"] = slug
-    merged["name"] = fighter.get("name") or details.get("name")
     return merged
 
 

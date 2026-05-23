@@ -15,7 +15,12 @@ FIGHTERS_OUT_PATH = ROOT / "ufc" / "data" / "fighters.json"
 
 UPCOMING_EVENTS_URL = "http://ufcstats.com/statistics/events/upcoming"
 
-HEADERS = {"User-Agent": "Mozilla/5.0"}
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+}
+
+MIN_INDEXED_FIGHTERS = 100
+MIN_SAVED_FIGHTERS = 20
 
 
 def normalize_name(name):
@@ -46,9 +51,9 @@ def collect_names_from_events_json():
             red = clean_text(get_corner_name(fight.get("red")))
             blue = clean_text(get_corner_name(fight.get("blue")))
 
-            if red:
+            if red and red.upper() != "TBA":
                 names.add(red)
-            if blue:
+            if blue and blue.upper() != "TBA":
                 names.add(blue)
 
     print(f"Found {len(names)} fighter names from events.json")
@@ -68,6 +73,12 @@ def classify_method(method):
     return "other"
 
 
+def safe_get(url, timeout=30):
+    response = requests.get(url, headers=HEADERS, timeout=timeout)
+    response.raise_for_status()
+    return response
+
+
 def build_ufcstats_index():
     index = {}
 
@@ -75,8 +86,11 @@ def build_ufcstats_index():
         url = f"http://ufcstats.com/statistics/fighters?char={char}&page=all"
         print(f"Fetching UFCStats index: {char}")
 
-        response = requests.get(url, headers=HEADERS, timeout=30)
-        response.raise_for_status()
+        try:
+            response = safe_get(url)
+        except Exception as e:
+            print(f"Warning: failed index {char}: {e}")
+            continue
 
         soup = BeautifulSoup(response.text, "html.parser")
         rows = soup.select("tr.b-statistics__table-row")
@@ -90,7 +104,7 @@ def build_ufcstats_index():
 
                 full_name = f"{first} {last}".strip()
 
-                if full_name and href:
+                if full_name and href and "/fighter-details/" in href:
                     index[normalize_name(full_name)] = {
                         "name": full_name,
                         "ufcstats_url": href,
@@ -104,9 +118,7 @@ def build_ufcstats_index():
 def get_upcoming_event_urls():
     print(f"Fetching UFCStats upcoming events: {UPCOMING_EVENTS_URL}")
 
-    response = requests.get(UPCOMING_EVENTS_URL, headers=HEADERS, timeout=30)
-    response.raise_for_status()
-
+    response = safe_get(UPCOMING_EVENTS_URL)
     soup = BeautifulSoup(response.text, "html.parser")
     event_urls = []
 
@@ -124,9 +136,7 @@ def get_upcoming_event_urls():
 def get_fighter_names_from_event_page(event_url):
     print(f"Fetching UFCStats event page: {event_url}")
 
-    response = requests.get(event_url, headers=HEADERS, timeout=30)
-    response.raise_for_status()
-
+    response = safe_get(event_url)
     soup = BeautifulSoup(response.text, "html.parser")
     names = set()
 
@@ -226,9 +236,7 @@ def extract_fight_history(soup, fighter_name):
 def scrape_fighter_profile(name, url):
     print(f"Scraping fighter profile: {name}")
 
-    response = requests.get(url, headers=HEADERS, timeout=30)
-    response.raise_for_status()
-
+    response = safe_get(url)
     soup = BeautifulSoup(response.text, "html.parser")
 
     fighter = {
@@ -280,19 +288,21 @@ def main():
     ufcstats_index = build_ufcstats_index()
     print(f"Indexed {len(ufcstats_index)} UFCStats fighters")
 
-    fighter_names = set()
+    if len(ufcstats_index) < MIN_INDEXED_FIGHTERS:
+        print(f"❌ Refusing to continue: UFCStats index only returned {len(ufcstats_index)} fighters")
+        print("Existing fighters.json has NOT been overwritten.")
+        raise SystemExit(1)
 
-    # Source 1: your current booked fight cards
+    fighter_names = set()
     fighter_names.update(collect_names_from_events_json())
 
-    # Source 2: UFCStats upcoming event pages
     try:
-      event_urls = get_upcoming_event_urls()
-      for event_url in event_urls:
-          fighter_names.update(get_fighter_names_from_event_page(event_url))
-          time.sleep(0.5)
+        event_urls = get_upcoming_event_urls()
+        for event_url in event_urls:
+            fighter_names.update(get_fighter_names_from_event_page(event_url))
+            time.sleep(0.5)
     except Exception as e:
-      print(f"Warning: UFCStats upcoming scrape failed: {e}")
+        print(f"Warning: UFCStats upcoming scrape failed: {e}")
 
     fighter_names = sorted(fighter_names)
 
@@ -314,10 +324,18 @@ def main():
             "ufcstats_url": info["ufcstats_url"],
         }
 
-        fighter = scrape_fighter_profile(info["name"], info["ufcstats_url"])
-        fighters.append(fighter)
+        try:
+            fighter = scrape_fighter_profile(info["name"], info["ufcstats_url"])
+            fighters.append(fighter)
+        except Exception as e:
+            print(f"Warning: failed fighter profile {name}: {e}")
 
         time.sleep(0.5)
+
+    if len(fighters) < MIN_SAVED_FIGHTERS:
+        print(f"❌ Refusing to overwrite fighters.json with only {len(fighters)} fighters")
+        print("Existing fighters.json has NOT been overwritten.")
+        raise SystemExit(1)
 
     FIGHTERS_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
