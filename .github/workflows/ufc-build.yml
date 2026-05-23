@@ -72,14 +72,21 @@ jobs:
               print(f"{path}: fights={fights_count} props={props_count}")
           PY
 
-      - name: Fetch recent past UFC events
-        run: python scripts/fetch_recent_past_events.py
+      # STEP 1:
+      # Build/refresh upcoming event shells
+      - name: Fetch upcoming UFC events
+        run: python scripts/fetch_upcoming_events.py
 
+      # STEP 2:
+      # IMMEDIATELY repair/populate fight cards
+      # This prevents empty future cards surviving into generators
       - name: Fetch ESPN event fight cards
         run: python scripts/fetch_espn_event_fightcards.py
 
-      - name: Fetch upcoming UFC events
-        run: python scripts/fetch_upcoming_events.py
+      # STEP 3:
+      # Add recent completed events
+      - name: Fetch recent past UFC events
+        run: python scripts/fetch_recent_past_events.py
 
       - name: Fetch UFCStats fighter stats
         run: python scripts/fetch_ufcstats_fighter_stats.py || echo "UFCStats failed, continuing with existing fighter data"
@@ -162,7 +169,12 @@ jobs:
         run: |
           git config user.name "actions-user"
           git config user.email "actions@github.com"
+
+          git pull --rebase origin main || true
+
           git add ufc data docs odds scripts index.html 2>/dev/null || true
           git add .github/workflows/ufc-build.yml
+
           git commit -m "Auto-generate UFC pages, odds, props and arbitrage" || echo "No changes to commit"
+
           git push
