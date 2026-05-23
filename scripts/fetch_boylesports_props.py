@@ -14,6 +14,22 @@ DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
 
 HUB_URL = "https://www.boylesports.com/sports/ufc-mma"
 
+NON_UFC_TERMS = [
+    "pfl",
+    "lfa",
+    "bare-knuckle",
+    "bare knuckle",
+    "bkfc",
+    "bellator",
+    "one-championship",
+    "one championship",
+    "cage-warriors",
+    "cage warriors",
+    "oktagon",
+    "boxing",
+    "glory",
+]
+
 
 def is_github_actions():
     return os.getenv("GITHUB_ACTIONS") == "true"
@@ -30,6 +46,19 @@ def is_odds(x):
         or bool(re.match(r"^\d+/\d+$", x))
         or bool(re.match(r"^\d+\.\d+$", x))
     )
+
+
+def is_ufc_only_fight(fight_name, url):
+    text = f"{fight_name} {url}".lower()
+
+    if any(term in text for term in NON_UFC_TERMS):
+        return False
+
+    # Boyle UFC fight URLs normally include "ufc" in the event slug.
+    if "ufc" not in text:
+        return False
+
+    return True
 
 
 def empty_output():
@@ -77,8 +106,8 @@ def accept_cookies(page):
 
 
 def get_fight_urls_from_hub(page):
-    """Load hub page and extract real fight URLs."""
     print(f"Loading hub: {HUB_URL}")
+
     try:
         page.goto(HUB_URL, timeout=60000, wait_until="domcontentloaded")
     except Exception as e:
@@ -89,16 +118,24 @@ def get_fight_urls_from_hub(page):
     accept_cookies(page)
     time.sleep(2)
 
-    # Scroll to trigger lazy loading
-    for _ in range(6):
+    for _ in range(8):
         page.mouse.wheel(0, 1500)
         time.sleep(0.8)
+
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(2)
 
     save_debug(page, "boylesports_hub")
 
-    blocked_terms = ["special", "boost", "mvp", "outright", "in-play", "competition"]
+    blocked_terms = [
+        "special",
+        "boost",
+        "mvp",
+        "outright",
+        "in-play",
+        "competition",
+    ]
+
     blocked_exact = {
         "https://www.boylesports.com/sports/ufc-mma",
         "https://www.boylesports.com/sports/ufc-mma/day",
@@ -109,11 +146,12 @@ def get_fight_urls_from_hub(page):
         links = page.evaluate("""
             () => {
                 const results = [];
-                document.querySelectorAll('a[href*="ufc-mma"]').forEach(a => {
-                    results.push({
-                        href: a.href,
-                        text: (a.innerText || a.textContent || '').trim()
-                    });
+                document.querySelectorAll('a[href]').forEach(a => {
+                    const href = a.href || '';
+                    const text = (a.innerText || a.textContent || '').trim();
+                    if (href.includes('/sports/ufc-mma/event/')) {
+                        results.push({ href, text });
+                    }
                 });
                 return results;
             }
@@ -131,23 +169,33 @@ def get_fight_urls_from_hub(page):
 
         if not href or href in blocked_exact:
             continue
-        if any(t in href.lower() for t in blocked_terms):
+
+        href_low = href.lower()
+        text_low = text.lower()
+
+        if any(t in href_low or t in text_low for t in blocked_terms):
             continue
-        if "/event/" not in href:
+
+        if "/event/" not in href_low:
             continue
+
         if href in seen:
             continue
 
-        # Build fight name from slug
         slug = href.rstrip("/").split("/")[-1]
         fight_name = slug.replace("-v-", " vs ").replace("-", " ").title()
+
+        if not is_ufc_only_fight(fight_name, href):
+            print(f"  Skipping non-UFC: {fight_name}")
+            continue
 
         seen.add(href)
         fights.append({"fight": fight_name, "url": href})
 
-    print(f"Found {len(fights)} fight URLs from hub")
+    print(f"Found {len(fights)} UFC fight URLs from hub")
     for f in fights:
         print(f"  - {f['fight']}")
+
     return fights
 
 
@@ -166,6 +214,7 @@ def normalize_lines(text):
         "ufc and mma", "ufc", "mma", "in-play", "sports a-z",
         "safer gambling", "promotions", "casino",
     }
+
     junk_contains = [
         "create your bet builder", "min odds", "apply on betslip",
         "enjoy your boosted", "gaming quick links", "home / ufc",
@@ -173,54 +222,74 @@ def normalize_lines(text):
         "back to fight card", "matchup", "tape", "significant strikes",
         "grappling", "previous fights", "ufc wins by",
     ]
+
     lines = []
+
     for line in str(text or "").splitlines():
         line = line.strip()
         if not line:
             continue
+
         low = line.lower()
+
         if low in junk_exact:
             continue
+
         if any(j in low for j in junk_contains):
             continue
+
         if re.match(r"^\d+%$", line):
             continue
+
         if len(line) > 120:
             continue
+
         lines.append(line)
+
     return lines
 
 
 def find_section_last(lines, start_terms, stop_terms):
     start_idx = None
+
     for i, line in enumerate(lines):
         low = line.lower()
         if any(term.lower() == low or term.lower() in low for term in start_terms):
             start_idx = i
+
     if start_idx is None:
         return []
+
     end_idx = min(len(lines), start_idx + 100)
+
     for j in range(start_idx + 1, len(lines)):
         low = lines[j].lower()
         if any(term.lower() == low or term.lower() in low for term in stop_terms):
             end_idx = j
             break
+
     return lines[start_idx:end_idx]
 
 
 def dedupe(results):
     seen = set()
     unique = []
+
     for item in results:
         sel = str(item.get("selection", "")).strip()
         odds = str(item.get("odds", "")).strip()
+
         if not sel or not odds or not is_odds(odds):
             continue
+
         key = (sel.lower(), odds.upper())
+
         if key in seen:
             continue
+
         seen.add(key)
         unique.append({"selection": sel, "odds": odds})
+
     return unique
 
 
@@ -228,21 +297,28 @@ def parse_fight_betting(lines):
     section = find_section_last(
         lines,
         ["To Win Fight", "Fight Betting", "Match Betting", "Fight Result", "Bout Betting"],
-        ["Method of Victory", "Method Of Victory", "Winning Method", "Rounds",
-         "Total Rounds", "Go The Distance", "Round Betting"],
+        [
+            "Method of Victory", "Method Of Victory", "Winning Method",
+            "Rounds", "Total Rounds", "Go The Distance", "Round Betting",
+        ],
     )
+
     if not section:
         section = lines[:60]
+
     results = []
     i = 0
+
     while i < len(section) - 1:
         sel = section[i].strip()
         odds = section[i + 1].strip()
+
         if not is_odds(sel) and is_odds(odds):
             results.append({"selection": sel, "odds": odds})
             i += 2
         else:
             i += 1
+
     return dedupe(results)[:2]
 
 
@@ -250,18 +326,25 @@ def parse_method_of_victory(lines):
     section = find_section_last(
         lines,
         ["Method Of Victory", "Method of Victory", "Winning Method", "Method of Result"],
-        ["Rounds", "Total Rounds", "Go The Distance", "Round Betting",
-         "Double Chance", "To Win Fight"],
+        [
+            "Rounds", "Total Rounds", "Go The Distance", "Round Betting",
+            "Double Chance", "To Win Fight",
+        ],
     )
+
     results = []
     allowed = [" by ", "draw", "ko/tko", "ko,", "submission", "decision", "disqualification"]
+
     for i in range(len(section) - 1):
         sel = section[i].strip()
         odds = section[i + 1].strip()
+
         if is_odds(sel) or not is_odds(odds):
             continue
+
         if any(term in sel.lower() for term in allowed):
             results.append({"selection": sel, "odds": odds})
+
     return dedupe(results)
 
 
@@ -271,14 +354,19 @@ def parse_go_distance(lines):
         ["Go The Distance", "Fight Goes The Distance", "To Go The Distance"],
         ["Round Betting", "Total Rounds", "Method", "Double Chance"],
     )
+
     results = []
+
     for i in range(len(section) - 1):
         sel = section[i].strip()
         odds = section[i + 1].strip()
+
         if is_odds(sel) or not is_odds(odds):
             continue
+
         if sel.lower() in ["yes", "no"]:
             results.append({"selection": sel, "odds": odds})
+
     return dedupe(results)
 
 
@@ -288,12 +376,16 @@ def parse_rounds(lines):
         ["Rounds", "Total Rounds", "Round Betting"],
         ["Go The Distance", "Method", "Double Chance", "To Win Fight"],
     )
+
     results = []
+
     for i in range(len(section) - 1):
         sel = section[i].strip()
         odds = section[i + 1].strip()
+
         if is_odds(sel) or not is_odds(odds):
             continue
+
         low = sel.lower()
         valid = (
             "round" in low
@@ -301,8 +393,10 @@ def parse_rounds(lines):
             or "under" in low
             or re.search(r"\d+\.\d+", low)
         )
+
         if valid:
             results.append({"selection": sel, "odds": odds})
+
     return dedupe(results)
 
 
@@ -320,14 +414,19 @@ def click_tab(page, tab_name):
             return True
         except Exception:
             pass
+
     return False
 
 
 def scrape_fight(page, fight_name, fight_url, index):
-    print(f"\n{'='*50}")
+    if not is_ufc_only_fight(fight_name, fight_url):
+        print(f"SKIPPING NON-UFC BEFORE SCRAPE: {fight_name}")
+        return None
+
+    print(f"\n{'=' * 50}")
     print(f"[{index}] {fight_name}")
     print(f"URL: {fight_url}")
-    print(f"{'='*50}")
+    print(f"{'=' * 50}")
 
     try:
         page.goto(fight_url, timeout=60000, wait_until="domcontentloaded")
@@ -343,6 +442,7 @@ def scrape_fight(page, fight_name, fight_url, index):
     for _ in range(4):
         page.mouse.wheel(0, 1200)
         time.sleep(0.8)
+
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(1)
 
@@ -351,24 +451,30 @@ def scrape_fight(page, fight_name, fight_url, index):
 
     text = get_body_text(page)
     lines = normalize_lines(text)
+
     fight_betting = parse_fight_betting(lines)
     print(f"  Fight Betting: {len(fight_betting)}")
 
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(0.5)
+
     clicked = click_tab(page, "Method Of Victory")
     if not clicked:
         clicked = click_tab(page, "Method of Victory")
+
     if clicked:
         text = get_body_text(page)
         method = parse_method_of_victory(normalize_lines(text))
     else:
         method = []
+
     print(f"  Method of Victory: {len(method)}")
 
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(0.5)
+
     clicked = click_tab(page, "Rounds")
+
     if clicked:
         text = get_body_text(page)
         lines_rounds = normalize_lines(text)
@@ -377,6 +483,7 @@ def scrape_fight(page, fight_name, fight_url, index):
     else:
         rounds = []
         go_distance = []
+
     print(f"  Rounds: {len(rounds)}")
     print(f"  Go The Distance: {len(go_distance)}")
 
@@ -384,7 +491,9 @@ def scrape_fight(page, fight_name, fight_url, index):
     print(f"  Has props: {has_props}")
 
     return {
+        "bookmaker": "BoyleSports",
         "fight": fight_name,
+        "fight_name": fight_name,
         "url": fight_url,
         "has_props": has_props,
         "scraped_at": now_iso(),
@@ -400,10 +509,12 @@ def scrape_fight(page, fight_name, fight_url, index):
 def upsert_fight(output, fight_data):
     existing = output.get("fights", [])
     url = fight_data.get("url")
+
     for i, item in enumerate(existing):
         if item.get("url") == url:
             existing[i] = fight_data
             return
+
     existing.append(fight_data)
     output["fights"] = existing
 
@@ -421,6 +532,7 @@ def main():
                 "--disable-blink-features=AutomationControlled",
             ],
         )
+
         context = browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -431,24 +543,28 @@ def main():
             locale="en-IE",
             timezone_id="Europe/Dublin",
         )
+
         page = context.new_page()
 
-        # Step 1: Get real fight URLs from hub page
         fight_links = get_fight_urls_from_hub(page)
 
         if not fight_links:
-            print("No fight URLs found on hub page.")
+            print("No UFC fight URLs found on hub page.")
             save_output(output)
             if not is_github_actions():
                 input("\nDone. Press Enter to close browser...")
             browser.close()
             return
 
-        print(f"\nFights to scrape: {len(fight_links)}")
+        print(f"\nUFC fights to scrape: {len(fight_links)}")
 
-        # Step 2: Scrape each fight page
         for index, fight in enumerate(fight_links, start=1):
+            if not is_ufc_only_fight(fight["fight"], fight["url"]):
+                print(f"SKIPPING NON-UFC: {fight['fight']}")
+                continue
+
             print(f"\nProgress: {index}/{len(fight_links)}")
+
             try:
                 fight_data = scrape_fight(page, fight["fight"], fight["url"], index)
                 if fight_data:
@@ -462,6 +578,7 @@ def main():
 
         if not is_github_actions():
             input("\nDone. Press Enter to close browser...")
+
         browser.close()
 
     print(f"\nFinished. Saved to {OUT_PATH}")
