@@ -81,7 +81,9 @@ jobs:
       - name: Fetch upcoming UFC events
         run: python scripts/fetch_upcoming_events.py
 
-     
+      - name: Fetch UFCStats fighter stats
+        run: python scripts/fetch_ufcstats_fighter_stats.py || echo "UFCStats failed, continuing with existing fighter data"
+
       - name: Fetch UFC odds UK bookies
         run: python scripts/fetch_ufc_odds.py || echo "OddsAPI failed, continuing with existing odds data"
 
