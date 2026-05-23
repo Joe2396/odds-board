@@ -3,6 +3,7 @@ import time
 import json
 import re
 import os
+import shutil
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -10,6 +11,7 @@ print("FETCHING BOYLESPORTS UFC PROPS")
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_PATH = ROOT / "ufc" / "data" / "boylesports_props.json"
+FILTERED_OUT_PATH = ROOT / "ufc" / "data" / "boylesports_props_filtered.json"
 DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
 
 HUB_URL = "https://www.boylesports.com/sports/ufc-mma"
@@ -54,11 +56,92 @@ def is_ufc_only_fight(fight_name, url):
     if any(term in text for term in NON_UFC_TERMS):
         return False
 
-    # Boyle UFC fight URLs normally include "ufc" in the event slug.
     if "ufc" not in text:
         return False
 
     return True
+
+
+def is_bad_selection(selection):
+    sel = str(selection or "").strip()
+    low = sel.lower()
+
+    if not sel:
+        return True
+
+    if is_odds(sel):
+        return True
+
+    if len(sel) < 3:
+        return True
+
+    if re.match(r"^\d{1,2}:\d{2}$", sel):
+        return True
+
+    if re.match(r"^\d+\s*(min|mins|minute|minutes)$", low):
+        return True
+
+    if re.match(r"^\d+%$", sel):
+        return True
+
+    bad_exact = {
+        "popular",
+        "cash out",
+        "all markets",
+        "show more",
+        "show less",
+        "bet builder",
+        "bet builder boost",
+        "full t&cs",
+        "close",
+        "all competitions",
+        "ufc and mma",
+        "ufc",
+        "mma",
+        "in-play",
+        "sports a-z",
+        "safer gambling",
+        "promotions",
+        "casino",
+        "home",
+        "back",
+        "draw no bet",
+        "event",
+        "today",
+        "tomorrow",
+    }
+
+    if low in bad_exact:
+        return True
+
+    bad_contains = [
+        "create your bet builder",
+        "min odds",
+        "apply on betslip",
+        "enjoy your boosted",
+        "gaming quick links",
+        "home / ufc",
+        "please add one",
+        "ufc stats",
+        "cookie",
+        "privacy",
+        "back to fight card",
+        "matchup",
+        "tape",
+        "significant strikes",
+        "grappling",
+        "previous fights",
+        "ufc wins by",
+        "mins",
+        "hours ago",
+        "live now",
+        "starting soon",
+    ]
+
+    if any(x in low for x in bad_contains):
+        return True
+
+    return False
 
 
 def empty_output():
@@ -73,9 +156,14 @@ def empty_output():
 def save_output(output):
     output["updated_at"] = now_iso()
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
+
+    shutil.copyfile(OUT_PATH, FILTERED_OUT_PATH)
+
     print(f"  Saved to {OUT_PATH}")
+    print(f"  Copied to {FILTERED_OUT_PATH}")
 
 
 def save_debug(page, label):
@@ -207,41 +295,18 @@ def get_body_text(page):
 
 
 def normalize_lines(text):
-    junk_exact = {
-        "popular", "cash out", "all markets",
-        "show more", "show less", "bet builder",
-        "bet builder boost", "full t&cs", "close", "all competitions",
-        "ufc and mma", "ufc", "mma", "in-play", "sports a-z",
-        "safer gambling", "promotions", "casino",
-    }
-
-    junk_contains = [
-        "create your bet builder", "min odds", "apply on betslip",
-        "enjoy your boosted", "gaming quick links", "home / ufc",
-        "please add one", "ufc stats", "cookie", "privacy",
-        "back to fight card", "matchup", "tape", "significant strikes",
-        "grappling", "previous fights", "ufc wins by",
-    ]
-
     lines = []
 
     for line in str(text or "").splitlines():
         line = line.strip()
+
         if not line:
             continue
 
-        low = line.lower()
-
-        if low in junk_exact:
-            continue
-
-        if any(j in low for j in junk_contains):
-            continue
-
-        if re.match(r"^\d+%$", line):
-            continue
-
         if len(line) > 120:
+            continue
+
+        if is_bad_selection(line) and not is_odds(line):
             continue
 
         lines.append(line)
@@ -279,7 +344,10 @@ def dedupe(results):
         sel = str(item.get("selection", "")).strip()
         odds = str(item.get("odds", "")).strip()
 
-        if not sel or not odds or not is_odds(odds):
+        if is_bad_selection(sel):
+            continue
+
+        if not odds or not is_odds(odds):
             continue
 
         key = (sel.lower(), odds.upper())
@@ -298,8 +366,13 @@ def parse_fight_betting(lines):
         lines,
         ["To Win Fight", "Fight Betting", "Match Betting", "Fight Result", "Bout Betting"],
         [
-            "Method of Victory", "Method Of Victory", "Winning Method",
-            "Rounds", "Total Rounds", "Go The Distance", "Round Betting",
+            "Method of Victory",
+            "Method Of Victory",
+            "Winning Method",
+            "Rounds",
+            "Total Rounds",
+            "Go The Distance",
+            "Round Betting",
         ],
     )
 
@@ -313,7 +386,7 @@ def parse_fight_betting(lines):
         sel = section[i].strip()
         odds = section[i + 1].strip()
 
-        if not is_odds(sel) and is_odds(odds):
+        if not is_bad_selection(sel) and is_odds(odds):
             results.append({"selection": sel, "odds": odds})
             i += 2
         else:
@@ -327,19 +400,31 @@ def parse_method_of_victory(lines):
         lines,
         ["Method Of Victory", "Method of Victory", "Winning Method", "Method of Result"],
         [
-            "Rounds", "Total Rounds", "Go The Distance", "Round Betting",
-            "Double Chance", "To Win Fight",
+            "Rounds",
+            "Total Rounds",
+            "Go The Distance",
+            "Round Betting",
+            "Double Chance",
+            "To Win Fight",
         ],
     )
 
     results = []
-    allowed = [" by ", "draw", "ko/tko", "ko,", "submission", "decision", "disqualification"]
+    allowed = [
+        " by ",
+        "draw",
+        "ko/tko",
+        "ko,",
+        "submission",
+        "decision",
+        "disqualification",
+    ]
 
     for i in range(len(section) - 1):
         sel = section[i].strip()
         odds = section[i + 1].strip()
 
-        if is_odds(sel) or not is_odds(odds):
+        if is_bad_selection(sel) or not is_odds(odds):
             continue
 
         if any(term in sel.lower() for term in allowed):
@@ -361,7 +446,7 @@ def parse_go_distance(lines):
         sel = section[i].strip()
         odds = section[i + 1].strip()
 
-        if is_odds(sel) or not is_odds(odds):
+        if not is_odds(odds):
             continue
 
         if sel.lower() in ["yes", "no"]:
@@ -383,7 +468,7 @@ def parse_rounds(lines):
         sel = section[i].strip()
         odds = section[i + 1].strip()
 
-        if is_odds(sel) or not is_odds(odds):
+        if is_bad_selection(sel) or not is_odds(odds):
             continue
 
         low = sel.lower()
