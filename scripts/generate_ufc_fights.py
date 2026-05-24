@@ -15,8 +15,8 @@ ODDS_JSON = ROOT / "ufc" / "data" / "odds.json"
 
 PROP_FILES = [
     ("PaddyPower", ROOT / "ufc" / "data" / "props.json"),
-    ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props.json"),
-    ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props.json"),
+    ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props_filtered.json"),
+    ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props_filtered.json"),
     ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
     ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
     ("Unibet", ROOT / "ufc" / "data" / "unibet_props.json"),

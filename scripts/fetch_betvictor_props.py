@@ -3,6 +3,7 @@ import json
 import time
 import re
 import os
+import unicodedata
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -17,6 +18,37 @@ DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
 
 def is_github_actions():
     return os.getenv("GITHUB_ACTIONS") == "true"
+
+
+def clean_text(x):
+    return re.sub(r"\s+", " ", str(x or "")).strip()
+
+
+def normalize_name(name):
+    text = unicodedata.normalize("NFKD", str(name or ""))
+    text = text.encode("ascii", "ignore").decode("ascii")
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9 ]", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def last_name(name):
+    parts = normalize_name(name).split()
+    return parts[-1] if parts else ""
+
+
+def fighter_line_match(line, fighter):
+    line_n = normalize_name(line)
+    fighter_n = normalize_name(fighter)
+    fighter_last = last_name(fighter)
+
+    if not line_n or not fighter_n:
+        return False
+
+    if fighter_n in line_n:
+        return True
+
+    return bool(fighter_last and fighter_last in line_n)
 
 
 def is_odds(x):
@@ -80,240 +112,121 @@ def load_fight_urls():
     with open(URLS_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    fights = data.get("fights", [])
+    fights = []
 
-    clean = []
-    for fight in fights:
+    for fight in data.get("fights", []):
         name = fight.get("fight_name") or fight.get("fight") or ""
         url = fight.get("url") or ""
 
-        if not name or not url:
+        fighter1 = fight.get("fighter1", "")
+        fighter2 = fight.get("fighter2", "")
+
+        if not fighter1 or not fighter2:
+            if " vs " in name:
+                fighter1, fighter2 = name.split(" vs ", 1)
+
+        if not name or not url or not fighter1 or not fighter2:
             continue
 
-        clean.append({
+        fights.append({
             "fight": name,
             "fight_name": name,
             "url": url,
-            "fighter1": fight.get("fighter1", ""),
-            "fighter2": fight.get("fighter2", ""),
+            "fighter1": fighter1,
+            "fighter2": fighter2,
             "event_name": fight.get("event_name", ""),
             "date": fight.get("date", ""),
             "fight_id": fight.get("fight_id", ""),
         })
 
-    print(f"BetVictor matched URLs loaded: {len(clean)}")
-    for x in clean[:10]:
+    print(f"BetVictor matched URLs loaded: {len(fights)}")
+    for x in fights[:10]:
         print(f" - {x['fight_name']} -> {x['url']}")
 
-    return clean
+    return fights
 
 
-def click_all_markets(page):
-    clicked = False
+def get_page_lines(page):
+    body_text = page.locator("body").inner_text(timeout=20000)
+    return [clean_text(l) for l in body_text.splitlines() if clean_text(l)]
 
-    selectors = [
-        "button:has-text('All Markets')",
-        "a:has-text('All Markets')",
-        "text=All Markets",
-        "button:has-text('Show More')",
-        "button:has-text('More')",
-        "text=More"
-    ]
 
-    for selector in selectors:
-        try:
-            buttons = page.locator(selector)
-            count = buttons.count()
+def extract_fight_betting(lines, fighter1, fighter2):
+    for i, line in enumerate(lines):
+        if not fighter_line_match(line, fighter1):
+            continue
 
-            for i in range(count):
-                try:
-                    btn = buttons.nth(i)
+        second_index = None
 
-                    if btn.is_visible():
-                        btn.scroll_into_view_if_needed()
-                        page.wait_for_timeout(500)
+        for j in range(i + 1, min(i + 8, len(lines))):
+            if fighter_line_match(lines[j], fighter2):
+                second_index = j
+                break
 
-                        btn.click(timeout=3000)
+        if second_index is None:
+            continue
 
-                        print(f"Clicked: {selector}")
+        window = lines[i:min(second_index + 20, len(lines))]
+        odds = [x for x in window if is_odds(x)]
 
-                        clicked = True
-                        page.wait_for_timeout(1500)
+        if len(odds) >= 2:
+            return [
+                {"selection": fighter1, "odds": odds[0]},
+                {"selection": fighter2, "odds": odds[1]},
+            ]
 
-                except:
-                    pass
+    return []
 
-        except:
-            pass
 
-    if not clicked:
-        print("All Markets not found")
-        return False
+def scrape_meeting_page(page, meeting_url):
+    print(f"\nOpening BetVictor meeting: {meeting_url}")
 
-        return True
+    page.goto(meeting_url, timeout=60000, wait_until="domcontentloaded")
+    time.sleep(8)
+    accept_cookies(page)
 
-def parse_page_text(page):
-    try:
-        body_text = page.locator("body").inner_text(timeout=20000)
-    except Exception as e:
-        print(f"Could not get body text: {e}")
-        return {
-            "fight_betting": [],
-            "method_of_victory": [],
-            "rounds": [],
-            "go_the_distance": [],
-        }
+    for _ in range(8):
+        page.mouse.wheel(0, 900)
+        time.sleep(0.5)
 
-    lines = [l.strip() for l in body_text.splitlines() if l.strip()]
+    page.evaluate("window.scrollTo(0, 0)")
+    time.sleep(1)
 
-    section_map = {
-        "fight betting": "fight_betting",
-        "to win bout": "fight_betting",
-        "to win the bout": "fight_betting",
-        "method of victory": "method_of_victory",
-        "winning method": "method_of_victory",
-        "round betting": "rounds",
-        "total rounds": "rounds",
-        "go the distance": "go_the_distance",
-        "will the fight go the distance": "go_the_distance",
-    }
+    safe_label = re.sub(r"[^a-zA-Z0-9]+", "_", meeting_url).strip("_").lower()[-80:]
+    save_debug(page, f"betvictor_meeting_{safe_label}")
 
-    junk = {
-        "sports",
-        "in-play",
-        "offers",
-        "casino",
-        "live casino",
-        "bingo",
-        "search",
-        "a-z sports",
-        "settings",
-        "help & contact",
-        "log in",
-        "sign up",
-        "betslip",
-        "slots",
-        "mini games",
-        "affiliates",
-        "fairness",
-        "cookies notice",
-        "terms & conditions",
-        "privacy notice",
-        "safer gambling",
-    }
+    return get_page_lines(page)
 
-    results = {
-        "fight_betting": [],
+
+def build_fight_result(fight, lines):
+    fight_name = fight["fight_name"]
+    fighter1 = fight["fighter1"]
+    fighter2 = fight["fighter2"]
+
+    fight_betting = extract_fight_betting(lines, fighter1, fighter2)
+
+    markets = {
+        "fight_betting": fight_betting,
         "method_of_victory": [],
         "rounds": [],
         "go_the_distance": [],
     }
 
-    current_section = None
-    i = 0
-
-    while i < len(lines):
-        line = lines[i]
-        lower = line.lower().strip()
-
-        if lower in junk:
-            i += 1
-            continue
-
-        matched_section = None
-        for heading, key in section_map.items():
-            if lower == heading or lower.startswith(heading):
-                matched_section = key
-                break
-
-        if matched_section:
-            current_section = matched_section
-            i += 1
-            continue
-
-        if current_section is None:
-            i += 1
-            continue
-
-        if i + 1 < len(lines):
-            next_line = lines[i + 1].strip()
-
-            if not is_odds(line) and is_odds(next_line):
-                results[current_section].append({
-                    "selection": line,
-                    "odds": next_line,
-                })
-                i += 2
-                continue
-
-        i += 1
-
-    return results
-
-
-def scrape_fight(page, fight, index):
-    fight_name = fight["fight_name"]
-    fight_url = fight["url"]
-
-    print(f"\n{'=' * 50}")
-    print(f"[{index}] {fight_name}")
-    print(f"URL: {fight_url}")
-    print(f"{'=' * 50}")
-
-    try:
-        page.goto(fight_url, timeout=60000, wait_until="domcontentloaded")
-    except Exception as e:
-        print(f"Page load failed: {e}")
-        return None
-
-    time.sleep(8)
-    accept_cookies(page)
-    time.sleep(1)
-
-    click_all_markets(page)
-
-    for _ in range(8):
-        page.mouse.wheel(0, 900)
-        time.sleep(0.6)
-
-    page.evaluate("window.scrollTo(0, 0)")
-    time.sleep(1)
-
-    safe_label = re.sub(r"[^a-zA-Z0-9]+", "_", fight_name).strip("_").lower()
-    save_debug(page, f"betvictor_props_{index}_{safe_label}")
-
-    markets = parse_page_text(page)
     total = sum(len(v) for v in markets.values())
 
-    print(f"Fight Betting: {len(markets['fight_betting'])}")
-    print(f"Method: {len(markets['method_of_victory'])}")
-    print(f"Rounds: {len(markets['rounds'])}")
-    print(f"Distance: {len(markets['go_the_distance'])}")
+    print(f"\n{fight_name}")
+    print(f"Fight Betting: {len(fight_betting)}")
     print(f"Total markets found: {total}")
 
     return {
         "bookmaker": "BetVictor",
         "fight": fight_name,
         "fight_name": fight_name,
-        "url": fight_url,
+        "url": fight["url"],
         "has_props": total > 0,
         "scraped_at": datetime.now(timezone.utc).isoformat(),
         "markets": markets,
     }
-
-
-def upsert_fight(output, fight_data):
-    existing = output.get("fights", [])
-    key = fight_data.get("fight_name")
-
-    for i, item in enumerate(existing):
-        if item.get("fight_name") == key:
-            existing[i] = fight_data
-            output["fights"] = existing
-            return
-
-    existing.append(fight_data)
-    output["fights"] = existing
 
 
 def main():
@@ -325,6 +238,9 @@ def main():
         return
 
     output = empty_output()
+
+    unique_urls = sorted(set(f["url"] for f in fights))
+    meeting_lines = {}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -344,18 +260,19 @@ def main():
 
         page = context.new_page()
 
-        for index, fight in enumerate(fights, start=1):
+        for url in unique_urls:
             try:
-                fight_data = scrape_fight(page, fight, index)
-
-                if fight_data:
-                    upsert_fight(output, fight_data)
-                    save_output(output)
-
+                meeting_lines[url] = scrape_meeting_page(page, url)
             except Exception as e:
-                print(f"ERROR on {fight.get('fight_name')}: {e}")
-                import traceback
-                traceback.print_exc()
+                print(f"ERROR scraping meeting {url}: {e}")
+                meeting_lines[url] = []
+
+        for fight in fights:
+            lines = meeting_lines.get(fight["url"], [])
+            fight_data = build_fight_result(fight, lines)
+
+            if fight_data:
+                output["fights"].append(fight_data)
                 save_output(output)
 
         if not is_github_actions():
