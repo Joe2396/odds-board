@@ -4,6 +4,7 @@ import json
 import re
 import os
 import shutil
+import unicodedata
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -17,19 +18,9 @@ DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
 HUB_URL = "https://www.boylesports.com/sports/ufc-mma"
 
 NON_UFC_TERMS = [
-    "pfl",
-    "lfa",
-    "bare-knuckle",
-    "bare knuckle",
-    "bkfc",
-    "bellator",
-    "one-championship",
-    "one championship",
-    "cage-warriors",
-    "cage warriors",
-    "oktagon",
-    "boxing",
-    "glory",
+    "pfl", "lfa", "bare-knuckle", "bare knuckle", "bkfc",
+    "bellator", "one-championship", "one championship",
+    "cage-warriors", "cage warriors", "oktagon", "boxing", "glory",
 ]
 
 
@@ -39,6 +30,45 @@ def is_github_actions():
 
 def now_iso():
     return datetime.now(timezone.utc).isoformat()
+
+
+def clean_text(x):
+    return re.sub(r"\s+", " ", str(x or "")).strip()
+
+
+def normalize_name(name):
+    text = unicodedata.normalize("NFKD", str(name or ""))
+    text = text.encode("ascii", "ignore").decode("ascii")
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9 ]", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def last_name(name):
+    parts = normalize_name(name).split()
+    return parts[-1] if parts else ""
+
+
+def fighter_match(selection, fighter):
+    s = normalize_name(selection)
+    f = normalize_name(fighter)
+    last = last_name(fighter)
+
+    if not s or not f:
+        return False
+
+    return f in s or bool(last and last in s)
+
+
+def split_fighters_from_fight_name(fight_name):
+    text = clean_text(fight_name)
+
+    for sep in [" vs ", " Vs ", " v ", " V "]:
+        if sep in text:
+            a, b = text.split(sep, 1)
+            return clean_text(a), clean_text(b)
+
+    return "", ""
 
 
 def is_odds(x):
@@ -56,10 +86,7 @@ def is_ufc_only_fight(fight_name, url):
     if any(term in text for term in NON_UFC_TERMS):
         return False
 
-    if "ufc" not in text:
-        return False
-
-    return True
+    return "ufc" in text or "ufc-mma" in text
 
 
 def is_bad_selection(selection):
@@ -85,63 +112,26 @@ def is_bad_selection(selection):
         return True
 
     bad_exact = {
-        "popular",
-        "cash out",
-        "all markets",
-        "show more",
-        "show less",
-        "bet builder",
-        "bet builder boost",
-        "full t&cs",
-        "close",
-        "all competitions",
-        "ufc and mma",
-        "ufc",
-        "mma",
-        "in-play",
-        "sports a-z",
-        "safer gambling",
-        "promotions",
-        "casino",
-        "home",
-        "back",
-        "draw no bet",
-        "event",
-        "today",
-        "tomorrow",
+        "popular", "cash out", "all markets", "show more", "show less",
+        "bet builder", "bet builder boost", "full t&cs", "close",
+        "all competitions", "ufc and mma", "ufc", "mma", "in-play",
+        "sports a-z", "safer gambling", "promotions", "casino", "home",
+        "back", "draw no bet", "event", "today", "tomorrow",
     }
 
     if low in bad_exact:
         return True
 
     bad_contains = [
-        "create your bet builder",
-        "min odds",
-        "apply on betslip",
-        "enjoy your boosted",
-        "gaming quick links",
-        "home / ufc",
-        "please add one",
-        "ufc stats",
-        "cookie",
-        "privacy",
-        "back to fight card",
-        "matchup",
-        "tape",
-        "significant strikes",
-        "grappling",
-        "previous fights",
-        "ufc wins by",
-        "mins",
-        "hours ago",
-        "live now",
-        "starting soon",
+        "create your bet builder", "min odds", "apply on betslip",
+        "enjoy your boosted", "gaming quick links", "home / ufc",
+        "please add one", "ufc stats", "cookie", "privacy",
+        "back to fight card", "matchup", "tape", "significant strikes",
+        "grappling", "previous fights", "ufc wins by", "mins",
+        "hours ago", "live now", "starting soon",
     ]
 
-    if any(x in low for x in bad_contains):
-        return True
-
-    return False
+    return any(x in low for x in bad_contains)
 
 
 def empty_output():
@@ -215,21 +205,6 @@ def get_fight_urls_from_hub(page):
 
     save_debug(page, "boylesports_hub")
 
-    blocked_terms = [
-        "special",
-        "boost",
-        "mvp",
-        "outright",
-        "in-play",
-        "competition",
-    ]
-
-    blocked_exact = {
-        "https://www.boylesports.com/sports/ufc-mma",
-        "https://www.boylesports.com/sports/ufc-mma/day",
-        "https://www.boylesports.com/sports/ufc-mma/in-play",
-    }
-
     try:
         links = page.evaluate("""
             () => {
@@ -248,6 +223,7 @@ def get_fight_urls_from_hub(page):
         print(f"  Link extraction failed: {e}")
         return []
 
+    blocked_terms = ["special", "boost", "mvp", "outright", "in-play", "competition"]
     seen = set()
     fights = []
 
@@ -255,7 +231,7 @@ def get_fight_urls_from_hub(page):
         href = str(link.get("href", "")).split("?")[0].rstrip("/")
         text = str(link.get("text", "")).strip()
 
-        if not href or href in blocked_exact:
+        if not href:
             continue
 
         href_low = href.lower()
@@ -277,8 +253,17 @@ def get_fight_urls_from_hub(page):
             print(f"  Skipping non-UFC: {fight_name}")
             continue
 
+        f1, f2 = split_fighters_from_fight_name(fight_name)
+        if not f1 or not f2:
+            continue
+
         seen.add(href)
-        fights.append({"fight": fight_name, "url": href})
+        fights.append({
+            "fight": fight_name,
+            "fighter1": f1,
+            "fighter2": f2,
+            "url": href,
+        })
 
     print(f"Found {len(fights)} UFC fight URLs from hub")
     for f in fights:
@@ -298,7 +283,7 @@ def normalize_lines(text):
     lines = []
 
     for line in str(text or "").splitlines():
-        line = line.strip()
+        line = clean_text(line)
 
         if not line:
             continue
@@ -341,8 +326,8 @@ def dedupe(results):
     unique = []
 
     for item in results:
-        sel = str(item.get("selection", "")).strip()
-        odds = str(item.get("odds", "")).strip()
+        sel = clean_text(item.get("selection", ""))
+        odds = clean_text(item.get("odds", ""))
 
         if is_bad_selection(sel):
             continue
@@ -361,23 +346,49 @@ def dedupe(results):
     return unique
 
 
-def parse_fight_betting(lines):
+def only_fighter_moneyline(rows, fighter1, fighter2):
+    out = []
+
+    for row in rows:
+        sel = row.get("selection", "")
+
+        if fighter_match(sel, fighter1):
+            out.append({"selection": fighter1, "odds": row["odds"]})
+        elif fighter_match(sel, fighter2):
+            out.append({"selection": fighter2, "odds": row["odds"]})
+
+    return dedupe(out)[:2]
+
+
+def only_fighter_method(rows, fighter1, fighter2):
+    out = []
+
+    for row in rows:
+        sel = row.get("selection", "")
+        low = sel.lower()
+
+        if low == "draw":
+            out.append(row)
+            continue
+
+        if fighter_match(sel, fighter1) or fighter_match(sel, fighter2):
+            out.append(row)
+
+    return dedupe(out)
+
+
+def parse_fight_betting(lines, fighter1, fighter2):
     section = find_section_last(
         lines,
         ["To Win Fight", "Fight Betting", "Match Betting", "Fight Result", "Bout Betting"],
         [
-            "Method of Victory",
-            "Method Of Victory",
-            "Winning Method",
-            "Rounds",
-            "Total Rounds",
-            "Go The Distance",
-            "Round Betting",
+            "Method of Victory", "Method Of Victory", "Winning Method",
+            "Rounds", "Total Rounds", "Go The Distance", "Round Betting",
         ],
     )
 
     if not section:
-        section = lines[:60]
+        section = lines[:80]
 
     results = []
     i = 0
@@ -392,33 +403,18 @@ def parse_fight_betting(lines):
         else:
             i += 1
 
-    return dedupe(results)[:2]
+    return only_fighter_moneyline(results, fighter1, fighter2)
 
 
-def parse_method_of_victory(lines):
+def parse_method_of_victory(lines, fighter1, fighter2):
     section = find_section_last(
         lines,
         ["Method Of Victory", "Method of Victory", "Winning Method", "Method of Result"],
-        [
-            "Rounds",
-            "Total Rounds",
-            "Go The Distance",
-            "Round Betting",
-            "Double Chance",
-            "To Win Fight",
-        ],
+        ["Rounds", "Total Rounds", "Go The Distance", "Round Betting", "Double Chance", "To Win Fight"],
     )
 
     results = []
-    allowed = [
-        " by ",
-        "draw",
-        "ko/tko",
-        "ko,",
-        "submission",
-        "decision",
-        "disqualification",
-    ]
+    allowed = [" by ", "draw", "ko/tko", "ko,", "submission", "decision", "disqualification"]
 
     for i in range(len(section) - 1):
         sel = section[i].strip()
@@ -430,7 +426,7 @@ def parse_method_of_victory(lines):
         if any(term in sel.lower() for term in allowed):
             results.append({"selection": sel, "odds": odds})
 
-    return dedupe(results)
+    return only_fighter_method(results, fighter1, fighter2)
 
 
 def parse_go_distance(lines):
@@ -472,12 +468,7 @@ def parse_rounds(lines):
             continue
 
         low = sel.lower()
-        valid = (
-            "round" in low
-            or "over" in low
-            or "under" in low
-            or re.search(r"\d+\.\d+", low)
-        )
+        valid = "round" in low or "over" in low or "under" in low or re.search(r"\d+\.\d+", low)
 
         if valid:
             results.append({"selection": sel, "odds": odds})
@@ -503,7 +494,12 @@ def click_tab(page, tab_name):
     return False
 
 
-def scrape_fight(page, fight_name, fight_url, index):
+def scrape_fight(page, fight, index):
+    fight_name = fight["fight"]
+    fight_url = fight["url"]
+    fighter1 = fight["fighter1"]
+    fighter2 = fight["fighter2"]
+
     if not is_ufc_only_fight(fight_name, fight_url):
         print(f"SKIPPING NON-UFC BEFORE SCRAPE: {fight_name}")
         return None
@@ -537,19 +533,17 @@ def scrape_fight(page, fight_name, fight_url, index):
     text = get_body_text(page)
     lines = normalize_lines(text)
 
-    fight_betting = parse_fight_betting(lines)
+    fight_betting = parse_fight_betting(lines, fighter1, fighter2)
     print(f"  Fight Betting: {len(fight_betting)}")
 
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(0.5)
 
-    clicked = click_tab(page, "Method Of Victory")
-    if not clicked:
-        clicked = click_tab(page, "Method of Victory")
+    clicked = click_tab(page, "Method Of Victory") or click_tab(page, "Method of Victory")
 
     if clicked:
         text = get_body_text(page)
-        method = parse_method_of_victory(normalize_lines(text))
+        method = parse_method_of_victory(normalize_lines(text), fighter1, fighter2)
     else:
         method = []
 
@@ -598,6 +592,7 @@ def upsert_fight(output, fight_data):
     for i, item in enumerate(existing):
         if item.get("url") == url:
             existing[i] = fight_data
+            output["fights"] = existing
             return
 
     existing.append(fight_data)
@@ -644,14 +639,10 @@ def main():
         print(f"\nUFC fights to scrape: {len(fight_links)}")
 
         for index, fight in enumerate(fight_links, start=1):
-            if not is_ufc_only_fight(fight["fight"], fight["url"]):
-                print(f"SKIPPING NON-UFC: {fight['fight']}")
-                continue
-
             print(f"\nProgress: {index}/{len(fight_links)}")
 
             try:
-                fight_data = scrape_fight(page, fight["fight"], fight["url"], index)
+                fight_data = scrape_fight(page, fight, index)
                 if fight_data:
                     upsert_fight(output, fight_data)
                     save_output(output)
