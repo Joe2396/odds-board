@@ -1,34 +1,60 @@
 from playwright.sync_api import sync_playwright
-import json
-import time
-import re
 from pathlib import Path
 from datetime import datetime, timezone
+import json
+import re
+import time
+import os
 
-print("FETCHING BETVICTOR FIGHT URLS - DEBUG MODE")
+print("FETCHING BETVICTOR UFC FIGHT URLS")
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT_PATH = ROOT / "ufc" / "data" / "betvictor_fight_urls.json"
-DEBUG_PATH = ROOT / "ufc" / "data" / "betvictor_debug_links.json"
 
-BETVICTOR_URLS = [
-    "https://www.betvictor.com/en-ie/sports/1327866",
-    "https://www.betvictor.com/en-ie/sports/1327866/meetings/726971410/all",
-    "https://www.betvictor.com/en-ie/sports/1327866/meetings/726971510/all",
-    "https://www.betvictor.com/en-ie/sports/1327866/meetings/727049210/all",
-    "https://www.betvictor.com/en-ie/sports/1327866/meetings/727019710/all",
-]
+EVENTS_PATH = ROOT / "ufc" / "data" / "events.json"
+OUT_PATH = ROOT / "ufc" / "data" / "betvictor_fight_urls.json"
+DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
+
+BETVICTOR_MMA_PAGE = "https://www.betvictor.com/en-ie/sports/1327866"
+BETVICTOR_BASE = "https://www.betvictor.com"
+
+
+def is_github_actions():
+    return os.getenv("GITHUB_ACTIONS") == "true"
+
+
+def clean_text(x):
+    return re.sub(r"\s+", " ", str(x or "")).strip()
+
+
+def clean_name(x):
+    x = str(x or "").lower()
+    x = x.replace("é", "e").replace("á", "a").replace("í", "i").replace("ó", "o").replace("ú", "u")
+    x = re.sub(r"[^a-z0-9 ]", " ", x)
+    return re.sub(r"\s+", " ", x).strip()
+
+
+def is_tba(name):
+    n = clean_name(name)
+    return not n or "tba" in n or "opponent" in n
+
+
+def event_is_upcoming(date_str):
+    try:
+        d = str(date_str or "")[:10]
+        event_date = datetime.strptime(d, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        today = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+        return event_date >= today
+    except Exception:
+        return True
 
 
 def accept_cookies(page):
-    selectors = [
-        "button:has-text('Accept All')",
-        "button:has-text('Accept All Cookies')",
-        "button:has-text('Accept')",
+    for selector in [
         "#onetrust-accept-btn-handler",
-    ]
-
-    for selector in selectors:
+        "button:has-text('Accept All Cookies')",
+        "button:has-text('Accept All')",
+        "button:has-text('Accept')",
+    ]:
         try:
             page.locator(selector).first.click(timeout=3000, force=True)
             print("Accepted cookies")
@@ -38,207 +64,248 @@ def accept_cookies(page):
             pass
 
 
-def clean_text(text):
-    return re.sub(r"\s+", " ", text or "").strip()
+def save_debug(page, label):
+    try:
+        DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+        page.screenshot(path=str(DEBUG_DIR / f"{label}.png"), full_page=True)
+        print(f"Debug screenshot: {label}")
+    except Exception as e:
+        print(f"Debug failed: {e}")
 
 
-def looks_like_fight_name(text):
-    text = clean_text(text)
-    lower = text.lower()
+def get_fighter_name(fight, side):
+    if side == 1:
+        return (
+            fight.get("fighter1")
+            or fight.get("fighter_1")
+            or fight.get("home")
+            or fight.get("competitor1")
+            or ((fight.get("red") or {}).get("name"))
+            or ""
+        )
 
-    if not text:
-        return False
-
-    bad_words = [
-        "more",
-        "all",
-        "in-play",
-        "popular",
-        "competitions",
-        "terms",
-        "privacy",
-        "cookies",
-        "safer gambling",
-        "free bets",
-        "ufc betting",
-        "mma betting",
-        "sports",
-        "casino",
-        "live casino",
-        "promotions",
-        "responsible gambling",
-        "help",
-        "login",
-        "join",
-    ]
-
-    if any(bad in lower for bad in bad_words):
-        return False
-
-    if not re.search(r"[A-Za-z]", text):
-        return False
-
-    fight_patterns = [
-        r"\b[a-zA-Z.'-]+\s+[a-zA-Z.'-]+\s+v\s+[a-zA-Z.'-]+\s+[a-zA-Z.'-]+\b",
-        r"\b[a-zA-Z.'-]+\s+[a-zA-Z.'-]+\s+vs\s+[a-zA-Z.'-]+\s+[a-zA-Z.'-]+\b",
-        r"\b[a-zA-Z.'-]+\s+[a-zA-Z.'-]+\s+versus\s+[a-zA-Z.'-]+\s+[a-zA-Z.'-]+\b",
-        r"\b[a-zA-Z.'-]+\s+[a-zA-Z.'-]+\s*-\s*[a-zA-Z.'-]+\s+[a-zA-Z.'-]+\b",
-    ]
-
-    for pattern in fight_patterns:
-        if re.search(pattern, text, flags=re.IGNORECASE):
-            return True
-
-    words = text.split()
-
-    if 3 <= len(words) <= 12 and (" v " in lower or " vs " in lower or " versus " in lower):
-        return True
-
-    return False
+    return (
+        fight.get("fighter2")
+        or fight.get("fighter_2")
+        or fight.get("away")
+        or fight.get("competitor2")
+        or ((fight.get("blue") or {}).get("name"))
+        or ""
+    )
 
 
-def extract_fights_from_page(page, source_url):
-    fights = []
-    debug_links = []
+def load_upcoming_fights():
+    if not EVENTS_PATH.exists():
+        print(f"ERROR: events.json not found at {EVENTS_PATH}")
+        return []
 
-    links = page.locator("a").all()
-    print(f"Found {len(links)} links on page")
+    with open(EVENTS_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    for i, link in enumerate(links):
-        try:
-            href = link.get_attribute("href")
-            text = clean_text(link.inner_text(timeout=1000))
+    events = data if isinstance(data, list) else data.get("events", [])
+    fights_out = []
 
-            debug_links.append({
-                "index": i,
-                "text": text,
-                "href": href,
-                "source_url": source_url,
-            })
-
-            if i < 70:
-                print("\nLINK", i)
-                print("TEXT:", repr(text))
-                print("HREF:", href)
-
-            if not href:
-                continue
-
-            full_href = href
-
-            if full_href.startswith("/"):
-                full_href = "https://www.betvictor.com" + full_href
-
-            if "sports/1327866" not in full_href:
-                continue
-
-            if not looks_like_fight_name(text):
-                if i < 70:
-                    print("REJECTED:", repr(text))
-                continue
-
-            print("ACCEPTED FIGHT:", text)
-
-            fights.append({
-                "bookmaker": "BetVictor",
-                "fight_name": text,
-                "url": full_href,
-                "source_url": source_url,
-            })
-
-        except Exception as e:
-            print("Link error:", e)
+    for event in events:
+        if not event_is_upcoming(event.get("date")):
             continue
 
-    return fights, debug_links
+        for fight in event.get("fights") or []:
+            f1 = clean_text(get_fighter_name(fight, 1))
+            f2 = clean_text(get_fighter_name(fight, 2))
+
+            if not f1 or not f2:
+                continue
+
+            if is_tba(f1) or is_tba(f2):
+                continue
+
+            fights_out.append({
+                "fight": f"{f1} vs {f2}",
+                "fighter1": f1,
+                "fighter2": f2,
+                "event_name": event.get("name", ""),
+                "date": event.get("date", ""),
+                "fight_id": fight.get("id", ""),
+            })
+
+    print(f"Upcoming fights from events.json: {len(fights_out)}")
+    for f in fights_out[:12]:
+        print(" -", f["fight"])
+    if len(fights_out) > 12:
+        print(f"... plus {len(fights_out) - 12} more")
+
+    return fights_out
+
+
+def names_match(fight, body):
+    body = clean_name(body)
+
+    f1 = clean_name(fight["fighter1"])
+    f2 = clean_name(fight["fighter2"])
+
+    f1_last = f1.split()[-1] if f1 else ""
+    f2_last = f2.split()[-1] if f2 else ""
+
+    return f1_last in body and f2_last in body
+
+
+def get_mma_meeting_links(page):
+    print("Opening exact BetVictor MMA/UFC page only...")
+    page.goto(BETVICTOR_MMA_PAGE, wait_until="domcontentloaded", timeout=60000)
+    time.sleep(6)
+    accept_cookies(page)
+    time.sleep(2)
+
+    save_debug(page, "betvictor_exact_mma_page")
+
+    # Click the MMA/UFC Fights accordion only.
+    for selector in [
+        "text=MMA/UFC Fights",
+        "button:has-text('MMA/UFC Fights')",
+        "div:has-text('MMA/UFC Fights')",
+    ]:
+        try:
+            page.locator(selector).first.click(timeout=4000, force=True)
+            print("Clicked MMA/UFC Fights")
+            time.sleep(3)
+            break
+        except Exception:
+            pass
+
+    body = page.locator("body").inner_text(timeout=15000)
+    print("\n--- MMA PAGE PREVIEW ---")
+    print(body[:1200])
+    print("--- END PREVIEW ---\n")
+
+    links = page.locator("a").evaluate_all("""
+        els => els.map(a => ({
+            text: (a.innerText || '').trim(),
+            href: a.href || ''
+        }))
+    """)
+
+    meeting_links = []
+
+    for item in links:
+        href = item.get("href", "")
+        text = item.get("text", "")
+
+        if not href:
+            continue
+
+        if href.startswith("/"):
+            href = BETVICTOR_BASE + href
+
+        # HARD FILTER: only MMA/UFC sport ID 1327866 meeting pages.
+        if "/en-ie/sports/1327866/meetings/" not in href:
+            continue
+
+        if "/all" not in href:
+            continue
+
+        if href not in meeting_links:
+            meeting_links.append(href)
+            print(f"Found UFC meeting link: {text} -> {href}")
+
+    return meeting_links
 
 
 def main():
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    upcoming_fights = load_upcoming_fights()
 
-    all_fights = []
-    all_debug_links = []
+    matched = []
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-
-        page = browser.new_page(
-            viewport={"width": 1400, "height": 1000},
-            user_agent=(
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/120.0.0.0 Safari/537.36"
-            ),
+        browser = p.chromium.launch(
+            headless=is_github_actions(),
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+            ],
         )
 
-        for url in BETVICTOR_URLS:
-            print("\n========================================")
-            print(f"Opening: {url}")
-            print("========================================")
+        context = browser.new_context(
+            viewport={"width": 1400, "height": 900},
+            locale="en-GB",
+            timezone_id="Europe/London",
+        )
+
+        page = context.new_page()
+
+        meeting_links = get_mma_meeting_links(page)
+
+        print(f"\nUFC meeting links found: {len(meeting_links)}")
+        for link in meeting_links:
+            print(" -", link)
+
+        for meeting_url in meeting_links:
+            print(f"\nOpening UFC meeting page: {meeting_url}")
 
             try:
-                page.goto(url, wait_until="domcontentloaded", timeout=60000)
-                time.sleep(6)
+                page.goto(meeting_url, wait_until="domcontentloaded", timeout=60000)
+                time.sleep(8)
 
-                accept_cookies(page)
-                time.sleep(3)
+                # Do NOT click random links. Only read and scroll.
+                for _ in range(6):
+                    page.mouse.wheel(0, 900)
+                    time.sleep(0.7)
 
-                for _ in range(4):
-                    page.mouse.wheel(0, 2500)
-                    time.sleep(1)
+                page.evaluate("window.scrollTo(0, 0)")
+                time.sleep(1)
 
-                fights, debug_links = extract_fights_from_page(page, url)
+                save_debug(page, "betvictor_ufc_meeting")
 
-                print(f"\nExtracted {len(fights)} possible fights from this page")
+                body = page.locator("body").inner_text(timeout=20000)
 
-                all_fights.extend(fights)
-                all_debug_links.extend(debug_links)
+                print("\n--- MEETING PAGE PREVIEW ---")
+                print(body[:1800])
+                print("--- END PREVIEW ---\n")
 
             except Exception as e:
-                print(f"Failed page: {url}")
-                print(e)
+                print(f"Failed meeting page: {e}")
+                continue
+
+            for fight in upcoming_fights:
+                already = any(x["fight"] == fight["fight"] for x in matched)
+                if already:
+                    continue
+
+                if names_match(fight, body):
+                    print("MATCHED:", fight["fight"])
+
+                    matched.append({
+                        "bookmaker": "BetVictor",
+                        "fight": fight["fight"],
+                        "fight_name": fight["fight"],
+                        "fighter1": fight["fighter1"],
+                        "fighter2": fight["fighter2"],
+                        "event_name": fight["event_name"],
+                        "date": fight["date"],
+                        "fight_id": fight["fight_id"],
+                        "url": meeting_url,
+                    })
+                else:
+                    print("NO MATCH:", fight["fight"])
 
         browser.close()
 
-    seen = set()
-    unique_fights = []
-
-    for fight in all_fights:
-        key = fight["url"]
-
-        if key in seen:
-            continue
-
-        seen.add(key)
-        unique_fights.append(fight)
-
     output = {
-        "bookmaker": "BetVictor",
         "updated_at": datetime.now(timezone.utc).isoformat(),
-        "count": len(unique_fights),
-        "fights": unique_fights,
+        "source": "betvictor",
+        "bookmaker": "BetVictor",
+        "count": len(matched),
+        "fights": matched,
     }
 
-    debug_output = {
-        "bookmaker": "BetVictor",
-        "updated_at": datetime.now(timezone.utc).isoformat(),
-        "count": len(all_debug_links),
-        "links": all_debug_links,
-    }
+    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
-    with open(DEBUG_PATH, "w", encoding="utf-8") as f:
-        json.dump(debug_output, f, indent=2, ensure_ascii=False)
-
     print("\nDONE")
-    print(f"Saved fights: {OUT_PATH}")
-    print(f"Saved debug links: {DEBUG_PATH}")
-    print(f"Unique fights: {len(unique_fights)}")
-
-    for fight in unique_fights:
-        print("-", fight["fight_name"], fight["url"])
+    print("Matched fights:", len(matched))
+    print("Saved to:", OUT_PATH)
 
 
 if __name__ == "__main__":
