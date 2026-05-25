@@ -41,6 +41,18 @@ def is_time(value):
     return bool(re.match(r"^\d{1,2}:\d{2}$", value or ""))
 
 
+def is_odds(value):
+    value = (value or "").strip().upper()
+
+    if re.match(r"^\d+/\d+$", value):
+        return True
+
+    if value == "EVS":
+        return True
+
+    return False
+
+
 def should_ignore_competition(name):
     name_l = name.lower()
     return any(x.lower() in name_l for x in IGNORE_COMPETITIONS)
@@ -62,33 +74,65 @@ def extract_matches_from_text(text):
     current_day = None
 
     skip_words = [
-        "login", "sign up", "search", "sports", "in-play", "accas",
-        "popular", "competitions", "top markets", "more markets",
-        "help & contact", "promotions", "free bet", "boost",
-        "responsible gambling", "cash out"
+        "login",
+        "sign up",
+        "search",
+        "sports",
+        "in-play",
+        "accas",
+        "popular",
+        "competitions",
+        "top markets",
+        "more markets",
+        "help & contact",
+        "promotions",
+        "free bet",
+        "boost",
+        "responsible gambling",
+        "cash out",
     ]
 
     cleaned = []
+
     for line in lines:
         low = line.lower()
+
         if any(w in low for w in skip_words):
             continue
+
         if line in ["1", "2"]:
             continue
+
         if "£" in line or "free bet" in low:
             continue
+
+        if is_odds(line):
+            continue
+
         cleaned.append(line)
 
     i = 0
+
     while i < len(cleaned):
         line = cleaned[i]
 
-        if line in ["Today", "Tomorrow", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]:
+        if line in [
+            "Today",
+            "Tomorrow",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        ]:
             current_day = line
             i += 1
             continue
 
         mapped = map_competition(line)
+
         if mapped and not should_ignore_competition(line):
             current_comp = mapped
             competitions.setdefault(current_comp, [])
@@ -106,8 +150,12 @@ def extract_matches_from_text(text):
             maybe_time = cleaned[i + 2]
 
             bad_player_terms = [
-                "darts matches", "darts outright", "power price",
-                "winner", "to win", "markets"
+                "darts matches",
+                "darts outright",
+                "power price",
+                "winner",
+                "to win",
+                "markets",
             ]
 
             if (
@@ -127,6 +175,7 @@ def extract_matches_from_text(text):
                 }
 
                 competitions.setdefault(current_comp, []).append(match)
+
                 i += 3
                 continue
 
@@ -140,6 +189,7 @@ def main():
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
+
         page = browser.new_page(
             viewport={"width": 1600, "height": 1000},
             user_agent=(
@@ -150,6 +200,7 @@ def main():
         )
 
         page.goto(DARTS_URL, wait_until="domcontentloaded", timeout=60000)
+
         time.sleep(5)
 
         try:
@@ -158,9 +209,9 @@ def main():
         except Exception:
             pass
 
-        # Scroll page so PaddyPower loads more fixtures.
+        # Scroll to load more fixtures
         for _ in range(8):
-            page.mouse.wheel(0, 900)
+            page.mouse.wheel(0, 1000)
             time.sleep(1)
 
         text = page.locator("body").inner_text(timeout=30000)
@@ -181,7 +232,10 @@ def main():
             "competitions": competitions,
         }
 
-        OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+        OUT_PATH.write_text(
+            json.dumps(output, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
 
         print(f"Saved {total_matches} matches to {OUT_PATH}")
 

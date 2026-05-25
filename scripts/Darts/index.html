@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Darts Hub | Odds Board</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #070d18;
+      color: #ffffff;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1840px;
+      margin: 0 auto;
+      padding: 46px 60px 80px;
+    }
+
+    .hero {
+      border: 1px solid #22314a;
+      border-radius: 28px;
+      padding: 48px;
+      background:
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.28), transparent 36%),
+        linear-gradient(135deg, #0d1526, #111c31);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #22c55e;
+      background: rgba(34,197,94,0.13);
+      border: 1px solid rgba(34,197,94,0.35);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: 0.95;
+      margin: 0 0 24px;
+      letter-spacing: -0.06em;
+    }
+
+    .hero p {
+      max-width: 980px;
+      color: #bcd0ef;
+      font-size: 23px;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 18px;
+      margin-top: 38px;
+      max-width: 920px;
+    }
+
+    .stat {
+      border: 1px solid #263958;
+      background: rgba(5, 12, 25, 0.7);
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: #bcd0ef;
+    }
+
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 34px 0;
+    }
+
+    .nav-tabs a {
+      border: 1px solid #263958;
+      background: #0d1526;
+      padding: 13px 18px;
+      border-radius: 999px;
+      color: #d9e7ff;
+      font-weight: 800;
+    }
+
+    .section-card {
+      margin-top: 28px;
+      border: 1px solid #22314a;
+      background: #0b1220;
+      border-radius: 26px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 34px 40px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      background: linear-gradient(135deg, rgba(31,41,55,0.9), rgba(15,23,42,0.9));
+      border-bottom: 1px solid #22314a;
+    }
+
+    .eyebrow {
+      color: #22c55e !important;
+      font-size: 14px !important;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin: 0 0 8px !important;
+    }
+
+    h2 {
+      font-size: 36px;
+      margin: 0 0 10px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-header p {
+      color: #bcd0ef;
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .status-pill {
+      white-space: nowrap;
+      color: #fde047;
+      border: 1px solid rgba(253,224,71,0.45);
+      background: rgba(253,224,71,0.09);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 900;
+    }
+
+    .section-body {
+      padding: 28px;
+    }
+
+    .empty-card {
+      border: 1px dashed #334155;
+      border-radius: 20px;
+      padding: 30px;
+      background: rgba(15,23,42,0.55);
+    }
+
+    .empty-card h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .empty-card p {
+      margin: 0;
+      color: #bcd0ef;
+      font-size: 17px;
+    }
+
+    .match-card {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 20px;
+      align-items: center;
+      border: 1px solid #22314a;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 14px;
+      background: #080f1d;
+    }
+
+    .match-title {
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .match-meta {
+      color: #9fb3d1;
+      margin-top: 7px;
+    }
+
+    .odds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .odd-box {
+      background: #111c31;
+      border: 1px solid #263958;
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      color: #22c55e;
+      font-weight: 900;
+    }
+
+    .footer {
+      color: #7f93b4;
+      margin-top: 34px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        padding: 24px 18px 50px;
+      }
+
+      .hero {
+        padding: 30px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-header {
+        flex-direction: column;
+        padding: 26px;
+      }
+
+      .match-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="tag">🎯 Darts Lab</div>
+      <h1>Darts Hub</h1>
+      <p>
+        Track upcoming darts tournaments, compare bookmaker odds, monitor match markets,
+        and build EV/arbitrage tools across MODUS, European Tour, World Cup and major outright markets.
+      </p>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>0</strong>
+          <span>Matches loaded</span>
+        </div>
+        <div class="stat">
+          <strong>0</strong>
+          <span>Prop markets tracked</span>
+        </div>
+        <div class="stat">
+          <strong>0</strong>
+          <span>Bookmakers live</span>
+        </div>
+        <div class="stat">
+          <strong>4</strong>
+          <span>Tournament groups</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="nav-tabs">
+      <a href="#modus">MODUS Super Series</a>
+      <a href="#european-tour">European Tour</a>
+      <a href="#world-cup">World Cup</a>
+      <a href="#outrights">Outrights</a>
+    </nav>
+
+    <div id="modus">
+      
+    <section class="section-card">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Tournament</p>
+          <h2>MODUS Super Series</h2>
+          <p>Daily match markets, match winner prices, legs markets, 180s and checkout props.</p>
+        </div>
+        <span class="status-pill">Ready for odds</span>
+      </div>
+      <div class="section-body">
+        
+    <div class="empty-card">
+      <h3>No markets loaded yet</h3>
+      <p>This section is ready. Once the darts scrapers are added, odds and props will appear here automatically.</p>
+    </div>
+    
+      </div>
+    </section>
+    
+    </div>
+
+    <div id="european-tour">
+      
+    <section class="section-card">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Tournament</p>
+          <h2>European Tour / PDC International Darts Open</h2>
+          <p>Main PDC tournament matches and props grouped separately from MODUS.</p>
+        </div>
+        <span class="status-pill">Ready for odds</span>
+      </div>
+      <div class="section-body">
+        
+    <div class="empty-card">
+      <h3>No markets loaded yet</h3>
+      <p>This section is ready. Once the darts scrapers are added, odds and props will appear here automatically.</p>
+    </div>
+    
+      </div>
+    </section>
+    
+    </div>
+
+    <div id="world-cup">
+      
+    <section class="section-card">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Tournament</p>
+          <h2>World Cup of Darts</h2>
+          <p>Team and country markets will live here once outright and match data is added.</p>
+        </div>
+        <span class="status-pill">Ready for odds</span>
+      </div>
+      <div class="section-body">
+        
+    <div class="empty-card">
+      <h3>No markets loaded yet</h3>
+      <p>This section is ready. Once the darts scrapers are added, odds and props will appear here automatically.</p>
+    </div>
+    
+      </div>
+    </section>
+    
+    </div>
+
+    <div id="outrights">
+      
+    <section class="section-card">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Tournament</p>
+          <h2>World Championship / Tournament Outrights</h2>
+          <p>Winner markets, outright prices and futures markets across bookmakers.</p>
+        </div>
+        <span class="status-pill">Ready for odds</span>
+      </div>
+      <div class="section-body">
+        
+    <div class="empty-card">
+      <h3>No markets loaded yet</h3>
+      <p>This section is ready. Once the darts scrapers are added, odds and props will appear here automatically.</p>
+    </div>
+    
+      </div>
+    </section>
+    
+    </div>
+
+    <section class="section-card">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Next build step</p>
+          <h2>Bookmaker feeds</h2>
+          <p>PaddyPower will be the first feed, then we can add BoyleSports, BetVictor, Coral and others.</p>
+        </div>
+        <span class="status-pill">Scrapers next</span>
+      </div>
+    </section>
+
+    <div class="footer">
+      Last generated: 2026-05-24T14:21:12.609859+00:00
+    </div>
+  </main>
+</body>
+</html>
