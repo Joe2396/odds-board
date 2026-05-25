@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T19:46:50Z",
+  "generated_at": "2026-05-25T22:11:12Z",
   "events": [
     {
       "id": "2026-05-30-ufc-fight-night-song-vs-figueiredo",
@@ -583,9 +583,9 @@
       "fights": []
     },
     {
-      "id": "2026-08-01-ufc-fight-night-belgrade",
-      "slug": "2026-08-01-ufc-fight-night-belgrade",
-      "name": "UFC Fight Night: Belgrade",
+      "id": "2026-08-01-ufc-fight-night-medi-vs-rodriguez",
+      "slug": "2026-08-01-ufc-fight-night-medi-vs-rodriguez",
+      "name": "UFC Fight Night: Medić vs. Rodriguez",
       "date": "2026-08-01",
       "location": "",
       "status": "upcoming",
@@ -594,6 +594,44 @@
         "event_id": "600059339"
       },
       "fights": [
+        {
+          "id": "401873866",
+          "bout": "Duško Todorović vs Robert Valentin",
+          "red": {
+            "name": "Duško Todorović",
+            "espn_id": "4421517"
+          },
+          "blue": {
+            "name": "Robert Valentin",
+            "espn_id": "4686237"
+          },
+          "weight_class": "Middleweight",
+          "order": 1,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059339"
+          }
+        },
+        {
+          "id": "401873865",
+          "bout": "Aleksandar Rakic vs Marcin Tybura",
+          "red": {
+            "name": "Aleksandar Rakic",
+            "espn_id": "4079314"
+          },
+          "blue": {
+            "name": "Marcin Tybura",
+            "espn_id": "3093559"
+          },
+          "weight_class": "Heavyweight",
+          "order": 2,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059339"
+          }
+        },
         {
           "id": "401870844",
           "bout": "Opponent TBA vs TBA",
@@ -606,7 +644,7 @@
             "espn_id": "2431356"
           },
           "weight_class": "",
-          "order": 1,
+          "order": 3,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -615,17 +653,17 @@
         },
         {
           "id": "401870843",
-          "bout": "Opponent TBA vs TBA",
+          "bout": "Uroš Medić vs Daniel Rodriguez",
           "red": {
-            "name": "Opponent TBA",
-            "espn_id": "4402367"
+            "name": "Uroš Medić",
+            "espn_id": "4685870"
           },
           "blue": {
-            "name": "TBA",
-            "espn_id": "2431356"
+            "name": "Daniel Rodriguez",
+            "espn_id": "4426312"
           },
-          "weight_class": "",
-          "order": 2,
+          "weight_class": "Welterweight",
+          "order": 4,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -649,5 +687,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-05-25T19:46:50Z"
+  "_debug_saved_at": "2026-05-25T22:11:12Z"
 }
