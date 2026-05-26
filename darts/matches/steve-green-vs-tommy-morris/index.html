@@ -66,7 +66,7 @@
       color: #bcd0ef;
       font-size: 22px;
       line-height: 1.5;
-      max-width: 900px;
+      max-width: 920px;
     }
 
     .stats {
@@ -94,16 +94,26 @@
       color: #bcd0ef;
     }
 
-    .section {
+    .player-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
       margin-top: 28px;
+    }
+
+    .player-panel {
       border-radius: 26px;
       overflow: hidden;
       border: 1px solid #22314a;
       background: #0b1220;
     }
 
-    .section-header {
-      padding: 30px 36px;
+    .player-header {
+      padding: 30px 34px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
       border-bottom: 1px solid #22314a;
       background: linear-gradient(135deg, rgba(31,41,55,0.95), rgba(15,23,42,0.95));
     }
@@ -119,8 +129,127 @@
 
     h2 {
       margin: 0;
-      font-size: 34px;
+      font-size: 38px;
       letter-spacing: -0.04em;
+    }
+
+    h3 {
+      margin: 0 0 14px;
+      font-size: 21px;
+    }
+
+    .player-meta {
+      color: #bcd0ef;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .profile-link {
+      color: #93c5fd;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .form-block,
+    .results-block {
+      padding: 26px 30px;
+      border-bottom: 1px solid #18263d;
+    }
+
+    .results-block {
+      border-bottom: none;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .form-pill,
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 34px;
+      height: 34px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .win {
+      color: #22c55e;
+      background: rgba(34,197,94,0.14);
+      border: 1px solid rgba(34,197,94,0.35);
+    }
+
+    .loss {
+      color: #f87171;
+      background: rgba(248,113,113,0.14);
+      border: 1px solid rgba(248,113,113,0.35);
+    }
+
+    .neutral {
+      color: #dbeafe;
+      background: rgba(147,197,253,0.12);
+      border: 1px solid rgba(147,197,253,0.3);
+    }
+
+    .result-row {
+      display: grid;
+      grid-template-columns: 1fr 80px;
+      gap: 16px;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #18263d;
+    }
+
+    .result-row:last-child {
+      border-bottom: none;
+    }
+
+    .result-main strong {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+    }
+
+    .result-main span {
+      display: block;
+      margin-top: 6px;
+      color: #8ea4c4;
+      font-size: 14px;
+    }
+
+    .score {
+      text-align: right;
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffffff;
+    }
+
+    .muted,
+    .empty-mini {
+      color: #9fb3d1;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin-top: 28px;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid #22314a;
+      background: #0b1220;
+    }
+
+    .section-header {
+      padding: 30px 36px;
+      border-bottom: 1px solid #22314a;
+      background: linear-gradient(135deg, rgba(31,41,55,0.95), rgba(15,23,42,0.95));
     }
 
     .content {
@@ -152,6 +281,12 @@
       font-size: 14px;
     }
 
+    @media (max-width: 1000px) {
+      .player-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 900px) {
       .page {
         padding: 24px 18px 50px;
@@ -164,6 +299,10 @@
       .stats {
         grid-template-columns: 1fr 1fr;
       }
+
+      .player-header {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -174,14 +313,13 @@
     <a class="back-link" href="/odds-board/darts/">← Back to Darts Hub</a>
 
     <section class="hero">
-
       <div class="tag">🎯 Darts Match</div>
 
       <h1>Steve Green vs Tommy Morris</h1>
 
       <div class="sub">
-        Match page for Steve Green vs Tommy Morris. Odds comparison, props, EV calculations,
-        bookmaker prices and arbitrage opportunities will appear here.
+        Match page for Steve Green vs Tommy Morris. Recent player form is powered by Flashscore.
+        Odds comparison, props, EV calculations and arbitrage tools will appear here next.
       </div>
 
       <div class="stats">
@@ -202,11 +340,235 @@
 
         <div class="stat">
           <strong>PaddyPower</strong>
-          <span>Source</span>
+          <span>Fixture source</span>
         </div>
       </div>
-
     </section>
+
+    <div class="player-grid">
+      
+    <section class="player-panel">
+      <div class="player-header">
+        <div>
+          <p class="eyebrow">Player 1</p>
+          <h2>Steve Green</h2>
+          <div class="player-meta">England</div>
+        </div>
+        <a class="profile-link" href="https://www.flashscore.com/player/green-steve/2sSWWrck/" target="_blank">Flashscore profile →</a>
+      </div>
+
+      <div class="form-block">
+        <h3>Recent form</h3>
+        <div class="form-row"><span class="form-pill win">W</span><span class="form-pill loss">L</span><span class="form-pill loss">L</span><span class="form-pill loss">L</span><span class="form-pill loss">L</span><span class="form-pill win">W</span><span class="form-pill loss">L</span><span class="form-pill loss">L</span><span class="form-pill win">W</span><span class="form-pill win">W</span></div>
+      </div>
+
+      <div class="results-block">
+        <h3>Last 10 results</h3>
+        
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Uriot T.</strong>
+            <span>25.05. 13:25</span>
+          </div>
+          <div class="score">4-2</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge loss">L</span> Cressey G.</strong>
+            <span>25.05. 12:15</span>
+          </div>
+          <div class="score">3-4</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge loss">L</span> Henderson J.</strong>
+            <span>25.05. 11:35</span>
+          </div>
+          <div class="score">4-3</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge loss">L</span> Morris T.</strong>
+            <span>25.05. 10:25</span>
+          </div>
+          <div class="score">2-4</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge loss">L</span> Duff N.</strong>
+            <span>25.05. 09:55</span>
+          </div>
+          <div class="score">2-4</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Duff N.</strong>
+            <span>18.04. 22:20</span>
+          </div>
+          <div class="score">3-4</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge loss">L</span> 18.04. 22:00 | Green S. | Stevenson S. | 3 | 4 | L | 18.04. 21:40 | Green S. | Stevenson S. | 3 | 4 | 7 L</strong>
+            <span>18.04. 22:00</span>
+          </div>
+          <div class="score">4-7</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge loss">L</span> Drayton J.</strong>
+            <span>18.04. 21:40</span>
+          </div>
+          <div class="score">2-4</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Barstow C.</strong>
+            <span>18.04. 20:55</span>
+          </div>
+          <div class="score">3-4</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Potter N.</strong>
+            <span>17.04. 17:00</span>
+          </div>
+          <div class="score">0-4</div>
+        </div>
+        
+      </div>
+    </section>
+    
+      
+    <section class="player-panel">
+      <div class="player-header">
+        <div>
+          <p class="eyebrow">Player 2</p>
+          <h2>Tommy Morris</h2>
+          <div class="player-meta">England</div>
+        </div>
+        <a class="profile-link" href="https://www.flashscore.com/player/morris-tommy/27R9WVYE/" target="_blank">Flashscore profile →</a>
+      </div>
+
+      <div class="form-block">
+        <h3>Recent form</h3>
+        <div class="form-row"><span class="form-pill win">W</span><span class="form-pill win">W</span><span class="form-pill win">W</span><span class="form-pill win">W</span><span class="form-pill win">W</span><span class="form-pill loss">L</span><span class="form-pill win">W</span><span class="form-pill win">W</span><span class="form-pill win">W</span><span class="form-pill loss">L</span></div>
+      </div>
+
+      <div class="results-block">
+        <h3>Last 10 results</h3>
+        
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Henderson J.</strong>
+            <span>25.05. 13:10</span>
+          </div>
+          <div class="score">4-1</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Lauby D. Jr.</strong>
+            <span>25.05. 12:35</span>
+          </div>
+          <div class="score">1-4</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Cressey G.</strong>
+            <span>25.05. 11:55</span>
+          </div>
+          <div class="score">4-0</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Green S.</strong>
+            <span>25.05. 11:05</span>
+          </div>
+          <div class="score">2-4</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> LEGS</strong>
+            <span>25.05. 09:55</span>
+          </div>
+          <div class="score">7-18</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge loss">L</span> Huybrechts K.</strong>
+            <span>19.05. 16:40</span>
+          </div>
+          <div class="score">3-6</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Clemens G.</strong>
+            <span>19.05. 15:55</span>
+          </div>
+          <div class="score">4-6</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> Leek A.</strong>
+            <span>19.05. 15:10</span>
+          </div>
+          <div class="score">6-1</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge win">W</span> LEGS</strong>
+            <span>19.05. 14:15</span>
+          </div>
+          <div class="score">11-17</div>
+        </div>
+        
+
+        <div class="result-row">
+          <div class="result-main">
+            <strong><span class="result-badge loss">L</span> Bissell T.</strong>
+            <span>18.05. 15:55</span>
+          </div>
+          <div class="score">5-6</div>
+        </div>
+        
+      </div>
+    </section>
+    
+    </div>
 
     <section class="section">
       <div class="section-header">
@@ -218,16 +580,15 @@
         <div class="placeholder">
           <h3>Odds integration coming next</h3>
           <p>
-            This page is now fully wired into the darts system.
-            Next we connect bookmaker odds, props, EV analysis
-            and arbitrage scanning.
+            The match page now has fixture context and recent player results.
+            Next we connect PaddyPower odds, props, EV analysis and arbitrage scanning.
           </p>
         </div>
       </div>
     </section>
 
     <div class="footer">
-      Last generated: 2026-05-25 06:31 UTC
+      Last generated: 2026-05-26 15:56 UTC
     </div>
 
   </main>
