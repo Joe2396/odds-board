@@ -30,7 +30,7 @@
     a:hover { text-decoration: underline; }
 
     .page {
-      max-width: 1400px;
+      max-width: 1500px;
       margin: 0 auto;
       padding: 36px 32px 64px;
     }
@@ -76,7 +76,7 @@
       color: var(--muted);
       font-size: 16px;
       line-height: 1.6;
-      max-width: 700px;
+      max-width: 760px;
       margin-bottom: 8px;
     }
 
@@ -202,12 +202,31 @@
       margin-bottom: 6px;
     }
 
-    .spot-selection strong, .spot-avg strong { display: block; font-size: 15px; font-weight: 700; }
+    .spot-selection strong, .spot-avg strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+    }
 
-    .spot-odds { display: block; font-size: 22px; font-weight: 900; color: var(--green); margin-bottom: 4px; }
-    .spot-book { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .spot-odds {
+      display: block;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
 
-    .spot-prices { border-top: 1px solid var(--border); padding-top: 12px; }
+    .spot-book {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .spot-prices {
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
 
     .prices-label {
       color: var(--muted);
@@ -217,7 +236,11 @@
       margin-bottom: 8px;
     }
 
-    .prices-grid { display: flex; flex-direction: column; gap: 5px; }
+    .prices-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
 
     .price-row {
       display: flex;
@@ -229,14 +252,19 @@
       font-size: 13px;
     }
 
-    .price-row strong { font-weight: 700; color: var(--muted); }
+    .price-row strong {
+      font-weight: 700;
+      color: var(--muted);
+    }
 
     .price-row.best-price-row {
       background: rgba(34,197,94,0.08);
       border: 1px solid rgba(34,197,94,0.3);
     }
 
-    .price-row.best-price-row strong { color: var(--green); }
+    .price-row.best-price-row strong {
+      color: var(--green);
+    }
 
     .empty-state {
       text-align: center;
@@ -247,7 +275,7 @@
 
     .empty-icon { font-size: 48px; margin-bottom: 16px; }
     .empty-state h2 { font-size: 28px; margin-bottom: 12px; }
-    .empty-state p { color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.6; }
+    .empty-state p { color: var(--muted); max-width: 560px; margin: 0 auto; line-height: 1.6; }
 
     @media (max-width: 768px) {
       .page { padding: 20px 16px 48px; }
@@ -269,21 +297,641 @@
       <div class="header-eyebrow">⚡ EV Alerts</div>
       <h1 class="page-title">EV Alerts</h1>
       <p class="page-subtitle">
-        Prop selections where one bookmaker is pricing significantly better than the rest.
-        Only spots where the best price is at least 10% above the market average are shown.
-        Upcoming fights only — past events are automatically removed.
+        UFC prop selections where one bookmaker is pricing significantly better than the rest.
+        This scans your scraped UFC prop files from PaddyPower, BoyleSports, BetVictor, Coral and BetMGM.
       </p>
-      <p class="header-meta">Updated: 2026-05-27 18:10 UTC &nbsp;•&nbsp; 0 spots across 0 fights</p>
+      <p class="header-meta">Updated: 2026-05-27 18:37 UTC &nbsp;•&nbsp; 11 spots across 5 fights</p>
     </header>
 
     
-        <div class="empty-state">
-          <div class="empty-icon">🔍</div>
-          <h2>No value spots right now</h2>
-          <p>Value spots appear when one bookmaker is pricing significantly better than the rest.
-          Check back closer to fight night when more books price up.</p>
+        <div class="summary-bar">
+          <div class="summary-stat">
+            <strong>11</strong>
+            <span>Value spots</span>
+          </div>
+          <div class="summary-stat">
+            <strong>5</strong>
+            <span>Fights with value</span>
+          </div>
+          <div class="summary-stat">
+            <strong>19%</strong>
+            <span>Best edge found</span>
+          </div>
+          <div class="summary-stat">
+            <strong>5%+</strong>
+            <span>Min edge threshold</span>
+          </div>
         </div>
         
+            <div class="fight-group">
+              <div class="fight-group-header">
+                <h2>Alex Pereira Vs Ciryl Gane</h2>
+                <span class="fight-spot-count">2 spots</span>
+              </div>
+              <div class="spots-grid">
+                
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#1</div>
+          <div>
+            <div class="spot-fight">Alex Pereira Vs Ciryl Gane</div>
+            <div class="spot-market">Method of Victory</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-hot">
+          🔥 +19% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Draw</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 66/1</strong>
+          <span class="spot-book">BoyleSports</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>56.50</strong>
+          <span class="spot-book">2 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>BoyleSports</span>
+          <strong>66/1</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>PaddyPower</span>
+          <strong>45/1</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#2</div>
+          <div>
+            <div class="spot-fight">Alex Pereira Vs Ciryl Gane</div>
+            <div class="spot-market">Method of Victory</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-value">
+          ⚡ +5% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Alex Pereira By Submission</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 20/1</strong>
+          <span class="spot-book">BoyleSports</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>20.00</strong>
+          <span class="spot-book">2 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>BoyleSports</span>
+          <strong>20/1</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>PaddyPower</span>
+          <strong>18/1</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+              </div>
+            </div>
+            
+            <div class="fight-group">
+              <div class="fight-group-header">
+                <h2>Ilia Topuria Vs Justin Gaethje</h2>
+                <span class="fight-spot-count">3 spots</span>
+              </div>
+              <div class="spots-grid">
+                
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#3</div>
+          <div>
+            <div class="spot-fight">Ilia Topuria Vs Justin Gaethje</div>
+            <div class="spot-market">Method of Victory</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-hot">
+          🔥 +19% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Draw</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 66/1</strong>
+          <span class="spot-book">BoyleSports</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>56.50</strong>
+          <span class="spot-book">2 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>BoyleSports</span>
+          <strong>66/1</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>PaddyPower</span>
+          <strong>45/1</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#4</div>
+          <div>
+            <div class="spot-fight">Ilia Topuria Vs Justin Gaethje</div>
+            <div class="spot-market">fight_betting</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-value">
+          ⚡ +9% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Justin Gaethje</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 5/1</strong>
+          <span class="spot-book">BoyleSports</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>5.50</strong>
+          <span class="spot-book">3 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>BoyleSports</span>
+          <strong>5/1</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>PaddyPower</span>
+          <strong>9/2</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>Coral</span>
+          <strong>4/1</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#5</div>
+          <div>
+            <div class="spot-fight">Ilia Topuria Vs Justin Gaethje</div>
+            <div class="spot-market">Fight Betting</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-value">
+          ⚡ +9% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Justin Gaethje</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 5/1</strong>
+          <span class="spot-book">BoyleSports</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>5.50</strong>
+          <span class="spot-book">3 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>BoyleSports</span>
+          <strong>5/1</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>PaddyPower</span>
+          <strong>9/2</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>Coral</span>
+          <strong>4/1</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+              </div>
+            </div>
+            
+            <div class="fight-group">
+              <div class="fight-group-header">
+                <h2>Ilia Topuria vs Justin Gaethje</h2>
+                <span class="fight-spot-count">1 spot</span>
+              </div>
+              <div class="spots-grid">
+                
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#6</div>
+          <div>
+            <div class="spot-fight">Ilia Topuria vs Justin Gaethje</div>
+            <div class="spot-market">Go The Distance</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-value">
+          ⚡ +7% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Yes</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 11/2</strong>
+          <span class="spot-book">PaddyPower</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>6.05</strong>
+          <span class="spot-book">2 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>PaddyPower</span>
+          <strong>11/2</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>BetMGM</span>
+          <strong>23/5</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+              </div>
+            </div>
+            
+            <div class="fight-group">
+              <div class="fight-group-header">
+                <h2>Conor Mcgregor Vs Max Holloway</h2>
+                <span class="fight-spot-count">1 spot</span>
+              </div>
+              <div class="spots-grid">
+                
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#7</div>
+          <div>
+            <div class="spot-fight">Conor Mcgregor Vs Max Holloway</div>
+            <div class="spot-market">Method of Victory</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-value">
+          ⚡ +5% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Draw</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 50/1</strong>
+          <span class="spot-book">BoyleSports</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>48.50</strong>
+          <span class="spot-book">2 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>BoyleSports</span>
+          <strong>50/1</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>PaddyPower</span>
+          <strong>45/1</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+              </div>
+            </div>
+            
+            <div class="fight-group">
+              <div class="fight-group-header">
+                <h2>Bo Nickal v Kyle Daukaus</h2>
+                <span class="fight-spot-count">2 spots</span>
+              </div>
+              <div class="spots-grid">
+                
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#8</div>
+          <div>
+            <div class="spot-fight">Bo Nickal v Kyle Daukaus</div>
+            <div class="spot-market">fight_betting</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-value">
+          ⚡ +5% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Kyle Daukaus</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 13/5</strong>
+          <span class="spot-book">Coral</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>3.42</strong>
+          <span class="spot-book">2 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>Coral</span>
+          <strong>13/5</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>PaddyPower</span>
+          <strong>9/4</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#9</div>
+          <div>
+            <div class="spot-fight">Bo Nickal v Kyle Daukaus</div>
+            <div class="spot-market">Fight Betting</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-value">
+          ⚡ +5% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Kyle Daukaus</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 13/5</strong>
+          <span class="spot-book">Coral</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>3.42</strong>
+          <span class="spot-book">2 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>Coral</span>
+          <strong>13/5</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>PaddyPower</span>
+          <strong>9/4</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+              </div>
+            </div>
+            
+            <div class="fight-group">
+              <div class="fight-group-header">
+                <h2>Zhang Mingyang Vs Alonzo Menifield</h2>
+                <span class="fight-spot-count">2 spots</span>
+              </div>
+              <div class="spots-grid">
+                
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#10</div>
+          <div>
+            <div class="spot-fight">Zhang Mingyang Vs Alonzo Menifield</div>
+            <div class="spot-market">fight_betting</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-value">
+          ⚡ +5% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Alonzo Menifield</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 21/10</strong>
+          <span class="spot-book">BoyleSports</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>2.95</strong>
+          <span class="spot-book">2 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>BoyleSports</span>
+          <strong>21/10</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>BetVictor</span>
+          <strong>9/5</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+    <article class="spot-card">
+      <div class="spot-header">
+        <div class="spot-left">
+          <div class="spot-rank">#11</div>
+          <div>
+            <div class="spot-fight">Zhang Mingyang Vs Alonzo Menifield</div>
+            <div class="spot-market">Fight Betting</div>
+          </div>
+        </div>
+        <div class="spot-badge badge-value">
+          ⚡ +5% vs avg
+        </div>
+      </div>
+
+      <div class="spot-body">
+        <div class="spot-selection">
+          <span class="spot-label">Selection</span>
+          <strong>Alonzo Menifield</strong>
+        </div>
+        <div class="spot-best">
+          <span class="spot-label">Best Price</span>
+          <strong class="spot-odds">⭐ 21/10</strong>
+          <span class="spot-book">BoyleSports</span>
+        </div>
+        <div class="spot-avg">
+          <span class="spot-label">Market Avg</span>
+          <strong>2.95</strong>
+          <span class="spot-book">2 books</span>
+        </div>
+      </div>
+
+      <div class="spot-prices">
+        <div class="prices-label">All prices</div>
+        <div class="prices-grid">
+          
+        <div class="price-row best-price-row">
+          <span>BoyleSports</span>
+          <strong>21/10</strong>
+        </div>
+        
+        <div class="price-row">
+          <span>BetVictor</span>
+          <strong>9/5</strong>
+        </div>
+        
+        </div>
+      </div>
+    </article>
+    
+              </div>
+            </div>
+            
 
   </main>
 </body>

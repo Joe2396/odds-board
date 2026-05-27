@@ -1,24 +1,40 @@
 #!/usr/bin/env python3
 import json
 import re
-import os
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
 PROP_FILES = [
-    ("PaddyPower", ROOT / "ufc" / "data" / "props.json"),
-    ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props.json"),
-    ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props.json"),
-    ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
-    ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
+    ("PaddyPower", [
+        ROOT / "ufc" / "data" / "props_filtered.json",
+        ROOT / "ufc" / "data" / "props.json",
+    ]),
+    ("BoyleSports", [
+        ROOT / "ufc" / "data" / "boylesports_props_filtered.json",
+        ROOT / "ufc" / "data" / "boylesports_props.json",
+    ]),
+    ("BetVictor", [
+        ROOT / "ufc" / "data" / "betvictor_props_filtered.json",
+        ROOT / "ufc" / "data" / "betvictor_props.json",
+    ]),
+    ("Coral", [
+        ROOT / "ufc" / "data" / "coral_props_filtered.json",
+        ROOT / "ufc" / "data" / "coral_props.json",
+    ]),
+    ("BetMGM", [
+        ROOT / "ufc" / "data" / "betmgm_props_filtered.json",
+        ROOT / "ufc" / "data" / "betmgm_props.json",
+    ]),
 ]
 
 EVENTS_PATH = ROOT / "ufc" / "data" / "events.json"
 OUT_PATH = ROOT / "ufc" / "ev-alerts" / "index.html"
 BASE = "/odds-board"
-OUTLIER_THRESHOLD = 10
+
+OUTLIER_THRESHOLD = 5
+APPLY_UPCOMING_FILTER = False
 
 
 def esc(s):
@@ -34,15 +50,56 @@ def esc(s):
     )
 
 
+def load_json(path):
+    try:
+        if not Path(path).exists():
+            return {}
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    except Exception as e:
+        print(f"ERROR loading {path}: {e}")
+        return {}
+
+
+def choose_prop_file(paths):
+    for path in paths:
+        data = load_json(path)
+        if not data:
+            continue
+
+        fights = data.get("fights") or []
+        props = data.get("props") or []
+
+        if fights or props:
+            return path, data
+
+    return paths[0], {}
+
+
+def normalize_name(s):
+    text = str(s or "").lower()
+    text = text.replace("’", "'")
+    text = re.sub(r"\([^)]*\)", " ", text)
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
 def fight_key(name):
     text = str(name or "").lower()
-    text = text.replace(" vs ", " v ").replace(" versus ", " v ")
-    text = re.sub(r"[^a-z0-9\s]", "", text)
+    text = text.replace(" versus ", " v ")
+    text = text.replace(" vs. ", " v ")
+    text = text.replace(" vs ", " v ")
+    text = text.replace(" v. ", " v ")
+
+    text = re.sub(r"\([^)]*\)", " ", text)
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
+
     if " v " in text:
         left, right = text.split(" v ", 1)
         parts = sorted([left.strip(), right.strip()])
         return " v ".join(parts)
+
     return text
 
 
@@ -50,96 +107,83 @@ def fractional_to_decimal(value):
     value = str(value or "").strip().upper()
     if not value:
         return 0
-    if value == "EVS":
+
+    if value in {"EVS", "EVENS", "EVEN"}:
         return 2.0
+
     if "/" in value:
         try:
             a, b = value.split("/", 1)
             return (float(a) / float(b)) + 1
         except Exception:
             return 0
+
     try:
         val = float(value)
         if val > 1:
             return val
     except Exception:
         pass
+
     return 0
 
 
-def load_json(path):
-    try:
-        return json.loads(Path(path).read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-
-
 def get_upcoming_fight_keys():
-    """
-    Load events.json and return a set of fight_keys for upcoming fights only.
-    If events.json is missing or has no dates, return None (meaning no filter).
-    """
-    try:
-        data = load_json(EVENTS_PATH)
-        events = data.get("events") or []
-        now = datetime.now(timezone.utc)
-        upcoming_keys = set()
+    data = load_json(EVENTS_PATH)
+    events = data.get("events") or []
+    now = datetime.now(timezone.utc)
+    upcoming_keys = set()
 
-        for event in events:
-            # Parse event date
-            date_str = str(event.get("date") or "").strip()
-            if not date_str:
-                continue
+    for event in events:
+        date_str = str(event.get("date") or "").strip()
+        if not date_str:
+            continue
 
+        try:
+            event_dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
+            if event_dt.tzinfo is None:
+                event_dt = event_dt.replace(tzinfo=timezone.utc)
+        except Exception:
             try:
-                date_str_iso = date_str.replace("Z", "+00:00")
-                event_dt = datetime.fromisoformat(date_str_iso)
-                if event_dt.tzinfo is None:
-                    event_dt = event_dt.replace(tzinfo=timezone.utc)
+                event_dt = datetime.strptime(date_str[:10], "%Y-%m-%d").replace(tzinfo=timezone.utc)
             except Exception:
-                try:
-                    event_dt = datetime.strptime(date_str[:10], "%Y-%m-%d")
-                    event_dt = event_dt.replace(tzinfo=timezone.utc)
-                except Exception:
-                    continue
-
-            # Include events up to 6 hours after start (in case fights run late)
-            from datetime import timedelta
-            cutoff = event_dt + timedelta(hours=6)
-            if now > cutoff:
                 continue
 
-            # Add all fights from this event
-            for fight in event.get("fights") or []:
-                red = fight.get("red")
-                blue = fight.get("blue")
-                if isinstance(red, dict):
-                    red = red.get("name", "")
-                if isinstance(blue, dict):
-                    blue = blue.get("name", "")
-                if red and blue:
-                    fkey = fight_key(f"{red} v {blue}")
-                    upcoming_keys.add(fkey)
+        if now > event_dt + timedelta(hours=8):
+            continue
 
-        print(f"Upcoming fight keys: {len(upcoming_keys)}")
-        return upcoming_keys if upcoming_keys else None
+        for fight in event.get("fights") or []:
+            red = fight.get("red")
+            blue = fight.get("blue")
 
-    except Exception as e:
-        print(f"Could not load events for date filtering: {e}")
-        return None
+            if isinstance(red, dict):
+                red = red.get("name", "")
+            if isinstance(blue, dict):
+                blue = blue.get("name", "")
+
+            if red and blue:
+                upcoming_keys.add(fight_key(f"{red} v {blue}"))
+
+    print(f"Upcoming fight keys from events.json: {len(upcoming_keys)}")
+    return upcoming_keys
 
 
 def canonical_market(label):
     text = str(label or "").lower()
+
     if "method" in text or "victory" in text or "winning" in text or "result" in text:
         return "Method of Victory"
+
     if "round" in text:
         return "Rounds"
-    if "distance" in text:
+
+    if "distance" in text or "go the distance" in text:
         return "Go The Distance"
-    if "fight betting" in text or "bout" in text:
+
+    if "fight betting" in text or "bout" in text or "match odds" in text or "moneyline" in text:
         return "Fight Betting"
-    return label or "Props"
+
+    return str(label or "Props").strip() or "Props"
 
 
 def clean_selection(s):
@@ -148,124 +192,246 @@ def clean_selection(s):
 
 def selection_key(s):
     text = clean_selection(s).lower()
-    text = text.replace("ko/tko", "ko").replace("tko/ko", "ko")
-    text = text.replace("knockout", "ko").replace("submission", "sub")
-    text = text.replace("decision", "dec")
-    text = re.sub(r"[^a-z0-9\s]", "", text)
-    return re.sub(r"\s+", " ", text).strip()
+
+    replacements = {
+        "ko/tko": "ko",
+        "tko/ko": "ko",
+        "ko or tko": "ko",
+        "knockout": "ko",
+        "submission": "sub",
+        "decision": "dec",
+        "points": "dec",
+        "unanimous": "dec",
+        "split": "dec",
+        "majority": "dec",
+    }
+
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+
+    text = re.sub(r"[^a-z0-9\s\.]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
 
-def collect_all_rows(upcoming_keys):
+def extract_rows_from_fight(default_bookmaker, fight, upcoming_keys):
     rows = []
 
-    for default_bookmaker, path in PROP_FILES:
-        data = load_json(path)
-        if not data:
-            continue
+    bookmaker = fight.get("bookmaker") or default_bookmaker
+    fight_name = (
+        fight.get("fight")
+        or fight.get("fight_name")
+        or fight.get("name")
+        or fight.get("match")
+        or ""
+    )
 
-        fights = data.get("fights", []) or []
+    if not fight_name:
+        return rows
 
-        for fight in fights:
-            bookmaker = fight.get("bookmaker") or default_bookmaker
-            fight_name = (
-                fight.get("fight")
-                or fight.get("fight_name")
-                or fight.get("name")
+    fkey = fight_key(fight_name)
+
+    if APPLY_UPCOMING_FILTER and upcoming_keys and fkey not in upcoming_keys:
+        return rows
+
+    def add_rows(market_label, items):
+        if not items:
+            return
+
+        if isinstance(items, dict):
+            possible = []
+            for val in items.values():
+                if isinstance(val, list):
+                    possible.extend(val)
+            items = possible
+
+        if not isinstance(items, list):
+            return
+
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+
+            sel = (
+                item.get("selection")
+                or item.get("name")
+                or item.get("runner")
+                or item.get("outcome")
                 or ""
             )
-            if not fight_name:
-                continue
+            odds = (
+                item.get("odds")
+                or item.get("price")
+                or item.get("fractional")
+                or item.get("decimal")
+                or ""
+            )
 
-            fkey = fight_key(fight_name)
-
-            # Skip fights that have already happened
-            if upcoming_keys is not None and fkey not in upcoming_keys:
-                continue
-
-            markets = fight.get("markets") or {}
-
-            def add_rows(market_label, items):
-                if not items:
-                    return
-                for item in items:
-                    if not isinstance(item, dict):
-                        continue
-                    sel = item.get("selection")
-                    odds = item.get("odds")
-                    if not sel or not odds:
-                        continue
-                    dec = fractional_to_decimal(odds)
-                    if dec <= 1.0:
-                        continue
-                    rows.append({
-                        "fight": fight_name,
-                        "fight_key": fkey,
-                        "bookmaker": bookmaker,
-                        "market": canonical_market(market_label),
-                        "selection": clean_selection(sel),
-                        "selection_key": selection_key(sel),
-                        "odds": odds,
-                        "decimal": dec,
-                    })
-
-            if isinstance(markets, dict):
-                add_rows("Fight Betting", markets.get("fight_betting"))
-                add_rows("Method of Victory", markets.get("method_of_victory"))
-                add_rows("Rounds", markets.get("rounds") or markets.get("total_rounds"))
-                add_rows("Go The Distance", markets.get("go_the_distance"))
-
-            add_rows("Method of Victory", fight.get("method_props"))
-            add_rows("Rounds", fight.get("round_props"))
-            add_rows("Go The Distance", fight.get("distance_props"))
-
-        props = data.get("props", []) or []
-        for prop in props:
-            bookmaker = prop.get("bookmaker") or default_bookmaker
-            fight_name = prop.get("fight") or ""
-            if not fight_name:
-                continue
-            fkey = fight_key(fight_name)
-
-            if upcoming_keys is not None and fkey not in upcoming_keys:
-                continue
-
-            market = prop.get("market") or ""
-            sel = prop.get("selection") or ""
-            odds = prop.get("odds") or ""
             if not sel or not odds:
                 continue
+
             dec = fractional_to_decimal(odds)
             if dec <= 1.0:
                 continue
+
             rows.append({
+                "fight": fight_name,
+                "fight_key": fkey,
+                "bookmaker": bookmaker,
+                "market": canonical_market(market_label),
+                "selection": clean_selection(sel),
+                "selection_key": selection_key(sel),
+                "odds": str(odds),
+                "decimal": dec,
+            })
+
+    markets = fight.get("markets") or {}
+
+    if isinstance(markets, dict):
+        for market_label, items in markets.items():
+            add_rows(market_label, items)
+
+        add_rows("Fight Betting", markets.get("fight_betting"))
+        add_rows("Method of Victory", markets.get("method_of_victory"))
+        add_rows("Rounds", markets.get("rounds"))
+        add_rows("Rounds", markets.get("total_rounds"))
+        add_rows("Go The Distance", markets.get("go_the_distance"))
+
+    add_rows("Method of Victory", fight.get("method_props"))
+    add_rows("Rounds", fight.get("round_props"))
+    add_rows("Rounds", fight.get("total_rounds"))
+    add_rows("Go The Distance", fight.get("distance_props"))
+    add_rows("Fight Betting", fight.get("fight_betting"))
+
+    return rows
+
+
+def collect_all_rows(upcoming_keys):
+    all_rows = []
+    seen = set()
+
+    print("\nReading UFC prop files:")
+
+    for default_bookmaker, paths in PROP_FILES:
+        path, data = choose_prop_file(paths)
+
+        fights = data.get("fights") or []
+        props = data.get("props") or []
+
+        before = len(all_rows)
+        fight_names = set()
+
+        print(f"\n{default_bookmaker}")
+        print(f"  file: {path}")
+        print(f"  fights in file: {len(fights)}")
+        print(f"  flat props in file: {len(props)}")
+
+        for fight in fights:
+            rows = extract_rows_from_fight(default_bookmaker, fight, upcoming_keys)
+
+            for row in rows:
+                key = (
+                    row["bookmaker"],
+                    row["fight_key"],
+                    row["market"],
+                    row["selection_key"],
+                    row["odds"],
+                )
+                if key in seen:
+                    continue
+                seen.add(key)
+                all_rows.append(row)
+                fight_names.add(row["fight"])
+
+        for prop in props:
+            if not isinstance(prop, dict):
+                continue
+
+            bookmaker = prop.get("bookmaker") or default_bookmaker
+            fight_name = prop.get("fight") or prop.get("fight_name") or prop.get("match") or ""
+            market = prop.get("market") or prop.get("market_name") or "Props"
+            sel = prop.get("selection") or prop.get("name") or prop.get("runner") or ""
+            odds = prop.get("odds") or prop.get("price") or prop.get("fractional") or prop.get("decimal") or ""
+
+            if not fight_name or not sel or not odds:
+                continue
+
+            fkey = fight_key(fight_name)
+
+            if APPLY_UPCOMING_FILTER and upcoming_keys and fkey not in upcoming_keys:
+                continue
+
+            dec = fractional_to_decimal(odds)
+            if dec <= 1.0:
+                continue
+
+            row = {
                 "fight": fight_name,
                 "fight_key": fkey,
                 "bookmaker": bookmaker,
                 "market": canonical_market(market),
                 "selection": clean_selection(sel),
                 "selection_key": selection_key(sel),
-                "odds": odds,
+                "odds": str(odds),
                 "decimal": dec,
-            })
+            }
 
-    return rows
+            key = (
+                row["bookmaker"],
+                row["fight_key"],
+                row["market"],
+                row["selection_key"],
+                row["odds"],
+            )
+            if key in seen:
+                continue
+
+            seen.add(key)
+            all_rows.append(row)
+            fight_names.add(fight_name)
+
+        added = len(all_rows) - before
+        print(f"  rows collected: {added}")
+        print(f"  fights with rows: {len(fight_names)}")
+
+        if fight_names:
+            sample = sorted(fight_names)[:5]
+            print("  sample fights:")
+            for name in sample:
+                print(f"    - {name}")
+
+    print(f"\nTotal collected UFC prop rows: {len(all_rows)}")
+    print(f"Unique fights collected: {len(set(r['fight_key'] for r in all_rows))}")
+    print(f"Unique markets collected: {len(set(r['market'] for r in all_rows))}")
+
+    return all_rows
 
 
 def find_value_spots(rows):
     grouped = {}
+
     for row in rows:
-        key = (row["fight_key"], row["market"], row["selection_key"])
+        key = (
+            row["fight_key"],
+            row["market"],
+            row["selection_key"],
+        )
         grouped.setdefault(key, []).append(row)
 
+    comparable_groups = 0
     spots = []
 
-    for key, items in grouped.items():
-        if len(items) < 2:
+    for _, items in grouped.items():
+        bookmakers = set(r["bookmaker"] for r in items)
+
+        if len(bookmakers) < 2:
             continue
 
-        decimals = [r["decimal"] for r in items if r["decimal"] > 0]
+        decimals = [r["decimal"] for r in items if r["decimal"] > 1]
         if len(decimals) < 2:
             continue
+
+        comparable_groups += 1
 
         best = max(items, key=lambda r: r["decimal"])
         avg = sum(decimals) / len(decimals)
@@ -278,30 +444,32 @@ def find_value_spots(rows):
             **best,
             "avg_decimal": avg,
             "value_pct": value_pct,
-            "book_count": len(set(r["bookmaker"] for r in items)),
+            "book_count": len(bookmakers),
             "all_prices": sorted(
-                [{"bookmaker": r["bookmaker"], "decimal": r["decimal"], "odds": r["odds"]} for r in items],
+                [
+                    {
+                        "bookmaker": r["bookmaker"],
+                        "decimal": r["decimal"],
+                        "odds": r["odds"],
+                    }
+                    for r in items
+                ],
                 key=lambda x: x["decimal"],
                 reverse=True,
             ),
         })
+
+    print(f"Comparable groups across 2+ books: {comparable_groups}")
+    print(f"Value spots over {OUTLIER_THRESHOLD}%: {len(spots)}")
 
     spots.sort(key=lambda s: s["value_pct"], reverse=True)
     return spots
 
 
 def render_spot_card(spot, index):
-    fight = esc(spot["fight"])
-    market = esc(spot["market"])
-    selection = esc(spot["selection"])
-    bookmaker = esc(spot["bookmaker"])
-    odds = esc(spot["odds"])
-    value_pct = spot["value_pct"]
-    avg = spot["avg_decimal"]
-    book_count = spot["book_count"]
-
     prices_html = ""
-    for p in spot["all_prices"][:6]:
+
+    for p in spot["all_prices"][:8]:
         is_best = p["decimal"] == spot["decimal"] and p["bookmaker"] == spot["bookmaker"]
         best_class = " best-price-row" if is_best else ""
         prices_html += f"""
@@ -310,6 +478,8 @@ def render_spot_card(spot, index):
           <strong>{esc(p["odds"])}</strong>
         </div>
         """
+
+    value_pct = spot["value_pct"]
 
     if value_pct >= 25:
         badge_class = "badge-fire"
@@ -327,8 +497,8 @@ def render_spot_card(spot, index):
         <div class="spot-left">
           <div class="spot-rank">#{index}</div>
           <div>
-            <div class="spot-fight">{fight}</div>
-            <div class="spot-market">{market}</div>
+            <div class="spot-fight">{esc(spot["fight"])}</div>
+            <div class="spot-market">{esc(spot["market"])}</div>
           </div>
         </div>
         <div class="spot-badge {badge_class}">
@@ -339,17 +509,17 @@ def render_spot_card(spot, index):
       <div class="spot-body">
         <div class="spot-selection">
           <span class="spot-label">Selection</span>
-          <strong>{selection}</strong>
+          <strong>{esc(spot["selection"])}</strong>
         </div>
         <div class="spot-best">
           <span class="spot-label">Best Price</span>
-          <strong class="spot-odds">⭐ {odds}</strong>
-          <span class="spot-book">{bookmaker}</span>
+          <strong class="spot-odds">⭐ {esc(spot["odds"])}</strong>
+          <span class="spot-book">{esc(spot["bookmaker"])}</span>
         </div>
         <div class="spot-avg">
           <span class="spot-label">Market Avg</span>
-          <strong>{avg:.2f}</strong>
-          <span class="spot-book">{book_count} books</span>
+          <strong>{spot["avg_decimal"]:.2f}</strong>
+          <span class="spot-book">{spot["book_count"]} books</span>
         </div>
       </div>
 
@@ -365,19 +535,22 @@ def render_spot_card(spot, index):
 
 def generate_page(spots):
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    unique_fights = len(set(s["fight"] for s in spots)) if spots else 0
+    unique_fights = len(set(s["fight_key"] for s in spots)) if spots else 0
 
     if not spots:
         body = """
         <div class="empty-state">
           <div class="empty-icon">🔍</div>
           <h2>No value spots right now</h2>
-          <p>Value spots appear when one bookmaker is pricing significantly better than the rest.
-          Check back closer to fight night when more books price up.</p>
+          <p>
+            EV alerts appear when the same UFC prop is priced across multiple bookmakers
+            and one bookmaker is meaningfully above the market average.
+          </p>
         </div>
         """
     else:
         by_fight = {}
+
         for spot in spots:
             by_fight.setdefault(spot["fight"], []).append(spot)
 
@@ -403,8 +576,10 @@ def generate_page(spots):
         """
 
         global_index = 1
+
         for fight_name, fight_spots in by_fight.items():
             cards_html = ""
+
             for spot in fight_spots:
                 cards_html += render_spot_card(spot, global_index)
                 global_index += 1
@@ -453,7 +628,7 @@ def generate_page(spots):
     a:hover {{ text-decoration: underline; }}
 
     .page {{
-      max-width: 1400px;
+      max-width: 1500px;
       margin: 0 auto;
       padding: 36px 32px 64px;
     }}
@@ -499,7 +674,7 @@ def generate_page(spots):
       color: var(--muted);
       font-size: 16px;
       line-height: 1.6;
-      max-width: 700px;
+      max-width: 760px;
       margin-bottom: 8px;
     }}
 
@@ -625,12 +800,31 @@ def generate_page(spots):
       margin-bottom: 6px;
     }}
 
-    .spot-selection strong, .spot-avg strong {{ display: block; font-size: 15px; font-weight: 700; }}
+    .spot-selection strong, .spot-avg strong {{
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+    }}
 
-    .spot-odds {{ display: block; font-size: 22px; font-weight: 900; color: var(--green); margin-bottom: 4px; }}
-    .spot-book {{ display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }}
+    .spot-odds {{
+      display: block;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 4px;
+    }}
 
-    .spot-prices {{ border-top: 1px solid var(--border); padding-top: 12px; }}
+    .spot-book {{
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }}
+
+    .spot-prices {{
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }}
 
     .prices-label {{
       color: var(--muted);
@@ -640,7 +834,11 @@ def generate_page(spots):
       margin-bottom: 8px;
     }}
 
-    .prices-grid {{ display: flex; flex-direction: column; gap: 5px; }}
+    .prices-grid {{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }}
 
     .price-row {{
       display: flex;
@@ -652,14 +850,19 @@ def generate_page(spots):
       font-size: 13px;
     }}
 
-    .price-row strong {{ font-weight: 700; color: var(--muted); }}
+    .price-row strong {{
+      font-weight: 700;
+      color: var(--muted);
+    }}
 
     .price-row.best-price-row {{
       background: rgba(34,197,94,0.08);
       border: 1px solid rgba(34,197,94,0.3);
     }}
 
-    .price-row.best-price-row strong {{ color: var(--green); }}
+    .price-row.best-price-row strong {{
+      color: var(--green);
+    }}
 
     .empty-state {{
       text-align: center;
@@ -670,7 +873,7 @@ def generate_page(spots):
 
     .empty-icon {{ font-size: 48px; margin-bottom: 16px; }}
     .empty-state h2 {{ font-size: 28px; margin-bottom: 12px; }}
-    .empty-state p {{ color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.6; }}
+    .empty-state p {{ color: var(--muted); max-width: 560px; margin: 0 auto; line-height: 1.6; }}
 
     @media (max-width: 768px) {{
       .page {{ padding: 20px 16px 48px; }}
@@ -692,9 +895,8 @@ def generate_page(spots):
       <div class="header-eyebrow">⚡ EV Alerts</div>
       <h1 class="page-title">EV Alerts</h1>
       <p class="page-subtitle">
-        Prop selections where one bookmaker is pricing significantly better than the rest.
-        Only spots where the best price is at least {OUTLIER_THRESHOLD}% above the market average are shown.
-        Upcoming fights only — past events are automatically removed.
+        UFC prop selections where one bookmaker is pricing significantly better than the rest.
+        This scans your scraped UFC prop files from PaddyPower, BoyleSports, BetVictor, Coral and BetMGM.
       </p>
       <p class="header-meta">Updated: {generated} &nbsp;•&nbsp; {len(spots)} spots across {unique_fights} fights</p>
     </header>
@@ -708,26 +910,39 @@ def generate_page(spots):
 
 
 def main():
-    print("Loading upcoming fight keys for date filtering...")
+    print("Loading upcoming fight keys...")
     upcoming_keys = get_upcoming_fight_keys()
 
-    print("Collecting props from all bookmakers...")
-    rows = collect_all_rows(upcoming_keys)
-    print(f"Total prop rows: {len(rows)}")
+    if APPLY_UPCOMING_FILTER:
+        print("Upcoming fight filter: ON")
+    else:
+        print("Upcoming fight filter: OFF - scanning all scraped UFC prop fights")
 
-    print("Finding value spots...")
+    print("Collecting UFC props from scraped bookmaker files...")
+    rows = collect_all_rows(upcoming_keys)
+
+    print("\nFinding EV/value spots...")
     spots = find_value_spots(rows)
-    print(f"Value spots found: {len(spots)}")
 
     if spots:
-        print("\nTop 5 spots:")
-        for spot in spots[:5]:
-            print(f"  {spot['fight']} | {spot['market']} | {spot['selection']} @ {spot['odds']} ({spot['bookmaker']}) +{spot['value_pct']:.0f}%")
+        print("\nTop 10 spots:")
+        for spot in spots[:10]:
+            print(
+                f"  {spot['fight']} | {spot['market']} | {spot['selection']} "
+                f"@ {spot['odds']} ({spot['bookmaker']}) +{spot['value_pct']:.1f}%"
+            )
+    else:
+        print("\nNo EV spots found.")
+        print("This means either:")
+        print("  1. The same props are not appearing across 2+ books yet")
+        print("  2. Selection names differ too much between bookmakers")
+        print("  3. No best price is above the current threshold")
 
     html = generate_page(spots)
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(html, encoding="utf-8")
+
     print(f"\nWrote EV Alerts page: {OUT_PATH}")
 
 
