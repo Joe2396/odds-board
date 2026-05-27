@@ -46,30 +46,41 @@ def norm(value):
 
 def is_odds(x):
     x = str(x or "").strip().upper()
+
     if not x:
         return False
+
     if x == "EVS":
         return True
+
     if re.match(r"^\d+/\d+$", x):
         return True
-    if re.match(r"^\d+(\.\d+)?$", x):
+
+    # Do not accept whole numbers like "180".
+    # PaddyPower uses "180" as a market/tab label, not odds.
+    if re.match(r"^\d+\.\d+$", x):
         try:
-            return float(x) > 1
+            value = float(x)
+            return 1.01 <= value <= 100
         except Exception:
             return False
+
     return False
 
 
 def fractional_to_decimal(value):
     value = clean_text(value).upper()
+
     if value == "EVS":
         return 2.0
+
     if "/" in value:
         try:
             a, b = value.split("/", 1)
             return round((float(a) / float(b)) + 1, 4)
         except Exception:
             return None
+
     try:
         return float(value)
     except Exception:
@@ -91,7 +102,7 @@ def empty_output():
             "leg_handicap",
             "player_total_180s",
             "total_legs",
-            "total_180s"
+            "total_180s",
         ],
         "matches": [],
     }
@@ -115,6 +126,7 @@ def load_matches():
         for row in rows:
             p1 = clean_text(row.get("player_1"))
             p2 = clean_text(row.get("player_2"))
+
             if not p1 or not p2:
                 continue
 
@@ -135,6 +147,7 @@ def close_cookie_popup(page):
         "button:has-text('Accept')",
         "button:has-text('I Accept')",
     ]
+
     for selector in selectors:
         try:
             page.locator(selector).first.click(timeout=2000, force=True)
@@ -151,6 +164,7 @@ def click_tab(page, tab_name, wait=1.4):
         f"span:has-text('{tab_name}')",
         f"text={tab_name}",
     ]
+
     for selector in selectors:
         try:
             page.locator(selector).first.click(force=True, timeout=3000)
@@ -158,6 +172,7 @@ def click_tab(page, tab_name, wait=1.4):
             return True
         except Exception:
             pass
+
     return False
 
 
@@ -167,6 +182,7 @@ def expand_section(page, section_name, wait=0.9):
         f"span:has-text('{section_name}')",
         f"text={section_name}",
     ]
+
     for selector in selectors:
         try:
             loc = page.locator(selector).first
@@ -177,6 +193,7 @@ def expand_section(page, section_name, wait=0.9):
             return True
         except Exception:
             pass
+
     return False
 
 
@@ -189,30 +206,59 @@ def get_body_text(page):
 
 def normalize_lines(text):
     junk_contains = [
-        "if you bet", "current odds", "odds of", "you would win",
-        "gambling can be addictive", "please gamble responsibly",
-        "privacy policy", "cookie policy", "underage gambling",
-        "resolve a dispute", "give feedback", "paddy power rules",
-        "shop exclusives", "racing results", "popular events",
-        "bet on popular", "where can i bet", "how much could i win",
-        "what are the other", "odds shown in the above", "ppb counterparty",
-        "ppb entertainment", "ppb games", "malta gaming",
-        "gambling commission", "show more", "help & contact",
-        "promotions", "responsible gambling", "browse all",
-        "sports betting", "darts betting", "popular fifa",
-        "popular uefa", "cash out"
+        "if you bet",
+        "current odds",
+        "odds of",
+        "you would win",
+        "gambling can be addictive",
+        "please gamble responsibly",
+        "privacy policy",
+        "cookie policy",
+        "underage gambling",
+        "resolve a dispute",
+        "give feedback",
+        "paddy power rules",
+        "shop exclusives",
+        "racing results",
+        "popular events",
+        "bet on popular",
+        "where can i bet",
+        "how much could i win",
+        "what are the other",
+        "odds shown in the above",
+        "ppb counterparty",
+        "ppb entertainment",
+        "ppb games",
+        "malta gaming",
+        "gambling commission",
+        "show more",
+        "help & contact",
+        "promotions",
+        "responsible gambling",
+        "browse all",
+        "sports betting",
+        "darts betting",
+        "popular fifa",
+        "popular uefa",
+        "cash out",
     ]
 
     lines = []
+
     for line in str(text or "").splitlines():
         line = clean_text(line)
+
         if not line:
             continue
+
         low = line.lower()
+
         if any(j in low for j in junk_contains):
             continue
+
         if len(line) > 130:
             continue
+
         lines.append(line)
 
     return lines
@@ -220,8 +266,10 @@ def normalize_lines(text):
 
 def find_section_after_last(lines, start_terms, stop_terms, window=90):
     start_idx = None
+
     for i, line in enumerate(lines):
         low = line.lower()
+
         if any(term.lower() == low or term.lower() in low for term in start_terms):
             start_idx = i
 
@@ -229,8 +277,35 @@ def find_section_after_last(lines, start_terms, stop_terms, window=90):
         return []
 
     end_idx = min(len(lines), start_idx + window)
+
     for j in range(start_idx + 1, min(len(lines), start_idx + window)):
         low = lines[j].lower()
+
+        if any(term.lower() == low or term.lower() in low for term in stop_terms):
+            end_idx = j
+            break
+
+    return lines[start_idx:end_idx]
+
+
+def find_section_after_first(lines, start_terms, stop_terms, window=60):
+    start_idx = None
+
+    for i, line in enumerate(lines):
+        low = line.lower()
+
+        if any(term.lower() == low or term.lower() in low for term in start_terms):
+            start_idx = i
+            break
+
+    if start_idx is None:
+        return []
+
+    end_idx = min(len(lines), start_idx + window)
+
+    for j in range(start_idx + 1, min(len(lines), start_idx + window)):
+        low = lines[j].lower()
+
         if any(term.lower() == low or term.lower() in low for term in stop_terms):
             end_idx = j
             break
@@ -245,12 +320,15 @@ def dedupe_results(results):
     for item in results:
         selection = clean_text(item.get("selection", ""))
         odds = clean_text(item.get("odds", ""))
+
         if not selection or not odds or not is_odds(odds):
             continue
 
         key = (selection.lower(), odds.upper())
+
         if key in seen:
             continue
+
         seen.add(key)
 
         unique.append({
@@ -275,7 +353,10 @@ def parse_selection_odds_pairs(section, valid_selector=None):
         if valid_selector and not valid_selector(selection):
             continue
 
-        results.append({"selection": selection, "odds": odds})
+        results.append({
+            "selection": selection,
+            "odds": odds,
+        })
 
     return dedupe_results(results)
 
@@ -291,7 +372,8 @@ def parse_match_odds_from_anywhere(lines, match):
         if norm(line) not in [p1n, p2n]:
             continue
 
-        window = lines[i:i + 18]
+        window = lines[i:i + 20]
+
         has_p1 = any(norm(x) == p1n or p1n in norm(x) for x in window)
         has_p2 = any(norm(x) == p2n or p2n in norm(x) for x in window)
 
@@ -299,8 +381,10 @@ def parse_match_odds_from_anywhere(lines, match):
             continue
 
         odds = [x for x in window if is_odds(x)]
+
         if len(odds) >= 2:
             names = []
+
             for x in window:
                 if norm(x) == p1n or p1n in norm(x):
                     names.append(p1)
@@ -308,6 +392,7 @@ def parse_match_odds_from_anywhere(lines, match):
                     names.append(p2)
 
             ordered = []
+
             for n in names:
                 if n not in ordered:
                     ordered.append(n)
@@ -325,7 +410,15 @@ def parse_leg_handicap(lines):
     section = find_section_after_last(
         lines,
         ["Leg Handicap"],
-        ["Most 180's", "Total 180's", "Total Legs", "Correct Score", "To Win Leg", "1st Player to Score"],
+        [
+            "Most 180's",
+            "Total 180's",
+            "Total 180s",
+            "Total Legs",
+            "Correct Score",
+            "To Win Leg",
+            "1st Player to Score",
+        ],
         window=70,
     )
 
@@ -340,7 +433,13 @@ def parse_total_legs(lines):
     section = find_section_after_last(
         lines,
         ["Total Legs"],
-        ["Correct Score", "To Win Leg", "1st Player to Score", "180s Handicap", "Popular Events"],
+        [
+            "Correct Score",
+            "To Win Leg",
+            "1st Player to Score",
+            "180s Handicap",
+            "Popular Events",
+        ],
         window=70,
     )
 
@@ -355,7 +454,14 @@ def parse_total_180s(lines):
     section = find_section_after_last(
         lines,
         ["Total 180's", "Total 180s"],
-        ["Total Legs", "Correct Score", "To Win Leg", "1st Player to Score", "180s Handicap", "Popular Events"],
+        [
+            "Total Legs",
+            "Correct Score",
+            "To Win Leg",
+            "1st Player to Score",
+            "180s Handicap",
+            "Popular Events",
+        ],
         window=70,
     )
 
@@ -366,12 +472,27 @@ def parse_total_180s(lines):
     return parse_selection_odds_pairs(section, valid)
 
 
-def parse_player_total_180s(lines, player_name):
-    section = find_section_after_last(
+def parse_player_total_180s(lines, player_name, other_player_name=None):
+    stop_terms = [
+        "To Win Leg",
+        "1st Player to Score",
+        "180s Handicap",
+        "Popular Events",
+        "Sports Betting",
+        "Darts Betting",
+    ]
+
+    if other_player_name:
+        stop_terms.extend([
+            f"{other_player_name} Total 180's",
+            f"{other_player_name} Total 180s",
+        ])
+
+    section = find_section_after_first(
         lines,
         [f"{player_name} Total 180's", f"{player_name} Total 180s"],
-        ["To Win Leg", "1st Player to Score", "180s Handicap", "Popular Events"],
-        window=60,
+        stop_terms,
+        window=45,
     )
 
     def valid(selection):
@@ -408,13 +529,16 @@ def open_darts_home_and_collect_urls(page, matches):
         p2n = norm(p2)
 
         hits = []
+
         for a in anchors:
             href = a.get("href", "")
             text = a.get("text", "")
+
             if "/darts/" not in href:
                 continue
 
             combined = norm(text + " " + href)
+
             if p1n in combined and p2n in combined:
                 hits.append(href)
 
@@ -459,25 +583,27 @@ def scrape_match(page, match, match_url):
     time.sleep(4)
     close_cookie_popup(page)
 
-    # Fresh popular parse first. This fixes disappearing moneylines.
+    # Fresh Popular parse first.
     click_tab(page, "Popular", wait=1.2)
     text_popular = get_body_text(page)
     lines_popular = normalize_lines(text_popular)
     match_odds = parse_match_odds_from_anywhere(lines_popular, match)
 
-    # Fresh all markets parse.
+    # Fresh All Markets parse.
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(0.3)
     click_tab(page, "All Markets", wait=1.2)
 
     # Stable props first.
     expand_section(page, "Leg Handicap", wait=0.8)
+
+    # Try both apostrophe and no-apostrophe variants.
     expand_section(page, f"{p1} Total 180's", wait=0.8)
     expand_section(page, f"{p2} Total 180's", wait=0.8)
     expand_section(page, f"{p1} Total 180s", wait=0.8)
     expand_section(page, f"{p2} Total 180s", wait=0.8)
 
-    # Try missing props, but do not overwork the page.
+    # Missing props we now partially scrape.
     expand_section(page, "Total Legs", wait=0.8)
     expand_section(page, "Total 180's", wait=0.8)
     expand_section(page, "Total 180s", wait=0.8)
@@ -489,15 +615,18 @@ def scrape_match(page, match, match_url):
     text_all = get_body_text(page)
 
     debug_path = DEBUG_DIR / f"{match.get('match_slug')}.txt"
-    debug_path.write_text(text_popular + "\n\n--- ALL MARKETS ---\n\n" + text_all, encoding="utf-8")
+    debug_path.write_text(
+        text_popular + "\n\n--- ALL MARKETS ---\n\n" + text_all,
+        encoding="utf-8",
+    )
 
     lines_all = normalize_lines(text_all)
 
     leg_handicap = parse_leg_handicap(lines_all)
     total_legs = parse_total_legs(lines_all)
     total_180s = parse_total_180s(lines_all)
-    p1_180s = parse_player_total_180s(lines_all, p1)
-    p2_180s = parse_player_total_180s(lines_all, p2)
+    p1_180s = parse_player_total_180s(lines_all, p1, p2)
+    p2_180s = parse_player_total_180s(lines_all, p2, p1)
 
     print(f"  Match Odds: {len(match_odds)}")
     print(f"  Leg Handicap: {len(leg_handicap)}")
@@ -506,7 +635,14 @@ def scrape_match(page, match, match_url):
     print(f"  {p1} Total 180s: {len(p1_180s)}")
     print(f"  {p2} Total 180s: {len(p2_180s)}")
 
-    has_markets = bool(match_odds or leg_handicap or total_legs or total_180s or p1_180s or p2_180s)
+    has_markets = bool(
+        match_odds
+        or leg_handicap
+        or total_legs
+        or total_180s
+        or p1_180s
+        or p2_180s
+    )
 
     return {
         "match": name,
