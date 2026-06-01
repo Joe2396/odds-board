@@ -1,5 +1,32 @@
 {
-  "updated_at": "2026-05-31T22:55:51.651023+00:00",
-  "total_arbitrage": 0,
-  "arbitrage": []
+  "updated_at": "2026-06-01T02:59:51.832839+00:00",
+  "total_arbitrage": 1,
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "type": "moneyline",
+      "event": "Alessandro Costa vs Matt Schnell",
+      "market": "Moneyline",
+      "commence_time": "2026-06-06T22:00:00Z",
+      "profit_margin_percent": 0.97,
+      "arb_sum": 0.990315,
+      "bookmakers": [
+        {
+          "selection": "Alessandro Costa",
+          "bookmaker": "Betway",
+          "odds": 1.18,
+          "decimal_odds": 1.18,
+          "implied_probability": 84.75
+        },
+        {
+          "selection": "Matt Schnell",
+          "bookmaker": "LeoVegas",
+          "odds": 7.0,
+          "decimal_odds": 7.0,
+          "implied_probability": 14.29
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ]
 }
