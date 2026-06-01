@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T20:13:37Z",
+  "generated_at": "2026-06-01T23:23:40Z",
   "events": [
     {
       "id": "2026-06-07-ufc-fight-night-muhammad-vs-bonfim",
@@ -814,6 +814,25 @@
             "provider": "espn",
             "event_id": "600059254"
           }
+        },
+        {
+          "id": "600059254-12",
+          "bout": "Kaan Ofli vs Javier Reyes",
+          "red": {
+            "name": "Kaan Ofli",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Javier Reyes",
+            "espn_id": ""
+          },
+          "weight_class": "Featherweight",
+          "order": 12,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059254"
+          }
         }
       ]
     },
@@ -1150,17 +1169,208 @@
       ]
     },
     {
-      "id": "2026-07-26-ufc-fight-night-abu-dhabi",
-      "slug": "2026-07-26-ufc-fight-night-abu-dhabi",
-      "name": "UFC Fight Night: Abu Dhabi",
-      "date": "2026-07-26",
+      "id": "2026-07-25-ufc-fight-night-ankalaev-vs-rountree-jr",
+      "slug": "2026-07-25-ufc-fight-night-ankalaev-vs-rountree-jr",
+      "name": "UFC Fight Night: Ankalaev vs. Rountree Jr.",
+      "date": "2026-07-25",
       "location": "",
       "status": "upcoming",
       "source": {
         "provider": "espn",
         "event_id": "600059667"
       },
-      "fights": []
+      "fights": [
+        {
+          "id": "600059667-1",
+          "bout": "Magomed Ankalaev vs Khalil Rountree Jr.",
+          "red": {
+            "name": "Magomed Ankalaev",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Khalil Rountree Jr.",
+            "espn_id": ""
+          },
+          "weight_class": "Light Heavyweight - Main Event",
+          "order": 1,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        },
+        {
+          "id": "600059667-2",
+          "bout": "Umar Nurmagomedov vs David Martinez",
+          "red": {
+            "name": "Umar Nurmagomedov",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "David Martinez",
+            "espn_id": ""
+          },
+          "weight_class": "Bantamweight",
+          "order": 2,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        },
+        {
+          "id": "600059667-3",
+          "bout": "Rizvan Kuniev vs Tyrell Fortune",
+          "red": {
+            "name": "Rizvan Kuniev",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Tyrell Fortune",
+            "espn_id": ""
+          },
+          "weight_class": "Heavyweight",
+          "order": 3,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        },
+        {
+          "id": "600059667-4",
+          "bout": "Valter Walker vs Thomas Petersen",
+          "red": {
+            "name": "Valter Walker",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Thomas Petersen",
+            "espn_id": ""
+          },
+          "weight_class": "Heavyweight",
+          "order": 4,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        },
+        {
+          "id": "600059667-5",
+          "bout": "Gokhan Saricam vs Louie Sutherland",
+          "red": {
+            "name": "Gokhan Saricam",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Louie Sutherland",
+            "espn_id": ""
+          },
+          "weight_class": "Heavyweight",
+          "order": 5,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        },
+        {
+          "id": "600059667-6",
+          "bout": "Uran Satybaldiev vs Dustin Jacoby",
+          "red": {
+            "name": "Uran Satybaldiev",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Dustin Jacoby",
+            "espn_id": ""
+          },
+          "weight_class": "Light Heavyweight",
+          "order": 6,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        },
+        {
+          "id": "600059667-7",
+          "bout": "Magomed Tuchalov vs Brendson Ribeiro",
+          "red": {
+            "name": "Magomed Tuchalov",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Brendson Ribeiro",
+            "espn_id": ""
+          },
+          "weight_class": "Light Heavyweight",
+          "order": 7,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        },
+        {
+          "id": "600059667-8",
+          "bout": "Steve Erceg vs Ramazan Temirov",
+          "red": {
+            "name": "Steve Erceg",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Ramazan Temirov",
+            "espn_id": ""
+          },
+          "weight_class": "Flyweight",
+          "order": 8,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        },
+        {
+          "id": "600059667-9",
+          "bout": "Islam Dulatov vs Wellington Turman",
+          "red": {
+            "name": "Islam Dulatov",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Wellington Turman",
+            "espn_id": ""
+          },
+          "weight_class": "Welterweight",
+          "order": 9,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        },
+        {
+          "id": "600059667-10",
+          "bout": "Ismael Bonfim vs Axel Sola",
+          "red": {
+            "name": "Ismael Bonfim",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Axel Sola",
+            "espn_id": ""
+          },
+          "weight_class": "Lightweight",
+          "order": 10,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059667"
+          }
+        }
+      ]
     },
     {
       "id": "2026-08-01-ufc-fight-night-medi-vs-rodriguez",
@@ -1248,5 +1458,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-06-01T20:13:37Z"
+  "_debug_saved_at": "2026-06-01T23:23:40Z"
 }
