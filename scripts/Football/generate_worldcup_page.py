@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PADDY_PATH = ROOT / "football" / "data" / "paddypower_worldcup_moneylines.json"
 BOYLE_PATH = ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 BETVICTOR_PATH = ROOT / "football" / "data" / "betvictor_worldcup_moneylines.json"
+UNIBET_PATH = ROOT / "football" / "data" / "unibet_worldcup_moneylines.json"
 
 OUT_DIR = ROOT / "football" / "world-cup"
 OUT_PATH = OUT_DIR / "index.html"
@@ -184,6 +185,7 @@ def load_all_matches():
     paddy_rows, paddy_generated = load_book("PaddyPower", PADDY_PATH)
     boyle_rows, boyle_generated = load_book("BoyleSports", BOYLE_PATH)
     betvictor_rows, betvictor_generated = load_book("BetVictor", BETVICTOR_PATH)
+    unibet_rows, unibet_generated = load_book("Unibet", UNIBET_PATH)
 
     fixtures = {}
 
@@ -214,6 +216,7 @@ def load_all_matches():
 
     add_book_rows(fixtures, strict_index, loose_index, boyle_rows, "BoyleSports")
     add_book_rows(fixtures, strict_index, loose_index, betvictor_rows, "BetVictor")
+    add_book_rows(fixtures, strict_index, loose_index, unibet_rows, "Unibet")
 
     fixtures_list = list(fixtures.values())
 
@@ -225,7 +228,7 @@ def load_all_matches():
         )
     )
 
-    generated = betvictor_generated or boyle_generated or paddy_generated
+    generated = unibet_generated or betvictor_generated or boyle_generated or paddy_generated
 
     bookmaker_names = set()
     for f in fixtures_list:
