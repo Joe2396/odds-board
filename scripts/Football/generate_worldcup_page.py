@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 PADDY_PATH = ROOT / "football" / "data" / "paddypower_worldcup_moneylines.json"
 BOYLE_PATH = ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
+BETVICTOR_PATH = ROOT / "football" / "data" / "betvictor_worldcup_moneylines.json"
 
 OUT_DIR = ROOT / "football" / "world-cup"
 OUT_PATH = OUT_DIR / "index.html"
@@ -68,7 +69,10 @@ def display_team(s):
 
     aliases = {
         "Bosnia & Herzegovina": "Bosnia",
+        "Bosnia and Herzegovina": "Bosnia",
+        "Czech Republic": "Czechia",
         "Turkey": "Türkiye",
+        "Turkiye": "Türkiye",
         "Curaçao": "Curacao",
     }
 
@@ -82,16 +86,18 @@ def key_team(s):
     s = s.replace("türkiye", "turkiye")
     s = s.replace("turkey", "turkiye")
     s = s.replace("curaçao", "curacao")
-    s = s.replace("dr congo", "dr congo")
     s = re.sub(r"[^a-z0-9]+", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
 
     aliases = {
         "bosnia and": "bosnia",
         "bosnia": "bosnia",
+        "czech republic": "czechia",
+        "czechia": "czechia",
         "ivory coast": "ivory coast",
         "curacao": "curacao",
         "turkiye": "turkiye",
+        "dr congo": "dr congo",
     }
 
     return aliases.get(s, s)
@@ -134,9 +140,50 @@ def load_book(bookmaker, path):
     return rows, data.get("generated_at") or ""
 
 
+def add_book_rows(fixtures, strict_index, loose_index, rows, bookmaker):
+    for row in rows:
+        target_key = None
+
+        if row["strict_key"] in strict_index:
+            target_key = strict_index[row["strict_key"]]
+        elif row["loose_key"] in loose_index:
+            target_key = loose_index[row["loose_key"]]
+
+        if target_key:
+            fixtures[target_key]["bookmakers"][bookmaker] = {
+                "bookmaker": bookmaker,
+                "odds": row["odds"],
+                "source_url": row["source_url"],
+            }
+        else:
+            key = row["strict_key"]
+
+            fixtures[key] = {
+                "key": key,
+                "loose_key": row["loose_key"],
+                "slug": slugify(f"{row['home_team']}-v-{row['away_team']}"),
+                "date_label": row["date_label"],
+                "time": row["time"],
+                "match": row["match"],
+                "home_team": row["home_team"],
+                "away_team": row["away_team"],
+                "bookmakers": {
+                    bookmaker: {
+                        "bookmaker": bookmaker,
+                        "odds": row["odds"],
+                        "source_url": row["source_url"],
+                    }
+                },
+            }
+
+            strict_index[key] = key
+            loose_index[row["loose_key"]] = key
+
+
 def load_all_matches():
     paddy_rows, paddy_generated = load_book("PaddyPower", PADDY_PATH)
     boyle_rows, boyle_generated = load_book("BoyleSports", BOYLE_PATH)
+    betvictor_rows, betvictor_generated = load_book("BetVictor", BETVICTOR_PATH)
 
     fixtures = {}
 
@@ -162,45 +209,11 @@ def load_all_matches():
             },
         }
 
-    # Index existing fixtures by strict and loose keys.
     strict_index = {f["key"]: key for key, f in fixtures.items()}
     loose_index = {f["loose_key"]: key for key, f in fixtures.items()}
 
-    # Add BoyleSports prices where possible.
-    # If Boyle has a fixture PP somehow does not have, include it too.
-    for row in boyle_rows:
-        target_key = None
-
-        if row["strict_key"] in strict_index:
-            target_key = strict_index[row["strict_key"]]
-        elif row["loose_key"] in loose_index:
-            target_key = loose_index[row["loose_key"]]
-
-        if target_key:
-            fixtures[target_key]["bookmakers"]["BoyleSports"] = {
-                "bookmaker": "BoyleSports",
-                "odds": row["odds"],
-                "source_url": row["source_url"],
-            }
-        else:
-            key = row["strict_key"]
-            fixtures[key] = {
-                "key": key,
-                "loose_key": row["loose_key"],
-                "slug": slugify(f"{row['home_team']}-v-{row['away_team']}"),
-                "date_label": row["date_label"],
-                "time": row["time"],
-                "match": row["match"],
-                "home_team": row["home_team"],
-                "away_team": row["away_team"],
-                "bookmakers": {
-                    "BoyleSports": {
-                        "bookmaker": "BoyleSports",
-                        "odds": row["odds"],
-                        "source_url": row["source_url"],
-                    }
-                },
-            }
+    add_book_rows(fixtures, strict_index, loose_index, boyle_rows, "BoyleSports")
+    add_book_rows(fixtures, strict_index, loose_index, betvictor_rows, "BetVictor")
 
     fixtures_list = list(fixtures.values())
 
@@ -212,7 +225,7 @@ def load_all_matches():
         )
     )
 
-    generated = boyle_generated or paddy_generated
+    generated = betvictor_generated or boyle_generated or paddy_generated
 
     bookmaker_names = set()
     for f in fixtures_list:
