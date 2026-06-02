@@ -11,6 +11,7 @@ BETVICTOR_PATH = ROOT / "football" / "data" / "betvictor_worldcup_moneylines.jso
 UNIBET_PATH = ROOT / "football" / "data" / "unibet_worldcup_moneylines.json"
 LIVESCOREBET_PATH = ROOT / "football" / "data" / "livescorebet_worldcup_moneylines.json"
 WILLIAMHILL_PATH = ROOT / "football" / "data" / "williamhill_worldcup_moneylines.json"
+EIGHTEIGHTEIGHT_PATH = ROOT / "football" / "data" / "888sport_worldcup_moneylines.json"
 
 OUT_DIR = ROOT / "football" / "world-cup"
 OUT_PATH = OUT_DIR / "index.html"
@@ -190,6 +191,7 @@ def load_all_matches():
     unibet_rows, unibet_generated = load_book("Unibet", UNIBET_PATH)
     livescore_rows, livescore_generated = load_book("LiveScoreBet", LIVESCOREBET_PATH)
     williamhill_rows, williamhill_generated = load_book("WilliamHill", WILLIAMHILL_PATH)
+    eighteight_rows, eighteight_generated = load_book("888Sport", EIGHTEIGHTEIGHT_PATH)
 
     fixtures = {}
 
@@ -223,6 +225,7 @@ def load_all_matches():
     add_book_rows(fixtures, strict_index, loose_index, unibet_rows, "Unibet")
     add_book_rows(fixtures, strict_index, loose_index, livescore_rows, "LiveScoreBet")
     add_book_rows(fixtures, strict_index, loose_index, williamhill_rows, "WilliamHill")
+    add_book_rows(fixtures, strict_index, loose_index, eighteight_rows, "888Sport")
 
     fixtures_list = list(fixtures.values())
 
@@ -234,7 +237,7 @@ def load_all_matches():
         )
     )
 
-    generated = williamhill_generated or livescore_generated or unibet_generated or betvictor_generated or boyle_generated or paddy_generated
+    generated = eighteight_generated or williamhill_generated or livescore_generated or unibet_generated or betvictor_generated or boyle_generated or paddy_generated
 
     bookmaker_names = set()
     for f in fixtures_list:
