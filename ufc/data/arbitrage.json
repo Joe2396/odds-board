@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 0,
+  "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -82,8 +82,8 @@
       "fighters": {
         "Brendan Allen": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.46,
-          "implied_probability": 68.49
+          "best_price": 1.47,
+          "implied_probability": 68.03
         },
         "Edmen Shahbazyan": {
           "best_bookmaker": "LiveScore Bet",
@@ -91,9 +91,9 @@
           "implied_probability": 34.72
         }
       },
-      "arb_sum": 1.032154,
+      "arb_sum": 1.027494,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.22
+      "profit_margin_percent": -2.75
     },
     {
       "type": "moneyline",
@@ -131,13 +131,13 @@
         },
         "Priscila Cachoeira": {
           "best_bookmaker": "Matchbook",
-          "best_price": 2.1,
-          "implied_probability": 47.62
+          "best_price": 2.06,
+          "implied_probability": 48.54
         }
       },
-      "arb_sum": 1.022639,
+      "arb_sum": 1.031885,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.26
+      "profit_margin_percent": -3.19
     },
     {
       "type": "moneyline",
@@ -152,14 +152,14 @@
           "implied_probability": 73.53
         },
         "Tom Nolan": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 3.6,
-          "implied_probability": 27.78
+          "best_bookmaker": "Betfair",
+          "best_price": 3.55,
+          "implied_probability": 28.17
         }
       },
-      "arb_sum": 1.013072,
+      "arb_sum": 1.016984,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.31
+      "profit_margin_percent": -1.7
     },
     {
       "type": "moneyline",
@@ -218,7 +218,7 @@
           "implied_probability": 63.69
         },
         "Jordan Leavitt": {
-          "best_bookmaker": "Matchbook",
+          "best_bookmaker": "Betfair",
           "best_price": 2.66,
           "implied_probability": 37.59
         }
@@ -526,14 +526,14 @@
           "implied_probability": 24.39
         },
         "Max Holloway": {
-          "best_bookmaker": "William Hill",
-          "best_price": 1.33,
-          "implied_probability": 75.19
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.3,
+          "implied_probability": 76.92
         }
       },
-      "arb_sum": 0.995782,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.42
+      "arb_sum": 1.013133,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.31
     }
   ],
   "prop_markets": [
@@ -883,28 +883,5 @@
       "profit_margin_percent": -5.74
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "2c982ef7f30e521915fb0c82ffdaf4ba",
-      "commence_time": "2026-07-12T03:30:00Z",
-      "fight": "Conor McGregor vs Max Holloway",
-      "market": "Moneyline",
-      "fighters": {
-        "Conor McGregor": {
-          "best_bookmaker": "Betfair",
-          "best_price": 4.1,
-          "implied_probability": 24.39
-        },
-        "Max Holloway": {
-          "best_bookmaker": "William Hill",
-          "best_price": 1.33,
-          "implied_probability": 75.19
-        }
-      },
-      "arb_sum": 0.995782,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.42
-    }
-  ]
+  "arbitrage_opportunities": []
 }
