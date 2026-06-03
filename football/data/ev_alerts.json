@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T16:18:19.100463+00:00",
+  "generated_at": "2026-06-03T18:19:16.419541+00:00",
   "sport": "Football",
   "competition": "FIFA World Cup",
   "min_ev_percent": 10.0,
@@ -7,198 +7,43 @@
   "bookmaker_summary": {
     "PaddyPower": {
       "file_found": true,
-      "matches_loaded": 71,
-      "path": "C:\\Users\\joete\\odds-board\\football\\data\\paddypower_worldcup_moneylines.json"
+      "matches_loaded": 0,
+      "path": "/home/runner/work/odds-board/odds-board/football/data/paddypower_worldcup_moneylines.json"
     },
     "BoyleSports": {
       "file_found": true,
-      "matches_loaded": 72,
-      "path": "C:\\Users\\joete\\odds-board\\football\\data\\boylesports_worldcup_moneylines.json"
+      "matches_loaded": 0,
+      "path": "/home/runner/work/odds-board/odds-board/football/data/boylesports_worldcup_moneylines.json"
     },
     "BetVictor": {
       "file_found": true,
-      "matches_loaded": 33,
-      "path": "C:\\Users\\joete\\odds-board\\football\\data\\betvictor_worldcup_moneylines.json"
+      "matches_loaded": 0,
+      "path": "/home/runner/work/odds-board/odds-board/football/data/betvictor_worldcup_moneylines.json"
     },
     "Unibet": {
       "file_found": true,
-      "matches_loaded": 33,
-      "path": "C:\\Users\\joete\\odds-board\\football\\data\\unibet_worldcup_moneylines.json"
+      "matches_loaded": 72,
+      "path": "/home/runner/work/odds-board/odds-board/football/data/unibet_worldcup_moneylines.json"
     },
     "LiveScoreBet": {
       "file_found": true,
       "matches_loaded": 72,
-      "path": "C:\\Users\\joete\\odds-board\\football\\data\\livescorebet_worldcup_moneylines.json"
+      "path": "/home/runner/work/odds-board/odds-board/football/data/livescorebet_worldcup_moneylines.json"
     },
     "WilliamHill": {
       "file_found": true,
-      "matches_loaded": 72,
-      "path": "C:\\Users\\joete\\odds-board\\football\\data\\williamhill_worldcup_moneylines.json"
+      "matches_loaded": 0,
+      "path": "/home/runner/work/odds-board/odds-board/football/data/williamhill_worldcup_moneylines.json"
     },
     "888Sport": {
       "file_found": true,
-      "matches_loaded": 72,
-      "path": "C:\\Users\\joete\\odds-board\\football\\data\\888sport_worldcup_moneylines.json"
+      "matches_loaded": 0,
+      "path": "/home/runner/work/odds-board/odds-board/football/data/888sport_worldcup_moneylines.json"
     }
   },
   "fixture_count": 72,
-  "compared_fixtures": 72,
-  "skipped_fixtures": 0,
-  "alert_count": 7,
-  "alerts": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "market": "Match Odds",
-      "type": "moneyline_1x2",
-      "match": "Germany v Curacao",
-      "home_team": "Germany",
-      "away_team": "Curacao",
-      "date_label": "Sunday 14",
-      "time": "18:00",
-      "selection": "Curacao",
-      "selection_side": "away",
-      "bookmaker": "PaddyPower",
-      "bookmaker_odds": "60/1",
-      "bookmaker_decimal_odds": 61.0,
-      "fair_decimal_odds": 47.273617,
-      "fair_fractional_odds": "50/1",
-      "fair_probability": 0.021153,
-      "ev_percent": 29.036,
-      "bookmaker_count": 7,
-      "source_url": "https://www.paddypower.com/fifa-world-cup"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "market": "Match Odds",
-      "type": "moneyline_1x2",
-      "match": "Germany v Curacao",
-      "home_team": "Germany",
-      "away_team": "Curacao",
-      "date_label": "Sunday 14",
-      "time": "18:00",
-      "selection": "Draw",
-      "selection_side": "draw",
-      "bookmaker": "BoyleSports",
-      "bookmaker_odds": "20/1",
-      "bookmaker_decimal_odds": 21.0,
-      "fair_decimal_odds": 16.466511,
-      "fair_fractional_odds": "16/1",
-      "fair_probability": 0.060729,
-      "ev_percent": 27.532,
-      "bookmaker_count": 7,
-      "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "market": "Match Odds",
-      "type": "moneyline_1x2",
-      "match": "Germany v Curacao",
-      "home_team": "Germany",
-      "away_team": "Curacao",
-      "date_label": "Sunday 14",
-      "time": "18:00",
-      "selection": "Curacao",
-      "selection_side": "away",
-      "bookmaker": "BetVictor",
-      "bookmaker_odds": "55/1",
-      "bookmaker_decimal_odds": 56.0,
-      "fair_decimal_odds": 47.273617,
-      "fair_fractional_odds": "50/1",
-      "fair_probability": 0.021153,
-      "ev_percent": 18.459,
-      "bookmaker_count": 7,
-      "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7184/group/world-cup-matches/item/matches"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "market": "Match Odds",
-      "type": "moneyline_1x2",
-      "match": "Jordan v Argentina",
-      "home_team": "Jordan",
-      "away_team": "Argentina",
-      "date_label": "Sunday 28",
-      "time": "03:00",
-      "selection": "Jordan",
-      "selection_side": "home",
-      "bookmaker": "BoyleSports",
-      "bookmaker_odds": "18/1",
-      "bookmaker_decimal_odds": 19.0,
-      "fair_decimal_odds": 16.198771,
-      "fair_fractional_odds": "16/1",
-      "fair_probability": 0.061733,
-      "ev_percent": 17.293,
-      "bookmaker_count": 5,
-      "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "market": "Match Odds",
-      "type": "moneyline_1x2",
-      "match": "Brazil v Haiti",
-      "home_team": "Brazil",
-      "away_team": "Haiti",
-      "date_label": "Saturday 20",
-      "time": "01:30",
-      "selection": "Haiti",
-      "selection_side": "away",
-      "bookmaker": "LiveScoreBet",
-      "bookmaker_odds": "50/1",
-      "bookmaker_decimal_odds": 51.0,
-      "fair_decimal_odds": 43.813494,
-      "fair_fractional_odds": "40/1",
-      "fair_probability": 0.022824,
-      "ev_percent": 16.402,
-      "bookmaker_count": 6,
-      "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "market": "Match Odds",
-      "type": "moneyline_1x2",
-      "match": "Germany v Curacao",
-      "home_team": "Germany",
-      "away_team": "Curacao",
-      "date_label": "Sunday 14",
-      "time": "18:00",
-      "selection": "Draw",
-      "selection_side": "draw",
-      "bookmaker": "LiveScoreBet",
-      "bookmaker_odds": "18/1",
-      "bookmaker_decimal_odds": 19.0,
-      "fair_decimal_odds": 16.466511,
-      "fair_fractional_odds": "16/1",
-      "fair_probability": 0.060729,
-      "ev_percent": 15.386,
-      "bookmaker_count": 7,
-      "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "market": "Match Odds",
-      "type": "moneyline_1x2",
-      "match": "Brazil v Haiti",
-      "home_team": "Brazil",
-      "away_team": "Haiti",
-      "date_label": "Saturday 20",
-      "time": "01:30",
-      "selection": "Draw",
-      "selection_side": "draw",
-      "bookmaker": "LiveScoreBet",
-      "bookmaker_odds": "14/1",
-      "bookmaker_decimal_odds": 15.0,
-      "fair_decimal_odds": 13.591269,
-      "fair_fractional_odds": "12/1",
-      "fair_probability": 0.073577,
-      "ev_percent": 10.365,
-      "bookmaker_count": 6,
-      "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-    }
-  ]
+  "compared_fixtures": 0,
+  "skipped_fixtures": 72,
+  "alert_count": 0,
+  "alerts": []
 }
