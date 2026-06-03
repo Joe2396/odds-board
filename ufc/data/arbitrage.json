@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
-  "arbitrage_count": 0,
-  "moneyline_arbitrage_count": 0,
+  "arbitrage_count": 1,
+  "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -38,8 +38,8 @@
       "fighters": {
         "Ariane Carnelossi": {
           "best_bookmaker": "Betfair",
-          "best_price": 3.5,
-          "implied_probability": 28.57
+          "best_price": 3.6,
+          "implied_probability": 27.78
         },
         "Ketlen Souza": {
           "best_bookmaker": "Betway",
@@ -47,9 +47,9 @@
           "implied_probability": 71.43
         }
       },
-      "arb_sum": 1.0,
-      "is_arbitrage": false,
-      "profit_margin_percent": 0.0
+      "arb_sum": 0.992063,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.79
     },
     {
       "type": "moneyline",
@@ -236,8 +236,8 @@
       "fighters": {
         "John Yannis": {
           "best_bookmaker": "Betfair",
-          "best_price": 5.0,
-          "implied_probability": 20.0
+          "best_price": 5.1,
+          "implied_probability": 19.61
         },
         "Marcus McGhee": {
           "best_bookmaker": "Betfair",
@@ -245,9 +245,9 @@
           "implied_probability": 81.97
         }
       },
-      "arb_sum": 1.019672,
+      "arb_sum": 1.015751,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.97
+      "profit_margin_percent": -1.58
     },
     {
       "type": "moneyline",
@@ -279,9 +279,9 @@
       "market": "Moneyline",
       "fighters": {
         "Diego Lopes": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 1.53,
-          "implied_probability": 65.36
+          "best_bookmaker": "888sport",
+          "best_price": 1.6,
+          "implied_probability": 62.5
         },
         "Steve Garcia Jr.": {
           "best_bookmaker": "LiveScore Bet",
@@ -289,9 +289,9 @@
           "implied_probability": 40.0
         }
       },
-      "arb_sum": 1.053595,
+      "arb_sum": 1.025,
       "is_arbitrage": false,
-      "profit_margin_percent": -5.36
+      "profit_margin_percent": -2.5
     },
     {
       "type": "moneyline",
@@ -433,9 +433,9 @@
       "market": "Moneyline",
       "fighters": {
         "Brandon Royval": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.5,
-          "implied_probability": 40.0
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.43,
+          "implied_probability": 41.15
         },
         "Lone'er Kavanagh": {
           "best_bookmaker": "Paddy Power",
@@ -443,9 +443,9 @@
           "implied_probability": 63.69
         }
       },
-      "arb_sum": 1.036943,
+      "arb_sum": 1.048465,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.69
+      "profit_margin_percent": -4.85
     },
     {
       "type": "moneyline",
@@ -883,5 +883,28 @@
       "profit_margin_percent": -5.74
     }
   ],
-  "arbitrage_opportunities": []
+  "arbitrage_opportunities": [
+    {
+      "type": "moneyline",
+      "event_id": "20ed97f62101fe382c07288a90f4be6d",
+      "commence_time": "2026-06-06T21:00:00Z",
+      "fight": "Ariane Carnelossi vs Ketlen Souza",
+      "market": "Moneyline",
+      "fighters": {
+        "Ariane Carnelossi": {
+          "best_bookmaker": "Betfair",
+          "best_price": 3.6,
+          "implied_probability": 27.78
+        },
+        "Ketlen Souza": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.4,
+          "implied_probability": 71.43
+        }
+      },
+      "arb_sum": 0.992063,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.79
+    }
+  ]
 }

@@ -1,5 +1,32 @@
 {
-  "updated_at": "2026-06-02T22:20:04.474416+00:00",
-  "total_arbitrage": 0,
-  "arbitrage": []
+  "updated_at": "2026-06-03T03:32:37.552794+00:00",
+  "total_arbitrage": 1,
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "type": "moneyline",
+      "event": "Ariane Carnelossi vs Ketlen Souza",
+      "market": "Moneyline",
+      "commence_time": "2026-06-06T21:00:00Z",
+      "profit_margin_percent": 0.79,
+      "arb_sum": 0.992063,
+      "bookmakers": [
+        {
+          "selection": "Ariane Carnelossi",
+          "bookmaker": "Betfair",
+          "odds": 3.6,
+          "decimal_odds": 3.6,
+          "implied_probability": 27.78
+        },
+        {
+          "selection": "Ketlen Souza",
+          "bookmaker": "Betway",
+          "odds": 1.4,
+          "decimal_odds": 1.4,
+          "implied_probability": 71.43
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ]
 }
