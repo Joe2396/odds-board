@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EV Alerts — BeatTheBooks</title>
+  <style>
+    :root {
+      --bg: #0f1621;
+      --panel: #111827;
+      --border: #223047;
+      --text: #ffffff;
+      --muted: #91a0b5;
+      --green: #22c55e;
+      --blue: #60a5fa;
+      --orange: #f97316;
+      --gold: #facc15;
+      --red: #ef4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(249,115,22,0.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(96,165,250,0.12), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 34px 28px 70px;
+    }
+
+    .top-nav {
+      display: flex;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .top-nav a { color: var(--blue); }
+
+    .hero {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 34px;
+      background: rgba(17,24,39,0.82);
+      margin-bottom: 22px;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.28);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      border: 1px solid rgba(249,115,22,0.45);
+      background: rgba(249,115,22,0.1);
+      color: #fdba74;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: .95;
+      letter-spacing: -0.055em;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 780px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .updated {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .summary-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.035);
+      padding: 16px;
+    }
+
+    .summary-card strong {
+      display: block;
+      color: var(--green);
+      font-size: 30px;
+      margin-bottom: 4px;
+    }
+
+    .summary-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 20px 0 26px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.035);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      border-color: rgba(34,197,94,0.55);
+      background: rgba(34,197,94,0.14);
+      color: #86efac;
+    }
+
+    .filter-btn span {
+      color: var(--muted);
+      margin-left: 6px;
+    }
+
+    .alerts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 14px;
+    }
+
+    .alert-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(17,24,39,0.76);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .sport-pill {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      border: 1px solid var(--border);
+    }
+
+    .sport-football {
+      color: #86efac;
+      background: rgba(34,197,94,0.1);
+      border-color: rgba(34,197,94,0.35);
+    }
+
+    .sport-ufc {
+      color: #fdba74;
+      background: rgba(249,115,22,0.1);
+      border-color: rgba(249,115,22,0.35);
+    }
+
+    .sport-darts {
+      color: #bfdbfe;
+      background: rgba(96,165,250,0.1);
+      border-color: rgba(96,165,250,0.35);
+    }
+
+    .rank {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .alert-card h2 {
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .meta, .muted {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .edge-badge {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 13px;
+      font-weight: 950;
+      margin-bottom: 14px;
+    }
+
+    .edge-badge.fire {
+      color: #fecaca;
+      background: rgba(239,68,68,0.12);
+      border: 1px solid rgba(239,68,68,0.45);
+    }
+
+    .edge-badge.hot {
+      color: #fdba74;
+      background: rgba(249,115,22,0.12);
+      border: 1px solid rgba(249,115,22,0.45);
+    }
+
+    .edge-badge.value {
+      color: #fde68a;
+      background: rgba(250,204,21,0.1);
+      border: 1px solid rgba(250,204,21,0.4);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .card-grid div {
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(15,22,33,0.82);
+      padding: 11px;
+    }
+
+    .card-grid span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 6px;
+    }
+
+    .card-grid strong {
+      display: block;
+      color: var(--text);
+      font-size: 15px;
+      word-break: break-word;
+    }
+
+    .card-grid em {
+      display: block;
+      color: var(--muted);
+      font-style: normal;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .market {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .open-link {
+      display: inline-flex;
+      margin-top: 8px;
+      color: #86efac;
+      font-weight: 900;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      border: 1px dashed var(--border);
+      border-radius: 24px;
+      padding: 70px 24px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 22px 14px 54px; }
+      .hero { padding: 24px; border-radius: 22px; }
+      .alerts-grid { grid-template-columns: 1fr; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="top-nav">
+      <a href="/odds-board/">Home</a>
+      <span>›</span>
+      <span>EV Alerts</span>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow">⚡ EV Alerts</div>
+      <h1>EV Alerts</h1>
+      <p class="subtitle">
+        Combined value alerts across sports. Football uses a no-vig fair price
+        from tracked bookmakers. UFC alerts currently link through to the UFC EV page.
+      </p>
+      <p class="updated">Updated: 2026-06-03 16:18 UTC</p>
+
+      <div class="summary">
+        <div class="summary-card">
+          <strong>8</strong>
+          <span>Total alerts</span>
+        </div>
+        <div class="summary-card">
+          <strong>7</strong>
+          <span>Football alerts</span>
+        </div>
+        <div class="summary-card">
+          <strong>1</strong>
+          <span>UFC sections</span>
+        </div>
+        <div class="summary-card">
+          <strong>29.0%</strong>
+          <span>Best edge</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="filters">
+      
+        <button class="filter-btn active" data-filter="All">
+          All <span>8</span>
+        </button>
+        
+        <button class="filter-btn" data-filter="Football">
+          Football <span>7</span>
+        </button>
+        
+        <button class="filter-btn" data-filter="UFC">
+          UFC <span>1</span>
+        </button>
+        
+        <button class="filter-btn" data-filter="Darts">
+          Darts <span>0</span>
+        </button>
+        
+    </div>
+
+    <section class="alerts-grid" id="alertsGrid">
+      
+    <article class="alert-card" data-sport="Football">
+      <div class="card-top">
+        <span class="sport-pill sport-football">Football</span>
+        <span class="rank">#1</span>
+      </div>
+
+      <h2>Germany v Curacao</h2>
+      <p class="meta">FIFA World Cup · Sunday 14 18:00 · 7 books</p>
+
+      <div class="edge-badge fire">
+        ⚡ +29.04% EV
+      </div>
+
+      <div class="card-grid">
+        <div>
+          <span>Selection</span>
+          <strong>Curacao</strong>
+        </div>
+        <div>
+          <span>Best Price</span>
+          <strong>60/1</strong>
+          <em>PaddyPower</em>
+        </div>
+        <div>
+          <span>Fair Price</span>
+          <strong>50/1</strong>
+          <em>47.273617</em>
+        </div>
+      </div>
+
+      <p class="market">Match Odds</p>
+    </article>
+    
+    <article class="alert-card" data-sport="Football">
+      <div class="card-top">
+        <span class="sport-pill sport-football">Football</span>
+        <span class="rank">#2</span>
+      </div>
+
+      <h2>Germany v Curacao</h2>
+      <p class="meta">FIFA World Cup · Sunday 14 18:00 · 7 books</p>
+
+      <div class="edge-badge fire">
+        ⚡ +27.53% EV
+      </div>
+
+      <div class="card-grid">
+        <div>
+          <span>Selection</span>
+          <strong>Draw</strong>
+        </div>
+        <div>
+          <span>Best Price</span>
+          <strong>20/1</strong>
+          <em>BoyleSports</em>
+        </div>
+        <div>
+          <span>Fair Price</span>
+          <strong>16/1</strong>
+          <em>16.466511</em>
+        </div>
+      </div>
+
+      <p class="market">Match Odds</p>
+    </article>
+    
+    <article class="alert-card" data-sport="Football">
+      <div class="card-top">
+        <span class="sport-pill sport-football">Football</span>
+        <span class="rank">#3</span>
+      </div>
+
+      <h2>Germany v Curacao</h2>
+      <p class="meta">FIFA World Cup · Sunday 14 18:00 · 7 books</p>
+
+      <div class="edge-badge fire">
+        ⚡ +18.46% EV
+      </div>
+
+      <div class="card-grid">
+        <div>
+          <span>Selection</span>
+          <strong>Curacao</strong>
+        </div>
+        <div>
+          <span>Best Price</span>
+          <strong>55/1</strong>
+          <em>BetVictor</em>
+        </div>
+        <div>
+          <span>Fair Price</span>
+          <strong>50/1</strong>
+          <em>47.273617</em>
+        </div>
+      </div>
+
+      <p class="market">Match Odds</p>
+    </article>
+    
+    <article class="alert-card" data-sport="Football">
+      <div class="card-top">
+        <span class="sport-pill sport-football">Football</span>
+        <span class="rank">#4</span>
+      </div>
+
+      <h2>Jordan v Argentina</h2>
+      <p class="meta">FIFA World Cup · Sunday 28 03:00 · 5 books</p>
+
+      <div class="edge-badge fire">
+        ⚡ +17.29% EV
+      </div>
+
+      <div class="card-grid">
+        <div>
+          <span>Selection</span>
+          <strong>Jordan</strong>
+        </div>
+        <div>
+          <span>Best Price</span>
+          <strong>18/1</strong>
+          <em>BoyleSports</em>
+        </div>
+        <div>
+          <span>Fair Price</span>
+          <strong>16/1</strong>
+          <em>16.198771</em>
+        </div>
+      </div>
+
+      <p class="market">Match Odds</p>
+    </article>
+    
+    <article class="alert-card" data-sport="Football">
+      <div class="card-top">
+        <span class="sport-pill sport-football">Football</span>
+        <span class="rank">#5</span>
+      </div>
+
+      <h2>Brazil v Haiti</h2>
+      <p class="meta">FIFA World Cup · Saturday 20 01:30 · 6 books</p>
+
+      <div class="edge-badge fire">
+        ⚡ +16.40% EV
+      </div>
+
+      <div class="card-grid">
+        <div>
+          <span>Selection</span>
+          <strong>Haiti</strong>
+        </div>
+        <div>
+          <span>Best Price</span>
+          <strong>50/1</strong>
+          <em>LiveScoreBet</em>
+        </div>
+        <div>
+          <span>Fair Price</span>
+          <strong>40/1</strong>
+          <em>43.813494</em>
+        </div>
+      </div>
+
+      <p class="market">Match Odds</p>
+    </article>
+    
+    <article class="alert-card" data-sport="Football">
+      <div class="card-top">
+        <span class="sport-pill sport-football">Football</span>
+        <span class="rank">#6</span>
+      </div>
+
+      <h2>Germany v Curacao</h2>
+      <p class="meta">FIFA World Cup · Sunday 14 18:00 · 7 books</p>
+
+      <div class="edge-badge fire">
+        ⚡ +15.39% EV
+      </div>
+
+      <div class="card-grid">
+        <div>
+          <span>Selection</span>
+          <strong>Draw</strong>
+        </div>
+        <div>
+          <span>Best Price</span>
+          <strong>18/1</strong>
+          <em>LiveScoreBet</em>
+        </div>
+        <div>
+          <span>Fair Price</span>
+          <strong>16/1</strong>
+          <em>16.466511</em>
+        </div>
+      </div>
+
+      <p class="market">Match Odds</p>
+    </article>
+    
+    <article class="alert-card" data-sport="Football">
+      <div class="card-top">
+        <span class="sport-pill sport-football">Football</span>
+        <span class="rank">#7</span>
+      </div>
+
+      <h2>Brazil v Haiti</h2>
+      <p class="meta">FIFA World Cup · Saturday 20 01:30 · 6 books</p>
+
+      <div class="edge-badge fire">
+        ⚡ +10.37% EV
+      </div>
+
+      <div class="card-grid">
+        <div>
+          <span>Selection</span>
+          <strong>Draw</strong>
+        </div>
+        <div>
+          <span>Best Price</span>
+          <strong>14/1</strong>
+          <em>LiveScoreBet</em>
+        </div>
+        <div>
+          <span>Fair Price</span>
+          <strong>12/1</strong>
+          <em>13.591269</em>
+        </div>
+      </div>
+
+      <p class="market">Match Odds</p>
+    </article>
+    
+        <article class="alert-card link-card" data-sport="UFC">
+          <div class="card-top">
+            <span class="sport-pill sport-ufc">UFC</span>
+            <span class="rank">#8</span>
+          </div>
+
+          <h2>UFC EV Alerts</h2>
+          <p class="muted">Your existing UFC EV alerts are still available on the UFC page.</p>
+
+          <a class="open-link" href="/odds-board/ufc/ev-alerts/">Open UFC EV Alerts →</a>
+        </article>
+        
+    </section>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".alert-card");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const filter = btn.dataset.filter;
+
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        cards.forEach(card => {
+          const sport = card.dataset.sport;
+          if (filter === "All" || sport === filter) {
+            card.style.display = "";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
