@@ -207,8 +207,6 @@ def main():
             print("\nNo LiveScoreBet World Cup matches found.")
             print(f"Debug text saved to: {DEBUG_PATH}")
 
-        print("\nDone. Press Enter to close browser...")
-        input()
 
         browser.close()
 
