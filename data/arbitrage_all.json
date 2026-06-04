@@ -1,10 +1,9 @@
 {
-  "generated_at": "2026-06-04T16:09:20.840183+00:00",
-  "total_arbitrage": 2,
+  "generated_at": "2026-06-04T16:15:26.370996+00:00",
+  "total_arbitrage": 1,
   "sports": {
-    "All": 2,
-    "Football": 1,
-    "UFC": 1
+    "All": 1,
+    "Football": 1
   },
   "arbitrage": [
     {
@@ -43,36 +42,6 @@
         }
       ],
       "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "competition": "UFC",
-      "event": "Bruno Silva vs Edgar Chairez",
-      "market": "Moneyline",
-      "type": "moneyline",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 0.01,
-      "arb_percent": "",
-      "arb_sum": 0.999876,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Bruno Silva",
-          "bookmaker": "Unibet (UK)",
-          "odds": 1.87,
-          "decimal_odds": 1.87,
-          "implied_probability": 53.48
-        },
-        {
-          "selection": "Edgar Chairez",
-          "bookmaker": "LiveScore Bet",
-          "odds": 2.15,
-          "decimal_odds": 2.15,
-          "implied_probability": 46.51
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
     }
   ],
   "sources": {
@@ -82,7 +51,7 @@
   },
   "source_counts": {
     "football": 1,
-    "ufc": 1,
+    "ufc": 0,
     "darts": 0
   }
 }

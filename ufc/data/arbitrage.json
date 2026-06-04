@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 0,
+  "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -104,8 +104,8 @@
       "fighters": {
         "Bruno Silva": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.87,
-          "implied_probability": 53.48
+          "best_price": 1.83,
+          "implied_probability": 54.64
         },
         "Edgar Chairez": {
           "best_bookmaker": "LiveScore Bet",
@@ -113,9 +113,9 @@
           "implied_probability": 46.51
         }
       },
-      "arb_sum": 0.999876,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.01
+      "arb_sum": 1.011564,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.16
     },
     {
       "type": "moneyline",
@@ -521,9 +521,9 @@
       "market": "Moneyline",
       "fighters": {
         "Conor McGregor": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 3.6,
-          "implied_probability": 27.78
+          "best_bookmaker": "Betfair",
+          "best_price": 3.65,
+          "implied_probability": 27.4
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
@@ -531,9 +531,9 @@
           "implied_probability": 75.19
         }
       },
-      "arb_sum": 1.029657,
+      "arb_sum": 1.025852,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.97
+      "profit_margin_percent": -2.59
     }
   ],
   "prop_markets": [
@@ -883,28 +883,5 @@
       "profit_margin_percent": -5.74
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "4dce7e416a60d1f8ddf8862c6c1bd10c",
-      "commence_time": "2026-06-06T21:00:00Z",
-      "fight": "Bruno Silva vs Edgar Chairez",
-      "market": "Moneyline",
-      "fighters": {
-        "Bruno Silva": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.87,
-          "implied_probability": 53.48
-        },
-        "Edgar Chairez": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 2.15,
-          "implied_probability": 46.51
-        }
-      },
-      "arb_sum": 0.999876,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.01
-    }
-  ]
+  "arbitrage_opportunities": []
 }
