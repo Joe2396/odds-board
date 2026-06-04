@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T03:26:34Z",
+  "generated_at": "2026-06-04T08:15:18Z",
   "events": [
     {
       "id": "2026-06-07-ufc-fight-night-muhammad-vs-bonfim",
@@ -506,6 +506,25 @@
       },
       "fights": [
         {
+          "id": "401874462",
+          "bout": "Vlasto Čepo vs Gilbert Urbina",
+          "red": {
+            "name": "Vlasto Čepo",
+            "espn_id": "5351430"
+          },
+          "blue": {
+            "name": "Gilbert Urbina",
+            "espn_id": "4375574"
+          },
+          "weight_class": "Middleweight",
+          "order": 1,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059339"
+          }
+        },
+        {
           "id": "401873884",
           "bout": "Ante Delija vs Johnny Walker",
           "red": {
@@ -517,7 +536,7 @@
             "espn_id": "3146944"
           },
           "weight_class": "Heavyweight",
-          "order": 1,
+          "order": 2,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -536,7 +555,7 @@
             "espn_id": "5316622"
           },
           "weight_class": "Heavyweight",
-          "order": 2,
+          "order": 3,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -555,7 +574,7 @@
             "espn_id": "4686237"
           },
           "weight_class": "Middleweight",
-          "order": 3,
+          "order": 4,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -574,7 +593,7 @@
             "espn_id": "3093559"
           },
           "weight_class": "Heavyweight",
-          "order": 4,
+          "order": 5,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -593,7 +612,7 @@
             "espn_id": "4426312"
           },
           "weight_class": "Welterweight",
-          "order": 5,
+          "order": 6,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -617,5 +636,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-06-04T03:26:34Z"
+  "_debug_saved_at": "2026-06-04T08:15:18Z"
 }
