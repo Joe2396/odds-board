@@ -1,17 +1,56 @@
 {
-  "generated_at": "2026-06-04T14:29:59.894618+00:00",
-  "total_arbitrage": 0,
+  "generated_at": "2026-06-04T16:07:55.563252+00:00",
+  "total_arbitrage": 1,
   "sports": {
-    "All": 0
+    "All": 1,
+    "Football": 1
   },
-  "arbitrage": [],
+  "arbitrage": [
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Morocco v Haiti",
+      "market": "Match Odds",
+      "type": "moneyline_1x2",
+      "date_label": "Wednesday 24",
+      "time": "23:00",
+      "profit_margin_percent": 0.481,
+      "arb_percent": 99.521,
+      "arb_sum": 0.995213,
+      "bookmaker_count": 4,
+      "bookmakers": [
+        {
+          "selection": "Morocco",
+          "bookmaker": "Unibet",
+          "odds": "33/100",
+          "decimal_odds": 1.33,
+          "implied_probability": 0.75188
+        },
+        {
+          "selection": "Draw",
+          "bookmaker": "LiveScoreBet",
+          "odds": "21/4",
+          "decimal_odds": 6.25,
+          "implied_probability": 0.16
+        },
+        {
+          "selection": "Haiti",
+          "bookmaker": "LiveScoreBet",
+          "odds": "11/1",
+          "decimal_odds": 12.0,
+          "implied_probability": 0.083333
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    }
+  ],
   "sources": {
-    "football": "/home/runner/work/odds-board/odds-board/football/data/arbitrage.json",
-    "ufc": "/home/runner/work/odds-board/odds-board/ufc/data/arbitrage.json",
-    "darts": "/home/runner/work/odds-board/odds-board/darts/data/arbitrage.json"
+    "football": "C:\\Users\\joete\\odds-board\\football\\data\\arbitrage.json",
+    "ufc": "C:\\Users\\joete\\odds-board\\ufc\\data\\arbitrage.json",
+    "darts": "C:\\Users\\joete\\odds-board\\darts\\data\\arbitrage.json"
   },
   "source_counts": {
-    "football": 0,
+    "football": 1,
     "ufc": 0,
     "darts": 0
   }

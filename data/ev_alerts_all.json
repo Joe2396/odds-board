@@ -1,11 +1,97 @@
 {
-  "generated_at": "2026-06-04T14:29:59.856174+00:00",
-  "alert_count": 1,
+  "generated_at": "2026-06-04T16:07:54.288734+00:00",
+  "alert_count": 6,
   "sports": {
-    "All": 1,
+    "All": 6,
+    "Football": 5,
     "UFC": 1
   },
   "alerts": [
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Germany v Curacao",
+      "market": "Match Odds",
+      "selection": "Curacao",
+      "bookmaker": "Unibet",
+      "odds": "66/1",
+      "decimal_odds": 67.0,
+      "fair_odds": "40/1",
+      "fair_decimal_odds": 43.497782,
+      "edge_percent": 54.031,
+      "book_count": 5,
+      "time": "18:00",
+      "date_label": "Sunday 14",
+      "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Germany v Curacao",
+      "market": "Match Odds",
+      "selection": "Draw",
+      "bookmaker": "BoyleSports",
+      "odds": "20/1",
+      "decimal_odds": 21.0,
+      "fair_odds": "16/1",
+      "fair_decimal_odds": 17.307357,
+      "edge_percent": 21.336,
+      "book_count": 5,
+      "time": "18:00",
+      "date_label": "Sunday 14",
+      "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "France v Iraq",
+      "market": "Match Odds",
+      "selection": "Iraq",
+      "bookmaker": "BoyleSports",
+      "odds": "25/1",
+      "decimal_odds": 26.0,
+      "fair_odds": "20/1",
+      "fair_decimal_odds": 23.196373,
+      "edge_percent": 12.086,
+      "book_count": 4,
+      "time": "22:00",
+      "date_label": "Monday 22",
+      "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Brazil v Haiti",
+      "market": "Match Odds",
+      "selection": "Draw",
+      "bookmaker": "LiveScoreBet",
+      "odds": "13/1",
+      "decimal_odds": 14.0,
+      "fair_odds": "12/1",
+      "fair_decimal_odds": 12.535331,
+      "edge_percent": 11.684,
+      "book_count": 5,
+      "time": "01:30",
+      "date_label": "Saturday 20",
+      "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Morocco v Haiti",
+      "market": "Match Odds",
+      "selection": "Draw",
+      "bookmaker": "LiveScoreBet",
+      "odds": "21/4",
+      "decimal_odds": 6.25,
+      "fair_odds": "9/2",
+      "fair_decimal_odds": 5.632506,
+      "edge_percent": 10.963,
+      "book_count": 4,
+      "time": "23:00",
+      "date_label": "Wednesday 24",
+      "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+    },
     {
       "sport": "UFC",
       "competition": "UFC",
@@ -25,6 +111,6 @@
       "is_link_card": true
     }
   ],
-  "football_source": "/home/runner/work/odds-board/odds-board/football/data/ev_alerts.json",
-  "ufc_source": "/home/runner/work/odds-board/odds-board/ufc/ev-alerts/index.html"
+  "football_source": "C:\\Users\\joete\\odds-board\\football\\data\\ev_alerts.json",
+  "ufc_source": "C:\\Users\\joete\\odds-board\\ufc\\ev-alerts\\index.html"
 }

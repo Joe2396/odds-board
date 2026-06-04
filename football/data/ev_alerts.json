@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T14:29:59.829011+00:00",
+  "generated_at": "2026-06-04T16:07:53.849105+00:00",
   "sport": "Football",
   "competition": "FIFA World Cup",
   "min_ev_percent": 10.0,
@@ -7,43 +7,154 @@
   "bookmaker_summary": {
     "PaddyPower": {
       "file_found": true,
-      "matches_loaded": 0,
-      "path": "/home/runner/work/odds-board/odds-board/football/data/paddypower_worldcup_moneylines.json"
+      "matches_loaded": 72,
+      "path": "C:\\Users\\joete\\odds-board\\football\\data\\paddypower_worldcup_moneylines.json"
     },
     "BoyleSports": {
       "file_found": true,
-      "matches_loaded": 0,
-      "path": "/home/runner/work/odds-board/odds-board/football/data/boylesports_worldcup_moneylines.json"
+      "matches_loaded": 72,
+      "path": "C:\\Users\\joete\\odds-board\\football\\data\\boylesports_worldcup_moneylines.json"
     },
     "BetVictor": {
       "file_found": true,
       "matches_loaded": 0,
-      "path": "/home/runner/work/odds-board/odds-board/football/data/betvictor_worldcup_moneylines.json"
+      "path": "C:\\Users\\joete\\odds-board\\football\\data\\betvictor_worldcup_moneylines.json"
     },
     "Unibet": {
       "file_found": true,
       "matches_loaded": 72,
-      "path": "/home/runner/work/odds-board/odds-board/football/data/unibet_worldcup_moneylines.json"
+      "path": "C:\\Users\\joete\\odds-board\\football\\data\\unibet_worldcup_moneylines.json"
     },
     "LiveScoreBet": {
       "file_found": true,
       "matches_loaded": 72,
-      "path": "/home/runner/work/odds-board/odds-board/football/data/livescorebet_worldcup_moneylines.json"
+      "path": "C:\\Users\\joete\\odds-board\\football\\data\\livescorebet_worldcup_moneylines.json"
     },
     "WilliamHill": {
       "file_found": true,
-      "matches_loaded": 0,
-      "path": "/home/runner/work/odds-board/odds-board/football/data/williamhill_worldcup_moneylines.json"
+      "matches_loaded": 40,
+      "path": "C:\\Users\\joete\\odds-board\\football\\data\\williamhill_worldcup_moneylines.json"
     },
     "888Sport": {
       "file_found": true,
       "matches_loaded": 0,
-      "path": "/home/runner/work/odds-board/odds-board/football/data/888sport_worldcup_moneylines.json"
+      "path": "C:\\Users\\joete\\odds-board\\football\\data\\888sport_worldcup_moneylines.json"
     }
   },
   "fixture_count": 72,
-  "compared_fixtures": 0,
-  "skipped_fixtures": 72,
-  "alert_count": 0,
-  "alerts": []
+  "compared_fixtures": 72,
+  "skipped_fixtures": 0,
+  "alert_count": 5,
+  "alerts": [
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "market": "Match Odds",
+      "type": "moneyline_1x2",
+      "match": "Germany v Curacao",
+      "home_team": "Germany",
+      "away_team": "Curacao",
+      "date_label": "Sunday 14",
+      "time": "18:00",
+      "selection": "Curacao",
+      "selection_side": "away",
+      "bookmaker": "Unibet",
+      "bookmaker_odds": "66/1",
+      "bookmaker_decimal_odds": 67.0,
+      "fair_decimal_odds": 43.497782,
+      "fair_fractional_odds": "40/1",
+      "fair_probability": 0.02299,
+      "ev_percent": 54.031,
+      "bookmaker_count": 5,
+      "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "market": "Match Odds",
+      "type": "moneyline_1x2",
+      "match": "Germany v Curacao",
+      "home_team": "Germany",
+      "away_team": "Curacao",
+      "date_label": "Sunday 14",
+      "time": "18:00",
+      "selection": "Draw",
+      "selection_side": "draw",
+      "bookmaker": "BoyleSports",
+      "bookmaker_odds": "20/1",
+      "bookmaker_decimal_odds": 21.0,
+      "fair_decimal_odds": 17.307357,
+      "fair_fractional_odds": "16/1",
+      "fair_probability": 0.057779,
+      "ev_percent": 21.336,
+      "bookmaker_count": 5,
+      "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "market": "Match Odds",
+      "type": "moneyline_1x2",
+      "match": "France v Iraq",
+      "home_team": "France",
+      "away_team": "Iraq",
+      "date_label": "Monday 22",
+      "time": "22:00",
+      "selection": "Iraq",
+      "selection_side": "away",
+      "bookmaker": "BoyleSports",
+      "bookmaker_odds": "25/1",
+      "bookmaker_decimal_odds": 26.0,
+      "fair_decimal_odds": 23.196373,
+      "fair_fractional_odds": "20/1",
+      "fair_probability": 0.04311,
+      "ev_percent": 12.086,
+      "bookmaker_count": 4,
+      "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "market": "Match Odds",
+      "type": "moneyline_1x2",
+      "match": "Brazil v Haiti",
+      "home_team": "Brazil",
+      "away_team": "Haiti",
+      "date_label": "Saturday 20",
+      "time": "01:30",
+      "selection": "Draw",
+      "selection_side": "draw",
+      "bookmaker": "LiveScoreBet",
+      "bookmaker_odds": "13/1",
+      "bookmaker_decimal_odds": 14.0,
+      "fair_decimal_odds": 12.535331,
+      "fair_fractional_odds": "12/1",
+      "fair_probability": 0.079775,
+      "ev_percent": 11.684,
+      "bookmaker_count": 5,
+      "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "market": "Match Odds",
+      "type": "moneyline_1x2",
+      "match": "Morocco v Haiti",
+      "home_team": "Morocco",
+      "away_team": "Haiti",
+      "date_label": "Wednesday 24",
+      "time": "23:00",
+      "selection": "Draw",
+      "selection_side": "draw",
+      "bookmaker": "LiveScoreBet",
+      "bookmaker_odds": "21/4",
+      "bookmaker_decimal_odds": 6.25,
+      "fair_decimal_odds": 5.632506,
+      "fair_fractional_odds": "9/2",
+      "fair_probability": 0.177541,
+      "ev_percent": 10.963,
+      "bookmaker_count": 4,
+      "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+    }
+  ]
 }
