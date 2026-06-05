@@ -2,8 +2,9 @@ name: Football World Cup Build
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 */3 * * *"
+  # schedule disabled because scraping is done locally
+  # schedule:
+  #   - cron: "0 */3 * * *"
 
 permissions:
   contents: write
@@ -21,26 +22,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install Python packages
-        run: |
-          python -m pip install --upgrade pip
-          pip install playwright
-
-      - name: Install Playwright browsers
-        run: |
-          python -m playwright install chromium --with-deps
-
-      - name: Run football scrapers
-        run: |
-          xvfb-run -a python scripts/Football/fetch_paddypower_worldcup_moneylines.py || true
-          xvfb-run -a python scripts/Football/fetch_boylesports_worldcup_moneylines.py || true
-          xvfb-run -a python scripts/Football/fetch_betvictor_worldcup_moneylines.py || true
-          xvfb-run -a python scripts/Football/fetch_unibet_worldcup_moneylines.py || true
-          xvfb-run -a python scripts/Football/fetch_livescorebet_worldcup_moneylines.py || true
-          xvfb-run -a python scripts/Football/fetch_williamhill_worldcup_moneylines.py || true
-          xvfb-run -a python scripts/Football/fetch_888sport_worldcup_moneylines.py || true
-
-      - name: Build football pages and tools
+      - name: Build football pages and tools only
         run: |
           python scripts/Football/generate_worldcup_page.py
           python scripts/Football/analyze_football_arbitrage.py
@@ -48,10 +30,10 @@ jobs:
           python scripts/build_ev_alerts_all.py
           python scripts/build_arbitrage_all.py
 
-      - name: Commit updated football data
+      - name: Commit generated football pages only
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add football data ev-alerts arbitrage
-          git commit -m "Auto update football odds EV alerts and arbitrage" || echo "No changes to commit"
+          git add football/world-cup football/index.html data ev-alerts arbitrage
+          git commit -m "Build football pages EV alerts and arbitrage" || echo "No changes to commit"
           git push origin main
