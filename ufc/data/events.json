@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T23:04:58Z",
+  "generated_at": "2026-06-05T02:49:27Z",
   "events": [
     {
       "id": "2026-06-07-ufc-fight-night-muhammad-vs-bonfim",
@@ -506,44 +506,6 @@
       },
       "fights": [
         {
-          "id": "401874462",
-          "bout": "Vlasto Čepo vs Gilbert Urbina",
-          "red": {
-            "name": "Vlasto Čepo",
-            "espn_id": "5351430"
-          },
-          "blue": {
-            "name": "Gilbert Urbina",
-            "espn_id": "4375574"
-          },
-          "weight_class": "Middleweight",
-          "order": 1,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600059339"
-          }
-        },
-        {
-          "id": "401873884",
-          "bout": "Ante Delija vs Johnny Walker",
-          "red": {
-            "name": "Ante Delija",
-            "espn_id": "3041315"
-          },
-          "blue": {
-            "name": "Johnny Walker",
-            "espn_id": "3146944"
-          },
-          "weight_class": "Heavyweight",
-          "order": 2,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600059339"
-          }
-        },
-        {
           "id": "401870844",
           "bout": "Jovan Leka vs Max Gimenis",
           "red": {
@@ -555,7 +517,26 @@
             "espn_id": "5316622"
           },
           "weight_class": "Heavyweight",
-          "order": 3,
+          "order": 1,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059339"
+          }
+        },
+        {
+          "id": "401874462",
+          "bout": "Vlasto Čepo vs Gilbert Urbina",
+          "red": {
+            "name": "Vlasto Čepo",
+            "espn_id": "5351430"
+          },
+          "blue": {
+            "name": "Gilbert Urbina",
+            "espn_id": "4375574"
+          },
+          "weight_class": "Middleweight",
+          "order": 2,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -574,7 +555,7 @@
             "espn_id": "4686237"
           },
           "weight_class": "Middleweight",
-          "order": 4,
+          "order": 3,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -591,6 +572,25 @@
           "blue": {
             "name": "Marcin Tybura",
             "espn_id": "3093559"
+          },
+          "weight_class": "Heavyweight",
+          "order": 4,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059339"
+          }
+        },
+        {
+          "id": "401873884",
+          "bout": "Ante Delija vs Johnny Walker",
+          "red": {
+            "name": "Ante Delija",
+            "espn_id": "3041315"
+          },
+          "blue": {
+            "name": "Johnny Walker",
+            "espn_id": "3146944"
           },
           "weight_class": "Heavyweight",
           "order": 5,
@@ -636,5 +636,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-06-04T23:04:58Z"
+  "_debug_saved_at": "2026-06-05T02:49:27Z"
 }
