@@ -1,11 +1,41 @@
 {
-  "generated_at": "2026-06-05T12:00:11.320555+00:00",
-  "total_arbitrage": 1,
+  "generated_at": "2026-06-05T12:33:30.932450+00:00",
+  "total_arbitrage": 2,
   "sports": {
-    "All": 1,
-    "UFC": 1
+    "All": 2,
+    "UFC": 2
   },
   "arbitrage": [
+    {
+      "sport": "UFC",
+      "competition": "UFC",
+      "event": "Alessandro Costa vs Matt Schnell",
+      "market": "Moneyline",
+      "type": "moneyline",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.64,
+      "arb_percent": "",
+      "arb_sum": 0.993585,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Alessandro Costa",
+          "bookmaker": "Betfair",
+          "odds": 1.22,
+          "decimal_odds": 1.22,
+          "implied_probability": 81.97
+        },
+        {
+          "selection": "Matt Schnell",
+          "bookmaker": "LeoVegas",
+          "odds": 5.75,
+          "decimal_odds": 5.75,
+          "implied_probability": 17.39
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
     {
       "sport": "UFC",
       "competition": "UFC",
@@ -14,17 +44,17 @@
       "type": "moneyline",
       "date_label": "",
       "time": "",
-      "profit_margin_percent": 0.17,
+      "profit_margin_percent": 0.44,
       "arb_percent": "",
-      "arb_sum": 0.998257,
+      "arb_sum": 0.995641,
       "bookmaker_count": 2,
       "bookmakers": [
         {
           "selection": "Belal Muhammad",
           "bookmaker": "Betfair",
-          "odds": 1.95,
-          "decimal_odds": 1.95,
-          "implied_probability": 51.28
+          "odds": 1.96,
+          "decimal_odds": 1.96,
+          "implied_probability": 51.02
         },
         {
           "selection": "Gabriel Bonfim",
@@ -44,7 +74,7 @@
   },
   "source_counts": {
     "football": 0,
-    "ufc": 1,
+    "ufc": 2,
     "darts": 0
   }
 }
