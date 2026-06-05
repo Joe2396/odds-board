@@ -1,10 +1,42 @@
 {
-  "generated_at": "2026-06-05T07:01:16.858249+00:00",
-  "total_arbitrage": 0,
+  "generated_at": "2026-06-05T08:02:54.079433+00:00",
+  "total_arbitrage": 1,
   "sports": {
-    "All": 0
+    "All": 1,
+    "UFC": 1
   },
-  "arbitrage": [],
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "competition": "UFC",
+      "event": "Belal Muhammad vs Gabriel Bonfim",
+      "market": "Moneyline",
+      "type": "moneyline",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.17,
+      "arb_percent": "",
+      "arb_sum": 0.998257,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Belal Muhammad",
+          "bookmaker": "Betfair",
+          "odds": 1.95,
+          "decimal_odds": 1.95,
+          "implied_probability": 51.28
+        },
+        {
+          "selection": "Gabriel Bonfim",
+          "bookmaker": "Virgin Bet",
+          "odds": 2.06,
+          "decimal_odds": 2.06,
+          "implied_probability": 48.54
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ],
   "sources": {
     "football": "/home/runner/work/odds-board/odds-board/football/data/arbitrage.json",
     "ufc": "/home/runner/work/odds-board/odds-board/ufc/data/arbitrage.json",
@@ -12,7 +44,7 @@
   },
   "source_counts": {
     "football": 0,
-    "ufc": 0,
+    "ufc": 1,
     "darts": 0
   }
 }
