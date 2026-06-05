@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-05T14:21:03.794363+00:00",
-  "total_arbitrage": 2,
+  "generated_at": "2026-06-05T16:31:05.940682+00:00",
+  "total_arbitrage": 1,
   "sports": {
-    "All": 2,
-    "UFC": 2
+    "All": 1,
+    "UFC": 1
   },
   "arbitrage": [
     {
@@ -14,54 +14,24 @@
       "type": "moneyline",
       "date_label": "",
       "time": "",
-      "profit_margin_percent": 0.64,
+      "profit_margin_percent": 0.52,
       "arb_percent": "",
-      "arb_sum": 0.993585,
+      "arb_sum": 0.994826,
       "bookmaker_count": 2,
       "bookmakers": [
         {
           "selection": "Alessandro Costa",
           "bookmaker": "Betfair",
-          "odds": 1.22,
-          "decimal_odds": 1.22,
-          "implied_probability": 81.97
+          "odds": 1.23,
+          "decimal_odds": 1.23,
+          "implied_probability": 81.3
         },
         {
           "selection": "Matt Schnell",
-          "bookmaker": "LeoVegas",
-          "odds": 5.75,
-          "decimal_odds": 5.75,
-          "implied_probability": 17.39
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "competition": "UFC",
-      "event": "Belal Muhammad vs Gabriel Bonfim",
-      "market": "Moneyline",
-      "type": "moneyline",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 0.44,
-      "arb_percent": "",
-      "arb_sum": 0.995641,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Belal Muhammad",
-          "bookmaker": "Betfair",
-          "odds": 1.96,
-          "decimal_odds": 1.96,
-          "implied_probability": 51.02
-        },
-        {
-          "selection": "Gabriel Bonfim",
-          "bookmaker": "Virgin Bet",
-          "odds": 2.06,
-          "decimal_odds": 2.06,
-          "implied_probability": 48.54
+          "bookmaker": "Betway",
+          "odds": 5.5,
+          "decimal_odds": 5.5,
+          "implied_probability": 18.18
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
@@ -74,7 +44,7 @@
   },
   "source_counts": {
     "football": 0,
-    "ufc": 2,
+    "ufc": 1,
     "darts": 0
   }
 }
