@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-05T22:20:27.813793+00:00",
-  "total_arbitrage": 4,
+  "generated_at": "2026-06-05T23:02:18.892362+00:00",
+  "total_arbitrage": 1,
   "sports": {
-    "All": 4,
-    "UFC": 4
+    "All": 1,
+    "UFC": 1
   },
   "arbitrage": [
     {
@@ -35,96 +35,6 @@
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "competition": "UFC",
-      "event": "Jeisla Chaves vs Yuneisy Duben",
-      "market": "Moneyline",
-      "type": "moneyline",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 0.42,
-      "arb_percent": "",
-      "arb_sum": 0.995782,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Jeisla Chaves",
-          "bookmaker": "Betfair",
-          "odds": 1.33,
-          "decimal_odds": 1.33,
-          "implied_probability": 75.19
-        },
-        {
-          "selection": "Yuneisy Duben",
-          "bookmaker": "LiveScore Bet",
-          "odds": 4.1,
-          "decimal_odds": 4.1,
-          "implied_probability": 24.39
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "competition": "UFC",
-      "event": "Bryce Mitchell vs Santiago Luna",
-      "market": "Moneyline",
-      "type": "moneyline",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 0.2,
-      "arb_percent": "",
-      "arb_sum": 0.998024,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Bryce Mitchell",
-          "bookmaker": "Betfair",
-          "odds": 1.84,
-          "decimal_odds": 1.84,
-          "implied_probability": 54.35
-        },
-        {
-          "selection": "Santiago Luna",
-          "bookmaker": "Betway",
-          "odds": 2.2,
-          "decimal_odds": 2.2,
-          "implied_probability": 45.45
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "competition": "UFC",
-      "event": "Brendan Allen vs Edmen Shahbazyan",
-      "market": "Moneyline",
-      "type": "moneyline",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 0.15,
-      "arb_percent": "",
-      "arb_sum": 0.998477,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Brendan Allen",
-          "bookmaker": "Betfair",
-          "odds": 1.61,
-          "decimal_odds": 1.61,
-          "implied_probability": 62.11
-        },
-        {
-          "selection": "Edmen Shahbazyan",
-          "bookmaker": "LiveScore Bet",
-          "odds": 2.65,
-          "decimal_odds": 2.65,
-          "implied_probability": 37.74
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
     }
   ],
   "sources": {
@@ -134,7 +44,7 @@
   },
   "source_counts": {
     "football": 0,
-    "ufc": 4,
+    "ufc": 1,
     "darts": 0
   }
 }

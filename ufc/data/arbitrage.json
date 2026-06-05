@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
-  "arbitrage_count": 4,
-  "moneyline_arbitrage_count": 4,
+  "arbitrage_count": 1,
+  "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -38,18 +38,18 @@
       "fighters": {
         "Jeisla Chaves": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.33,
-          "implied_probability": 75.19
+          "best_price": 1.34,
+          "implied_probability": 74.63
         },
         "Yuneisy Duben": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 4.1,
-          "implied_probability": 24.39
+          "best_bookmaker": "Matchbook",
+          "best_price": 3.7,
+          "implied_probability": 27.03
         }
       },
-      "arb_sum": 0.995782,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.42
+      "arb_sum": 1.016539,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.65
     },
     {
       "type": "moneyline",
@@ -103,7 +103,7 @@
       "market": "Moneyline",
       "fighters": {
         "Bruno Silva": {
-          "best_bookmaker": "Matchbook",
+          "best_bookmaker": "Unibet (UK)",
           "best_price": 1.85,
           "implied_probability": 54.05
         },
@@ -130,7 +130,7 @@
           "implied_probability": 21.74
         },
         "Marcus McGhee": {
-          "best_bookmaker": "Matchbook",
+          "best_bookmaker": "Betfair",
           "best_price": 1.26,
           "implied_probability": 79.37
         }
@@ -169,19 +169,19 @@
       "market": "Moneyline",
       "fighters": {
         "Iwo Baraniewski": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.29,
-          "implied_probability": 77.52
+          "best_bookmaker": "Betfair",
+          "best_price": 1.28,
+          "implied_probability": 78.12
         },
         "Junior Tafa": {
           "best_bookmaker": "Matchbook",
-          "best_price": 4.2,
-          "implied_probability": 23.81
+          "best_price": 4.3,
+          "implied_probability": 23.26
         }
       },
-      "arb_sum": 1.013289,
+      "arb_sum": 1.013808,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.33
+      "profit_margin_percent": -1.38
     },
     {
       "type": "moneyline",
@@ -191,9 +191,9 @@
       "market": "Moneyline",
       "fighters": {
         "Bryce Mitchell": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.84,
-          "implied_probability": 54.35
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.83,
+          "implied_probability": 54.64
         },
         "Santiago Luna": {
           "best_bookmaker": "Betway",
@@ -201,9 +201,9 @@
           "implied_probability": 45.45
         }
       },
-      "arb_sum": 0.998024,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.2
+      "arb_sum": 1.000994,
+      "is_arbitrage": false,
+      "profit_margin_percent": -0.1
     },
     {
       "type": "moneyline",
@@ -236,8 +236,8 @@
       "fighters": {
         "Brendan Allen": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.61,
-          "implied_probability": 62.11
+          "best_price": 1.59,
+          "implied_probability": 62.89
         },
         "Edmen Shahbazyan": {
           "best_bookmaker": "LiveScore Bet",
@@ -245,9 +245,9 @@
           "implied_probability": 37.74
         }
       },
-      "arb_sum": 0.998477,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.15
+      "arb_sum": 1.006289,
+      "is_arbitrage": false,
+      "profit_margin_percent": -0.63
     },
     {
       "type": "moneyline",
@@ -258,8 +258,8 @@
       "fighters": {
         "Belal Muhammad": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.99,
-          "implied_probability": 50.25
+          "best_price": 1.97,
+          "implied_probability": 50.76
         },
         "Gabriel Bonfim": {
           "best_bookmaker": "Paddy Power",
@@ -267,9 +267,9 @@
           "implied_probability": 50.0
         }
       },
-      "arb_sum": 1.002513,
+      "arb_sum": 1.007614,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.25
+      "profit_margin_percent": -0.76
     },
     {
       "type": "moneyline",
@@ -886,28 +886,6 @@
   "arbitrage_opportunities": [
     {
       "type": "moneyline",
-      "event_id": "f62a5567bcb87d778dd662328d9662fb",
-      "commence_time": "2026-06-06T21:35:00Z",
-      "fight": "Jeisla Chaves vs Yuneisy Duben",
-      "market": "Moneyline",
-      "fighters": {
-        "Jeisla Chaves": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.33,
-          "implied_probability": 75.19
-        },
-        "Yuneisy Duben": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 4.1,
-          "implied_probability": 24.39
-        }
-      },
-      "arb_sum": 0.995782,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.42
-    },
-    {
-      "type": "moneyline",
       "event_id": "064ee15869be68bc9acbf2dec5843842",
       "commence_time": "2026-06-06T23:40:00Z",
       "fight": "Alessandro Costa vs Matt Schnell",
@@ -927,50 +905,6 @@
       "arb_sum": 0.98827,
       "is_arbitrage": true,
       "profit_margin_percent": 1.17
-    },
-    {
-      "type": "moneyline",
-      "event_id": "08679385015009982654f6d225a8c702",
-      "commence_time": "2026-06-07T00:45:00Z",
-      "fight": "Bryce Mitchell vs Santiago Luna",
-      "market": "Moneyline",
-      "fighters": {
-        "Bryce Mitchell": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.84,
-          "implied_probability": 54.35
-        },
-        "Santiago Luna": {
-          "best_bookmaker": "Betway",
-          "best_price": 2.2,
-          "implied_probability": 45.45
-        }
-      },
-      "arb_sum": 0.998024,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.2
-    },
-    {
-      "type": "moneyline",
-      "event_id": "0c94edba010c216c1f1c254aa1976365",
-      "commence_time": "2026-06-07T01:45:00Z",
-      "fight": "Brendan Allen vs Edmen Shahbazyan",
-      "market": "Moneyline",
-      "fighters": {
-        "Brendan Allen": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.61,
-          "implied_probability": 62.11
-        },
-        "Edmen Shahbazyan": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 2.65,
-          "implied_probability": 37.74
-        }
-      },
-      "arb_sum": 0.998477,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.15
     }
   ]
 }
