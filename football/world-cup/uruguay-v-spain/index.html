@@ -13,7 +13,7 @@
       min-height: 100vh;
     }
     a { color: #60a5fa; text-decoration: none; }
-    .page { max-width: 1200px; margin: 0 auto; padding: 34px 24px 70px; }
+    .page { max-width: 1300px; margin: 0 auto; padding: 34px 24px 70px; }
     .nav { color: #91a0b5; margin-bottom: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
     .hero {
       border: 1px solid #223047;
@@ -45,8 +45,9 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
+      margin-bottom: 32px;
     }
-    .price-panel {
+    .price-panel, .prop-market, .book-props {
       border: 1px solid #223047;
       border-radius: 20px;
       padding: 18px;
@@ -60,6 +61,7 @@
       border-bottom: 1px solid #223047;
       color: #c7d2fe;
       font-size: 14px;
+      vertical-align: top;
     }
     th { color: #91a0b5; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
     td strong { color: #22c55e; font-size: 20px; }
@@ -70,6 +72,63 @@
       color: #86efac;
       font-weight: 900;
       font-size: 12px;
+    }
+    .props-wrap {
+      margin-top: 36px;
+    }
+    .section-title {
+      margin-bottom: 16px;
+    }
+    .section-title h2 {
+      font-size: 34px;
+      letter-spacing: -0.035em;
+      margin-bottom: 6px;
+    }
+    .section-title p {
+      color: #91a0b5;
+    }
+    .book-props {
+      margin-bottom: 18px;
+    }
+    .book-props-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .book-props-head h2 {
+      font-size: 24px;
+    }
+    .book-props-head a {
+      border: 1px solid rgba(96,165,250,0.45);
+      background: rgba(96,165,250,0.08);
+      color: #bfdbfe;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 14px;
+    }
+    .prop-market h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #facc15;
+    }
+    .prop-market td strong {
+      color: #86efac;
+      font-size: 18px;
+    }
+    @media (max-width: 700px) {
+      .page { padding: 22px 14px 50px; }
+      .hero { padding: 22px; border-radius: 22px; }
+      .props-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -226,6 +285,15 @@
         </section>
         
     </div>
+
+    
+        <section class="props-wrap">
+          <div class="section-title">
+            <h2>Props</h2>
+            <p>No props available for this match yet.</p>
+          </div>
+        </section>
+        
   </main>
 </body>
 </html>

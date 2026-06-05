@@ -13,6 +13,8 @@ LIVESCOREBET_PATH = ROOT / "football" / "data" / "livescorebet_worldcup_moneylin
 WILLIAMHILL_PATH = ROOT / "football" / "data" / "williamhill_worldcup_moneylines.json"
 EIGHTEIGHTEIGHT_PATH = ROOT / "football" / "data" / "888sport_worldcup_moneylines.json"
 
+PADDY_PROPS_PATH = ROOT / "football" / "data" / "paddypower_worldcup_props.json"
+
 OUT_DIR = ROOT / "football" / "world-cup"
 OUT_PATH = OUT_DIR / "index.html"
 HUB_PATH = ROOT / "football" / "index.html"
@@ -144,6 +146,30 @@ def load_book(bookmaker, path):
     return rows, data.get("generated_at") or ""
 
 
+def load_paddypower_props():
+    data = load_json(PADDY_PROPS_PATH)
+    props_by_key = {}
+
+    for m in data.get("matches") or []:
+        home = display_team(m.get("home_team"))
+        away = display_team(m.get("away_team"))
+
+        if not home or not away:
+            continue
+
+        props_by_key[fixture_key(home, away)] = {
+            "bookmaker": data.get("bookmaker") or "PaddyPower",
+            "match": m.get("match") or f"{home} v {away}",
+            "home_team": home,
+            "away_team": away,
+            "source_url": m.get("source_url") or "",
+            "market_count": m.get("market_count") or 0,
+            "markets": m.get("markets") or [],
+        }
+
+    return props_by_key, data.get("generated_at") or ""
+
+
 def add_book_rows(fixtures, strict_index, loose_index, rows, bookmaker):
     for row in rows:
         target_key = None
@@ -178,6 +204,7 @@ def add_book_rows(fixtures, strict_index, loose_index, rows, bookmaker):
                         "source_url": row["source_url"],
                     }
                 },
+                "props": {},
             }
 
             strict_index[key] = key
@@ -193,9 +220,10 @@ def load_all_matches():
     williamhill_rows, williamhill_generated = load_book("WilliamHill", WILLIAMHILL_PATH)
     eighteight_rows, eighteight_generated = load_book("888Sport", EIGHTEIGHTEIGHT_PATH)
 
+    paddy_props, paddy_props_generated = load_paddypower_props()
+
     fixtures = {}
 
-    # PaddyPower is the master fixture list.
     for row in paddy_rows:
         key = row["strict_key"]
 
@@ -215,6 +243,7 @@ def load_all_matches():
                     "source_url": row["source_url"],
                 }
             },
+            "props": {},
         }
 
     strict_index = {f["key"]: key for key, f in fixtures.items()}
@@ -227,6 +256,19 @@ def load_all_matches():
     add_book_rows(fixtures, strict_index, loose_index, williamhill_rows, "WilliamHill")
     add_book_rows(fixtures, strict_index, loose_index, eighteight_rows, "888Sport")
 
+    for props_key, props_data in paddy_props.items():
+        target_key = None
+        loose_key = loose_fixture_key(props_data.get("home_team"), props_data.get("away_team"))
+
+        if props_key in strict_index:
+            target_key = strict_index[props_key]
+        elif loose_key in loose_index:
+            target_key = loose_index[loose_key]
+
+        if target_key and target_key in fixtures:
+            fixtures[target_key].setdefault("props", {})
+            fixtures[target_key]["props"]["PaddyPower"] = props_data
+
     fixtures_list = list(fixtures.values())
 
     fixtures_list.sort(
@@ -237,7 +279,16 @@ def load_all_matches():
         )
     )
 
-    generated = eighteight_generated or williamhill_generated or livescore_generated or unibet_generated or betvictor_generated or boyle_generated or paddy_generated
+    generated = (
+        paddy_props_generated
+        or eighteight_generated
+        or williamhill_generated
+        or livescore_generated
+        or unibet_generated
+        or betvictor_generated
+        or boyle_generated
+        or paddy_generated
+    )
 
     bookmaker_names = set()
     for f in fixtures_list:
@@ -366,13 +417,18 @@ def render_worldcup_page(fixtures, bookmaker_count, generated_at):
             best_away = best_price(fixture, "away")
 
             books_count = len(fixture.get("bookmakers", {}))
+            props_count = sum(len((p.get("markets") or [])) for p in (fixture.get("props") or {}).values())
+
+            props_badge = ""
+            if props_count:
+                props_badge = f'<span class="props-pill">{props_count} prop markets</span>'
 
             cards += f"""
             <article class="match-card">
               <div class="match-top">
                 <div>
                   <h3>{esc(home)} <span>v</span> {esc(away)}</h3>
-                  <p>{esc(fixture.get("time"))} · {books_count} bookmaker{"s" if books_count != 1 else ""}</p>
+                  <p>{esc(fixture.get("time"))} · {books_count} bookmaker{"s" if books_count != 1 else ""} {props_badge}</p>
                 </div>
                 <a class="market-badge" href="{BASE}/football/world-cup/{slug}/">View books →</a>
               </div>
@@ -574,6 +630,13 @@ def render_worldcup_page(fixtures, bookmaker_count, generated_at):
       font-size: 13px;
     }}
 
+    .props-pill {{
+      display: inline-flex;
+      margin-left: 8px;
+      color: #86efac;
+      font-weight: 900;
+    }}
+
     .market-badge {{
       white-space: nowrap;
       border: 1px solid rgba(250,204,21,0.4);
@@ -651,7 +714,7 @@ def render_worldcup_page(fixtures, bookmaker_count, generated_at):
       <h1>FIFA World Cup Odds</h1>
       <p class="subtitle">
         Best available match odds across tracked bookmakers.
-        Click any fixture to compare prices by bookmaker.
+        Click any fixture to compare prices by bookmaker and view available props.
       </p>
 
       <div class="stats">
@@ -664,8 +727,8 @@ def render_worldcup_page(fixtures, bookmaker_count, generated_at):
           <span>Bookmakers</span>
         </div>
         <div class="stat">
-          <strong>Best H/D/A</strong>
-          <span>Moneyline markets</span>
+          <strong>Props</strong>
+          <span>PaddyPower props on selected matches</span>
         </div>
       </div>
 
@@ -681,6 +744,98 @@ def render_worldcup_page(fixtures, bookmaker_count, generated_at):
 </body>
 </html>
 """
+
+
+def render_props_section(fixture):
+    props = fixture.get("props") or {}
+
+    if not props:
+        return """
+        <section class="props-wrap">
+          <div class="section-title">
+            <h2>Props</h2>
+            <p>No props available for this match yet.</p>
+          </div>
+        </section>
+        """
+
+    html = ""
+
+    for bookmaker, prop_data in sorted(props.items()):
+        markets = prop_data.get("markets") or []
+
+        if not markets:
+            continue
+
+        market_cards = ""
+
+        for market in markets:
+            selections = market.get("selections") or []
+
+            rows = ""
+            for sel in selections:
+                rows += f"""
+                <tr>
+                  <td>{esc(sel.get("selection"))}</td>
+                  <td><strong>{esc(sel.get("odds"))}</strong></td>
+                </tr>
+                """
+
+            if not rows:
+                rows = """
+                <tr>
+                  <td colspan="2">No selections available</td>
+                </tr>
+                """
+
+            market_cards += f"""
+            <section class="prop-market">
+              <h3>{esc(market.get("market"))}</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Selection</th>
+                    <th>Odds</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows}
+                </tbody>
+              </table>
+            </section>
+            """
+
+        html += f"""
+        <section class="book-props">
+          <div class="book-props-head">
+            <h2>{esc(bookmaker)} Props</h2>
+            <a href="{esc(prop_data.get("source_url"))}" target="_blank" rel="noopener">Open bookmaker →</a>
+          </div>
+          <div class="props-grid">
+            {market_cards}
+          </div>
+        </section>
+        """
+
+    if not html:
+        html = """
+        <section class="props-wrap">
+          <div class="section-title">
+            <h2>Props</h2>
+            <p>No props available for this match yet.</p>
+          </div>
+        </section>
+        """
+
+    return f"""
+    <section class="props-wrap">
+      <div class="section-title">
+        <h2>Match Props</h2>
+        <p>Available prop markets from tracked bookmakers.</p>
+      </div>
+      {html}
+    </section>
+    """
 
 
 def render_match_page(fixture):
@@ -743,7 +898,7 @@ def render_match_page(fixture):
       min-height: 100vh;
     }}
     a {{ color: #60a5fa; text-decoration: none; }}
-    .page {{ max-width: 1200px; margin: 0 auto; padding: 34px 24px 70px; }}
+    .page {{ max-width: 1300px; margin: 0 auto; padding: 34px 24px 70px; }}
     .nav {{ color: #91a0b5; margin-bottom: 28px; display: flex; gap: 12px; flex-wrap: wrap; }}
     .hero {{
       border: 1px solid #223047;
@@ -775,8 +930,9 @@ def render_match_page(fixture):
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
+      margin-bottom: 32px;
     }}
-    .price-panel {{
+    .price-panel, .prop-market, .book-props {{
       border: 1px solid #223047;
       border-radius: 20px;
       padding: 18px;
@@ -790,6 +946,7 @@ def render_match_page(fixture):
       border-bottom: 1px solid #223047;
       color: #c7d2fe;
       font-size: 14px;
+      vertical-align: top;
     }}
     th {{ color: #91a0b5; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }}
     td strong {{ color: #22c55e; font-size: 20px; }}
@@ -800,6 +957,63 @@ def render_match_page(fixture):
       color: #86efac;
       font-weight: 900;
       font-size: 12px;
+    }}
+    .props-wrap {{
+      margin-top: 36px;
+    }}
+    .section-title {{
+      margin-bottom: 16px;
+    }}
+    .section-title h2 {{
+      font-size: 34px;
+      letter-spacing: -0.035em;
+      margin-bottom: 6px;
+    }}
+    .section-title p {{
+      color: #91a0b5;
+    }}
+    .book-props {{
+      margin-bottom: 18px;
+    }}
+    .book-props-head {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }}
+    .book-props-head h2 {{
+      font-size: 24px;
+    }}
+    .book-props-head a {{
+      border: 1px solid rgba(96,165,250,0.45);
+      background: rgba(96,165,250,0.08);
+      color: #bfdbfe;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }}
+    .props-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 14px;
+    }}
+    .prop-market h3 {{
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #facc15;
+    }}
+    .prop-market td strong {{
+      color: #86efac;
+      font-size: 18px;
+    }}
+    @media (max-width: 700px) {{
+      .page {{ padding: 22px 14px 50px; }}
+      .hero {{ padding: 22px; border-radius: 22px; }}
+      .props-grid {{ grid-template-columns: 1fr; }}
     }}
   </style>
 </head>
@@ -824,6 +1038,8 @@ def render_match_page(fixture):
       {render_table("Draw", draw_rows)}
       {render_table(away, away_rows)}
     </div>
+
+    {render_props_section(fixture)}
   </main>
 </body>
 </html>
@@ -894,16 +1110,17 @@ def render_football_hub(fixtures, bookmaker_count, generated_at):
     <section class="hero">
       <div class="eyebrow">⚽ Football</div>
       <h1>Football Hub</h1>
-      <p>Football odds, fixtures and betting tools. Starting with FIFA World Cup moneylines.</p>
+      <p>Football odds, fixtures and betting tools. Starting with FIFA World Cup moneylines and selected props.</p>
     </section>
 
     <a class="card" href="{BASE}/football/world-cup/">
       <h2>FIFA World Cup</h2>
-      <p>Best available match odds across tracked bookmakers.</p>
+      <p>Best available match odds across tracked bookmakers, with props on selected matches.</p>
       <div class="meta">
         <span class="pill">{len(fixtures)} fixtures</span>
         <span class="pill">{bookmaker_count} bookmakers</span>
         <span class="pill">Best H/D/A odds</span>
+        <span class="pill">Props</span>
         <span class="pill">Updated {esc(generated_at)}</span>
       </div>
     </a>
@@ -927,11 +1144,14 @@ def main():
         match_dir.mkdir(parents=True, exist_ok=True)
         (match_dir / "index.html").write_text(render_match_page(fixture), encoding="utf-8")
 
+    props_matches = sum(1 for f in fixtures if f.get("props"))
+
     print(f"Wrote World Cup page: {OUT_PATH}")
     print(f"Wrote Football hub: {HUB_PATH}")
     print(f"Wrote match pages: {len(fixtures)}")
     print(f"Fixtures: {len(fixtures)}")
     print(f"Bookmakers: {bookmaker_count}")
+    print(f"Matches with props: {props_matches}")
 
 
 if __name__ == "__main__":
