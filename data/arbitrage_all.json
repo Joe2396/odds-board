@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-05T19:46:41.230611+00:00",
-  "total_arbitrage": 3,
+  "generated_at": "2026-06-05T20:23:49.873236+00:00",
+  "total_arbitrage": 2,
   "sports": {
-    "All": 3,
-    "UFC": 3
+    "All": 2,
+    "UFC": 2
   },
   "arbitrage": [
     {
@@ -65,36 +65,6 @@
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "competition": "UFC",
-      "event": "Brendan Allen vs Edmen Shahbazyan",
-      "market": "Moneyline",
-      "type": "moneyline",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 0.15,
-      "arb_percent": "",
-      "arb_sum": 0.998477,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Brendan Allen",
-          "bookmaker": "Betfair",
-          "odds": 1.61,
-          "decimal_odds": 1.61,
-          "implied_probability": 62.11
-        },
-        {
-          "selection": "Edmen Shahbazyan",
-          "bookmaker": "LiveScore Bet",
-          "odds": 2.65,
-          "decimal_odds": 2.65,
-          "implied_probability": 37.74
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
     }
   ],
   "sources": {
@@ -104,7 +74,7 @@
   },
   "source_counts": {
     "football": 0,
-    "ufc": 3,
+    "ufc": 2,
     "darts": 0
   }
 }

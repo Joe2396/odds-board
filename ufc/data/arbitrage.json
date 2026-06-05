@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
-  "arbitrage_count": 3,
-  "moneyline_arbitrage_count": 3,
+  "arbitrage_count": 2,
+  "moneyline_arbitrage_count": 2,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -60,8 +60,8 @@
       "fighters": {
         "Brendan Allen": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.61,
-          "implied_probability": 62.11
+          "best_price": 1.58,
+          "implied_probability": 63.29
         },
         "Edmen Shahbazyan": {
           "best_bookmaker": "LiveScore Bet",
@@ -69,9 +69,9 @@
           "implied_probability": 37.74
         }
       },
-      "arb_sum": 0.998477,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.15
+      "arb_sum": 1.01027,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.03
     },
     {
       "type": "moneyline",
@@ -81,9 +81,9 @@
       "market": "Moneyline",
       "fighters": {
         "Bruno Silva": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.85,
-          "implied_probability": 54.05
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.86,
+          "implied_probability": 53.76
         },
         "Edgar Chairez": {
           "best_bookmaker": "Betfair",
@@ -91,9 +91,9 @@
           "implied_probability": 47.17
         }
       },
-      "arb_sum": 1.012239,
+      "arb_sum": 1.009333,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.22
+      "profit_margin_percent": -0.93
     },
     {
       "type": "moneyline",
@@ -174,14 +174,14 @@
           "implied_probability": 78.12
         },
         "Junior Tafa": {
-          "best_bookmaker": "888sport",
-          "best_price": 4.2,
-          "implied_probability": 23.81
+          "best_bookmaker": "Betfair",
+          "best_price": 4.1,
+          "implied_probability": 24.39
         }
       },
-      "arb_sum": 1.019345,
+      "arb_sum": 1.025152,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.93
+      "profit_margin_percent": -2.52
     },
     {
       "type": "moneyline",
@@ -241,13 +241,13 @@
         },
         "Marcus McGhee": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.25,
-          "implied_probability": 80.0
+          "best_price": 1.26,
+          "implied_probability": 79.37
         }
       },
-      "arb_sum": 1.017391,
+      "arb_sum": 1.011042,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.74
+      "profit_margin_percent": -1.1
     },
     {
       "type": "moneyline",
@@ -905,28 +905,6 @@
       "arb_sum": 0.997562,
       "is_arbitrage": true,
       "profit_margin_percent": 0.24
-    },
-    {
-      "type": "moneyline",
-      "event_id": "0c94edba010c216c1f1c254aa1976365",
-      "commence_time": "2026-06-06T21:00:00Z",
-      "fight": "Brendan Allen vs Edmen Shahbazyan",
-      "market": "Moneyline",
-      "fighters": {
-        "Brendan Allen": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.61,
-          "implied_probability": 62.11
-        },
-        "Edmen Shahbazyan": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 2.65,
-          "implied_probability": 37.74
-        }
-      },
-      "arb_sum": 0.998477,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.15
     },
     {
       "type": "moneyline",
