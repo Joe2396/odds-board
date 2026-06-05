@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T22:21:16.017440+00:00",
+  "generated_at": "2026-06-05T02:03:14.027307+00:00",
   "sport": "Football",
   "competition": "FIFA World Cup",
   "bookmaker_summary": {
@@ -42,98 +42,9 @@
   "fixture_count": 72,
   "compared_fixtures": 72,
   "skipped_fixtures": 0,
-  "arbitrage_count": 1,
-  "near_miss_count": 71,
-  "arbitrage": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "moneyline_1x2",
-      "match": "Morocco v Haiti",
-      "home_team": "Morocco",
-      "away_team": "Haiti",
-      "date_label": "24 Jun 2026",
-      "time": "22:00",
-      "market": "Match Odds",
-      "bookmaker_count": 2,
-      "arb_sum": 0.989602,
-      "arb_percent": 98.96,
-      "profit_margin_percent": 1.051,
-      "selections": {
-        "home": {
-          "bookmaker": "Unibet",
-          "odds": "17/50",
-          "decimal_odds": 1.34,
-          "implied_probability": 0.746269,
-          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-        },
-        "draw": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "21/4",
-          "decimal_odds": 6.25,
-          "implied_probability": 0.16,
-          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-        },
-        "away": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "11/1",
-          "decimal_odds": 12.0,
-          "implied_probability": 0.083333,
-          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "17/50",
-            "decimal_odds": 1.34,
-            "implied_probability": 0.746269,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "6/25",
-            "decimal_odds": 1.24,
-            "implied_probability": 0.806452,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "21/4",
-            "decimal_odds": 6.25,
-            "implied_probability": 0.16,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "19/5",
-            "decimal_odds": 4.8,
-            "implied_probability": 0.208333,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "7/1",
-            "decimal_odds": 8.0,
-            "implied_probability": 0.125,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          }
-        ]
-      }
-    }
-  ],
+  "arbitrage_count": 0,
+  "near_miss_count": 72,
+  "arbitrage": [],
   "near_misses": [
     {
       "sport": "Football",
@@ -1371,6 +1282,94 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "moneyline_1x2",
+      "match": "Morocco v Haiti",
+      "home_team": "Morocco",
+      "away_team": "Haiti",
+      "date_label": "24 Jun 2026",
+      "time": "22:00",
+      "market": "Match Odds",
+      "bookmaker_count": 2,
+      "arb_sum": 1.051532,
+      "arb_percent": 105.153,
+      "profit_margin_percent": -4.901,
+      "selections": {
+        "home": {
+          "bookmaker": "Unibet",
+          "odds": "17/50",
+          "decimal_odds": 1.34,
+          "implied_probability": 0.746269,
+          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+        },
+        "draw": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "4/1",
+          "decimal_odds": 5.0,
+          "implied_probability": 0.2,
+          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+        },
+        "away": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "17/2",
+          "decimal_odds": 9.5,
+          "implied_probability": 0.105263,
+          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "17/50",
+            "decimal_odds": 1.34,
+            "implied_probability": 0.746269,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "33/100",
+            "decimal_odds": 1.33,
+            "implied_probability": 0.75188,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/1",
+            "decimal_odds": 5.0,
+            "implied_probability": 0.2,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "19/5",
+            "decimal_odds": 4.8,
+            "implied_probability": 0.208333,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "17/2",
+            "decimal_odds": 9.5,
+            "implied_probability": 0.105263,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "7/1",
+            "decimal_odds": 8.0,
+            "implied_probability": 0.125,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "moneyline_1x2",
       "match": "Bosnia v Qatar",
       "home_team": "Bosnia",
       "away_team": "Qatar",
@@ -1626,6 +1625,94 @@
             "odds": "7/2",
             "decimal_odds": 4.5,
             "implied_probability": 0.222222,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "moneyline_1x2",
+      "match": "Ecuador v Curacao",
+      "home_team": "Ecuador",
+      "away_team": "Curacao",
+      "date_label": "21 Jun 2026",
+      "time": "00:00",
+      "market": "Match Odds",
+      "bookmaker_count": 2,
+      "arb_sum": 1.057767,
+      "arb_percent": 105.777,
+      "profit_margin_percent": -5.461,
+      "selections": {
+        "home": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "11/50",
+          "decimal_odds": 1.22,
+          "implied_probability": 0.819672,
+          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+        },
+        "draw": {
+          "bookmaker": "Unibet",
+          "odds": "5/1",
+          "decimal_odds": 6.0,
+          "implied_probability": 0.166667,
+          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+        },
+        "away": {
+          "bookmaker": "Unibet",
+          "odds": "13/1",
+          "decimal_odds": 14.0,
+          "implied_probability": 0.071429,
+          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "11/50",
+            "decimal_odds": 1.22,
+            "implied_probability": 0.819672,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "19/100",
+            "decimal_odds": 1.19,
+            "implied_probability": 0.840336,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "5/1",
+            "decimal_odds": 6.0,
+            "implied_probability": 0.166667,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "19/4",
+            "decimal_odds": 5.75,
+            "implied_probability": 0.173913,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "13/1",
+            "decimal_odds": 14.0,
+            "implied_probability": 0.071429,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "19/2",
+            "decimal_odds": 10.5,
+            "implied_probability": 0.095238,
             "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
           }
         ]
@@ -2155,182 +2242,6 @@
             "decimal_odds": 3.9,
             "implied_probability": 0.25641,
             "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "moneyline_1x2",
-      "match": "Qatar v Switzerland",
-      "home_team": "Qatar",
-      "away_team": "Switzerland",
-      "date_label": "13 Jun 2026",
-      "time": "19:00",
-      "market": "Match Odds",
-      "bookmaker_count": 2,
-      "arb_sum": 1.063008,
-      "arb_percent": 106.301,
-      "profit_margin_percent": -5.927,
-      "selections": {
-        "home": {
-          "bookmaker": "Unibet",
-          "odds": "11/1",
-          "decimal_odds": 12.0,
-          "implied_probability": 0.083333,
-          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-        },
-        "draw": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "5/1",
-          "decimal_odds": 6.0,
-          "implied_probability": 0.166667,
-          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-        },
-        "away": {
-          "bookmaker": "Unibet",
-          "odds": "23/100",
-          "decimal_odds": 1.23,
-          "implied_probability": 0.813008,
-          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "21/2",
-            "decimal_odds": 11.5,
-            "implied_probability": 0.086957,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "5/1",
-            "decimal_odds": 6.0,
-            "implied_probability": 0.166667,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "19/4",
-            "decimal_odds": 5.75,
-            "implied_probability": 0.173913,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "23/100",
-            "decimal_odds": 1.23,
-            "implied_probability": 0.813008,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "1/5",
-            "decimal_odds": 1.2,
-            "implied_probability": 0.833333,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "moneyline_1x2",
-      "match": "USA v Australia",
-      "home_team": "USA",
-      "away_team": "Australia",
-      "date_label": "19 Jun 2026",
-      "time": "19:00",
-      "market": "Match Odds",
-      "bookmaker_count": 2,
-      "arb_sum": 1.063921,
-      "arb_percent": 106.392,
-      "profit_margin_percent": -6.008,
-      "selections": {
-        "home": {
-          "bookmaker": "Unibet",
-          "odds": "3/4",
-          "decimal_odds": 1.75,
-          "implied_probability": 0.571429,
-          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-        },
-        "draw": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "27/10",
-          "decimal_odds": 3.7,
-          "implied_probability": 0.27027,
-          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-        },
-        "away": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "7/2",
-          "decimal_odds": 4.5,
-          "implied_probability": 0.222222,
-          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "3/4",
-            "decimal_odds": 1.75,
-            "implied_probability": 0.571429,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "13/20",
-            "decimal_odds": 1.65,
-            "implied_probability": 0.606061,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "27/10",
-            "decimal_odds": 3.7,
-            "implied_probability": 0.27027,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "13/5",
-            "decimal_odds": 3.6,
-            "implied_probability": 0.277778,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "7/2",
-            "decimal_odds": 4.5,
-            "implied_probability": 0.222222,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "17/5",
-            "decimal_odds": 4.4,
-            "implied_probability": 0.227273,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           }
         ]
       }
