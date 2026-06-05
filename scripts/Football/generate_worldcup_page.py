@@ -765,7 +765,6 @@ def render_props_section(fixture):
             "player",
             "goalscorer",
             "goal scorer",
-            "to score",
             "shots",
             "shot",
             "assist",
