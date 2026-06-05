@@ -759,6 +759,57 @@ def render_props_section(fixture):
         </section>
         """
 
+    def is_player_market(market_name):
+        name = str(market_name or "").lower()
+        player_keywords = [
+            "player",
+            "goalscorer",
+            "goal scorer",
+            "to score",
+            "shots",
+            "shot",
+            "assist",
+            "card",
+            "foul",
+        ]
+        return any(word in name for word in player_keywords)
+
+    def render_market_card(market):
+        selections = market.get("selections") or []
+
+        rows = ""
+        for sel in selections:
+            rows += f"""
+            <tr>
+              <td>{esc(sel.get("selection"))}</td>
+              <td><strong>{esc(sel.get("odds"))}</strong></td>
+            </tr>
+            """
+
+        if not rows:
+            rows = """
+            <tr>
+              <td colspan="2">No selections available</td>
+            </tr>
+            """
+
+        return f"""
+        <section class="prop-market">
+          <h3>{esc(market.get("market"))}</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Selection</th>
+                <th>Odds</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows}
+            </tbody>
+          </table>
+        </section>
+        """
+
     html = ""
 
     for bookmaker, prop_data in sorted(props.items()):
@@ -767,58 +818,47 @@ def render_props_section(fixture):
         if not markets:
             continue
 
-        market_cards = ""
+        match_market_cards = ""
+        player_market_cards = ""
 
         for market in markets:
-            selections = market.get("selections") or []
+            if is_player_market(market.get("market")):
+                player_market_cards += render_market_card(market)
+            else:
+                match_market_cards += render_market_card(market)
 
-            rows = ""
-            for sel in selections:
-                rows += f"""
-                <tr>
-                  <td>{esc(sel.get("selection"))}</td>
-                  <td><strong>{esc(sel.get("odds"))}</strong></td>
-                </tr>
-                """
+        bookmaker_link = f"""
+        <a href="{esc(prop_data.get("source_url"))}" target="_blank" rel="noopener">Open bookmaker →</a>
+        """
 
-            if not rows:
-                rows = """
-                <tr>
-                  <td colspan="2">No selections available</td>
-                </tr>
-                """
-
-            market_cards += f"""
-            <section class="prop-market">
-              <h3>{esc(market.get("market"))}</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Selection</th>
-                    <th>Odds</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows}
-                </tbody>
-              </table>
+        if match_market_cards:
+            html += f"""
+            <section class="book-props">
+              <div class="book-props-head">
+                <h2>{esc(bookmaker)} Match Props</h2>
+                {bookmaker_link}
+              </div>
+              <div class="props-grid">
+                {match_market_cards}
+              </div>
             </section>
             """
 
-        html += f"""
-        <section class="book-props">
-          <div class="book-props-head">
-            <h2>{esc(bookmaker)} Props</h2>
-            <a href="{esc(prop_data.get("source_url"))}" target="_blank" rel="noopener">Open bookmaker →</a>
-          </div>
-          <div class="props-grid">
-            {market_cards}
-          </div>
-        </section>
-        """
+        if player_market_cards:
+            html += f"""
+            <section class="book-props">
+              <div class="book-props-head">
+                <h2>{esc(bookmaker)} Player Props</h2>
+                {bookmaker_link}
+              </div>
+              <div class="props-grid">
+                {player_market_cards}
+              </div>
+            </section>
+            """
 
     if not html:
-        html = """
+        return """
         <section class="props-wrap">
           <div class="section-title">
             <h2>Props</h2>
@@ -830,13 +870,12 @@ def render_props_section(fixture):
     return f"""
     <section class="props-wrap">
       <div class="section-title">
-        <h2>Match Props</h2>
-        <p>Available prop markets from tracked bookmakers.</p>
+        <h2>Props</h2>
+        <p>Available match and player prop markets from tracked bookmakers.</p>
       </div>
       {html}
     </section>
     """
-
 
 def render_match_page(fixture):
     home = fixture["home_team"]
