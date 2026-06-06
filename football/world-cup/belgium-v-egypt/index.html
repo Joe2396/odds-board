@@ -125,6 +125,40 @@
       color: #86efac;
       font-size: 18px;
     }
+    .compare-note {
+      color: #c7d2fe;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .props-jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 18px;
+    }
+    .props-jump-nav a {
+      border: 1px solid rgba(96,165,250,0.45);
+      background: rgba(96,165,250,0.08);
+      color: #bfdbfe;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .sub-section-title {
+      margin-top: 34px;
+    }
+    .props-grid-wide {
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      margin-bottom: 14px;
+    }
+    .prop-market-wide {
+      grid-column: span 1;
+    }
+    .prop-market-wide td strong {
+      font-size: 16px;
+    }
     @media (max-width: 700px) {
       .page { padding: 22px 14px 50px; }
       .hero { padding: 22px; border-radius: 22px; }
@@ -287,16 +321,72 @@
     </div>
 
     
-    <section class="props-wrap">
+    <section class="props-wrap" id="props">
       <div class="section-title">
         <h2>Props</h2>
         <p>Best prices and prop markets from tracked bookmakers.</p>
       </div>
+
+      <nav class="props-jump-nav">
+        <a href="#best-prop-prices">Best Prop Prices</a>
+        <a href="#match-props">Match Props</a>
+        <a href="#player-props">Player Props</a>
+      </nav>
+
       
-        <section class="book-props">
+        <section class="book-props" id="best-prop-prices">
           <div class="book-props-head">
             <h2>Best Prop Prices</h2>
             <span class="compare-note">Compared across tracked bookmakers</span>
+          </div>
+          <div class="props-grid props-grid-wide">
+            
+            <section class="prop-market prop-market-wide">
+              <h3>Total Goals Over / Under — Over / Under</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Line</th>
+                    <th>Best Over</th>
+                    <th>Best Under</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><strong>0.5</strong></td>
+                  <td>BoyleSports <strong>1/16</strong></td>
+                  <td>PaddyPower <strong>9/1</strong></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>1.5</strong></td>
+                  <td>BoyleSports <strong>3/10</strong></td>
+                  <td>PaddyPower <strong>13/5</strong></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>2.5</strong></td>
+                  <td>BoyleSports <strong>20/21</strong></td>
+                  <td>PaddyPower <strong>4/5</strong></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>3.5</strong></td>
+                  <td>BoyleSports <strong>5/2</strong></td>
+                  <td>BoyleSports <strong>2/7</strong></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>4.5</strong></td>
+                  <td>BoyleSports <strong>6/1</strong></td>
+                  <td>BoyleSports <strong>1/11</strong></td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
           </div>
           <div class="props-grid">
             
@@ -588,290 +678,16 @@
               </table>
             </section>
             
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Over 0.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>1/16</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>1/50</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Over 1.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>3/10</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>1/4</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Over 2.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>20/21</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>10/11</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Over 3.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>5/2</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>23/10</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Over 4.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>6/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>6/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Under 0.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>9/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>8/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Under 1.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>13/5</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>11/5</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Under 2.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>4/5</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>3/4</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Under 3.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>2/7</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>2/7</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Total Goals Over / Under — Under 4.5</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>1/11</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>1/14</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
           </div>
         </section>
         
       
+        <section id="match-props">
+          <div class="section-title sub-section-title">
+            <h2>Match Props</h2>
+            <p>Team, match result, goals, BTTS and score markets.</p>
+          </div>
+          
             <section class="book-props">
               <div class="book-props-head">
                 <h2>BoyleSports Match Props</h2>
@@ -1167,6 +983,36 @@
         </section>
         
         <section class="prop-market">
+          <h3>Both Teams To Score And Match Result</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Selection</th>
+                <th>Odds</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+              <td>Belgium</td>
+              <td><strong>14/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Both Teams To Score - Outcome Draw</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Egypt</td>
+              <td><strong>17/2</strong></td>
+            </tr>
+            
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
           <h3>Double Chance</h3>
           <table>
             <thead>
@@ -1355,48 +1201,6 @@
             <tr>
               <td>Egypt/Over 5.5</td>
               <td><strong>40/1</strong></td>
-            </tr>
-            
-            </tbody>
-          </table>
-        </section>
-        
-              </div>
-            </section>
-            
-            <section class="book-props">
-              <div class="book-props-head">
-                <h2>BoyleSports Player Props</h2>
-                
-        <a href="https://www.boylesports.com/sports/football/event/international-world-cup/belgium-v-egypt" target="_blank" rel="noopener">Open bookmaker →</a>
-        
-              </div>
-              <div class="props-grid">
-                
-        <section class="prop-market">
-          <h3>Both Teams To Score And Match Result</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-            <tr>
-              <td>Belgium</td>
-              <td><strong>14/5</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Both Teams To Score - Outcome Draw</td>
-              <td><strong>4/1</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Egypt</td>
-              <td><strong>17/2</strong></td>
             </tr>
             
             </tbody>
@@ -1625,83 +1429,6 @@
           </table>
         </section>
         
-              </div>
-            </section>
-            
-            <section class="book-props">
-              <div class="book-props-head">
-                <h2>PaddyPower Player Props</h2>
-                
-        <a href="https://www.paddypower.com/football/fifa-world-cup/belgium-v-egypt-35035294" target="_blank" rel="noopener">Open bookmaker →</a>
-        
-              </div>
-              <div class="props-grid">
-                
-        <section class="prop-market">
-          <h3>Player To Score</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-            <tr>
-              <td>Romelu Lukaku First Goalscorer</td>
-              <td><strong>4/1</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Romelu Lukaku Anytime Goalscorer</td>
-              <td><strong>13/10</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Matias Fernandez-Pardo First Goalscorer</td>
-              <td><strong>9/2</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Matias Fernandez-Pardo Anytime Goalscorer</td>
-              <td><strong>13/8</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Charles De Ketelaere First Goalscorer</td>
-              <td><strong>11/2</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Charles De Ketelaere Anytime Goalscorer</td>
-              <td><strong>2/1</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Kevin De Bruyne First Goalscorer</td>
-              <td><strong>6/1</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Kevin De Bruyne Anytime Goalscorer</td>
-              <td><strong>11/5</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Dodi Lukebakio First Goalscorer</td>
-              <td><strong>13/2</strong></td>
-            </tr>
-            
-            <tr>
-              <td>Dodi Lukebakio Anytime Goalscorer</td>
-              <td><strong>12/5</strong></td>
-            </tr>
-            
-            </tbody>
-          </table>
-        </section>
-        
         <section class="prop-market">
           <h3>Both Teams To Score</h3>
           <table>
@@ -1800,6 +1527,94 @@
               </div>
             </section>
             
+        </section>
+        
+      
+        <section id="player-props">
+          <div class="section-title sub-section-title">
+            <h2>Player Props</h2>
+            <p>Goalscorer markets only for now. Shots, assists and cards can be added as bookmakers release them.</p>
+          </div>
+          
+            <section class="book-props">
+              <div class="book-props-head">
+                <h2>PaddyPower Player Props</h2>
+                
+        <a href="https://www.paddypower.com/football/fifa-world-cup/belgium-v-egypt-35035294" target="_blank" rel="noopener">Open bookmaker →</a>
+        
+              </div>
+              <div class="props-grid">
+                
+        <section class="prop-market">
+          <h3>Player To Score</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Selection</th>
+                <th>Odds</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+              <td>Romelu Lukaku First Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Romelu Lukaku Anytime Goalscorer</td>
+              <td><strong>13/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Matias Fernandez-Pardo First Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Matias Fernandez-Pardo Anytime Goalscorer</td>
+              <td><strong>13/8</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Charles De Ketelaere First Goalscorer</td>
+              <td><strong>11/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Charles De Ketelaere Anytime Goalscorer</td>
+              <td><strong>2/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kevin De Bruyne First Goalscorer</td>
+              <td><strong>6/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kevin De Bruyne Anytime Goalscorer</td>
+              <td><strong>11/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Dodi Lukebakio First Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Dodi Lukebakio Anytime Goalscorer</td>
+              <td><strong>12/5</strong></td>
+            </tr>
+            
+            </tbody>
+          </table>
+        </section>
+        
+              </div>
+            </section>
+            
+        </section>
+        
     </section>
     
   </main>

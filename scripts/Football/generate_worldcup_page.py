@@ -995,7 +995,7 @@ def render_props_section(fixture):
 
     if not props:
         return """
-        <section class="props-wrap">
+        <section class="props-wrap" id="props">
           <div class="section-title">
             <h2>Props</h2>
             <p>No props available for this match yet.</p>
@@ -1003,20 +1003,37 @@ def render_props_section(fixture):
         </section>
         """
 
+    PLAYER_MARKET_KEYS = {"player_to_score", "first_goalscorer", "scorer_2_plus"}
+    GROUPED_OVER_UNDER_KEYS = {"total_goals", "first_half_goals"}
+
     def is_player_market(market_name):
+        market_key = normalize_prop_market_key(market_name)
         name = str(market_name or "").lower()
+
+        if market_key in PLAYER_MARKET_KEYS:
+            return True
+
         player_keywords = [
-            "player",
+            "player to score",
             "goalscorer",
             "goal scorer",
-            "to score",
-            "shots",
-            "shot",
-            "assist",
-            "card",
-            "foul",
+            "first scorer",
+            "anytime scorer",
+            "to score 2 or more",
         ]
+
         return any(word in name for word in player_keywords)
+
+    def best_offer(offers):
+        offers = [o for o in offers if o.get("decimal", 0) > 1]
+        if not offers:
+            return None
+        return sorted(offers, key=lambda x: x["decimal"], reverse=True)[0]
+
+    def offer_label(offer):
+        if not offer:
+            return "—"
+        return f"{esc(offer['bookmaker'])} <strong>{esc(offer['odds'])}</strong>"
 
     def render_market_card(market):
         selections = market.get("selections") or []
@@ -1054,7 +1071,7 @@ def render_props_section(fixture):
         </section>
         """
 
-    def build_best_prop_comparisons():
+    def build_comparison_data():
         comparison = {}
 
         for bookmaker, prop_data in sorted(props.items()):
@@ -1076,7 +1093,9 @@ def render_props_section(fixture):
                     if key not in comparison:
                         comparison[key] = {
                             "market": pretty_market_name(market_name),
+                            "market_key": market_key,
                             "selection": selection_name,
+                            "selection_key": selection_key,
                             "offers": [],
                         }
 
@@ -1086,9 +1105,90 @@ def render_props_section(fixture):
                         "decimal": decimal,
                     })
 
+        return comparison
+
+    def build_over_under_cards(comparison):
+        grouped = {}
+
+        for item in comparison.values():
+            market_key = item.get("market_key")
+            selection_key = item.get("selection_key") or ""
+
+            if market_key not in GROUPED_OVER_UNDER_KEYS:
+                continue
+
+            match = re.match(r"^(over|under)_(\d+(?:\.\d+)?)$", selection_key)
+            if not match:
+                continue
+
+            side = match.group(1)
+            line = match.group(2)
+            grouped.setdefault(market_key, {
+                "market": item.get("market") or pretty_market_name(market_key),
+                "lines": {},
+            })
+            grouped[market_key]["lines"].setdefault(line, {})[side] = item
+
+        cards = ""
+
+        for market_key in ["total_goals", "first_half_goals"]:
+            group = grouped.get(market_key)
+            if not group:
+                continue
+
+            rows = ""
+            for line in sorted(group["lines"].keys(), key=lambda x: float(x)):
+                sides = group["lines"].get(line) or {}
+                over_item = sides.get("over")
+                under_item = sides.get("under")
+
+                over_offers = over_item.get("offers") if over_item else []
+                under_offers = under_item.get("offers") if under_item else []
+
+                if len({o["bookmaker"] for o in over_offers}) < 2 and len({o["bookmaker"] for o in under_offers}) < 2:
+                    continue
+
+                over_best = best_offer(over_offers)
+                under_best = best_offer(under_offers)
+
+                rows += f"""
+                <tr>
+                  <td><strong>{esc(line)}</strong></td>
+                  <td>{offer_label(over_best)}</td>
+                  <td>{offer_label(under_best)}</td>
+                </tr>
+                """
+
+            if not rows:
+                continue
+
+            cards += f"""
+            <section class="prop-market prop-market-wide">
+              <h3>{esc(group["market"])} — Over / Under</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Line</th>
+                    <th>Best Over</th>
+                    <th>Best Under</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows}
+                </tbody>
+              </table>
+            </section>
+            """
+
+        return cards
+
+    def build_standard_comparison_cards(comparison):
         cards = ""
 
         for item in sorted(comparison.values(), key=lambda x: (x["market"], x["selection"])):
+            if item.get("market_key") in GROUPED_OVER_UNDER_KEYS:
+                continue
+
             offers = item.get("offers") or []
             bookmakers_seen = {offer["bookmaker"] for offer in offers}
 
@@ -1130,23 +1230,34 @@ def render_props_section(fixture):
             </section>
             """
 
-        if not cards:
+        return cards
+
+    def build_best_prop_comparisons():
+        comparison = build_comparison_data()
+        grouped_ou_cards = build_over_under_cards(comparison)
+        standard_cards = build_standard_comparison_cards(comparison)
+
+        if not grouped_ou_cards and not standard_cards:
             return ""
 
         return f"""
-        <section class="book-props">
+        <section class="book-props" id="best-prop-prices">
           <div class="book-props-head">
             <h2>Best Prop Prices</h2>
             <span class="compare-note">Compared across tracked bookmakers</span>
           </div>
+          <div class="props-grid props-grid-wide">
+            {grouped_ou_cards}
+          </div>
           <div class="props-grid">
-            {cards}
+            {standard_cards}
           </div>
         </section>
         """
 
     best_comparison_html = build_best_prop_comparisons()
-    book_html = ""
+    match_book_html = ""
+    player_book_html = ""
 
     for bookmaker, prop_data in sorted(props.items()):
         markets = prop_data.get("markets") or []
@@ -1168,7 +1279,7 @@ def render_props_section(fixture):
         """
 
         if match_market_cards:
-            book_html += f"""
+            match_book_html += f"""
             <section class="book-props">
               <div class="book-props-head">
                 <h2>{esc(bookmaker)} Match Props</h2>
@@ -1181,7 +1292,7 @@ def render_props_section(fixture):
             """
 
         if player_market_cards:
-            book_html += f"""
+            player_book_html += f"""
             <section class="book-props">
               <div class="book-props-head">
                 <h2>{esc(bookmaker)} Player Props</h2>
@@ -1193,9 +1304,9 @@ def render_props_section(fixture):
             </section>
             """
 
-    if not best_comparison_html and not book_html:
+    if not best_comparison_html and not match_book_html and not player_book_html:
         return """
-        <section class="props-wrap">
+        <section class="props-wrap" id="props">
           <div class="section-title">
             <h2>Props</h2>
             <p>No props available for this match yet.</p>
@@ -1203,14 +1314,46 @@ def render_props_section(fixture):
         </section>
         """
 
+    match_section = ""
+    if match_book_html:
+        match_section = f"""
+        <section id="match-props">
+          <div class="section-title sub-section-title">
+            <h2>Match Props</h2>
+            <p>Team, match result, goals, BTTS and score markets.</p>
+          </div>
+          {match_book_html}
+        </section>
+        """
+
+    player_section = ""
+    if player_book_html:
+        player_section = f"""
+        <section id="player-props">
+          <div class="section-title sub-section-title">
+            <h2>Player Props</h2>
+            <p>Goalscorer markets only for now. Shots, assists and cards can be added as bookmakers release them.</p>
+          </div>
+          {player_book_html}
+        </section>
+        """
+
     return f"""
-    <section class="props-wrap">
+    <section class="props-wrap" id="props">
       <div class="section-title">
         <h2>Props</h2>
         <p>Best prices and prop markets from tracked bookmakers.</p>
       </div>
+
+      <nav class="props-jump-nav">
+        <a href="#best-prop-prices">Best Prop Prices</a>
+        <a href="#match-props">Match Props</a>
+        <a href="#player-props">Player Props</a>
+      </nav>
+
       {best_comparison_html}
-      {book_html}
+      {match_section}
+      {player_section}
     </section>
     """
 
@@ -1385,6 +1528,40 @@ def render_match_page(fixture):
     .prop-market td strong {{
       color: #86efac;
       font-size: 18px;
+    }}
+    .compare-note {{
+      color: #c7d2fe;
+      font-size: 13px;
+      font-weight: 800;
+    }}
+    .props-jump-nav {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 18px;
+    }}
+    .props-jump-nav a {{
+      border: 1px solid rgba(96,165,250,0.45);
+      background: rgba(96,165,250,0.08);
+      color: #bfdbfe;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }}
+    .sub-section-title {{
+      margin-top: 34px;
+    }}
+    .props-grid-wide {{
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      margin-bottom: 14px;
+    }}
+    .prop-market-wide {{
+      grid-column: span 1;
+    }}
+    .prop-market-wide td strong {{
+      font-size: 16px;
     }}
     @media (max-width: 700px) {{
       .page {{ padding: 22px 14px 50px; }}
