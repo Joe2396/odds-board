@@ -6,159 +6,42 @@
   <title>Haiti v Scotland Odds — BeatTheBooks</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #0f1621;
-      color: white;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      min-height: 100vh;
-    }
+    body { background: #0f1621; color: white; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; }
     a { color: #60a5fa; text-decoration: none; }
     .page { max-width: 1300px; margin: 0 auto; padding: 34px 24px 70px; }
     .nav { color: #91a0b5; margin-bottom: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero {
-      border: 1px solid #223047;
-      border-radius: 28px;
-      padding: 32px;
-      background: rgba(17,24,39,0.86);
-      margin-bottom: 28px;
-    }
-    .eyebrow {
-      display: inline-flex;
-      border: 1px solid rgba(34,197,94,0.45);
-      background: rgba(34,197,94,0.1);
-      color: #86efac;
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    h1 {
-      font-size: clamp(38px, 6vw, 72px);
-      letter-spacing: -0.055em;
-      line-height: .95;
-      margin-bottom: 12px;
-    }
+    .hero { border: 1px solid #223047; border-radius: 28px; padding: 32px; background: rgba(17,24,39,0.86); margin-bottom: 28px; }
+    .eyebrow { display: inline-flex; border: 1px solid rgba(34,197,94,0.45); background: rgba(34,197,94,0.1); color: #86efac; border-radius: 999px; padding: 7px 12px; font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 14px; }
+    h1 { font-size: clamp(38px, 6vw, 72px); letter-spacing: -0.055em; line-height: .95; margin-bottom: 12px; }
     .meta { color: #91a0b5; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-    .price-panel, .prop-market, .book-props {
-      border: 1px solid #223047;
-      border-radius: 20px;
-      padding: 18px;
-      background: rgba(17,24,39,0.72);
-    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .price-panel, .prop-market, .book-props { border: 1px solid #223047; border-radius: 20px; padding: 18px; background: rgba(17,24,39,0.72); }
     .price-panel h2 { margin-bottom: 14px; }
     table { width: 100%; border-collapse: collapse; }
-    th, td {
-      text-align: left;
-      padding: 10px 8px;
-      border-bottom: 1px solid #223047;
-      color: #c7d2fe;
-      font-size: 14px;
-      vertical-align: top;
-    }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #223047; color: #c7d2fe; font-size: 14px; vertical-align: top; }
     th { color: #91a0b5; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
     td strong { color: #22c55e; font-size: 20px; }
-    .best-row {
-      background: rgba(34,197,94,0.08);
-    }
-    .best-row td:last-child {
-      color: #86efac;
-      font-weight: 900;
-      font-size: 12px;
-    }
-    .props-wrap {
-      margin-top: 36px;
-    }
-    .section-title {
-      margin-bottom: 16px;
-    }
-    .section-title h2 {
-      font-size: 34px;
-      letter-spacing: -0.035em;
-      margin-bottom: 6px;
-    }
-    .section-title p {
-      color: #91a0b5;
-    }
-    .book-props {
-      margin-bottom: 18px;
-    }
-    .book-props-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-    .book-props-head h2 {
-      font-size: 24px;
-    }
-    .book-props-head a {
-      border: 1px solid rgba(96,165,250,0.45);
-      background: rgba(96,165,250,0.08);
-      color: #bfdbfe;
-      border-radius: 999px;
-      padding: 7px 11px;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-    .props-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 14px;
-    }
-    .prop-market h3 {
-      font-size: 18px;
-      margin-bottom: 12px;
-      color: #facc15;
-    }
-    .prop-market td strong {
-      color: #86efac;
-      font-size: 18px;
-    }
-    .compare-note {
-      color: #c7d2fe;
-      font-size: 13px;
-      font-weight: 800;
-    }
-    .props-jump-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 0 0 18px;
-    }
-    .props-jump-nav a {
-      border: 1px solid rgba(96,165,250,0.45);
-      background: rgba(96,165,250,0.08);
-      color: #bfdbfe;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-    .sub-section-title {
-      margin-top: 34px;
-    }
-    .props-grid-wide {
-      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
-      margin-bottom: 14px;
-    }
-    .prop-market-wide {
-      grid-column: span 1;
-    }
-    .prop-market-wide td strong {
-      font-size: 16px;
-    }
+    .best-row { background: rgba(34,197,94,0.08); }
+    .best-row td:last-child { color: #86efac; font-weight: 900; font-size: 12px; }
+    .best-cell strong { color: #22c55e !important; }
+    .goalscorer-comparison td:first-child { font-weight: 600; color: #e2e8f0; min-width: 160px; }
+    .props-wrap { margin-top: 36px; }
+    .section-title { margin-bottom: 16px; }
+    .section-title h2 { font-size: 34px; letter-spacing: -0.035em; margin-bottom: 6px; }
+    .section-title p { color: #91a0b5; }
+    .book-props { margin-bottom: 18px; }
+    .book-props-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
+    .book-props-head h2 { font-size: 24px; }
+    .book-props-head a { border: 1px solid rgba(96,165,250,0.45); background: rgba(96,165,250,0.08); color: #bfdbfe; border-radius: 999px; padding: 7px 11px; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .props-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 14px; }
+    .prop-market h3 { font-size: 18px; margin-bottom: 12px; color: #facc15; }
+    .prop-market td strong { color: #86efac; font-size: 18px; }
+    .compare-note { color: #c7d2fe; font-size: 13px; font-weight: 800; }
+    .props-jump-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+    .props-jump-nav a { border: 1px solid rgba(96,165,250,0.45); background: rgba(96,165,250,0.08); color: #bfdbfe; border-radius: 999px; padding: 8px 12px; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .sub-section-title { margin-top: 34px; }
+    .props-grid-wide { grid-template-columns: repeat(auto-fit, minmax(520px, 1fr)); margin-bottom: 14px; }
+    .prop-market-wide td strong { font-size: 16px; }
     @media (max-width: 700px) {
       .page { padding: 22px 14px 50px; }
       .hero { padding: 22px; border-radius: 22px; }
@@ -175,25 +58,17 @@
       <span>›</span>
       <span>Haiti v Scotland</span>
     </nav>
-
     <section class="hero">
       <div class="eyebrow">⚽ Match Odds</div>
       <h1>Haiti v Scotland</h1>
       <p class="meta">Sunday 14 · 02:00 · 6 bookmakers</p>
     </section>
-
     <div class="grid">
       
         <section class="price-panel">
           <h2>Haiti</h2>
           <table>
-            <thead>
-              <tr>
-                <th>Bookmaker</th>
-                <th>Odds</th>
-                <th></th>
-              </tr>
-            </thead>
+            <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
             <tbody>
             <tr class="">
               <td>888Sport</td>
@@ -238,13 +113,7 @@
         <section class="price-panel">
           <h2>Draw</h2>
           <table>
-            <thead>
-              <tr>
-                <th>Bookmaker</th>
-                <th>Odds</th>
-                <th></th>
-              </tr>
-            </thead>
+            <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
             <tbody>
             <tr class="">
               <td>888Sport</td>
@@ -289,13 +158,7 @@
         <section class="price-panel">
           <h2>Scotland</h2>
           <table>
-            <thead>
-              <tr>
-                <th>Bookmaker</th>
-                <th>Odds</th>
-                <th></th>
-              </tr>
-            </thead>
+            <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
             <tbody>
             <tr class="">
               <td>888Sport</td>
@@ -337,20 +200,15 @@
         </section>
         
     </div>
-
     
     <section class="props-wrap" id="props">
-      <div class="section-title">
-        <h2>Props</h2>
-        <p>Best prices and prop markets from tracked bookmakers.</p>
-      </div>
-
+      <div class="section-title"><h2>Props</h2><p>Best prices and prop markets from tracked bookmakers.</p></div>
       <nav class="props-jump-nav">
         <a href="#best-prop-prices">Best Prop Prices</a>
         <a href="#match-props">Match Props</a>
+        <a href="#team-props">Team Props</a>
         <a href="#player-props">Player Props</a>
       </nav>
-
       
         <section class="book-props" id="best-prop-prices">
           <div class="book-props-head">
@@ -358,19 +216,11 @@
             <span class="compare-note">Compared across tracked bookmakers</span>
           </div>
           <div class="props-grid props-grid-wide">
-            
             <section class="prop-market prop-market-wide">
               <h3>Total Goals Over / Under — Over / Under</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Line</th>
-                    <th>Best Over</th>
-                    <th>Best Under</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Line</th><th>Best Over</th><th>Best Under</th></tr></thead>
                 <tbody>
-                  
                 <tr>
                   <td><strong>0.5</strong></td>
                   <td>BoyleSports <strong>1/20</strong></td>
@@ -379,20 +229,20 @@
                 
                 <tr>
                   <td><strong>1.5</strong></td>
-                  <td>BoyleSports <strong>2/7</strong></td>
+                  <td>Unibet <strong>29/100</strong></td>
                   <td>PaddyPower <strong>13/5</strong></td>
                 </tr>
                 
                 <tr>
                   <td><strong>2.5</strong></td>
-                  <td>BoyleSports <strong>20/23</strong></td>
-                  <td>PaddyPower <strong>17/20</strong></td>
+                  <td>Unibet <strong>9/10</strong></td>
+                  <td>Unibet <strong>22/25</strong></td>
                 </tr>
                 
                 <tr>
                   <td><strong>3.5</strong></td>
                   <td>BoyleSports <strong>23/10</strong></td>
-                  <td>BoyleSports <strong>3/10</strong></td>
+                  <td>Unibet <strong>33/100</strong></td>
                 </tr>
                 
                 <tr>
@@ -400,332 +250,129 @@
                   <td>BoyleSports <strong>11/2</strong></td>
                   <td>BoyleSports <strong>1/9</strong></td>
                 </tr>
-                
                 </tbody>
               </table>
             </section>
-            
-          </div>
+            </div>
           <div class="props-grid">
-            
             <section class="prop-market">
-              <h3>Correct Score — Draw 0-0</h3>
+              <h3>Both Teams To Score — No</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
                 <tbody>
-                  
                 <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>10/1</strong></td>
+                  <td>Unibet</td>
+                  <td><strong>73/100</strong></td>
                   <td>BEST</td>
                 </tr>
                 
                 <tr class="">
                   <td>BoyleSports</td>
-                  <td><strong>9/1</strong></td>
+                  <td><strong>7/10</strong></td>
                   <td></td>
                 </tr>
                 
+                <tr class="">
+                  <td>PaddyPower</td>
+                  <td><strong>13/20</strong></td>
+                  <td></td>
+                </tr>
                 </tbody>
               </table>
             </section>
             
             <section class="prop-market">
-              <h3>Correct Score — Draw 1-1</h3>
+              <h3>Both Teams To Score — Yes</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
                 <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>7/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
                 <tr class="best-row">
                   <td>PaddyPower</td>
-                  <td><strong>7/1</strong></td>
+                  <td><strong>11/10</strong></td>
                   <td>BEST</td>
                 </tr>
                 
+                <tr class="">
+                  <td>BoyleSports</td>
+                  <td><strong>1/1</strong></td>
+                  <td></td>
+                </tr>
+                
+                <tr class="">
+                  <td>Unibet</td>
+                  <td><strong>EVS</strong></td>
+                  <td></td>
+                </tr>
                 </tbody>
               </table>
             </section>
             
             <section class="prop-market">
-              <h3>Correct Score — Draw 2-2</h3>
+              <h3>Double Chance — Haiti or Draw</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
                 <tbody>
-                  
                 <tr class="best-row">
                   <td>BoyleSports</td>
-                  <td><strong>18/1</strong></td>
+                  <td><strong>8/5</strong></td>
                   <td>BEST</td>
                 </tr>
                 
                 <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>16/1</strong></td>
+                  <td>Unibet</td>
+                  <td><strong>29/20</strong></td>
                   <td></td>
                 </tr>
-                
                 </tbody>
               </table>
             </section>
             
             <section class="prop-market">
-              <h3>Correct Score — Draw 3-3</h3>
+              <h3>Double Chance — Haiti or Scotland</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
                 <tbody>
-                  
                 <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>80/1</strong></td>
+                  <td>BoyleSports</td>
+                  <td><strong>2/9</strong></td>
                   <td>BEST</td>
                 </tr>
                 
                 <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>66/1</strong></td>
+                  <td>Unibet</td>
+                  <td><strong>1/5</strong></td>
                   <td></td>
                 </tr>
-                
                 </tbody>
               </table>
             </section>
-            
-            <section class="prop-market">
-              <h3>Correct Score — Haiti 2-0</h3>
+            </div>
+          <div class="props-grid props-grid-wide">
+            <section class="prop-market prop-market-wide goalscorer-comparison">
+              <h3>Anytime Goalscorer</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>33/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>25/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>11/2</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
+                <thead><tr><th>Player</th><th>PaddyPower</th><th>Unibet</th></tr></thead>
+                <tbody><tr><td>Dominic Hyam</td><td class="best-cell"><strong>13/1</strong></td><td><strong>17/2</strong></td></tr><tr><td>John Souttar</td><td class="best-cell"><strong>12/1</strong></td><td><strong>17/2</strong></td></tr><tr><td>Scott Mckenna</td><td class="best-cell"><strong>11/1</strong></td><td><strong>17/2</strong></td></tr><tr><td>Aaron Hickey</td><td class="best-cell"><strong>9/1</strong></td><td><strong>8/1</strong></td></tr><tr><td>Andy Robertson</td><td class="best-cell"><strong>8/1</strong></td><td class="best-cell"><strong>8/1</strong></td></tr><tr><td>Kieran Tierney</td><td class="best-cell"><strong>15/2</strong></td><td class="best-cell"><strong>15/2</strong></td></tr><tr><td>Josue Casimir</td><td class="best-cell"><strong>7/1</strong></td><td><strong>6/1</strong></td></tr><tr><td>Kenny Mclean</td><td class="best-cell"><strong>13/2</strong></td><td><strong>11/2</strong></td></tr><tr><td>Jean Ricner Bellegarde</td><td class="best-cell"><strong>13/2</strong></td><td class="best-cell"><strong>13/2</strong></td></tr><tr><td>Ruben Providence</td><td class="best-cell"><strong>13/2</strong></td><td><strong>5/1</strong></td></tr><tr><td>Lenny Joseph</td><td class="best-cell"><strong>6/1</strong></td><td><strong>9/2</strong></td></tr><tr><td>Tyler Fletcher</td><td class="best-cell"><strong>6/1</strong></td><td><strong>9/2</strong></td></tr><tr><td>Yassin Fortune</td><td class="best-cell"><strong>9/2</strong></td><td><strong>18/5</strong></td></tr><tr><td>Lewis Ferguson</td><td class="best-cell"><strong>9/2</strong></td><td><strong>18/5</strong></td></tr><tr><td>Ryan Christie</td><td class="best-cell"><strong>4/1</strong></td><td><strong>19/5</strong></td></tr><tr><td>Frantzdy Pierrot</td><td class="best-cell"><strong>4/1</strong></td><td><strong>17/5</strong></td></tr><tr><td>Wilson Isidor</td><td class="best-cell"><strong>7/2</strong></td><td><strong>16/5</strong></td></tr><tr><td>Duckens Nazon</td><td class="best-cell"><strong>7/2</strong></td><td><strong>67/20</strong></td></tr><tr><td>Findlay Curtis</td><td class="best-cell"><strong>13/5</strong></td><td><strong>47/20</strong></td></tr><tr><td>John Mcginn</td><td class="best-cell"><strong>5/2</strong></td><td class="best-cell"><strong>5/2</strong></td></tr><tr><td>Scott Mctominay</td><td><strong>13/8</strong></td><td class="best-cell"><strong>7/4</strong></td></tr><tr><td>Lyndon Dykes</td><td><strong>8/5</strong></td><td class="best-cell"><strong>33/20</strong></td></tr><tr><td>Ross Stewart</td><td class="best-cell"><strong>8/5</strong></td><td><strong>3/2</strong></td></tr><tr><td>George Hirst</td><td class="best-cell"><strong>8/5</strong></td><td class="best-cell"><strong>8/5</strong></td></tr><tr><td>Che Adams</td><td class="best-cell"><strong>6/4</strong></td><td class="best-cell"><strong>3/2</strong></td></tr><tr><td>Lawrence Shankland</td><td class="best-cell"><strong>13/10</strong></td><td><strong>5/4</strong></td></tr></tbody>
               </table>
             </section>
-            
-            <section class="prop-market">
-              <h3>Correct Score — Haiti 2-1</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>18/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>14/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>15/2</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Correct Score — Haiti 3-0</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>100/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>80/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>9/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Correct Score — Haiti 3-1</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>60/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>50/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>12/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Correct Score — Scotland 1-0</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>14/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>12/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>5/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>5/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-          </div>
+            </div>
         </section>
         
       
         <section id="match-props">
           <div class="section-title sub-section-title">
             <h2>Match Props</h2>
-            <p>Team, match result, goals, BTTS and score markets.</p>
+            <p>Match result, total goals, BTTS, score, handicap and double chance markets.</p>
           </div>
           
             <section class="book-props">
-              <div class="book-props-head">
-                <h2>BoyleSports Match Props</h2>
-                
-        <a href="https://www.boylesports.com/sports/football/event/international-world-cup/haiti-v-scotland" target="_blank" rel="noopener">Open bookmaker →</a>
-        
-              </div>
+              <div class="book-props-head"><h2>BoyleSports Match Props</h2><a href="https://www.boylesports.com/sports/football/event/international-world-cup/haiti-v-scotland" target="_blank" rel="noopener">Open bookmaker →</a></div>
               <div class="props-grid">
-                
         <section class="prop-market">
           <h3>Correct Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Scotland 1-0</td>
               <td><strong>5/1</strong></td>
@@ -880,7 +527,29 @@
               <td>Scotland 7-0</td>
               <td><strong>150/1</strong></td>
             </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
+          <h3>1 Goal Ahead</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Haiti</td>
+              <td><strong>21/10</strong></td>
+            </tr>
             
+            <tr>
+              <td>Draw</td>
+              <td><strong>3/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Scotland</td>
+              <td><strong>2/7</strong></td>
+            </tr>
             </tbody>
           </table>
         </section>
@@ -888,14 +557,8 @@
         <section class="prop-market">
           <h3>Total Goals Over / Under</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Over 0.5</td>
               <td><strong>1/20</strong></td>
@@ -955,7 +618,6 @@
               <td>Under 5.5</td>
               <td><strong>1/40</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -963,14 +625,8 @@
         <section class="prop-market">
           <h3>1St Half Goals Over / Under</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Over 0.5</td>
               <td><strong>4/11</strong></td>
@@ -1000,22 +656,33 @@
               <td>Under 2.5</td>
               <td><strong>1/12</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
         
         <section class="prop-market">
-          <h3>Both Teams To Score And Match Result</h3>
+          <h3>Both Teams To Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
+            <tr>
+              <td>Yes</td>
+              <td><strong>1/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>No</td>
+              <td><strong>7/10</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
+          <h3>Result &amp; Both Teams To Score</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
             <tr>
               <td>Haiti</td>
               <td><strong>11/1</strong></td>
@@ -1030,7 +697,6 @@
               <td>Scotland</td>
               <td><strong>13/5</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -1038,14 +704,8 @@
         <section class="prop-market">
           <h3>Double Chance</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Haiti or Scotland</td>
               <td><strong>2/9</strong></td>
@@ -1060,22 +720,15 @@
               <td>Scotland or Draw</td>
               <td><strong>1/9</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
         
         <section class="prop-market">
-          <h3>Match Result And Total Goals</h3>
+          <h3>Result &amp; Total Goals</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Scotland/Under 1.5</td>
               <td><strong>5/1</strong></td>
@@ -1225,34 +878,20 @@
               <td>Haiti/Over 5.5</td>
               <td><strong>40/1</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
-        
-              </div>
+        </div>
             </section>
             
             <section class="book-props">
-              <div class="book-props-head">
-                <h2>PaddyPower Match Props</h2>
-                
-        <a href="https://www.paddypower.com/football/fifa-world-cup/haiti-v-scotland-35035300" target="_blank" rel="noopener">Open bookmaker →</a>
-        
-              </div>
+              <div class="book-props-head"><h2>PaddyPower Match Props</h2><a href="https://www.paddypower.com/football/fifa-world-cup/haiti-v-scotland-35035300" target="_blank" rel="noopener">Open bookmaker →</a></div>
               <div class="props-grid">
-                
         <section class="prop-market">
-          <h3>Over/Under Goals</h3>
+          <h3>Total Goals Over/Under</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Over 0.5 Goals</td>
               <td><strong>1/50</strong></td>
@@ -1302,7 +941,6 @@
               <td>Under 4.5 Goals</td>
               <td><strong>1/12</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -1310,14 +948,8 @@
         <section class="prop-market">
           <h3>1st Half Goals</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>1st Half Over 0.5 Goals</td>
               <td><strong>1/3</strong></td>
@@ -1357,7 +989,6 @@
               <td>1st Half Under 3.5 Goals</td>
               <td><strong>1/66</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -1365,14 +996,8 @@
         <section class="prop-market">
           <h3>Correct Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>1 - 0</td>
               <td><strong>12/1</strong></td>
@@ -1447,7 +1072,6 @@
               <td>1 - 3</td>
               <td><strong>11/1</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -1455,14 +1079,8 @@
         <section class="prop-market">
           <h3>Both Teams To Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Both Teams To Score - Yes</td>
               <td><strong>11/10</strong></td>
@@ -1512,7 +1130,6 @@
               <td>Both Teams to Score Two or More Goals - No</td>
               <td><strong>1/20</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -1520,14 +1137,8 @@
         <section class="prop-market">
           <h3>Result &amp; Both To Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Haiti &amp; Both Teams To Score</td>
               <td><strong>11/1</strong></td>
@@ -1542,12 +1153,169 @@
               <td>Scotland &amp; Both Teams To Score</td>
               <td><strong>13/5</strong></td>
             </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
+            </section>
             
+            <section class="book-props">
+              <div class="book-props-head"><h2>Unibet Match Props</h2><a href="https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/haiti-vs-scotland/d56118cc318cb6f771f4a0c73f7f5fc3" target="_blank" rel="noopener">Open bookmaker →</a></div>
+              <div class="props-grid">
+        <section class="prop-market">
+          <h3>Match Betting</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Haiti</td>
+              <td><strong>5/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Draw</td>
+              <td><strong>16/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Scotland</td>
+              <td><strong>1/2</strong></td>
+            </tr>
             </tbody>
           </table>
         </section>
         
-              </div>
+        <section class="prop-market">
+          <h3>Total Goals</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Over 1.5</td>
+              <td><strong>29/100</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 1.5</td>
+              <td><strong>5/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 2.5</td>
+              <td><strong>9/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 2.5</td>
+              <td><strong>22/25</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 3.5</td>
+              <td><strong>9/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 3.5</td>
+              <td><strong>33/100</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
+          <h3>Both Teams To Score</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Both Teams To Score - Yes</td>
+              <td><strong>EVS</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Both Teams To Score - No</td>
+              <td><strong>73/100</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
+          <h3>Double Chance</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Haiti or Draw</td>
+              <td><strong>29/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Haiti or Scotland</td>
+              <td><strong>1/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Draw or Scotland</td>
+              <td><strong>3/25</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
+            </section>
+            
+        </section>
+        
+      
+        <section id="team-props">
+          <div class="section-title sub-section-title">
+            <h2>Team Props</h2>
+            <p>Team-specific goal markets.</p>
+          </div>
+          
+            <section class="book-props">
+              <div class="book-props-head"><h2>Unibet Team Props</h2><a href="https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/haiti-vs-scotland/d56118cc318cb6f771f4a0c73f7f5fc3" target="_blank" rel="noopener">Open bookmaker →</a></div>
+              <div class="props-grid">
+        <section class="prop-market">
+          <h3>Total Goals by Haiti</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Over 0.5</td>
+              <td><strong>13/100</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 0.5</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 1.5</td>
+              <td><strong>67/100</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 1.5</td>
+              <td><strong>23/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 2.5</td>
+              <td><strong>41/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 2.5</td>
+              <td><strong>7/20</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
             </section>
             
         </section>
@@ -1556,29 +1324,17 @@
         <section id="player-props">
           <div class="section-title sub-section-title">
             <h2>Player Props</h2>
-            <p>Goalscorer markets only for now. Shots, assists and cards can be added as bookmakers release them.</p>
+            <p>Goalscorer markets.</p>
           </div>
           
             <section class="book-props">
-              <div class="book-props-head">
-                <h2>PaddyPower Player Props</h2>
-                
-        <a href="https://www.paddypower.com/football/fifa-world-cup/haiti-v-scotland-35035300" target="_blank" rel="noopener">Open bookmaker →</a>
-        
-              </div>
+              <div class="book-props-head"><h2>PaddyPower Player Props</h2><a href="https://www.paddypower.com/football/fifa-world-cup/haiti-v-scotland-35035300" target="_blank" rel="noopener">Open bookmaker →</a></div>
               <div class="props-grid">
-                
         <section class="prop-market">
           <h3>Player To Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Lawrence Shankland First Goalscorer</td>
               <td><strong>4/1</strong></td>
@@ -1629,11 +1385,730 @@
               <td><strong>8/5</strong></td>
             </tr>
             
+            <tr>
+              <td>Che Adams First Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Che Adams Anytime Goalscorer</td>
+              <td><strong>6/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>John McGinn First Goalscorer</td>
+              <td><strong>7/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>John McGinn Anytime Goalscorer</td>
+              <td><strong>5/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Findlay Curtis First Goalscorer</td>
+              <td><strong>15/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Findlay Curtis Anytime Goalscorer</td>
+              <td><strong>13/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Wilson Isidor First Goalscorer</td>
+              <td><strong>9/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Wilson Isidor Anytime Goalscorer</td>
+              <td><strong>7/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Duckens Nazon First Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Duckens Nazon Anytime Goalscorer</td>
+              <td><strong>7/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ryan Christie First Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ryan Christie Anytime Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ben Gannon-Doak First Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ben Gannon-Doak Anytime Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Frantzdy Pierrot First Goalscorer</td>
+              <td><strong>11/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Frantzdy Pierrot Anytime Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Yassin Fortune First Goalscorer</td>
+              <td><strong>12/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Yassin Fortune Anytime Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lewis Ferguson First Goalscorer</td>
+              <td><strong>12/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lewis Ferguson Anytime Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Louicius Deedson First Goalscorer</td>
+              <td><strong>12/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Louicius Deedson Anytime Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Derrick Etienne First Goalscorer</td>
+              <td><strong>13/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Derrick Etienne Anytime Goalscorer</td>
+              <td><strong>11/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kenny McLean First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kenny McLean Anytime Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jean-Ricner Bellegarde First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jean-Ricner Bellegarde Anytime Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ruben Providence First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ruben Providence Anytime Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lenny Joseph First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lenny Joseph Anytime Goalscorer</td>
+              <td><strong>6/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Tyler Fletcher First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Tyler Fletcher Anytime Goalscorer</td>
+              <td><strong>6/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kieran Tierney First Goalscorer</td>
+              <td><strong>16/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kieran Tierney Anytime Goalscorer</td>
+              <td><strong>15/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Josue Casimir First Goalscorer</td>
+              <td><strong>16/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Josue Casimir Anytime Goalscorer</td>
+              <td><strong>7/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Andy Robertson First Goalscorer</td>
+              <td><strong>17/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Andy Robertson Anytime Goalscorer</td>
+              <td><strong>8/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Dominique Simon First Goalscorer</td>
+              <td><strong>18/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Dominique Simon Anytime Goalscorer</td>
+              <td><strong>8/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Anthony Ralston First Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Anthony Ralston Anytime Goalscorer</td>
+              <td><strong>9/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nathan Patterson First Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nathan Patterson Anytime Goalscorer</td>
+              <td><strong>9/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Danley Jean Jacques First Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Danley Jean Jacques Anytime Goalscorer</td>
+              <td><strong>9/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Aaron Hickey First Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Aaron Hickey Anytime Goalscorer</td>
+              <td><strong>9/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jack Hendry First Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jack Hendry Anytime Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Grant Hanley First Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Grant Hanley Anytime Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>John Souttar First Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>John Souttar Anytime Goalscorer</td>
+              <td><strong>12/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Scott McKenna First Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Scott McKenna Anytime Goalscorer</td>
+              <td><strong>11/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Dominic Hyam First Goalscorer</td>
+              <td><strong>30/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Dominic Hyam Anytime Goalscorer</td>
+              <td><strong>13/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Woodensky Pierre First Goalscorer</td>
+              <td><strong>35/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Woodensky Pierre Anytime Goalscorer</td>
+              <td><strong>16/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leverton Pierre First Goalscorer</td>
+              <td><strong>50/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leverton Pierre Anytime Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Carl Sainte First Goalscorer</td>
+              <td><strong>50/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Carl Sainte Anytime Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Duke Lacroix First Goalscorer</td>
+              <td><strong>50/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Duke Lacroix Anytime Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Keeto Thermoncy First Goalscorer</td>
+              <td><strong>50/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Keeto Thermoncy Anytime Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jean-Kevin Duverne First Goalscorer</td>
+              <td><strong>60/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jean-Kevin Duverne Anytime Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Martin Experience First Goalscorer</td>
+              <td><strong>66/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Martin Experience Anytime Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Wilguens Paugain First Goalscorer</td>
+              <td><strong>66/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Wilguens Paugain Anytime Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ricardo Ade First Goalscorer</td>
+              <td><strong>90/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ricardo Ade Anytime Goalscorer</td>
+              <td><strong>40/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Carlens Arcus First Goalscorer</td>
+              <td><strong>90/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Carlens Arcus Anytime Goalscorer</td>
+              <td><strong>35/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Hannes Delcroix First Goalscorer</td>
+              <td><strong>90/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Hannes Delcroix Anytime Goalscorer</td>
+              <td><strong>35/1</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
+            </section>
+            
+            <section class="book-props">
+              <div class="book-props-head"><h2>Unibet Player Props</h2><a href="https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/haiti-vs-scotland/d56118cc318cb6f771f4a0c73f7f5fc3" target="_blank" rel="noopener">Open bookmaker →</a></div>
+              <div class="props-grid">
+        <section class="prop-market">
+          <h3>Player To Score</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Lawrence Shankland Anytime Goalscorer</td>
+              <td><strong>5/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Che Adams Anytime Goalscorer</td>
+              <td><strong>3/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ross Stewart Anytime Goalscorer</td>
+              <td><strong>3/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>George Hirst Anytime Goalscorer</td>
+              <td><strong>8/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lyndon Dykes Anytime Goalscorer</td>
+              <td><strong>33/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Scott McTominay Anytime Goalscorer</td>
+              <td><strong>7/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Findlay Curtis Anytime Goalscorer</td>
+              <td><strong>47/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>John McGinn Anytime Goalscorer</td>
+              <td><strong>5/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ben Doak Anytime Goalscorer</td>
+              <td><strong>5/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Wilson Isidor Anytime Goalscorer</td>
+              <td><strong>16/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Duckens Nazon Anytime Goalscorer</td>
+              <td><strong>67/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Frantzdy Pierrot Anytime Goalscorer</td>
+              <td><strong>17/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Yassin Fortune Anytime Goalscorer</td>
+              <td><strong>18/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lewis Ferguson Anytime Goalscorer</td>
+              <td><strong>18/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ryan Christie Anytime Goalscorer</td>
+              <td><strong>19/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Louicius Don Deedson Anytime Goalscorer</td>
+              <td><strong>17/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lenny Joseph Anytime Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Tyler Fletcher Anytime Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Derick Etienne Anytime Goalscorer</td>
+              <td><strong>19/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ruben Providence Anytime Goalscorer</td>
+              <td><strong>5/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kenny McLean Anytime Goalscorer</td>
+              <td><strong>11/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Josue Casimir Anytime Goalscorer</td>
+              <td><strong>6/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jean-Ricner Bellegarde Anytime Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kieran Tierney Anytime Goalscorer</td>
+              <td><strong>15/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Andy Robertson Anytime Goalscorer</td>
+              <td><strong>8/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Aaron Hickey Anytime Goalscorer</td>
+              <td><strong>8/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>John Souttar Anytime Goalscorer</td>
+              <td><strong>17/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Scott McKenna Anytime Goalscorer</td>
+              <td><strong>17/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Dominic Hyam Anytime Goalscorer</td>
+              <td><strong>17/2</strong></td>
+            </tr>
             </tbody>
           </table>
         </section>
         
-              </div>
+        <section class="prop-market">
+          <h3>First Goalscorer</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Lawrence Shankland First Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Che Adams First Goalscorer</td>
+              <td><strong>19/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ross Stewart First Goalscorer</td>
+              <td><strong>19/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>George Hirst First Goalscorer</td>
+              <td><strong>5/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lyndon Dykes First Goalscorer</td>
+              <td><strong>5/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Scott McTominay First Goalscorer</td>
+              <td><strong>11/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Findlay Curtis First Goalscorer</td>
+              <td><strong>7/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>John McGinn First Goalscorer</td>
+              <td><strong>15/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ben Doak First Goalscorer</td>
+              <td><strong>15/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Wilson Isidor First Goalscorer</td>
+              <td><strong>19/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Duckens Nazon First Goalscorer</td>
+              <td><strong>19/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Frantzdy Pierrot First Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Yassin Fortune First Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lewis Ferguson First Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ryan Christie First Goalscorer</td>
+              <td><strong>11/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Louicius Don Deedson First Goalscorer</td>
+              <td><strong>12/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lenny Joseph First Goalscorer</td>
+              <td><strong>13/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Tyler Fletcher First Goalscorer</td>
+              <td><strong>13/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Derick Etienne First Goalscorer</td>
+              <td><strong>13/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ruben Providence First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kenny McLean First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Josue Casimir First Goalscorer</td>
+              <td><strong>16/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jean-Ricner Bellegarde First Goalscorer</td>
+              <td><strong>18/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kieran Tierney First Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Andy Robertson First Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Aaron Hickey First Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>John Souttar First Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Scott McKenna First Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Dominic Hyam First Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
             </section>
             
         </section>

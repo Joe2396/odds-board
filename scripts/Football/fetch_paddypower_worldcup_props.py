@@ -346,6 +346,23 @@ def accept_cookies(page):
             pass
 
 
+def expand_show_all_selections(page):
+    """Click every 'Show all selections' button on the page to reveal hidden players."""
+    try:
+        buttons = page.get_by_text("Show all selections", exact=True)
+        count = buttons.count()
+        if count:
+            print(f"  Expanding {count} 'Show all selections' button(s)...")
+            for i in range(count):
+                try:
+                    buttons.nth(i).click(timeout=3000)
+                    page.wait_for_timeout(800)
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+
 def collect_match_links(page):
     print(f"Opening list page: {LIST_URL}")
     page.goto(LIST_URL, wait_until="domcontentloaded", timeout=60000)
@@ -373,7 +390,6 @@ def collect_match_links(page):
         if not href:
             continue
 
-        # Match pages usually contain team-v-team and an event id.
         if "-v-" not in href:
             continue
 
@@ -439,6 +455,10 @@ def scrape_match(page, url, fallback_text=""):
                     pass
         except Exception:
             pass
+
+    # ── NEW: expand hidden goalscorer selections ──────────────────────────────
+    expand_show_all_selections(page)
+    # ─────────────────────────────────────────────────────────────────────────
 
     text = page.locator("body").inner_text(timeout=30000)
 

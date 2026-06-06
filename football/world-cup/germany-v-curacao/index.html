@@ -6,159 +6,42 @@
   <title>Germany v Curacao Odds — BeatTheBooks</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #0f1621;
-      color: white;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      min-height: 100vh;
-    }
+    body { background: #0f1621; color: white; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; }
     a { color: #60a5fa; text-decoration: none; }
     .page { max-width: 1300px; margin: 0 auto; padding: 34px 24px 70px; }
     .nav { color: #91a0b5; margin-bottom: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero {
-      border: 1px solid #223047;
-      border-radius: 28px;
-      padding: 32px;
-      background: rgba(17,24,39,0.86);
-      margin-bottom: 28px;
-    }
-    .eyebrow {
-      display: inline-flex;
-      border: 1px solid rgba(34,197,94,0.45);
-      background: rgba(34,197,94,0.1);
-      color: #86efac;
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    h1 {
-      font-size: clamp(38px, 6vw, 72px);
-      letter-spacing: -0.055em;
-      line-height: .95;
-      margin-bottom: 12px;
-    }
+    .hero { border: 1px solid #223047; border-radius: 28px; padding: 32px; background: rgba(17,24,39,0.86); margin-bottom: 28px; }
+    .eyebrow { display: inline-flex; border: 1px solid rgba(34,197,94,0.45); background: rgba(34,197,94,0.1); color: #86efac; border-radius: 999px; padding: 7px 12px; font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 14px; }
+    h1 { font-size: clamp(38px, 6vw, 72px); letter-spacing: -0.055em; line-height: .95; margin-bottom: 12px; }
     .meta { color: #91a0b5; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-    .price-panel, .prop-market, .book-props {
-      border: 1px solid #223047;
-      border-radius: 20px;
-      padding: 18px;
-      background: rgba(17,24,39,0.72);
-    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .price-panel, .prop-market, .book-props { border: 1px solid #223047; border-radius: 20px; padding: 18px; background: rgba(17,24,39,0.72); }
     .price-panel h2 { margin-bottom: 14px; }
     table { width: 100%; border-collapse: collapse; }
-    th, td {
-      text-align: left;
-      padding: 10px 8px;
-      border-bottom: 1px solid #223047;
-      color: #c7d2fe;
-      font-size: 14px;
-      vertical-align: top;
-    }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #223047; color: #c7d2fe; font-size: 14px; vertical-align: top; }
     th { color: #91a0b5; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
     td strong { color: #22c55e; font-size: 20px; }
-    .best-row {
-      background: rgba(34,197,94,0.08);
-    }
-    .best-row td:last-child {
-      color: #86efac;
-      font-weight: 900;
-      font-size: 12px;
-    }
-    .props-wrap {
-      margin-top: 36px;
-    }
-    .section-title {
-      margin-bottom: 16px;
-    }
-    .section-title h2 {
-      font-size: 34px;
-      letter-spacing: -0.035em;
-      margin-bottom: 6px;
-    }
-    .section-title p {
-      color: #91a0b5;
-    }
-    .book-props {
-      margin-bottom: 18px;
-    }
-    .book-props-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-    .book-props-head h2 {
-      font-size: 24px;
-    }
-    .book-props-head a {
-      border: 1px solid rgba(96,165,250,0.45);
-      background: rgba(96,165,250,0.08);
-      color: #bfdbfe;
-      border-radius: 999px;
-      padding: 7px 11px;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-    .props-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 14px;
-    }
-    .prop-market h3 {
-      font-size: 18px;
-      margin-bottom: 12px;
-      color: #facc15;
-    }
-    .prop-market td strong {
-      color: #86efac;
-      font-size: 18px;
-    }
-    .compare-note {
-      color: #c7d2fe;
-      font-size: 13px;
-      font-weight: 800;
-    }
-    .props-jump-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 0 0 18px;
-    }
-    .props-jump-nav a {
-      border: 1px solid rgba(96,165,250,0.45);
-      background: rgba(96,165,250,0.08);
-      color: #bfdbfe;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-    .sub-section-title {
-      margin-top: 34px;
-    }
-    .props-grid-wide {
-      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
-      margin-bottom: 14px;
-    }
-    .prop-market-wide {
-      grid-column: span 1;
-    }
-    .prop-market-wide td strong {
-      font-size: 16px;
-    }
+    .best-row { background: rgba(34,197,94,0.08); }
+    .best-row td:last-child { color: #86efac; font-weight: 900; font-size: 12px; }
+    .best-cell strong { color: #22c55e !important; }
+    .goalscorer-comparison td:first-child { font-weight: 600; color: #e2e8f0; min-width: 160px; }
+    .props-wrap { margin-top: 36px; }
+    .section-title { margin-bottom: 16px; }
+    .section-title h2 { font-size: 34px; letter-spacing: -0.035em; margin-bottom: 6px; }
+    .section-title p { color: #91a0b5; }
+    .book-props { margin-bottom: 18px; }
+    .book-props-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
+    .book-props-head h2 { font-size: 24px; }
+    .book-props-head a { border: 1px solid rgba(96,165,250,0.45); background: rgba(96,165,250,0.08); color: #bfdbfe; border-radius: 999px; padding: 7px 11px; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .props-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 14px; }
+    .prop-market h3 { font-size: 18px; margin-bottom: 12px; color: #facc15; }
+    .prop-market td strong { color: #86efac; font-size: 18px; }
+    .compare-note { color: #c7d2fe; font-size: 13px; font-weight: 800; }
+    .props-jump-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+    .props-jump-nav a { border: 1px solid rgba(96,165,250,0.45); background: rgba(96,165,250,0.08); color: #bfdbfe; border-radius: 999px; padding: 8px 12px; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .sub-section-title { margin-top: 34px; }
+    .props-grid-wide { grid-template-columns: repeat(auto-fit, minmax(520px, 1fr)); margin-bottom: 14px; }
+    .prop-market-wide td strong { font-size: 16px; }
     @media (max-width: 700px) {
       .page { padding: 22px 14px 50px; }
       .hero { padding: 22px; border-radius: 22px; }
@@ -175,25 +58,17 @@
       <span>›</span>
       <span>Germany v Curacao</span>
     </nav>
-
     <section class="hero">
       <div class="eyebrow">⚽ Match Odds</div>
       <h1>Germany v Curacao</h1>
       <p class="meta">Sunday 14 · 18:00 · 6 bookmakers</p>
     </section>
-
     <div class="grid">
       
         <section class="price-panel">
           <h2>Germany</h2>
           <table>
-            <thead>
-              <tr>
-                <th>Bookmaker</th>
-                <th>Odds</th>
-                <th></th>
-              </tr>
-            </thead>
+            <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
             <tbody>
             <tr class="">
               <td>888Sport</td>
@@ -238,13 +113,7 @@
         <section class="price-panel">
           <h2>Draw</h2>
           <table>
-            <thead>
-              <tr>
-                <th>Bookmaker</th>
-                <th>Odds</th>
-                <th></th>
-              </tr>
-            </thead>
+            <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
             <tbody>
             <tr class="">
               <td>888Sport</td>
@@ -289,13 +158,7 @@
         <section class="price-panel">
           <h2>Curacao</h2>
           <table>
-            <thead>
-              <tr>
-                <th>Bookmaker</th>
-                <th>Odds</th>
-                <th></th>
-              </tr>
-            </thead>
+            <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
             <tbody>
             <tr class="">
               <td>888Sport</td>
@@ -337,20 +200,15 @@
         </section>
         
     </div>
-
     
     <section class="props-wrap" id="props">
-      <div class="section-title">
-        <h2>Props</h2>
-        <p>Best prices and prop markets from tracked bookmakers.</p>
-      </div>
-
+      <div class="section-title"><h2>Props</h2><p>Best prices and prop markets from tracked bookmakers.</p></div>
       <nav class="props-jump-nav">
         <a href="#best-prop-prices">Best Prop Prices</a>
         <a href="#match-props">Match Props</a>
+        <a href="#team-props">Team Props</a>
         <a href="#player-props">Player Props</a>
       </nav>
-
       
         <section class="book-props" id="best-prop-prices">
           <div class="book-props-head">
@@ -358,19 +216,11 @@
             <span class="compare-note">Compared across tracked bookmakers</span>
           </div>
           <div class="props-grid props-grid-wide">
-            
             <section class="prop-market prop-market-wide">
               <h3>Total Goals Over / Under — Over / Under</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Line</th>
-                    <th>Best Over</th>
-                    <th>Best Under</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Line</th><th>Best Over</th><th>Best Under</th></tr></thead>
                 <tbody>
-                  
                 <tr>
                   <td><strong>1.5</strong></td>
                   <td>BoyleSports <strong>1/33</strong></td>
@@ -395,285 +245,140 @@
                   <td>BoyleSports <strong>7/10</strong></td>
                 </tr>
                 
+                <tr>
+                  <td><strong>5.5</strong></td>
+                  <td>Unibet <strong>23/10</strong></td>
+                  <td>BoyleSports <strong>1/3</strong></td>
+                </tr>
+                
+                <tr>
+                  <td><strong>6.5</strong></td>
+                  <td>BoyleSports <strong>9/2</strong></td>
+                  <td>BoyleSports <strong>1/7</strong></td>
+                </tr>
                 </tbody>
               </table>
             </section>
-            
-          </div>
+            </div>
           <div class="props-grid">
-            
             <section class="prop-market">
-              <h3>Correct Score — Draw 0-0</h3>
+              <h3>Both Teams To Score — No</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
                 <tbody>
-                  
                 <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>35/1</strong></td>
+                  <td>BoyleSports</td>
+                  <td><strong>1/3</strong></td>
                   <td>BEST</td>
                 </tr>
                 
                 <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>28/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Correct Score — Draw 1-1</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>33/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>30/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Correct Score — Draw 2-2</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>100/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>66/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Correct Score — Germany 1-0</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>100/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="">
-                  <td>BoyleSports</td>
-                  <td><strong>14/1</strong></td>
+                  <td>Unibet</td>
+                  <td><strong>27/100</strong></td>
                   <td></td>
                 </tr>
                 
                 <tr class="">
                   <td>PaddyPower</td>
-                  <td><strong>14/1</strong></td>
+                  <td><strong>1/4</strong></td>
                   <td></td>
                 </tr>
-                
                 </tbody>
               </table>
             </section>
             
             <section class="prop-market">
-              <h3>Correct Score — Germany 2-0</h3>
+              <h3>Both Teams To Score — Yes</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
                 <tbody>
-                  
                 <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>7/1</strong></td>
+                  <td>PaddyPower</td>
+                  <td><strong>13/5</strong></td>
                   <td>BEST</td>
                 </tr>
                 
                 <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>13/2</strong></td>
+                  <td>Unibet</td>
+                  <td><strong>12/5</strong></td>
                   <td></td>
                 </tr>
                 
+                <tr class="">
+                  <td>BoyleSports</td>
+                  <td><strong>2/1</strong></td>
+                  <td></td>
+                </tr>
                 </tbody>
               </table>
             </section>
             
             <section class="prop-market">
-              <h3>Correct Score — Germany 2-1</h3>
+              <h3>Double Chance — Germany or Curacao</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
                 <tbody>
-                  
                 <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>100/1</strong></td>
+                  <td>Unibet</td>
+                  <td><strong>12/5</strong></td>
                   <td>BEST</td>
                 </tr>
                 
                 <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>20/1</strong></td>
-                  <td></td>
-                </tr>
-                
-                <tr class="">
                   <td>BoyleSports</td>
-                  <td><strong>18/1</strong></td>
+                  <td><strong>1/80</strong></td>
                   <td></td>
                 </tr>
-                
                 </tbody>
               </table>
             </section>
             
             <section class="prop-market">
-              <h3>Correct Score — Germany 3-0</h3>
+              <h3>Double Chance — Germany or Draw</h3>
               <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
                 <tbody>
-                  
                 <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>5/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>5/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                <tr class="best-row">
-                  <td>PaddyPower</td>
-                  <td><strong>5/1</strong></td>
-                  <td>BEST</td>
-                </tr>
-                
-                </tbody>
-              </table>
-            </section>
-            
-            <section class="prop-market">
-              <h3>Correct Score — Germany 3-1</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Bookmaker</th>
-                    <th>Odds</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                <tr class="best-row">
-                  <td>BoyleSports</td>
-                  <td><strong>14/1</strong></td>
+                  <td>Unibet</td>
+                  <td><strong>10/1</strong></td>
                   <td>BEST</td>
                 </tr>
                 
                 <tr class="">
-                  <td>PaddyPower</td>
-                  <td><strong>13/1</strong></td>
+                  <td>BoyleSports</td>
+                  <td><strong>1/1000</strong></td>
                   <td></td>
                 </tr>
-                
                 </tbody>
               </table>
             </section>
-            
-          </div>
+            </div>
+          <div class="props-grid props-grid-wide">
+            <section class="prop-market prop-market-wide goalscorer-comparison">
+              <h3>Anytime Goalscorer</h3>
+              <table>
+                <thead><tr><th>Player</th><th>PaddyPower</th><th>Unibet</th></tr></thead>
+                <tbody><tr><td>Kenji Gorre</td><td class="best-cell"><strong>17/1</strong></td><td><strong>6/1</strong></td></tr><tr><td>Sontje Hansen</td><td class="best-cell"><strong>14/1</strong></td><td><strong>13/2</strong></td></tr><tr><td>Brandley Kuwas</td><td class="best-cell"><strong>12/1</strong></td><td><strong>13/2</strong></td></tr><tr><td>Jearl Margaritha</td><td class="best-cell"><strong>12/1</strong></td><td><strong>6/1</strong></td></tr><tr><td>Jurgen Locadia</td><td class="best-cell"><strong>11/1</strong></td><td><strong>19/4</strong></td></tr><tr><td>Gervane Kastaneer</td><td class="best-cell"><strong>10/1</strong></td><td><strong>9/2</strong></td></tr><tr><td>Waldemar Anton</td><td class="best-cell"><strong>17/2</strong></td><td><strong>4/1</strong></td></tr><tr><td>Antonio Rudiger</td><td class="best-cell"><strong>6/1</strong></td><td><strong>18/5</strong></td></tr><tr><td>Jonathan Tah</td><td class="best-cell"><strong>11/2</strong></td><td><strong>15/4</strong></td></tr><tr><td>Angelo Stiller</td><td class="best-cell"><strong>9/2</strong></td><td><strong>7/2</strong></td></tr><tr><td>Malick Thiaw</td><td class="best-cell"><strong>4/1</strong></td><td class="best-cell"><strong>4/1</strong></td></tr><tr><td>Aleksandar Pavlovic</td><td class="best-cell"><strong>4/1</strong></td><td><strong>16/5</strong></td></tr><tr><td>David Raum</td><td><strong>7/2</strong></td><td class="best-cell"><strong>19/5</strong></td></tr><tr><td>Nico Schlotterbeck</td><td class="best-cell"><strong>16/5</strong></td><td class="best-cell"><strong>16/5</strong></td></tr><tr><td>Nathaniel Brown</td><td><strong>5/2</strong></td><td class="best-cell"><strong>11/4</strong></td></tr><tr><td>Felix Nmecha</td><td class="best-cell"><strong>5/2</strong></td><td><strong>9/5</strong></td></tr><tr><td>Joshua Kimmich</td><td class="best-cell"><strong>5/2</strong></td><td><strong>33/20</strong></td></tr><tr><td>Pascal Gross</td><td class="best-cell"><strong>5/2</strong></td><td><strong>47/20</strong></td></tr><tr><td>Leon Goretzka</td><td class="best-cell"><strong>2/1</strong></td><td><strong>31/20</strong></td></tr><tr><td>Nadiem Amiri</td><td class="best-cell"><strong>13/10</strong></td><td><strong>5/4</strong></td></tr><tr><td>Jamie Leweling</td><td class="best-cell"><strong>13/10</strong></td><td><strong>23/20</strong></td></tr><tr><td>Lennart Karl</td><td><strong>4/5</strong></td><td class="best-cell"><strong>9/10</strong></td></tr><tr><td>Leroy Sane</td><td class="best-cell"><strong>8/11</strong></td><td><strong>29/50</strong></td></tr><tr><td>Maximilian Beier</td><td class="best-cell"><strong>8/11</strong></td><td><strong>31/50</strong></td></tr><tr><td>Jamal Musiala</td><td class="best-cell"><strong>8/13</strong></td><td><strong>11/20</strong></td></tr><tr><td>Kai Havertz</td><td class="best-cell"><strong>8/13</strong></td><td><strong>1/2</strong></td></tr><tr><td>Florian Wirtz</td><td><strong>4/7</strong></td><td class="best-cell"><strong>29/50</strong></td></tr><tr><td>Nick Woltemade</td><td class="best-cell"><strong>1/2</strong></td><td><strong>2/5</strong></td></tr><tr><td>Deniz Undav</td><td><strong>4/9</strong></td><td class="best-cell"><strong>9/20</strong></td></tr></tbody>
+              </table>
+            </section>
+            </div>
         </section>
         
       
         <section id="match-props">
           <div class="section-title sub-section-title">
             <h2>Match Props</h2>
-            <p>Team, match result, goals, BTTS and score markets.</p>
+            <p>Match result, total goals, BTTS, score, handicap and double chance markets.</p>
           </div>
           
             <section class="book-props">
-              <div class="book-props-head">
-                <h2>BoyleSports Match Props</h2>
-                
-        <a href="https://www.boylesports.com/sports/football/event/international-world-cup/germany-v-curacao" target="_blank" rel="noopener">Open bookmaker →</a>
-        
-              </div>
+              <div class="book-props-head"><h2>BoyleSports Match Props</h2><a href="https://www.boylesports.com/sports/football/event/international-world-cup/germany-v-curacao" target="_blank" rel="noopener">Open bookmaker →</a></div>
               <div class="props-grid">
-                
         <section class="prop-market">
           <h3>Correct Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Germany 3-0</td>
               <td><strong>5/1</strong></td>
@@ -833,7 +538,29 @@
               <td>Curacao 2-1</td>
               <td><strong>100/1</strong></td>
             </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
+          <h3>1 Goal Ahead</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Germany</td>
+              <td><strong>1/250</strong></td>
+            </tr>
             
+            <tr>
+              <td>Draw</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Curacao</td>
+              <td><strong>17/2</strong></td>
+            </tr>
             </tbody>
           </table>
         </section>
@@ -841,14 +568,8 @@
         <section class="prop-market">
           <h3>Total Goals Over / Under</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Over 1.5</td>
               <td><strong>1/33</strong></td>
@@ -908,7 +629,6 @@
               <td>Under 6.5</td>
               <td><strong>1/7</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -916,14 +636,8 @@
         <section class="prop-market">
           <h3>1St Half Goals Over / Under</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Over 0.5</td>
               <td><strong>1/8</strong></td>
@@ -953,22 +667,33 @@
               <td>Under 2.5</td>
               <td><strong>4/11</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
         
         <section class="prop-market">
-          <h3>Both Teams To Score And Match Result</h3>
+          <h3>Both Teams To Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
+            <tr>
+              <td>Yes</td>
+              <td><strong>2/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>No</td>
+              <td><strong>1/3</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
+          <h3>Result &amp; Both Teams To Score</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
             <tr>
               <td>Germany</td>
               <td><strong>12/5</strong></td>
@@ -983,7 +708,6 @@
               <td>Curacao</td>
               <td><strong>40/1</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -991,14 +715,8 @@
         <section class="prop-market">
           <h3>Double Chance</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Germany or Curacao</td>
               <td><strong>1/80</strong></td>
@@ -1013,22 +731,15 @@
               <td>Curacao or Draw</td>
               <td><strong>14/1</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
         
         <section class="prop-market">
-          <h3>Match Result And Total Goals</h3>
+          <h3>Result &amp; Total Goals</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Germany/Under 1.5</td>
               <td><strong>12/1</strong></td>
@@ -1178,34 +889,20 @@
               <td>Curacao/Over 5.5</td>
               <td><strong>50/1</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
-        
-              </div>
+        </div>
             </section>
             
             <section class="book-props">
-              <div class="book-props-head">
-                <h2>PaddyPower Match Props</h2>
-                
-        <a href="https://www.paddypower.com/football/fifa-world-cup/germany-v-curacao-35035284" target="_blank" rel="noopener">Open bookmaker →</a>
-        
-              </div>
+              <div class="book-props-head"><h2>PaddyPower Match Props</h2><a href="https://www.paddypower.com/football/fifa-world-cup/germany-v-curacao-35035284" target="_blank" rel="noopener">Open bookmaker →</a></div>
               <div class="props-grid">
-                
         <section class="prop-market">
-          <h3>Over/Under Goals</h3>
+          <h3>Total Goals Over/Under</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Over 1.5 Goals</td>
               <td><strong>1/50</strong></td>
@@ -1246,6 +943,35 @@
               <td><strong>13/20</strong></td>
             </tr>
             
+            <tr>
+              <td>Over 5.5 Goals</td>
+              <td><strong>11/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 5.5 Goals</td>
+              <td><strong>3/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 6.5 Goals</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 6.5 Goals</td>
+              <td><strong>1/9</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 7.5 Goals</td>
+              <td><strong>7/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 7.5 Goals</td>
+              <td><strong>1/20</strong></td>
+            </tr>
             </tbody>
           </table>
         </section>
@@ -1253,14 +979,8 @@
         <section class="prop-market">
           <h3>1st Half Goals</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>1st Half Over 0.5 Goals</td>
               <td><strong>1/7</strong></td>
@@ -1320,7 +1040,6 @@
               <td>1st Half Under 5.5 Goals</td>
               <td><strong>1/250</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -1328,14 +1047,8 @@
         <section class="prop-market">
           <h3>Correct Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>1 - 0</td>
               <td><strong>14/1</strong></td>
@@ -1410,7 +1123,6 @@
               <td>1 - 3</td>
               <td><strong>200/1</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -1418,14 +1130,8 @@
         <section class="prop-market">
           <h3>Both Teams To Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Both Teams To Score - Yes</td>
               <td><strong>13/5</strong></td>
@@ -1475,7 +1181,6 @@
               <td>Both Teams to Score Two or More Goals - No</td>
               <td><strong>1/200</strong></td>
             </tr>
-            
             </tbody>
           </table>
         </section>
@@ -1483,14 +1188,8 @@
         <section class="prop-market">
           <h3>Result &amp; Both To Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Germany &amp; Both Teams To Score</td>
               <td><strong>11/4</strong></td>
@@ -1505,12 +1204,187 @@
               <td>Curacao &amp; Both Teams To Score</td>
               <td><strong>66/1</strong></td>
             </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
+            </section>
             
+            <section class="book-props">
+              <div class="book-props-head"><h2>Unibet Match Props</h2><a href="https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/germany-vs-curacao/b07191c130f0ceda0d1ab7ad29bd79e5" target="_blank" rel="noopener">Open bookmaker →</a></div>
+              <div class="props-grid">
+        <section class="prop-market">
+          <h3>Match Betting</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Germany</td>
+              <td><strong>1/50</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Draw</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Curacao</td>
+              <td><strong>66/1</strong></td>
+            </tr>
             </tbody>
           </table>
         </section>
         
-              </div>
+        <section class="prop-market">
+          <h3>Total Goals</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Over 3.5</td>
+              <td><strong>1/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 3.5</td>
+              <td><strong>31/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 4.5</td>
+              <td><strong>11/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 4.5</td>
+              <td><strong>7/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 5.5</td>
+              <td><strong>23/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 5.5</td>
+              <td><strong>33/100</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
+          <h3>Both Teams To Score</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Both Teams To Score - Yes</td>
+              <td><strong>12/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Both Teams To Score - No</td>
+              <td><strong>27/100</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
+          <h3>Double Chance</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Germany or Draw</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Germany or Curacao</td>
+              <td><strong>12/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Draw or Curacao</td>
+              <td><strong>29/100</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
+            </section>
+            
+        </section>
+        
+      
+        <section id="team-props">
+          <div class="section-title sub-section-title">
+            <h2>Team Props</h2>
+            <p>Team-specific goal markets.</p>
+          </div>
+          
+            <section class="book-props">
+              <div class="book-props-head"><h2>Unibet Team Props</h2><a href="https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/germany-vs-curacao/b07191c130f0ceda0d1ab7ad29bd79e5" target="_blank" rel="noopener">Open bookmaker →</a></div>
+              <div class="props-grid">
+        <section class="prop-market">
+          <h3>Total Goals by Germany</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Over 0.5</td>
+              <td><strong>12/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 0.5</td>
+              <td><strong>29/100</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 0.5</td>
+              <td><strong>3/25</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 0.5</td>
+              <td><strong>17/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Over 1.5</td>
+              <td><strong>3/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 1.5</td>
+              <td><strong>23/20</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="prop-market">
+          <h3>Total Goals by Curacao</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Over 2.5</td>
+              <td><strong>9/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Under 2.5</td>
+              <td><strong>37/100</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
             </section>
             
         </section>
@@ -1519,29 +1393,17 @@
         <section id="player-props">
           <div class="section-title sub-section-title">
             <h2>Player Props</h2>
-            <p>Goalscorer markets only for now. Shots, assists and cards can be added as bookmakers release them.</p>
+            <p>Goalscorer markets.</p>
           </div>
           
             <section class="book-props">
-              <div class="book-props-head">
-                <h2>PaddyPower Player Props</h2>
-                
-        <a href="https://www.paddypower.com/football/fifa-world-cup/germany-v-curacao-35035284" target="_blank" rel="noopener">Open bookmaker →</a>
-        
-              </div>
+              <div class="book-props-head"><h2>PaddyPower Player Props</h2><a href="https://www.paddypower.com/football/fifa-world-cup/germany-v-curacao-35035284" target="_blank" rel="noopener">Open bookmaker →</a></div>
               <div class="props-grid">
-                
         <section class="prop-market">
           <h3>Player To Score</h3>
           <table>
-            <thead>
-              <tr>
-                <th>Selection</th>
-                <th>Odds</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
             <tbody>
-              
             <tr>
               <td>Deniz Undav First Goalscorer</td>
               <td><strong>3/1</strong></td>
@@ -1592,11 +1454,730 @@
               <td><strong>8/13</strong></td>
             </tr>
             
+            <tr>
+              <td>Leroy Sane First Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leroy Sane Anytime Goalscorer</td>
+              <td><strong>8/11</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Maximilian Beier First Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Maximilian Beier Anytime Goalscorer</td>
+              <td><strong>8/11</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lennart Karl First Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lennart Karl Anytime Goalscorer</td>
+              <td><strong>4/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nadiem Amiri First Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nadiem Amiri Anytime Goalscorer</td>
+              <td><strong>13/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jamie Leweling First Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jamie Leweling Anytime Goalscorer</td>
+              <td><strong>13/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leon Goretzka First Goalscorer</td>
+              <td><strong>9/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leon Goretzka Anytime Goalscorer</td>
+              <td><strong>2/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Felix Nmecha First Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Felix Nmecha Anytime Goalscorer</td>
+              <td><strong>5/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nathaniel Brown First Goalscorer</td>
+              <td><strong>11/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nathaniel Brown Anytime Goalscorer</td>
+              <td><strong>5/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Joshua Kimmich First Goalscorer</td>
+              <td><strong>11/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Joshua Kimmich Anytime Goalscorer</td>
+              <td><strong>5/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Pascal Gross First Goalscorer</td>
+              <td><strong>11/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Pascal Gross Anytime Goalscorer</td>
+              <td><strong>5/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nico Schlotterbeck First Goalscorer</td>
+              <td><strong>12/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nico Schlotterbeck Anytime Goalscorer</td>
+              <td><strong>16/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>David Raum First Goalscorer</td>
+              <td><strong>13/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>David Raum Anytime Goalscorer</td>
+              <td><strong>7/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Malick Thiaw First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Malick Thiaw Anytime Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Aleksandar Pavlovic First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Aleksandar Pavlovic Anytime Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Angelo Stiller First Goalscorer</td>
+              <td><strong>16/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Angelo Stiller Anytime Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Antonio Rudiger First Goalscorer</td>
+              <td><strong>20/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Antonio Rudiger Anytime Goalscorer</td>
+              <td><strong>6/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jonathan Tah First Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jonathan Tah Anytime Goalscorer</td>
+              <td><strong>11/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Gervane Kastaneer First Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Gervane Kastaneer Anytime Goalscorer</td>
+              <td><strong>10/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Waldemar Anton First Goalscorer</td>
+              <td><strong>30/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Waldemar Anton Anytime Goalscorer</td>
+              <td><strong>17/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jurgen Locadia First Goalscorer</td>
+              <td><strong>30/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jurgen Locadia Anytime Goalscorer</td>
+              <td><strong>11/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Brandley Kuwas First Goalscorer</td>
+              <td><strong>35/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Brandley Kuwas Anytime Goalscorer</td>
+              <td><strong>12/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jearl Margaritha First Goalscorer</td>
+              <td><strong>35/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jearl Margaritha Anytime Goalscorer</td>
+              <td><strong>12/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Juninho Bacuna First Goalscorer</td>
+              <td><strong>40/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Juninho Bacuna Anytime Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Sontje Hansen First Goalscorer</td>
+              <td><strong>40/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Sontje Hansen Anytime Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Tahith Chong First Goalscorer</td>
+              <td><strong>50/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Tahith Chong Anytime Goalscorer</td>
+              <td><strong>17/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jeremy Antonisse First Goalscorer</td>
+              <td><strong>50/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jeremy Antonisse Anytime Goalscorer</td>
+              <td><strong>17/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kenji Gorre First Goalscorer</td>
+              <td><strong>55/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kenji Gorre Anytime Goalscorer</td>
+              <td><strong>17/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leandro Bacuna First Goalscorer</td>
+              <td><strong>60/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leandro Bacuna Anytime Goalscorer</td>
+              <td><strong>18/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Riechedly Bazoer First Goalscorer</td>
+              <td><strong>80/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Riechedly Bazoer Anytime Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kevin Felida First Goalscorer</td>
+              <td><strong>80/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kevin Felida Anytime Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Livano Comenencia First Goalscorer</td>
+              <td><strong>80/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Livano Comenencia Anytime Goalscorer</td>
+              <td><strong>25/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ar&#39;jany Martha First Goalscorer</td>
+              <td><strong>80/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Ar&#39;jany Martha Anytime Goalscorer</td>
+              <td><strong>30/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Tyrese Noslin First Goalscorer</td>
+              <td><strong>100/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Tyrese Noslin Anytime Goalscorer</td>
+              <td><strong>40/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Armando Obispo First Goalscorer</td>
+              <td><strong>125/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Armando Obispo Anytime Goalscorer</td>
+              <td><strong>50/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Joshua Brenet First Goalscorer</td>
+              <td><strong>125/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Joshua Brenet Anytime Goalscorer</td>
+              <td><strong>55/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Deveron Fonville First Goalscorer</td>
+              <td><strong>125/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Deveron Fonville Anytime Goalscorer</td>
+              <td><strong>50/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Sherel Floranus First Goalscorer</td>
+              <td><strong>150/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Sherel Floranus Anytime Goalscorer</td>
+              <td><strong>55/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Godfried Roemeratoe First Goalscorer</td>
+              <td><strong>150/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Godfried Roemeratoe Anytime Goalscorer</td>
+              <td><strong>60/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Shurandy Sambo First Goalscorer</td>
+              <td><strong>150/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Shurandy Sambo Anytime Goalscorer</td>
+              <td><strong>66/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jurien Gaari First Goalscorer</td>
+              <td><strong>175/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jurien Gaari Anytime Goalscorer</td>
+              <td><strong>80/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Roshon van Eijma First Goalscorer</td>
+              <td><strong>175/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Roshon van Eijma Anytime Goalscorer</td>
+              <td><strong>66/1</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
+            </section>
+            
+            <section class="book-props">
+              <div class="book-props-head"><h2>Unibet Player Props</h2><a href="https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/germany-vs-curacao/b07191c130f0ceda0d1ab7ad29bd79e5" target="_blank" rel="noopener">Open bookmaker →</a></div>
+              <div class="props-grid">
+        <section class="prop-market">
+          <h3>Player To Score</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Nick Woltemade Anytime Goalscorer</td>
+              <td><strong>2/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Deniz Undav Anytime Goalscorer</td>
+              <td><strong>9/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kai Havertz Anytime Goalscorer</td>
+              <td><strong>1/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jamal Musiala Anytime Goalscorer</td>
+              <td><strong>11/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leroy Sane Anytime Goalscorer</td>
+              <td><strong>29/50</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Florian Wirtz Anytime Goalscorer</td>
+              <td><strong>29/50</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Maximilian Beier Anytime Goalscorer</td>
+              <td><strong>31/50</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lennart Karl Anytime Goalscorer</td>
+              <td><strong>9/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jamie Leweling Anytime Goalscorer</td>
+              <td><strong>23/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nadiem Amiri Anytime Goalscorer</td>
+              <td><strong>5/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leon Goretzka Anytime Goalscorer</td>
+              <td><strong>31/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Joshua Kimmich Anytime Goalscorer</td>
+              <td><strong>33/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Felix Nmecha Anytime Goalscorer</td>
+              <td><strong>9/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Pascal Gross Anytime Goalscorer</td>
+              <td><strong>47/20</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nathaniel Brown Anytime Goalscorer</td>
+              <td><strong>11/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nico Schlotterbeck Anytime Goalscorer</td>
+              <td><strong>16/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Aleksandar Pavlovic Anytime Goalscorer</td>
+              <td><strong>16/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Angelo Stiller Anytime Goalscorer</td>
+              <td><strong>7/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Antonio Rudiger Anytime Goalscorer</td>
+              <td><strong>18/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jonathan Tah Anytime Goalscorer</td>
+              <td><strong>15/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>David Raum Anytime Goalscorer</td>
+              <td><strong>19/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Waldemar Anton Anytime Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Malick Thiaw Anytime Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Gervane Kastaneer Anytime Goalscorer</td>
+              <td><strong>9/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jurgen Locadia Anytime Goalscorer</td>
+              <td><strong>19/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kenji Gorre Anytime Goalscorer</td>
+              <td><strong>6/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jearl Margaritha Anytime Goalscorer</td>
+              <td><strong>6/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Brandley Kuwas Anytime Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Sontje Hansen Anytime Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
             </tbody>
           </table>
         </section>
         
-              </div>
+        <section class="prop-market">
+          <h3>First Goalscorer</h3>
+          <table>
+            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Nick Woltemade First Goalscorer</td>
+              <td><strong>29/10</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Deniz Undav First Goalscorer</td>
+              <td><strong>3/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kai Havertz First Goalscorer</td>
+              <td><strong>17/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jamal Musiala First Goalscorer</td>
+              <td><strong>18/5</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leroy Sane First Goalscorer</td>
+              <td><strong>15/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Florian Wirtz First Goalscorer</td>
+              <td><strong>15/4</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Maximilian Beier First Goalscorer</td>
+              <td><strong>4/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Lennart Karl First Goalscorer</td>
+              <td><strong>5/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jamie Leweling First Goalscorer</td>
+              <td><strong>6/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nadiem Amiri First Goalscorer</td>
+              <td><strong>13/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Leon Goretzka First Goalscorer</td>
+              <td><strong>15/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Joshua Kimmich First Goalscorer</td>
+              <td><strong>8/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Felix Nmecha First Goalscorer</td>
+              <td><strong>17/2</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Pascal Gross First Goalscorer</td>
+              <td><strong>11/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nathaniel Brown First Goalscorer</td>
+              <td><strong>12/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Nico Schlotterbeck First Goalscorer</td>
+              <td><strong>14/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Aleksandar Pavlovic First Goalscorer</td>
+              <td><strong>13/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Angelo Stiller First Goalscorer</td>
+              <td><strong>15/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Antonio Rudiger First Goalscorer</td>
+              <td><strong>15/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jonathan Tah First Goalscorer</td>
+              <td><strong>16/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>David Raum First Goalscorer</td>
+              <td><strong>16/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Waldemar Anton First Goalscorer</td>
+              <td><strong>16/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Malick Thiaw First Goalscorer</td>
+              <td><strong>16/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Gervane Kastaneer First Goalscorer</td>
+              <td><strong>17/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jurgen Locadia First Goalscorer</td>
+              <td><strong>18/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Kenji Gorre First Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Jearl Margaritha First Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Brandley Kuwas First Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            
+            <tr>
+              <td>Sontje Hansen First Goalscorer</td>
+              <td><strong>22/1</strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </section>
+        </div>
             </section>
             
         </section>
