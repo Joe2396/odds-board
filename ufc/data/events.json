@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-06T02:36:27Z",
+  "generated_at": "2026-06-06T06:49:05Z",
   "events": [
     {
       "id": "2026-06-07-ufc-fight-night-muhammad-vs-bonfim",
@@ -1440,6 +1440,63 @@
             "provider": "espn",
             "event_id": "600059339"
           }
+        },
+        {
+          "id": "600059339-4",
+          "bout": "Ludovit Klein vs Tofiq Musayev",
+          "red": {
+            "name": "Ludovit Klein",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Tofiq Musayev",
+            "espn_id": ""
+          },
+          "weight_class": "Lightweight",
+          "order": 4,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059339"
+          }
+        },
+        {
+          "id": "600059339-5",
+          "bout": "Mark Vologdin vs Josias Musasa",
+          "red": {
+            "name": "Mark Vologdin",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Josias Musasa",
+            "espn_id": ""
+          },
+          "weight_class": "Bantamweight",
+          "order": 5,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059339"
+          }
+        },
+        {
+          "id": "600059339-6",
+          "bout": "Dennis Buzukja vs Bogdan Grad",
+          "red": {
+            "name": "Dennis Buzukja",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Bogdan Grad",
+            "espn_id": ""
+          },
+          "weight_class": "Featherweight",
+          "order": 6,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059339"
+          }
         }
       ]
     },
@@ -1458,5 +1515,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-06-06T02:36:27Z"
+  "_debug_saved_at": "2026-06-06T06:49:05Z"
 }
