@@ -1,122 +1,12 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 24,
+  "total_moneyline_fights_checked": 19,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
-  "arbitrage_count": 2,
-  "moneyline_arbitrage_count": 2,
+  "arbitrage_count": 1,
+  "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
-    {
-      "type": "moneyline",
-      "event_id": "20ed97f62101fe382c07288a90f4be6d",
-      "commence_time": "2026-06-06T21:10:00Z",
-      "fight": "Ariane Carnelossi vs Ketlen Souza",
-      "market": "Moneyline",
-      "fighters": {
-        "Ariane Carnelossi": {
-          "best_bookmaker": "Betfair",
-          "best_price": 3.95,
-          "implied_probability": 25.32
-        },
-        "Ketlen Souza": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.33,
-          "implied_probability": 75.19
-        }
-      },
-      "arb_sum": 1.005044,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.5
-    },
-    {
-      "type": "moneyline",
-      "event_id": "f62a5567bcb87d778dd662328d9662fb",
-      "commence_time": "2026-06-06T21:35:00Z",
-      "fight": "Jeisla Chaves vs Yuneisy Duben",
-      "market": "Moneyline",
-      "fighters": {
-        "Jeisla Chaves": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.41,
-          "implied_probability": 70.92
-        },
-        "Yuneisy Duben": {
-          "best_bookmaker": "Betfair",
-          "best_price": 3.3,
-          "implied_probability": 30.3
-        }
-      },
-      "arb_sum": 1.01225,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.23
-    },
-    {
-      "type": "moneyline",
-      "event_id": "c224e8fe285ab0d16fdb574234f6dec8",
-      "commence_time": "2026-06-06T22:00:00Z",
-      "fight": "Joanderson Brito vs Jordan Leavitt",
-      "market": "Moneyline",
-      "fighters": {
-        "Joanderson Brito": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.6,
-          "implied_probability": 62.5
-        },
-        "Jordan Leavitt": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.6,
-          "implied_probability": 38.46
-        }
-      },
-      "arb_sum": 1.009615,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.96
-    },
-    {
-      "type": "moneyline",
-      "event_id": "c2be3a28c6eddb533967d1ce14a4bcd5",
-      "commence_time": "2026-06-06T22:25:00Z",
-      "fight": "Chelsea Chandler vs Priscila Cachoeira",
-      "market": "Moneyline",
-      "fighters": {
-        "Chelsea Chandler": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.8,
-          "implied_probability": 55.56
-        },
-        "Priscila Cachoeira": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.28,
-          "implied_probability": 43.86
-        }
-      },
-      "arb_sum": 0.994152,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.58
-    },
-    {
-      "type": "moneyline",
-      "event_id": "4dce7e416a60d1f8ddf8862c6c1bd10c",
-      "commence_time": "2026-06-06T22:50:00Z",
-      "fight": "Bruno Silva vs Edgar Chairez",
-      "market": "Moneyline",
-      "fighters": {
-        "Bruno Silva": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.87,
-          "implied_probability": 53.48
-        },
-        "Edgar Chairez": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.12,
-          "implied_probability": 47.17
-        }
-      },
-      "arb_sum": 1.006457,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.65
-    },
     {
       "type": "moneyline",
       "event_id": "25554ee7fbb7765f77c910d20b453f0f",
@@ -148,18 +38,18 @@
       "fighters": {
         "Alessandro Costa": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.28,
-          "implied_probability": 78.12
+          "best_price": 1.26,
+          "implied_probability": 79.37
         },
         "Matt Schnell": {
-          "best_bookmaker": "Betway",
-          "best_price": 4.5,
-          "implied_probability": 22.22
+          "best_bookmaker": "Matchbook",
+          "best_price": 4.8,
+          "implied_probability": 20.83
         }
       },
-      "arb_sum": 1.003472,
+      "arb_sum": 1.001984,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.35
+      "profit_margin_percent": -0.2
     },
     {
       "type": "moneyline",
@@ -169,19 +59,19 @@
       "market": "Moneyline",
       "fighters": {
         "Iwo Baraniewski": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.26,
-          "implied_probability": 79.37
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.25,
+          "implied_probability": 80.0
         },
         "Junior Tafa": {
-          "best_bookmaker": "Matchbook",
+          "best_bookmaker": "Betfair",
           "best_price": 4.7,
           "implied_probability": 21.28
         }
       },
-      "arb_sum": 1.006417,
+      "arb_sum": 1.012766,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.64
+      "profit_margin_percent": -1.28
     },
     {
       "type": "moneyline",
@@ -191,19 +81,19 @@
       "market": "Moneyline",
       "fighters": {
         "Bryce Mitchell": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.9,
-          "implied_probability": 52.63
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.87,
+          "implied_probability": 53.48
         },
         "Santiago Luna": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.08,
-          "implied_probability": 48.08
+          "best_bookmaker": "Matchbook",
+          "best_price": 2.12,
+          "implied_probability": 47.17
         }
       },
-      "arb_sum": 1.007085,
+      "arb_sum": 1.006457,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.71
+      "profit_margin_percent": -0.65
     },
     {
       "type": "moneyline",
@@ -214,18 +104,18 @@
       "fighters": {
         "Fares Ziam": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.36,
-          "implied_probability": 73.53
+          "best_price": 1.34,
+          "implied_probability": 74.63
         },
         "Tom Nolan": {
-          "best_bookmaker": "Betfair",
-          "best_price": 3.65,
-          "implied_probability": 27.4
+          "best_bookmaker": "Matchbook",
+          "best_price": 3.8,
+          "implied_probability": 26.32
         }
       },
-      "arb_sum": 1.009267,
+      "arb_sum": 1.009427,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.93
+      "profit_margin_percent": -0.94
     },
     {
       "type": "moneyline",
@@ -236,8 +126,8 @@
       "fighters": {
         "Brendan Allen": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.61,
-          "implied_probability": 62.11
+          "best_price": 1.62,
+          "implied_probability": 61.73
         },
         "Edmen Shahbazyan": {
           "best_bookmaker": "Betfair",
@@ -245,9 +135,9 @@
           "implied_probability": 38.76
         }
       },
-      "arb_sum": 1.008715,
+      "arb_sum": 1.004881,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.87
+      "profit_margin_percent": -0.49
     },
     {
       "type": "moneyline",
@@ -258,18 +148,18 @@
       "fighters": {
         "Belal Muhammad": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.99,
-          "implied_probability": 50.25
+          "best_price": 1.98,
+          "implied_probability": 50.51
         },
         "Gabriel Bonfim": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.99,
-          "implied_probability": 50.25
+          "best_price": 2.0,
+          "implied_probability": 50.0
         }
       },
-      "arb_sum": 1.005025,
+      "arb_sum": 1.005051,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.5
+      "profit_margin_percent": -0.51
     },
     {
       "type": "moneyline",
@@ -395,13 +285,13 @@
         },
         "Ciryl Gane": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.94,
-          "implied_probability": 51.55
+          "best_price": 1.95,
+          "implied_probability": 51.28
         }
       },
-      "arb_sum": 1.015464,
+      "arb_sum": 1.012821,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.55
+      "profit_margin_percent": -1.28
     },
     {
       "type": "moneyline",
@@ -522,18 +412,18 @@
       "fighters": {
         "Conor McGregor": {
           "best_bookmaker": "Betfair",
-          "best_price": 3.65,
-          "implied_probability": 27.4
+          "best_price": 3.7,
+          "implied_probability": 27.03
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.34,
-          "implied_probability": 74.63
+          "best_price": 1.33,
+          "implied_probability": 75.19
         }
       },
-      "arb_sum": 1.020241,
+      "arb_sum": 1.02215,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.02
+      "profit_margin_percent": -2.21
     }
   ],
   "prop_markets": [
@@ -884,28 +774,6 @@
     }
   ],
   "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "c2be3a28c6eddb533967d1ce14a4bcd5",
-      "commence_time": "2026-06-06T22:25:00Z",
-      "fight": "Chelsea Chandler vs Priscila Cachoeira",
-      "market": "Moneyline",
-      "fighters": {
-        "Chelsea Chandler": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.8,
-          "implied_probability": 55.56
-        },
-        "Priscila Cachoeira": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.28,
-          "implied_probability": 43.86
-        }
-      },
-      "arb_sum": 0.994152,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.58
-    },
     {
       "type": "moneyline",
       "event_id": "25554ee7fbb7765f77c910d20b453f0f",
