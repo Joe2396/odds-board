@@ -14,12 +14,15 @@ WILLIAMHILL_PATH = ROOT / "football" / "data" / "williamhill_worldcup_moneylines
 EIGHTEIGHTEIGHT_PATH = ROOT / "football" / "data" / "888sport_worldcup_moneylines.json"
 
 PADDY_PROPS_PATH = ROOT / "football" / "data" / "paddypower_worldcup_props.json"
+BOYLE_PROPS_PATH = ROOT / "football" / "data" / "boylesports_worldcup_props.json"
 
 OUT_DIR = ROOT / "football" / "world-cup"
 OUT_PATH = OUT_DIR / "index.html"
 HUB_PATH = ROOT / "football" / "index.html"
 
 BASE = "/odds-board"
+def clean(s):
+    return re.sub(r"\s+", " ", str(s or "")).strip()
 
 
 def esc(s):
@@ -146,29 +149,264 @@ def load_book(bookmaker, path):
     return rows, data.get("generated_at") or ""
 
 
-def load_paddypower_props():
-    data = load_json(PADDY_PROPS_PATH)
+def split_match_name(match_name):
+    match_name = clean(match_name)
+
+    if re.search(r"\s+v\s+", match_name, re.I):
+        home, away = re.split(r"\s+v\s+", match_name, maxsplit=1, flags=re.I)
+        return display_team(home), display_team(away)
+
+    return "", ""
+
+
+def pretty_market_name(name):
+    raw = clean(name)
+    key = normalize_text_key(raw)
+
+    aliases = {
+        "match_betting": "Match Betting",
+        "match_odds": "Match Odds",
+        "correct_score": "Correct Score",
+        "total_goals": "Total Goals",
+        "over_under_goals": "Over/Under Goals",
+        "over_under_goals_markets": "Over/Under Goals",
+        "first_half_goals": "1st Half Goals",
+        "1st_half_over_under_goals": "1st Half Goals",
+        "btts": "Both Teams To Score",
+        "both_teams_to_score": "Both Teams To Score",
+        "both_teams_to_score_markets": "Both Teams To Score",
+        "double_chance": "Double Chance",
+        "handicap": "Handicap",
+        "handicaps": "Handicap",
+        "half_time_result": "Half Time Result",
+        "half_time_full_time": "Half Time / Full Time",
+        "ht_ft": "Half Time / Full Time",
+        "result_both_to_score": "Result & Both Teams To Score",
+        "result_btts": "Result & Both Teams To Score",
+        "btts_result": "Result & Both Teams To Score",
+        "result_total_goals": "Result & Total Goals",
+        "player_to_score": "Player To Score",
+        "anytime_scorer": "Player To Score",
+        "anytime_goalscorer": "Player To Score",
+        "first_scorer": "First Goalscorer",
+        "first_goalscorer": "First Goalscorer",
+        "scorer_2_plus": "To Score 2 Or More",
+    }
+
+    return aliases.get(key, raw.replace("_", " ").title())
+
+
+def normalize_text_key(value):
+    value = clean(value).lower()
+    value = value.replace("&", "and")
+    value = value.replace("/", " ")
+    value = value.replace("?", "")
+    value = re.sub(r"[^a-z0-9]+", "_", value)
+    return value.strip("_")
+
+
+def normalize_prop_market_key(market_name):
+    key = normalize_text_key(market_name)
+
+    aliases = {
+        "match_odds": "match_betting",
+        "match_betting": "match_betting",
+        "over_under_goals_markets": "total_goals",
+        "over_under_goals": "total_goals",
+        "total_goals_over_under": "total_goals",
+        "total_goals": "total_goals",
+        "1st_half_over_under_goals": "first_half_goals",
+        "1st_half_goals_over_under": "first_half_goals",
+        "first_half_goals": "first_half_goals",
+        "both_teams_to_score_markets": "btts",
+        "both_teams_to_score": "btts",
+        "btts": "btts",
+        "result_both_to_score": "btts_result",
+        "result_btts": "btts_result",
+        "both_teams_to_score_and_match_result": "btts_result",
+        "result_and_both_teams_to_score": "btts_result",
+        "correct_score": "correct_score",
+        "double_chance": "double_chance",
+        "half_time_result": "half_time_result",
+        "half_time_full_time": "ht_ft",
+        "ht_ft": "ht_ft",
+        "player_to_score": "player_to_score",
+        "anytime_goalscorer": "player_to_score",
+        "anytime_scorer": "player_to_score",
+        "first_goalscorer": "first_goalscorer",
+        "first_scorer": "first_goalscorer",
+    }
+
+    return aliases.get(key, key)
+
+
+def normalize_prop_selection_key(market_name, selection_name):
+    market_key = normalize_prop_market_key(market_name)
+    selection = clean(selection_name)
+    selection_lower = selection.lower().replace("&", "and")
+
+    score_match = re.search(r"(\d+)\s*-\s*(\d+)", selection_lower)
+    if score_match and market_key == "correct_score":
+        return f"score_{score_match.group(1)}_{score_match.group(2)}"
+
+    ou_match = re.search(r"\b(over|under)\b\s*(\d+(?:\.\d+)?)", selection_lower)
+    if ou_match:
+        return f"{ou_match.group(1)}_{ou_match.group(2)}"
+
+    if market_key == "btts":
+        if "yes" in selection_lower:
+            return "yes"
+        if "no" in selection_lower:
+            return "no"
+
+    if market_key == "half_time_result":
+        if "draw" in selection_lower:
+            return "draw"
+        return normalize_text_key(selection_lower.replace("half time result", ""))
+
+    return normalize_text_key(selection_lower)
+
+
+def convert_market(raw_market):
+    if not isinstance(raw_market, dict):
+        return None
+
+    market_name = (
+        raw_market.get("market")
+        or raw_market.get("label")
+        or raw_market.get("name")
+        or raw_market.get("market_name")
+        or ""
+    )
+    market_name = pretty_market_name(market_name)
+
+    selections = []
+    for raw_selection in raw_market.get("selections") or []:
+        if not isinstance(raw_selection, dict):
+            continue
+
+        selection = (
+            raw_selection.get("selection")
+            or raw_selection.get("name")
+            or raw_selection.get("label")
+            or raw_selection.get("selection_name")
+            or ""
+        )
+        odds = (
+            raw_selection.get("odds")
+            or raw_selection.get("price")
+            or raw_selection.get("fractional")
+            or ""
+        )
+
+        selection = clean(selection)
+        odds = clean(odds).upper()
+
+        if not selection or not odds:
+            continue
+
+        selections.append({
+            "selection": selection,
+            "normalized_selection": normalize_text_key(selection),
+            "odds": odds,
+        })
+
+    if not market_name or not selections:
+        return None
+
+    return {
+        "market": market_name,
+        "normalized_market": normalize_prop_market_key(market_name),
+        "selection_count": len(selections),
+        "selections": selections,
+    }
+
+
+def convert_markets(raw_markets):
+    markets = []
+
+    if isinstance(raw_markets, list):
+        for raw_market in raw_markets:
+            market = convert_market(raw_market)
+            if market:
+                markets.append(market)
+
+    elif isinstance(raw_markets, dict):
+        for internal_name, raw_market in raw_markets.items():
+            if not isinstance(raw_market, dict):
+                continue
+
+            raw_market = dict(raw_market)
+            raw_market.setdefault("market", raw_market.get("label") or pretty_market_name(internal_name))
+
+            market = convert_market(raw_market)
+            if market:
+                markets.append(market)
+
+    seen = set()
+    unique = []
+
+    for market in markets:
+        key = market.get("normalized_market")
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(market)
+
+    return unique
+
+
+def load_props_file(bookmaker, path):
+    data = load_json(path)
+
+    if isinstance(data, list):
+        raw_matches = data
+        generated_at = ""
+        source_url = ""
+    else:
+        raw_matches = data.get("matches") or data.get("results") or []
+        generated_at = data.get("generated_at") or ""
+        source_url = data.get("source_url") or ""
+
     props_by_key = {}
 
-    for m in data.get("matches") or []:
+    for m in raw_matches:
+        if not isinstance(m, dict):
+            continue
+
         home = display_team(m.get("home_team"))
         away = display_team(m.get("away_team"))
 
         if not home or not away:
+            home, away = split_match_name(m.get("match") or m.get("name") or "")
+
+        if not home or not away:
+            continue
+
+        markets = convert_markets(m.get("markets") or {})
+
+        if not markets:
             continue
 
         props_by_key[fixture_key(home, away)] = {
-            "bookmaker": data.get("bookmaker") or "PaddyPower",
-            "match": m.get("match") or f"{home} v {away}",
+            "bookmaker": bookmaker,
+            "match": m.get("match") or m.get("name") or f"{home} v {away}",
             "home_team": home,
             "away_team": away,
-            "source_url": m.get("source_url") or "",
-            "market_count": m.get("market_count") or 0,
-            "markets": m.get("markets") or [],
+            "source_url": m.get("source_url") or m.get("url") or source_url,
+            "market_count": len(markets),
+            "markets": markets,
         }
 
-    return props_by_key, data.get("generated_at") or ""
+    return props_by_key, generated_at
 
+
+def load_paddypower_props():
+    return load_props_file("PaddyPower", PADDY_PROPS_PATH)
+
+
+def load_boylesports_props():
+    return load_props_file("BoyleSports", BOYLE_PROPS_PATH)
 
 def add_book_rows(fixtures, strict_index, loose_index, rows, bookmaker):
     for row in rows:
@@ -221,6 +459,7 @@ def load_all_matches():
     eighteight_rows, eighteight_generated = load_book("888Sport", EIGHTEIGHTEIGHT_PATH)
 
     paddy_props, paddy_props_generated = load_paddypower_props()
+    boyle_props, boyle_props_generated = load_boylesports_props()
 
     fixtures = {}
 
@@ -256,18 +495,22 @@ def load_all_matches():
     add_book_rows(fixtures, strict_index, loose_index, williamhill_rows, "WilliamHill")
     add_book_rows(fixtures, strict_index, loose_index, eighteight_rows, "888Sport")
 
-    for props_key, props_data in paddy_props.items():
-        target_key = None
-        loose_key = loose_fixture_key(props_data.get("home_team"), props_data.get("away_team"))
+    for bookmaker, book_props in [
+        ("PaddyPower", paddy_props),
+        ("BoyleSports", boyle_props),
+    ]:
+        for props_key, props_data in book_props.items():
+            target_key = None
+            loose_key = loose_fixture_key(props_data.get("home_team"), props_data.get("away_team"))
 
-        if props_key in strict_index:
-            target_key = strict_index[props_key]
-        elif loose_key in loose_index:
-            target_key = loose_index[loose_key]
+            if props_key in strict_index:
+                target_key = strict_index[props_key]
+            elif loose_key in loose_index:
+                target_key = loose_index[loose_key]
 
-        if target_key and target_key in fixtures:
-            fixtures[target_key].setdefault("props", {})
-            fixtures[target_key]["props"]["PaddyPower"] = props_data
+            if target_key and target_key in fixtures:
+                fixtures[target_key].setdefault("props", {})
+                fixtures[target_key]["props"][bookmaker] = props_data
 
     fixtures_list = list(fixtures.values())
 
@@ -280,7 +523,8 @@ def load_all_matches():
     )
 
     generated = (
-        paddy_props_generated
+        boyle_props_generated
+        or paddy_props_generated
         or eighteight_generated
         or williamhill_generated
         or livescore_generated
@@ -765,6 +1009,7 @@ def render_props_section(fixture):
             "player",
             "goalscorer",
             "goal scorer",
+            "to score",
             "shots",
             "shot",
             "assist",
@@ -809,7 +1054,99 @@ def render_props_section(fixture):
         </section>
         """
 
-    html = ""
+    def build_best_prop_comparisons():
+        comparison = {}
+
+        for bookmaker, prop_data in sorted(props.items()):
+            for market in prop_data.get("markets") or []:
+                market_name = market.get("market") or ""
+                market_key = normalize_prop_market_key(market_name)
+
+                for sel in market.get("selections") or []:
+                    selection_name = sel.get("selection") or ""
+                    odds = sel.get("odds") or ""
+                    decimal = fractional_to_decimal(odds)
+
+                    if not selection_name or not odds or decimal <= 1:
+                        continue
+
+                    selection_key = normalize_prop_selection_key(market_name, selection_name)
+                    key = (market_key, selection_key)
+
+                    if key not in comparison:
+                        comparison[key] = {
+                            "market": pretty_market_name(market_name),
+                            "selection": selection_name,
+                            "offers": [],
+                        }
+
+                    comparison[key]["offers"].append({
+                        "bookmaker": bookmaker,
+                        "odds": odds,
+                        "decimal": decimal,
+                    })
+
+        cards = ""
+
+        for item in sorted(comparison.values(), key=lambda x: (x["market"], x["selection"])):
+            offers = item.get("offers") or []
+            bookmakers_seen = {offer["bookmaker"] for offer in offers}
+
+            if len(bookmakers_seen) < 2:
+                continue
+
+            offers = sorted(offers, key=lambda x: x["decimal"], reverse=True)
+            best_decimal = offers[0]["decimal"] if offers else 0
+
+            rows = ""
+            for offer in offers:
+                is_best = offer["decimal"] == best_decimal
+                cls = "best-row" if is_best else ""
+                tag = "BEST" if is_best else ""
+
+                rows += f"""
+                <tr class="{cls}">
+                  <td>{esc(offer["bookmaker"])}</td>
+                  <td><strong>{esc(offer["odds"])}</strong></td>
+                  <td>{tag}</td>
+                </tr>
+                """
+
+            cards += f"""
+            <section class="prop-market">
+              <h3>{esc(item["market"])} — {esc(item["selection"])}</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Bookmaker</th>
+                    <th>Odds</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows}
+                </tbody>
+              </table>
+            </section>
+            """
+
+        if not cards:
+            return ""
+
+        return f"""
+        <section class="book-props">
+          <div class="book-props-head">
+            <h2>Best Prop Prices</h2>
+            <span class="compare-note">Compared across tracked bookmakers</span>
+          </div>
+          <div class="props-grid">
+            {cards}
+          </div>
+        </section>
+        """
+
+    best_comparison_html = build_best_prop_comparisons()
+    book_html = ""
 
     for bookmaker, prop_data in sorted(props.items()):
         markets = prop_data.get("markets") or []
@@ -831,7 +1168,7 @@ def render_props_section(fixture):
         """
 
         if match_market_cards:
-            html += f"""
+            book_html += f"""
             <section class="book-props">
               <div class="book-props-head">
                 <h2>{esc(bookmaker)} Match Props</h2>
@@ -844,7 +1181,7 @@ def render_props_section(fixture):
             """
 
         if player_market_cards:
-            html += f"""
+            book_html += f"""
             <section class="book-props">
               <div class="book-props-head">
                 <h2>{esc(bookmaker)} Player Props</h2>
@@ -856,7 +1193,7 @@ def render_props_section(fixture):
             </section>
             """
 
-    if not html:
+    if not best_comparison_html and not book_html:
         return """
         <section class="props-wrap">
           <div class="section-title">
@@ -870,9 +1207,10 @@ def render_props_section(fixture):
     <section class="props-wrap">
       <div class="section-title">
         <h2>Props</h2>
-        <p>Available match and player prop markets from tracked bookmakers.</p>
+        <p>Best prices and prop markets from tracked bookmakers.</p>
       </div>
-      {html}
+      {best_comparison_html}
+      {book_html}
     </section>
     """
 
