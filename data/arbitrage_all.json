@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-05T23:02:18.892362+00:00",
-  "total_arbitrage": 1,
+  "generated_at": "2026-06-06T02:36:41.597507+00:00",
+  "total_arbitrage": 2,
   "sports": {
-    "All": 1,
-    "UFC": 1
+    "All": 2,
+    "UFC": 2
   },
   "arbitrage": [
     {
@@ -14,17 +14,17 @@
       "type": "moneyline",
       "date_label": "",
       "time": "",
-      "profit_margin_percent": 1.17,
+      "profit_margin_percent": 0.52,
       "arb_percent": "",
-      "arb_sum": 0.98827,
+      "arb_sum": 0.994826,
       "bookmaker_count": 2,
       "bookmakers": [
         {
           "selection": "Alessandro Costa",
           "bookmaker": "Betfair",
-          "odds": 1.24,
-          "decimal_odds": 1.24,
-          "implied_probability": 80.65
+          "odds": 1.23,
+          "decimal_odds": 1.23,
+          "implied_probability": 81.3
         },
         {
           "selection": "Matt Schnell",
@@ -32,6 +32,36 @@
           "odds": 5.5,
           "decimal_odds": 5.5,
           "implied_probability": 18.18
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "UFC",
+      "competition": "UFC",
+      "event": "Bryce Mitchell vs Santiago Luna",
+      "market": "Moneyline",
+      "type": "moneyline",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.49,
+      "arb_percent": "",
+      "arb_sum": 0.995086,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Bryce Mitchell",
+          "bookmaker": "Unibet (UK)",
+          "odds": 1.85,
+          "decimal_odds": 1.85,
+          "implied_probability": 54.05
+        },
+        {
+          "selection": "Santiago Luna",
+          "bookmaker": "Betway",
+          "odds": 2.2,
+          "decimal_odds": 2.2,
+          "implied_probability": 45.45
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
@@ -44,7 +74,7 @@
   },
   "source_counts": {
     "football": 0,
-    "ufc": 1,
+    "ufc": 2,
     "darts": 0
   }
 }
