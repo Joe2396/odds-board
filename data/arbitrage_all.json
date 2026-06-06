@@ -1,10 +1,42 @@
 {
-  "generated_at": "2026-06-06T15:10:01.070569+00:00",
-  "total_arbitrage": 0,
+  "generated_at": "2026-06-06T17:05:08.058178+00:00",
+  "total_arbitrage": 1,
   "sports": {
-    "All": 0
+    "All": 1,
+    "UFC": 1
   },
-  "arbitrage": [],
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "competition": "UFC",
+      "event": "John Yannis vs Marcus McGhee",
+      "market": "Moneyline",
+      "type": "moneyline",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.14,
+      "arb_percent": "",
+      "arb_sum": 0.998641,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "John Yannis",
+          "bookmaker": "LeoVegas",
+          "odds": 4.6,
+          "decimal_odds": 4.6,
+          "implied_probability": 21.74
+        },
+        {
+          "selection": "Marcus McGhee",
+          "bookmaker": "Betfair",
+          "odds": 1.28,
+          "decimal_odds": 1.28,
+          "implied_probability": 78.12
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ],
   "sources": {
     "football": "/home/runner/work/odds-board/odds-board/football/data/arbitrage.json",
     "ufc": "/home/runner/work/odds-board/odds-board/ufc/data/arbitrage.json",
@@ -12,7 +44,7 @@
   },
   "source_counts": {
     "football": 0,
-    "ufc": 0,
+    "ufc": 1,
     "darts": 0
   }
 }
