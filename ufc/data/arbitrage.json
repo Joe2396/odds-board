@@ -1,165 +1,33 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 19,
+  "total_moneyline_fights_checked": 13,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
-  "arbitrage_count": 1,
-  "moneyline_arbitrage_count": 1,
+  "arbitrage_count": 0,
+  "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
     {
       "type": "moneyline",
-      "event_id": "25554ee7fbb7765f77c910d20b453f0f",
-      "commence_time": "2026-06-06T23:15:00Z",
-      "fight": "John Yannis vs Marcus McGhee",
-      "market": "Moneyline",
-      "fighters": {
-        "John Yannis": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 4.6,
-          "implied_probability": 21.74
-        },
-        "Marcus McGhee": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.29,
-          "implied_probability": 77.52
-        }
-      },
-      "arb_sum": 0.992585,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.74
-    },
-    {
-      "type": "moneyline",
-      "event_id": "064ee15869be68bc9acbf2dec5843842",
-      "commence_time": "2026-06-06T23:40:00Z",
-      "fight": "Alessandro Costa vs Matt Schnell",
-      "market": "Moneyline",
-      "fighters": {
-        "Alessandro Costa": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.26,
-          "implied_probability": 79.37
-        },
-        "Matt Schnell": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 4.8,
-          "implied_probability": 20.83
-        }
-      },
-      "arb_sum": 1.001984,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.2
-    },
-    {
-      "type": "moneyline",
-      "event_id": "f6fe7579a793a51263060d78854c4cde",
-      "commence_time": "2026-06-07T00:15:00Z",
-      "fight": "Iwo Baraniewski vs Junior Tafa",
-      "market": "Moneyline",
-      "fighters": {
-        "Iwo Baraniewski": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.25,
-          "implied_probability": 80.0
-        },
-        "Junior Tafa": {
-          "best_bookmaker": "Betfair",
-          "best_price": 4.7,
-          "implied_probability": 21.28
-        }
-      },
-      "arb_sum": 1.012766,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.28
-    },
-    {
-      "type": "moneyline",
-      "event_id": "08679385015009982654f6d225a8c702",
-      "commence_time": "2026-06-07T00:45:00Z",
-      "fight": "Bryce Mitchell vs Santiago Luna",
-      "market": "Moneyline",
-      "fighters": {
-        "Bryce Mitchell": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.87,
-          "implied_probability": 53.48
-        },
-        "Santiago Luna": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.12,
-          "implied_probability": 47.17
-        }
-      },
-      "arb_sum": 1.006457,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.65
-    },
-    {
-      "type": "moneyline",
-      "event_id": "b25817c43f87ecf68e3c7f8f42324100",
-      "commence_time": "2026-06-07T01:15:00Z",
-      "fight": "Fares Ziam vs Tom Nolan",
-      "market": "Moneyline",
-      "fighters": {
-        "Fares Ziam": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.34,
-          "implied_probability": 74.63
-        },
-        "Tom Nolan": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 3.8,
-          "implied_probability": 26.32
-        }
-      },
-      "arb_sum": 1.009427,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.94
-    },
-    {
-      "type": "moneyline",
-      "event_id": "0c94edba010c216c1f1c254aa1976365",
-      "commence_time": "2026-06-07T01:45:00Z",
-      "fight": "Brendan Allen vs Edmen Shahbazyan",
-      "market": "Moneyline",
-      "fighters": {
-        "Brendan Allen": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.62,
-          "implied_probability": 61.73
-        },
-        "Edmen Shahbazyan": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.58,
-          "implied_probability": 38.76
-        }
-      },
-      "arb_sum": 1.004881,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.49
-    },
-    {
-      "type": "moneyline",
       "event_id": "357b754688bbb0e3c6c8db405d85ab86",
-      "commence_time": "2026-06-07T02:15:00Z",
+      "commence_time": "2026-06-07T02:24:00Z",
       "fight": "Belal Muhammad vs Gabriel Bonfim",
       "market": "Moneyline",
       "fighters": {
         "Belal Muhammad": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.98,
-          "implied_probability": 50.51
+          "best_price": 17.5,
+          "implied_probability": 5.71
         },
         "Gabriel Bonfim": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.0,
-          "implied_probability": 50.0
+          "best_price": 1.02,
+          "implied_probability": 98.04
         }
       },
-      "arb_sum": 1.005051,
+      "arb_sum": 1.037535,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.51
+      "profit_margin_percent": -3.75
     },
     {
       "type": "moneyline",
@@ -412,18 +280,18 @@
       "fighters": {
         "Conor McGregor": {
           "best_bookmaker": "Betfair",
-          "best_price": 3.7,
-          "implied_probability": 27.03
+          "best_price": 3.75,
+          "implied_probability": 26.67
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.33,
-          "implied_probability": 75.19
+          "best_price": 1.34,
+          "implied_probability": 74.63
         }
       },
-      "arb_sum": 1.02215,
+      "arb_sum": 1.012935,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.21
+      "profit_margin_percent": -1.29
     }
   ],
   "prop_markets": [
@@ -773,28 +641,5 @@
       "profit_margin_percent": -5.74
     }
   ],
-  "arbitrage_opportunities": [
-    {
-      "type": "moneyline",
-      "event_id": "25554ee7fbb7765f77c910d20b453f0f",
-      "commence_time": "2026-06-06T23:15:00Z",
-      "fight": "John Yannis vs Marcus McGhee",
-      "market": "Moneyline",
-      "fighters": {
-        "John Yannis": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 4.6,
-          "implied_probability": 21.74
-        },
-        "Marcus McGhee": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.29,
-          "implied_probability": 77.52
-        }
-      },
-      "arb_sum": 0.992585,
-      "is_arbitrage": true,
-      "profit_margin_percent": 0.74
-    }
-  ]
+  "arbitrage_opportunities": []
 }
