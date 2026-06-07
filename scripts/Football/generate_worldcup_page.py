@@ -5,1518 +5,993 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
-PADDY_PATH = ROOT / "football" / "data" / "paddypower_worldcup_moneylines.json"
-BOYLE_PATH = ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
-BETVICTOR_PATH = ROOT / "football" / "data" / "betvictor_worldcup_moneylines.json"
-UNIBET_PATH = ROOT / "football" / "data" / "unibet_worldcup_moneylines.json"
-LIVESCOREBET_PATH = ROOT / "football" / "data" / "livescorebet_worldcup_moneylines.json"
-WILLIAMHILL_PATH = ROOT / "football" / "data" / "williamhill_worldcup_moneylines.json"
-EIGHTEIGHTEIGHT_PATH = ROOT / "football" / "data" / "888sport_worldcup_moneylines.json"
+PADDY_PATH          = ROOT / "football" / "data" / "paddypower_worldcup_moneylines.json"
+BOYLE_PATH          = ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
+BETVICTOR_PATH      = ROOT / "football" / "data" / "betvictor_worldcup_moneylines.json"
+UNIBET_PATH         = ROOT / "football" / "data" / "unibet_worldcup_moneylines.json"
+LIVESCOREBET_PATH   = ROOT / "football" / "data" / "livescorebet_worldcup_moneylines.json"
+WILLIAMHILL_PATH    = ROOT / "football" / "data" / "williamhill_worldcup_moneylines.json"
+EIGHTEIGHTEIGHT_PATH= ROOT / "football" / "data" / "888sport_worldcup_moneylines.json"
 
-PADDY_PROPS_PATH = ROOT / "football" / "data" / "paddypower_worldcup_props.json"
-BOYLE_PROPS_PATH = ROOT / "football" / "data" / "boylesports_worldcup_props.json"
-UNIBET_PROPS_PATH = ROOT / "football" / "data" / "unibet_worldcup_props.json"
+PADDY_PROPS_PATH    = ROOT / "football" / "data" / "paddypower_worldcup_props.json"
+BOYLE_PROPS_PATH    = ROOT / "football" / "data" / "boylesports_worldcup_props.json"
+UNIBET_PROPS_PATH   = ROOT / "football" / "data" / "unibet_worldcup_props.json"
+LIVESCORE_PROPS_PATH= ROOT / "football" / "data" / "livescorebet_worldcup_props.json"
+EIGHTSPORT_PROPS_PATH= ROOT / "football" / "data" / "888sport_worldcup_props.json"
+WILLIAMHILL_PROPS_PATH= ROOT / "football" / "data" / "williamhill_worldcup_props.json"
 
-OUT_DIR = ROOT / "football" / "world-cup"
+OUT_DIR  = ROOT / "football" / "world-cup"
 OUT_PATH = OUT_DIR / "index.html"
 HUB_PATH = ROOT / "football" / "index.html"
+BASE     = "/odds-board"
 
-BASE = "/odds-board"
+# ── Helpers ────────────────────────────────────────────────────────────────────
 
 def clean(s):
     return re.sub(r"\s+", " ", str(s or "")).strip()
 
-
 def esc(s):
-    return (
-        str(s or "")
-        .replace("&", "&amp;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
-        .replace('"', "&quot;")
-        .replace("'", "&#39;")
-    )
-
+    return str(s or "").replace("&","&amp;").replace("<","&lt;").replace(">","&gt;").replace('"',"&quot;").replace("'","&#39;")
 
 def slugify(s):
-    s = str(s or "").lower()
-    s = s.replace("&", "and")
-    s = re.sub(r"[^a-z0-9]+", "-", s)
-    return s.strip("-")
-
+    s = str(s or "").lower().replace("&","and")
+    return re.sub(r"[^a-z0-9]+","-",s).strip("-")
 
 def load_json(path):
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-
+    try: return json.loads(path.read_text(encoding="utf-8"))
+    except: return {}
 
 def fractional_to_decimal(value):
     value = str(value or "").strip().upper()
-    if value in {"EVS", "EVENS", "EVEN"}:
-        return 2.0
+    if value in {"EVS","EVENS","EVEN"}: return 2.0
     if "/" in value:
         try:
-            a, b = value.split("/", 1)
-            return (float(a) / float(b)) + 1
-        except Exception:
-            return 0
+            a,b = value.split("/",1)
+            return (float(a)/float(b))+1
+        except: return 0
     try:
-        val = float(value)
-        if val > 1:
-            return val
-    except Exception:
-        pass
+        v = float(value)
+        if v > 1: return v
+    except: pass
     return 0
-
 
 def display_team(s):
     s = str(s or "").strip()
-    aliases = {
-        "Bosnia & Herzegovina": "Bosnia & Herzegovina",
-        "Bosnia and Herzegovina": "Bosnia & Herzegovina",
-        "Czech Republic": "Czechia",
-        "Turkey": "Türkiye",
-        "Turkiye": "Türkiye",
-        "Curaçao": "Curacao",
-    }
-    return aliases.get(s, s)
-
+    return {"Bosnia & Herzegovina":"Bosnia & Herzegovina","Bosnia and Herzegovina":"Bosnia & Herzegovina",
+            "Czech Republic":"Czechia","Turkey":"Türkiye","Turkiye":"Türkiye","Curaçao":"Curacao"}.get(s,s)
 
 def key_team(s):
     s = display_team(s).lower()
-    s = s.replace("&", "and")
-    s = s.replace("herzegovina", "")
-    s = s.replace("türkiye", "turkiye")
-    s = s.replace("turkey", "turkiye")
-    s = s.replace("curaçao", "curacao")
-    s = re.sub(r"[^a-z0-9]+", " ", s)
-    s = re.sub(r"\s+", " ", s).strip()
-    aliases = {
-        "bosnia and": "bosnia",
-        "bosnia": "bosnia",
-        "czech republic": "czechia",
-        "czechia": "czechia",
-        "ivory coast": "ivory coast",
-        "curacao": "curacao",
-        "turkiye": "turkiye",
-        "dr congo": "dr congo",
-        "usa": "usa",
-    }
-    return aliases.get(s, s)
+    for f,t in [("&","and"),("herzegovina",""),("türkiye","turkiye"),("turkey","turkiye"),("curaçao","curacao")]:
+        s = s.replace(f,t)
+    s = re.sub(r"[^a-z0-9]+"," ",s).strip()
+    return {"bosnia and":"bosnia","czech republic":"czechia","ivory coast":"ivory coast",
+            "curacao":"curacao","turkiye":"turkiye","dr congo":"dr congo","usa":"usa"}.get(s,s)
 
+def fixture_key(home,away):   return f"{key_team(home)}__{key_team(away)}"
+def loose_fixture_key(h,a):   return "__".join(sorted([key_team(h),key_team(a)]))
 
-def fixture_key(home, away):
-    return f"{key_team(home)}__{key_team(away)}"
+def normalize_text_key(value):
+    value = clean(value).lower().replace("&","and").replace("/","_").replace("?","")
+    return re.sub(r"[^a-z0-9]+","_",value).strip("_")
 
+def normalize_prop_market_key(name):
+    k = normalize_text_key(name)
+    if k.startswith("total_goals_by_") or k.startswith("team_total_goals"): return k
+    return {
+        "match_odds":"match_betting","match_betting":"match_betting",
+        "over_under_goals_markets":"total_goals","over_under_goals":"total_goals",
+        "total_goals_over_under":"total_goals","total_goals":"total_goals",
+        "total_goals_over_under_markets":"total_goals",
+        "1st_half_over_under_goals":"first_half_goals","1st_half_goals_over_under":"first_half_goals",
+        "first_half_goals":"first_half_goals",
+        "both_teams_to_score_markets":"btts","both_teams_to_score":"btts","btts":"btts",
+        "result_both_to_score":"btts_result","result_btts":"btts_result",
+        "both_teams_to_score_and_match_result":"btts_result","result_and_both_teams_to_score":"btts_result",
+        "correct_score":"correct_score","double_chance":"double_chance",
+        "half_time_result":"half_time_result","half_time_full_time":"ht_ft","ht_ft":"ht_ft",
+        "handicaps":"handicap","handicap":"handicap",
+        "match_result_and_total_goals":"result_total_goals","result_total_goals":"result_total_goals",
+        "1_goal_ahead":"one_goal_ahead","one_goal_ahead":"one_goal_ahead",
+        "main_goalscorer_markets":"anytime_scorer","player_to_score":"anytime_scorer",
+        "anytime_goalscorer":"anytime_scorer","anytime_scorer":"anytime_scorer",
+        "first_goalscorer":"first_goalscorer","first_scorer":"first_goalscorer",
+        "scorer_2_plus":"scorer_2_plus",
+        "shots_on_target":"shots_on_target","player_s_shots_on_target":"shots_on_target",
+        "shots":"shots","player_s_shots":"shots",
+        "player_to_assist":"player_to_assist","to_give_an_assist":"player_to_assist",
+        "player_to_get_a_card":"player_to_get_a_card","to_get_a_card":"player_to_get_a_card",
+    }.get(k,k)
 
-def loose_fixture_key(home, away):
-    parts = sorted([key_team(home), key_team(away)])
-    return "__".join(parts)
+def pretty_market_name(name):
+    k = normalize_prop_market_key(name)
+    return {
+        "match_betting":"Match Betting","total_goals":"Total Goals Over/Under",
+        "first_half_goals":"1st Half Goals","btts":"Both Teams To Score",
+        "btts_result":"Result & Both Teams To Score","correct_score":"Correct Score",
+        "double_chance":"Double Chance","handicap":"Handicap",
+        "half_time_result":"Half Time Result","ht_ft":"Half Time / Full Time",
+        "result_total_goals":"Result & Total Goals","one_goal_ahead":"1 Goal Ahead",
+        "anytime_scorer":"Anytime Goalscorer","first_goalscorer":"First Goalscorer",
+        "scorer_2_plus":"To Score 2+","shots_on_target":"Shots On Target",
+        "shots":"Shots","player_to_assist":"To Assist","player_to_get_a_card":"To Get A Card",
+    }.get(k, clean(name).replace("_"," ").title())
 
+PLAYER_MARKET_KEYS = {"anytime_scorer","first_goalscorer","scorer_2_plus",
+                       "shots_on_target","shots","player_to_assist","player_to_get_a_card"}
+MATCH_MARKET_KEYS  = {"match_betting","total_goals","first_half_goals","btts","btts_result",
+                       "correct_score","double_chance","handicap","half_time_result","ht_ft",
+                       "result_total_goals","one_goal_ahead"}
+GROUPED_OU_KEYS    = {"total_goals","first_half_goals"}
+
+def is_player_market(name):
+    return normalize_prop_market_key(name) in PLAYER_MARKET_KEYS
+
+def is_team_market(name, home="", away=""):
+    k = normalize_prop_market_key(name)
+    n = name.lower()
+    if k.startswith("total_goals_by_") or k.startswith("team_total_goals"): return True
+    if "team total" in n or "total goals by" in n: return True
+    if home and f"by {home.lower()}" in n: return True
+    if away and f"by {away.lower()}" in n: return True
+    return False
+
+def normalize_prop_selection_key(market_name, selection_name):
+    mk = normalize_prop_market_key(market_name)
+    s  = clean(selection_name).lower().replace("&","and")
+    s  = re.sub(r"\s+"," ",s).strip()
+
+    if mk == "correct_score":
+        m = re.search(r"(\d+)\s*-\s*(\d+)",s)
+        if m: return f"score_{m.group(1)}_{m.group(2)}"
+
+    m = re.search(r"\b(over|under)\b\s*(\d+(?:\.\d+)?)",s)
+    if m: return f"{m.group(1)}_{m.group(2)}"
+
+    if mk in {"anytime_scorer","first_goalscorer","scorer_2_plus","player_to_score"}:
+        if re.search(r"\banytime\b",s):
+            p = re.sub(r"\banytime\s*goalscorer\b","",s).strip()
+            return "anytime__"+re.sub(r"[^a-z0-9]+","_",p).strip("_")
+        if re.search(r"\bfirst\s+goalscorer\b",s):
+            p = re.sub(r"\bfirst\s+goalscorer\b","",s).strip()
+            return "first__"+re.sub(r"[^a-z0-9]+","_",p).strip("_")
+        if re.search(r"\bto score 2\b|\b2 or more\b",s):
+            p = re.sub(r"\bto score 2.*$|\b2 or more.*$","",s).strip()
+            return "score2__"+re.sub(r"[^a-z0-9]+","_",p).strip("_")
+        return normalize_text_key(s)
+
+    if mk in {"shots_on_target","shots","player_to_assist","player_to_get_a_card"}:
+        # "raul jimenez over 0.5 shots on target" → "over_0_5__raul_jimenez"
+        m2 = re.search(r"\b(over|under)\b\s*(\d+(?:\.\d+)?)",s)
+        player = re.sub(r"\b(over|under)\b.*$","",s).strip()
+        player = re.sub(r"\b(shots on target|shots|to assist|to get a card)\b","",player).strip()
+        pk = re.sub(r"[^a-z0-9]+","_",player).strip("_")
+        if m2: return f"{m2.group(1)}_{m2.group(2)}__{pk}"
+        return normalize_text_key(s)
+
+    if mk == "btts":
+        side = None
+        if re.search(r"(?:^|\b|[- ])yes(?:$|\b)",s): side="yes"
+        elif re.search(r"(?:^|\b|[- ])no(?:$|\b)",s):  side="no"
+        if side:
+            if "first half" in s:   return f"btts_first_half_{side}"
+            if "both halves" in s:  return f"btts_both_halves_{side}"
+            if "no draw" in s:      return f"btts_no_draw_{side}"
+            if "two or more" in s:  return f"btts_two_or_more_{side}"
+            return f"btts_{side}"
+        return normalize_text_key(s)
+
+    # Double Chance — collapse all team-name variants into 3 standard keys
+    if mk == "double_chance":
+        s_lower = s.lower()
+        has_draw = "draw" in s_lower
+        parts = [p.strip() for p in re.split(r"\bor\b", s_lower)]
+        team_count = sum(1 for p in parts if "draw" not in p)
+        draw_count = sum(1 for p in parts if "draw" in p)
+        if team_count == 2:
+            return "home_or_away"
+        if team_count == 1 and draw_count == 1:
+            # Need to distinguish home or draw vs away or draw
+            # Use 1X / X2 style hints if present
+            if "1x" in s_lower or s_lower.startswith("home") or s_lower.endswith("draw") and parts[0] != "draw":
+                # First part is a team (home), second is draw
+                if parts[0] != "draw": return "home_or_draw"
+            if "x2" in s_lower or s_lower.startswith("draw") or (len(parts)>1 and parts[1] != "draw"):
+                return "away_or_draw"
+            return "home_or_draw"  # fallback
+        return normalize_text_key(s)
+
+    return normalize_text_key(s)
+
+def pretty_selection_label_dc(selection_name):
+    """Map double chance selection key to readable label."""
+    return {
+        "home_or_draw": "Home or Draw",
+        "away_or_draw": "Away or Draw",
+        "home_or_away": "Home or Away",
+    }.get(selection_name, selection_name.replace("_"," ").title())
+
+def pretty_selection_label(market_name, selection_name):
+    mk = normalize_prop_market_key(market_name)
+    s  = clean(selection_name)
+    lo = s.lower()
+    if mk == "btts":
+        yes = bool(re.search(r"(?:^|\b|[- ])yes(?:$|\b)",lo))
+        no  = bool(re.search(r"(?:^|\b|[- ])no(?:$|\b)",lo))
+        side = "Yes" if yes else ("No" if no else None)
+        if side:
+            if "first half"  in lo: return f"{side} - 1st Half"
+            if "both halves" in lo: return f"{side} - Both Halves"
+            if "no draw"     in lo: return f"{side} - No Draw"
+            if "two or more" in lo: return f"{side} - 2+ Goals"
+            return side
+    return s
+
+# ── Data loading ───────────────────────────────────────────────────────────────
 
 def load_book(bookmaker, path):
     data = load_json(path)
-    rows = []
+    rows, generated = [], data.get("generated_at","")
     for m in data.get("matches") or []:
         home = display_team(m.get("home_team"))
         away = display_team(m.get("away_team"))
-        if not home or not away:
-            continue
+        if not home or not away: continue
         rows.append({
             "bookmaker": bookmaker,
-            "date_label": m.get("date_label") or "",
-            "time": m.get("time") or "",
+            "date_label": m.get("date_label",""),
+            "time": m.get("time",""),
             "match": f"{home} v {away}",
-            "home_team": home,
-            "away_team": away,
+            "home_team": home, "away_team": away,
             "odds": m.get("odds") or {},
-            "source_url": m.get("source_url") or "",
-            "strict_key": fixture_key(home, away),
-            "loose_key": loose_fixture_key(home, away),
-            "generated_at": data.get("generated_at") or "",
+            "source_url": m.get("source_url",""),
+            "strict_key": fixture_key(home,away),
+            "loose_key": loose_fixture_key(home,away),
         })
-    return rows, data.get("generated_at") or ""
+    return rows, generated
 
+def split_match_name(s):
+    s = clean(s)
+    if re.search(r"\s+v\s+",s,re.I):
+        h,a = re.split(r"\s+v\s+",s,maxsplit=1,flags=re.I)
+        return display_team(h), display_team(a)
+    return "",""
 
-def split_match_name(match_name):
-    match_name = clean(match_name)
-    if re.search(r"\s+v\s+", match_name, re.I):
-        home, away = re.split(r"\s+v\s+", match_name, maxsplit=1, flags=re.I)
-        return display_team(home), display_team(away)
-    return "", ""
-
-
-def pretty_market_name(name):
-    raw = clean(name)
-    key = normalize_text_key(raw)
-    aliases = {
-        "match_betting": "Match Betting",
-        "match_odds": "Match Betting",
-        "correct_score": "Correct Score",
-        "total_goals": "Total Goals Over/Under",
-        "over_under_goals": "Total Goals Over/Under",
-        "over_under_goals_markets": "Total Goals Over/Under",
-        "first_half_goals": "1st Half Goals",
-        "1st_half_over_under_goals": "1st Half Goals",
-        "btts": "Both Teams To Score",
-        "both_teams_to_score": "Both Teams To Score",
-        "both_teams_to_score_markets": "Both Teams To Score",
-        "double_chance": "Double Chance",
-        "handicap": "Handicap",
-        "handicaps": "Handicap",
-        "half_time_result": "Half Time Result",
-        "half_time_full_time": "Half Time / Full Time",
-        "ht_ft": "Half Time / Full Time",
-        "result_both_to_score": "Result & Both Teams To Score",
-        "result_btts": "Result & Both Teams To Score",
-        "btts_result": "Result & Both Teams To Score",
-        "both_teams_to_score_and_match_result": "Result & Both Teams To Score",
-        "result_total_goals": "Result & Total Goals",
-        "match_result_and_total_goals": "Result & Total Goals",
-        "player_to_score": "Player To Score",
-        "anytime_scorer": "Player To Score",
-        "anytime_goalscorer": "Player To Score",
-        "main_goalscorer_markets": "Player To Score",
-        "first_scorer": "First Goalscorer",
-        "first_goalscorer": "First Goalscorer",
-        "scorer_2_plus": "To Score 2 Or More",
-        "one_goal_ahead": "1 Goal Ahead",
-    }
-    return aliases.get(key, raw.replace("_", " ").title())
-
-
-def normalize_text_key(value):
-    value = clean(value).lower()
-    value = value.replace("&", "and")
-    value = value.replace("/", " ")
-    value = value.replace("?", "")
-    value = re.sub(r"[^a-z0-9]+", "_", value)
-    return value.strip("_")
-
-
-def normalize_prop_market_key(market_name):
-    key = normalize_text_key(market_name)
-
-    if key.startswith("total_goals_by_"):
-        return key
-    if key.startswith("team_total_goals"):
-        return key
-
-    aliases = {
-        "match_odds": "match_betting",
-        "match_betting": "match_betting",
-        "over_under_goals_markets": "total_goals",
-        "over_under_goals": "total_goals",
-        "total_goals_over_under": "total_goals",
-        "total_goals_over_under_markets": "total_goals",
-        "total_goals": "total_goals",
-        "1st_half_over_under_goals": "first_half_goals",
-        "1st_half_goals_over_under": "first_half_goals",
-        "first_half_goals": "first_half_goals",
-        "both_teams_to_score_markets": "btts",
-        "both_teams_to_score": "btts",
-        "btts": "btts",
-        "result_both_to_score": "btts_result",
-        "result_btts": "btts_result",
-        "both_teams_to_score_and_match_result": "btts_result",
-        "result_and_both_teams_to_score": "btts_result",
-        "correct_score": "correct_score",
-        "double_chance": "double_chance",
-        "half_time_result": "half_time_result",
-        "half_time_full_time": "ht_ft",
-        "ht_ft": "ht_ft",
-        # BoyleSports-specific keys
-        "handicaps": "handicap",
-        "handicap": "handicap",
-        "match_result_and_total_goals": "result_total_goals",
-        "result_total_goals": "result_total_goals",
-        "1_goal_ahead": "one_goal_ahead",
-        "one_goal_ahead": "one_goal_ahead",
-        "main_goalscorer_markets": "anytime_scorer",
-        "player_to_score": "anytime_scorer",
-        "anytime_goalscorer": "anytime_scorer",
-        "anytime_scorer": "anytime_scorer",
-        "first_goalscorer": "first_goalscorer",
-        "first_scorer": "first_goalscorer",
-        "scorer_2_plus": "scorer_2_plus",
-    }
-
-    return aliases.get(key, key)
-
-
-def normalize_prop_selection_key(market_name, selection_name):
-    market_key = normalize_prop_market_key(market_name)
-    selection = clean(selection_name)
-    selection_lower = selection.lower().replace("&", "and")
-    selection_lower = re.sub(r"\s+", " ", selection_lower).strip()
-
-    score_match = re.search(r"(\d+)\s*-\s*(\d+)", selection_lower)
-    if score_match and market_key == "correct_score":
-        return f"score_{score_match.group(1)}_{score_match.group(2)}"
-
-    ou_match = re.search(r"\b(over|under)\b\s*(\d+(?:\.\d+)?)", selection_lower)
-    if ou_match:
-        return f"{ou_match.group(1)}_{ou_match.group(2)}"
-
-    # Goalscorer: "Raul Jimenez Anytime Goalscorer" → "anytime__raul_jimenez"
-    # "Raul Jimenez First Goalscorer" → "first__raul_jimenez"
-    # This lets PaddyPower and Unibet compare even when stored under different market keys
-    if market_key in {"anytime_scorer", "first_goalscorer", "scorer_2_plus", "player_to_score"}:
-        if re.search(r"\banytime\b", selection_lower):
-            player = re.sub(r"\banytime\s*goalscorer\b", "", selection_lower).strip()
-            return "anytime__" + re.sub(r"[^a-z0-9]+", "_", player).strip("_")
-        if re.search(r"\bfirst\s+goalscorer\b", selection_lower):
-            player = re.sub(r"\bfirst\s+goalscorer\b", "", selection_lower).strip()
-            return "first__" + re.sub(r"[^a-z0-9]+", "_", player).strip("_")
-        if re.search(r"\bto score 2\b|\b2 or more\b", selection_lower):
-            player = re.sub(r"\bto score 2.*$|\b2 or more.*$", "", selection_lower).strip()
-            return "score2__" + re.sub(r"[^a-z0-9]+", "_", player).strip("_")
-        return normalize_text_key(selection_lower)
-
-    if market_key == "btts":
-        side = None
-        if re.search(r"(?:^|\b|[- ])yes(?:$|\b)", selection_lower):
-            side = "yes"
-        elif re.search(r"(?:^|\b|[- ])no(?:$|\b)", selection_lower):
-            side = "no"
-        if side:
-            if "first half" in selection_lower:
-                return f"both_teams_to_score_first_half_{side}"
-            if "both halves" in selection_lower:
-                return f"both_teams_to_score_both_halves_{side}"
-            if "no draw" in selection_lower:
-                return f"both_teams_score_no_draw_{side}"
-            if "two or more" in selection_lower:
-                return f"both_teams_to_score_two_or_more_goals_{side}"
-            if selection_lower in {"yes", "no"} or "both teams to score" in selection_lower or "btts" in selection_lower:
-                return f"both_teams_to_score_{side}"
-        return normalize_text_key(selection_lower)
-
-    if market_key == "half_time_result":
-        if "draw" in selection_lower:
-            return "draw"
-        return normalize_text_key(selection_lower.replace("half time result", ""))
-
-    return normalize_text_key(selection_lower)
-
-
-def pretty_prop_selection_label(market_name, selection_name):
-    market_key = normalize_prop_market_key(market_name)
-    selection = clean(selection_name)
-    lower = selection.lower().replace("&", "and")
-
-    if market_key == "btts":
-        if re.search(r"(?:^|\b|[- ])yes(?:$|\b)", lower):
-            if "first half" in lower:
-                return "Yes - 1st Half"
-            if "both halves" in lower:
-                return "Yes - Both Halves"
-            if "no draw" in lower:
-                return "Yes - No Draw"
-            if "two or more" in lower:
-                return "Yes - 2+ Goals"
-            return "Yes"
-        if re.search(r"(?:^|\b|[- ])no(?:$|\b)", lower):
-            if "first half" in lower:
-                return "No - 1st Half"
-            if "both halves" in lower:
-                return "No - Both Halves"
-            if "no draw" in lower:
-                return "No - No Draw"
-            if "two or more" in lower:
-                return "No - 2+ Goals"
-            return "No"
-
-    return selection
-
-
-def convert_market(raw_market):
-    if not isinstance(raw_market, dict):
-        return None
-
-    market_name = (
-        raw_market.get("market")
-        or raw_market.get("label")
-        or raw_market.get("name")
-        or raw_market.get("market_name")
-        or ""
-    )
-    market_name = pretty_market_name(market_name)
-
-    selections = []
-    for raw_selection in raw_market.get("selections") or []:
-        if not isinstance(raw_selection, dict):
-            continue
-        selection = (
-            raw_selection.get("selection")
-            or raw_selection.get("name")
-            or raw_selection.get("label")
-            or raw_selection.get("selection_name")
-            or ""
-        )
-        odds = (
-            raw_selection.get("odds")
-            or raw_selection.get("price")
-            or raw_selection.get("fractional")
-            or ""
-        )
-        selection = clean(selection)
-        odds = clean(odds).upper()
-        if not selection or not odds:
-            continue
-        selections.append({
-            "selection": selection,
-            "normalized_selection": normalize_text_key(selection),
-            "odds": odds,
-        })
-
-    if not market_name or not selections:
-        return None
-
-    return {
-        "market": market_name,
-        "normalized_market": normalize_prop_market_key(market_name),
-        "selection_count": len(selections),
-        "selections": selections,
-    }
-
+def convert_market(raw, internal_name=""):
+    if not isinstance(raw,dict): return None
+    name = raw.get("market") or raw.get("label") or raw.get("name") or pretty_market_name(internal_name) or ""
+    name = pretty_market_name(name)
+    mk   = normalize_prop_market_key(name)
+    sels = []
+    for rs in raw.get("selections") or []:
+        if not isinstance(rs,dict): continue
+        sel  = clean(rs.get("selection") or rs.get("name") or rs.get("label") or "")
+        odds = clean(rs.get("odds") or rs.get("price") or rs.get("fractional") or "").upper()
+        if not sel or not odds: continue
+        # Filter stray selections that don't belong to this market
+        sel_lower = sel.lower()
+        if mk == "player_to_get_a_card" and ("shots" in sel_lower): continue
+        if mk == "shots_on_target" and "card" in sel_lower: continue
+        sels.append({"selection":sel,"normalized_selection":normalize_text_key(sel),"odds":odds})
+    if not name or not sels: return None
+    return {"market":name,"normalized_market":mk,"selection_count":len(sels),"selections":sels}
 
 def convert_markets(raw_markets):
     markets = []
-
-    if isinstance(raw_markets, list):
-        for raw_market in raw_markets:
-            market = convert_market(raw_market)
-            if market:
-                markets.append(market)
-
-    elif isinstance(raw_markets, dict):
-        for internal_name, raw_market in raw_markets.items():
-            if not isinstance(raw_market, dict):
-                continue
-            raw_market = dict(raw_market)
-            raw_market.setdefault("market", raw_market.get("label") or pretty_market_name(internal_name))
-            market = convert_market(raw_market)
-            if market:
-                markets.append(market)
-
-    seen = set()
-    unique = []
-    for market in markets:
-        key = market.get("normalized_market")
-        if key in seen:
-            continue
-        seen.add(key)
-        unique.append(market)
-
+    if isinstance(raw_markets,list):
+        for rm in raw_markets:
+            m = convert_market(rm)
+            if m: markets.append(m)
+    elif isinstance(raw_markets,dict):
+        for k,rm in raw_markets.items():
+            if not isinstance(rm,dict): continue
+            rm = dict(rm)
+            rm.setdefault("market", rm.get("label") or pretty_market_name(k))
+            m = convert_market(rm, k)
+            if m: markets.append(m)
+    seen,unique = set(),[]
+    for m in markets:
+        k = m["normalized_market"]
+        if k not in seen:
+            seen.add(k); unique.append(m)
     return unique
 
-
-def make_market(name, selections):
-    return {
-        "market": name,
-        "normalized_market": normalize_prop_market_key(name),
-        "selection_count": len(selections),
-        "selections": selections,
-    }
-
-
-def selection_line_key(selection_name):
-    selection = clean(selection_name).lower()
-    match = re.search(r"\b(over|under)\b\s*(\d+(?:\.\d+)?)", selection)
-    if not match:
-        return None
-    return f"{match.group(1)}_{match.group(2)}"
-
-
-def split_unibet_team_total_markets(bookmaker, markets, home, away):
-    if bookmaker != "Unibet":
-        return markets
-
-    fixed = []
-    for market in markets:
-        market_key = market.get("normalized_market") or normalize_prop_market_key(market.get("market"))
-        selections = market.get("selections") or []
-
-        if market_key != "total_goals" or len(selections) <= 6:
-            fixed.append(market)
-            continue
-
-        seen_lines = set()
-        has_duplicate_lines = False
-        for sel in selections:
-            key = selection_line_key(sel.get("selection"))
-            if not key:
-                continue
-            if key in seen_lines:
-                has_duplicate_lines = True
-                break
-            seen_lines.add(key)
-
-        if not has_duplicate_lines:
-            fixed.append(market)
-            continue
-
-        match_selections = selections[:6]
-        remaining = selections[6:]
-
-        if match_selections:
-            fixed.append(make_market("Total Goals", match_selections))
-
-        team_names = [home, away]
-        chunk_size = 6
-
-        for idx, team in enumerate(team_names):
-            start = idx * chunk_size
-            chunk = remaining[start:start + chunk_size]
-            if not chunk:
-                continue
-            fixed.append(make_market(f"Total Goals by {team}", chunk))
-
-        extra = remaining[len(team_names) * chunk_size:]
-        if extra:
-            fixed.append(make_market("Other Team Goals", extra))
-
-    return fixed
-
-
-def postprocess_props_markets(bookmaker, markets, home, away):
-    markets = split_unibet_team_total_markets(bookmaker, markets, home, away)
-    markets = repair_prop_markets(bookmaker, markets)
-    return markets
-
-
-def repair_prop_markets(bookmaker, markets):
+def repair_markets(bookmaker, markets):
     fixed = []
     for market in markets or []:
-        if not isinstance(market, dict):
-            continue
-
-        market_key = normalize_prop_market_key(market.get("market") or market.get("normalized_market") or "")
-        selections = market.get("selections") or []
-
-        if market_key == "btts" and len(selections) == 2:
-            labels = [clean(s.get("selection") or "").lower() for s in selections]
-            has_yes_no = any(
-                re.search(r"(?:^|\b|[- ])yes(?:$|\b)", x) or
-                re.search(r"(?:^|\b|[- ])no(?:$|\b)", x)
-                for x in labels
-            )
-
-            if not has_yes_no:
+        if not isinstance(market,dict): continue
+        mk  = normalize_prop_market_key(market.get("market",""))
+        sel = market.get("selections") or []
+        if mk == "btts" and len(sel) == 2:
+            labels = [clean(s.get("selection","")).lower() for s in sel]
+            has_yn = any(re.search(r"(?:^|\b|[- ])yes(?:$|\b)",x) or re.search(r"(?:^|\b|[- ])no(?:$|\b)",x) for x in labels)
+            if not has_yn:
                 repaired = []
-                for idx, sel in enumerate(selections):
-                    side = "Yes" if idx == 0 else "No"
-                    repaired.append({
-                        **sel,
-                        "selection": f"Both Teams To Score - {side}",
-                        "normalized_selection": normalize_text_key(f"Both Teams To Score - {side}"),
-                    })
-                market = {
-                    **market,
-                    "market": "Both Teams To Score",
-                    "normalized_market": "btts",
-                    "selection_count": len(repaired),
-                    "selections": repaired,
-                }
-
+                for i,s in enumerate(sel):
+                    side = "Yes" if i==0 else "No"
+                    repaired.append({**s,"selection":f"Both Teams To Score - {side}","normalized_selection":normalize_text_key(f"Both Teams To Score - {side}")})
+                market = {**market,"market":"Both Teams To Score","normalized_market":"btts","selection_count":len(repaired),"selections":repaired}
         fixed.append(market)
-
     return fixed
-
 
 def load_props_file(bookmaker, path):
     data = load_json(path)
-
-    if isinstance(data, list):
-        raw_matches = data
-        generated_at = ""
-        source_url = ""
-    else:
-        raw_matches = data.get("matches") or data.get("results") or []
-        generated_at = data.get("generated_at") or ""
-        source_url = data.get("source_url") or ""
-
-    props_by_key = {}
-
-    for m in raw_matches:
-        if not isinstance(m, dict):
-            continue
-
+    raw  = data.get("matches") or data.get("results") or (data if isinstance(data,list) else [])
+    generated = data.get("generated_at","") if isinstance(data,dict) else ""
+    source_url = data.get("source_url","") if isinstance(data,dict) else ""
+    out = {}
+    for m in raw:
+        if not isinstance(m,dict): continue
         home = display_team(m.get("home_team"))
         away = display_team(m.get("away_team"))
-
         if not home or not away:
-            home, away = split_match_name(m.get("match") or m.get("name") or "")
-
-        if not home or not away:
-            continue
-
+            home,away = split_match_name(m.get("match") or m.get("name",""))
+        if not home or not away: continue
         markets = convert_markets(m.get("markets") or {})
-        markets = postprocess_props_markets(bookmaker, markets, home, away)
-
-        if not markets:
-            continue
-
-        props_by_key[fixture_key(home, away)] = {
+        markets = repair_markets(bookmaker, markets)
+        if not markets: continue
+        out[fixture_key(home,away)] = {
             "bookmaker": bookmaker,
-            "match": m.get("match") or m.get("name") or f"{home} v {away}",
-            "home_team": home,
-            "away_team": away,
+            "match": m.get("match") or f"{home} v {away}",
+            "home_team": home, "away_team": away,
             "source_url": m.get("source_url") or m.get("url") or source_url,
             "market_count": len(markets),
             "markets": markets,
         }
+    return out, generated
 
-    return props_by_key, generated_at
-
-
-def load_paddypower_props():
-    return load_props_file("PaddyPower", PADDY_PROPS_PATH)
-
-
-def load_boylesports_props():
-    return load_props_file("BoyleSports", BOYLE_PROPS_PATH)
-
-
-def load_unibet_props():
-    return load_props_file("Unibet", UNIBET_PROPS_PATH)
-
-
-def add_book_rows(fixtures, strict_index, loose_index, rows, bookmaker):
+def add_book_rows(fixtures, si, li, rows, bookmaker):
     for row in rows:
-        target_key = None
-
-        if row["strict_key"] in strict_index:
-            target_key = strict_index[row["strict_key"]]
-        elif row["loose_key"] in loose_index:
-            target_key = loose_index[row["loose_key"]]
-
-        if target_key:
-            fixtures[target_key]["bookmakers"][bookmaker] = {
-                "bookmaker": bookmaker,
-                "odds": row["odds"],
-                "source_url": row["source_url"],
-            }
+        tk = si.get(row["strict_key"]) or li.get(row["loose_key"])
+        if tk:
+            fixtures[tk]["bookmakers"][bookmaker] = {"bookmaker":bookmaker,"odds":row["odds"],"source_url":row["source_url"]}
         else:
-            key = row["strict_key"]
-            fixtures[key] = {
-                "key": key,
-                "loose_key": row["loose_key"],
-                "slug": slugify(f"{row['home_team']}-v-{row['away_team']}"),
-                "date_label": row["date_label"],
-                "time": row["time"],
-                "match": row["match"],
-                "home_team": row["home_team"],
-                "away_team": row["away_team"],
-                "bookmakers": {
-                    bookmaker: {
-                        "bookmaker": bookmaker,
-                        "odds": row["odds"],
-                        "source_url": row["source_url"],
-                    }
-                },
-                "props": {},
+            k = row["strict_key"]
+            fixtures[k] = {
+                "key":k,"loose_key":row["loose_key"],
+                "slug":slugify(f"{row['home_team']}-v-{row['away_team']}"),
+                "date_label":row["date_label"],"time":row["time"],
+                "match":row["match"],"home_team":row["home_team"],"away_team":row["away_team"],
+                "bookmakers":{bookmaker:{"bookmaker":bookmaker,"odds":row["odds"],"source_url":row["source_url"]}},
+                "props":{},
             }
-            strict_index[key] = key
-            loose_index[row["loose_key"]] = key
+            si[k]=k; li[row["loose_key"]]=k
 
+def date_sort_key(label):
+    label = str(label or "")
+    days  = {"Monday":1,"Tuesday":2,"Wednesday":3,"Thursday":4,"Friday":5,"Saturday":6,"Sunday":7,
+             "Mon":1,"Tue":2,"Wed":3,"Thu":4,"Fri":5,"Sat":6,"Sun":7}
+    parts = label.split()
+    day   = days.get(parts[0],999) if parts else 999
+    num   = next((int(p) for p in parts if p.isdigit()),999)
+    return (num, day, label)
 
-def load_all_matches():
-    paddy_rows, paddy_generated = load_book("PaddyPower", PADDY_PATH)
-    boyle_rows, boyle_generated = load_book("BoyleSports", BOYLE_PATH)
-    betvictor_rows, betvictor_generated = load_book("BetVictor", BETVICTOR_PATH)
-    unibet_rows, unibet_generated = load_book("Unibet", UNIBET_PATH)
-    livescore_rows, livescore_generated = load_book("LiveScoreBet", LIVESCOREBET_PATH)
-    williamhill_rows, williamhill_generated = load_book("WilliamHill", WILLIAMHILL_PATH)
-    eighteight_rows, eighteight_generated = load_book("888Sport", EIGHTEIGHTEIGHT_PATH)
+def load_all():
+    paddy_rows,   paddy_gen    = load_book("PaddyPower",   PADDY_PATH)
+    boyle_rows,   boyle_gen    = load_book("BoyleSports",  BOYLE_PATH)
+    betv_rows,    betv_gen     = load_book("BetVictor",    BETVICTOR_PATH)
+    unibet_rows,  unibet_gen   = load_book("Unibet",       UNIBET_PATH)
+    lsb_rows,     lsb_gen      = load_book("LiveScoreBet", LIVESCOREBET_PATH)
+    wh_rows,      wh_gen       = load_book("WilliamHill",  WILLIAMHILL_PATH)
+    eee_rows,     eee_gen      = load_book("888Sport",     EIGHTEIGHTEIGHT_PATH)
 
-    paddy_props, paddy_props_generated = load_paddypower_props()
-    boyle_props, boyle_props_generated = load_boylesports_props()
-    unibet_props, unibet_props_generated = load_unibet_props()
+    paddy_props,  paddy_p_gen  = load_props_file("PaddyPower",   PADDY_PROPS_PATH)
+    boyle_props,  boyle_p_gen  = load_props_file("BoyleSports",  BOYLE_PROPS_PATH)
+    unibet_props, unibet_p_gen = load_props_file("Unibet",       UNIBET_PROPS_PATH)
+    lsb_props,    lsb_p_gen    = load_props_file("LiveScoreBet", LIVESCORE_PROPS_PATH)
+    eee_props,    eee_p_gen    = load_props_file("888Sport",     EIGHTSPORT_PROPS_PATH)
+    wh_props,     wh_p_gen     = load_props_file("WilliamHill",  WILLIAMHILL_PROPS_PATH)
 
     fixtures = {}
-
     for row in paddy_rows:
-        key = row["strict_key"]
-        fixtures[key] = {
-            "key": key,
-            "loose_key": row["loose_key"],
-            "slug": slugify(f"{row['home_team']}-v-{row['away_team']}"),
-            "date_label": row["date_label"],
-            "time": row["time"],
-            "match": row["match"],
-            "home_team": row["home_team"],
-            "away_team": row["away_team"],
-            "bookmakers": {
-                "PaddyPower": {
-                    "bookmaker": "PaddyPower",
-                    "odds": row["odds"],
-                    "source_url": row["source_url"],
-                }
-            },
-            "props": {},
+        k = row["strict_key"]
+        fixtures[k] = {
+            "key":k,"loose_key":row["loose_key"],
+            "slug":slugify(f"{row['home_team']}-v-{row['away_team']}"),
+            "date_label":row["date_label"],"time":row["time"],
+            "match":row["match"],"home_team":row["home_team"],"away_team":row["away_team"],
+            "bookmakers":{"PaddyPower":{"bookmaker":"PaddyPower","odds":row["odds"],"source_url":row["source_url"]}},
+            "props":{},
         }
 
-    strict_index = {f["key"]: key for key, f in fixtures.items()}
-    loose_index = {f["loose_key"]: key for key, f in fixtures.items()}
+    si = {f["key"]:k for k,f in fixtures.items()}
+    li = {f["loose_key"]:k for k,f in fixtures.items()}
 
-    add_book_rows(fixtures, strict_index, loose_index, boyle_rows, "BoyleSports")
-    add_book_rows(fixtures, strict_index, loose_index, betvictor_rows, "BetVictor")
-    add_book_rows(fixtures, strict_index, loose_index, unibet_rows, "Unibet")
-    add_book_rows(fixtures, strict_index, loose_index, livescore_rows, "LiveScoreBet")
-    add_book_rows(fixtures, strict_index, loose_index, williamhill_rows, "WilliamHill")
-    add_book_rows(fixtures, strict_index, loose_index, eighteight_rows, "888Sport")
+    for rows,bk in [(boyle_rows,"BoyleSports"),(betv_rows,"BetVictor"),(unibet_rows,"Unibet"),
+                    (lsb_rows,"LiveScoreBet"),(wh_rows,"WilliamHill"),(eee_rows,"888Sport")]:
+        add_book_rows(fixtures,si,li,rows,bk)
 
-    for bookmaker, book_props in [
-        ("PaddyPower", paddy_props),
-        ("BoyleSports", boyle_props),
-        ("Unibet", unibet_props),
-    ]:
-        for props_key, props_data in book_props.items():
-            target_key = None
-            loose_key = loose_fixture_key(props_data.get("home_team"), props_data.get("away_team"))
+    for bk,bk_props in [("PaddyPower",paddy_props),("BoyleSports",boyle_props),
+                         ("Unibet",unibet_props),("LiveScoreBet",lsb_props),
+                         ("888Sport",eee_props),("WilliamHill",wh_props)]:
+        for pk,pd in bk_props.items():
+            lk = loose_fixture_key(pd.get("home_team",""),pd.get("away_team",""))
+            tk = si.get(pk) or li.get(lk)
+            if tk and tk in fixtures:
+                fixtures[tk].setdefault("props",{})
+                fixtures[tk]["props"][bk] = pd
 
-            if props_key in strict_index:
-                target_key = strict_index[props_key]
-            elif loose_key in loose_index:
-                target_key = loose_index[loose_key]
+    fl = sorted(fixtures.values(), key=lambda x:(date_sort_key(x.get("date_label")),x.get("time",""),x.get("match","")))
+    generated = paddy_p_gen or boyle_p_gen or unibet_p_gen or lsb_p_gen or eee_p_gen or wh_p_gen or eee_gen or wh_gen or lsb_gen or unibet_gen or betv_gen or boyle_gen or paddy_gen
+    bk_count  = len({b for f in fl for b in f.get("bookmakers",{})})
+    return fl, bk_count, generated
 
-            if target_key and target_key in fixtures:
-                fixtures[target_key].setdefault("props", {})
-                fixtures[target_key]["props"][bookmaker] = props_data
-
-    fixtures_list = list(fixtures.values())
-    fixtures_list.sort(
-        key=lambda x: (
-            date_sort_key(x.get("date_label")),
-            x.get("time", ""),
-            x.get("match", ""),
-        )
-    )
-
-    generated = (
-        unibet_props_generated
-        or boyle_props_generated
-        or paddy_props_generated
-        or eighteight_generated
-        or williamhill_generated
-        or livescore_generated
-        or unibet_generated
-        or betvictor_generated
-        or boyle_generated
-        or paddy_generated
-    )
-
-    bookmaker_names = set()
-    for f in fixtures_list:
-        for b in f.get("bookmakers", {}):
-            bookmaker_names.add(b)
-
-    return fixtures_list, len(bookmaker_names), generated
-
-
-def date_sort_key(date_label):
-    label = str(date_label or "")
-    day_order = {
-        "Monday": 1, "Tuesday": 2, "Wednesday": 3, "Thursday": 4,
-        "Friday": 5, "Saturday": 6, "Sunday": 7,
-        "Mon": 1, "Tue": 2, "Wed": 3, "Thu": 4, "Fri": 5, "Sat": 6, "Sun": 7,
-    }
-    parts = label.split()
-    number = 999
-    day = 999
-    if parts:
-        day = day_order.get(parts[0], 999)
-    for p in parts:
-        if p.isdigit():
-            number = int(p)
-            break
-    return (number, day, label)
-
+# ── Odds helpers ───────────────────────────────────────────────────────────────
 
 def best_price(fixture, side):
-    offers = []
-    for bookmaker, info in fixture.get("bookmakers", {}).items():
+    best = None
+    for bk,info in fixture.get("bookmakers",{}).items():
         raw = (info.get("odds") or {}).get(side)
         dec = fractional_to_decimal(raw)
-        if raw and dec > 1:
-            offers.append({"bookmaker": bookmaker, "odds": raw, "decimal": dec})
-    if not offers:
-        return None
-    return sorted(offers, key=lambda x: x["decimal"], reverse=True)[0]
+        if raw and dec > 1 and (not best or dec > best["decimal"]):
+            best = {"bookmaker":bk,"odds":raw,"decimal":dec}
+    return best
 
-
-def all_prices_for_side(fixture, side):
+def all_prices(fixture, side):
     rows = []
-    for bookmaker, info in sorted(fixture.get("bookmakers", {}).items()):
+    for bk,info in sorted(fixture.get("bookmakers",{}).items()):
         raw = (info.get("odds") or {}).get(side)
         dec = fractional_to_decimal(raw)
-        if raw and dec > 1:
-            rows.append({"bookmaker": bookmaker, "odds": raw, "decimal": dec})
-    best = best_price(fixture, side)
-    best_key = (best["bookmaker"], best["odds"]) if best else None
-    for row in rows:
-        row["is_best"] = best_key == (row["bookmaker"], row["odds"])
+        if raw and dec > 1: rows.append({"bookmaker":bk,"odds":raw,"decimal":dec})
+    best = best_price(fixture,side)
+    bk   = (best["bookmaker"],best["odds"]) if best else None
+    for r in rows: r["is_best"] = bk==(r["bookmaker"],r["odds"])
     return rows
 
+def build_comparison_data(props):
+    """Cross-bookmaker comparison index: (market_key, selection_key) → offers."""
+    comp = {}
+    for bk,pd in sorted(props.items()):
+        for market in pd.get("markets") or []:
+            mn  = market.get("market","")
+            mk  = normalize_prop_market_key(mn)
+            if is_team_market(mn): continue
+            for sel in market.get("selections") or []:
+                sn   = sel.get("selection","")
+                odds = sel.get("odds","")
+                dec  = fractional_to_decimal(odds)
+                if not sn or not odds or dec <= 1: continue
+                sk  = normalize_prop_selection_key(mn,sn)
+                key = (mk,sk)
+                if key not in comp:
+                    comp[key] = {"market":pretty_market_name(mn),"market_key":mk,
+                                 "selection":pretty_selection_label(mn,sn),"selection_key":sk,"offers":[]}
+                comp[key]["offers"].append({"bookmaker":bk,"odds":odds,"decimal":dec})
+    return comp
 
-def render_best_box(label, best):
-    if not best:
-        return f"""
-        <div class="odd-box">
-          <span>{esc(label)}</span>
-          <strong>—</strong>
-          <em>No price</em>
-        </div>
-        """
-    return f"""
-    <div class="odd-box">
-      <span>{esc(label)}</span>
-      <strong>{esc(best["odds"])}</strong>
-      <em>{esc(best["bookmaker"])}</em>
-    </div>
-    """
+# ── CSS ────────────────────────────────────────────────────────────────────────
 
-
-def render_worldcup_page(fixtures, bookmaker_count, generated_at):
-    grouped = {}
-    for fixture in fixtures:
-        grouped.setdefault(fixture.get("date_label") or "Upcoming", []).append(fixture)
-
-    groups_html = ""
-    for date_label, items in grouped.items():
-        cards = ""
-        for fixture in items:
-            home = fixture["home_team"]
-            away = fixture["away_team"]
-            slug = fixture["slug"]
-
-            best_home = best_price(fixture, "home")
-            best_draw = best_price(fixture, "draw")
-            best_away = best_price(fixture, "away")
-
-            books_count = len(fixture.get("bookmakers", {}))
-            props_count = sum(len((p.get("markets") or [])) for p in (fixture.get("props") or {}).values())
-
-            props_badge = ""
-            if props_count:
-                props_badge = f'<span class="props-pill">{props_count} prop markets</span>'
-
-            cards += f"""
-            <article class="match-card">
-              <div class="match-top">
-                <div>
-                  <h3>{esc(home)} <span>v</span> {esc(away)}</h3>
-                  <p>{esc(fixture.get("time"))} · {books_count} bookmaker{"s" if books_count != 1 else ""} {props_badge}</p>
-                </div>
-                <a class="market-badge" href="{BASE}/football/world-cup/{slug}/">View books →</a>
-              </div>
-              <div class="odds-grid">
-                {render_best_box(home, best_home)}
-                {render_best_box("Draw", best_draw)}
-                {render_best_box(away, best_away)}
-              </div>
-            </article>
-            """
-
-        groups_html += f"""
-        <section class="date-section">
-          <div class="date-header">
-            <h2>{esc(date_label)}</h2>
-            <span>{len(items)} match{"es" if len(items) != 1 else ""}</span>
-          </div>
-          <div class="matches-grid">
-            {cards}
-          </div>
-        </section>
-        """
-
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FIFA World Cup Odds — BeatTheBooks</title>
-  <style>
-    :root {{
-      --bg: #0f1621; --panel: #111827; --border: #223047;
-      --text: #ffffff; --muted: #91a0b5; --green: #22c55e;
-      --blue: #60a5fa; --gold: #facc15;
-    }}
-    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    body {{
-      background:
-        radial-gradient(circle at top left, rgba(34,197,94,0.16), transparent 32%),
-        radial-gradient(circle at top right, rgba(96,165,250,0.13), transparent 30%),
-        var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      min-height: 100vh;
-    }}
-    a {{ color: inherit; text-decoration: none; }}
-    .page {{ max-width: 1500px; margin: 0 auto; padding: 34px 28px 70px; }}
-    .top-nav {{ display: flex; gap: 12px; color: var(--muted); font-size: 14px; margin-bottom: 28px; flex-wrap: wrap; }}
-    .top-nav a {{ color: var(--blue); }}
-    .hero {{ border: 1px solid var(--border); border-radius: 28px; padding: 34px; background: rgba(17,24,39,0.82); box-shadow: 0 20px 80px rgba(0,0,0,0.28); margin-bottom: 28px; }}
-    .eyebrow {{ display: inline-flex; border: 1px solid rgba(34,197,94,0.45); background: rgba(34,197,94,0.1); color: #86efac; border-radius: 999px; padding: 7px 12px; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }}
-    h1 {{ font-size: clamp(42px, 6vw, 82px); line-height: 0.95; letter-spacing: -0.055em; margin-bottom: 14px; }}
-    .subtitle {{ color: var(--muted); font-size: 17px; max-width: 760px; line-height: 1.6; margin-bottom: 18px; }}
-    .stats {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 22px; }}
-    .stat {{ border: 1px solid var(--border); border-radius: 16px; padding: 16px; background: rgba(255,255,255,0.03); }}
-    .stat strong {{ display: block; font-size: 30px; color: var(--green); margin-bottom: 4px; }}
-    .stat span {{ color: var(--muted); font-size: 13px; }}
-    .date-section {{ margin-top: 34px; }}
-    .date-header {{ display: flex; justify-content: space-between; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 14px; }}
-    .date-header h2 {{ font-size: 24px; letter-spacing: -0.02em; }}
-    .date-header span {{ border: 1px solid rgba(96,165,250,0.35); color: #bfdbfe; background: rgba(96,165,250,0.08); border-radius: 999px; padding: 5px 10px; font-size: 12px; font-weight: 800; }}
-    .matches-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 14px; }}
-    .match-card {{ border: 1px solid var(--border); border-radius: 20px; padding: 18px; background: rgba(17,24,39,0.72); }}
-    .match-top {{ display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 16px; }}
-    .match-top h3 {{ font-size: 18px; letter-spacing: -0.02em; margin-bottom: 5px; }}
-    .match-top h3 span {{ color: var(--muted); font-weight: 500; }}
-    .match-top p {{ color: var(--muted); font-size: 13px; }}
-    .props-pill {{ display: inline-flex; margin-left: 8px; color: #86efac; font-weight: 900; }}
-    .market-badge {{ white-space: nowrap; border: 1px solid rgba(250,204,21,0.4); color: #fde68a; background: rgba(250,204,21,0.08); border-radius: 999px; padding: 6px 10px; font-size: 11px; font-weight: 900; text-transform: uppercase; }}
-    .odds-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }}
-    .odd-box {{ border: 1px solid var(--border); border-radius: 14px; padding: 12px 10px; background: rgba(15,22,33,0.82); text-align: center; }}
-    .odd-box span {{ display: block; color: var(--muted); font-size: 12px; margin-bottom: 8px; min-height: 30px; }}
-    .odd-box strong {{ display: block; color: var(--green); font-size: 22px; font-weight: 950; }}
-    .odd-box em {{ display: block; color: var(--muted); font-size: 11px; font-style: normal; margin-top: 5px; }}
-    .footer-note {{ margin-top: 34px; color: var(--muted); font-size: 13px; line-height: 1.6; }}
-    @media (max-width: 700px) {{
-      .page {{ padding: 20px 14px 50px; }}
-      .hero {{ padding: 24px; border-radius: 22px; }}
-      .matches-grid {{ grid-template-columns: 1fr; }}
-      .odds-grid {{ grid-template-columns: 1fr; }}
-    }}
-  </style>
-</head>
-<body>
-  <main class="page">
-    <nav class="top-nav">
-      <a href="{BASE}/football/">Football</a>
-      <span>›</span>
-      <span>FIFA World Cup</span>
-    </nav>
-    <section class="hero">
-      <div class="eyebrow">⚽ Football Odds</div>
-      <h1>FIFA World Cup Odds</h1>
-      <p class="subtitle">Best available match odds across tracked bookmakers. Click any fixture to compare prices and view props.</p>
-      <div class="stats">
-        <div class="stat"><strong>{len(fixtures)}</strong><span>Fixtures tracked</span></div>
-        <div class="stat"><strong>{bookmaker_count}</strong><span>Bookmakers</span></div>
-        <div class="stat"><strong>Props</strong><span>Props from tracked bookmakers</span></div>
-      </div>
-      <p class="footer-note">Updated: {esc(generated_at)}</p>
-    </section>
-    {groups_html}
-    <p class="footer-note">Odds are scraped from tracked bookmakers and may change. Always check the bookmaker before placing any bet.</p>
-  </main>
-</body>
-</html>
+SHARED_CSS = """
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f1621;
+  color: #fff;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+a { color: #60a5fa; text-decoration: none; }
+.page { max-width: 1300px; margin: 0 auto; padding: 34px 24px 70px; }
+.nav { color: #91a0b5; margin-bottom: 28px; display: flex; gap: 10px; flex-wrap: wrap; font-size: 14px; }
+.nav a { color: #60a5fa; }
+.hero { border: 1px solid #223047; border-radius: 28px; padding: 32px; background: rgba(17,24,39,0.86); margin-bottom: 28px; }
+.eyebrow { display: inline-flex; border: 1px solid rgba(34,197,94,0.45); background: rgba(34,197,94,0.1); color: #86efac; border-radius: 999px; padding: 7px 12px; font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 14px; }
+h1 { font-size: clamp(34px,5vw,64px); letter-spacing: -0.05em; line-height: .95; margin-bottom: 10px; }
+.meta { color: #91a0b5; font-size: 14px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #223047; color: #c7d2fe; font-size: 14px; }
+th { color: #91a0b5; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+td strong { color: #22c55e; font-size: 19px; }
+.best-row { background: rgba(34,197,94,0.08); }
+.best-row td:last-child { color: #86efac; font-weight: 900; font-size: 12px; }
+.best-cell strong { color: #22c55e !important; }
+.panel { border: 1px solid #223047; border-radius: 20px; padding: 18px; background: rgba(17,24,39,0.72); margin-bottom: 14px; }
+.panel h2 { font-size: 20px; margin-bottom: 14px; }
+.panel h3 { font-size: 16px; margin-bottom: 10px; color: #facc15; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 14px; margin-bottom: 24px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit,minmax(380px,1fr)); gap: 14px; margin-bottom: 14px; }
+.sub-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+.sub-nav a { border: 1px solid rgba(96,165,250,0.45); background: rgba(96,165,250,0.08); color: #bfdbfe; border-radius: 999px; padding: 9px 16px; font-size: 13px; font-weight: 900; text-transform: uppercase; }
+.sub-nav a.active { background: rgba(96,165,250,0.25); border-color: #60a5fa; color: #fff; }
+.section-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.section-head h2 { font-size: 26px; }
+.section-head a { border: 1px solid rgba(96,165,250,0.45); background: rgba(96,165,250,0.08); color: #bfdbfe; border-radius: 999px; padding: 7px 11px; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+.best-summary { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 10px; margin-bottom: 8px; }
+.best-pill { border: 1px solid #223047; border-radius: 12px; padding: 10px 12px; background: rgba(255,255,255,0.03); }
+.best-pill .mkt { color: #91a0b5; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.best-pill .sel { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.best-pill .price { color: #22c55e; font-size: 18px; font-weight: 900; }
+.best-pill .book { color: #91a0b5; font-size: 11px; }
+.footer-note { color: #91a0b5; font-size: 13px; margin-top: 28px; line-height: 1.6; }
+.goalscorer-table td:first-child { font-weight: 600; color: #e2e8f0; min-width: 150px; }
+@media (max-width: 700px) {
+  .page { padding: 20px 14px 50px; }
+  .hero { padding: 22px; border-radius: 22px; }
+  .grid3, .grid2 { grid-template-columns: 1fr; }
+}
 """
 
+# ── Index page ─────────────────────────────────────────────────────────────────
 
-def render_props_section(fixture):
-    props = fixture.get("props") or {}
-    home = fixture.get("home_team") or ""
-    away = fixture.get("away_team") or ""
+def render_index(fixtures, bk_count, generated):
+    grouped = {}
+    for f in fixtures:
+        grouped.setdefault(f.get("date_label") or "Upcoming",[]).append(f)
 
-    if not props:
-        return """
-        <section class="props-wrap" id="props">
-          <div class="section-title"><h2>Props</h2><p>No props available for this match yet.</p></div>
-        </section>
-        """
-
-    PLAYER_MARKET_KEYS = {"anytime_scorer", "first_goalscorer", "scorer_2_plus"}
-    GROUPED_OVER_UNDER_KEYS = {"total_goals", "first_half_goals"}
-
-    def is_player_market(market_name):
-        market_key = normalize_prop_market_key(market_name)
-        name = str(market_name or "").lower()
-        if market_key in PLAYER_MARKET_KEYS:
-            return True
-        player_keywords = ["player to score", "goalscorer", "goal scorer", "first scorer", "anytime scorer", "to score 2 or more"]
-        return any(word in name for word in player_keywords)
-
-    def is_team_market(market_name):
-        market_key = normalize_prop_market_key(market_name)
-        name = str(market_name or "").lower()
-        home_l = str(home or "").lower()
-        away_l = str(away or "").lower()
-        if market_key.startswith("total_goals_by_"):
-            return True
-        if market_key.startswith("team_total_goals"):
-            return True
-        if "team total" in name or "total goals by" in name:
-            return True
-        if home_l and f"by {home_l}" in name:
-            return True
-        if away_l and f"by {away_l}" in name:
-            return True
-        return False
-
-    def best_offer(offers):
-        offers = [o for o in offers if o.get("decimal", 0) > 1]
-        if not offers:
-            return None
-        return sorted(offers, key=lambda x: x["decimal"], reverse=True)[0]
-
-    def offer_label(offer):
-        if not offer:
-            return "—"
-        return f"{esc(offer['bookmaker'])} <strong>{esc(offer['odds'])}</strong>"
-
-    def render_market_card(market):
-        selections = market.get("selections") or []
-        rows = ""
-        for sel in selections:
-            rows += f"""
-            <tr>
-              <td>{esc(sel.get("selection"))}</td>
-              <td><strong>{esc(sel.get("odds"))}</strong></td>
-            </tr>
-            """
-        if not rows:
-            rows = '<tr><td colspan="2">No selections available</td></tr>'
-        return f"""
-        <section class="prop-market">
-          <h3>{esc(market.get("market"))}</h3>
-          <table>
-            <thead><tr><th>Selection</th><th>Odds</th></tr></thead>
-            <tbody>{rows}</tbody>
-          </table>
-        </section>
-        """
-
-    def build_comparison_data():
-        comparison = {}
-        for bookmaker, prop_data in sorted(props.items()):
-            for market in prop_data.get("markets") or []:
-                market_name = market.get("market") or ""
-                if is_team_market(market_name):
-                    continue
-                market_key = normalize_prop_market_key(market_name)
-                for sel in market.get("selections") or []:
-                    selection_name = sel.get("selection") or ""
-                    odds = sel.get("odds") or ""
-                    decimal = fractional_to_decimal(odds)
-                    if not selection_name or not odds or decimal <= 1:
-                        continue
-                    selection_key = normalize_prop_selection_key(market_name, selection_name)
-                    key = (market_key, selection_key)
-                    if key not in comparison:
-                        comparison[key] = {
-                            "market": pretty_market_name(market_name),
-                            "market_key": market_key,
-                            "selection": pretty_prop_selection_label(market_name, selection_name),
-                            "selection_key": selection_key,
-                            "offers": [],
-                        }
-                    comparison[key]["offers"].append({"bookmaker": bookmaker, "odds": odds, "decimal": decimal})
-        return comparison
-
-    def build_over_under_cards(comparison):
-        grouped = {}
-        for item in comparison.values():
-            market_key = item.get("market_key")
-            selection_key = item.get("selection_key") or ""
-            if market_key not in GROUPED_OVER_UNDER_KEYS:
-                continue
-            match = re.match(r"^(over|under)_(\d+(?:\.\d+)?)$", selection_key)
-            if not match:
-                continue
-            side = match.group(1)
-            line = match.group(2)
-            grouped.setdefault(market_key, {"market": item.get("market") or pretty_market_name(market_key), "lines": {}})
-            grouped[market_key]["lines"].setdefault(line, {})[side] = item
-
+    groups = ""
+    for date,items in grouped.items():
         cards = ""
-        for market_key in ["total_goals", "first_half_goals"]:
-            group = grouped.get(market_key)
-            if not group:
-                continue
-            rows = ""
-            for line in sorted(group["lines"].keys(), key=lambda x: float(x)):
-                sides = group["lines"].get(line) or {}
-                over_item = sides.get("over")
-                under_item = sides.get("under")
-                over_offers = over_item.get("offers") if over_item else []
-                under_offers = under_item.get("offers") if under_item else []
-                if len({o["bookmaker"] for o in over_offers}) < 2 and len({o["bookmaker"] for o in under_offers}) < 2:
-                    continue
-                over_best = best_offer(over_offers)
-                under_best = best_offer(under_offers)
-                rows += f"""
-                <tr>
-                  <td><strong>{esc(line)}</strong></td>
-                  <td>{offer_label(over_best)}</td>
-                  <td>{offer_label(under_best)}</td>
-                </tr>
-                """
-            if not rows:
-                continue
-            cards += f"""
-            <section class="prop-market prop-market-wide">
-              <h3>{esc(group["market"])} — Over / Under</h3>
-              <table>
-                <thead><tr><th>Line</th><th>Best Over</th><th>Best Under</th></tr></thead>
-                <tbody>{rows}</tbody>
-              </table>
-            </section>
-            """
-        return cards
+        for f in items:
+            home,away,slug = f["home_team"],f["away_team"],f["slug"]
+            bh = best_price(f,"home"); bd = best_price(f,"draw"); ba = best_price(f,"away")
+            bk_count_f = len(f.get("bookmakers",{}))
+            has_props = bool(f.get("props"))
+            props_badge = f'<span style="color:#86efac;font-weight:900;font-size:12px;margin-left:8px;">Props ✓</span>' if has_props else ""
 
-    def build_goalscorer_comparison_cards(comparison):
-        """Build per-player comparison tables for Anytime and First Goalscorer."""
-        # Group by scorer type (anytime / first / score2) then by player
-        grouped = {}  # {scorer_type: {player_key: {market_label, player_name, offers}}}
-
-        SCORER_MARKET_KEYS = {"anytime_scorer", "first_goalscorer", "scorer_2_plus", "player_to_score"}
-
-        for item in comparison.values():
-            market_key = item.get("market_key")
-            if market_key not in SCORER_MARKET_KEYS:
-                continue
-
-            selection_key = item.get("selection_key") or ""
-            offers = item.get("offers") or []
-
-            # Only show where 2+ bookmakers have a price
-            bookmakers_seen = {o["bookmaker"] for o in offers}
-            if len(bookmakers_seen) < 2:
-                continue
-
-            # Parse the normalised key: "anytime__raul_jimenez" → type=anytime, player=raul_jimenez
-            match = re.match(r"^(anytime|first|score2)__(.+)$", selection_key)
-            if not match:
-                continue
-
-            scorer_type = match.group(1)
-            player_key = match.group(2)
-            player_name = player_key.replace("_", " ").title()
-
-            type_label = {
-                "anytime": "Anytime Goalscorer",
-                "first":   "First Goalscorer",
-                "score2":  "To Score 2+",
-            }.get(scorer_type, scorer_type.title())
-
-            grouped.setdefault(scorer_type, {"label": type_label, "players": {}})
-            grouped[scorer_type]["players"].setdefault(player_key, {
-                "player_name": player_name,
-                "offers": [],
-            })
-            # Merge offers (dedupe by bookmaker keeping best decimal)
-            existing = {o["bookmaker"]: o for o in grouped[scorer_type]["players"][player_key]["offers"]}
-            for offer in offers:
-                bk = offer["bookmaker"]
-                if bk not in existing or offer["decimal"] > existing[bk]["decimal"]:
-                    existing[bk] = offer
-            grouped[scorer_type]["players"][player_key]["offers"] = list(existing.values())
-
-        cards = ""
-        for scorer_type in ["anytime", "first", "score2"]:
-            group = grouped.get(scorer_type)
-            if not group:
-                continue
-
-            # Sort players by best available decimal desc
-            players = sorted(
-                group["players"].values(),
-                key=lambda p: max((o["decimal"] for o in p["offers"]), default=0),
-                reverse=True,
-            )
-
-            # Get all bookmakers that appear
-            all_books = sorted({o["bookmaker"] for p in players for o in p["offers"]})
-            if len(all_books) < 2:
-                continue
-
-            header_cells = "".join(f"<th>{esc(b)}</th>" for b in all_books)
-            rows = ""
-            for player in players:
-                by_book = {o["bookmaker"]: o for o in player["offers"]}
-                best_dec = max((o["decimal"] for o in player["offers"]), default=0)
-                cells = ""
-                for bk in all_books:
-                    offer = by_book.get(bk)
-                    if offer:
-                        is_best = offer["decimal"] == best_dec
-                        cls = ' class="best-cell"' if is_best else ""
-                        cells += f'<td{cls}><strong>{esc(offer["odds"])}</strong></td>'
-                    else:
-                        cells += "<td>—</td>"
-                rows += f"<tr><td>{esc(player['player_name'])}</td>{cells}</tr>"
+            def box(label,best):
+                if not best: return f'<div class="odd-box"><span>{esc(label)}</span><strong>—</strong><em></em></div>'
+                return f'<div class="odd-box"><span>{esc(label)}</span><strong>{esc(best["odds"])}</strong><em>{esc(best["bookmaker"])}</em></div>'
 
             cards += f"""
-            <section class="prop-market prop-market-wide goalscorer-comparison">
-              <h3>{esc(group["label"])}</h3>
-              <table>
-                <thead><tr><th>Player</th>{header_cells}</tr></thead>
-                <tbody>{rows}</tbody>
-              </table>
-            </section>
-            """
+            <article style="border:1px solid #223047;border-radius:20px;padding:18px;background:rgba(17,24,39,0.72)">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px">
+                <div>
+                  <h3 style="font-size:17px;letter-spacing:-0.02em;margin-bottom:4px">{esc(home)} <span style="color:#91a0b5;font-weight:500">v</span> {esc(away)}</h3>
+                  <p style="color:#91a0b5;font-size:13px">{esc(f.get("time",""))} · {bk_count_f} bookmaker{"s" if bk_count_f!=1 else ""}{props_badge}</p>
+                </div>
+                <a href="{BASE}/football/world-cup/{slug}/" style="white-space:nowrap;border:1px solid rgba(250,204,21,0.4);color:#fde68a;background:rgba(250,204,21,0.08);border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900;text-transform:uppercase">View →</a>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+                {box(home,bh)}{box("Draw",bd)}{box(away,ba)}
+              </div>
+            </article>"""
 
-        return cards
-
-    def build_standard_comparison_cards(comparison):
-        cards = ""
-        SAFE_STANDARD_MARKETS = {"btts", "double_chance"}
-        for item in sorted(comparison.values(), key=lambda x: (x["market"], x["selection"])):
-            market_key = item.get("market_key")
-            if market_key in GROUPED_OVER_UNDER_KEYS:
-                continue
-            if market_key not in SAFE_STANDARD_MARKETS:
-                continue
-            offers = item.get("offers") or []
-            best_by_bookmaker = {}
-            for offer in offers:
-                bookmaker = offer.get("bookmaker")
-                if not bookmaker:
-                    continue
-                current = best_by_bookmaker.get(bookmaker)
-                if current is None or offer.get("decimal", 0) > current.get("decimal", 0):
-                    best_by_bookmaker[bookmaker] = offer
-            offers = list(best_by_bookmaker.values())
-            bookmakers_seen = {offer["bookmaker"] for offer in offers}
-            if len(bookmakers_seen) < 2:
-                continue
-            offers = sorted(offers, key=lambda x: x["decimal"], reverse=True)
-            best_decimal = offers[0]["decimal"] if offers else 0
-            rows = ""
-            for offer in offers:
-                is_best = offer["decimal"] == best_decimal
-                cls = "best-row" if is_best else ""
-                tag = "BEST" if is_best else ""
-                rows += f"""
-                <tr class="{cls}">
-                  <td>{esc(offer["bookmaker"])}</td>
-                  <td><strong>{esc(offer["odds"])}</strong></td>
-                  <td>{tag}</td>
-                </tr>
-                """
-            cards += f"""
-            <section class="prop-market">
-              <h3>{esc(item["market"])} — {esc(item["selection"])}</h3>
-              <table>
-                <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
-                <tbody>{rows}</tbody>
-              </table>
-            </section>
-            """
-        return cards
-
-    def build_best_prop_comparisons():
-        comparison = build_comparison_data()
-        grouped_ou_cards = build_over_under_cards(comparison)
-        standard_cards = build_standard_comparison_cards(comparison)
-        goalscorer_cards = build_goalscorer_comparison_cards(comparison)
-        if not grouped_ou_cards and not standard_cards and not goalscorer_cards:
-            return ""
-        return f"""
-        <section class="book-props" id="best-prop-prices">
-          <div class="book-props-head">
-            <h2>Best Prop Prices</h2>
-            <span class="compare-note">Compared across tracked bookmakers</span>
+        groups += f"""
+        <section style="margin-top:30px">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #223047;padding-bottom:10px;margin-bottom:12px">
+            <h2 style="font-size:22px">{esc(date)}</h2>
+            <span style="border:1px solid rgba(96,165,250,0.35);color:#bfdbfe;background:rgba(96,165,250,0.08);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800">{len(items)} match{"es" if len(items)!=1 else ""}</span>
           </div>
-          <div class="props-grid props-grid-wide">{grouped_ou_cards}</div>
-          <div class="props-grid">{standard_cards}</div>
-          <div class="props-grid props-grid-wide">{goalscorer_cards}</div>
-        </section>
-        """
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px">{cards}</div>
+        </section>"""
 
-    best_comparison_html = build_best_prop_comparisons()
-    match_book_html = ""
-    team_book_html = ""
-    player_book_html = ""
+    return f"""<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>FIFA World Cup Odds — BeatTheBooks</title>
+<style>
+{SHARED_CSS}
+.odd-box{{border:1px solid #223047;border-radius:14px;padding:10px;background:rgba(15,22,33,0.82);text-align:center}}
+.odd-box span{{display:block;color:#91a0b5;font-size:12px;margin-bottom:6px;min-height:28px}}
+.odd-box strong{{display:block;color:#22c55e;font-size:20px;font-weight:950}}
+.odd-box em{{display:block;color:#91a0b5;font-size:11px;font-style:normal;margin-top:4px}}
+</style></head><body>
+<main class="page">
+  <nav class="nav"><a href="{BASE}/football/">Football</a><span>›</span><span>FIFA World Cup</span></nav>
+  <section class="hero"
+    style="background:radial-gradient(circle at top left,rgba(34,197,94,0.14),transparent 40%),radial-gradient(circle at top right,rgba(96,165,250,0.1),transparent 40%),rgba(17,24,39,0.86)">
+    <div class="eyebrow">⚽ Football Odds</div>
+    <h1>FIFA World Cup<br>Odds</h1>
+    <p class="meta" style="margin-top:10px">Best odds across {bk_count} bookmakers · Props from PaddyPower, BoyleSports, Unibet, LiveScoreBet, 888Sport &amp; William Hill</p>
+    <p class="footer-note" style="margin-top:14px">Updated: {esc(generated)}</p>
+  </section>
+  {groups}
+  <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
+</main></body></html>"""
 
-    for bookmaker, prop_data in sorted(props.items()):
-        markets = prop_data.get("markets") or []
-        if not markets:
-            continue
-        match_market_cards = ""
-        team_market_cards = ""
-        player_market_cards = ""
-        for market in markets:
-            market_name = market.get("market")
-            if is_player_market(market_name):
-                player_market_cards += render_market_card(market)
-            elif is_team_market(market_name):
-                team_market_cards += render_market_card(market)
-            else:
-                match_market_cards += render_market_card(market)
-
-        bookmaker_link = f'<a href="{esc(prop_data.get("source_url"))}" target="_blank" rel="noopener">Open bookmaker →</a>'
-
-        if match_market_cards:
-            match_book_html += f"""
-            <section class="book-props">
-              <div class="book-props-head"><h2>{esc(bookmaker)} Match Props</h2>{bookmaker_link}</div>
-              <div class="props-grid">{match_market_cards}</div>
-            </section>
-            """
-        if team_market_cards:
-            team_book_html += f"""
-            <section class="book-props">
-              <div class="book-props-head"><h2>{esc(bookmaker)} Team Props</h2>{bookmaker_link}</div>
-              <div class="props-grid">{team_market_cards}</div>
-            </section>
-            """
-        if player_market_cards:
-            player_book_html += f"""
-            <section class="book-props">
-              <div class="book-props-head"><h2>{esc(bookmaker)} Player Props</h2>{bookmaker_link}</div>
-              <div class="props-grid">{player_market_cards}</div>
-            </section>
-            """
-
-    if not best_comparison_html and not match_book_html and not team_book_html and not player_book_html:
-        return """
-        <section class="props-wrap" id="props">
-          <div class="section-title"><h2>Props</h2><p>No props available for this match yet.</p></div>
-        </section>
-        """
-
-    match_section = ""
-    if match_book_html:
-        match_section = f"""
-        <section id="match-props">
-          <div class="section-title sub-section-title">
-            <h2>Match Props</h2>
-            <p>Match result, total goals, BTTS, score, handicap and double chance markets.</p>
-          </div>
-          {match_book_html}
-        </section>
-        """
-
-    team_section = ""
-    if team_book_html:
-        team_section = f"""
-        <section id="team-props">
-          <div class="section-title sub-section-title">
-            <h2>Team Props</h2>
-            <p>Team-specific goal markets.</p>
-          </div>
-          {team_book_html}
-        </section>
-        """
-
-    player_section = ""
-    if player_book_html:
-        player_section = f"""
-        <section id="player-props">
-          <div class="section-title sub-section-title">
-            <h2>Player Props</h2>
-            <p>Goalscorer markets.</p>
-          </div>
-          {player_book_html}
-        </section>
-        """
-
-    team_link = '<a href="#team-props">Team Props</a>' if team_book_html else ""
-
-    return f"""
-    <section class="props-wrap" id="props">
-      <div class="section-title"><h2>Props</h2><p>Best prices and prop markets from tracked bookmakers.</p></div>
-      <nav class="props-jump-nav">
-        <a href="#best-prop-prices">Best Prop Prices</a>
-        <a href="#match-props">Match Props</a>
-        {team_link}
-        <a href="#player-props">Player Props</a>
-      </nav>
-      {best_comparison_html}
-      {match_section}
-      {team_section}
-      {player_section}
-    </section>
-    """
-
+# ── Match page ─────────────────────────────────────────────────────────────────
 
 def render_match_page(fixture):
-    home = fixture["home_team"]
-    away = fixture["away_team"]
+    home,away,slug = fixture["home_team"],fixture["away_team"],fixture["slug"]
+    props = fixture.get("props") or {}
+    has_match_props  = any(any(normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS for m in pd.get("markets",[])) for pd in props.values())
+    has_player_props = any(any(is_player_market(m["market"]) for m in pd.get("markets",[])) for pd in props.values())
 
-    home_rows = all_prices_for_side(fixture, "home")
-    draw_rows = all_prices_for_side(fixture, "draw")
-    away_rows = all_prices_for_side(fixture, "away")
+    # Moneyline tables
+    def price_table(side_label, rows):
+        body = "".join(f'<tr class="{"best-row" if r["is_best"] else ""}"><td>{esc(r["bookmaker"])}</td><td><strong>{esc(r["odds"])}</strong></td><td>{"BEST" if r["is_best"] else ""}</td></tr>' for r in rows)
+        if not body: body='<tr><td colspan="3">No prices</td></tr>'
+        return f'<div class="panel"><h2>{esc(side_label)}</h2><table><thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead><tbody>{body}</tbody></table></div>'
 
-    def render_table(side_label, rows):
-        body = ""
-        for r in rows:
-            cls = "best-row" if r["is_best"] else ""
-            tag = "BEST" if r["is_best"] else ""
-            body += f"""
-            <tr class="{cls}">
-              <td>{esc(r["bookmaker"])}</td>
-              <td><strong>{esc(r["odds"])}</strong></td>
-              <td>{tag}</td>
-            </tr>
-            """
-        if not body:
-            body = '<tr><td colspan="3">No prices available</td></tr>'
-        return f"""
-        <section class="price-panel">
-          <h2>{esc(side_label)}</h2>
-          <table>
-            <thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead>
-            <tbody>{body}</tbody>
-          </table>
-        </section>
+    home_rows  = all_prices(fixture,"home")
+    draw_rows  = all_prices(fixture,"draw")
+    away_rows  = all_prices(fixture,"away")
+    mono_html  = f'<div class="grid3">{price_table(home,home_rows)}{price_table("Draw",draw_rows)}{price_table(away,away_rows)}</div>'
+
+    # Best props summary
+    comp = build_comparison_data(props)
+    SUMMARY_MARKETS = ["btts","total_goals","double_chance","anytime_scorer","first_goalscorer","shots_on_target","player_to_get_a_card"]
+    pills = ""
+    for mk in SUMMARY_MARKETS:
+        items = [(sk,item) for (imk,sk),item in comp.items() if imk==mk]
+        if not items: continue
+        # Best single offer per market
+        best_item = None; best_dec = 0
+        for sk,item in items:
+            for offer in item["offers"]:
+                if offer["decimal"] > best_dec:
+                    best_dec = offer["decimal"]; best_item = (item,offer)
+        if best_item:
+            item,offer = best_item
+            pills += f'<div class="best-pill"><div class="mkt">{esc(item["market"])}</div><div class="sel">{esc(item["selection"])}</div><div class="price">{esc(offer["odds"])}</div><div class="book">{esc(offer["bookmaker"])}</div></div>'
+
+    summary_html = ""
+    if pills:
+        summary_html = f'<div class="panel"><div class="section-head"><h2>Best Prop Prices</h2></div><div class="best-summary">{pills}</div></div>'
+
+    # Sub-nav buttons
+    subnav = f'<nav class="sub-nav"><a href="./index.html" class="active">Odds</a>'
+    if has_match_props:  subnav += f'<a href="match-props/index.html">Match Props</a>'
+    if has_player_props: subnav += f'<a href="player-props/index.html">Player Props</a>'
+    subnav += '</nav>'
+
+    return f"""<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{esc(home)} v {esc(away)} Odds — BeatTheBooks</title>
+<style>{SHARED_CSS}</style></head><body>
+<main class="page">
+  <nav class="nav"><a href="{BASE}/football/">Football</a><span>›</span><a href="{BASE}/football/world-cup/">World Cup</a><span>›</span><span>{esc(home)} v {esc(away)}</span></nav>
+  <section class="hero">
+    <div class="eyebrow">⚽ Match Odds</div>
+    <h1>{esc(home)} v {esc(away)}</h1>
+    <p class="meta">{esc(fixture.get("date_label",""))} · {esc(fixture.get("time",""))} · {len(fixture.get("bookmakers",{}))} bookmakers</p>
+  </section>
+  {subnav}
+  {mono_html}
+  {summary_html}
+  <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
+</main></body></html>"""
+
+# ── Match Props page ───────────────────────────────────────────────────────────
+
+def render_match_props_page(fixture):
+    home,away,slug = fixture["home_team"],fixture["away_team"],fixture["slug"]
+    props = fixture.get("props") or {}
+    comp  = build_comparison_data(props)
+
+    subnav = f'<nav class="sub-nav"><a href="../index.html">Odds</a><a href="./index.html" class="active">Match Props</a>'
+    has_player = any(any(is_player_market(m["market"]) for m in pd.get("markets",[])) for pd in props.values())
+    if has_player: subnav += f'<a href="../player-props/index.html">Player Props</a>'
+    subnav += '</nav>'
+
+    # Over/Under comparison tables
+    def ou_tables():
+        html = ""
+        for mk in ["total_goals","first_half_goals"]:
+            lines_data = {}
+            for (imk,sk),item in comp.items():
+                if imk != mk: continue
+                m2 = re.match(r"^(over|under)_(\d+(?:\.\d+)?)$",sk)
+                if not m2: continue
+                side,line = m2.group(1),m2.group(2)
+                lines_data.setdefault(line,{})[side] = item
+            if not lines_data: continue
+            rows = ""
+            for line in sorted(lines_data.keys(),key=lambda x:float(x)):
+                sides = lines_data[line]
+                def best_offer(item):
+                    if not item: return None
+                    offs = [o for o in item["offers"] if o["decimal"]>1]
+                    return max(offs,key=lambda x:x["decimal"]) if offs else None
+                ob = best_offer(sides.get("over")); ub = best_offer(sides.get("under"))
+                all_books_over  = len({o["bookmaker"] for o in (sides.get("over",{}).get("offers",[]))})
+                all_books_under = len({o["bookmaker"] for o in (sides.get("under",{}).get("offers",[]))})
+                # Only show the most useful lines
+                WANTED_LINES = {
+                    "total_goals": {"1.5","2.5"},
+                    "first_half_goals": {"0.5","1.5"},
+                }
+                wanted = WANTED_LINES.get(mk)
+                if wanted and line not in wanted: continue
+                def ol(o): return f'{esc(o["bookmaker"])} <strong>{esc(o["odds"])}</strong>' if o else "—"
+                rows += f"<tr><td><strong>{esc(line)}</strong></td><td>{ol(ob)}</td><td>{ol(ub)}</td></tr>"
+            if rows:
+                html += f'<div class="panel"><h2>{esc(pretty_market_name(mk))}</h2><table><thead><tr><th>Line</th><th>Best Over</th><th>Best Under</th></tr></thead><tbody>{rows}</tbody></table></div>'
+        return html
+
+    # Standard comparison cards — only specific selections, show only best bookmaker
+    def standard_cards():
+        html = ""
+        WANTED_MARKETS = {"btts", "double_chance", "half_time_result"}
+        for (mk,sk),item in sorted(comp.items(),key=lambda x:(x[1]["market"],x[1]["selection"])):
+            if mk not in WANTED_MARKETS: continue
+            if mk == "btts" and sk not in {"btts_yes","btts_no"}: continue
+            offs = item["offers"]
+            by_bk = {}
+            for o in offs:
+                bk = o["bookmaker"]
+                if bk not in by_bk or o["decimal"]>by_bk[bk]["decimal"]: by_bk[bk]=o
+            offs = sorted(by_bk.values(),key=lambda x:x["decimal"],reverse=True)
+            if not offs: continue
+            # Only show the single best bookmaker
+            best = offs[0]
+            label = pretty_selection_label_dc(sk) if mk == "double_chance" else item["selection"]
+            rows = f'<tr class="best-row"><td>{esc(best["bookmaker"])}</td><td><strong>{esc(best["odds"])}</strong></td><td>BEST</td></tr>'
+            html += f'<div class="panel"><h3>{esc(item["market"])} — {esc(label)}</h3><table><thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead><tbody>{rows}</tbody></table></div>'
+        return html
+
+    # Per-bookmaker match markets
+    def bookmaker_cards():
+        html = ""
+        for bk,pd in sorted(props.items()):
+            markets = [m for m in pd.get("markets",[]) if normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS]
+            if not markets: continue
+            cards = ""
+            for market in markets:
+                rows = "".join(f'<tr><td>{esc(s["selection"])}</td><td><strong>{esc(s["odds"])}</strong></td></tr>' for s in market.get("selections",[]))
+                if rows: cards += f'<div class="panel"><h3>{esc(market["market"])}</h3><table><thead><tr><th>Selection</th><th>Odds</th></tr></thead><tbody>{rows}</tbody></table></div>'
+            if cards:
+                link = f'<a href="{esc(pd.get("source_url",""))}" target="_blank" rel="noopener">Open bookmaker →</a>'
+                html += f'<section><div class="section-head"><h2>{esc(bk)} Match Props</h2>{link}</div><div class="grid2">{cards}</div></section>'
+        return html
+
+    ou_html    = ou_tables()
+    std_html   = standard_cards()
+    bk_html    = bookmaker_cards()
+
+    if not ou_html and not std_html and not bk_html:
+        content = '<p style="color:#91a0b5">No match props available yet.</p>'
+    else:
+        content = f"""
+        {'<section><div class="section-head"><h2>Best Prices — Over/Under</h2></div>' + ou_html + '</section>' if ou_html else ''}
+        {'<section style="margin-top:20px"><div class="section-head"><h2>Best Prices — Markets</h2></div><div class="grid2">' + std_html + '</div></section>' if std_html else ''}
+        {'<section style="margin-top:28px">' + bk_html + '</section>' if bk_html else ''}
         """
 
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{esc(home)} v {esc(away)} Odds — BeatTheBooks</title>
-  <style>
-    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    body {{ background: #0f1621; color: white; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; }}
-    a {{ color: #60a5fa; text-decoration: none; }}
-    .page {{ max-width: 1300px; margin: 0 auto; padding: 34px 24px 70px; }}
-    .nav {{ color: #91a0b5; margin-bottom: 28px; display: flex; gap: 12px; flex-wrap: wrap; }}
-    .hero {{ border: 1px solid #223047; border-radius: 28px; padding: 32px; background: rgba(17,24,39,0.86); margin-bottom: 28px; }}
-    .eyebrow {{ display: inline-flex; border: 1px solid rgba(34,197,94,0.45); background: rgba(34,197,94,0.1); color: #86efac; border-radius: 999px; padding: 7px 12px; font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 14px; }}
-    h1 {{ font-size: clamp(38px, 6vw, 72px); letter-spacing: -0.055em; line-height: .95; margin-bottom: 12px; }}
-    .meta {{ color: #91a0b5; }}
-    .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }}
-    .price-panel, .prop-market, .book-props {{ border: 1px solid #223047; border-radius: 20px; padding: 18px; background: rgba(17,24,39,0.72); }}
-    .price-panel h2 {{ margin-bottom: 14px; }}
-    table {{ width: 100%; border-collapse: collapse; }}
-    th, td {{ text-align: left; padding: 10px 8px; border-bottom: 1px solid #223047; color: #c7d2fe; font-size: 14px; vertical-align: top; }}
-    th {{ color: #91a0b5; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }}
-    td strong {{ color: #22c55e; font-size: 20px; }}
-    .best-row {{ background: rgba(34,197,94,0.08); }}
-    .best-row td:last-child {{ color: #86efac; font-weight: 900; font-size: 12px; }}
-    .best-cell strong {{ color: #22c55e !important; }}
-    .goalscorer-comparison td:first-child {{ font-weight: 600; color: #e2e8f0; min-width: 160px; }}
-    .props-wrap {{ margin-top: 36px; }}
-    .section-title {{ margin-bottom: 16px; }}
-    .section-title h2 {{ font-size: 34px; letter-spacing: -0.035em; margin-bottom: 6px; }}
-    .section-title p {{ color: #91a0b5; }}
-    .book-props {{ margin-bottom: 18px; }}
-    .book-props-head {{ display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }}
-    .book-props-head h2 {{ font-size: 24px; }}
-    .book-props-head a {{ border: 1px solid rgba(96,165,250,0.45); background: rgba(96,165,250,0.08); color: #bfdbfe; border-radius: 999px; padding: 7px 11px; font-size: 12px; font-weight: 900; text-transform: uppercase; }}
-    .props-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 14px; }}
-    .prop-market h3 {{ font-size: 18px; margin-bottom: 12px; color: #facc15; }}
-    .prop-market td strong {{ color: #86efac; font-size: 18px; }}
-    .compare-note {{ color: #c7d2fe; font-size: 13px; font-weight: 800; }}
-    .props-jump-nav {{ display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }}
-    .props-jump-nav a {{ border: 1px solid rgba(96,165,250,0.45); background: rgba(96,165,250,0.08); color: #bfdbfe; border-radius: 999px; padding: 8px 12px; font-size: 12px; font-weight: 900; text-transform: uppercase; }}
-    .sub-section-title {{ margin-top: 34px; }}
-    .props-grid-wide {{ grid-template-columns: repeat(auto-fit, minmax(520px, 1fr)); margin-bottom: 14px; }}
-    .prop-market-wide td strong {{ font-size: 16px; }}
-    @media (max-width: 700px) {{
-      .page {{ padding: 22px 14px 50px; }}
-      .hero {{ padding: 22px; border-radius: 22px; }}
-      .props-grid {{ grid-template-columns: 1fr; }}
-    }}
-  </style>
-</head>
-<body>
-  <main class="page">
-    <nav class="nav">
-      <a href="{BASE}/football/">Football</a>
-      <span>›</span>
-      <a href="{BASE}/football/world-cup/">FIFA World Cup</a>
-      <span>›</span>
-      <span>{esc(home)} v {esc(away)}</span>
-    </nav>
-    <section class="hero">
-      <div class="eyebrow">⚽ Match Odds</div>
-      <h1>{esc(home)} v {esc(away)}</h1>
-      <p class="meta">{esc(fixture.get("date_label"))} · {esc(fixture.get("time"))} · {len(fixture.get("bookmakers", {}))} bookmaker{"s" if len(fixture.get("bookmakers", {})) != 1 else ""}</p>
-    </section>
-    <div class="grid">
-      {render_table(home, home_rows)}
-      {render_table("Draw", draw_rows)}
-      {render_table(away, away_rows)}
+    return f"""<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{esc(home)} v {esc(away)} Match Props — BeatTheBooks</title>
+<style>{SHARED_CSS}</style></head><body>
+<main class="page">
+  <nav class="nav"><a href="{BASE}/football/">Football</a><span>›</span><a href="{BASE}/football/world-cup/">World Cup</a><span>›</span><a href="{BASE}/football/world-cup/{slug}/">{esc(home)} v {esc(away)}</a><span>›</span><span>Match Props</span></nav>
+  <section class="hero">
+    <div class="eyebrow">⚽ Match Props</div>
+    <h1>{esc(home)} v {esc(away)}</h1>
+    <p class="meta">{esc(fixture.get("date_label",""))} · {esc(fixture.get("time",""))}</p>
+  </section>
+  {subnav}
+  {content}
+  <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
+</main></body></html>"""
+
+# ── Player Props page ──────────────────────────────────────────────────────────
+
+def render_player_props_page(fixture):
+    home,away,slug = fixture["home_team"],fixture["away_team"],fixture["slug"]
+    props = fixture.get("props") or {}
+    comp  = build_comparison_data(props)
+
+    subnav = f'<nav class="sub-nav"><a href="../index.html">Odds</a>'
+    has_match = any(any(normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS for m in pd.get("markets",[])) for pd in props.values())
+    if has_match: subnav += f'<a href="../match-props/index.html">Match Props</a>'
+    subnav += f'<a href="./index.html" class="active">Player Props</a></nav>'
+
+    # Goalscorer comparison table
+    def goalscorer_tables():
+        html = ""
+        for scorer_type,type_label in [("anytime","Anytime Goalscorer"),("first","First Goalscorer"),("score2","To Score 2+")]:
+            players = {}
+            all_books = set()
+            for (mk,sk),item in comp.items():
+                if mk not in {"anytime_scorer","first_goalscorer","scorer_2_plus","player_to_score"}: continue
+                m2 = re.match(rf"^{scorer_type}__(.+)$",sk)
+                if not m2: continue
+                pk = m2.group(1)
+                pn = pk.replace("_"," ").title()
+                all_books.update(o["bookmaker"] for o in item["offers"])
+                by_bk = {}
+                for o in item["offers"]:
+                    bk = o["bookmaker"]
+                    if bk not in by_bk or o["decimal"]>by_bk[bk]["decimal"]: by_bk[bk]=o
+                if pk not in players: players[pk]={"name":pn,"offers":{}}
+                players[pk]["offers"].update(by_bk)
+
+            if not players or len(all_books)<1: continue
+            books = sorted(all_books)
+            heads = "".join(f"<th>{esc(b)}</th>" for b in books)
+            rows  = ""
+            for pd in sorted(players.values(),key=lambda x:max((o["decimal"] for o in x["offers"].values()),default=0),reverse=True):
+                bd = max((o["decimal"] for o in pd["offers"].values()),default=0)
+                cells = ""
+                for bk in books:
+                    o = pd["offers"].get(bk)
+                    if o:
+                        is_best = o["decimal"]==bd
+                        cells += f'<td{"  class=\"best-cell\"" if is_best else ""}><strong>{esc(o["odds"])}</strong></td>'
+                    else:
+                        cells += "<td>—</td>"
+                rows += f'<tr><td>{esc(pd["name"])}</td>{cells}</tr>'
+            if rows:
+                html += f'<div class="panel goalscorer-table"><h2>{esc(type_label)}</h2><div style="overflow-x:auto"><table><thead><tr><th>Player</th>{heads}</tr></thead><tbody>{rows}</tbody></table></div></div>'
+        return html
+
+    # Player stat comparison tables (shots, cards, assists)
+    def stat_tables():
+        html = ""
+        STAT_MARKETS = [
+            ("shots_on_target","Shots On Target"),
+            ("shots","Shots"),
+            ("player_to_assist","To Assist"),
+            ("player_to_get_a_card","To Get A Card"),
+        ]
+        for mk,label in STAT_MARKETS:
+            # Group by player then by line
+            players = {}
+            all_books = set()
+            lines_set = set()
+            for (imk,sk),item in comp.items():
+                if imk != mk: continue
+                # sk format: "over_0_5__player_name" or "player_name" for single-odds
+                m2 = re.match(r"^(over|under)_([\d_]+)__(.+)$",sk)
+                if m2:
+                    side,line_raw,pk = m2.group(1),m2.group(2),m2.group(3)
+                    line = line_raw.replace("_",".")
+                    lines_set.add(line)
+                    pn = pk.replace("_"," ").title()
+                    by_bk = {}
+                    for o in item["offers"]:
+                        bk=o["bookmaker"]
+                        if bk not in by_bk or o["decimal"]>by_bk[bk]["decimal"]: by_bk[bk]=o
+                    all_books.update(by_bk.keys())
+                    if pk not in players: players[pk]={"name":pn,"lines":{}}
+                    players[pk]["lines"].setdefault(line,{}).update(by_bk)
+                else:
+                    # Single odds (no line) — cards/assists
+                    pk = sk; pn = pk.replace("_"," ").title()
+                    by_bk = {}
+                    for o in item["offers"]:
+                        bk=o["bookmaker"]
+                        if bk not in by_bk or o["decimal"]>by_bk[bk]["decimal"]: by_bk[bk]=o
+                    all_books.update(by_bk.keys())
+                    if pk not in players: players[pk]={"name":pn,"lines":{}}
+                    players[pk]["lines"].setdefault("—",{}).update(by_bk)
+                    lines_set.add("—")
+
+            if not players: continue
+            books = sorted(all_books)
+            lines = sorted(lines_set, key=lambda x:(float(x) if re.match(r'[\d\.]+',x) else 999))
+
+            if lines == ["—"]:
+                # Simple table: player | bk1 | bk2
+                heads = "".join(f"<th>{esc(b)}</th>" for b in books)
+                rows  = ""
+                for pd in sorted(players.values(),key=lambda x:max((max(o["decimal"] for o in ls.values()) for ls in x["lines"].values() if ls),default=0),reverse=True):
+                    bd = max((o["decimal"] for ls in pd["lines"].values() for o in ls.values()),default=0)
+                    cells=""
+                    for bk in books:
+                        o = pd["lines"].get("—",{}).get(bk)
+                        if o: cells+=f'<td{"  class=\"best-cell\"" if o["decimal"]==bd else ""}><strong>{esc(o["odds"])}</strong></td>'
+                        else: cells+="<td>—</td>"
+                    rows+=f'<tr><td>{esc(pd["name"])}</td>{cells}</tr>'
+                if rows:
+                    html+=f'<div class="panel goalscorer-table"><h2>{esc(label)}</h2><div style="overflow-x:auto"><table><thead><tr><th>Player</th>{heads}</tr></thead><tbody>{rows}</tbody></table></div></div>'
+            else:
+                # Multi-line table: player | Over 0.5 (bk) | Over 1.5 (bk) ...
+                col_heads = "".join(f"<th>Over {esc(l)}</th>" for l in lines if l!="—")
+                rows=""
+                for pd in sorted(players.values(),key=lambda x:max((max((o["decimal"] for o in ls.values()),default=0) for ls in x["lines"].values()),default=0),reverse=True):
+                    cells=""
+                    for line in lines:
+                        if line=="—": continue
+                        ls = pd["lines"].get(line,{})
+                        if ls:
+                            best = max(ls.values(),key=lambda o:o["decimal"])
+                            cells+=f'<td><strong>{esc(best["odds"])}</strong><br><span style="color:#91a0b5;font-size:11px">{esc(best["bookmaker"])}</span></td>'
+                        else: cells+="<td>—</td>"
+                    rows+=f'<tr><td>{esc(pd["name"])}</td>{cells}</tr>'
+                if rows:
+                    html+=f'<div class="panel goalscorer-table"><h2>{esc(label)}</h2><div style="overflow-x:auto"><table><thead><tr><th>Player</th>{col_heads}</tr></thead><tbody>{rows}</tbody></table></div></div>'
+        return html
+
+    # Per-bookmaker raw player markets
+    def bookmaker_cards():
+        html=""
+        for bk,pd in sorted(props.items()):
+            markets=[m for m in pd.get("markets",[]) if is_player_market(m["market"])]
+            if not markets: continue
+            cards=""
+            for market in markets:
+                rows="".join(f'<tr><td>{esc(s["selection"])}</td><td><strong>{esc(s["odds"])}</strong></td></tr>' for s in market.get("selections",[]))
+                if rows: cards+=f'<div class="panel"><h3>{esc(market["market"])}</h3><table><thead><tr><th>Selection</th><th>Odds</th></tr></thead><tbody>{rows}</tbody></table></div>'
+            if cards:
+                link=f'<a href="{esc(pd.get("source_url",""))}" target="_blank" rel="noopener">Open bookmaker →</a>'
+                html+=f'<section style="margin-top:24px"><div class="section-head"><h2>{esc(bk)} Player Props</h2>{link}</div><div class="grid2">{cards}</div></section>'
+        return html
+
+    gs_html   = goalscorer_tables()
+    stat_html = stat_tables()
+    bk_html   = bookmaker_cards()
+
+    if not gs_html and not stat_html and not bk_html:
+        content='<p style="color:#91a0b5">No player props available yet.</p>'
+    else:
+        content=f"""
+        {'<section><div class="section-head"><h2>Goalscorer Comparison</h2></div>' + gs_html + '</section>' if gs_html else ''}
+        {'<section style="margin-top:24px"><div class="section-head"><h2>Player Stats</h2></div>' + stat_html + '</section>' if stat_html else ''}
+        {'<div style="margin-top:32px">' + bk_html + '</div>' if bk_html else ''}
+        """
+
+    return f"""<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{esc(home)} v {esc(away)} Player Props — BeatTheBooks</title>
+<style>{SHARED_CSS}</style></head><body>
+<main class="page">
+  <nav class="nav"><a href="{BASE}/football/">Football</a><span>›</span><a href="{BASE}/football/world-cup/">World Cup</a><span>›</span><a href="{BASE}/football/world-cup/{slug}/">{esc(home)} v {esc(away)}</a><span>›</span><span>Player Props</span></nav>
+  <section class="hero">
+    <div class="eyebrow">⚽ Player Props</div>
+    <h1>{esc(home)} v {esc(away)}</h1>
+    <p class="meta">{esc(fixture.get("date_label",""))} · {esc(fixture.get("time",""))}</p>
+  </section>
+  {subnav}
+  {content}
+  <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
+</main></body></html>"""
+
+# ── Football hub ───────────────────────────────────────────────────────────────
+
+def render_hub(fixtures, bk_count, generated):
+    return f"""<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Football — BeatTheBooks</title>
+<style>{SHARED_CSS}
+.card{{display:block;border:1px solid #223047;border-radius:22px;padding:24px;background:rgba(255,255,255,0.03);transition:transform .15s,border-color .15s}}
+.card:hover{{transform:translateY(-2px);border-color:rgba(96,165,250,0.55)}}
+.pill{{border:1px solid #223047;border-radius:999px;padding:6px 10px;color:#bfdbfe;font-size:13px;font-weight:800}}
+</style></head><body>
+<main class="page">
+  <section class="hero">
+    <div class="eyebrow">⚽ Football</div>
+    <h1>Football Hub</h1>
+    <p class="meta">World Cup odds, moneylines and props across tracked bookmakers.</p>
+  </section>
+  <a class="card" href="{BASE}/football/world-cup/">
+    <h2 style="font-size:26px;margin-bottom:8px">FIFA World Cup</h2>
+    <p style="color:#91a0b5;margin-bottom:14px">Best available match odds with Match Props and Player Props pages per fixture.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span class="pill">{len(fixtures)} fixtures</span>
+      <span class="pill">{bk_count} bookmakers</span>
+      <span class="pill">Match Props</span>
+      <span class="pill">Player Props</span>
+      <span class="pill">Updated {esc(generated)}</span>
     </div>
-    {render_props_section(fixture)}
-  </main>
-</body>
-</html>
-"""
+  </a>
+</main></body></html>"""
 
-
-def render_football_hub(fixtures, bookmaker_count, generated_at):
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Football — BeatTheBooks</title>
-  <style>
-    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    body {{ background: #0f1621; color: white; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; }}
-    a {{ color: inherit; text-decoration: none; }}
-    .page {{ max-width: 1200px; margin: 0 auto; padding: 42px 24px; }}
-    .hero {{ border: 1px solid #223047; border-radius: 28px; padding: 34px; background: rgba(17,24,39,0.85); margin-bottom: 24px; }}
-    .eyebrow {{ display: inline-block; color: #86efac; border: 1px solid rgba(34,197,94,0.45); background: rgba(34,197,94,0.1); padding: 7px 12px; border-radius: 999px; font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 16px; }}
-    h1 {{ font-size: clamp(42px, 6vw, 78px); letter-spacing: -0.055em; margin-bottom: 12px; }}
-    p {{ color: #91a0b5; line-height: 1.6; }}
-    .card {{ display: block; border: 1px solid #223047; border-radius: 22px; padding: 24px; background: rgba(255,255,255,0.035); transition: transform .15s ease, border-color .15s ease; }}
-    .card:hover {{ transform: translateY(-2px); border-color: rgba(96,165,250,0.55); }}
-    .card h2 {{ font-size: 28px; margin-bottom: 8px; }}
-    .meta {{ margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }}
-    .pill {{ border: 1px solid #223047; border-radius: 999px; padding: 7px 10px; color: #bfdbfe; font-size: 13px; font-weight: 800; }}
-  </style>
-</head>
-<body>
-  <main class="page">
-    <section class="hero">
-      <div class="eyebrow">⚽ Football</div>
-      <h1>Football Hub</h1>
-      <p>Football odds, fixtures and betting tools. Starting with FIFA World Cup moneylines and selected props.</p>
-    </section>
-    <a class="card" href="{BASE}/football/world-cup/">
-      <h2>FIFA World Cup</h2>
-      <p>Best available match odds across tracked bookmakers, with props on selected matches.</p>
-      <div class="meta">
-        <span class="pill">{len(fixtures)} fixtures</span>
-        <span class="pill">{bookmaker_count} bookmakers</span>
-        <span class="pill">Best H/D/A odds</span>
-        <span class="pill">Props</span>
-        <span class="pill">Updated {esc(generated_at)}</span>
-      </div>
-    </a>
-  </main>
-</body>
-</html>
-"""
-
+# ── Main ───────────────────────────────────────────────────────────────────────
 
 def main():
-    fixtures, bookmaker_count, generated_at = load_all_matches()
+    fixtures, bk_count, generated = load_all()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     HUB_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-    OUT_PATH.write_text(render_worldcup_page(fixtures, bookmaker_count, generated_at), encoding="utf-8")
-    HUB_PATH.write_text(render_football_hub(fixtures, bookmaker_count, generated_at), encoding="utf-8")
+    OUT_PATH.write_text(render_index(fixtures, bk_count, generated), encoding="utf-8")
+    HUB_PATH.write_text(render_hub(fixtures, bk_count, generated), encoding="utf-8")
 
-    for fixture in fixtures:
-        match_dir = OUT_DIR / fixture["slug"]
-        match_dir.mkdir(parents=True, exist_ok=True)
-        (match_dir / "index.html").write_text(render_match_page(fixture), encoding="utf-8")
+    match_pages = player_pages = 0
 
-    props_matches = sum(1 for f in fixtures if f.get("props"))
+    for f in fixtures:
+        d = OUT_DIR / f["slug"]
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(render_match_page(f), encoding="utf-8")
 
-    print(f"Wrote World Cup page: {OUT_PATH}")
-    print(f"Wrote Football hub:   {HUB_PATH}")
-    print(f"Wrote match pages:    {len(fixtures)}")
-    print(f"Fixtures:             {len(fixtures)}")
-    print(f"Bookmakers:           {bookmaker_count}")
-    print(f"Matches with props:   {props_matches}")
+        props = f.get("props") or {}
+        has_match  = any(any(normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS  for m in pd.get("markets",[])) for pd in props.values())
+        has_player = any(any(is_player_market(m["market"]) for m in pd.get("markets",[])) for pd in props.values())
 
+        if has_match:
+            mp = d / "match-props"; mp.mkdir(parents=True, exist_ok=True)
+            (mp / "index.html").write_text(render_match_props_page(f), encoding="utf-8")
+            match_pages += 1
+
+        if has_player:
+            pp = d / "player-props"; pp.mkdir(parents=True, exist_ok=True)
+            (pp / "index.html").write_text(render_player_props_page(f), encoding="utf-8")
+            player_pages += 1
+
+    print(f"World Cup index:    {OUT_PATH}")
+    print(f"Football hub:       {HUB_PATH}")
+    print(f"Match pages:        {len(fixtures)}")
+    print(f"Match props pages:  {match_pages}")
+    print(f"Player props pages: {player_pages}")
+    print(f"Bookmakers:         {bk_count}")
 
 if __name__ == "__main__":
     main()
