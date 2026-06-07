@@ -1,6 +1,6 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 13,
+  "total_moneyline_fights_checked": 12,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
   "arbitrage_count": 0,
@@ -9,37 +9,15 @@
   "fights": [
     {
       "type": "moneyline",
-      "event_id": "357b754688bbb0e3c6c8db405d85ab86",
-      "commence_time": "2026-06-07T02:24:00Z",
-      "fight": "Belal Muhammad vs Gabriel Bonfim",
-      "market": "Moneyline",
-      "fighters": {
-        "Belal Muhammad": {
-          "best_bookmaker": "Betfair",
-          "best_price": 17.5,
-          "implied_probability": 5.71
-        },
-        "Gabriel Bonfim": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.02,
-          "implied_probability": 98.04
-        }
-      },
-      "arb_sum": 1.037535,
-      "is_arbitrage": false,
-      "profit_margin_percent": -3.75
-    },
-    {
-      "type": "moneyline",
       "event_id": "4b4920d2454497566b519a271f9e1e93",
       "commence_time": "2026-06-14T22:10:00Z",
       "fight": "Diego Lopes vs Steve Garcia Jr.",
       "market": "Moneyline",
       "fighters": {
         "Diego Lopes": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.6,
-          "implied_probability": 62.5
+          "best_bookmaker": "888sport",
+          "best_price": 1.57,
+          "implied_probability": 63.69
         },
         "Steve Garcia Jr.": {
           "best_bookmaker": "LiveScore Bet",
@@ -47,9 +25,9 @@
           "implied_probability": 40.0
         }
       },
-      "arb_sum": 1.025,
+      "arb_sum": 1.036943,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.5
+      "profit_margin_percent": -3.69
     },
     {
       "type": "moneyline",
@@ -148,18 +126,18 @@
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.0,
-          "implied_probability": 50.0
+          "best_price": 2.02,
+          "implied_probability": 49.5
         },
         "Ciryl Gane": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.95,
-          "implied_probability": 51.28
+          "best_price": 1.94,
+          "implied_probability": 51.55
         }
       },
-      "arb_sum": 1.012821,
+      "arb_sum": 1.010513,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.28
+      "profit_margin_percent": -1.05
     },
     {
       "type": "moneyline",
@@ -285,13 +263,13 @@
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.34,
-          "implied_probability": 74.63
+          "best_price": 1.35,
+          "implied_probability": 74.07
         }
       },
-      "arb_sum": 1.012935,
+      "arb_sum": 1.007407,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.29
+      "profit_margin_percent": -0.74
     }
   ],
   "prop_markets": [
