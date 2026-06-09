@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT_PATH = ROOT / "football" / "data" / "betvictor_worldcup_moneylines.json"
 DEBUG_PATH = ROOT / "football" / "debug" / "betvictor_worldcup_text_debug.txt"
 
-URL = "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7184/group/world-cup-matches/item/matches"
+URL = "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
 
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|Evens)$", re.I)
 TIME_RE = re.compile(r"^\d{1,2}:\d{2}$")
@@ -85,7 +85,6 @@ def parse_betvictor_text(text):
             continue
 
         # BetVictor format:
-        # World Cup Matches
         # Mexico
         # South Africa
         # 20:00
@@ -106,7 +105,7 @@ def parse_betvictor_text(text):
             away = canonical_team(lines[i + 1])
             time_label = lines[i + 2]
 
-            # Search the next 15 lines for the first 3 odds.
+            # Search the next 15 lines for the first 3 odds
             odds = []
             for j in range(i + 3, min(i + 18, len(lines))):
                 if is_odds(lines[j]):
@@ -211,7 +210,6 @@ def main():
         else:
             print("\nNo BetVictor World Cup matches found.")
             print(f"Debug text saved to: {DEBUG_PATH}")
-
 
         browser.close()
 

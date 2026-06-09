@@ -10,7 +10,6 @@ IF ERRORLEVEL 1 (
     echo Git pull failed. Stopping update.
     exit /b 1
 )
-
 echo.
 echo Running football moneyline scrapers...
 python scripts\Football\fetch_paddypower_worldcup_moneylines.py
@@ -20,7 +19,8 @@ python scripts\Football\fetch_unibet_worldcup_moneylines.py
 python scripts\Football\fetch_livescorebet_worldcup_moneylines.py
 python scripts\Football\fetch_williamhill_worldcup_moneylines.py
 python scripts\Football\fetch_888sport_worldcup_moneylines.py
-
+python scripts\Football\fetch_ladbrokes_worldcup_moneylines.py
+python scripts\Football\fetch_midnite_worldcup_moneylines.py
 echo.
 echo Running football props scrapers...
 python scripts\Football\fetch_paddypower_worldcup_props.py
@@ -29,7 +29,9 @@ python scripts\Football\fetch_unibet_worldcup_props.py
 python scripts\Football\fetch_livescorebet_worldcup_props.py
 python scripts\Football\fetch_888sport_worldcup_props.py
 python scripts\Football\fetch_williamhill_worldcup_props.py
-
+python scripts\Football\fetch_betvictor_worldcup_props.py
+python scripts\Football\fetch_ladbrokes_worldcup_props.py
+python scripts\Football\fetch_midnite_worldcup_props.py
 echo.
 echo Validating World Cup moneyline data...
 python validate_worldcup_moneylines.py
@@ -38,7 +40,6 @@ IF ERRORLEVEL 1 (
     echo No pages generated. No commit made. No push made.
     exit /b 1
 )
-
 echo.
 echo Building football pages/tools...
 python scripts\Football\generate_worldcup_page.py
@@ -48,7 +49,6 @@ IF ERRORLEVEL 1 (
     echo Football build failed. Stopping before commit.
     exit /b 1
 )
-
 echo.
 echo Building combined pages...
 python scripts\build_ev_alerts_all.py
@@ -57,7 +57,6 @@ IF ERRORLEVEL 1 (
     echo Combined build failed. Stopping before commit.
     exit /b 1
 )
-
 echo.
 echo Committing and pushing updates...
 git add football data ev-alerts arbitrage scripts run_big_auto_update.bat validate_worldcup_moneylines.py
@@ -67,7 +66,6 @@ IF ERRORLEVEL 1 (
     echo Git push failed.
     exit /b 1
 )
-
 echo.
 echo ================================
 echo BeatTheBooks auto update finished

@@ -12,6 +12,8 @@ UNIBET_PATH         = ROOT / "football" / "data" / "unibet_worldcup_moneylines.j
 LIVESCOREBET_PATH   = ROOT / "football" / "data" / "livescorebet_worldcup_moneylines.json"
 WILLIAMHILL_PATH    = ROOT / "football" / "data" / "williamhill_worldcup_moneylines.json"
 EIGHTEIGHTEIGHT_PATH= ROOT / "football" / "data" / "888sport_worldcup_moneylines.json"
+LADBROKES_PATH      = ROOT / "football" / "data" / "ladbrokes_worldcup_moneylines.json"
+MIDNITE_PATH        = ROOT / "football" / "data" / "midnite_worldcup_moneylines.json"
 
 PADDY_PROPS_PATH    = ROOT / "football" / "data" / "paddypower_worldcup_props.json"
 BOYLE_PROPS_PATH    = ROOT / "football" / "data" / "boylesports_worldcup_props.json"
@@ -19,6 +21,9 @@ UNIBET_PROPS_PATH   = ROOT / "football" / "data" / "unibet_worldcup_props.json"
 LIVESCORE_PROPS_PATH= ROOT / "football" / "data" / "livescorebet_worldcup_props.json"
 EIGHTSPORT_PROPS_PATH= ROOT / "football" / "data" / "888sport_worldcup_props.json"
 WILLIAMHILL_PROPS_PATH= ROOT / "football" / "data" / "williamhill_worldcup_props.json"
+BETVICTOR_PROPS_PATH  = ROOT / "football" / "data" / "betvictor_worldcup_props.json"
+LADBROKES_PROPS_PATH  = ROOT / "football" / "data" / "ladbrokes_worldcup_props.json"
+MIDNITE_PROPS_PATH    = ROOT / "football" / "data" / "midnite_worldcup_props.json"
 
 OUT_DIR  = ROOT / "football" / "world-cup"
 OUT_PATH = OUT_DIR / "index.html"
@@ -101,6 +106,10 @@ def normalize_prop_market_key(name):
         "shots":"shots","player_s_shots":"shots",
         "player_to_assist":"player_to_assist","to_give_an_assist":"player_to_assist",
         "player_to_get_a_card":"player_to_get_a_card","to_get_a_card":"player_to_get_a_card",
+        "player_fouls_committed":"player_fouls_committed","fouls_committed":"player_fouls_committed",
+        "player_fouls_won":"player_fouls_won","fouls_won":"player_fouls_won",
+        "total_shots_on_target":"total_shots_on_target","total_shots":"total_shots",
+        "total_match_cards":"total_match_cards","total_cards":"total_match_cards",
     }.get(k,k)
 
 def pretty_market_name(name):
@@ -118,10 +127,12 @@ def pretty_market_name(name):
     }.get(k, clean(name).replace("_"," ").title())
 
 PLAYER_MARKET_KEYS = {"anytime_scorer","first_goalscorer","scorer_2_plus",
-                       "shots_on_target","shots","player_to_assist","player_to_get_a_card"}
+                       "shots_on_target","shots","player_to_assist","player_to_get_a_card",
+                       "player_fouls_committed","player_fouls_won"}
 MATCH_MARKET_KEYS  = {"match_betting","total_goals","first_half_goals","btts","btts_result",
                        "correct_score","double_chance","handicap","half_time_result","ht_ft",
-                       "result_total_goals","one_goal_ahead"}
+                       "result_total_goals","one_goal_ahead",
+                       "total_shots_on_target","total_shots","total_match_cards"}
 GROUPED_OU_KEYS    = {"total_goals","first_half_goals"}
 
 def is_player_market(name):
@@ -161,7 +172,6 @@ def normalize_prop_selection_key(market_name, selection_name):
         return normalize_text_key(s)
 
     if mk in {"shots_on_target","shots","player_to_assist","player_to_get_a_card"}:
-        # "raul jimenez over 0.5 shots on target" → "over_0_5__raul_jimenez"
         m2 = re.search(r"\b(over|under)\b\s*(\d+(?:\.\d+)?)",s)
         player = re.sub(r"\b(over|under)\b.*$","",s).strip()
         player = re.sub(r"\b(shots on target|shots|to assist|to get a card)\b","",player).strip()
@@ -181,30 +191,24 @@ def normalize_prop_selection_key(market_name, selection_name):
             return f"btts_{side}"
         return normalize_text_key(s)
 
-    # Double Chance — collapse all team-name variants into 3 standard keys
     if mk == "double_chance":
         s_lower = s.lower()
-        has_draw = "draw" in s_lower
         parts = [p.strip() for p in re.split(r"\bor\b", s_lower)]
         team_count = sum(1 for p in parts if "draw" not in p)
         draw_count = sum(1 for p in parts if "draw" in p)
         if team_count == 2:
             return "home_or_away"
         if team_count == 1 and draw_count == 1:
-            # Need to distinguish home or draw vs away or draw
-            # Use 1X / X2 style hints if present
             if "1x" in s_lower or s_lower.startswith("home") or s_lower.endswith("draw") and parts[0] != "draw":
-                # First part is a team (home), second is draw
                 if parts[0] != "draw": return "home_or_draw"
             if "x2" in s_lower or s_lower.startswith("draw") or (len(parts)>1 and parts[1] != "draw"):
                 return "away_or_draw"
-            return "home_or_draw"  # fallback
+            return "home_or_draw"
         return normalize_text_key(s)
 
     return normalize_text_key(s)
 
 def pretty_selection_label_dc(selection_name):
-    """Map double chance selection key to readable label."""
     return {
         "home_or_draw": "Home or Draw",
         "away_or_draw": "Away or Draw",
@@ -249,6 +253,200 @@ def load_book(bookmaker, path):
         })
     return rows, generated
 
+def load_midnite_moneylines():
+    """Load Midnite moneylines — decimal odds schema, kickoff string as date."""
+    data = load_json(MIDNITE_PATH)
+    rows = []
+    for m in data.get("matches") or []:
+        home = display_team(m.get("home",""))
+        away = display_team(m.get("away",""))
+        if not home or not away: continue
+        kickoff = m.get("kickoff","")
+        def dec_str(v):
+            try: return str(round(float(v),4)) if v else ""
+            except: return ""
+        rows.append({
+            "bookmaker": "Midnite",
+            "date_label": kickoff,
+            "time": kickoff,
+            "match": f"{home} v {away}",
+            "home_team": home, "away_team": away,
+            "odds": {
+                "home": dec_str(m.get("home_odds")),
+                "draw": dec_str(m.get("draw_odds")),
+                "away": dec_str(m.get("away_odds")),
+            },
+            "source_url": m.get("url",""),
+            "strict_key": fixture_key(home,away),
+            "loose_key": loose_fixture_key(home,away),
+        })
+    return rows
+
+def _dec_to_str(v):
+    """Return decimal odd as display string, empty if invalid."""
+    try:
+        f = float(v)
+        return f"{f:.4g}" if f > 1 else ""
+    except:
+        return ""
+
+MIDNITE_JUNK_NAMES = {
+    "mex", "rsa", "goalscorers", "multi", "method", "time",
+    "carded anytime", "sent off anytime", "carded first",
+    "to score", "first", "last", "anytime goalscorer",
+}
+
+def _is_valid_midnite_player(name):
+    """Return True if name looks like a real player, not a column header or team abbrev."""
+    if not name: return False
+    n = name.strip()
+    if re.match(r"^[A-Z]{2,4}(\s+\d+)?$", n): return False  # MEX, RSA, MEX 21
+    if n.lower() in MIDNITE_JUNK_NAMES: return False
+    if len(n) < 4: return False
+    return True
+
+def load_midnite_props():
+    """Load Midnite props — flat dict schema per market."""
+    data = load_json(MIDNITE_PROPS_PATH)
+    out  = {}
+    for m in data.get("matches") or []:
+        home = display_team(m.get("home",""))
+        away = display_team(m.get("away",""))
+        if not home or not away: continue
+
+        raw = m.get("markets") or {}
+        markets = []
+
+        # Total Goals O/U
+        tg = raw.get("total_goals")
+        if isinstance(tg, dict):
+            sels = []
+            for k,v in sorted(tg.items()):
+                if not v: continue
+                if k.startswith("over_"):
+                    line = k[5:].replace("_",".")
+                    sels.append({"selection":f"Over {line}","odds":_dec_to_str(v)})
+                elif k.startswith("under_"):
+                    line = k[6:].replace("_",".")
+                    sels.append({"selection":f"Under {line}","odds":_dec_to_str(v)})
+            if sels: markets.append({"market":"Total Goals Over/Under","selections":sels})
+
+        # BTTS — main Yes/No only
+        btts = raw.get("btts")
+        if isinstance(btts, dict):
+            sels = []
+            if btts.get("yes"): sels.append({"selection":"Both Teams To Score - Yes","odds":_dec_to_str(btts["yes"])})
+            if btts.get("no"):  sels.append({"selection":"Both Teams To Score - No","odds":_dec_to_str(btts["no"])})
+            if sels: markets.append({"market":"Both Teams To Score","selections":sels})
+
+        # Double Chance
+        dc = raw.get("double_chance")
+        if isinstance(dc, dict):
+            mapping = {
+                "home_or_draw": f"{home} or Draw",
+                "away_or_draw": f"{away} or Draw",
+                "home_or_away": f"{home} or {away}",
+            }
+            sels = []
+            for k,label in mapping.items():
+                if dc.get(k): sels.append({"selection":label,"odds":_dec_to_str(dc[k])})
+            if sels: markets.append({"market":"Double Chance","selections":sels})
+
+        # Half Time Result
+        hr1 = raw.get("half_result_1h")
+        if isinstance(hr1, dict):
+            sels = []
+            if hr1.get("home"): sels.append({"selection":home,"odds":_dec_to_str(hr1["home"])})
+            if hr1.get("draw"): sels.append({"selection":"Draw","odds":_dec_to_str(hr1["draw"])})
+            if hr1.get("away"): sels.append({"selection":away,"odds":_dec_to_str(hr1["away"])})
+            if sels: markets.append({"market":"Half Time Result","selections":sels})
+
+        # Player Carded — Anytime (no " Anytime" suffix since market name already implies it)
+        pc = raw.get("player_carded")
+        if isinstance(pc, dict):
+            sels = []
+            for player, pdata in pc.items():
+                if not _is_valid_midnite_player(player): continue
+                if isinstance(pdata, dict) and pdata.get("carded_anytime"):
+                    sels.append({"selection":player,"odds":_dec_to_str(pdata["carded_anytime"])})
+            if sels: markets.append({"market":"To Get A Card","selections":sels})
+
+        # Player Shots on Target (1+)
+        psot = raw.get("player_shots_on_target")
+        if isinstance(psot, dict):
+            sels = []
+            for player, pdata in psot.items():
+                if not _is_valid_midnite_player(player): continue
+                if isinstance(pdata, dict) and pdata.get("1+"):
+                    sels.append({"selection":f"{player} Over 0.5 Shots On Target","odds":_dec_to_str(pdata["1+"])})
+            if sels: markets.append({"market":"Shots On Target","selections":sels})
+
+        # Player to Score — Anytime
+        pts = raw.get("player_to_score")
+        if isinstance(pts, dict):
+            sels = []
+            for player, pdata in pts.items():
+                if not _is_valid_midnite_player(player): continue
+                if isinstance(pdata, dict) and pdata.get("to_score"):
+                    sels.append({"selection":f"Anytime Goalscorer {player}","odds":_dec_to_str(pdata["to_score"])})
+            if sels: markets.append({"market":"Anytime Goalscorer","selections":sels})
+
+        # Player Fouls Committed (1+)
+        pfc = raw.get("player_fouls_committed")
+        if isinstance(pfc, dict):
+            sels = []
+            for player, pdata in pfc.items():
+                if not _is_valid_midnite_player(player): continue
+                if isinstance(pdata, dict) and pdata.get("1+"):
+                    sels.append({"selection":f"{player} Over 0.5 Fouls","odds":_dec_to_str(pdata["1+"])})
+            if sels: markets.append({"market":"Player Fouls Committed","selections":sels})
+
+        # Player Fouls Won (1+)
+        pfw = raw.get("player_fouls_won")
+        if isinstance(pfw, dict):
+            sels = []
+            for player, pdata in pfw.items():
+                if not _is_valid_midnite_player(player): continue
+                if isinstance(pdata, dict) and pdata.get("1+"):
+                    sels.append({"selection":f"{player} Over 0.5 Fouls Won","odds":_dec_to_str(pdata["1+"])})
+            if sels: markets.append({"market":"Player Fouls Won","selections":sels})
+
+        # Total Shots on Target (combined match)
+        tsot = raw.get("total_shots_on_target")
+        if isinstance(tsot, dict):
+            sels = []
+            for k, v in sorted(tsot.items(), key=lambda x: float(x[0].replace("over_",""))):
+                if v: sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
+            if sels: markets.append({"market":"Total Shots On Target","selections":sels})
+
+        # Total Shots (combined match)
+        ts = raw.get("total_shots")
+        if isinstance(ts, dict):
+            sels = []
+            for k, v in sorted(ts.items(), key=lambda x: float(x[0].replace("over_",""))):
+                if v: sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
+            if sels: markets.append({"market":"Total Shots","selections":sels})
+
+        # Total Match Cards
+        tc = raw.get("total_cards")
+        if isinstance(tc, dict):
+            sels = []
+            for k, v in sorted(tc.items(), key=lambda x: float(x[0].replace("over_",""))):
+                if v: sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
+            if sels: markets.append({"market":"Total Match Cards","selections":sels})
+
+        if not markets: continue
+        fk = fixture_key(home, away)
+        out[fk] = {
+            "bookmaker": "Midnite",
+            "match": f"{home} v {away}",
+            "home_team": home, "away_team": away,
+            "source_url": m.get("url",""),
+            "market_count": len(markets),
+            "markets": markets,
+        }
+    return out
+
 def split_match_name(s):
     s = clean(s)
     if re.search(r"\s+v\s+",s,re.I):
@@ -267,7 +465,6 @@ def convert_market(raw, internal_name=""):
         sel  = clean(rs.get("selection") or rs.get("name") or rs.get("label") or "")
         odds = clean(rs.get("odds") or rs.get("price") or rs.get("fractional") or "").upper()
         if not sel or not odds: continue
-        # Filter stray selections that don't belong to this market
         sel_lower = sel.lower()
         if mk == "player_to_get_a_card" and ("shots" in sel_lower): continue
         if mk == "shots_on_target" and "card" in sel_lower: continue
@@ -373,6 +570,8 @@ def load_all():
     lsb_rows,     lsb_gen      = load_book("LiveScoreBet", LIVESCOREBET_PATH)
     wh_rows,      wh_gen       = load_book("WilliamHill",  WILLIAMHILL_PATH)
     eee_rows,     eee_gen      = load_book("888Sport",     EIGHTEIGHTEIGHT_PATH)
+    ladb_rows,    ladb_gen     = load_book("Ladbrokes",    LADBROKES_PATH)
+    midnite_rows               = load_midnite_moneylines()
 
     paddy_props,  paddy_p_gen  = load_props_file("PaddyPower",   PADDY_PROPS_PATH)
     boyle_props,  boyle_p_gen  = load_props_file("BoyleSports",  BOYLE_PROPS_PATH)
@@ -380,6 +579,9 @@ def load_all():
     lsb_props,    lsb_p_gen    = load_props_file("LiveScoreBet", LIVESCORE_PROPS_PATH)
     eee_props,    eee_p_gen    = load_props_file("888Sport",     EIGHTSPORT_PROPS_PATH)
     wh_props,     wh_p_gen     = load_props_file("WilliamHill",  WILLIAMHILL_PROPS_PATH)
+    betv_props,   betv_p_gen   = load_props_file("BetVictor",    BETVICTOR_PROPS_PATH)
+    ladb_props,   ladb_p_gen   = load_props_file("Ladbrokes",    LADBROKES_PROPS_PATH)
+    midnite_props              = load_midnite_props()
 
     fixtures = {}
     for row in paddy_rows:
@@ -397,12 +599,15 @@ def load_all():
     li = {f["loose_key"]:k for k,f in fixtures.items()}
 
     for rows,bk in [(boyle_rows,"BoyleSports"),(betv_rows,"BetVictor"),(unibet_rows,"Unibet"),
-                    (lsb_rows,"LiveScoreBet"),(wh_rows,"WilliamHill"),(eee_rows,"888Sport")]:
+                    (lsb_rows,"LiveScoreBet"),(wh_rows,"WilliamHill"),(eee_rows,"888Sport"),
+                    (ladb_rows,"Ladbrokes"),(midnite_rows,"Midnite")]:
         add_book_rows(fixtures,si,li,rows,bk)
 
     for bk,bk_props in [("PaddyPower",paddy_props),("BoyleSports",boyle_props),
                          ("Unibet",unibet_props),("LiveScoreBet",lsb_props),
-                         ("888Sport",eee_props),("WilliamHill",wh_props)]:
+                         ("888Sport",eee_props),("WilliamHill",wh_props),
+                         ("BetVictor",betv_props),("Ladbrokes",ladb_props),
+                         ("Midnite",midnite_props)]:
         for pk,pd in bk_props.items():
             lk = loose_fixture_key(pd.get("home_team",""),pd.get("away_team",""))
             tk = si.get(pk) or li.get(lk)
@@ -411,7 +616,7 @@ def load_all():
                 fixtures[tk]["props"][bk] = pd
 
     fl = sorted(fixtures.values(), key=lambda x:(date_sort_key(x.get("date_label")),x.get("time",""),x.get("match","")))
-    generated = paddy_p_gen or boyle_p_gen or unibet_p_gen or lsb_p_gen or eee_p_gen or wh_p_gen or eee_gen or wh_gen or lsb_gen or unibet_gen or betv_gen or boyle_gen or paddy_gen
+    generated = paddy_p_gen or boyle_p_gen or unibet_p_gen or lsb_p_gen or eee_p_gen or wh_p_gen or betv_p_gen or ladb_p_gen or eee_gen or wh_gen or lsb_gen or unibet_gen or betv_gen or boyle_gen or paddy_gen or ladb_gen
     bk_count  = len({b for f in fl for b in f.get("bookmakers",{})})
     return fl, bk_count, generated
 
@@ -438,7 +643,6 @@ def all_prices(fixture, side):
     return rows
 
 def build_comparison_data(props):
-    """Cross-bookmaker comparison index: (market_key, selection_key) → offers."""
     comp = {}
     for bk,pd in sorted(props.items()):
         for market in pd.get("markets") or []:
@@ -569,7 +773,7 @@ def render_index(fixtures, bk_count, generated):
     style="background:radial-gradient(circle at top left,rgba(34,197,94,0.14),transparent 40%),radial-gradient(circle at top right,rgba(96,165,250,0.1),transparent 40%),rgba(17,24,39,0.86)">
     <div class="eyebrow">⚽ Football Odds</div>
     <h1>FIFA World Cup<br>Odds</h1>
-    <p class="meta" style="margin-top:10px">Best odds across {bk_count} bookmakers · Props from PaddyPower, BoyleSports, Unibet, LiveScoreBet, 888Sport &amp; William Hill</p>
+    <p class="meta" style="margin-top:10px">Best odds across {bk_count} bookmakers · Props from PaddyPower, BoyleSports, Unibet, LiveScoreBet, 888Sport, William Hill &amp; Midnite</p>
     <p class="footer-note" style="margin-top:14px">Updated: {esc(generated)}</p>
   </section>
   {groups}
@@ -584,7 +788,6 @@ def render_match_page(fixture):
     has_match_props  = any(any(normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS for m in pd.get("markets",[])) for pd in props.values())
     has_player_props = any(any(is_player_market(m["market"]) for m in pd.get("markets",[])) for pd in props.values())
 
-    # Moneyline tables
     def price_table(side_label, rows):
         body = "".join(f'<tr class="{"best-row" if r["is_best"] else ""}"><td>{esc(r["bookmaker"])}</td><td><strong>{esc(r["odds"])}</strong></td><td>{"BEST" if r["is_best"] else ""}</td></tr>' for r in rows)
         if not body: body='<tr><td colspan="3">No prices</td></tr>'
@@ -595,14 +798,12 @@ def render_match_page(fixture):
     away_rows  = all_prices(fixture,"away")
     mono_html  = f'<div class="grid3">{price_table(home,home_rows)}{price_table("Draw",draw_rows)}{price_table(away,away_rows)}</div>'
 
-    # Best props summary
     comp = build_comparison_data(props)
     SUMMARY_MARKETS = ["btts","total_goals","double_chance","anytime_scorer","first_goalscorer","shots_on_target","player_to_get_a_card"]
     pills = ""
     for mk in SUMMARY_MARKETS:
         items = [(sk,item) for (imk,sk),item in comp.items() if imk==mk]
         if not items: continue
-        # Best single offer per market
         best_item = None; best_dec = 0
         for sk,item in items:
             for offer in item["offers"]:
@@ -616,7 +817,6 @@ def render_match_page(fixture):
     if pills:
         summary_html = f'<div class="panel"><div class="section-head"><h2>Best Prop Prices</h2></div><div class="best-summary">{pills}</div></div>'
 
-    # Sub-nav buttons
     subnav = f'<nav class="sub-nav"><a href="./index.html" class="active">Odds</a>'
     if has_match_props:  subnav += f'<a href="match-props/index.html">Match Props</a>'
     if has_player_props: subnav += f'<a href="player-props/index.html">Player Props</a>'
@@ -651,7 +851,6 @@ def render_match_props_page(fixture):
     if has_player: subnav += f'<a href="../player-props/index.html">Player Props</a>'
     subnav += '</nav>'
 
-    # Over/Under comparison tables
     def ou_tables():
         html = ""
         for mk in ["total_goals","first_half_goals"]:
@@ -671,9 +870,6 @@ def render_match_props_page(fixture):
                     offs = [o for o in item["offers"] if o["decimal"]>1]
                     return max(offs,key=lambda x:x["decimal"]) if offs else None
                 ob = best_offer(sides.get("over")); ub = best_offer(sides.get("under"))
-                all_books_over  = len({o["bookmaker"] for o in (sides.get("over",{}).get("offers",[]))})
-                all_books_under = len({o["bookmaker"] for o in (sides.get("under",{}).get("offers",[]))})
-                # Only show the most useful lines
                 WANTED_LINES = {
                     "total_goals": {"1.5","2.5"},
                     "first_half_goals": {"0.5","1.5"},
@@ -686,7 +882,6 @@ def render_match_props_page(fixture):
                 html += f'<div class="panel"><h2>{esc(pretty_market_name(mk))}</h2><table><thead><tr><th>Line</th><th>Best Over</th><th>Best Under</th></tr></thead><tbody>{rows}</tbody></table></div>'
         return html
 
-    # Standard comparison cards — only specific selections, show only best bookmaker
     def standard_cards():
         html = ""
         WANTED_MARKETS = {"btts", "double_chance", "half_time_result"}
@@ -700,14 +895,12 @@ def render_match_props_page(fixture):
                 if bk not in by_bk or o["decimal"]>by_bk[bk]["decimal"]: by_bk[bk]=o
             offs = sorted(by_bk.values(),key=lambda x:x["decimal"],reverse=True)
             if not offs: continue
-            # Only show the single best bookmaker
             best = offs[0]
             label = pretty_selection_label_dc(sk) if mk == "double_chance" else item["selection"]
             rows = f'<tr class="best-row"><td>{esc(best["bookmaker"])}</td><td><strong>{esc(best["odds"])}</strong></td><td>BEST</td></tr>'
             html += f'<div class="panel"><h3>{esc(item["market"])} — {esc(label)}</h3><table><thead><tr><th>Bookmaker</th><th>Odds</th><th></th></tr></thead><tbody>{rows}</tbody></table></div>'
         return html
 
-    # Per-bookmaker match markets
     def bookmaker_cards():
         html = ""
         for bk,pd in sorted(props.items()):
@@ -722,9 +915,9 @@ def render_match_props_page(fixture):
                 html += f'<section><div class="section-head"><h2>{esc(bk)} Match Props</h2>{link}</div><div class="grid2">{cards}</div></section>'
         return html
 
-    ou_html    = ou_tables()
-    std_html   = standard_cards()
-    bk_html    = bookmaker_cards()
+    ou_html  = ou_tables()
+    std_html = standard_cards()
+    bk_html  = bookmaker_cards()
 
     if not ou_html and not std_html and not bk_html:
         content = '<p style="color:#91a0b5">No match props available yet.</p>'
@@ -763,7 +956,6 @@ def render_player_props_page(fixture):
     if has_match: subnav += f'<a href="../match-props/index.html">Match Props</a>'
     subnav += f'<a href="./index.html" class="active">Player Props</a></nav>'
 
-    # Goalscorer comparison table
     def goalscorer_tables():
         html = ""
         for scorer_type,type_label in [("anytime","Anytime Goalscorer"),("first","First Goalscorer"),("score2","To Score 2+")]:
@@ -802,7 +994,6 @@ def render_player_props_page(fixture):
                 html += f'<div class="panel goalscorer-table"><h2>{esc(type_label)}</h2><div style="overflow-x:auto"><table><thead><tr><th>Player</th>{heads}</tr></thead><tbody>{rows}</tbody></table></div></div>'
         return html
 
-    # Player stat comparison tables (shots, cards, assists)
     def stat_tables():
         html = ""
         STAT_MARKETS = [
@@ -810,15 +1001,15 @@ def render_player_props_page(fixture):
             ("shots","Shots"),
             ("player_to_assist","To Assist"),
             ("player_to_get_a_card","To Get A Card"),
+            ("player_fouls_committed","Fouls Committed"),
+            ("player_fouls_won","Fouls Won"),
         ]
         for mk,label in STAT_MARKETS:
-            # Group by player then by line
             players = {}
             all_books = set()
             lines_set = set()
             for (imk,sk),item in comp.items():
                 if imk != mk: continue
-                # sk format: "over_0_5__player_name" or "player_name" for single-odds
                 m2 = re.match(r"^(over|under)_([\d_]+)__(.+)$",sk)
                 if m2:
                     side,line_raw,pk = m2.group(1),m2.group(2),m2.group(3)
@@ -833,7 +1024,6 @@ def render_player_props_page(fixture):
                     if pk not in players: players[pk]={"name":pn,"lines":{}}
                     players[pk]["lines"].setdefault(line,{}).update(by_bk)
                 else:
-                    # Single odds (no line) — cards/assists
                     pk = sk; pn = pk.replace("_"," ").title()
                     by_bk = {}
                     for o in item["offers"]:
@@ -849,7 +1039,6 @@ def render_player_props_page(fixture):
             lines = sorted(lines_set, key=lambda x:(float(x) if re.match(r'[\d\.]+',x) else 999))
 
             if lines == ["—"]:
-                # Simple table: player | bk1 | bk2
                 heads = "".join(f"<th>{esc(b)}</th>" for b in books)
                 rows  = ""
                 for pd in sorted(players.values(),key=lambda x:max((max(o["decimal"] for o in ls.values()) for ls in x["lines"].values() if ls),default=0),reverse=True):
@@ -863,7 +1052,6 @@ def render_player_props_page(fixture):
                 if rows:
                     html+=f'<div class="panel goalscorer-table"><h2>{esc(label)}</h2><div style="overflow-x:auto"><table><thead><tr><th>Player</th>{heads}</tr></thead><tbody>{rows}</tbody></table></div></div>'
             else:
-                # Multi-line table: player | Over 0.5 (bk) | Over 1.5 (bk) ...
                 col_heads = "".join(f"<th>Over {esc(l)}</th>" for l in lines if l!="—")
                 rows=""
                 for pd in sorted(players.values(),key=lambda x:max((max((o["decimal"] for o in ls.values()),default=0) for ls in x["lines"].values()),default=0),reverse=True):
@@ -880,7 +1068,6 @@ def render_player_props_page(fixture):
                     html+=f'<div class="panel goalscorer-table"><h2>{esc(label)}</h2><div style="overflow-x:auto"><table><thead><tr><th>Player</th>{col_heads}</tr></thead><tbody>{rows}</tbody></table></div></div>'
         return html
 
-    # Per-bookmaker raw player markets
     def bookmaker_cards():
         html=""
         for bk,pd in sorted(props.items()):
