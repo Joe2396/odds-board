@@ -82,7 +82,7 @@ def click_tab(page, name):
             break
 
 def expand_accordion(page, name):
-    """Expand accordion using real Playwright mouse click via bounding box."""
+    """Expand accordion using real mouse click via bounding box."""
     try:
         box = page.evaluate(f"""
             (() => {{
@@ -313,15 +313,27 @@ def scrape_match(page, match):
             tg[f"over_{k}"] = frac(f[i])
     if tg: props["total_goals"] = tg
 
-    # BTTS — only main Yes/No, skip halves variants
-    # Structure: variant labels, Yes header, 4 Yes odds, No header, 4 No odds
-    # We only want fracs[0] (main Yes) and fracs[4] (main No)
-    seg = parse_section(lines, "Both Teams To Score", 30)
-    f   = [l for l in seg if is_frac(l)]
-    if len(f) >= 5:
-        props["btts"] = {"yes": frac(f[0]), "no": frac(f[4])}
-    elif len(f) >= 1:
-        props["btts"] = {"yes": frac(f[0]), "no": None}
+    # BTTS — read directly from DOM sibling to avoid toggle issues
+    expand_accordion(page, "Both Teams To Score")
+    btts_data = page.evaluate("""
+        (() => {
+            const el = Array.from(document.querySelectorAll('*'))
+                .find(e => e.childElementCount===0 && e.innerText?.trim()==='Both Teams To Score');
+            if (!el) return null;
+            const sib = el.parentElement?.parentElement?.parentElement?.children[1];
+            if (!sib) return null;
+            const lines = sib.innerText.split('\\n').map(l=>l.trim()).filter(Boolean);
+            const fracs = lines.filter(l => /^\\d+\\/\\d+$/.test(l));
+            if (fracs.length < 2) return null;
+            function toDecimal(f) {
+                const [a,b] = f.split('/').map(Number);
+                return Math.round((a/b+1)*10000)/10000;
+            }
+            // Row-major: first 4 fracs = Yes odds, next 4 = No odds
+            return {yes: toDecimal(fracs[0]), no: toDecimal(fracs[4] || fracs[1])};
+        })()
+    """)
+    if btts_data: props["btts"] = btts_data
 
     # Double Chance
     seg    = parse_section(lines, "Double Chance", 15)
