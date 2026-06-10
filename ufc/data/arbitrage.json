@@ -1,6 +1,6 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 12,
+  "total_moneyline_fights_checked": 19,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
   "arbitrage_count": 0,
@@ -10,124 +10,124 @@
     {
       "type": "moneyline",
       "event_id": "4b4920d2454497566b519a271f9e1e93",
-      "commence_time": "2026-06-14T22:10:00Z",
+      "commence_time": "2026-06-15T00:15:00Z",
       "fight": "Diego Lopes vs Steve Garcia Jr.",
       "market": "Moneyline",
       "fighters": {
         "Diego Lopes": {
-          "best_bookmaker": "888sport",
-          "best_price": 1.57,
-          "implied_probability": 63.69
+          "best_bookmaker": "Betfair",
+          "best_price": 1.66,
+          "implied_probability": 60.24
         },
         "Steve Garcia Jr.": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 2.5,
-          "implied_probability": 40.0
+          "best_bookmaker": "Betfair",
+          "best_price": 2.38,
+          "implied_probability": 42.02
         }
       },
-      "arb_sum": 1.036943,
+      "arb_sum": 1.022578,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.69
+      "profit_margin_percent": -2.26
     },
     {
       "type": "moneyline",
       "event_id": "9cf76c6ecde4824965ca04da644dfefa",
-      "commence_time": "2026-06-14T22:30:00Z",
+      "commence_time": "2026-06-15T00:40:00Z",
       "fight": "Bo Nickal vs Kyle Daukaus",
       "market": "Moneyline",
       "fighters": {
         "Bo Nickal": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.33,
-          "implied_probability": 75.19
+          "best_bookmaker": "Betfair",
+          "best_price": 1.31,
+          "implied_probability": 76.34
         },
         "Kyle Daukaus": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 3.65,
-          "implied_probability": 27.4
+          "best_bookmaker": "Betfair",
+          "best_price": 3.8,
+          "implied_probability": 26.32
         }
       },
-      "arb_sum": 1.025852,
+      "arb_sum": 1.026517,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.59
-    },
-    {
-      "type": "moneyline",
-      "event_id": "2f1aabeeefbe5b02db96846ac879a6ae",
-      "commence_time": "2026-06-14T22:50:00Z",
-      "fight": "Derrick Lewis vs Josh Hokit",
-      "market": "Moneyline",
-      "fighters": {
-        "Derrick Lewis": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 3.65,
-          "implied_probability": 27.4
-        },
-        "Josh Hokit": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.3,
-          "implied_probability": 76.92
-        }
-      },
-      "arb_sum": 1.043203,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.32
+      "profit_margin_percent": -2.65
     },
     {
       "type": "moneyline",
       "event_id": "54eb45b661945af7aa7da285a12e835c",
-      "commence_time": "2026-06-14T23:15:00Z",
+      "commence_time": "2026-06-15T01:10:00Z",
       "fight": "Mauricio Ruffy vs Michael Chandler",
       "market": "Moneyline",
       "fighters": {
         "Mauricio Ruffy": {
-          "best_bookmaker": "Paddy Power",
+          "best_bookmaker": "Betfair",
           "best_price": 1.17,
           "implied_probability": 85.47
         },
         "Michael Chandler": {
           "best_bookmaker": "LiveScore Bet",
-          "best_price": 5.5,
-          "implied_probability": 18.18
+          "best_price": 6.25,
+          "implied_probability": 16.0
         }
       },
-      "arb_sum": 1.036519,
+      "arb_sum": 1.014701,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.65
+      "profit_margin_percent": -1.47
+    },
+    {
+      "type": "moneyline",
+      "event_id": "2f1aabeeefbe5b02db96846ac879a6ae",
+      "commence_time": "2026-06-15T01:35:00Z",
+      "fight": "Derrick Lewis vs Josh Hokit",
+      "market": "Moneyline",
+      "fighters": {
+        "Derrick Lewis": {
+          "best_bookmaker": "Betfair",
+          "best_price": 4.4,
+          "implied_probability": 22.73
+        },
+        "Josh Hokit": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.26,
+          "implied_probability": 79.37
+        }
+      },
+      "arb_sum": 1.020924,
+      "is_arbitrage": false,
+      "profit_margin_percent": -2.09
     },
     {
       "type": "moneyline",
       "event_id": "20d0d02349fe04d63631b1e3f1879fa3",
-      "commence_time": "2026-06-14T23:45:00Z",
+      "commence_time": "2026-06-15T02:00:00Z",
       "fight": "Aiemann Zahabi vs Sean O'Malley",
       "market": "Moneyline",
       "fighters": {
         "Aiemann Zahabi": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 4.3,
-          "implied_probability": 23.26
+          "best_bookmaker": "Matchbook",
+          "best_price": 4.4,
+          "implied_probability": 22.73
         },
         "Sean O'Malley": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.25,
-          "implied_probability": 80.0
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.24,
+          "implied_probability": 80.65
         }
       },
-      "arb_sum": 1.032558,
+      "arb_sum": 1.033724,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.26
+      "profit_margin_percent": -3.37
     },
     {
       "type": "moneyline",
       "event_id": "1e972b73d422aa4cadb9185ca87c3c93",
-      "commence_time": "2026-06-15T00:30:00Z",
+      "commence_time": "2026-06-15T02:30:00Z",
       "fight": "Alex Pereira vs Ciryl Gane",
       "market": "Moneyline",
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.0,
-          "implied_probability": 50.0
+          "best_price": 2.04,
+          "implied_probability": 49.02
         },
         "Ciryl Gane": {
           "best_bookmaker": "Betfair",
@@ -135,31 +135,185 @@
           "implied_probability": 51.55
         }
       },
-      "arb_sum": 1.015464,
+      "arb_sum": 1.00566,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.55
+      "profit_margin_percent": -0.57
     },
     {
       "type": "moneyline",
       "event_id": "e34a17d5cf2a82a5161a54631e06770c",
-      "commence_time": "2026-06-15T01:15:00Z",
+      "commence_time": "2026-06-15T03:15:00Z",
       "fight": "Ilia Topuria vs Justin Gaethje",
       "market": "Moneyline",
       "fighters": {
         "Ilia Topuria": {
-          "best_bookmaker": "Betfair",
+          "best_bookmaker": "Paddy Power",
           "best_price": 1.2,
           "implied_probability": 83.33
         },
         "Justin Gaethje": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 5.8,
-          "implied_probability": 17.24
+          "best_bookmaker": "Betfair",
+          "best_price": 5.6,
+          "implied_probability": 17.86
         }
       },
-      "arb_sum": 1.005747,
+      "arb_sum": 1.011905,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.57
+      "profit_margin_percent": -1.19
+    },
+    {
+      "type": "moneyline",
+      "event_id": "f6ed64841c71aefe05ffdfc1f99321b6",
+      "commence_time": "2026-06-20T16:00:00Z",
+      "fight": "Kyoji Horiguchi vs Manel Kape",
+      "market": "Moneyline",
+      "fighters": {
+        "Kyoji Horiguchi": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.6,
+          "implied_probability": 38.46
+        },
+        "Manel Kape": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.48,
+          "implied_probability": 67.57
+        }
+      },
+      "arb_sum": 1.060291,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.03
+    },
+    {
+      "type": "moneyline",
+      "event_id": "c5194d421280ed4cfe090f4383e3101e",
+      "commence_time": "2026-06-21T00:00:00Z",
+      "fight": "Allan Nascimento vs Mitch Raposo",
+      "market": "Moneyline",
+      "fighters": {
+        "Allan Nascimento": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.48,
+          "implied_probability": 67.57
+        },
+        "Mitch Raposo": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.6,
+          "implied_probability": 38.46
+        }
+      },
+      "arb_sum": 1.060291,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.03
+    },
+    {
+      "type": "moneyline",
+      "event_id": "32abdf1152fbbde47eff32c7f8361352",
+      "commence_time": "2026-06-21T00:00:00Z",
+      "fight": "Beatriz Mesquita vs Melissa Mullins",
+      "market": "Moneyline",
+      "fighters": {
+        "Beatriz Mesquita": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.15,
+          "implied_probability": 86.96
+        },
+        "Melissa Mullins": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 5.0,
+          "implied_probability": 20.0
+        }
+      },
+      "arb_sum": 1.069565,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.96
+    },
+    {
+      "type": "moneyline",
+      "event_id": "03b274ada7d41342d970ecaa2868fb95",
+      "commence_time": "2026-06-21T00:00:00Z",
+      "fight": "Christian Rodriguez vs Hyder Amil",
+      "market": "Moneyline",
+      "fighters": {
+        "Christian Rodriguez": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.63,
+          "implied_probability": 61.35
+        },
+        "Hyder Amil": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.2,
+          "implied_probability": 45.45
+        }
+      },
+      "arb_sum": 1.068042,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.8
+    },
+    {
+      "type": "moneyline",
+      "event_id": "2ec1ec80a3a8b06c4eab4ea1039538df",
+      "commence_time": "2026-06-21T00:00:00Z",
+      "fight": "Gaston Bolanos vs Michael Aswell",
+      "market": "Moneyline",
+      "fighters": {
+        "Gaston Bolanos": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 3.85,
+          "implied_probability": 25.97
+        },
+        "Michael Aswell": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.24,
+          "implied_probability": 80.65
+        }
+      },
+      "arb_sum": 1.066192,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.62
+    },
+    {
+      "type": "moneyline",
+      "event_id": "ef182a814c6177d5c36ae129852a4c4d",
+      "commence_time": "2026-06-21T00:00:00Z",
+      "fight": "Karol Rosa vs Luana Santos",
+      "market": "Moneyline",
+      "fighters": {
+        "Karol Rosa": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.55,
+          "implied_probability": 64.52
+        },
+        "Luana Santos": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.35,
+          "implied_probability": 42.55
+        }
+      },
+      "arb_sum": 1.070693,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.07
+    },
+    {
+      "type": "moneyline",
+      "event_id": "8476f6ff083b25ee4f443f934288400a",
+      "commence_time": "2026-06-21T00:00:00Z",
+      "fight": "Melsik Baghdasaryan vs Murtazali Magomedov",
+      "market": "Moneyline",
+      "fighters": {
+        "Melsik Baghdasaryan": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 3.15,
+          "implied_probability": 31.75
+        },
+        "Murtazali Magomedov": {
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.33,
+          "implied_probability": 75.19
+        }
+      },
+      "arb_sum": 1.06934,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.93
     },
     {
       "type": "moneyline",
@@ -170,8 +324,8 @@
       "fighters": {
         "Brandon Royval": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.45,
-          "implied_probability": 40.82
+          "best_price": 2.55,
+          "implied_probability": 39.22
         },
         "Lone'er Kavanagh": {
           "best_bookmaker": "Paddy Power",
@@ -179,9 +333,9 @@
           "implied_probability": 63.69
         }
       },
-      "arb_sum": 1.045106,
+      "arb_sum": 1.0291,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.51
+      "profit_margin_percent": -2.91
     },
     {
       "type": "moneyline",

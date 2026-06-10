@@ -1,19 +1,6 @@
 {
-  "generated_at": "2026-06-07T10:24:33Z",
+  "generated_at": "2026-06-10T18:30:08Z",
   "events": [
-    {
-      "id": "2026-06-07-ufc-fight-night-muhammad-vs-bonfim",
-      "slug": "2026-06-07-ufc-fight-night-muhammad-vs-bonfim",
-      "name": "UFC Fight Night: Muhammad vs. Bonfim",
-      "date": "2026-06-07",
-      "location": "",
-      "status": "upcoming",
-      "source": {
-        "provider": "espn",
-        "event_id": "600058949"
-      },
-      "fights": []
-    },
     {
       "id": "2026-06-15-ufc-freedom-250-topuria-vs-gaethje",
       "slug": "2026-06-15-ufc-freedom-250-topuria-vs-gaethje",
@@ -53,25 +40,6 @@
       },
       "fights": [
         {
-          "id": "401874319",
-          "bout": "Kaan Ofli vs Javier Reyes",
-          "red": {
-            "name": "Kaan Ofli",
-            "espn_id": "5204223"
-          },
-          "blue": {
-            "name": "Javier Reyes",
-            "espn_id": "4687104"
-          },
-          "weight_class": "Featherweight",
-          "order": 1,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600059254"
-          }
-        },
-        {
           "id": "401872623",
           "bout": "Bekzat Almakhan vs Jean Matsumoto",
           "red": {
@@ -83,7 +51,7 @@
             "espn_id": "5149439"
           },
           "weight_class": "Bantamweight",
-          "order": 2,
+          "order": 1,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -102,6 +70,25 @@
             "espn_id": "4738749"
           },
           "weight_class": "Welterweight",
+          "order": 2,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059254"
+          }
+        },
+        {
+          "id": "401874319",
+          "bout": "Kaan Ofli vs Javier Reyes",
+          "red": {
+            "name": "Kaan Ofli",
+            "espn_id": "5204223"
+          },
+          "blue": {
+            "name": "Javier Reyes",
+            "espn_id": "4687104"
+          },
+          "weight_class": "Featherweight",
           "order": 3,
           "status": "scheduled",
           "source": {
@@ -690,8 +677,60 @@
         "event_id": "600059185"
       },
       "fights": []
+    },
+    {
+      "id": "2026-09-05-ufc-fight-night-paris",
+      "slug": "2026-09-05-ufc-fight-night-paris",
+      "name": "UFC Fight Night: Paris",
+      "date": "2026-09-05",
+      "location": "",
+      "status": "upcoming",
+      "source": {
+        "provider": "espn",
+        "event_id": "600059993"
+      },
+      "fights": [
+        {
+          "id": "401875227",
+          "bout": "Opponent TBA vs TBA",
+          "red": {
+            "name": "Opponent TBA",
+            "espn_id": "4402367"
+          },
+          "blue": {
+            "name": "TBA",
+            "espn_id": "2431356"
+          },
+          "weight_class": "",
+          "order": 1,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059993"
+          }
+        },
+        {
+          "id": "401875226",
+          "bout": "Opponent TBA vs TBA",
+          "red": {
+            "name": "Opponent TBA",
+            "espn_id": "4402367"
+          },
+          "blue": {
+            "name": "TBA",
+            "espn_id": "2431356"
+          },
+          "weight_class": "",
+          "order": 2,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059993"
+          }
+        }
+      ]
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-06-07T10:24:33Z"
+  "_debug_saved_at": "2026-06-10T18:30:08Z"
 }
