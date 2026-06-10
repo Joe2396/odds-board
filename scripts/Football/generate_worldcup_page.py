@@ -415,24 +415,28 @@ def load_midnite_props():
         tsot = raw.get("total_shots_on_target")
         if isinstance(tsot, dict):
             sels = []
-            for k, v in sorted(tsot.items(), key=lambda x: float(x[0].replace("over_",""))):
-                if v: sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
+            for k, v in sorted(tsot.items(), key=lambda x: float(re.sub(r"[^\d\.]","",x[0]) or "0")):
+                if v and float(v) > 1:
+                    sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
             if sels: markets.append({"market":"Total Shots On Target","selections":sels})
 
-        # Total Shots (combined match)
+        # Total Shots (combined match — skip per-team keys)
         ts = raw.get("total_shots")
         if isinstance(ts, dict):
             sels = []
-            for k, v in sorted(ts.items(), key=lambda x: float(x[0].replace("over_",""))):
-                if v: sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
+            # Only use combined keys (higher thresholds like 24+, 25+ etc)
+            combined = {k: v for k, v in ts.items() if v and float(v) > 1}
+            for k, v in sorted(combined.items(), key=lambda x: float(re.sub(r"[^\d\.]","",x[0]) or "0")):
+                sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
             if sels: markets.append({"market":"Total Shots","selections":sels})
 
         # Total Match Cards
         tc = raw.get("total_cards")
         if isinstance(tc, dict):
             sels = []
-            for k, v in sorted(tc.items(), key=lambda x: float(x[0].replace("over_",""))):
-                if v: sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
+            for k, v in sorted(tc.items(), key=lambda x: float(re.sub(r"[^\d\.]","",x[0]) or "0")):
+                if v and float(v) > 1:
+                    sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
             if sels: markets.append({"market":"Total Match Cards","selections":sels})
 
         if not markets: continue
@@ -946,154 +950,156 @@ def render_match_props_page(fixture):
 
 # ── Player Props page ──────────────────────────────────────────────────────────
 
+# ── Player Props helpers ───────────────────────────────────────────────────────
+
+PLAYER_MARKET_PAGES = [
+    ("anytime_scorer",        "Anytime Goalscorer",     "🥅"),
+    ("first_goalscorer",      "First Goalscorer",       "⚡"),
+    ("shots_on_target",       "Shots On Target",        "🎯"),
+    ("shots",                 "Total Shots",            "👟"),
+    ("player_to_get_a_card",  "Player Cards",           "🟨"),
+    ("player_fouls_committed","Fouls Committed",        "⚠️"),
+    ("player_fouls_won",      "Fouls Won",              "🤸"),
+    ("player_to_assist",      "To Assist",              "🅰️"),
+]
+
+def get_player_key(name):
+    """Normalise player name to a URL slug, stripping accents."""
+    import unicodedata
+    name = unicodedata.normalize("NFD", name.lower().strip())
+    name = "".join(c for c in name if unicodedata.category(c) != "Mn")
+    return re.sub(r"[^a-z0-9]+", "-", name).strip("-")
+
+def build_player_index(props):
+    """
+    Build a dict: player_key → {name, markets: {mk: {bk: {odds, decimal}}}}
+    Aggregates data for every player across all bookmakers.
+    """
+    players = {}
+
+    for bk, pd in props.items():
+        for market in pd.get("markets") or []:
+            mn  = market.get("market", "")
+            mk  = normalize_prop_market_key(mn)
+            if not is_player_market(mn): continue
+
+            for sel in market.get("selections") or []:
+                sn   = sel.get("selection", "")
+                odds = sel.get("odds", "")
+                dec  = fractional_to_decimal(odds)
+                if not sn or not odds or dec <= 1: continue
+
+                # Extract player name from selection string
+                player_name = sn
+
+                # Strip "Anytime Goalscorer " prefix (Midnite format)
+                if player_name.startswith("Anytime Goalscorer "):
+                    player_name = player_name[19:].strip()
+
+                # Strip known suffixes - order matters, longest first
+                for suffix in [
+                    " Anytime Goalscorer", " First Goalscorer", " Last Goalscorer",
+                    " To Score 2 Or More Goals", " To Score 2+",
+                    " Over 3.5 Shots On Target", " Over 2.5 Shots On Target",
+                    " Over 1.5 Shots On Target", " Over 0.5 Shots On Target",
+                    " Over 3.5 Shots", " Over 2.5 Shots", " Over 1.5 Shots", " Over 0.5 Shots",
+                    " Over 2.5 Fouls Won", " Over 1.5 Fouls Won", " Over 0.5 Fouls Won",
+                    " Over 2.5 Fouls", " Over 1.5 Fouls", " Over 0.5 Fouls",
+                    " Shots On Target", " To Assist", " To Get A Card", " Anytime",
+                ]:
+                    if player_name.lower().endswith(suffix.lower()):
+                        player_name = player_name[:-len(suffix)].strip()
+                        break
+
+                if not player_name or len(player_name) < 3: continue
+                # Skip if name is just a number or decimal (e.g. "2.5", "1.5")
+                if re.match(r"^[\d\.\s\/\+]+$", player_name): continue
+                # Skip Over/Under lines that slipped through
+                if re.match(r"^(over|under|both|draw)\b", player_name.lower()): continue
+                # Skip jersey numbers or pure numeric strings
+                if re.match(r"^\d+(\.\d+)?$", player_name): continue
+                # Skip time period / match period labels
+                if player_name.lower() in {"1st half", "2nd half", "half time", "full time",
+                                            "90 mins", "90 minutes", "anytime", "first",
+                                            "last", "to score", "next goal", "first half",
+                                            "second half", "extra time", "penalties"}: continue
+                # Skip obviously wrong odds (jersey numbers parsed as odds)
+                if dec > 150: continue
+
+                # Determine the actual market key — for goalscorers, distinguish anytime vs first
+                actual_mk = mk
+                if mk in ("anytime_scorer", "player_to_score", "first_goalscorer"):
+                    sn_lower = sn.lower()
+                    prop_type = sel.get("prop_type", "")
+                    if prop_type == "first_goalscorer" or "first goalscorer" in sn_lower or sn_lower.startswith("first "):
+                        actual_mk = "first_goalscorer"
+                    else:
+                        actual_mk = "anytime_scorer"
+
+                pk = get_player_key(player_name)
+                if pk not in players:
+                    players[pk] = {"name": player_name, "key": pk, "markets": {}}
+
+                # Store best price per market per bookmaker
+                players[pk]["markets"].setdefault(actual_mk, {})
+                existing = players[pk]["markets"][actual_mk].get(bk)
+                if not existing or dec > existing["decimal"]:
+                    players[pk]["markets"][actual_mk][bk] = {"odds": odds, "decimal": dec}
+
+    return players
+
+
+# ── Player Props overview page ─────────────────────────────────────────────────
+
 def render_player_props_page(fixture):
-    home,away,slug = fixture["home_team"],fixture["away_team"],fixture["slug"]
+    home, away, slug = fixture["home_team"], fixture["away_team"], fixture["slug"]
     props = fixture.get("props") or {}
     comp  = build_comparison_data(props)
+    player_index = build_player_index(props)
 
     subnav = f'<nav class="sub-nav"><a href="../index.html">Odds</a>'
-    has_match = any(any(normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS for m in pd.get("markets",[])) for pd in props.values())
+    has_match = any(any(normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS
+                        for m in pd.get("markets", [])) for pd in props.values())
     if has_match: subnav += f'<a href="../match-props/index.html">Match Props</a>'
     subnav += f'<a href="./index.html" class="active">Player Props</a></nav>'
 
-    def goalscorer_tables():
-        html = ""
-        for scorer_type,type_label in [("anytime","Anytime Goalscorer"),("first","First Goalscorer"),("score2","To Score 2+")]:
-            players = {}
-            all_books = set()
-            for (mk,sk),item in comp.items():
-                if mk not in {"anytime_scorer","first_goalscorer","scorer_2_plus","player_to_score"}: continue
-                m2 = re.match(rf"^{scorer_type}__(.+)$",sk)
-                if not m2: continue
-                pk = m2.group(1)
-                pn = pk.replace("_"," ").title()
-                all_books.update(o["bookmaker"] for o in item["offers"])
-                by_bk = {}
-                for o in item["offers"]:
-                    bk = o["bookmaker"]
-                    if bk not in by_bk or o["decimal"]>by_bk[bk]["decimal"]: by_bk[bk]=o
-                if pk not in players: players[pk]={"name":pn,"offers":{}}
-                players[pk]["offers"].update(by_bk)
+    # Build market cards
+    market_cards = ""
+    for mk, label, icon in PLAYER_MARKET_PAGES:
+        # Collect all players for this market
+        players_in_mkt = {pk: pd for pk, pd in player_index.items() if mk in pd["markets"]}
+        if not players_in_mkt: continue
 
-            if not players or len(all_books)<1: continue
-            books = sorted(all_books)
-            heads = "".join(f"<th>{esc(b)}</th>" for b in books)
-            rows  = ""
-            for pd in sorted(players.values(),key=lambda x:max((o["decimal"] for o in x["offers"].values()),default=0),reverse=True):
-                bd = max((o["decimal"] for o in pd["offers"].values()),default=0)
-                cells = ""
-                for bk in books:
-                    o = pd["offers"].get(bk)
-                    if o:
-                        is_best = o["decimal"]==bd
-                        cells += f'<td{"  class=\"best-cell\"" if is_best else ""}><strong>{esc(o["odds"])}</strong></td>'
-                    else:
-                        cells += "<td>—</td>"
-                rows += f'<tr><td>{esc(pd["name"])}</td>{cells}</tr>'
-            if rows:
-                html += f'<div class="panel goalscorer-table"><h2>{esc(type_label)}</h2><div style="overflow-x:auto"><table><thead><tr><th>Player</th>{heads}</tr></thead><tbody>{rows}</tbody></table></div></div>'
-        return html
+        # Top 3 by shortest (best value for bettors = shortest = most likely)
+        top3 = sorted(players_in_mkt.values(),
+                      key=lambda p: min(o["decimal"] for o in p["markets"][mk].values()))[:3]
 
-    def stat_tables():
-        html = ""
-        STAT_MARKETS = [
-            ("shots_on_target","Shots On Target"),
-            ("shots","Shots"),
-            ("player_to_assist","To Assist"),
-            ("player_to_get_a_card","To Get A Card"),
-            ("player_fouls_committed","Fouls Committed"),
-            ("player_fouls_won","Fouls Won"),
-        ]
-        for mk,label in STAT_MARKETS:
-            players = {}
-            all_books = set()
-            lines_set = set()
-            for (imk,sk),item in comp.items():
-                if imk != mk: continue
-                m2 = re.match(r"^(over|under)_([\d_]+)__(.+)$",sk)
-                if m2:
-                    side,line_raw,pk = m2.group(1),m2.group(2),m2.group(3)
-                    line = line_raw.replace("_",".")
-                    lines_set.add(line)
-                    pn = pk.replace("_"," ").title()
-                    by_bk = {}
-                    for o in item["offers"]:
-                        bk=o["bookmaker"]
-                        if bk not in by_bk or o["decimal"]>by_bk[bk]["decimal"]: by_bk[bk]=o
-                    all_books.update(by_bk.keys())
-                    if pk not in players: players[pk]={"name":pn,"lines":{}}
-                    players[pk]["lines"].setdefault(line,{}).update(by_bk)
-                else:
-                    pk = sk; pn = pk.replace("_"," ").title()
-                    by_bk = {}
-                    for o in item["offers"]:
-                        bk=o["bookmaker"]
-                        if bk not in by_bk or o["decimal"]>by_bk[bk]["decimal"]: by_bk[bk]=o
-                    all_books.update(by_bk.keys())
-                    if pk not in players: players[pk]={"name":pn,"lines":{}}
-                    players[pk]["lines"].setdefault("—",{}).update(by_bk)
-                    lines_set.add("—")
-
-            if not players: continue
-            books = sorted(all_books)
-            lines = sorted(lines_set, key=lambda x:(float(x) if re.match(r'[\d\.]+',x) else 999))
-
-            if lines == ["—"]:
-                heads = "".join(f"<th>{esc(b)}</th>" for b in books)
-                rows  = ""
-                for pd in sorted(players.values(),key=lambda x:max((max(o["decimal"] for o in ls.values()) for ls in x["lines"].values() if ls),default=0),reverse=True):
-                    bd = max((o["decimal"] for ls in pd["lines"].values() for o in ls.values()),default=0)
-                    cells=""
-                    for bk in books:
-                        o = pd["lines"].get("—",{}).get(bk)
-                        if o: cells+=f'<td{"  class=\"best-cell\"" if o["decimal"]==bd else ""}><strong>{esc(o["odds"])}</strong></td>'
-                        else: cells+="<td>—</td>"
-                    rows+=f'<tr><td>{esc(pd["name"])}</td>{cells}</tr>'
-                if rows:
-                    html+=f'<div class="panel goalscorer-table"><h2>{esc(label)}</h2><div style="overflow-x:auto"><table><thead><tr><th>Player</th>{heads}</tr></thead><tbody>{rows}</tbody></table></div></div>'
+        preview = ""
+        STAT_MARKETS = {"shots_on_target", "shots", "player_fouls_committed", "player_fouls_won"}
+        for p in top3:
+            if mk in STAT_MARKETS:
+                best_bk = min(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
             else:
-                col_heads = "".join(f"<th>Over {esc(l)}</th>" for l in lines if l!="—")
-                rows=""
-                for pd in sorted(players.values(),key=lambda x:max((max((o["decimal"] for o in ls.values()),default=0) for ls in x["lines"].values()),default=0),reverse=True):
-                    cells=""
-                    for line in lines:
-                        if line=="—": continue
-                        ls = pd["lines"].get(line,{})
-                        if ls:
-                            best = max(ls.values(),key=lambda o:o["decimal"])
-                            cells+=f'<td><strong>{esc(best["odds"])}</strong><br><span style="color:#91a0b5;font-size:11px">{esc(best["bookmaker"])}</span></td>'
-                        else: cells+="<td>—</td>"
-                    rows+=f'<tr><td>{esc(pd["name"])}</td>{cells}</tr>'
-                if rows:
-                    html+=f'<div class="panel goalscorer-table"><h2>{esc(label)}</h2><div style="overflow-x:auto"><table><thead><tr><th>Player</th>{col_heads}</tr></thead><tbody>{rows}</tbody></table></div></div>'
-        return html
+                best_bk = max(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
+            preview += f"""
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1a2535">
+              <a href="players/{esc(p['key'])}/index.html" style="color:#e2e8f0;font-weight:600;font-size:14px">{esc(p['name'])}</a>
+              <div style="text-align:right">
+                <div style="color:#22c55e;font-weight:900;font-size:16px">{esc(best_bk[1]['odds'])}</div>
+                <div style="color:#91a0b5;font-size:11px">{esc(best_bk[0])}</div>
+              </div>
+            </div>"""
 
-    def bookmaker_cards():
-        html=""
-        for bk,pd in sorted(props.items()):
-            markets=[m for m in pd.get("markets",[]) if is_player_market(m["market"])]
-            if not markets: continue
-            cards=""
-            for market in markets:
-                rows="".join(f'<tr><td>{esc(s["selection"])}</td><td><strong>{esc(s["odds"])}</strong></td></tr>' for s in market.get("selections",[]))
-                if rows: cards+=f'<div class="panel"><h3>{esc(market["market"])}</h3><table><thead><tr><th>Selection</th><th>Odds</th></tr></thead><tbody>{rows}</tbody></table></div>'
-            if cards:
-                link=f'<a href="{esc(pd.get("source_url",""))}" target="_blank" rel="noopener">Open bookmaker →</a>'
-                html+=f'<section style="margin-top:24px"><div class="section-head"><h2>{esc(bk)} Player Props</h2>{link}</div><div class="grid2">{cards}</div></section>'
-        return html
+        market_cards += f"""
+        <div style="border:1px solid #223047;border-radius:20px;padding:20px;background:rgba(17,24,39,0.72)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+            <h3 style="font-size:18px">{icon} {esc(label)}</h3>
+            <a href="{mk}/index.html" style="border:1px solid rgba(96,165,250,0.45);background:rgba(96,165,250,0.08);color:#bfdbfe;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:900;text-transform:uppercase">View all →</a>
+          </div>
+          {preview}
+        </div>"""
 
-    gs_html   = goalscorer_tables()
-    stat_html = stat_tables()
-    bk_html   = bookmaker_cards()
-
-    if not gs_html and not stat_html and not bk_html:
-        content='<p style="color:#91a0b5">No player props available yet.</p>'
-    else:
-        content=f"""
-        {'<section><div class="section-head"><h2>Goalscorer Comparison</h2></div>' + gs_html + '</section>' if gs_html else ''}
-        {'<section style="margin-top:24px"><div class="section-head"><h2>Player Stats</h2></div>' + stat_html + '</section>' if stat_html else ''}
-        {'<div style="margin-top:32px">' + bk_html + '</div>' if bk_html else ''}
-        """
+    content = f'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px">{market_cards}</div>' if market_cards else '<p style="color:#91a0b5">No player props available yet.</p>'
 
     return f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -1110,6 +1116,123 @@ def render_player_props_page(fixture):
   {content}
   <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
 </main></body></html>"""
+
+
+# ── Player market sub-page ─────────────────────────────────────────────────────
+
+def render_player_market_page(fixture, mk, label, icon):
+    home, away, slug = fixture["home_team"], fixture["away_team"], fixture["slug"]
+    props = fixture.get("props") or {}
+    player_index = build_player_index(props)
+
+    players_in_mkt = {pk: pd for pk, pd in player_index.items() if mk in pd["markets"]}
+
+    subnav = f'<nav class="sub-nav"><a href="../../index.html">Odds</a><a href="../../match-props/index.html">Match Props</a><a href="../index.html">Player Props</a><a href="./index.html" class="active">{esc(label)}</a></nav>'
+
+    # Markets that benefit from showing multiple threshold columns
+    STAT_MARKETS = {"shots_on_target", "shots", "player_fouls_committed", "player_fouls_won"}
+    is_stat = mk in STAT_MARKETS
+    # For stat markets sort shortest first; for goalscorer markets sort shortest first too (most likely)
+    sort_key = lambda p: min(o["decimal"] for o in p["markets"][mk].values())
+
+    if not players_in_mkt:
+        content = '<p style="color:#91a0b5">No data available yet.</p>'
+    else:
+        rows = ""
+        for p in sorted(players_in_mkt.values(), key=sort_key):
+            # Best price = shortest for stats (most likely), longest for goalscorers (best value)
+            if is_stat:
+                best_bk = min(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
+            else:
+                best_bk = max(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
+            bk_count = len(p["markets"][mk])
+            rows += f"""
+            <tr>
+              <td><a href="../players/{esc(p['key'])}/index.html" style="color:#e2e8f0;font-weight:600">{esc(p['name'])}</a></td>
+              <td><strong style="color:#22c55e;font-size:18px">{esc(best_bk[1]['odds'])}</strong></td>
+              <td style="color:#91a0b5">{esc(best_bk[0])}</td>
+              <td style="color:#91a0b5;font-size:12px">{bk_count} bk{"s" if bk_count!=1 else ""}</td>
+            </tr>"""
+
+        content = f"""
+        <div class="panel">
+          <table>
+            <thead><tr><th>Player</th><th>Best Price</th><th>Bookmaker</th><th>Coverage</th></tr></thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </div>"""
+
+    return f"""<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{esc(home)} v {esc(away)} — {esc(label)} — BeatTheBooks</title>
+<style>{SHARED_CSS}</style></head><body>
+<main class="page">
+  <nav class="nav"><a href="{BASE}/football/">Football</a><span>›</span><a href="{BASE}/football/world-cup/">World Cup</a><span>›</span><a href="{BASE}/football/world-cup/{slug}/">{esc(home)} v {esc(away)}</a><span>›</span><a href="{BASE}/football/world-cup/{slug}/player-props/">Player Props</a><span>›</span><span>{esc(label)}</span></nav>
+  <section class="hero">
+    <div class="eyebrow">⚽ {esc(icon)} {esc(label)}</div>
+    <h1>{esc(home)} v {esc(away)}</h1>
+    <p class="meta">{esc(fixture.get("date_label",""))} · {esc(fixture.get("time",""))}</p>
+  </section>
+  {subnav}
+  {content}
+  <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
+</main></body></html>"""
+
+
+# ── Player detail page ─────────────────────────────────────────────────────────
+
+def render_player_detail_page(fixture, player_key, player_data):
+    home, away, slug = fixture["home_team"], fixture["away_team"], fixture["slug"]
+    name = player_data["name"]
+    markets = player_data["markets"]
+
+    subnav = f'<nav class="sub-nav"><a href="../../index.html">Odds</a><a href="../../match-props/index.html">Match Props</a><a href="../index.html">Player Props</a></nav>'
+
+    # Build comparison table per market
+    market_html = ""
+    for mk, label, icon in PLAYER_MARKET_PAGES:
+        if mk not in markets: continue
+        bk_offers = markets[mk]
+        all_books = sorted(bk_offers.keys())
+        best_dec  = max(o["decimal"] for o in bk_offers.values())
+
+        cells = ""
+        for bk in all_books:
+            o = bk_offers[bk]
+            is_best = o["decimal"] == best_dec
+            cells += f"""
+            <div style="border:1px solid {'#22c55e' if is_best else '#223047'};border-radius:12px;padding:12px;background:{'rgba(34,197,94,0.08)' if is_best else 'rgba(255,255,255,0.02)'};text-align:center">
+              <div style="color:#91a0b5;font-size:11px;margin-bottom:6px">{esc(bk)}</div>
+              <div style="color:{'#22c55e' if is_best else '#e2e8f0'};font-size:{'22px' if is_best else '18px'};font-weight:900">{esc(o['odds'])}</div>
+              {'<div style="color:#86efac;font-size:10px;font-weight:800;margin-top:4px">BEST</div>' if is_best else ''}
+            </div>"""
+
+        market_html += f"""
+        <div class="panel" style="margin-bottom:16px">
+          <h3 style="margin-bottom:12px">{esc(icon)} {esc(label)}</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px">
+            {cells}
+          </div>
+        </div>"""
+
+    content = market_html if market_html else '<p style="color:#91a0b5">No props available for this player.</p>'
+
+    return f"""<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{esc(name)} Props — {esc(home)} v {esc(away)} — BeatTheBooks</title>
+<style>{SHARED_CSS}</style></head><body>
+<main class="page">
+  <nav class="nav"><a href="{BASE}/football/">Football</a><span>›</span><a href="{BASE}/football/world-cup/">World Cup</a><span>›</span><a href="{BASE}/football/world-cup/{slug}/">{esc(home)} v {esc(away)}</a><span>›</span><a href="{BASE}/football/world-cup/{slug}/player-props/">Player Props</a><span>›</span><span>{esc(name)}</span></nav>
+  <section class="hero">
+    <div class="eyebrow">⚽ Player Props</div>
+    <h1>{esc(name)}</h1>
+    <p class="meta">{esc(home)} v {esc(away)} · {esc(fixture.get("date_label",""))} · {esc(fixture.get("time",""))}</p>
+  </section>
+  {subnav}
+  {content}
+  <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
+</main></body></html>"""
+
 
 # ── Football hub ───────────────────────────────────────────────────────────────
 
@@ -1172,6 +1295,22 @@ def main():
             pp = d / "player-props"; pp.mkdir(parents=True, exist_ok=True)
             (pp / "index.html").write_text(render_player_props_page(f), encoding="utf-8")
             player_pages += 1
+
+            # Generate player market sub-pages
+            player_index = build_player_index(props)
+            for mk, label, icon in PLAYER_MARKET_PAGES:
+                players_in_mkt = {pk: pd for pk, pd in player_index.items() if mk in pd["markets"]}
+                if not players_in_mkt: continue
+                mkt_dir = pp / mk; mkt_dir.mkdir(parents=True, exist_ok=True)
+                (mkt_dir / "index.html").write_text(
+                    render_player_market_page(f, mk, label, icon), encoding="utf-8")
+
+            # Generate player detail pages
+            players_dir = pp / "players"; players_dir.mkdir(parents=True, exist_ok=True)
+            for pk, pd in player_index.items():
+                player_dir = players_dir / pk; player_dir.mkdir(parents=True, exist_ok=True)
+                (player_dir / "index.html").write_text(
+                    render_player_detail_page(f, pk, pd), encoding="utf-8")
 
     print(f"World Cup index:    {OUT_PATH}")
     print(f"Football hub:       {HUB_PATH}")

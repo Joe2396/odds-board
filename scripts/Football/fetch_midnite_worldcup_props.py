@@ -82,19 +82,25 @@ def click_tab(page, name):
             break
 
 def expand_accordion(page, name):
-    page.evaluate(f"""
-        const el = Array.from(document.querySelectorAll('*'))
-            .find(e => e.childElementCount === 0 && e.innerText?.trim() === '{name}');
-        if (el) {{
-            const target = el.closest('div.group') || el.parentElement?.parentElement;
-            if (target) {{
-                target.dispatchEvent(new PointerEvent('pointerdown', {{bubbles:true,cancelable:true}}));
-                target.dispatchEvent(new PointerEvent('pointerup', {{bubbles:true,cancelable:true}}));
-                target.dispatchEvent(new MouseEvent('click', {{bubbles:true,cancelable:true}}));
-            }}
-        }}
-    """)
-    time.sleep(0.5)
+    """Expand accordion using real Playwright mouse click via bounding box."""
+    try:
+        box = page.evaluate(f"""
+            (() => {{
+                const el = Array.from(document.querySelectorAll('*'))
+                    .find(e => e.childElementCount === 0 && e.innerText?.trim() === '{name}');
+                if (!el) return null;
+                const target = el.parentElement?.parentElement;
+                if (!target) return null;
+                target.scrollIntoView({{behavior:'instant', block:'center'}});
+                const rect = target.getBoundingClientRect();
+                return {{x: rect.left + rect.width / 2, y: rect.top + rect.height / 2}};
+            }})()
+        """)
+        if box and box.get('x') and box.get('y'):
+            page.mouse.click(box['x'], box['y'])
+            time.sleep(0.6)
+    except Exception:
+        pass
 
 def dismiss_popups(page):
     for sel in ["button:has-text('Got it')", "button:has-text('Accept all')",
@@ -180,6 +186,58 @@ def parse_player_market(lines, heading, col_keys, skip_words=None):
 # ---------------------------------------------------------------------------
 # Scrape one match
 # ---------------------------------------------------------------------------
+def select_filter(page, market_name, option):
+    """Click v-popper filter dropdown then select option by mouse."""
+    try:
+        box = page.evaluate(f"""
+            (() => {{
+                const el = Array.from(document.querySelectorAll('*'))
+                    .find(e => e.childElementCount === 0 && e.innerText?.trim() === '{market_name}');
+                if (!el) return null;
+                const group = el.parentElement?.parentElement;
+                const sib = group?.parentElement?.children[1];
+                if (!sib) return null;
+                const popper = Array.from(sib.querySelectorAll('*'))
+                    .find(e => e.className?.includes('v-popper'));
+                if (!popper) return null;
+                const r = popper.getBoundingClientRect();
+                return {{x: r.x + r.width/2, y: r.y + r.height/2}};
+            }})()
+        """)
+        if not box: return False
+        page.mouse.click(box['x'], box['y'])
+        time.sleep(0.4)
+        box2 = page.evaluate(f"""
+            (() => {{
+                const opts = Array.from(document.querySelectorAll('*'))
+                    .filter(e => e.childElementCount === 0 && e.innerText?.trim() === '{option}');
+                const vis = opts.find(e => {{
+                    const r = e.getBoundingClientRect();
+                    return r.y > 0 && r.y < window.innerHeight && r.width > 0;
+                }});
+                if (!vis) return null;
+                const r = vis.getBoundingClientRect();
+                return {{x: r.x + r.width/2, y: r.y + r.height/2}};
+            }})()
+        """)
+        if not box2: return False
+        page.mouse.click(box2['x'], box2['y'])
+        time.sleep(0.5)
+        return True
+    except Exception:
+        return False
+
+def parse_thresholds(lines, heading, n=25):
+    """Parse N+ threshold markets from lines."""
+    seg = parse_section(lines, heading, n)
+    result = {}
+    thresh = [l for l in seg if re.match(r"^.+\d+\+$", l) or re.match(r"^\d+\+$", l)]
+    fracs  = [l for l in seg if is_frac(l)]
+    for i,t in enumerate(thresh):
+        m = re.search(r"(\d+)\+", t)
+        if m: result[f"over_{m.group(1)}"] = frac(fracs[i]) if i < len(fracs) else None
+    return result or None
+
 def scrape_match(page, match):
     url  = match.get("url") or f"{BASE_URL}{match['match_id']}-{match['event_id']}"
     home = match.get("home", "")
@@ -221,10 +279,10 @@ def scrape_match(page, match):
     except Exception:
         pass
 
-    # Expand collapsed accordions
-    for mkt in ["Both Teams To Score", "Double Chance", "Half Result", "Half Time/Full Time"]:
-        expand_accordion(page, mkt)
-    time.sleep(0.8)
+    # Expand all needed accordions using real mouse clicks
+    for accordion_name in ["Both Teams To Score", "Double Chance", "Half Result", "Half Time/Full Time",
+                           "Total Shots on Target", "Total Shots"]:
+        expand_accordion(page, accordion_name)
 
     lines = get_lines(page)
 
@@ -303,129 +361,127 @@ def scrape_match(page, match):
             htft[f"{norm(parts[0])}_{norm(parts[1])}"] = frac(f[k]) if k < len(f) else None
     if htft: props["htft"] = htft
 
-    # Total Shots on Target (combined)
+    # Total Shots on Target — Combined, Home, Away
     expand_accordion(page, "Total Shots on Target")
-    lines = get_lines(page)
-    seg   = parse_section(lines, "Total Shots on Target", 25)
-    thresholds = [l for l in seg if re.match(r"^\d+\+$", l)]
-    f = [l for l in seg if is_frac(l)]
-    sot = {}
-    for i, t in enumerate(thresholds):
-        sot[f"over_{t.replace('+','')}"] = frac(f[i]) if i < len(f) else None
-    if sot: props["total_shots_on_target"] = sot
+    select_filter(page, "Total Shots on Target", "Combined")
+    lines_r = get_lines(page)
+    d = parse_thresholds(lines_r, "Total Shots on Target")
+    if d: props["total_shots_on_target"] = d
+    select_filter(page, "Total Shots on Target", home)
+    lines_r = get_lines(page)
+    d = parse_thresholds(lines_r, "Total Shots on Target")
+    if d: props["home_shots_on_target"] = d
+    select_filter(page, "Total Shots on Target", away)
+    lines_r = get_lines(page)
+    d = parse_thresholds(lines_r, "Total Shots on Target")
+    if d: props["away_shots_on_target"] = d
 
-    # Total Shots (combined only — per-team requires extra clicks)
+    # Total Shots — Combined, Home, Away
     expand_accordion(page, "Total Shots")
-    lines = get_lines(page)
-    seg   = parse_section(lines, "Total Shots", 20)
-    thresholds = [l for l in seg if re.match(r"^\d+\+$", l)]
-    f = [l for l in seg if is_frac(l)]
-    ts = {}
-    for i, t in enumerate(thresholds):
-        ts[f"over_{t.replace('+','')}"] = frac(f[i]) if i < len(f) else None
-    if ts: props["total_shots"] = ts
+    select_filter(page, "Total Shots", "Combined")
+    lines_r = get_lines(page)
+    d = parse_thresholds(lines_r, "Total Shots")
+    if d: props["total_shots"] = d
+    select_filter(page, "Total Shots", home)
+    lines_r = get_lines(page)
+    d = parse_thresholds(lines_r, "Total Shots")
+    if d: props["home_shots"] = d
+    select_filter(page, "Total Shots", away)
+    lines_r = get_lines(page)
+    d = parse_thresholds(lines_r, "Total Shots")
+    if d: props["away_shots"] = d
 
-    # Refresh All tab lines — capture Cards market before switching tabs
-    lines = get_lines(page)
-
-    # Expand Cards accordion and re-read
-    expand_accordion(page, "Cards")
-    time.sleep(0.4)
-    lines = get_lines(page)
-
-    cards_indices = [i for i, l in enumerate(lines) if l == "Cards"]
-    if len(cards_indices) >= 2:
-        seg = lines[cards_indices[1]: cards_indices[1] + 20]
-        thresholds = [l for l in seg if re.match(r"^\d+\+$", l)]
+    # ------------------------------------------------------------------ #
+    # CARDS tab
+    # ------------------------------------------------------------------ #
+    click_tab(page, "Cards")
+    time.sleep(0.8)
+    lines_c = get_lines(page)
+    cards_idx = [i for i,l in enumerate(lines_c) if l == "Cards"]
+    if len(cards_idx) >= 2:
+        seg = lines_c[cards_idx[1]:cards_idx[1]+20]
+        thresh = [l for l in seg if re.match(r"^\d+\+$",l)]
         f = [l for l in seg if is_frac(l)]
-        tc = {}
-        for i, t in enumerate(thresholds):
-            tc[f"over_{t.replace('+','')}"] = frac(f[i]) if i < len(f) else None
-        if tc: props["total_cards"] = tc
+        d = {f"over_{t.replace('+','')}":frac(f[i]) if i<len(f) else None for i,t in enumerate(thresh)}
+        if d: props["total_cards"] = d
+
+    # ------------------------------------------------------------------ #
+    # CORNERS tab
+    # ------------------------------------------------------------------ #
+    click_tab(page, "Corners")
+    time.sleep(0.8)
+    lines_cn = get_lines(page)
+    ci = [i for i,l in enumerate(lines_cn) if l == "Corners"]
+    if ci:
+        seg = lines_cn[ci[0]:ci[0]+20]
+        thresh = [l for l in seg if re.match(r"^\d+\+$",l)]
+        f = [l for l in seg if is_frac(l)]
+        d = {f"over_{t.replace('+','')}":frac(f[i]) if i<len(f) else None for i,t in enumerate(thresh)}
+        if d: props["total_corners"] = d
+    twmc = next((i for i,l in enumerate(lines_cn) if l=="Team with Most Corners"),None)
+    if twmc is not None:
+        f = [l for l in lines_cn[twmc:twmc+10] if is_frac(l)]
+        if len(f) >= 3:
+            props["team_most_corners"] = {"home":frac(f[0]),"draw":frac(f[1]),"away":frac(f[2])}
 
     # ------------------------------------------------------------------ #
     # PLAYERS tab
     # ------------------------------------------------------------------ #
     click_tab(page, "Players")
     time.sleep(1.5)
-
-    # Click all Show all buttons to expand every market fully
     try:
         page.evaluate("""
             Array.from(document.querySelectorAll('button'))
                 .filter(b => b.innerText?.trim() === 'Show all')
                 .forEach(b => {
-                    b.dispatchEvent(new PointerEvent('pointerdown', {bubbles:true,cancelable:true}));
-                    b.dispatchEvent(new PointerEvent('pointerup', {bubbles:true,cancelable:true}));
-                    b.dispatchEvent(new MouseEvent('click', {bubbles:true,cancelable:true}));
+                    b.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,cancelable:true}));
+                    b.dispatchEvent(new PointerEvent('pointerup',  {bubbles:true,cancelable:true}));
+                    b.dispatchEvent(new MouseEvent('click',        {bubbles:true,cancelable:true}));
                 });
         """)
         time.sleep(1.0)
     except Exception:
         pass
-
-    # Expand Player Shots accordion
     expand_accordion(page, "Player Shots")
-    time.sleep(0.6)
-
-    # Click Show all again after expansion
     try:
         page.evaluate("""
             Array.from(document.querySelectorAll('button'))
                 .filter(b => b.innerText?.trim() === 'Show all')
                 .forEach(b => {
-                    b.dispatchEvent(new PointerEvent('pointerdown', {bubbles:true,cancelable:true}));
-                    b.dispatchEvent(new PointerEvent('pointerup', {bubbles:true,cancelable:true}));
-                    b.dispatchEvent(new MouseEvent('click', {bubbles:true,cancelable:true}));
+                    b.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,cancelable:true}));
+                    b.dispatchEvent(new PointerEvent('pointerup',  {bubbles:true,cancelable:true}));
+                    b.dispatchEvent(new MouseEvent('click',        {bubbles:true,cancelable:true}));
                 });
         """)
         time.sleep(0.8)
     except Exception:
         pass
-
     lines2 = get_lines(page)
     skip = [home, away]
-
-    p = parse_player_market(lines2, "Player Carded",
-        ["carded_anytime", "sent_off_anytime", "carded_first"], skip)
+    p = parse_player_market(lines2,"Player Carded",["carded_anytime","sent_off_anytime","carded_first"],skip)
     if p: props["player_carded"] = p
-
-    p = parse_player_market(lines2, "Player Shots on Target",
-        ["1+", "2+", "3+", "4+"], skip)
+    p = parse_player_market(lines2,"Player Shots on Target",["1+","2+","3+","4+"],skip)
     if p: props["player_shots_on_target"] = p
-
-    p = parse_player_market(lines2, "Player Fouls Committed",
-        ["1+", "2+", "3+", "4+", "5+"], skip)
+    p = parse_player_market(lines2,"Player Fouls Committed",["1+","2+","3+","4+","5+"],skip)
     if p: props["player_fouls_committed"] = p
-
-    p = parse_player_market(lines2, "Player Fouls Won",
-        ["1+", "2+", "3+", "4+", "5+"], skip)
+    p = parse_player_market(lines2,"Player Fouls Won",["1+","2+","3+","4+","5+"],skip)
     if p: props["player_fouls_won"] = p
-
-    p = parse_player_market(lines2, "Player to Score",
-        ["to_score", "first", "last"], skip)
+    p = parse_player_market(lines2,"Player to Score",["to_score","first","last"],skip)
     if p: props["player_to_score"] = p
-
-    p = parse_player_market(lines2, "Player Shots",
-        ["1+", "2+", "3+", "4+", "5+", "6+"], skip)
+    p = parse_player_market(lines2,"Player Shots",["1+","2+","3+","4+","5+","6+"],skip)
     if p: props["player_shots"] = p
 
     if not props: return None
-
     return {
-        "match_id":  match.get("match_id", ""),
-        "event_id":  match.get("event_id", ""),
+        "match_id":  match.get("match_id",""),
+        "event_id":  match.get("event_id",""),
         "home":      home,
         "away":      away,
-        "kickoff":   match.get("kickoff", ""),
+        "kickoff":   match.get("kickoff",""),
         "bookmaker": "Midnite",
         "url":       url,
         "markets":   props,
     }
-
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 def main():
     print("=" * 60)
     print("Midnite — World Cup 2026 Props")
