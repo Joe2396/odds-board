@@ -363,33 +363,105 @@ def scrape_match(page, match):
 
     # Total Shots on Target — Combined, Home, Away
     expand_accordion(page, "Total Shots on Target")
-    select_filter(page, "Total Shots on Target", "Combined")
-    lines_r = get_lines(page)
-    d = parse_thresholds(lines_r, "Total Shots on Target")
-    if d: props["total_shots_on_target"] = d
-    select_filter(page, "Total Shots on Target", home)
-    lines_r = get_lines(page)
-    d = parse_thresholds(lines_r, "Total Shots on Target")
-    if d: props["home_shots_on_target"] = d
-    select_filter(page, "Total Shots on Target", away)
-    lines_r = get_lines(page)
-    d = parse_thresholds(lines_r, "Total Shots on Target")
-    if d: props["away_shots_on_target"] = d
+    for filter_name, prop_key in [("Combined","total_shots_on_target"), (home,"home_shots_on_target"), (away,"away_shots_on_target")]:
+        select_filter(page, "Total Shots on Target", filter_name)
+        # Re-expand if filter click collapsed accordion
+        d = page.evaluate(f"""
+            (() => {{
+                const el = Array.from(document.querySelectorAll('*'))
+                    .find(e => e.childElementCount===0 && e.innerText?.trim()==='Total Shots on Target');
+                if (!el) return null;
+                const sib = el.parentElement?.parentElement?.parentElement?.children[1];
+                if (!sib || sib.innerText.trim().length < 5) return null;
+                const lines = sib.innerText.split('\\n').map(l=>l.trim()).filter(Boolean);
+                const thresh = lines.filter(l => /\\d+\\+/.test(l));
+                const fracs  = lines.filter(l => /^\\d+\\/\\d+$/.test(l));
+                const result = {{}};
+                thresh.forEach((t,i) => {{
+                    const m = t.match(/(\\d+)\\+/);
+                    if (m && fracs[i]) {{
+                        const [a,b] = fracs[i].split('/').map(Number);
+                        result['over_' + m[1]] = Math.round((a/b + 1) * 10000) / 10000;
+                    }}
+                }});
+                return Object.keys(result).length ? result : null;
+            }})()
+        """)
+        if not d:
+            # Accordion closed — re-expand and try again
+            expand_accordion(page, "Total Shots on Target")
+            d = page.evaluate(f"""
+                (() => {{
+                    const el = Array.from(document.querySelectorAll('*'))
+                        .find(e => e.childElementCount===0 && e.innerText?.trim()==='Total Shots on Target');
+                    if (!el) return null;
+                    const sib = el.parentElement?.parentElement?.parentElement?.children[1];
+                    if (!sib) return null;
+                    const lines = sib.innerText.split('\\n').map(l=>l.trim()).filter(Boolean);
+                    const thresh = lines.filter(l => /\\d+\\+/.test(l));
+                    const fracs  = lines.filter(l => /^\\d+\\/\\d+$/.test(l));
+                    const result = {{}};
+                    thresh.forEach((t,i) => {{
+                        const m = t.match(/(\\d+)\\+/);
+                        if (m && fracs[i]) {{
+                            const [a,b] = fracs[i].split('/').map(Number);
+                            result['over_' + m[1]] = Math.round((a/b + 1) * 10000) / 10000;
+                        }}
+                    }});
+                    return Object.keys(result).length ? result : null;
+                }})()
+            """)
+        if d: props[prop_key] = d
 
     # Total Shots — Combined, Home, Away
     expand_accordion(page, "Total Shots")
-    select_filter(page, "Total Shots", "Combined")
-    lines_r = get_lines(page)
-    d = parse_thresholds(lines_r, "Total Shots")
-    if d: props["total_shots"] = d
-    select_filter(page, "Total Shots", home)
-    lines_r = get_lines(page)
-    d = parse_thresholds(lines_r, "Total Shots")
-    if d: props["home_shots"] = d
-    select_filter(page, "Total Shots", away)
-    lines_r = get_lines(page)
-    d = parse_thresholds(lines_r, "Total Shots")
-    if d: props["away_shots"] = d
+    for filter_name, prop_key in [("Combined","total_shots"), (home,"home_shots"), (away,"away_shots")]:
+        select_filter(page, "Total Shots", filter_name)
+        d = page.evaluate(f"""
+            (() => {{
+                const el = Array.from(document.querySelectorAll('*'))
+                    .find(e => e.childElementCount===0 && e.innerText?.trim()==='Total Shots');
+                if (!el) return null;
+                const sib = el.parentElement?.parentElement?.parentElement?.children[1];
+                if (!sib || sib.innerText.trim().length < 5) return null;
+                const lines = sib.innerText.split('\\n').map(l=>l.trim()).filter(Boolean);
+                const thresh = lines.filter(l => /\\d+\\+/.test(l));
+                const fracs  = lines.filter(l => /^\\d+\\/\\d+$/.test(l));
+                const result = {{}};
+                thresh.forEach((t,i) => {{
+                    const m = t.match(/(\\d+)\\+/);
+                    if (m && fracs[i]) {{
+                        const [a,b] = fracs[i].split('/').map(Number);
+                        result['over_' + m[1]] = Math.round((a/b + 1) * 10000) / 10000;
+                    }}
+                }});
+                return Object.keys(result).length ? result : null;
+            }})()
+        """)
+        if not d:
+            expand_accordion(page, "Total Shots")
+            d = page.evaluate(f"""
+                (() => {{
+                    const el = Array.from(document.querySelectorAll('*'))
+                        .find(e => e.childElementCount===0 && e.innerText?.trim()==='Total Shots');
+                    if (!el) return null;
+                    const sib = el.parentElement?.parentElement?.parentElement?.children[1];
+                    if (!sib) return null;
+                    const lines = sib.innerText.split('\\n').map(l=>l.trim()).filter(Boolean);
+                    const thresh = lines.filter(l => /\\d+\\+/.test(l));
+                    const fracs  = lines.filter(l => /^\\d+\\/\\d+$/.test(l));
+                    const result = {{}};
+                    thresh.forEach((t,i) => {{
+                        const m = t.match(/(\\d+)\\+/);
+                        if (m && fracs[i]) {{
+                            const [a,b] = fracs[i].split('/').map(Number);
+                            result['over_' + m[1]] = Math.round((a/b + 1) * 10000) / 10000;
+                        }}
+                    }});
+                    return Object.keys(result).length ? result : null;
+                }})()
+            """)
+        if d: props[prop_key] = d
 
     # ------------------------------------------------------------------ #
     # CARDS tab

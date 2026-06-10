@@ -1,7 +1,7 @@
 {
   "bookmaker": "Midnite",
   "competition": "FIFA World Cup 2026",
-  "scraped_at": "2026-06-10T17:50:05.503146+00:00",
+  "scraped_at": "2026-06-10T18:09:38.819278+00:00",
   "matches": [
     {
       "match_id": "mexico-v-south-africa",
@@ -53,14 +53,28 @@
           "draw_away": null
         },
         "total_shots_on_target": {
-          "over_19": 1.1667,
-          "over_20": 1.2222,
-          "over_21": 1.3,
-          "over_22": 1.3636,
-          "over_24": 1.6154,
-          "over_25": 1.8
+          "over_6": 1.1429,
+          "over_7": 1.25,
+          "over_8": 1.4444,
+          "over_9": 1.8,
+          "over_10": 2.3,
+          "over_11": 3.1
         },
         "home_shots_on_target": {
+          "over_4": 1.1538,
+          "over_5": 1.3333,
+          "over_6": 1.6667,
+          "over_7": 2.25,
+          "over_8": 3.25
+        },
+        "away_shots_on_target": {
+          "over_4": 1.1538,
+          "over_5": 1.3333,
+          "over_6": 1.6667,
+          "over_7": 2.25,
+          "over_8": 3.25
+        },
+        "total_shots": {
           "over_19": 1.1667,
           "over_20": 1.2222,
           "over_21": 1.3,
@@ -68,7 +82,15 @@
           "over_24": 1.6154,
           "over_25": 1.8
         },
-        "away_shots_on_target": {
+        "home_shots": {
+          "over_19": 1.1667,
+          "over_20": 1.2222,
+          "over_21": 1.3,
+          "over_22": 1.3636,
+          "over_24": 1.6154,
+          "over_25": 1.8
+        },
+        "away_shots": {
           "over_19": 1.1667,
           "over_20": 1.2222,
           "over_21": 1.3,
@@ -1369,14 +1391,30 @@
           "draw_away": null
         },
         "total_shots_on_target": {
-          "over_23": 1.4444,
-          "over_24": 1.5714,
-          "over_25": 1.7,
-          "over_26": 1.85,
-          "over_27": 2.05,
-          "over_28": 2.3
+          "over_8": 1.3,
+          "over_9": 1.5,
+          "over_10": 1.75,
+          "over_11": 2.1,
+          "over_12": 2.625,
+          "over_13": 3.3
         },
         "home_shots_on_target": {
+          "over_3": 1.1429,
+          "over_4": 1.3333,
+          "over_5": 1.6667,
+          "over_6": 2.2,
+          "over_7": 3.1,
+          "over_8": 4.6
+        },
+        "away_shots_on_target": {
+          "over_3": 1.1538,
+          "over_4": 1.3636,
+          "over_5": 1.7273,
+          "over_6": 2.3,
+          "over_7": 3.4,
+          "over_8": 5
+        },
+        "total_shots": {
           "over_23": 1.4444,
           "over_24": 1.5714,
           "over_25": 1.7,
@@ -1384,7 +1422,15 @@
           "over_27": 2.05,
           "over_28": 2.3
         },
-        "away_shots_on_target": {
+        "home_shots": {
+          "over_23": 1.4444,
+          "over_24": 1.5714,
+          "over_25": 1.7,
+          "over_26": 1.85,
+          "over_27": 2.05,
+          "over_28": 2.3
+        },
+        "away_shots": {
           "over_23": 1.4444,
           "over_24": 1.5714,
           "over_25": 1.7,
@@ -3011,14 +3057,30 @@
           "draw_away": null
         },
         "total_shots_on_target": {
-          "over_22": 1.1818,
-          "over_23": 1.25,
-          "over_24": 1.3,
-          "over_25": 1.3636,
-          "over_26": 1.4444,
-          "over_27": 1.6
+          "over_7": 1.2222,
+          "over_8": 1.3636,
+          "over_9": 1.6154,
+          "over_10": 2,
+          "over_11": 2.625,
+          "over_12": 3.5
         },
         "home_shots_on_target": {
+          "over_3": 1.0909,
+          "over_4": 1.2222,
+          "over_5": 1.4444,
+          "over_6": 1.9091,
+          "over_7": 2.7,
+          "over_8": 4
+        },
+        "away_shots_on_target": {
+          "over_2": 1.125,
+          "over_3": 1.3636,
+          "over_4": 1.85,
+          "over_5": 2.8,
+          "over_6": 4.6,
+          "over_7": 8
+        },
+        "total_shots": {
           "over_22": 1.1818,
           "over_23": 1.25,
           "over_24": 1.3,
@@ -3026,7 +3088,15 @@
           "over_26": 1.4444,
           "over_27": 1.6
         },
-        "away_shots_on_target": {
+        "home_shots": {
+          "over_22": 1.1818,
+          "over_23": 1.25,
+          "over_24": 1.3,
+          "over_25": 1.3636,
+          "over_26": 1.4444,
+          "over_27": 1.6
+        },
+        "away_shots": {
           "over_22": 1.1818,
           "over_23": 1.25,
           "over_24": 1.3,
@@ -3104,7 +3174,7 @@
           "Joel Waterman": {
             "carded_anytime": 3.3,
             "sent_off_anytime": 34.0,
-            "carded_first": 17.0
+            "carded_first": 19.0
           },
           "Richie Laryea": {
             "carded_anytime": 3.6,
@@ -3266,13 +3336,13 @@
             "sent_off_anytime": 11.0,
             "carded_first": 12.0
           },
-          "Esmir Bajraktarevic": {
-            "carded_anytime": 5.5,
+          "Edin Dzeko": {
+            "carded_anytime": 5.25,
             "sent_off_anytime": 12.0,
             "carded_first": 11.0
           },
-          "Edin Dzeko": {
-            "carded_anytime": 5.25,
+          "Esmir Bajraktarevic": {
+            "carded_anytime": 5.5,
             "sent_off_anytime": 11.0,
             "carded_first": 12.0
           },
@@ -3292,7 +3362,7 @@
             "carded_first": 13.0
           },
           "Mladen Jurkas": {
-            "carded_anytime": 9.0,
+            "carded_anytime": 8.5,
             "sent_off_anytime": 12.0,
             "carded_first": 13.0
           },
@@ -4399,27 +4469,49 @@
           "draw_away": null
         },
         "total_shots_on_target": {
-          "over_19": 1.2857,
-          "over_20": 1.3636,
-          "over_21": 1.4444,
-          "over_22": 1.6154,
-          "over_24": 2.0,
-          "over_25": 2.25
+          "over_6": 1.2,
+          "over_7": 1.3636,
+          "over_8": 1.6667,
+          "over_9": 2.1,
+          "over_10": 2.8,
+          "over_11": 3.9
         },
         "home_shots_on_target": {
-          "over_19": 1.2857,
-          "over_20": 1.3636,
-          "over_21": 1.4444,
-          "over_22": 1.6154,
-          "over_24": 2.0,
-          "over_25": 2.25
+          "over_3": 1.2,
+          "over_4": 1.4444,
+          "over_5": 2,
+          "over_6": 3,
+          "over_7": 4.8
         },
         "away_shots_on_target": {
+          "over_3": 1.2,
+          "over_4": 1.4444,
+          "over_5": 2,
+          "over_6": 3,
+          "over_7": 4.8
+        },
+        "total_shots": {
           "over_19": 1.2857,
           "over_20": 1.3636,
           "over_21": 1.4444,
           "over_22": 1.6154,
-          "over_24": 2.0,
+          "over_24": 2,
+          "over_25": 2.25
+        },
+        "home_shots": {
+          "over_19": 1.2857,
+          "over_20": 1.3636,
+          "over_21": 1.4444,
+          "over_22": 1.6154,
+          "over_24": 2,
+          "over_25": 2.25
+        },
+        "away_shots": {
+          "over_19": 1.2857,
+          "over_20": 1.3636,
+          "over_21": 1.4444,
+          "over_22": 1.6154,
+          "over_24": 2,
           "over_25": 2.25
         },
         "total_cards": {
@@ -4498,6 +4590,10 @@
             "carded_anytime": 4.0,
             "sent_off_anytime": 12.0
           },
+          "Gustavo Gomez": {
+            "carded_anytime": 4.2,
+            "sent_off_anytime": 12.0
+          },
           "Haji Wright": {
             "carded_anytime": 4.2,
             "sent_off_anytime": 12.0
@@ -4520,10 +4616,6 @@
           },
           "Brenden Aaronson": {
             "carded_anytime": 4.0,
-            "sent_off_anytime": 12.0
-          },
-          "Gustavo Gomez": {
-            "carded_anytime": 4.2,
             "sent_off_anytime": 12.0
           },
           "Juan Jose Caceres": {
@@ -5881,14 +5973,26 @@
           "draw_away": null
         },
         "total_shots_on_target": {
-          "over_22": 1.4444,
-          "over_23": 1.6,
-          "over_24": 1.75,
-          "over_25": 1.9091,
-          "over_26": 2.15,
-          "over_27": 2.4
+          "over_8": 1.4,
+          "over_9": 1.7273,
+          "over_10": 2.15,
+          "over_11": 2.8,
+          "over_12": 3.8,
+          "over_13": 5.25
         },
         "home_shots_on_target": {
+          "over_2": 1.4,
+          "over_3": 2.2,
+          "over_4": 3.9,
+          "over_5": 7.5
+        },
+        "away_shots_on_target": {
+          "over_2": 1.4,
+          "over_3": 2.2,
+          "over_4": 3.9,
+          "over_5": 7.5
+        },
+        "total_shots": {
           "over_22": 1.4444,
           "over_23": 1.6,
           "over_24": 1.75,
@@ -5896,7 +6000,15 @@
           "over_26": 2.15,
           "over_27": 2.4
         },
-        "away_shots_on_target": {
+        "home_shots": {
+          "over_22": 1.4444,
+          "over_23": 1.6,
+          "over_24": 1.75,
+          "over_25": 1.9091,
+          "over_26": 2.15,
+          "over_27": 2.4
+        },
+        "away_shots": {
           "over_22": 1.4444,
           "over_23": 1.6,
           "over_24": 1.75,
@@ -7168,28 +7280,50 @@
           "draw_away": null
         },
         "total_shots_on_target": {
-          "over_23": 1.5,
-          "over_24": 1.6667,
-          "over_25": 1.8333,
-          "over_26": 2.05,
-          "over_27": 2.3,
-          "over_28": 2.625
+          "over_7": 1.25,
+          "over_8": 1.4444,
+          "over_9": 1.8,
+          "over_10": 2.3,
+          "over_11": 3.1,
+          "over_12": 4.3333
         },
         "home_shots_on_target": {
-          "over_23": 1.5,
-          "over_24": 1.6667,
-          "over_25": 1.8333,
-          "over_26": 2.05,
-          "over_27": 2.3,
-          "over_28": 2.625
+          "over_4": 1.25,
+          "over_5": 1.5333,
+          "over_6": 2.05,
+          "over_7": 2.9,
+          "over_8": 4.6
         },
         "away_shots_on_target": {
+          "over_4": 1.25,
+          "over_5": 1.5333,
+          "over_6": 2.05,
+          "over_7": 2.9,
+          "over_8": 4.6
+        },
+        "total_shots": {
           "over_23": 1.5,
           "over_24": 1.6667,
           "over_25": 1.8333,
-          "over_26": 2.05,
+          "over_26": 2,
           "over_27": 2.3,
-          "over_28": 2.625
+          "over_28": 2.6
+        },
+        "home_shots": {
+          "over_23": 1.5,
+          "over_24": 1.6667,
+          "over_25": 1.8333,
+          "over_26": 2,
+          "over_27": 2.3,
+          "over_28": 2.6
+        },
+        "away_shots": {
+          "over_23": 1.5,
+          "over_24": 1.6667,
+          "over_25": 1.8333,
+          "over_26": 2,
+          "over_27": 2.3,
+          "over_28": 2.6
         },
         "total_cards": {
           "over_3": 1.0909,
@@ -8379,11 +8513,11 @@
           "Lucas Paqueta": {
             "1+": 1.125
           },
-          "Rayan": {
-            "1+": 1.05
-          },
           "Casemiro": {
             "1+": 1.2
+          },
+          "Rayan": {
+            "1+": 1.05
           },
           "Soufiane Rahimi": {
             "1+": 1.1111
@@ -8525,14 +8659,28 @@
           "draw_away": null
         },
         "total_shots_on_target": {
-          "over_22": 1.3,
-          "over_23": 1.3636,
-          "over_24": 1.4444,
-          "over_25": 1.6,
-          "over_26": 1.75,
-          "over_27": 1.9091
+          "over_8": 1.3333,
+          "over_9": 1.5714,
+          "over_10": 1.95,
+          "over_11": 2.45,
+          "over_12": 3.3,
+          "over_13": 4.6
         },
         "home_shots_on_target": {
+          "over_2": 1.1667,
+          "over_3": 1.5,
+          "over_4": 2.15,
+          "over_5": 3.4,
+          "over_6": 6
+        },
+        "away_shots_on_target": {
+          "over_2": 1.1667,
+          "over_3": 1.5,
+          "over_4": 2.15,
+          "over_5": 3.4,
+          "over_6": 6
+        },
+        "total_shots": {
           "over_22": 1.3,
           "over_23": 1.3636,
           "over_24": 1.4444,
@@ -8540,7 +8688,15 @@
           "over_26": 1.75,
           "over_27": 1.9091
         },
-        "away_shots_on_target": {
+        "home_shots": {
+          "over_22": 1.3,
+          "over_23": 1.3636,
+          "over_24": 1.4444,
+          "over_25": 1.6,
+          "over_26": 1.75,
+          "over_27": 1.9091
+        },
+        "away_shots": {
           "over_22": 1.3,
           "over_23": 1.3636,
           "over_24": 1.4444,
@@ -8611,10 +8767,10 @@
           "Lenny Alvin Pico Joseph": {
             "carded_anytime": 4.3333
           },
-          "Findlay Kenneth Curtis": {
-            "carded_anytime": 4.0
-          },
           "Ross Stewart": {
+            "carded_anytime": 4.2
+          },
+          "Findlay Kenneth Curtis": {
             "carded_anytime": 4.2
           },
           "Don Deedson Louicius": {
@@ -8630,7 +8786,7 @@
             "carded_anytime": 4.6
           },
           "Hannes Delcroix": {
-            "carded_anytime": 3.9
+            "carded_anytime": 4.0
           },
           "Wilguens Paugain": {
             "carded_anytime": 4.0
@@ -9865,28 +10021,48 @@
           "draw_away": null
         },
         "total_shots_on_target": {
-          "over_24": 1.6667,
-          "over_25": 1.85,
-          "over_26": 2.05,
-          "over_27": 2.3,
-          "over_28": 2.625,
-          "over_29": 3.0
+          "over_7": 1.3333,
+          "over_8": 1.6154,
+          "over_9": 2,
+          "over_10": 2.625,
+          "over_11": 3.6,
+          "over_12": 5.25
         },
         "home_shots_on_target": {
-          "over_24": 1.6667,
-          "over_25": 1.85,
-          "over_26": 2.05,
-          "over_27": 2.3,
-          "over_28": 2.625,
-          "over_29": 3.0
+          "over_3": 1.5,
+          "over_4": 2.2,
+          "over_5": 3.5,
+          "over_6": 6.25
         },
         "away_shots_on_target": {
+          "over_3": 1.5,
+          "over_4": 2.2,
+          "over_5": 3.5,
+          "over_6": 6.25
+        },
+        "total_shots": {
           "over_24": 1.6667,
           "over_25": 1.85,
           "over_26": 2.05,
           "over_27": 2.3,
           "over_28": 2.625,
-          "over_29": 3.0
+          "over_29": 3
+        },
+        "home_shots": {
+          "over_24": 1.6667,
+          "over_25": 1.85,
+          "over_26": 2.05,
+          "over_27": 2.3,
+          "over_28": 2.625,
+          "over_29": 3
+        },
+        "away_shots": {
+          "over_24": 1.6667,
+          "over_25": 1.85,
+          "over_26": 2.05,
+          "over_27": 2.3,
+          "over_28": 2.625,
+          "over_29": 3
         },
         "total_cards": {
           "over_3": 1.1538,
@@ -11521,6 +11697,10 @@
             "to_score": 19.0,
             "first": 19.0
           },
+          "Kenji Gorre": {
+            "to_score": 21.0,
+            "first": 19.0
+          },
           "Tahith Chong": {
             "to_score": 21.0,
             "first": 19.0
@@ -11531,10 +11711,6 @@
           },
           "Sontje Hansen": {
             "to_score": 21.0,
-            "first": 19.0
-          },
-          "Kenji Gorre": {
-            "to_score": 23.0,
             "first": 19.0
           },
           "Malick Thiaw": {
@@ -11672,11 +11848,11 @@
         },
         "player_to_score": {
           "Memphis Depay": {
-            "to_score": 4.8,
+            "to_score": 5.0,
             "first": 4.8
           },
           "Koki Ogawa": {
-            "to_score": 5.25,
+            "to_score": 5.5,
             "first": 5.25
           },
           "Donyell Malen": {
@@ -11687,48 +11863,44 @@
             "to_score": 6.0,
             "first": 5.75
           },
-          "Cody Gakpo": {
-            "to_score": 6.5,
-            "first": 6.0
-          },
-          "Ayase Ueda": {
-            "to_score": 6.5,
-            "first": 6.25
-          },
           "Brian Brobbey": {
             "to_score": 6.5,
             "first": 6.5
           },
-          "Keisuke Goto": {
+          "Ayase Ueda": {
             "to_score": 7.0,
+            "first": 6.25
+          },
+          "Cody Gakpo": {
+            "to_score": 7.5,
+            "first": 6.0
+          },
+          "Keisuke Goto": {
+            "to_score": 7.5,
             "first": 6.5
           },
-          "Crysencio Summerville": {
+          "Guus Til": {
             "to_score": 8.0,
-            "first": 8.0
+            "first": 9.0
           },
-          "Kento Shiogai": {
+          "Crysencio Summerville": {
             "to_score": 8.5,
-            "first": 8.0
+            "first": 8.5
           },
           "Noa Lang": {
             "to_score": 8.5,
             "first": 8.5
           },
-          "Guus Til": {
-            "to_score": 8.5,
-            "first": 9.0
-          },
-          "Justin Kluivert": {
-            "to_score": 10.0,
-            "first": 10.0
+          "Kento Shiogai": {
+            "to_score": 9.5,
+            "first": 8.0
           },
           "Takefusa Kubo": {
             "to_score": 10.0,
             "first": 10.0
           },
-          "Tijjani Reijnders": {
-            "to_score": 10.0,
+          "Justin Kluivert": {
+            "to_score": 11.0,
             "first": 10.0
           },
           "Yuito Suzuki": {
@@ -11747,6 +11919,10 @@
             "to_score": 11.0,
             "first": 11.0
           },
+          "Tijjani Reijnders": {
+            "to_score": 11.0,
+            "first": 11.0
+          },
           "Keito Nakamura": {
             "to_score": 13.0,
             "first": 12.0
@@ -11759,13 +11935,13 @@
             "to_score": 15.0,
             "first": 13.0
           },
-          "Denzel Dumfries": {
-            "to_score": 15.0,
-            "first": 15.0
-          },
           "Quinten Timber": {
-            "to_score": 15.0,
+            "to_score": 13.0,
             "first": 17.0
+          },
+          "Denzel Dumfries": {
+            "to_score": 17.0,
+            "first": 15.0
           },
           "Mats Wieffer": {
             "to_score": 17.0,
@@ -11776,7 +11952,7 @@
             "first": 17.0
           },
           "Virgil Van Dijk": {
-            "to_score": 19.0,
+            "to_score": 21.0,
             "first": 17.0
           },
           "Marten De Roon": {
@@ -11784,19 +11960,19 @@
             "first": 19.0
           },
           "Frenkie De Jong": {
-            "to_score": 23.0,
+            "to_score": 21.0,
+            "first": 23.0
+          },
+          "Ryan Gravenberch": {
+            "to_score": 21.0,
             "first": 23.0
           },
           "Micky Van De Ven": {
             "to_score": 23.0,
             "first": 23.0
           },
-          "Ryan Gravenberch": {
-            "to_score": 23.0,
-            "first": 23.0
-          },
           "Nathan Ake": {
-            "to_score": 26.0,
+            "to_score": 29.0,
             "first": 23.0
           },
           "Wataru Endo": {
@@ -11807,19 +11983,15 @@
             "to_score": 26.0,
             "first": 26.0
           },
-          "Lutsharel Geertruida": {
-            "to_score": 29.0,
-            "first": 26.0
+          "Jorrel Hato": {
+            "to_score": 23.0,
+            "first": 29.0
           },
           "Jan Paul Van Hecke": {
             "to_score": 26.0,
             "first": 29.0
           },
-          "Jorrel Hato": {
-            "to_score": 26.0,
-            "first": 29.0
-          },
-          "Ko Itakura": {
+          "Lutsharel Geertruida": {
             "to_score": 29.0,
             "first": 29.0
           },
@@ -11827,33 +11999,37 @@
             "to_score": 29.0,
             "first": 29.0
           },
-          "Kaishu Sano": {
-            "to_score": 29.0,
+          "Ko Itakura": {
+            "to_score": 34.0,
             "first": 29.0
           },
           "Shogo Taniguchi": {
             "to_score": 34.0,
             "first": 29.0
           },
-          "Takehiro Tomiyasu": {
+          "Kaishu Sano": {
             "to_score": 34.0,
-            "first": 34.0
+            "first": 29.0
           },
           "Tsuyoshi Watanabe": {
             "to_score": 34.0,
             "first": 34.0
           },
-          "Junnosuke Suzuki": {
+          "Hiroki Ito": {
             "to_score": 34.0,
+            "first": 41.0
+          },
+          "Junnosuke Suzuki": {
+            "to_score": 41.0,
+            "first": 34.0
+          },
+          "Takehiro Tomiyasu": {
+            "to_score": 51.0,
             "first": 34.0
           },
           "Ayumu Seko": {
-            "to_score": 41.0,
+            "to_score": 51.0,
             "first": 34.0
-          },
-          "Hiroki Ito": {
-            "to_score": 41.0,
-            "first": 41.0
           }
         }
       }
@@ -12364,7 +12540,7 @@
         },
         "player_to_score": {
           "Mikel Oyarzabal": {
-            "to_score": 3.6,
+            "to_score": 3.8,
             "first": 3.6
           },
           "Ferran Torres": {
@@ -12372,18 +12548,18 @@
             "first": 3.8
           },
           "Borja Iglesias": {
-            "to_score": 4.0,
+            "to_score": 4.3333,
             "first": 4.0
           },
           "Lamine Yamal": {
             "to_score": 4.8,
             "first": 4.8
           },
-          "Dani Olmo": {
-            "to_score": 5.25,
+          "Nico Williams": {
+            "to_score": 5.5,
             "first": 5.25
           },
-          "Nico Williams": {
+          "Dani Olmo": {
             "to_score": 5.5,
             "first": 5.25
           },
@@ -12391,16 +12567,16 @@
             "to_score": 5.75,
             "first": 5.75
           },
-          "Alex Baena": {
-            "to_score": 6.0,
-            "first": 5.75
-          },
           "Victor Munoz": {
             "to_score": 6.0,
             "first": 6.0
           },
+          "Alex Baena": {
+            "to_score": 6.5,
+            "first": 5.75
+          },
           "Mikel Merino": {
-            "to_score": 6.25,
+            "to_score": 6.5,
             "first": 6.0
           },
           "Fabian Ruiz": {
@@ -12415,13 +12591,13 @@
             "to_score": 11.0,
             "first": 11.0
           },
-          "Dailon Livramento": {
-            "to_score": 12.0,
-            "first": 11.0
-          },
           "Benchimol": {
             "to_score": 12.0,
             "first": 12.0
+          },
+          "Dailon Livramento": {
+            "to_score": 13.0,
+            "first": 11.0
           },
           "Rodri": {
             "to_score": 13.0,
@@ -12432,72 +12608,68 @@
             "first": 12.0
           },
           "Nuno Da Costa": {
-            "to_score": 15.0,
+            "to_score": 17.0,
             "first": 13.0
           },
-          "Willy Semedo": {
-            "to_score": 17.0,
-            "first": 15.0
+          "Alejandro Grimaldo": {
+            "to_score": 15.0,
+            "first": 17.0
           },
           "Garry Rodrigues": {
-            "to_score": 17.0,
+            "to_score": 19.0,
             "first": 15.0
-          },
-          "Ryan Mendes": {
-            "to_score": 17.0,
-            "first": 15.0
-          },
-          "Alejandro Grimaldo": {
-            "to_score": 17.0,
-            "first": 17.0
           },
           "Marcos Llorente": {
             "to_score": 19.0,
             "first": 17.0
           },
-          "Jovane Cabral": {
-            "to_score": 19.0,
-            "first": 17.0
+          "Willy Semedo": {
+            "to_score": 21.0,
+            "first": 15.0
           },
-          "Eric Garcia": {
-            "to_score": 19.0,
+          "Ryan Mendes": {
+            "to_score": 21.0,
+            "first": 15.0
+          },
+          "Jovane Cabral": {
+            "to_score": 21.0,
             "first": 17.0
           },
           "Pedro Porro": {
             "to_score": 19.0,
             "first": 19.0
           },
-          "Helio Varela": {
-            "to_score": 21.0,
+          "Marc Cucurella": {
+            "to_score": 19.0,
+            "first": 21.0
+          },
+          "Eric Garcia": {
+            "to_score": 23.0,
             "first": 17.0
           },
-          "Marc Cucurella": {
-            "to_score": 21.0,
-            "first": 21.0
-          },
-          "Marc Pubill Pages": {
-            "to_score": 21.0,
-            "first": 21.0
-          },
-          "Telmo Arcanjo": {
-            "to_score": 23.0,
-            "first": 21.0
+          "Helio Varela": {
+            "to_score": 26.0,
+            "first": 17.0
           },
           "Aymeric Laporte": {
             "to_score": 23.0,
             "first": 23.0
           },
+          "Marc Pubill Pages": {
+            "to_score": 21.0,
+            "first": 26.0
+          },
+          "Telmo Arcanjo": {
+            "to_score": 29.0,
+            "first": 21.0
+          },
           "Jamiro Monteiro": {
-            "to_score": 26.0,
+            "to_score": 29.0,
             "first": 23.0
           },
           "Pau Cubarsi": {
             "to_score": 26.0,
             "first": 26.0
-          },
-          "Laros Michael D'Encarnacoo Duarte": {
-            "to_score": 34.0,
-            "first": 29.0
           },
           "Sidny Lopes Cabral": {
             "to_score": 34.0,
@@ -12507,9 +12679,9 @@
             "to_score": 34.0,
             "first": 34.0
           },
-          "Deroy D'Encarnacao Duarte": {
+          "Laros Michael D'Encarnacoo Duarte": {
             "to_score": 41.0,
-            "first": 41.0
+            "first": 29.0
           },
           "Kevin Lenini Goncalves Pereira de Pina": {
             "to_score": 41.0,
@@ -12519,8 +12691,8 @@
             "to_score": 41.0,
             "first": 41.0
           },
-          "Ianique dos Santos Tavares": {
-            "to_score": 41.0,
+          "Deroy D'Encarnacao Duarte": {
+            "to_score": 51.0,
             "first": 41.0
           },
           "Steven Moreira": {
@@ -12544,6 +12716,10 @@
             "first": 51.0
           },
           "Kelvin Spencer Pires": {
+            "to_score": 51.0,
+            "first": 51.0
+          },
+          "Ianique dos Santos Tavares": {
             "to_score": 51.0,
             "first": 51.0
           }
@@ -12606,7 +12782,7 @@
         },
         "player_to_score": {
           "Romelu Lukaku": {
-            "to_score": 4.3333,
+            "to_score": 4.2,
             "first": 26.0,
             "last": 10.0
           },
@@ -12616,27 +12792,32 @@
             "last": 11.0
           },
           "Kevin De Bruyne": {
+            "to_score": 6.25,
+            "first": 29.0,
+            "last": 13.0
+          },
+          "Leandro Trossard": {
             "to_score": 6.5,
             "first": 29.0,
             "last": 13.0
           },
           "Dodi Lukebakio": {
             "to_score": 6.5,
-            "first": 29.0,
-            "last": 15.0
+            "first": 34.0,
+            "last": 13.0
           },
           "Matias Fernandez": {
-            "to_score": 6.25,
-            "first": 26.0,
-            "last": 15.0
-          },
-          "Leandro Trossard": {
-            "to_score": 7.0,
-            "first": 26.0,
+            "to_score": 6.5,
+            "first": 29.0,
             "last": 15.0
           },
           "Jeremy Doku": {
             "to_score": 7.0,
+            "first": 29.0,
+            "last": 15.0
+          },
+          "Mohamed Salah": {
+            "to_score": 7.5,
             "first": 34.0,
             "last": 15.0
           },
@@ -12645,28 +12826,23 @@
             "first": 34.0,
             "last": 15.0
           },
-          "Mohamed Salah": {
-            "to_score": 8.5,
-            "first": 34.0,
-            "last": 17.0
-          },
           "Hamza Mohamed Abdelkarim Selim": {
             "to_score": 8.0,
-            "first": 41.0,
+            "first": 34.0,
             "last": 15.0
           },
           "Alexis Saelemaekers": {
             "to_score": 8.5,
-            "first": 41.0,
+            "first": 34.0,
             "last": 17.0
           },
           "Omar Marmoush": {
-            "to_score": 9.5,
-            "first": 41.0,
+            "to_score": 9.0,
+            "first": 34.0,
             "last": 19.0
           },
           "Diego Moreira": {
-            "to_score": 10.0,
+            "to_score": 9.5,
             "first": 41.0,
             "last": 19.0
           },
@@ -12681,8 +12857,8 @@
             "last": 23.0
           },
           "Youri Tielemans": {
-            "to_score": 12.0,
-            "first": 4.0,
+            "to_score": 11.0,
+            "first": 4.2,
             "last": 26.0
           },
           "Ibrahim Adel": {
@@ -12690,43 +12866,43 @@
             "first": 6.0,
             "last": 29.0
           },
-          "Thomas Meunier": {
-            "to_score": 15.0,
+          "Zizo": {
+            "to_score": 13.0,
             "first": 6.25,
             "last": 29.0
           },
-          "Nicolas Raskin": {
-            "to_score": 13.0,
-            "first": 6.5,
-            "last": 29.0
-          },
-          "Haissem Hassan": {
-            "to_score": 13.0,
-            "first": 7.0,
-            "last": 34.0
-          },
-          "Zizo": {
-            "to_score": 13.0,
-            "first": 6.5,
-            "last": 34.0
-          },
-          "Axel Witsel": {
+          "Thomas Meunier": {
             "to_score": 15.0,
-            "first": 7.0,
-            "last": 26.0
-          },
-          "Amadou Onana": {
-            "to_score": 15.0,
-            "first": 7.0,
+            "first": 6.5,
             "last": 29.0
           },
           "Maxim De Cuyper": {
             "to_score": 15.0,
-            "first": 7.5,
+            "first": 6.5,
+            "last": 26.0
+          },
+          "Axel Witsel": {
+            "to_score": 15.0,
+            "first": 7.0,
+            "last": 34.0
+          },
+          "Nicolas Raskin": {
+            "to_score": 15.0,
+            "first": 7.0,
+            "last": 34.0
+          },
+          "Haissem Hassan": {
+            "to_score": 15.0,
+            "first": 7.0,
+            "last": 29.0
+          },
+          "Amadou Onana": {
+            "to_score": 15.0,
+            "first": 7.0,
             "last": 34.0
           },
           "Mahmoud Saber": {
-            "to_score": 17.0,
+            "to_score": 15.0,
             "first": 8.0,
             "last": 34.0
           },
@@ -12735,23 +12911,23 @@
             "first": 8.5,
             "last": 34.0
           },
-          "Joaquin Seys": {
-            "to_score": 23.0,
+          "Brandon Mechele": {
+            "to_score": 21.0,
             "first": 8.5,
             "last": 34.0
           },
-          "Brandon Mechele": {
-            "to_score": 26.0,
+          "Joaquin Seys": {
+            "to_score": 21.0,
             "first": 9.0,
             "last": 34.0
           },
           "Arthur Theate": {
-            "to_score": 26.0,
+            "to_score": 23.0,
             "first": 10.0,
             "last": 34.0
           },
           "Timothy Castagne": {
-            "to_score": 29.0,
+            "to_score": 26.0,
             "first": 10.0,
             "last": 41.0
           }
