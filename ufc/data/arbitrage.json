@@ -16,10 +16,32 @@
       "fighters": {
         "Anis Bouzid": {
           "best_bookmaker": "Grosvenor",
+          "best_price": 2.4,
+          "implied_probability": 41.67
+        },
+        "Antonio Plazibat": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.5,
+          "implied_probability": 66.67
+        }
+      },
+      "arb_sum": 1.083333,
+      "is_arbitrage": false,
+      "profit_margin_percent": -8.33
+    },
+    {
+      "type": "moneyline",
+      "event_id": "76e0ab91ff0acccd626ca43b405134e4",
+      "commence_time": "2026-06-13T14:30:00Z",
+      "fight": "Artem Vakhitov vs Michael Boapeah",
+      "market": "Moneyline",
+      "fighters": {
+        "Artem Vakhitov": {
+          "best_bookmaker": "Grosvenor",
           "best_price": 2.0,
           "implied_probability": 50.0
         },
-        "Antonio Plazibat": {
+        "Michael Boapeah": {
           "best_bookmaker": "Grosvenor",
           "best_price": 1.7,
           "implied_probability": 58.82
@@ -31,28 +53,6 @@
     },
     {
       "type": "moneyline",
-      "event_id": "76e0ab91ff0acccd626ca43b405134e4",
-      "commence_time": "2026-06-13T14:30:00Z",
-      "fight": "Artem Vakhitov vs Michael Boapeah",
-      "market": "Moneyline",
-      "fighters": {
-        "Artem Vakhitov": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.89,
-          "implied_probability": 52.91
-        },
-        "Michael Boapeah": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.8,
-          "implied_probability": 55.56
-        }
-      },
-      "arb_sum": 1.084656,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.47
-    },
-    {
-      "type": "moneyline",
       "event_id": "ac491bc81999ace2aae1e01d6ea9ec8a",
       "commence_time": "2026-06-13T14:30:00Z",
       "fight": "Bahram Rajabzadeh vs Mohamed Touchassie",
@@ -60,18 +60,18 @@
       "fighters": {
         "Bahram Rajabzadeh": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 1.74,
-          "implied_probability": 57.47
+          "best_price": 1.62,
+          "implied_probability": 61.73
         },
         "Mohamed Touchassie": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 1.94,
-          "implied_probability": 51.55
+          "best_price": 2.15,
+          "implied_probability": 46.51
         }
       },
-      "arb_sum": 1.090177,
+      "arb_sum": 1.0824,
       "is_arbitrage": false,
-      "profit_margin_percent": -9.02
+      "profit_margin_percent": -8.24
     },
     {
       "type": "moneyline",
@@ -82,18 +82,18 @@
       "fighters": {
         "Donovan Wisse": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 1.16,
-          "implied_probability": 86.21
+          "best_price": 1.13,
+          "implied_probability": 88.5
         },
         "Luis Tavares": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 4.5,
-          "implied_probability": 22.22
+          "best_price": 5.0,
+          "implied_probability": 20.0
         }
       },
-      "arb_sum": 1.084291,
+      "arb_sum": 1.084956,
       "is_arbitrage": false,
-      "profit_margin_percent": -8.43
+      "profit_margin_percent": -8.5
     },
     {
       "type": "moneyline",
@@ -104,18 +104,18 @@
       "fighters": {
         "Iliass Hammouche": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 2.2,
-          "implied_probability": 45.45
+          "best_price": 1.73,
+          "implied_probability": 57.8
         },
         "Mesud Selimovic": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 1.6,
-          "implied_probability": 62.5
+          "best_price": 1.96,
+          "implied_probability": 51.02
         }
       },
-      "arb_sum": 1.079545,
+      "arb_sum": 1.088239,
       "is_arbitrage": false,
-      "profit_margin_percent": -7.95
+      "profit_margin_percent": -8.82
     },
     {
       "type": "moneyline",
@@ -153,13 +153,13 @@
         },
         "Steve Garcia Jr.": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.36,
-          "implied_probability": 42.37
+          "best_price": 2.32,
+          "implied_probability": 43.1
         }
       },
-      "arb_sum": 1.015445,
+      "arb_sum": 1.02275,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.54
+      "profit_margin_percent": -2.28
     },
     {
       "type": "moneyline",
@@ -197,13 +197,13 @@
         },
         "Michael Chandler": {
           "best_bookmaker": "LiveScore Bet",
-          "best_price": 6.25,
-          "implied_probability": 16.0
+          "best_price": 6.1,
+          "implied_probability": 16.39
         }
       },
-      "arb_sum": 1.007458,
+      "arb_sum": 1.011392,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.75
+      "profit_margin_percent": -1.14
     },
     {
       "type": "moneyline",
@@ -219,13 +219,13 @@
         },
         "Josh Hokit": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.27,
-          "implied_probability": 78.74
+          "best_price": 1.28,
+          "implied_probability": 78.12
         }
       },
-      "arb_sum": 1.014674,
+      "arb_sum": 1.008523,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.47
+      "profit_margin_percent": -0.85
     },
     {
       "type": "moneyline",
@@ -258,18 +258,18 @@
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.04,
-          "implied_probability": 49.02
+          "best_price": 2.02,
+          "implied_probability": 49.5
         },
         "Ciryl Gane": {
-          "best_bookmaker": "Matchbook",
+          "best_bookmaker": "Betfair",
           "best_price": 1.95,
           "implied_probability": 51.28
         }
       },
-      "arb_sum": 1.003017,
+      "arb_sum": 1.00787,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.3
+      "profit_margin_percent": -0.79
     },
     {
       "type": "moneyline",
@@ -279,19 +279,19 @@
       "market": "Moneyline",
       "fighters": {
         "Ilia Topuria": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.21,
-          "implied_probability": 82.64
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.2,
+          "implied_probability": 83.33
         },
         "Justin Gaethje": {
           "best_bookmaker": "Betfair",
-          "best_price": 5.6,
-          "implied_probability": 17.86
+          "best_price": 5.5,
+          "implied_probability": 18.18
         }
       },
-      "arb_sum": 1.005018,
+      "arb_sum": 1.015152,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.5
+      "profit_margin_percent": -1.52
     },
     {
       "type": "moneyline",
