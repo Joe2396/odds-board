@@ -46,6 +46,23 @@ def load_json(path):
     try: return json.loads(path.read_text(encoding="utf-8"))
     except: return {}
 
+def decimal_to_fractional(value):
+    """Convert decimal odds to fractional string. e.g. 1.364 -> 4/11, 2.5 -> 3/2"""
+    from fractions import Fraction
+    try:
+        s = str(value or "").strip()
+        # Already fractional
+        if "/" in s or s.upper() in {"EVS","EVENS","EVEN"}:
+            return s
+        dec = float(s)
+        if dec <= 1:
+            return s
+        frac = Fraction(dec - 1).limit_denominator(100)
+        return f"{frac.numerator}/{frac.denominator}"
+    except:
+        return str(value or "")
+
+
 def fractional_to_decimal(value):
     value = str(value or "").strip().upper()
     if value in {"EVS","EVENS","EVEN"}: return 2.0
@@ -103,13 +120,35 @@ def normalize_prop_market_key(name):
         "first_goalscorer":"first_goalscorer","first_scorer":"first_goalscorer",
         "scorer_2_plus":"scorer_2_plus",
         "shots_on_target":"shots_on_target","player_s_shots_on_target":"shots_on_target",
-        "shots":"shots","player_s_shots":"shots",
+        "player_shots_on_target":"shots_on_target",
+        "shots":"shots","player_s_shots":"shots","player_shots":"shots",
         "player_to_assist":"player_to_assist","to_give_an_assist":"player_to_assist",
         "player_to_get_a_card":"player_to_get_a_card","to_get_a_card":"player_to_get_a_card",
         "player_fouls_committed":"player_fouls_committed","fouls_committed":"player_fouls_committed",
+        "player_to_commit_a_foul":"player_fouls_committed",
         "player_fouls_won":"player_fouls_won","fouls_won":"player_fouls_won",
+        "player_to_be_fouled":"player_fouls_won",
         "total_shots_on_target":"total_shots_on_target","total_shots":"total_shots",
         "total_match_cards":"total_match_cards","total_cards":"total_match_cards",
+        "cards_over_under_markets":"total_match_cards","cards_over_under":"total_match_cards",
+        "corner_over_under_markets":"total_corners","corner_over_under":"total_corners","total_corners":"total_corners",
+        "player_shots_on_target_including_woodwork":"shots_on_target",
+        "player_shown_a_card":"player_to_get_a_card",
+        "player_shots_1_3":"shots","player_shots_4_6":"shots",
+        "player_booked":"player_to_get_a_card",
+        "player_fouls_conceded":"player_fouls_conceded",
+        "fouls_conceded":"player_fouls_conceded",
+        "player_s_fouls_conceded":"player_fouls_conceded",
+        "player_tackles_completed":"player_tackles_completed",
+        "tackles_completed":"player_tackles_completed",
+        "player_s_tackles_completed":"player_tackles_completed",
+        "team_with_most_corners":"team_with_most_corners",
+        "most_corners":"team_with_most_corners",
+        "team_most_corners":"team_with_most_corners",
+        "total_shots_on_target_over_under":"total_shots_on_target_over_under",
+        "total_corners_over_under":"total_corners_over_under",
+        "total_shots_over_under":"total_shots_over_under",
+        "total_cards_over_under":"total_match_cards",
     }.get(k,k)
 
 def pretty_market_name(name):
@@ -124,16 +163,30 @@ def pretty_market_name(name):
         "anytime_scorer":"Anytime Goalscorer","first_goalscorer":"First Goalscorer",
         "scorer_2_plus":"To Score 2+","shots_on_target":"Shots On Target",
         "shots":"Shots","player_to_assist":"To Assist","player_to_get_a_card":"To Get A Card",
+        "player_fouls_committed":"Fouls Committed","player_fouls_won":"Fouls Won",
     }.get(k, clean(name).replace("_"," ").title())
 
 PLAYER_MARKET_KEYS = {"anytime_scorer","first_goalscorer","scorer_2_plus",
                        "shots_on_target","shots","player_to_assist","player_to_get_a_card",
-                       "player_fouls_committed","player_fouls_won"}
+                       "player_fouls_committed","player_fouls_won",
+                       "player_fouls_conceded","player_tackles_completed"}
 MATCH_MARKET_KEYS  = {"match_betting","total_goals","first_half_goals","btts","btts_result",
                        "correct_score","double_chance","handicap","half_time_result","ht_ft",
                        "result_total_goals","one_goal_ahead",
-                       "total_shots_on_target","total_shots","total_match_cards"}
+                       "total_shots_on_target","total_shots","total_match_cards","total_corners",
+                       "team_with_most_corners",
+                       "total_shots_on_target_over_under","total_corners_over_under",
+                       "total_shots_over_under","total_cards_over_under",
+                       "brazil_shots_on_target_over_under","morocco_shots_on_target_over_under",
+                       "haiti_shots_on_target_over_under","scotland_shots_on_target_over_under",
+                       "qatar_shots_on_target_over_under","switzerland_shots_on_target_over_under"}
 GROUPED_OU_KEYS    = {"total_goals","first_half_goals"}
+
+# Markets that have threshold columns (1+, 2+, 3+)
+THRESHOLD_MARKETS = {"shots_on_target","shots","player_fouls_committed","player_fouls_won","player_fouls_conceded","player_tackles_completed"}
+
+# Line value → display label
+LINE_LABELS = {"0.5":"1+","1.5":"2+","2.5":"3+","3.5":"4+"}
 
 def is_player_market(name):
     return normalize_prop_market_key(name) in PLAYER_MARKET_KEYS
@@ -254,7 +307,6 @@ def load_book(bookmaker, path):
     return rows, generated
 
 def load_midnite_moneylines():
-    """Load Midnite moneylines — decimal odds schema, kickoff string as date."""
     data = load_json(MIDNITE_PATH)
     rows = []
     for m in data.get("matches") or []:
@@ -283,10 +335,11 @@ def load_midnite_moneylines():
     return rows
 
 def _dec_to_str(v):
-    """Return decimal odd as display string, empty if invalid."""
+    """Convert Midnite decimal odds to fractional string for consistent display."""
     try:
         f = float(v)
-        return f"{f:.4g}" if f > 1 else ""
+        if f <= 1 or f > 1001: return ""
+        return decimal_to_fractional(f"{f:.6g}")
     except:
         return ""
 
@@ -297,16 +350,14 @@ MIDNITE_JUNK_NAMES = {
 }
 
 def _is_valid_midnite_player(name):
-    """Return True if name looks like a real player, not a column header or team abbrev."""
     if not name: return False
     n = name.strip()
-    if re.match(r"^[A-Z]{2,4}(\s+\d+)?$", n): return False  # MEX, RSA, MEX 21
+    if re.match(r"^[A-Z]{2,4}(\s+\d+)?$", n): return False
     if n.lower() in MIDNITE_JUNK_NAMES: return False
     if len(n) < 4: return False
     return True
 
 def load_midnite_props():
-    """Load Midnite props — flat dict schema per market."""
     data = load_json(MIDNITE_PROPS_PATH)
     out  = {}
     for m in data.get("matches") or []:
@@ -317,7 +368,6 @@ def load_midnite_props():
         raw = m.get("markets") or {}
         markets = []
 
-        # Total Goals O/U
         tg = raw.get("total_goals")
         if isinstance(tg, dict):
             sels = []
@@ -331,7 +381,6 @@ def load_midnite_props():
                     sels.append({"selection":f"Under {line}","odds":_dec_to_str(v)})
             if sels: markets.append({"market":"Total Goals Over/Under","selections":sels})
 
-        # BTTS — main Yes/No only
         btts = raw.get("btts")
         if isinstance(btts, dict):
             sels = []
@@ -339,7 +388,6 @@ def load_midnite_props():
             if btts.get("no"):  sels.append({"selection":"Both Teams To Score - No","odds":_dec_to_str(btts["no"])})
             if sels: markets.append({"market":"Both Teams To Score","selections":sels})
 
-        # Double Chance
         dc = raw.get("double_chance")
         if isinstance(dc, dict):
             mapping = {
@@ -352,7 +400,6 @@ def load_midnite_props():
                 if dc.get(k): sels.append({"selection":label,"odds":_dec_to_str(dc[k])})
             if sels: markets.append({"market":"Double Chance","selections":sels})
 
-        # Half Time Result
         hr1 = raw.get("half_result_1h")
         if isinstance(hr1, dict):
             sels = []
@@ -361,7 +408,6 @@ def load_midnite_props():
             if hr1.get("away"): sels.append({"selection":away,"odds":_dec_to_str(hr1["away"])})
             if sels: markets.append({"market":"Half Time Result","selections":sels})
 
-        # Player Carded — Anytime (no " Anytime" suffix since market name already implies it)
         pc = raw.get("player_carded")
         if isinstance(pc, dict):
             sels = []
@@ -371,17 +417,22 @@ def load_midnite_props():
                     sels.append({"selection":player,"odds":_dec_to_str(pdata["carded_anytime"])})
             if sels: markets.append({"market":"To Get A Card","selections":sels})
 
-        # Player Shots on Target (1+)
         psot = raw.get("player_shots_on_target")
         if isinstance(psot, dict):
             sels = []
             for player, pdata in psot.items():
                 if not _is_valid_midnite_player(player): continue
-                if isinstance(pdata, dict) and pdata.get("1+"):
-                    sels.append({"selection":f"{player} Over 0.5 Shots On Target","odds":_dec_to_str(pdata["1+"])})
+                if isinstance(pdata, dict):
+                    for threshold, line in [("1+","0.5"),("2+","1.5"),("3+","2.5")]:
+                        if pdata.get(threshold):
+                            sels.append({
+                                "selection":f"{player} Over {line} Shots On Target",
+                                "odds":_dec_to_str(pdata[threshold]),
+                                "player": player, "line": line, "side": "over",
+                                "prop_type": "shots_on_target"
+                            })
             if sels: markets.append({"market":"Shots On Target","selections":sels})
 
-        # Player to Score — Anytime
         pts = raw.get("player_to_score")
         if isinstance(pts, dict):
             sels = []
@@ -391,27 +442,38 @@ def load_midnite_props():
                     sels.append({"selection":f"Anytime Goalscorer {player}","odds":_dec_to_str(pdata["to_score"])})
             if sels: markets.append({"market":"Anytime Goalscorer","selections":sels})
 
-        # Player Fouls Committed (1+)
         pfc = raw.get("player_fouls_committed")
         if isinstance(pfc, dict):
             sels = []
             for player, pdata in pfc.items():
                 if not _is_valid_midnite_player(player): continue
-                if isinstance(pdata, dict) and pdata.get("1+"):
-                    sels.append({"selection":f"{player} Over 0.5 Fouls","odds":_dec_to_str(pdata["1+"])})
+                if isinstance(pdata, dict):
+                    for threshold, line in [("1+","0.5"),("2+","1.5"),("3+","2.5")]:
+                        if pdata.get(threshold):
+                            sels.append({
+                                "selection":f"{player} Over {line} Fouls Committed",
+                                "odds":_dec_to_str(pdata[threshold]),
+                                "player": player, "line": line, "side": "over",
+                                "prop_type": "fouls_committed"
+                            })
             if sels: markets.append({"market":"Player Fouls Committed","selections":sels})
 
-        # Player Fouls Won (1+)
         pfw = raw.get("player_fouls_won")
         if isinstance(pfw, dict):
             sels = []
             for player, pdata in pfw.items():
                 if not _is_valid_midnite_player(player): continue
-                if isinstance(pdata, dict) and pdata.get("1+"):
-                    sels.append({"selection":f"{player} Over 0.5 Fouls Won","odds":_dec_to_str(pdata["1+"])})
+                if isinstance(pdata, dict):
+                    for threshold, line in [("1+","0.5"),("2+","1.5"),("3+","2.5")]:
+                        if pdata.get(threshold):
+                            sels.append({
+                                "selection":f"{player} Over {line} Fouls Won",
+                                "odds":_dec_to_str(pdata[threshold]),
+                                "player": player, "line": line, "side": "over",
+                                "prop_type": "fouls_won"
+                            })
             if sels: markets.append({"market":"Player Fouls Won","selections":sels})
 
-        # Total Shots on Target (combined match)
         tsot = raw.get("total_shots_on_target")
         if isinstance(tsot, dict):
             sels = []
@@ -420,17 +482,14 @@ def load_midnite_props():
                     sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
             if sels: markets.append({"market":"Total Shots On Target","selections":sels})
 
-        # Total Shots (combined match — skip per-team keys)
         ts = raw.get("total_shots")
         if isinstance(ts, dict):
             sels = []
-            # Only use combined keys (higher thresholds like 24+, 25+ etc)
             combined = {k: v for k, v in ts.items() if v and float(v) > 1}
             for k, v in sorted(combined.items(), key=lambda x: float(re.sub(r"[^\d\.]","",x[0]) or "0")):
                 sels.append({"selection":f"Over {k.replace('over_','')}+","odds":_dec_to_str(v)})
             if sels: markets.append({"market":"Total Shots","selections":sels})
 
-        # Total Match Cards
         tc = raw.get("total_cards")
         if isinstance(tc, dict):
             sels = []
@@ -472,7 +531,12 @@ def convert_market(raw, internal_name=""):
         sel_lower = sel.lower()
         if mk == "player_to_get_a_card" and ("shots" in sel_lower): continue
         if mk == "shots_on_target" and "card" in sel_lower: continue
-        sels.append({"selection":sel,"normalized_selection":normalize_text_key(sel),"odds":odds})
+        entry = {"selection":sel,"normalized_selection":normalize_text_key(sel),"odds":odds}
+        # Preserve player/line/prop_type fields if present
+        for field in ("player","line","side","prop_type","threshold"):
+            if rs.get(field):
+                entry[field] = rs[field]
+        sels.append(entry)
     if not name or not sels: return None
     return {"market":name,"normalized_market":mk,"selection_count":len(sels),"selections":sels}
 
@@ -948,32 +1012,42 @@ def render_match_props_page(fixture):
   <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
 </main></body></html>"""
 
-# ── Player Props page ──────────────────────────────────────────────────────────
-
-# ── Player Props helpers ───────────────────────────────────────────────────────
+# ── Player Props ───────────────────────────────────────────────────────────────
 
 PLAYER_MARKET_PAGES = [
-    ("anytime_scorer",        "Anytime Goalscorer",     "🥅"),
-    ("first_goalscorer",      "First Goalscorer",       "⚡"),
-    ("shots_on_target",       "Shots On Target",        "🎯"),
-    ("shots",                 "Total Shots",            "👟"),
-    ("player_to_get_a_card",  "Player Cards",           "🟨"),
-    ("player_fouls_committed","Fouls Committed",        "⚠️"),
-    ("player_fouls_won",      "Fouls Won",              "🤸"),
-    ("player_to_assist",      "To Assist",              "🅰️"),
+    ("anytime_scorer",        "Anytime Goalscorer",  "🥅"),
+    ("first_goalscorer",      "First Goalscorer",    "⚡"),
+    ("shots_on_target",       "Shots On Target",     "🎯"),
+    ("shots",                 "Total Shots",         "👟"),
+    ("player_to_get_a_card",  "Player Cards",        "🟨"),
+    ("player_fouls_committed","Fouls Committed",     "⚠️"),
+    ("player_fouls_won",      "Fouls Won",           "🤸"),
+    ("player_to_assist",      "To Assist",           "🅰️"),
+    ("player_tackles_completed","Tackles Completed",  "🦵"),
 ]
 
 def get_player_key(name):
-    """Normalise player name to a URL slug, stripping accents."""
     import unicodedata
     name = unicodedata.normalize("NFD", name.lower().strip())
     name = "".join(c for c in name if unicodedata.category(c) != "Mn")
     return re.sub(r"[^a-z0-9]+", "-", name).strip("-")
 
+def get_line_from_selection(sn):
+    """Extract threshold line (e.g. '0.5', '1.5') from a selection string."""
+    m = re.search(r"\b(?:over|under)\s+([\d.]+)", sn, re.I)
+    if m:
+        return m.group(1)
+    m2 = re.search(r"\b(\d)\+", sn)
+    if m2:
+        return str(float(m2.group(1)) - 0.5)
+    return None
+
 def build_player_index(props):
     """
-    Build a dict: player_key → {name, markets: {mk: {bk: {odds, decimal}}}}
-    Aggregates data for every player across all bookmakers.
+    player_key → {name, key, markets: {
+        mk: {threshold: {bk: {odds, decimal}}}   # for THRESHOLD_MARKETS
+        mk: {bk: {odds, decimal}}                 # for goalscorer/card markets
+    }}
     """
     players = {}
 
@@ -981,22 +1055,21 @@ def build_player_index(props):
         for market in pd.get("markets") or []:
             mn  = market.get("market", "")
             mk  = normalize_prop_market_key(mn)
-            if not is_player_market(mn): continue
+            if not is_player_market(mn):
+                continue
 
             for sel in market.get("selections") or []:
                 sn   = sel.get("selection", "")
                 odds = sel.get("odds", "")
                 dec  = fractional_to_decimal(odds)
-                if not sn or not odds or dec <= 1: continue
+                if not sn or not odds or dec <= 1:
+                    continue
 
-                # Extract player name from selection string
+                # ── Strip player name ────────────────────────────────────
                 player_name = sn
-
-                # Strip "Anytime Goalscorer " prefix (Midnite format)
                 if player_name.startswith("Anytime Goalscorer "):
                     player_name = player_name[19:].strip()
 
-                # Strip known suffixes - order matters, longest first
                 for suffix in [
                     " Anytime Goalscorer", " First Goalscorer", " Last Goalscorer",
                     " To Score 2 Or More Goals", " To Score 2+",
@@ -1004,34 +1077,37 @@ def build_player_index(props):
                     " Over 1.5 Shots On Target", " Over 0.5 Shots On Target",
                     " Over 3.5 Shots", " Over 2.5 Shots", " Over 1.5 Shots", " Over 0.5 Shots",
                     " Over 2.5 Fouls Won", " Over 1.5 Fouls Won", " Over 0.5 Fouls Won",
-                    " Over 2.5 Fouls", " Over 1.5 Fouls", " Over 0.5 Fouls",
-                    " Shots On Target", " To Assist", " To Get A Card", " Anytime",
+                    " Over 3.5 Fouls Committed", " Over 2.5 Fouls Committed", " Over 1.5 Fouls Committed", " Over 0.5 Fouls Committed",
+                    " Over 3.5 Fouls Conceded", " Over 2.5 Fouls Conceded", " Over 1.5 Fouls Conceded", " Over 0.5 Fouls Conceded",
+                    " Over 3.5 Player Fouls Conceded", " Over 2.5 Player Fouls Conceded", " Over 1.5 Player Fouls Conceded", " Over 0.5 Player Fouls Conceded",
+                    " Over 3.5 Player Tackles Completed", " Over 2.5 Player Tackles Completed", " Over 1.5 Player Tackles Completed", " Over 0.5 Player Tackles Completed",
+                    " Over 3.5 Fouls", " Over 2.5 Fouls", " Over 1.5 Fouls", " Over 0.5 Fouls",
+                    " Player Fouls Conceded", " Player Tackles Completed",
+                    " 3+ Shots On Target", " 2+ Shots On Target", " 1+ Shots On Target",
+                    " 3+ Shots", " 2+ Shots", " 1+ Shots",
+                    " Shots On Target", " To Assist", " To Get A Card",
+                    " To Commit A Foul", " To Be Fouled", " Anytime",
                 ]:
                     if player_name.lower().endswith(suffix.lower()):
                         player_name = player_name[:-len(suffix)].strip()
                         break
 
                 if not player_name or len(player_name) < 3: continue
-                # Skip if name is just a number or decimal (e.g. "2.5", "1.5")
                 if re.match(r"^[\d\.\s\/\+]+$", player_name): continue
-                # Skip Over/Under lines that slipped through
                 if re.match(r"^(over|under|both|draw)\b", player_name.lower()): continue
-                # Skip jersey numbers or pure numeric strings
                 if re.match(r"^\d+(\.\d+)?$", player_name): continue
-                # Skip time period / match period labels
-                if player_name.lower() in {"1st half", "2nd half", "half time", "full time",
-                                            "90 mins", "90 minutes", "anytime", "first",
-                                            "last", "to score", "next goal", "first half",
-                                            "second half", "extra time", "penalties"}: continue
-                # Skip obviously wrong odds (jersey numbers parsed as odds)
+                if player_name.lower() in {"1st half","2nd half","half time","full time",
+                                            "90 mins","90 minutes","anytime","first","last",
+                                            "to score","next goal","first half","second half",
+                                            "extra time","penalties"}: continue
                 if dec > 150: continue
 
-                # Determine the actual market key — for goalscorers, distinguish anytime vs first
+                # ── Determine market key ─────────────────────────────────
                 actual_mk = mk
-                if mk in ("anytime_scorer", "player_to_score", "first_goalscorer"):
-                    sn_lower = sn.lower()
-                    prop_type = sel.get("prop_type", "")
-                    if prop_type == "first_goalscorer" or "first goalscorer" in sn_lower or sn_lower.startswith("first "):
+                if mk in ("anytime_scorer","player_to_score","first_goalscorer"):
+                    prop_type = sel.get("prop_type","")
+                    sn_lower  = sn.lower()
+                    if prop_type == "first_goalscorer" or "first goalscorer" in sn_lower:
                         actual_mk = "first_goalscorer"
                     else:
                         actual_mk = "anytime_scorer"
@@ -1040,21 +1116,33 @@ def build_player_index(props):
                 if pk not in players:
                     players[pk] = {"name": player_name, "key": pk, "markets": {}}
 
-                # Store best price per market per bookmaker
-                players[pk]["markets"].setdefault(actual_mk, {})
-                existing = players[pk]["markets"][actual_mk].get(bk)
-                if not existing or dec > existing["decimal"]:
-                    players[pk]["markets"][actual_mk][bk] = {"odds": odds, "decimal": dec}
+                # ── Store data ───────────────────────────────────────────
+                # Merge fouls_conceded into fouls_committed so they share one page
+                store_mk = "player_fouls_committed" if actual_mk == "player_fouls_conceded" else actual_mk
+
+                if store_mk in THRESHOLD_MARKETS:
+                    line = (sel.get("line") or sel.get("threshold") or
+                            get_line_from_selection(sn))
+                    if not line:
+                        continue
+                    players[pk]["markets"].setdefault(store_mk, {})
+                    players[pk]["markets"][store_mk].setdefault(line, {})
+                    existing = players[pk]["markets"][store_mk][line].get(bk)
+                    if not existing or dec > existing["decimal"]:
+                        players[pk]["markets"][store_mk][line][bk] = {"odds": odds, "decimal": dec}
+                else:
+                    players[pk]["markets"].setdefault(store_mk, {})
+                    existing = players[pk]["markets"][store_mk].get(bk)
+                    if not existing or dec > existing["decimal"]:
+                        players[pk]["markets"][store_mk][bk] = {"odds": odds, "decimal": dec}
 
     return players
 
-
-# ── Player Props overview page ─────────────────────────────────────────────────
+# ── Player Props overview ──────────────────────────────────────────────────────
 
 def render_player_props_page(fixture):
     home, away, slug = fixture["home_team"], fixture["away_team"], fixture["slug"]
     props = fixture.get("props") or {}
-    comp  = build_comparison_data(props)
     player_index = build_player_index(props)
 
     subnav = f'<nav class="sub-nav"><a href="../index.html">Odds</a>'
@@ -1063,30 +1151,43 @@ def render_player_props_page(fixture):
     if has_match: subnav += f'<a href="../match-props/index.html">Match Props</a>'
     subnav += f'<a href="./index.html" class="active">Player Props</a></nav>'
 
-    # Build market cards
     market_cards = ""
     for mk, label, icon in PLAYER_MARKET_PAGES:
-        # Collect all players for this market
         players_in_mkt = {pk: pd for pk, pd in player_index.items() if mk in pd["markets"]}
         if not players_in_mkt: continue
 
-        # Top 3 by shortest (best value for bettors = shortest = most likely)
-        top3 = sorted(players_in_mkt.values(),
-                      key=lambda p: min(o["decimal"] for o in p["markets"][mk].values()))[:3]
+        if mk in THRESHOLD_MARKETS:
+            # Sort by best 1+ (0.5 line) price shortest first
+            def sort_thresh(p):
+                line_data = p["markets"][mk].get("0.5", {})
+                if not line_data: return 999
+                return min(o["decimal"] for o in line_data.values())
+            top3 = sorted(players_in_mkt.values(), key=sort_thresh)[:3]
+        else:
+            top3 = sorted(players_in_mkt.values(),
+                          key=lambda p: max(o["decimal"] for o in p["markets"][mk].values()),
+                          reverse=True)[:3]
 
         preview = ""
-        STAT_MARKETS = {"shots_on_target", "shots", "player_fouls_committed", "player_fouls_won"}
         for p in top3:
-            if mk in STAT_MARKETS:
-                best_bk = min(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
+            if mk in THRESHOLD_MARKETS:
+                line_data = p["markets"][mk].get("0.5") or next(iter(p["markets"][mk].values()), {})
+                if not line_data: continue
+                best_bk_name, best_offer = min(line_data.items(), key=lambda x: x[1]["decimal"])
+                threshold_label = "1+ SOT" if mk == "shots_on_target" else "1+"
             else:
-                best_bk = max(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
+                best_bk_name, best_offer = max(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
+                threshold_label = ""
+
             preview += f"""
             <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1a2535">
-              <a href="players/{esc(p['key'])}/index.html" style="color:#e2e8f0;font-weight:600;font-size:14px">{esc(p['name'])}</a>
+              <div>
+                <a href="players/{esc(p['key'])}/index.html" style="color:#e2e8f0;font-weight:600;font-size:14px">{esc(p['name'])}</a>
+                {"<div style='color:#91a0b5;font-size:11px'>" + threshold_label + "</div>" if threshold_label else ""}
+              </div>
               <div style="text-align:right">
-                <div style="color:#22c55e;font-weight:900;font-size:16px">{esc(best_bk[1]['odds'])}</div>
-                <div style="color:#91a0b5;font-size:11px">{esc(best_bk[0])}</div>
+                <div style="color:#22c55e;font-weight:900;font-size:16px">{esc(best_offer['odds'])}</div>
+                <div style="color:#91a0b5;font-size:11px">{esc(best_bk_name)}</div>
               </div>
             </div>"""
 
@@ -1099,7 +1200,8 @@ def render_player_props_page(fixture):
           {preview}
         </div>"""
 
-    content = f'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px">{market_cards}</div>' if market_cards else '<p style="color:#91a0b5">No player props available yet.</p>'
+    content = (f'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px">'
+               f'{market_cards}</div>') if market_cards else '<p style="color:#91a0b5">No player props available yet.</p>'
 
     return f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -1117,42 +1219,107 @@ def render_player_props_page(fixture):
   <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
 </main></body></html>"""
 
-
 # ── Player market sub-page ─────────────────────────────────────────────────────
 
 def render_player_market_page(fixture, mk, label, icon):
     home, away, slug = fixture["home_team"], fixture["away_team"], fixture["slug"]
     props = fixture.get("props") or {}
     player_index = build_player_index(props)
-
     players_in_mkt = {pk: pd for pk, pd in player_index.items() if mk in pd["markets"]}
 
-    subnav = f'<nav class="sub-nav"><a href="../../index.html">Odds</a><a href="../../match-props/index.html">Match Props</a><a href="../index.html">Player Props</a><a href="./index.html" class="active">{esc(label)}</a></nav>'
-
-    # Markets that benefit from showing multiple threshold columns
-    STAT_MARKETS = {"shots_on_target", "shots", "player_fouls_committed", "player_fouls_won"}
-    is_stat = mk in STAT_MARKETS
-    # For stat markets sort shortest first; for goalscorer markets sort shortest first too (most likely)
-    sort_key = lambda p: min(o["decimal"] for o in p["markets"][mk].values())
+    subnav = (f'<nav class="sub-nav"><a href="../../index.html">Odds</a>'
+              f'<a href="../../match-props/index.html">Match Props</a>'
+              f'<a href="../index.html">Player Props</a>'
+              f'<a href="./index.html" class="active">{esc(label)}</a></nav>')
 
     if not players_in_mkt:
         content = '<p style="color:#91a0b5">No data available yet.</p>'
-    else:
+
+    elif mk in THRESHOLD_MARKETS:
+        # Threshold table: columns 1+, 2+, 3+
+        def line_sort_key(x):
+            try:
+                return float(x)
+            except ValueError:
+                m2 = re.match(r"(\d+)\+", str(x))
+                return float(m2.group(1)) - 0.5 if m2 else 999
+
+        def normalise_line(x):
+            try:
+                float(x); return x
+            except ValueError:
+                m2 = re.match(r"(\d+)\+", str(x))
+                return str(float(m2.group(1)) - 0.5) if m2 else x
+
+        raw_lines = {line for p in players_in_mkt.values() for line in p["markets"][mk]}
+        all_lines = sorted(raw_lines, key=line_sort_key)
+        show_lines = [l for l in all_lines if normalise_line(l) in ("0.5","1.5","2.5")]
+        if not show_lines:
+            show_lines = all_lines[:3]
+
+        col_headers = "".join(
+            f'<th style="text-align:center">{LINE_LABELS.get(l, l+"+")} '
+            f'{"SOT" if mk=="shots_on_target" else "Shots" if mk=="shots" else "Tackles" if mk=="player_tackles_completed" else "Fouls"}</th>'
+            for l in show_lines
+        )
+
+        def player_sort(p):
+            ld = p["markets"][mk].get("0.5") or p["markets"][mk].get(show_lines[0], {})
+            return min((o["decimal"] for o in ld.values()), default=999)
+
         rows = ""
-        for p in sorted(players_in_mkt.values(), key=sort_key):
-            # Best price = shortest for stats (most likely), longest for goalscorers (best value)
-            if is_stat:
-                best_bk = min(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
-            else:
-                best_bk = max(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
+        for p in sorted(players_in_mkt.values(), key=player_sort):
+            line_cells = ""
+            all_bks = set()
+            for line in show_lines:
+                ld = p["markets"][mk].get(line, {})
+                all_bks.update(ld.keys())
+                if not ld:
+                    line_cells += '<td style="text-align:center;color:#4b5563">—</td>'
+                    continue
+                best = max(ld.values(), key=lambda x: x["decimal"])
+                best_bk = next(bk for bk, o in ld.items() if o == best)
+                line_cells += (
+                    f'<td style="text-align:center">'
+                    f'<strong style="color:#22c55e;font-size:17px">{esc(best["odds"])}</strong>'
+                    f'<div style="color:#91a0b5;font-size:11px">{esc(best_bk)}</div>'
+                    f'</td>'
+                )
+            bk_count = len(all_bks)
+            rows += (
+                f'<tr>'
+                f'<td><a href="../players/{esc(p["key"])}/index.html" '
+                f'style="color:#e2e8f0;font-weight:600">{esc(p["name"])}</a></td>'
+                f'{line_cells}'
+                f'<td style="color:#91a0b5;font-size:12px">{bk_count} bk{"s" if bk_count!=1 else ""}</td>'
+                f'</tr>'
+            )
+
+        content = f"""
+        <div class="panel">
+          <table>
+            <thead><tr><th>Player</th>{col_headers}<th>Coverage</th></tr></thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </div>"""
+
+    else:
+        # Standard single-price table
+        rows = ""
+        for p in sorted(players_in_mkt.values(),
+                         key=lambda p: max(o["decimal"] for o in p["markets"][mk].values()),
+                         reverse=True):
+            best_bk_name, best_offer = max(p["markets"][mk].items(), key=lambda x: x[1]["decimal"])
             bk_count = len(p["markets"][mk])
-            rows += f"""
-            <tr>
-              <td><a href="../players/{esc(p['key'])}/index.html" style="color:#e2e8f0;font-weight:600">{esc(p['name'])}</a></td>
-              <td><strong style="color:#22c55e;font-size:18px">{esc(best_bk[1]['odds'])}</strong></td>
-              <td style="color:#91a0b5">{esc(best_bk[0])}</td>
-              <td style="color:#91a0b5;font-size:12px">{bk_count} bk{"s" if bk_count!=1 else ""}</td>
-            </tr>"""
+            rows += (
+                f'<tr>'
+                f'<td><a href="../players/{esc(p["key"])}/index.html" '
+                f'style="color:#e2e8f0;font-weight:600">{esc(p["name"])}</a></td>'
+                f'<td><strong style="color:#22c55e;font-size:18px">{esc(best_offer["odds"])}</strong></td>'
+                f'<td style="color:#91a0b5">{esc(best_bk_name)}</td>'
+                f'<td style="color:#91a0b5;font-size:12px">{bk_count} bk{"s" if bk_count!=1 else ""}</td>'
+                f'</tr>'
+            )
 
         content = f"""
         <div class="panel">
@@ -1167,7 +1334,13 @@ def render_player_market_page(fixture, mk, label, icon):
 <title>{esc(home)} v {esc(away)} — {esc(label)} — BeatTheBooks</title>
 <style>{SHARED_CSS}</style></head><body>
 <main class="page">
-  <nav class="nav"><a href="{BASE}/football/">Football</a><span>›</span><a href="{BASE}/football/world-cup/">World Cup</a><span>›</span><a href="{BASE}/football/world-cup/{slug}/">{esc(home)} v {esc(away)}</a><span>›</span><a href="{BASE}/football/world-cup/{slug}/player-props/">Player Props</a><span>›</span><span>{esc(label)}</span></nav>
+  <nav class="nav">
+    <a href="{BASE}/football/">Football</a><span>›</span>
+    <a href="{BASE}/football/world-cup/">World Cup</a><span>›</span>
+    <a href="{BASE}/football/world-cup/{slug}/">{esc(home)} v {esc(away)}</a><span>›</span>
+    <a href="{BASE}/football/world-cup/{slug}/player-props/">Player Props</a><span>›</span>
+    <span>{esc(label)}</span>
+  </nav>
   <section class="hero">
     <div class="eyebrow">⚽ {esc(icon)} {esc(label)}</div>
     <h1>{esc(home)} v {esc(away)}</h1>
@@ -1178,42 +1351,67 @@ def render_player_market_page(fixture, mk, label, icon):
   <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
 </main></body></html>"""
 
-
 # ── Player detail page ─────────────────────────────────────────────────────────
 
 def render_player_detail_page(fixture, player_key, player_data):
     home, away, slug = fixture["home_team"], fixture["away_team"], fixture["slug"]
-    name = player_data["name"]
+    name    = player_data["name"]
     markets = player_data["markets"]
 
     subnav = f'<nav class="sub-nav"><a href="../../index.html">Odds</a><a href="../../match-props/index.html">Match Props</a><a href="../index.html">Player Props</a></nav>'
 
-    # Build comparison table per market
     market_html = ""
     for mk, label, icon in PLAYER_MARKET_PAGES:
         if mk not in markets: continue
-        bk_offers = markets[mk]
-        all_books = sorted(bk_offers.keys())
-        best_dec  = max(o["decimal"] for o in bk_offers.values())
+        mk_data = markets[mk]
 
-        cells = ""
-        for bk in all_books:
-            o = bk_offers[bk]
-            is_best = o["decimal"] == best_dec
-            cells += f"""
-            <div style="border:1px solid {'#22c55e' if is_best else '#223047'};border-radius:12px;padding:12px;background:{'rgba(34,197,94,0.08)' if is_best else 'rgba(255,255,255,0.02)'};text-align:center">
-              <div style="color:#91a0b5;font-size:11px;margin-bottom:6px">{esc(bk)}</div>
-              <div style="color:{'#22c55e' if is_best else '#e2e8f0'};font-size:{'22px' if is_best else '18px'};font-weight:900">{esc(o['odds'])}</div>
-              {'<div style="color:#86efac;font-size:10px;font-weight:800;margin-top:4px">BEST</div>' if is_best else ''}
+        if mk in THRESHOLD_MARKETS:
+            # Show threshold columns
+            def _line_sort(x):
+                try: return float(x)
+                except: 
+                    m2 = re.match(r"(\d+)\+", str(x))
+                    return float(m2.group(1)) - 0.5 if m2 else 999
+            all_lines = sorted(mk_data.keys(), key=_line_sort)
+            show_lines = [l for l in all_lines if l in ("0.5","1.5","2.5")] or all_lines[:3]
+            col_headers = "".join(f'<th style="text-align:center">{LINE_LABELS.get(l,l+"+")}</th>' for l in show_lines)
+            all_bks = sorted({bk for ld in mk_data.values() for bk in ld})
+            rows = ""
+            for bk in all_bks:
+                cells = ""
+                for line in show_lines:
+                    o = mk_data.get(line,{}).get(bk)
+                    if o:
+                        cells += f'<td style="text-align:center;color:#22c55e;font-weight:900">{esc(o["odds"])}</td>'
+                    else:
+                        cells += '<td style="text-align:center;color:#4b5563">—</td>'
+                rows += f'<tr><td style="color:#91a0b5">{esc(bk)}</td>{cells}</tr>'
+            market_html += f"""
+            <div class="panel" style="margin-bottom:16px">
+              <h3 style="margin-bottom:12px">{esc(icon)} {esc(label)}</h3>
+              <table><thead><tr><th>Bookmaker</th>{col_headers}</tr></thead><tbody>{rows}</tbody></table>
             </div>"""
 
-        market_html += f"""
-        <div class="panel" style="margin-bottom:16px">
-          <h3 style="margin-bottom:12px">{esc(icon)} {esc(label)}</h3>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px">
-            {cells}
-          </div>
-        </div>"""
+        else:
+            # Standard single-price grid
+            bk_offers = mk_data
+            all_books = sorted(bk_offers.keys())
+            best_dec  = max(o["decimal"] for o in bk_offers.values())
+            cells = ""
+            for bk in all_books:
+                o = bk_offers[bk]
+                is_best = o["decimal"] == best_dec
+                cells += f"""
+                <div style="border:1px solid {'#22c55e' if is_best else '#223047'};border-radius:12px;padding:12px;background:{'rgba(34,197,94,0.08)' if is_best else 'rgba(255,255,255,0.02)'};text-align:center">
+                  <div style="color:#91a0b5;font-size:11px;margin-bottom:6px">{esc(bk)}</div>
+                  <div style="color:{'#22c55e' if is_best else '#e2e8f0'};font-size:{'22px' if is_best else '18px'};font-weight:900">{esc(o['odds'])}</div>
+                  {'<div style="color:#86efac;font-size:10px;font-weight:800;margin-top:4px">BEST</div>' if is_best else ''}
+                </div>"""
+            market_html += f"""
+            <div class="panel" style="margin-bottom:16px">
+              <h3 style="margin-bottom:12px">{esc(icon)} {esc(label)}</h3>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px">{cells}</div>
+            </div>"""
 
     content = market_html if market_html else '<p style="color:#91a0b5">No props available for this player.</p>'
 
@@ -1232,7 +1430,6 @@ def render_player_detail_page(fixture, player_key, player_data):
   {content}
   <p class="footer-note">Odds may change. Always verify with the bookmaker before placing a bet.</p>
 </main></body></html>"""
-
 
 # ── Football hub ───────────────────────────────────────────────────────────────
 
@@ -1296,7 +1493,6 @@ def main():
             (pp / "index.html").write_text(render_player_props_page(f), encoding="utf-8")
             player_pages += 1
 
-            # Generate player market sub-pages
             player_index = build_player_index(props)
             for mk, label, icon in PLAYER_MARKET_PAGES:
                 players_in_mkt = {pk: pd for pk, pd in player_index.items() if mk in pd["markets"]}
@@ -1305,7 +1501,6 @@ def main():
                 (mkt_dir / "index.html").write_text(
                     render_player_market_page(f, mk, label, icon), encoding="utf-8")
 
-            # Generate player detail pages
             players_dir = pp / "players"; players_dir.mkdir(parents=True, exist_ok=True)
             for pk, pd in player_index.items():
                 player_dir = players_dir / pk; player_dir.mkdir(parents=True, exist_ok=True)

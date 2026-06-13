@@ -3,14 +3,21 @@
   "competition": "FIFA World Cup",
   "bookmaker": "BetVictor",
   "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches",
-  "generated_at": "2026-06-07T17:26:38.594726+00:00",
+  "generated_at": "2026-06-13T11:19:39.846011+00:00",
   "match_count": 15,
   "matches": [
     {
-      "match": "Mexico v South Africa",
-      "home_team": "Mexico",
-      "away_team": "South Africa",
-      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654406400",
+      "match": "Qatar v Switzerland",
+      "home_team": "",
+      "away_team": "",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654405500",
+      "markets": []
+    },
+    {
+      "match": "Brazil v Morocco",
+      "home_team": "Brazil",
+      "away_team": "Morocco",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654405300",
       "markets": [
         {
           "market": "Match Betting",
@@ -18,402 +25,22 @@
           "selection_count": 3,
           "selections": [
             {
-              "selection": "Mexico",
-              "normalized_selection": "mexico",
-              "odds": "2/5",
+              "selection": "Brazil",
+              "normalized_selection": "brazil",
+              "odds": "13/20",
               "side": "home"
             },
             {
               "selection": "Draw",
               "normalized_selection": "draw",
-              "odds": "16/5",
-              "side": "draw"
-            },
-            {
-              "selection": "South Africa",
-              "normalized_selection": "south_africa",
-              "odds": "15/2",
-              "side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Total Goals Over / Under",
-          "normalized_market": "total_goals_over_under",
-          "selection_count": 2,
-          "selections": [
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "23/20",
-              "side": "over",
-              "line": "2.5"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "7/10",
-              "side": "under",
-              "line": "2.5"
-            }
-          ]
-        },
-        {
-          "market": "Both Teams To Score",
-          "normalized_market": "both_teams_to_score",
-          "selection_count": 1,
-          "selections": [
-            {
-              "selection": "Both Teams To Score - Yes",
-              "normalized_selection": "both_teams_to_score_yes",
-              "odds": "7/5",
-              "side": "yes"
-            }
-          ]
-        },
-        {
-          "market": "Correct Score",
-          "normalized_market": "correct_score",
-          "selection_count": 9,
-          "selections": [
-            {
-              "selection": "1 - 0",
-              "normalized_selection": "1_0",
-              "odds": "19/5"
-            },
-            {
-              "selection": "2 - 0",
-              "normalized_selection": "2_0",
-              "odds": "22/5"
-            },
-            {
-              "selection": "2 - 1",
-              "normalized_selection": "2_1",
-              "odds": "15/2"
-            },
-            {
-              "selection": "0 - 0",
-              "normalized_selection": "0_0",
-              "odds": "19/2"
-            },
-            {
-              "selection": "1 - 1",
-              "normalized_selection": "1_1",
-              "odds": "7/1"
-            },
-            {
-              "selection": "2 - 2",
-              "normalized_selection": "2_2",
-              "odds": "22/1"
-            },
-            {
-              "selection": "0 - 1",
-              "normalized_selection": "0_1",
-              "odds": "15/1"
-            },
-            {
-              "selection": "0 - 2",
-              "normalized_selection": "0_2",
-              "odds": "40/1"
-            },
-            {
-              "selection": "1 - 2",
-              "normalized_selection": "1_2",
-              "odds": "22/1"
-            }
-          ]
-        },
-        {
-          "market": "Player to Score",
-          "normalized_market": "player_to_score",
-          "selection_count": 10,
-          "selections": [
-            {
-              "selection": "Raul Jimenez First Goalscorer",
-              "normalized_selection": "raul_jimenez_first_goalscorer",
-              "odds": "18/5",
-              "player": "Raul Jimenez",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Raul Jimenez Anytime Goalscorer",
-              "normalized_selection": "raul_jimenez_anytime_goalscorer",
-              "odds": "13/10",
-              "player": "Raul Jimenez",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Armando Gonzalez First Goalscorer",
-              "normalized_selection": "armando_gonzalez_first_goalscorer",
-              "odds": "4/1",
-              "player": "Armando Gonzalez",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Armando Gonzalez Anytime Goalscorer",
-              "normalized_selection": "armando_gonzalez_anytime_goalscorer",
-              "odds": "31/20",
-              "player": "Armando Gonzalez",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Santiago Gimenez First Goalscorer",
-              "normalized_selection": "santiago_gimenez_first_goalscorer",
-              "odds": "4/1",
-              "player": "Santiago Gimenez",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Santiago Gimenez Anytime Goalscorer",
-              "normalized_selection": "santiago_gimenez_anytime_goalscorer",
-              "odds": "31/20",
-              "player": "Santiago Gimenez",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Julian Quinones First Goalscorer",
-              "normalized_selection": "julian_quinones_first_goalscorer",
-              "odds": "9/2",
-              "player": "Julian Quinones",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Julian Quinones Anytime Goalscorer",
-              "normalized_selection": "julian_quinones_anytime_goalscorer",
-              "odds": "7/4",
-              "player": "Julian Quinones",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Alexis Vega First Goalscorer",
-              "normalized_selection": "alexis_vega_first_goalscorer",
-              "odds": "11/2",
-              "player": "Alexis Vega",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Alexis Vega Anytime Goalscorer",
-              "normalized_selection": "alexis_vega_anytime_goalscorer",
-              "odds": "85/40",
-              "player": "Alexis Vega",
-              "prop_type": "anytime_goalscorer"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "South Korea v Czechia",
-      "home_team": "South Korea",
-      "away_team": "Czechia",
-      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2745374700",
-      "markets": [
-        {
-          "market": "Match Betting",
-          "normalized_market": "match_betting",
-          "selection_count": 2,
-          "selections": [
-            {
-              "selection": "South Korea",
-              "normalized_selection": "south_korea",
-              "odds": "8/5",
-              "side": "home"
-            },
-            {
-              "selection": "Draw",
-              "normalized_selection": "draw",
-              "odds": "85/40",
-              "side": "draw"
-            }
-          ]
-        },
-        {
-          "market": "Total Goals Over / Under",
-          "normalized_market": "total_goals_over_under",
-          "selection_count": 2,
-          "selections": [
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "13/10",
-              "side": "over",
-              "line": "2.5"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "8/13",
-              "side": "under",
-              "line": "2.5"
-            }
-          ]
-        },
-        {
-          "market": "Both Teams To Score",
-          "normalized_market": "both_teams_to_score",
-          "selection_count": 1,
-          "selections": [
-            {
-              "selection": "Both Teams To Score - Yes",
-              "normalized_selection": "both_teams_to_score_yes",
-              "odds": "9/10",
-              "side": "yes"
-            }
-          ]
-        },
-        {
-          "market": "Correct Score",
-          "normalized_market": "correct_score",
-          "selection_count": 9,
-          "selections": [
-            {
-              "selection": "1 - 0",
-              "normalized_selection": "1_0",
-              "odds": "6/1"
-            },
-            {
-              "selection": "2 - 0",
-              "normalized_selection": "2_0",
-              "odds": "21/2"
-            },
-            {
-              "selection": "2 - 1",
-              "normalized_selection": "2_1",
-              "odds": "17/2"
-            },
-            {
-              "selection": "0 - 0",
-              "normalized_selection": "0_0",
-              "odds": "17/2"
-            },
-            {
-              "selection": "1 - 1",
-              "normalized_selection": "1_1",
-              "odds": "19/4"
-            },
-            {
-              "selection": "2 - 2",
-              "normalized_selection": "2_2",
-              "odds": "14/1"
-            },
-            {
-              "selection": "0 - 1",
-              "normalized_selection": "0_1",
-              "odds": "13/2"
-            },
-            {
-              "selection": "0 - 2",
-              "normalized_selection": "0_2",
-              "odds": "12/1"
-            },
-            {
-              "selection": "1 - 2",
-              "normalized_selection": "1_2",
-              "odds": "17/2"
-            }
-          ]
-        },
-        {
-          "market": "Player to Score",
-          "normalized_market": "player_to_score",
-          "selection_count": 10,
-          "selections": [
-            {
-              "selection": "Son Heung-Min First Goalscorer",
-              "normalized_selection": "son_heung_min_first_goalscorer",
-              "odds": "5/1",
-              "player": "Son Heung-Min",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Son Heung-Min Anytime Goalscorer",
-              "normalized_selection": "son_heung_min_anytime_goalscorer",
-              "odds": "2/1",
-              "player": "Son Heung-Min",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Patrik Schick First Goalscorer",
-              "normalized_selection": "patrik_schick_first_goalscorer",
-              "odds": "5/1",
-              "player": "Patrik Schick",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Patrik Schick Anytime Goalscorer",
-              "normalized_selection": "patrik_schick_anytime_goalscorer",
-              "odds": "2/1",
-              "player": "Patrik Schick",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Oh Hyeon-gyu First Goalscorer",
-              "normalized_selection": "oh_hyeon_gyu_first_goalscorer",
-              "odds": "6/1",
-              "player": "Oh Hyeon-gyu",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Oh Hyeon-gyu Anytime Goalscorer",
-              "normalized_selection": "oh_hyeon_gyu_anytime_goalscorer",
-              "odds": "12/5",
-              "player": "Oh Hyeon-gyu",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Cho Gue-sung First Goalscorer",
-              "normalized_selection": "cho_gue_sung_first_goalscorer",
-              "odds": "6/1",
-              "player": "Cho Gue-sung",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Cho Gue-sung Anytime Goalscorer",
-              "normalized_selection": "cho_gue_sung_anytime_goalscorer",
-              "odds": "12/5",
-              "player": "Cho Gue-sung",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Mojmir Chytil First Goalscorer",
-              "normalized_selection": "mojmir_chytil_first_goalscorer",
-              "odds": "13/2",
-              "player": "Mojmir Chytil",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Mojmir Chytil Anytime Goalscorer",
-              "normalized_selection": "mojmir_chytil_anytime_goalscorer",
               "odds": "13/5",
-              "player": "Mojmir Chytil",
-              "prop_type": "anytime_goalscorer"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Canada v Bosnia",
-      "home_team": "Canada",
-      "away_team": "Bosnia",
-      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2745374600",
-      "markets": [
-        {
-          "market": "Match Betting",
-          "normalized_market": "match_betting",
-          "selection_count": 2,
-          "selections": [
-            {
-              "selection": "Canada",
-              "normalized_selection": "canada",
-              "odds": "3/4",
-              "side": "home"
+              "side": "draw"
             },
             {
-              "selection": "Draw",
-              "normalized_selection": "draw",
-              "odds": "5/2",
-              "side": "draw"
+              "selection": "Morocco",
+              "normalized_selection": "morocco",
+              "odds": "9/2",
+              "side": "away"
             }
           ]
         },
@@ -439,19 +66,6 @@
           ]
         },
         {
-          "market": "Both Teams To Score",
-          "normalized_market": "both_teams_to_score",
-          "selection_count": 1,
-          "selections": [
-            {
-              "selection": "Both Teams To Score - Yes",
-              "normalized_selection": "both_teams_to_score_yes",
-              "odds": "1/1",
-              "side": "yes"
-            }
-          ]
-        },
-        {
           "market": "Correct Score",
           "normalized_market": "correct_score",
           "selection_count": 9,
@@ -459,12 +73,12 @@
             {
               "selection": "1 - 0",
               "normalized_selection": "1_0",
-              "odds": "9/2"
+              "odds": "22/5"
             },
             {
               "selection": "2 - 0",
               "normalized_selection": "2_0",
-              "odds": "13/2"
+              "odds": "11/2"
             },
             {
               "selection": "2 - 1",
@@ -479,103 +93,89 @@
             {
               "selection": "1 - 1",
               "normalized_selection": "1_1",
-              "odds": "11/2"
+              "odds": "6/1"
             },
             {
               "selection": "2 - 2",
               "normalized_selection": "2_2",
-              "odds": "16/1"
+              "odds": "17/1"
             },
             {
               "selection": "0 - 1",
               "normalized_selection": "0_1",
-              "odds": "19/2"
+              "odds": "21/2"
             },
             {
               "selection": "0 - 2",
               "normalized_selection": "0_2",
-              "odds": "22/1"
+              "odds": "25/1"
             },
             {
               "selection": "1 - 2",
               "normalized_selection": "1_2",
-              "odds": "13/1"
+              "odds": "15/1"
             }
           ]
         },
         {
           "market": "Player to Score",
           "normalized_market": "player_to_score",
-          "selection_count": 10,
+          "selection_count": 8,
           "selections": [
             {
-              "selection": "Jonathan David First Goalscorer",
-              "normalized_selection": "jonathan_david_first_goalscorer",
-              "odds": "4/1",
-              "player": "Jonathan David",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Jonathan David Anytime Goalscorer",
-              "normalized_selection": "jonathan_david_anytime_goalscorer",
-              "odds": "31/20",
-              "player": "Jonathan David",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Promise David First Goalscorer",
-              "normalized_selection": "promise_david_first_goalscorer",
+              "selection": "Vinicius Junior First Goalscorer",
+              "normalized_selection": "vinicius_junior_first_goalscorer",
               "odds": "9/2",
-              "player": "Promise David",
+              "player": "Vinicius Junior",
               "prop_type": "first_goalscorer"
             },
             {
-              "selection": "Promise David Anytime Goalscorer",
-              "normalized_selection": "promise_david_anytime_goalscorer",
+              "selection": "Vinicius Junior Anytime Goalscorer",
+              "normalized_selection": "vinicius_junior_anytime_goalscorer",
               "odds": "7/4",
-              "player": "Promise David",
+              "player": "Vinicius Junior",
               "prop_type": "anytime_goalscorer"
             },
             {
-              "selection": "Cyle Larin First Goalscorer",
-              "normalized_selection": "cyle_larin_first_goalscorer",
-              "odds": "9/2",
-              "player": "Cyle Larin",
+              "selection": "Endrick First Goalscorer",
+              "normalized_selection": "endrick_first_goalscorer",
+              "odds": "5/1",
+              "player": "Endrick",
               "prop_type": "first_goalscorer"
             },
             {
-              "selection": "Cyle Larin Anytime Goalscorer",
-              "normalized_selection": "cyle_larin_anytime_goalscorer",
-              "odds": "7/4",
-              "player": "Cyle Larin",
+              "selection": "Endrick Anytime Goalscorer",
+              "normalized_selection": "endrick_anytime_goalscorer",
+              "odds": "2/1",
+              "player": "Endrick",
               "prop_type": "anytime_goalscorer"
             },
             {
-              "selection": "Tani Oluweysi First Goalscorer",
-              "normalized_selection": "tani_oluweysi_first_goalscorer",
-              "odds": "11/2",
-              "player": "Tani Oluweysi",
+              "selection": "Raphinha First Goalscorer",
+              "normalized_selection": "raphinha_first_goalscorer",
+              "odds": "5/1",
+              "player": "Raphinha",
               "prop_type": "first_goalscorer"
             },
             {
-              "selection": "Tani Oluweysi Anytime Goalscorer",
-              "normalized_selection": "tani_oluweysi_anytime_goalscorer",
-              "odds": "11/5",
-              "player": "Tani Oluweysi",
+              "selection": "Raphinha Anytime Goalscorer",
+              "normalized_selection": "raphinha_anytime_goalscorer",
+              "odds": "2/1",
+              "player": "Raphinha",
               "prop_type": "anytime_goalscorer"
             },
             {
-              "selection": "Tajon Buchanan First Goalscorer",
-              "normalized_selection": "tajon_buchanan_first_goalscorer",
-              "odds": "13/2",
-              "player": "Tajon Buchanan",
+              "selection": "Igor Thiago First Goalscorer",
+              "normalized_selection": "igor_thiago_first_goalscorer",
+              "odds": "5/1",
+              "player": "Igor Thiago",
               "prop_type": "first_goalscorer"
             },
             {
-              "selection": "Tajon Buchanan Anytime Goalscorer",
-              "normalized_selection": "tajon_buchanan_anytime_goalscorer",
-              "odds": "13/5",
-              "player": "Tajon Buchanan",
+              "selection": "Igor Thiago Anytime Goalscorer",
+              "normalized_selection": "igor_thiago_anytime_goalscorer",
+              "odds": "2/1",
+              "player": "Igor Thiago",
               "prop_type": "anytime_goalscorer"
             }
           ]
@@ -583,10 +183,10 @@
       ]
     },
     {
-      "match": "USA v Paraguay",
-      "home_team": "USA",
-      "away_team": "Paraguay",
-      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654404000",
+      "match": "Haiti v Scotland",
+      "home_team": "Haiti",
+      "away_team": "Scotland",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654405200",
       "markets": [
         {
           "market": "Match Betting",
@@ -594,217 +194,21 @@
           "selection_count": 3,
           "selections": [
             {
-              "selection": "USA",
-              "normalized_selection": "usa",
-              "odds": "20/21",
+              "selection": "Haiti",
+              "normalized_selection": "haiti",
+              "odds": "5/1",
               "side": "home"
             },
             {
               "selection": "Draw",
               "normalized_selection": "draw",
-              "odds": "23/10",
+              "odds": "10/3",
               "side": "draw"
             },
             {
-              "selection": "Paraguay",
-              "normalized_selection": "paraguay",
-              "odds": "3/1",
-              "side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Total Goals Over / Under",
-          "normalized_market": "total_goals_over_under",
-          "selection_count": 2,
-          "selections": [
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "13/10",
-              "side": "over",
-              "line": "2.5"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "8/13",
-              "side": "under",
-              "line": "2.5"
-            }
-          ]
-        },
-        {
-          "market": "Both Teams To Score",
-          "normalized_market": "both_teams_to_score",
-          "selection_count": 1,
-          "selections": [
-            {
-              "selection": "Both Teams To Score - Yes",
-              "normalized_selection": "both_teams_to_score_yes",
-              "odds": "1/1",
-              "side": "yes"
-            }
-          ]
-        },
-        {
-          "market": "Correct Score",
-          "normalized_market": "correct_score",
-          "selection_count": 9,
-          "selections": [
-            {
-              "selection": "1 - 0",
-              "normalized_selection": "1_0",
-              "odds": "19/4"
-            },
-            {
-              "selection": "2 - 0",
-              "normalized_selection": "2_0",
-              "odds": "7/1"
-            },
-            {
-              "selection": "2 - 1",
-              "normalized_selection": "2_1",
-              "odds": "15/2"
-            },
-            {
-              "selection": "0 - 0",
-              "normalized_selection": "0_0",
-              "odds": "8/1"
-            },
-            {
-              "selection": "1 - 1",
-              "normalized_selection": "1_1",
-              "odds": "5/1"
-            },
-            {
-              "selection": "2 - 2",
-              "normalized_selection": "2_2",
-              "odds": "16/1"
-            },
-            {
-              "selection": "0 - 1",
-              "normalized_selection": "0_1",
-              "odds": "8/1"
-            },
-            {
-              "selection": "0 - 2",
-              "normalized_selection": "0_2",
-              "odds": "18/1"
-            },
-            {
-              "selection": "1 - 2",
-              "normalized_selection": "1_2",
-              "odds": "12/1"
-            }
-          ]
-        },
-        {
-          "market": "Player to Score",
-          "normalized_market": "player_to_score",
-          "selection_count": 10,
-          "selections": [
-            {
-              "selection": "Folarin Balogun First Goalscorer",
-              "normalized_selection": "folarin_balogun_first_goalscorer",
-              "odds": "9/2",
-              "player": "Folarin Balogun",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Folarin Balogun Anytime Goalscorer",
-              "normalized_selection": "folarin_balogun_anytime_goalscorer",
-              "odds": "9/5",
-              "player": "Folarin Balogun",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Ricardo Pepi First Goalscorer",
-              "normalized_selection": "ricardo_pepi_first_goalscorer",
-              "odds": "5/1",
-              "player": "Ricardo Pepi",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Ricardo Pepi Anytime Goalscorer",
-              "normalized_selection": "ricardo_pepi_anytime_goalscorer",
-              "odds": "2/1",
-              "player": "Ricardo Pepi",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Christian Pulisic First Goalscorer",
-              "normalized_selection": "christian_pulisic_first_goalscorer",
-              "odds": "5/1",
-              "player": "Christian Pulisic",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Christian Pulisic Anytime Goalscorer",
-              "normalized_selection": "christian_pulisic_anytime_goalscorer",
-              "odds": "2/1",
-              "player": "Christian Pulisic",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Haji Wright First Goalscorer",
-              "normalized_selection": "haji_wright_first_goalscorer",
-              "odds": "11/2",
-              "player": "Haji Wright",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Haji Wright Anytime Goalscorer",
-              "normalized_selection": "haji_wright_anytime_goalscorer",
-              "odds": "9/4",
-              "player": "Haji Wright",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Giovanni Reyna First Goalscorer",
-              "normalized_selection": "giovanni_reyna_first_goalscorer",
-              "odds": "13/2",
-              "player": "Giovanni Reyna",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Giovanni Reyna Anytime Goalscorer",
-              "normalized_selection": "giovanni_reyna_anytime_goalscorer",
-              "odds": "27/10",
-              "player": "Giovanni Reyna",
-              "prop_type": "anytime_goalscorer"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Qatar v Switzerland",
-      "home_team": "Qatar",
-      "away_team": "Switzerland",
-      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654405500",
-      "markets": [
-        {
-          "market": "Match Betting",
-          "normalized_market": "match_betting",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Qatar",
-              "normalized_selection": "qatar",
-              "odds": "14/1",
-              "side": "home"
-            },
-            {
-              "selection": "Draw",
-              "normalized_selection": "draw",
-              "odds": "5/1",
-              "side": "draw"
-            },
-            {
-              "selection": "Switzerland",
-              "normalized_selection": "switzerland",
-              "odds": "1/5",
+              "selection": "Scotland",
+              "normalized_selection": "scotland",
+              "odds": "1/2",
               "side": "away"
             }
           ]
@@ -838,7 +242,7 @@
             {
               "selection": "Both Teams To Score - Yes",
               "normalized_selection": "both_teams_to_score_yes",
-              "odds": "11/8",
+              "odds": "7/10",
               "side": "yes"
             }
           ]
@@ -851,434 +255,42 @@
             {
               "selection": "1 - 0",
               "normalized_selection": "1_0",
-              "odds": "28/1"
+              "odds": "15/1"
             },
             {
               "selection": "2 - 0",
               "normalized_selection": "2_0",
-              "odds": "80/1"
+              "odds": "30/1"
             },
             {
               "selection": "2 - 1",
               "normalized_selection": "2_1",
-              "odds": "33/1"
+              "odds": "15/1"
             },
             {
               "selection": "0 - 0",
               "normalized_selection": "0_0",
-              "odds": "13/1"
-            },
-            {
-              "selection": "1 - 1",
-              "normalized_selection": "1_1",
-              "odds": "21/2"
-            },
-            {
-              "selection": "2 - 2",
-              "normalized_selection": "2_2",
-              "odds": "25/1"
-            },
-            {
-              "selection": "0 - 1",
-              "normalized_selection": "0_1",
-              "odds": "5/1"
-            },
-            {
-              "selection": "0 - 2",
-              "normalized_selection": "0_2",
-              "odds": "17/4"
-            },
-            {
-              "selection": "1 - 2",
-              "normalized_selection": "1_2",
-              "odds": "8/1"
-            }
-          ]
-        },
-        {
-          "market": "Player to Score",
-          "normalized_market": "player_to_score",
-          "selection_count": 10,
-          "selections": [
-            {
-              "selection": "Breel Embolo First Goalscorer",
-              "normalized_selection": "breel_embolo_first_goalscorer",
-              "odds": "31/10",
-              "player": "Breel Embolo",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Breel Embolo Anytime Goalscorer",
-              "normalized_selection": "breel_embolo_anytime_goalscorer",
-              "odds": "9/10",
-              "player": "Breel Embolo",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Cedric Itten First Goalscorer",
-              "normalized_selection": "cedric_itten_first_goalscorer",
-              "odds": "18/5",
-              "player": "Cedric Itten",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Cedric Itten Anytime Goalscorer",
-              "normalized_selection": "cedric_itten_anytime_goalscorer",
-              "odds": "21/20",
-              "player": "Cedric Itten",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Zeki Amdouni First Goalscorer",
-              "normalized_selection": "zeki_amdouni_first_goalscorer",
-              "odds": "4/1",
-              "player": "Zeki Amdouni",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Zeki Amdouni Anytime Goalscorer",
-              "normalized_selection": "zeki_amdouni_anytime_goalscorer",
-              "odds": "5/4",
-              "player": "Zeki Amdouni",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Noah Okafor First Goalscorer",
-              "normalized_selection": "noah_okafor_first_goalscorer",
-              "odds": "9/2",
-              "player": "Noah Okafor",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Noah Okafor Anytime Goalscorer",
-              "normalized_selection": "noah_okafor_anytime_goalscorer",
-              "odds": "29/20",
-              "player": "Noah Okafor",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Dan Ndoye First Goalscorer",
-              "normalized_selection": "dan_ndoye_first_goalscorer",
-              "odds": "5/1",
-              "player": "Dan Ndoye",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Dan Ndoye Anytime Goalscorer",
-              "normalized_selection": "dan_ndoye_anytime_goalscorer",
-              "odds": "8/5",
-              "player": "Dan Ndoye",
-              "prop_type": "anytime_goalscorer"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Brazil v Morocco",
-      "home_team": "Brazil",
-      "away_team": "Morocco",
-      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654405300",
-      "markets": [
-        {
-          "market": "Match Betting",
-          "normalized_market": "match_betting",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Brazil",
-              "normalized_selection": "brazil",
-              "odds": "3/5",
-              "side": "home"
-            },
-            {
-              "selection": "Draw",
-              "normalized_selection": "draw",
-              "odds": "11/4",
-              "side": "draw"
-            },
-            {
-              "selection": "Morocco",
-              "normalized_selection": "morocco",
-              "odds": "19/4",
-              "side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Total Goals Over / Under",
-          "normalized_market": "total_goals_over_under",
-          "selection_count": 2,
-          "selections": [
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "21/20",
-              "side": "over",
-              "line": "2.5"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "31/40",
-              "side": "under",
-              "line": "2.5"
-            }
-          ]
-        },
-        {
-          "market": "Both Teams To Score",
-          "normalized_market": "both_teams_to_score",
-          "selection_count": 1,
-          "selections": [
-            {
-              "selection": "Both Teams To Score - Yes",
-              "normalized_selection": "both_teams_to_score_yes",
-              "odds": "1/1",
-              "side": "yes"
-            }
-          ]
-        },
-        {
-          "market": "Correct Score",
-          "normalized_market": "correct_score",
-          "selection_count": 9,
-          "selections": [
-            {
-              "selection": "1 - 0",
-              "normalized_selection": "1_0",
-              "odds": "19/4"
-            },
-            {
-              "selection": "2 - 0",
-              "normalized_selection": "2_0",
-              "odds": "6/1"
-            },
-            {
-              "selection": "2 - 1",
-              "normalized_selection": "2_1",
-              "odds": "13/2"
-            },
-            {
-              "selection": "0 - 0",
-              "normalized_selection": "0_0",
-              "odds": "10/1"
-            },
-            {
-              "selection": "1 - 1",
-              "normalized_selection": "1_1",
-              "odds": "6/1"
-            },
-            {
-              "selection": "2 - 2",
-              "normalized_selection": "2_2",
-              "odds": "16/1"
-            },
-            {
-              "selection": "0 - 1",
-              "normalized_selection": "0_1",
               "odds": "12/1"
             },
             {
-              "selection": "0 - 2",
-              "normalized_selection": "0_2",
-              "odds": "28/1"
-            },
-            {
-              "selection": "1 - 2",
-              "normalized_selection": "1_2",
-              "odds": "15/1"
-            }
-          ]
-        },
-        {
-          "market": "Player to Score",
-          "normalized_market": "player_to_score",
-          "selection_count": 10,
-          "selections": [
-            {
-              "selection": "Vinicius Junior First Goalscorer",
-              "normalized_selection": "vinicius_junior_first_goalscorer",
-              "odds": "9/2",
-              "player": "Vinicius Junior",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Vinicius Junior Anytime Goalscorer",
-              "normalized_selection": "vinicius_junior_anytime_goalscorer",
-              "odds": "17/10",
-              "player": "Vinicius Junior",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Endrick First Goalscorer",
-              "normalized_selection": "endrick_first_goalscorer",
-              "odds": "5/1",
-              "player": "Endrick",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Endrick Anytime Goalscorer",
-              "normalized_selection": "endrick_anytime_goalscorer",
-              "odds": "15/8",
-              "player": "Endrick",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Raphinha First Goalscorer",
-              "normalized_selection": "raphinha_first_goalscorer",
-              "odds": "5/1",
-              "player": "Raphinha",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Raphinha Anytime Goalscorer",
-              "normalized_selection": "raphinha_anytime_goalscorer",
-              "odds": "15/8",
-              "player": "Raphinha",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Igor Thiago First Goalscorer",
-              "normalized_selection": "igor_thiago_first_goalscorer",
-              "odds": "5/1",
-              "player": "Igor Thiago",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Igor Thiago Anytime Goalscorer",
-              "normalized_selection": "igor_thiago_anytime_goalscorer",
-              "odds": "15/8",
-              "player": "Igor Thiago",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Neymar First Goalscorer",
-              "normalized_selection": "neymar_first_goalscorer",
-              "odds": "5/1",
-              "player": "Neymar",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Neymar Anytime Goalscorer",
-              "normalized_selection": "neymar_anytime_goalscorer",
-              "odds": "15/8",
-              "player": "Neymar",
-              "prop_type": "anytime_goalscorer"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Haiti v Scotland",
-      "home_team": "Haiti",
-      "away_team": "Scotland",
-      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654405200",
-      "markets": [
-        {
-          "market": "Match Betting",
-          "normalized_market": "match_betting",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Haiti",
-              "normalized_selection": "haiti",
-              "odds": "11/2",
-              "side": "home"
-            },
-            {
-              "selection": "Draw",
-              "normalized_selection": "draw",
-              "odds": "31/10",
-              "side": "draw"
-            },
-            {
-              "selection": "Scotland",
-              "normalized_selection": "scotland",
-              "odds": "1/2",
-              "side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Total Goals Over / Under",
-          "normalized_market": "total_goals_over_under",
-          "selection_count": 2,
-          "selections": [
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "37/40",
-              "side": "over",
-              "line": "2.5"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "20/23",
-              "side": "under",
-              "line": "2.5"
-            }
-          ]
-        },
-        {
-          "market": "Both Teams To Score",
-          "normalized_market": "both_teams_to_score",
-          "selection_count": 1,
-          "selections": [
-            {
-              "selection": "Both Teams To Score - Yes",
-              "normalized_selection": "both_teams_to_score_yes",
-              "odds": "1/1",
-              "side": "yes"
-            }
-          ]
-        },
-        {
-          "market": "Correct Score",
-          "normalized_market": "correct_score",
-          "selection_count": 9,
-          "selections": [
-            {
-              "selection": "1 - 0",
-              "normalized_selection": "1_0",
-              "odds": "14/1"
-            },
-            {
-              "selection": "2 - 0",
-              "normalized_selection": "2_0",
-              "odds": "33/1"
-            },
-            {
-              "selection": "2 - 1",
-              "normalized_selection": "2_1",
-              "odds": "17/1"
-            },
-            {
-              "selection": "0 - 0",
-              "normalized_selection": "0_0",
-              "odds": "11/1"
-            },
-            {
               "selection": "1 - 1",
               "normalized_selection": "1_1",
-              "odds": "13/2"
+              "odds": "7/1"
             },
             {
               "selection": "2 - 2",
               "normalized_selection": "2_2",
-              "odds": "17/1"
+              "odds": "14/1"
             },
             {
               "selection": "0 - 1",
               "normalized_selection": "0_1",
-              "odds": "19/4"
+              "odds": "13/2"
             },
             {
               "selection": "0 - 2",
               "normalized_selection": "0_2",
-              "odds": "11/2"
+              "odds": "13/2"
             },
             {
               "selection": "1 - 2",
@@ -1295,29 +307,15 @@
             {
               "selection": "Lawrence Shankland First Goalscorer",
               "normalized_selection": "lawrence_shankland_first_goalscorer",
-              "odds": "18/5",
+              "odds": "4/1",
               "player": "Lawrence Shankland",
               "prop_type": "first_goalscorer"
             },
             {
               "selection": "Lawrence Shankland Anytime Goalscorer",
               "normalized_selection": "lawrence_shankland_anytime_goalscorer",
-              "odds": "6/5",
+              "odds": "5/4",
               "player": "Lawrence Shankland",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Lyndon Dykes First Goalscorer",
-              "normalized_selection": "lyndon_dykes_first_goalscorer",
-              "odds": "4/1",
-              "player": "Lyndon Dykes",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Lyndon Dykes Anytime Goalscorer",
-              "normalized_selection": "lyndon_dykes_anytime_goalscorer",
-              "odds": "7/5",
-              "player": "Lyndon Dykes",
               "prop_type": "anytime_goalscorer"
             },
             {
@@ -1330,22 +328,8 @@
             {
               "selection": "Che Adams Anytime Goalscorer",
               "normalized_selection": "che_adams_anytime_goalscorer",
-              "odds": "7/5",
+              "odds": "5/4",
               "player": "Che Adams",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Ross Stewart First Goalscorer",
-              "normalized_selection": "ross_stewart_first_goalscorer",
-              "odds": "9/2",
-              "player": "Ross Stewart",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Ross Stewart Anytime Goalscorer",
-              "normalized_selection": "ross_stewart_anytime_goalscorer",
-              "odds": "8/5",
-              "player": "Ross Stewart",
               "prop_type": "anytime_goalscorer"
             },
             {
@@ -1358,8 +342,36 @@
             {
               "selection": "George Hirst Anytime Goalscorer",
               "normalized_selection": "george_hirst_anytime_goalscorer",
-              "odds": "8/5",
+              "odds": "29/20",
               "player": "George Hirst",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Lyndon Dykes First Goalscorer",
+              "normalized_selection": "lyndon_dykes_first_goalscorer",
+              "odds": "9/2",
+              "player": "Lyndon Dykes",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Lyndon Dykes Anytime Goalscorer",
+              "normalized_selection": "lyndon_dykes_anytime_goalscorer",
+              "odds": "29/20",
+              "player": "Lyndon Dykes",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Ross Stewart First Goalscorer",
+              "normalized_selection": "ross_stewart_first_goalscorer",
+              "odds": "5/1",
+              "player": "Ross Stewart",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Ross Stewart Anytime Goalscorer",
+              "normalized_selection": "ross_stewart_anytime_goalscorer",
+              "odds": "8/5",
+              "player": "Ross Stewart",
               "prop_type": "anytime_goalscorer"
             }
           ]
@@ -1380,13 +392,13 @@
             {
               "selection": "Australia",
               "normalized_selection": "australia",
-              "odds": "19/5",
+              "odds": "17/4",
               "side": "home"
             },
             {
               "selection": "Draw",
               "normalized_selection": "draw",
-              "odds": "13/5",
+              "odds": "27/10",
               "side": "draw"
             }
           ]
@@ -1399,14 +411,14 @@
             {
               "selection": "Over 2.5",
               "normalized_selection": "over_2_5",
-              "odds": "21/20",
+              "odds": "1/1",
               "side": "over",
               "line": "2.5"
             },
             {
               "selection": "Under 2.5",
               "normalized_selection": "under_2_5",
-              "odds": "31/40",
+              "odds": "4/5",
               "side": "under",
               "line": "2.5"
             }
@@ -1420,7 +432,7 @@
             {
               "selection": "Both Teams To Score - Yes",
               "normalized_selection": "both_teams_to_score_yes",
-              "odds": "9/10",
+              "odds": "37/40",
               "side": "yes"
             }
           ]
@@ -1433,17 +445,17 @@
             {
               "selection": "1 - 0",
               "normalized_selection": "1_0",
-              "odds": "21/2"
+              "odds": "11/1"
             },
             {
               "selection": "2 - 0",
               "normalized_selection": "2_0",
-              "odds": "22/1"
+              "odds": "25/1"
             },
             {
               "selection": "2 - 1",
               "normalized_selection": "2_1",
-              "odds": "13/1"
+              "odds": "14/1"
             },
             {
               "selection": "0 - 0",
@@ -1453,7 +465,7 @@
             {
               "selection": "1 - 1",
               "normalized_selection": "1_1",
-              "odds": "11/2"
+              "odds": "6/1"
             },
             {
               "selection": "2 - 2",
@@ -1468,12 +480,12 @@
             {
               "selection": "0 - 2",
               "normalized_selection": "0_2",
-              "odds": "13/2"
+              "odds": "6/1"
             },
             {
               "selection": "1 - 2",
               "normalized_selection": "1_2",
-              "odds": "7/1"
+              "odds": "13/2"
             }
           ]
         },
@@ -1485,14 +497,14 @@
             {
               "selection": "Kerem Akturkoglu First Goalscorer",
               "normalized_selection": "kerem_akturkoglu_first_goalscorer",
-              "odds": "5/1",
+              "odds": "9/2",
               "player": "Kerem Akturkoglu",
               "prop_type": "first_goalscorer"
             },
             {
               "selection": "Kerem Akturkoglu Anytime Goalscorer",
               "normalized_selection": "kerem_akturkoglu_anytime_goalscorer",
-              "odds": "15/8",
+              "odds": "13/8",
               "player": "Kerem Akturkoglu",
               "prop_type": "anytime_goalscorer"
             },
@@ -1520,7 +532,7 @@
             {
               "selection": "Arda Guler Anytime Goalscorer",
               "normalized_selection": "arda_guler_anytime_goalscorer",
-              "odds": "23/10",
+              "odds": "9/4",
               "player": "Arda Guler",
               "prop_type": "anytime_goalscorer"
             },
@@ -1534,7 +546,7 @@
             {
               "selection": "Kenan Yildiz Anytime Goalscorer",
               "normalized_selection": "kenan_yildiz_anytime_goalscorer",
-              "odds": "23/10",
+              "odds": "9/4",
               "player": "Kenan Yildiz",
               "prop_type": "anytime_goalscorer"
             },
@@ -1595,14 +607,14 @@
             {
               "selection": "Over 4.5",
               "normalized_selection": "over_4_5",
-              "odds": "11/10",
+              "odds": "21/20",
               "side": "over",
               "line": "4.5"
             },
             {
               "selection": "Under 4.5",
               "normalized_selection": "under_4_5",
-              "odds": "8/11",
+              "odds": "31/40",
               "side": "under",
               "line": "4.5"
             }
@@ -1616,7 +628,7 @@
             {
               "selection": "Both Teams To Score - Yes",
               "normalized_selection": "both_teams_to_score_yes",
-              "odds": "19/10",
+              "odds": "17/10",
               "side": "yes"
             }
           ]
@@ -1654,7 +666,7 @@
             {
               "selection": "2 - 2",
               "normalized_selection": "2_2",
-              "odds": "75/1"
+              "odds": "70/1"
             },
             {
               "selection": "0 - 1",
@@ -1681,28 +693,28 @@
             {
               "selection": "Deniz Undav First Goalscorer",
               "normalized_selection": "deniz_undav_first_goalscorer",
-              "odds": "16/5",
+              "odds": "17/5",
               "player": "Deniz Undav",
               "prop_type": "first_goalscorer"
             },
             {
               "selection": "Deniz Undav Anytime Goalscorer",
               "normalized_selection": "deniz_undav_anytime_goalscorer",
-              "odds": "4/7",
+              "odds": "8/13",
               "player": "Deniz Undav",
               "prop_type": "anytime_goalscorer"
             },
             {
               "selection": "Kai Havertz First Goalscorer",
               "normalized_selection": "kai_havertz_first_goalscorer",
-              "odds": "16/5",
+              "odds": "17/5",
               "player": "Kai Havertz",
               "prop_type": "first_goalscorer"
             },
             {
               "selection": "Kai Havertz Anytime Goalscorer",
               "normalized_selection": "kai_havertz_anytime_goalscorer",
-              "odds": "4/7",
+              "odds": "8/13",
               "player": "Kai Havertz",
               "prop_type": "anytime_goalscorer"
             },
@@ -1716,7 +728,7 @@
             {
               "selection": "Nick Woltemade Anytime Goalscorer",
               "normalized_selection": "nick_woltemade_anytime_goalscorer",
-              "odds": "4/6",
+              "odds": "13/20",
               "player": "Nick Woltemade",
               "prop_type": "anytime_goalscorer"
             },
@@ -1730,7 +742,7 @@
             {
               "selection": "Florian Wirtz Anytime Goalscorer",
               "normalized_selection": "florian_wirtz_anytime_goalscorer",
-              "odds": "4/6",
+              "odds": "13/20",
               "player": "Florian Wirtz",
               "prop_type": "anytime_goalscorer"
             },
@@ -1766,7 +778,7 @@
             {
               "selection": "Netherlands",
               "normalized_selection": "netherlands",
-              "odds": "1/1",
+              "odds": "20/21",
               "side": "home"
             },
             {
@@ -1778,7 +790,7 @@
             {
               "selection": "Japan",
               "normalized_selection": "japan",
-              "odds": "13/5",
+              "odds": "27/10",
               "side": "away"
             }
           ]
@@ -1830,7 +842,7 @@
             {
               "selection": "2 - 0",
               "normalized_selection": "2_0",
-              "odds": "17/2"
+              "odds": "8/1"
             },
             {
               "selection": "2 - 1",
@@ -1855,12 +867,12 @@
             {
               "selection": "0 - 1",
               "normalized_selection": "0_1",
-              "odds": "9/1"
+              "odds": "19/2"
             },
             {
               "selection": "0 - 2",
               "normalized_selection": "0_2",
-              "odds": "17/1"
+              "odds": "18/1"
             },
             {
               "selection": "1 - 2",
@@ -1903,6 +915,20 @@
               "prop_type": "anytime_goalscorer"
             },
             {
+              "selection": "Donyell Malen First Goalscorer",
+              "normalized_selection": "donyell_malen_first_goalscorer",
+              "odds": "5/1",
+              "player": "Donyell Malen",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Donyell Malen Anytime Goalscorer",
+              "normalized_selection": "donyell_malen_anytime_goalscorer",
+              "odds": "9/5",
+              "player": "Donyell Malen",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
               "selection": "Cody Gakpo First Goalscorer",
               "normalized_selection": "cody_gakpo_first_goalscorer",
               "odds": "11/2",
@@ -1917,30 +943,16 @@
               "prop_type": "anytime_goalscorer"
             },
             {
-              "selection": "Donyell Malen First Goalscorer",
-              "normalized_selection": "donyell_malen_first_goalscorer",
-              "odds": "6/1",
-              "player": "Donyell Malen",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Donyell Malen Anytime Goalscorer",
-              "normalized_selection": "donyell_malen_anytime_goalscorer",
-              "odds": "11/5",
-              "player": "Donyell Malen",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
               "selection": "Wouter Weghorst First Goalscorer",
               "normalized_selection": "wouter_weghorst_first_goalscorer",
-              "odds": "6/1",
+              "odds": "11/2",
               "player": "Wouter Weghorst",
               "prop_type": "first_goalscorer"
             },
             {
               "selection": "Wouter Weghorst Anytime Goalscorer",
               "normalized_selection": "wouter_weghorst_anytime_goalscorer",
-              "odds": "11/5",
+              "odds": "2/1",
               "player": "Wouter Weghorst",
               "prop_type": "anytime_goalscorer"
             }
@@ -2051,7 +1063,7 @@
             {
               "selection": "0 - 1",
               "normalized_selection": "0_1",
-              "odds": "22/5"
+              "odds": "17/4"
             },
             {
               "selection": "0 - 2",
@@ -2164,13 +1176,13 @@
             {
               "selection": "Draw",
               "normalized_selection": "draw",
-              "odds": "23/10",
+              "odds": "12/5",
               "side": "draw"
             },
             {
               "selection": "Tunisia",
               "normalized_selection": "tunisia",
-              "odds": "10/3",
+              "odds": "16/5",
               "side": "away"
             }
           ]
@@ -2183,14 +1195,14 @@
             {
               "selection": "Over 2.5",
               "normalized_selection": "over_2_5",
-              "odds": "5/4",
+              "odds": "6/5",
               "side": "over",
               "line": "2.5"
             },
             {
               "selection": "Under 2.5",
               "normalized_selection": "under_2_5",
-              "odds": "13/20",
+              "odds": "4/6",
               "side": "under",
               "line": "2.5"
             }
@@ -2204,7 +1216,7 @@
             {
               "selection": "Both Teams To Score - Yes",
               "normalized_selection": "both_teams_to_score_yes",
-              "odds": "1/1",
+              "odds": "20/21",
               "side": "yes"
             }
           ]
@@ -2232,22 +1244,22 @@
             {
               "selection": "0 - 0",
               "normalized_selection": "0_0",
-              "odds": "17/2"
+              "odds": "9/1"
             },
             {
               "selection": "1 - 1",
               "normalized_selection": "1_1",
-              "odds": "5/1"
+              "odds": "11/2"
             },
             {
               "selection": "2 - 2",
               "normalized_selection": "2_2",
-              "odds": "16/1"
+              "odds": "15/1"
             },
             {
               "selection": "0 - 1",
               "normalized_selection": "0_1",
-              "odds": "17/2"
+              "odds": "9/1"
             },
             {
               "selection": "0 - 2",
@@ -2318,7 +1330,7 @@
             {
               "selection": "Benjamin Nygren Anytime Goalscorer",
               "normalized_selection": "benjamin_nygren_anytime_goalscorer",
-              "odds": "31/10",
+              "odds": "3/1",
               "player": "Benjamin Nygren",
               "prop_type": "anytime_goalscorer"
             },
@@ -2354,19 +1366,19 @@
             {
               "selection": "Belgium",
               "normalized_selection": "belgium",
-              "odds": "13/20",
+              "odds": "3/5",
               "side": "home"
             },
             {
               "selection": "Draw",
               "normalized_selection": "draw",
-              "odds": "11/4",
+              "odds": "29/10",
               "side": "draw"
             },
             {
               "selection": "Egypt",
               "normalized_selection": "egypt",
-              "odds": "17/4",
+              "odds": "9/2",
               "side": "away"
             }
           ]
@@ -2379,14 +1391,14 @@
             {
               "selection": "Over 2.5",
               "normalized_selection": "over_2_5",
-              "odds": "1/1",
+              "odds": "20/21",
               "side": "over",
               "line": "2.5"
             },
             {
               "selection": "Under 2.5",
               "normalized_selection": "under_2_5",
-              "odds": "4/5",
+              "odds": "5/6",
               "side": "under",
               "line": "2.5"
             }
@@ -2428,7 +1440,7 @@
             {
               "selection": "0 - 0",
               "normalized_selection": "0_0",
-              "odds": "21/2"
+              "odds": "11/1"
             },
             {
               "selection": "1 - 1",
@@ -2438,22 +1450,22 @@
             {
               "selection": "2 - 2",
               "normalized_selection": "2_2",
-              "odds": "15/1"
+              "odds": "16/1"
             },
             {
               "selection": "0 - 1",
               "normalized_selection": "0_1",
-              "odds": "11/1"
+              "odds": "12/1"
             },
             {
               "selection": "0 - 2",
               "normalized_selection": "0_2",
-              "odds": "25/1"
+              "odds": "28/1"
             },
             {
               "selection": "1 - 2",
               "normalized_selection": "1_2",
-              "odds": "14/1"
+              "odds": "15/1"
             }
           ]
         },
@@ -2465,15 +1477,29 @@
             {
               "selection": "Romelu Lukaku First Goalscorer",
               "normalized_selection": "romelu_lukaku_first_goalscorer",
-              "odds": "17/5",
+              "odds": "16/5",
               "player": "Romelu Lukaku",
               "prop_type": "first_goalscorer"
             },
             {
               "selection": "Romelu Lukaku Anytime Goalscorer",
               "normalized_selection": "romelu_lukaku_anytime_goalscorer",
-              "odds": "6/5",
+              "odds": "11/10",
               "player": "Romelu Lukaku",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Charles De Ketelaere First Goalscorer",
+              "normalized_selection": "charles_de_ketelaere_first_goalscorer",
+              "odds": "11/2",
+              "player": "Charles De Ketelaere",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Charles De Ketelaere Anytime Goalscorer",
+              "normalized_selection": "charles_de_ketelaere_anytime_goalscorer",
+              "odds": "2/1",
+              "player": "Charles De Ketelaere",
               "prop_type": "anytime_goalscorer"
             },
             {
@@ -2505,31 +1531,17 @@
               "prop_type": "anytime_goalscorer"
             },
             {
-              "selection": "Charles De Ketelaere First Goalscorer",
-              "normalized_selection": "charles_de_ketelaere_first_goalscorer",
-              "odds": "6/1",
-              "player": "Charles De Ketelaere",
+              "selection": "Leandro Trossard First Goalscorer",
+              "normalized_selection": "leandro_trossard_first_goalscorer",
+              "odds": "13/2",
+              "player": "Leandro Trossard",
               "prop_type": "first_goalscorer"
             },
             {
-              "selection": "Charles De Ketelaere Anytime Goalscorer",
-              "normalized_selection": "charles_de_ketelaere_anytime_goalscorer",
-              "odds": "9/4",
-              "player": "Charles De Ketelaere",
-              "prop_type": "anytime_goalscorer"
-            },
-            {
-              "selection": "Mohamed Salah First Goalscorer",
-              "normalized_selection": "mohamed_salah_first_goalscorer",
-              "odds": "6/1",
-              "player": "Mohamed Salah",
-              "prop_type": "first_goalscorer"
-            },
-            {
-              "selection": "Mohamed Salah Anytime Goalscorer",
-              "normalized_selection": "mohamed_salah_anytime_goalscorer",
-              "odds": "11/5",
-              "player": "Mohamed Salah",
+              "selection": "Leandro Trossard Anytime Goalscorer",
+              "normalized_selection": "leandro_trossard_anytime_goalscorer",
+              "odds": "12/5",
+              "player": "Leandro Trossard",
               "prop_type": "anytime_goalscorer"
             }
           ]
@@ -2550,19 +1562,19 @@
             {
               "selection": "Saudi Arabia",
               "normalized_selection": "saudi_arabia",
-              "odds": "13/2",
+              "odds": "15/2",
               "side": "home"
             },
             {
               "selection": "Draw",
               "normalized_selection": "draw",
-              "odds": "16/5",
+              "odds": "10/3",
               "side": "draw"
             },
             {
               "selection": "Uruguay",
               "normalized_selection": "uruguay",
-              "odds": "4/9",
+              "odds": "2/5",
               "side": "away"
             }
           ]
@@ -2575,14 +1587,14 @@
             {
               "selection": "Over 2.5",
               "normalized_selection": "over_2_5",
-              "odds": "20/21",
+              "odds": "1/1",
               "side": "over",
               "line": "2.5"
             },
             {
               "selection": "Under 2.5",
               "normalized_selection": "under_2_5",
-              "odds": "5/6",
+              "odds": "4/5",
               "side": "under",
               "line": "2.5"
             }
@@ -2596,7 +1608,7 @@
             {
               "selection": "Both Teams To Score - Yes",
               "normalized_selection": "both_teams_to_score_yes",
-              "odds": "11/10",
+              "odds": "6/5",
               "side": "yes"
             }
           ]
@@ -2609,17 +1621,17 @@
             {
               "selection": "1 - 0",
               "normalized_selection": "1_0",
-              "odds": "14/1"
+              "odds": "15/1"
             },
             {
               "selection": "2 - 0",
               "normalized_selection": "2_0",
-              "odds": "35/1"
+              "odds": "40/1"
             },
             {
               "selection": "2 - 1",
               "normalized_selection": "2_1",
-              "odds": "19/1"
+              "odds": "21/1"
             },
             {
               "selection": "0 - 0",
@@ -2634,17 +1646,17 @@
             {
               "selection": "2 - 2",
               "normalized_selection": "2_2",
-              "odds": "19/1"
+              "odds": "21/1"
             },
             {
               "selection": "0 - 1",
               "normalized_selection": "0_1",
-              "odds": "9/2"
+              "odds": "17/4"
             },
             {
               "selection": "0 - 2",
               "normalized_selection": "0_2",
-              "odds": "5/1"
+              "odds": "19/4"
             },
             {
               "selection": "1 - 2",
@@ -2746,7 +1758,7 @@
             {
               "selection": "Iran",
               "normalized_selection": "iran",
-              "odds": "20/23",
+              "odds": "4/5",
               "side": "home"
             },
             {
@@ -2758,7 +1770,7 @@
             {
               "selection": "New Zealand",
               "normalized_selection": "new_zealand",
-              "odds": "10/3",
+              "odds": "15/4",
               "side": "away"
             }
           ]
@@ -2771,14 +1783,14 @@
             {
               "selection": "Over 2.5",
               "normalized_selection": "over_2_5",
-              "odds": "13/10",
+              "odds": "7/5",
               "side": "over",
               "line": "2.5"
             },
             {
               "selection": "Under 2.5",
               "normalized_selection": "under_2_5",
-              "odds": "8/13",
+              "odds": "4/7",
               "side": "under",
               "line": "2.5"
             }
@@ -2792,7 +1804,7 @@
             {
               "selection": "Both Teams To Score - Yes",
               "normalized_selection": "both_teams_to_score_yes",
-              "odds": "21/20",
+              "odds": "23/20",
               "side": "yes"
             }
           ]
@@ -2805,47 +1817,47 @@
             {
               "selection": "1 - 0",
               "normalized_selection": "1_0",
-              "odds": "9/2"
+              "odds": "17/4"
             },
             {
               "selection": "2 - 0",
               "normalized_selection": "2_0",
-              "odds": "7/1"
+              "odds": "6/1"
             },
             {
               "selection": "2 - 1",
               "normalized_selection": "2_1",
-              "odds": "7/1"
+              "odds": "15/2"
             },
             {
               "selection": "0 - 0",
               "normalized_selection": "0_0",
-              "odds": "8/1"
+              "odds": "15/2"
             },
             {
               "selection": "1 - 1",
               "normalized_selection": "1_1",
-              "odds": "5/1"
+              "odds": "11/2"
             },
             {
               "selection": "2 - 2",
               "normalized_selection": "2_2",
-              "odds": "16/1"
+              "odds": "17/1"
             },
             {
               "selection": "0 - 1",
               "normalized_selection": "0_1",
-              "odds": "17/2"
+              "odds": "9/1"
             },
             {
               "selection": "0 - 2",
               "normalized_selection": "0_2",
-              "odds": "20/1"
+              "odds": "22/1"
             },
             {
               "selection": "1 - 2",
               "normalized_selection": "1_2",
-              "odds": "12/1"
+              "odds": "14/1"
             }
           ]
         },
@@ -2864,8 +1876,36 @@
             {
               "selection": "Mehdi Taremi Anytime Goalscorer",
               "normalized_selection": "mehdi_taremi_anytime_goalscorer",
-              "odds": "8/5",
+              "odds": "13/8",
               "player": "Mehdi Taremi",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Ali Alipour First Goalscorer",
+              "normalized_selection": "ali_alipour_first_goalscorer",
+              "odds": "11/2",
+              "player": "Ali Alipour",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Ali Alipour Anytime Goalscorer",
+              "normalized_selection": "ali_alipour_anytime_goalscorer",
+              "odds": "23/10",
+              "player": "Ali Alipour",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Shahriyar Moghanlou First Goalscorer",
+              "normalized_selection": "shahriyar_moghanlou_first_goalscorer",
+              "odds": "11/2",
+              "player": "Shahriyar Moghanlou",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Shahriyar Moghanlou Anytime Goalscorer",
+              "normalized_selection": "shahriyar_moghanlou_anytime_goalscorer",
+              "odds": "23/10",
+              "player": "Shahriyar Moghanlou",
               "prop_type": "anytime_goalscorer"
             },
             {
@@ -2878,7 +1918,7 @@
             {
               "selection": "Mohammad Mohebi Anytime Goalscorer",
               "normalized_selection": "mohammad_mohebi_anytime_goalscorer",
-              "odds": "9/4",
+              "odds": "23/10",
               "player": "Mohammad Mohebi",
               "prop_type": "anytime_goalscorer"
             },
@@ -2892,36 +1932,792 @@
             {
               "selection": "Dennis Eckert Anytime Goalscorer",
               "normalized_selection": "dennis_eckert_anytime_goalscorer",
-              "odds": "9/4",
+              "odds": "23/10",
               "player": "Dennis Eckert",
               "prop_type": "anytime_goalscorer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "France v Senegal",
+      "home_team": "France",
+      "away_team": "Senegal",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654406500",
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "France",
+              "normalized_selection": "france",
+              "odds": "4/9",
+              "side": "home"
             },
             {
-              "selection": "Chris Wood First Goalscorer",
-              "normalized_selection": "chris_wood_first_goalscorer",
-              "odds": "11/2",
-              "player": "Chris Wood",
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "16/5",
+              "side": "draw"
+            },
+            {
+              "selection": "Senegal",
+              "normalized_selection": "senegal",
+              "odds": "13/2",
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "20/21",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "17/20",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 1,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "11/10",
+              "side": "yes"
+            }
+          ]
+        },
+        {
+          "market": "Correct Score",
+          "normalized_market": "correct_score",
+          "selection_count": 9,
+          "selections": [
+            {
+              "selection": "1 - 0",
+              "normalized_selection": "1_0",
+              "odds": "9/2"
+            },
+            {
+              "selection": "2 - 0",
+              "normalized_selection": "2_0",
+              "odds": "5/1"
+            },
+            {
+              "selection": "2 - 1",
+              "normalized_selection": "2_1",
+              "odds": "7/1"
+            },
+            {
+              "selection": "0 - 0",
+              "normalized_selection": "0_0",
+              "odds": "11/1"
+            },
+            {
+              "selection": "1 - 1",
+              "normalized_selection": "1_1",
+              "odds": "7/1"
+            },
+            {
+              "selection": "2 - 2",
+              "normalized_selection": "2_2",
+              "odds": "19/1"
+            },
+            {
+              "selection": "0 - 1",
+              "normalized_selection": "0_1",
+              "odds": "14/1"
+            },
+            {
+              "selection": "0 - 2",
+              "normalized_selection": "0_2",
+              "odds": "35/1"
+            },
+            {
+              "selection": "1 - 2",
+              "normalized_selection": "1_2",
+              "odds": "19/1"
+            }
+          ]
+        },
+        {
+          "market": "Player to Score",
+          "normalized_market": "player_to_score",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Kylian Mbappe First Goalscorer",
+              "normalized_selection": "kylian_mbappe_first_goalscorer",
+              "odds": "18/5",
+              "player": "Kylian Mbappe",
               "prop_type": "first_goalscorer"
             },
             {
-              "selection": "Chris Wood Anytime Goalscorer",
-              "normalized_selection": "chris_wood_anytime_goalscorer",
-              "odds": "11/5",
-              "player": "Chris Wood",
+              "selection": "Kylian Mbappe Anytime Goalscorer",
+              "normalized_selection": "kylian_mbappe_anytime_goalscorer",
+              "odds": "5/4",
+              "player": "Kylian Mbappe",
               "prop_type": "anytime_goalscorer"
             },
             {
-              "selection": "Ali Alipour First Goalscorer",
-              "normalized_selection": "ali_alipour_first_goalscorer",
-              "odds": "6/1",
-              "player": "Ali Alipour",
+              "selection": "Ousmane Dembele First Goalscorer",
+              "normalized_selection": "ousmane_dembele_first_goalscorer",
+              "odds": "9/2",
+              "player": "Ousmane Dembele",
               "prop_type": "first_goalscorer"
             },
             {
-              "selection": "Ali Alipour Anytime Goalscorer",
-              "normalized_selection": "ali_alipour_anytime_goalscorer",
-              "odds": "5/2",
-              "player": "Ali Alipour",
+              "selection": "Ousmane Dembele Anytime Goalscorer",
+              "normalized_selection": "ousmane_dembele_anytime_goalscorer",
+              "odds": "13/8",
+              "player": "Ousmane Dembele",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Jean-Philippe Mateta First Goalscorer",
+              "normalized_selection": "jean_philippe_mateta_first_goalscorer",
+              "odds": "9/2",
+              "player": "Jean-Philippe Mateta",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Jean-Philippe Mateta Anytime Goalscorer",
+              "normalized_selection": "jean_philippe_mateta_anytime_goalscorer",
+              "odds": "13/8",
+              "player": "Jean-Philippe Mateta",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Marcus Thuram-Ulien First Goalscorer",
+              "normalized_selection": "marcus_thuram_ulien_first_goalscorer",
+              "odds": "5/1",
+              "player": "Marcus Thuram-Ulien",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Marcus Thuram-Ulien Anytime Goalscorer",
+              "normalized_selection": "marcus_thuram_ulien_anytime_goalscorer",
+              "odds": "9/5",
+              "player": "Marcus Thuram-Ulien",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Desire Doue First Goalscorer",
+              "normalized_selection": "desire_doue_first_goalscorer",
+              "odds": "5/1",
+              "player": "Desire Doue",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Desire Doue Anytime Goalscorer",
+              "normalized_selection": "desire_doue_anytime_goalscorer",
+              "odds": "9/5",
+              "player": "Desire Doue",
+              "prop_type": "anytime_goalscorer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Iraq v Norway",
+      "home_team": "Iraq",
+      "away_team": "Norway",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2745428700",
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Iraq",
+              "normalized_selection": "iraq",
+              "odds": "14/1",
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "6/1",
+              "side": "draw"
+            },
+            {
+              "selection": "Norway",
+              "normalized_selection": "norway",
+              "odds": "1/6",
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "11/20",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "29/20",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 1,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "13/10",
+              "side": "yes"
+            }
+          ]
+        },
+        {
+          "market": "Correct Score",
+          "normalized_market": "correct_score",
+          "selection_count": 9,
+          "selections": [
+            {
+              "selection": "1 - 0",
+              "normalized_selection": "1_0",
+              "odds": "30/1"
+            },
+            {
+              "selection": "2 - 0",
+              "normalized_selection": "2_0",
+              "odds": "80/1"
+            },
+            {
+              "selection": "2 - 1",
+              "normalized_selection": "2_1",
+              "odds": "35/1"
+            },
+            {
+              "selection": "0 - 0",
+              "normalized_selection": "0_0",
+              "odds": "14/1"
+            },
+            {
+              "selection": "1 - 1",
+              "normalized_selection": "1_1",
+              "odds": "12/1"
+            },
+            {
+              "selection": "2 - 2",
+              "normalized_selection": "2_2",
+              "odds": "28/1"
+            },
+            {
+              "selection": "0 - 1",
+              "normalized_selection": "0_1",
+              "odds": "6/1"
+            },
+            {
+              "selection": "0 - 2",
+              "normalized_selection": "0_2",
+              "odds": "22/5"
+            },
+            {
+              "selection": "1 - 2",
+              "normalized_selection": "1_2",
+              "odds": "17/2"
+            }
+          ]
+        },
+        {
+          "market": "Player to Score",
+          "normalized_market": "player_to_score",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Erling Haaland First Goalscorer",
+              "normalized_selection": "erling_haaland_first_goalscorer",
+              "odds": "13/8",
+              "player": "Erling Haaland",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Erling Haaland Anytime Goalscorer",
+              "normalized_selection": "erling_haaland_anytime_goalscorer",
+              "odds": "2/5",
+              "player": "Erling Haaland",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Alexander Sorloth First Goalscorer",
+              "normalized_selection": "alexander_sorloth_first_goalscorer",
+              "odds": "4/1",
+              "player": "Alexander Sorloth",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Alexander Sorloth Anytime Goalscorer",
+              "normalized_selection": "alexander_sorloth_anytime_goalscorer",
+              "odds": "6/5",
+              "player": "Alexander Sorloth",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Jorgen Strand Larsen First Goalscorer",
+              "normalized_selection": "jorgen_strand_larsen_first_goalscorer",
+              "odds": "4/1",
+              "player": "Jorgen Strand Larsen",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Jorgen Strand Larsen Anytime Goalscorer",
+              "normalized_selection": "jorgen_strand_larsen_anytime_goalscorer",
+              "odds": "6/5",
+              "player": "Jorgen Strand Larsen",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Jens Hauge First Goalscorer",
+              "normalized_selection": "jens_hauge_first_goalscorer",
+              "odds": "11/2",
+              "player": "Jens Hauge",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Jens Hauge Anytime Goalscorer",
+              "normalized_selection": "jens_hauge_anytime_goalscorer",
+              "odds": "17/10",
+              "player": "Jens Hauge",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Oscar Bobb First Goalscorer",
+              "normalized_selection": "oscar_bobb_first_goalscorer",
+              "odds": "13/2",
+              "player": "Oscar Bobb",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Oscar Bobb Anytime Goalscorer",
+              "normalized_selection": "oscar_bobb_anytime_goalscorer",
+              "odds": "21/10",
+              "player": "Oscar Bobb",
+              "prop_type": "anytime_goalscorer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Argentina v Algeria",
+      "home_team": "Argentina",
+      "away_team": "Algeria",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654405700",
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Argentina",
+              "normalized_selection": "argentina",
+              "odds": "4/11",
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "7/2",
+              "side": "draw"
+            },
+            {
+              "selection": "Algeria",
+              "normalized_selection": "algeria",
+              "odds": "8/1",
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "37/40",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "20/23",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 1,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "6/5",
+              "side": "yes"
+            }
+          ]
+        },
+        {
+          "market": "Correct Score",
+          "normalized_market": "correct_score",
+          "selection_count": 9,
+          "selections": [
+            {
+              "selection": "1 - 0",
+              "normalized_selection": "1_0",
+              "odds": "9/2"
+            },
+            {
+              "selection": "2 - 0",
+              "normalized_selection": "2_0",
+              "odds": "9/2"
+            },
+            {
+              "selection": "2 - 1",
+              "normalized_selection": "2_1",
+              "odds": "7/1"
+            },
+            {
+              "selection": "0 - 0",
+              "normalized_selection": "0_0",
+              "odds": "12/1"
+            },
+            {
+              "selection": "1 - 1",
+              "normalized_selection": "1_1",
+              "odds": "15/2"
+            },
+            {
+              "selection": "2 - 2",
+              "normalized_selection": "2_2",
+              "odds": "21/1"
+            },
+            {
+              "selection": "0 - 1",
+              "normalized_selection": "0_1",
+              "odds": "17/1"
+            },
+            {
+              "selection": "0 - 2",
+              "normalized_selection": "0_2",
+              "odds": "50/1"
+            },
+            {
+              "selection": "1 - 2",
+              "normalized_selection": "1_2",
+              "odds": "22/1"
+            }
+          ]
+        },
+        {
+          "market": "Player to Score",
+          "normalized_market": "player_to_score",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Lionel Messi First Goalscorer",
+              "normalized_selection": "lionel_messi_first_goalscorer",
+              "odds": "29/10",
+              "player": "Lionel Messi",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Lionel Messi Anytime Goalscorer",
+              "normalized_selection": "lionel_messi_anytime_goalscorer",
+              "odds": "19/20",
+              "player": "Lionel Messi",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Julian Alvarez First Goalscorer",
+              "normalized_selection": "julian_alvarez_first_goalscorer",
+              "odds": "4/1",
+              "player": "Julian Alvarez",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Julian Alvarez Anytime Goalscorer",
+              "normalized_selection": "julian_alvarez_anytime_goalscorer",
+              "odds": "7/5",
+              "player": "Julian Alvarez",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Lautaro Martinez First Goalscorer",
+              "normalized_selection": "lautaro_martinez_first_goalscorer",
+              "odds": "4/1",
+              "player": "Lautaro Martinez",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Lautaro Martinez Anytime Goalscorer",
+              "normalized_selection": "lautaro_martinez_anytime_goalscorer",
+              "odds": "7/5",
+              "player": "Lautaro Martinez",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Jose Lopez First Goalscorer",
+              "normalized_selection": "jose_lopez_first_goalscorer",
+              "odds": "9/2",
+              "player": "Jose Lopez",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Jose Lopez Anytime Goalscorer",
+              "normalized_selection": "jose_lopez_anytime_goalscorer",
+              "odds": "8/5",
+              "player": "Jose Lopez",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Thiago Almada First Goalscorer",
+              "normalized_selection": "thiago_almada_first_goalscorer",
+              "odds": "11/2",
+              "player": "Thiago Almada",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Thiago Almada Anytime Goalscorer",
+              "normalized_selection": "thiago_almada_anytime_goalscorer",
+              "odds": "2/1",
+              "player": "Thiago Almada",
+              "prop_type": "anytime_goalscorer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Austria v Jordan",
+      "home_team": "Austria",
+      "away_team": "Jordan",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2654406000",
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Austria",
+              "normalized_selection": "austria",
+              "odds": "3/10",
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "17/4",
+              "side": "draw"
+            },
+            {
+              "selection": "Jordan",
+              "normalized_selection": "jordan",
+              "odds": "17/2",
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "13/20",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "5/4",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 1,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "1/1",
+              "side": "yes"
+            }
+          ]
+        },
+        {
+          "market": "Correct Score",
+          "normalized_market": "correct_score",
+          "selection_count": 9,
+          "selections": [
+            {
+              "selection": "1 - 0",
+              "normalized_selection": "1_0",
+              "odds": "11/2"
+            },
+            {
+              "selection": "2 - 0",
+              "normalized_selection": "2_0",
+              "odds": "5/1"
+            },
+            {
+              "selection": "2 - 1",
+              "normalized_selection": "2_1",
+              "odds": "7/1"
+            },
+            {
+              "selection": "0 - 0",
+              "normalized_selection": "0_0",
+              "odds": "12/1"
+            },
+            {
+              "selection": "1 - 1",
+              "normalized_selection": "1_1",
+              "odds": "17/2"
+            },
+            {
+              "selection": "2 - 2",
+              "normalized_selection": "2_2",
+              "odds": "19/1"
+            },
+            {
+              "selection": "0 - 1",
+              "normalized_selection": "0_1",
+              "odds": "21/1"
+            },
+            {
+              "selection": "0 - 2",
+              "normalized_selection": "0_2",
+              "odds": "60/1"
+            },
+            {
+              "selection": "1 - 2",
+              "normalized_selection": "1_2",
+              "odds": "22/1"
+            }
+          ]
+        },
+        {
+          "market": "Player to Score",
+          "normalized_market": "player_to_score",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Marko Arnautovic First Goalscorer",
+              "normalized_selection": "marko_arnautovic_first_goalscorer",
+              "odds": "17/5",
+              "player": "Marko Arnautovic",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Marko Arnautovic Anytime Goalscorer",
+              "normalized_selection": "marko_arnautovic_anytime_goalscorer",
+              "odds": "1/1",
+              "player": "Marko Arnautovic",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Sasa Kalajdzic First Goalscorer",
+              "normalized_selection": "sasa_kalajdzic_first_goalscorer",
+              "odds": "18/5",
+              "player": "Sasa Kalajdzic",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Sasa Kalajdzic Anytime Goalscorer",
+              "normalized_selection": "sasa_kalajdzic_anytime_goalscorer",
+              "odds": "21/20",
+              "player": "Sasa Kalajdzic",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Michael Gregoritsch First Goalscorer",
+              "normalized_selection": "michael_gregoritsch_first_goalscorer",
+              "odds": "18/5",
+              "player": "Michael Gregoritsch",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Michael Gregoritsch Anytime Goalscorer",
+              "normalized_selection": "michael_gregoritsch_anytime_goalscorer",
+              "odds": "21/20",
+              "player": "Michael Gregoritsch",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Marcel Sabitzer First Goalscorer",
+              "normalized_selection": "marcel_sabitzer_first_goalscorer",
+              "odds": "4/1",
+              "player": "Marcel Sabitzer",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Marcel Sabitzer Anytime Goalscorer",
+              "normalized_selection": "marcel_sabitzer_anytime_goalscorer",
+              "odds": "5/4",
+              "player": "Marcel Sabitzer",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "Carney Chukwuemeka First Goalscorer",
+              "normalized_selection": "carney_chukwuemeka_first_goalscorer",
+              "odds": "6/1",
+              "player": "Carney Chukwuemeka",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "Carney Chukwuemeka Anytime Goalscorer",
+              "normalized_selection": "carney_chukwuemeka_anytime_goalscorer",
+              "odds": "2/1",
+              "player": "Carney Chukwuemeka",
               "prop_type": "anytime_goalscorer"
             }
           ]
