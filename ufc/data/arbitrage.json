@@ -1,100 +1,12 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 35,
+  "total_moneyline_fights_checked": 31,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
   "arbitrage_count": 0,
   "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
-    {
-      "type": "moneyline",
-      "event_id": "ae87dc3c82395002a9124de9f67b37fc",
-      "commence_time": "2026-06-13T14:30:00Z",
-      "fight": "Berjan Peposhi vs Deniz Demirkapu",
-      "market": "Moneyline",
-      "fighters": {
-        "Berjan Peposhi": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.3,
-          "implied_probability": 76.92
-        },
-        "Deniz Demirkapu": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 3.2,
-          "implied_probability": 31.25
-        }
-      },
-      "arb_sum": 1.081731,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.17
-    },
-    {
-      "type": "moneyline",
-      "event_id": "0b132be2a960224db9c89d110a0b8084",
-      "commence_time": "2026-06-13T14:30:00Z",
-      "fight": "Cem Aygun vs Mohammed Hamdi",
-      "market": "Moneyline",
-      "fighters": {
-        "Cem Aygun": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.5,
-          "implied_probability": 66.67
-        },
-        "Mohammed Hamdi": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.4,
-          "implied_probability": 41.67
-        }
-      },
-      "arb_sum": 1.083333,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.33
-    },
-    {
-      "type": "moneyline",
-      "event_id": "956055d90ef51871f5e766e5559220f2",
-      "commence_time": "2026-06-13T14:30:00Z",
-      "fight": "Figuereido Landman vs Mehdi Ait El Hadj",
-      "market": "Moneyline",
-      "fighters": {
-        "Figuereido Landman": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.4,
-          "implied_probability": 41.67
-        },
-        "Mehdi Ait El Hadj": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.5,
-          "implied_probability": 66.67
-        }
-      },
-      "arb_sum": 1.083333,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.33
-    },
-    {
-      "type": "moneyline",
-      "event_id": "4082639a5f2292aac62c880e8f56d731",
-      "commence_time": "2026-06-13T14:30:00Z",
-      "fight": "Jimmy Omani vs Serkan Ozcaglayan",
-      "market": "Moneyline",
-      "fighters": {
-        "Jimmy Omani": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.95,
-          "implied_probability": 33.9
-        },
-        "Serkan Ozcaglayan": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.35,
-          "implied_probability": 74.07
-        }
-      },
-      "arb_sum": 1.079724,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.97
-    },
     {
       "type": "moneyline",
       "event_id": "ac491bc81999ace2aae1e01d6ea9ec8a",
@@ -263,13 +175,13 @@
         },
         "Kyle Daukaus": {
           "best_bookmaker": "Betfair",
-          "best_price": 3.65,
-          "implied_probability": 27.4
+          "best_price": 3.75,
+          "implied_probability": 26.67
         }
       },
-      "arb_sum": 1.014713,
+      "arb_sum": 1.007407,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.47
+      "profit_margin_percent": -0.74
     },
     {
       "type": "moneyline",
@@ -279,19 +191,19 @@
       "market": "Moneyline",
       "fighters": {
         "Mauricio Ruffy": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.2,
-          "implied_probability": 83.33
+          "best_bookmaker": "Betfair",
+          "best_price": 1.19,
+          "implied_probability": 84.03
         },
         "Michael Chandler": {
           "best_bookmaker": "Betfair",
-          "best_price": 5.7,
-          "implied_probability": 17.54
+          "best_price": 6.0,
+          "implied_probability": 16.67
         }
       },
-      "arb_sum": 1.008772,
+      "arb_sum": 1.007003,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.88
+      "profit_margin_percent": -0.7
     },
     {
       "type": "moneyline",
@@ -329,13 +241,13 @@
         },
         "Sean O'Malley": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.25,
-          "implied_probability": 80.0
+          "best_price": 1.26,
+          "implied_probability": 79.37
         }
       },
-      "arb_sum": 1.017391,
+      "arb_sum": 1.011042,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.74
+      "profit_margin_percent": -1.1
     },
     {
       "type": "moneyline",
@@ -346,18 +258,18 @@
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.02,
-          "implied_probability": 49.5
+          "best_price": 2.04,
+          "implied_probability": 49.02
         },
         "Ciryl Gane": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.96,
-          "implied_probability": 51.02
+          "best_price": 1.92,
+          "implied_probability": 52.08
         }
       },
-      "arb_sum": 1.005254,
+      "arb_sum": 1.011029,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.53
+      "profit_margin_percent": -1.1
     },
     {
       "type": "moneyline",
@@ -373,13 +285,13 @@
         },
         "Justin Gaethje": {
           "best_bookmaker": "Betfair",
-          "best_price": 5.3,
-          "implied_probability": 18.87
+          "best_price": 5.4,
+          "implied_probability": 18.52
         }
       },
-      "arb_sum": 1.008351,
+      "arb_sum": 1.004857,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.84
+      "profit_margin_percent": -0.49
     },
     {
       "type": "moneyline",
