@@ -3,8 +3,8 @@
   "total_moneyline_fights_checked": 25,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
-  "arbitrage_count": 0,
-  "moneyline_arbitrage_count": 0,
+  "arbitrage_count": 1,
+  "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
     {
@@ -59,9 +59,9 @@
       "market": "Moneyline",
       "fighters": {
         "Mauricio Ruffy": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.22,
-          "implied_probability": 81.97
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.23,
+          "implied_probability": 81.3
         },
         "Michael Chandler": {
           "best_bookmaker": "LiveScore Bet",
@@ -69,9 +69,9 @@
           "implied_probability": 18.52
         }
       },
-      "arb_sum": 1.004857,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.49
+      "arb_sum": 0.998193,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.18
     },
     {
       "type": "moneyline",
@@ -126,18 +126,18 @@
       "fighters": {
         "Alex Pereira": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.0,
-          "implied_probability": 50.0
+          "best_price": 2.02,
+          "implied_probability": 49.5
         },
         "Ciryl Gane": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.98,
-          "implied_probability": 50.51
+          "best_price": 1.97,
+          "implied_probability": 50.76
         }
       },
-      "arb_sum": 1.005051,
+      "arb_sum": 1.002664,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.51
+      "profit_margin_percent": -0.27
     },
     {
       "type": "moneyline",
@@ -152,14 +152,14 @@
           "implied_probability": 81.3
         },
         "Justin Gaethje": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 5.3,
-          "implied_probability": 18.87
+          "best_bookmaker": "Betfair",
+          "best_price": 5.2,
+          "implied_probability": 19.23
         }
       },
-      "arb_sum": 1.001687,
+      "arb_sum": 1.005316,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.17
+      "profit_margin_percent": -0.53
     },
     {
       "type": "moneyline",
@@ -905,5 +905,28 @@
       "profit_margin_percent": -5.74
     }
   ],
-  "arbitrage_opportunities": []
+  "arbitrage_opportunities": [
+    {
+      "type": "moneyline",
+      "event_id": "54eb45b661945af7aa7da285a12e835c",
+      "commence_time": "2026-06-15T01:10:00Z",
+      "fight": "Mauricio Ruffy vs Michael Chandler",
+      "market": "Moneyline",
+      "fighters": {
+        "Mauricio Ruffy": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.23,
+          "implied_probability": 81.3
+        },
+        "Michael Chandler": {
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 5.4,
+          "implied_probability": 18.52
+        }
+      },
+      "arb_sum": 0.998193,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.18
+    }
+  ]
 }
