@@ -1,10 +1,42 @@
 {
-  "generated_at": "2026-06-14T17:15:06.021655+00:00",
-  "total_arbitrage": 0,
+  "generated_at": "2026-06-14T19:17:09.707325+00:00",
+  "total_arbitrage": 1,
   "sports": {
-    "All": 0
+    "All": 1,
+    "UFC": 1
   },
-  "arbitrage": [],
+  "arbitrage": [
+    {
+      "sport": "UFC",
+      "competition": "UFC",
+      "event": "Diego Lopes vs Steve Garcia Jr.",
+      "market": "Moneyline",
+      "type": "moneyline",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.34,
+      "arb_percent": "",
+      "arb_sum": 0.99658,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Diego Lopes",
+          "bookmaker": "Matchbook",
+          "odds": 1.78,
+          "decimal_odds": 1.78,
+          "implied_probability": 56.18
+        },
+        {
+          "selection": "Steve Garcia Jr.",
+          "bookmaker": "LiveScore Bet",
+          "odds": 2.3,
+          "decimal_odds": 2.3,
+          "implied_probability": 43.48
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    }
+  ],
   "sources": {
     "football": "/home/runner/work/odds-board/odds-board/football/data/arbitrage.json",
     "ufc": "/home/runner/work/odds-board/odds-board/ufc/data/arbitrage.json",
@@ -12,7 +44,7 @@
   },
   "source_counts": {
     "football": 0,
-    "ufc": 0,
+    "ufc": 1,
     "darts": 0
   }
 }
