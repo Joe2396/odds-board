@@ -1,42 +1,10 @@
 {
-  "generated_at": "2026-06-14T13:49:22.081516+00:00",
-  "total_arbitrage": 1,
+  "generated_at": "2026-06-14T15:46:03.338817+00:00",
+  "total_arbitrage": 0,
   "sports": {
-    "All": 1,
-    "UFC": 1
+    "All": 0
   },
-  "arbitrage": [
-    {
-      "sport": "UFC",
-      "competition": "UFC",
-      "event": "Mauricio Ruffy vs Michael Chandler",
-      "market": "Moneyline",
-      "type": "moneyline",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 0.18,
-      "arb_percent": "",
-      "arb_sum": 0.998193,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Mauricio Ruffy",
-          "bookmaker": "Matchbook",
-          "odds": 1.23,
-          "decimal_odds": 1.23,
-          "implied_probability": 81.3
-        },
-        {
-          "selection": "Michael Chandler",
-          "bookmaker": "LiveScore Bet",
-          "odds": 5.4,
-          "decimal_odds": 5.4,
-          "implied_probability": 18.52
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
-    }
-  ],
+  "arbitrage": [],
   "sources": {
     "football": "/home/runner/work/odds-board/odds-board/football/data/arbitrage.json",
     "ufc": "/home/runner/work/odds-board/odds-board/ufc/data/arbitrage.json",
@@ -44,7 +12,7 @@
   },
   "source_counts": {
     "football": 0,
-    "ufc": 1,
+    "ufc": 0,
     "darts": 0
   }
 }
