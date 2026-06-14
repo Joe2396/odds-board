@@ -103,6 +103,125 @@ def add_offer(fixtures, key, side, bookmaker, raw_odds, row):
     })
 
 
+
+# ── Props arbitrage ────────────────────────────────────────────────────────────
+
+PROPS_FILES = {
+    "PaddyPower":   ("paddypower_worldcup_props.json",   "fractional"),
+    "BoyleSports":  ("boylesports_worldcup_props_complete.json", "fractional"),
+    "LiveScoreBet": ("livescorebet_worldcup_props.json", "fractional"),
+    "Ladbrokes":    ("ladbrokes_worldcup_props.json",    "fractional"),
+    "Midnite":      ("midnite_worldcup_props.json",      "fractional"),
+    "WilliamHill":  ("williamhill_worldcup_props.json",  "fractional"),
+    "BetVictor":    ("betvictor_worldcup_props.json",    "fractional"),
+    "Unibet":       ("unibet_worldcup_props.json",       "fractional"),
+}
+
+OU_MARKET_KEYS = {
+    "total_goals_over_under", "total_goals_over", "total_goals",
+    "first_half_goals_over_under", "first_half_goals",
+    "total_corners_over_under", "total_corners",
+    "total_cards_over_under", "total_match_cards",
+    "total_shots_on_target_over_under", "total_shots_over_under",
+}
+
+
+def normalize_key(s):
+    s = str(s or "").lower().replace("&", "and").replace("?", "")
+    import re as _re
+    return _re.sub(r"[^a-z0-9]+", "_", s).strip("_")
+
+
+def scan_props_arbitrage(root):
+    """Scan O/U prop markets across bookmakers for arbitrage."""
+    # Structure: {fixture_key: {market_key: {line: {side: [{bk, odds, decimal}]}}}}
+    data = {}
+
+    for bk, (fname, fmt) in PROPS_FILES.items():
+        path = os.path.join(root, "football", "data", fname)
+        raw = load_json(path)
+        if not raw:
+            continue
+        matches = raw.get("matches") or []
+        if isinstance(raw, list):
+            matches = raw
+
+        for m in matches:
+            home = m.get("home_team", "")
+            away = m.get("away_team", "")
+            if not home or not away:
+                continue
+            fk = fixture_key(home, away)
+            markets = m.get("markets") or {}
+            if isinstance(markets, list):
+                markets = {mk.get("market", ""): mk for mk in markets}
+
+            for mkt_name, mkt_data in markets.items():
+                mk = normalize_key(mkt_name)
+                if not any(ok in mk for ok in ["over_under", "over", "corners", "cards", "shots", "goals"]):
+                    continue
+                sels = mkt_data.get("selections") or []
+                for sel in sels:
+                    if not isinstance(sel, dict): continue
+                    sn = sel.get("selection", "")
+                    odds_raw = sel.get("odds") or sel.get("price", "")
+                    side = sel.get("side", "")
+                    line = sel.get("line", "")
+
+                    # Extract side/line from selection name if not set
+                    if not side or not line:
+                        import re as _re
+                        m2 = _re.match(r"(over|under)\s+([\d.]+)", sn, _re.I)
+                        if m2:
+                            side = m2.group(1).lower()
+                            line = m2.group(2)
+
+                    if not side or not line or not odds_raw:
+                        continue
+
+                    dec = fractional_to_decimal(odds_raw)
+                    if not dec or dec <= 1:
+                        continue
+
+                    data.setdefault(fk, {}).setdefault(mk, {}).setdefault(line, {}).setdefault(side, [])
+                    data[fk][mk][line][side].append({
+                        "bookmaker": bk, "odds": odds_raw, "decimal": dec,
+                        "match": f"{home} v {away}"
+                    })
+
+    # Find arbs
+    arbs = []
+    near_misses = []
+    for fk, markets in data.items():
+        for mk, lines in markets.items():
+            for line, sides in lines.items():
+                if "over" not in sides or "under" not in sides:
+                    continue
+                best_over  = max(sides["over"],  key=lambda x: x["decimal"])
+                best_under = max(sides["under"], key=lambda x: x["decimal"])
+                arb_sum = (1/best_over["decimal"]) + (1/best_under["decimal"])
+                row = {
+                    "sport": "Football",
+                    "competition": "FIFA World Cup",
+                    "type": "props_ou",
+                    "match": best_over["match"],
+                    "market": mk.replace("_", " ").title(),
+                    "line": line,
+                    "arb_sum": round(arb_sum, 6),
+                    "arb_percent": round(arb_sum * 100, 3),
+                    "profit_margin_percent": round(((1/arb_sum) - 1) * 100, 3),
+                    "selections": {
+                        "over":  {"bookmaker": best_over["bookmaker"],  "odds": best_over["odds"],  "decimal_odds": best_over["decimal"]},
+                        "under": {"bookmaker": best_under["bookmaker"], "odds": best_under["odds"], "decimal_odds": best_under["decimal"]},
+                    }
+                }
+                if arb_sum < 1:
+                    arbs.append(row)
+                elif arb_sum < 1.04:
+                    near_misses.append(row)
+
+    return arbs, near_misses
+
 def main():
     fixtures = {}
     strict_index = {}
@@ -264,6 +383,21 @@ def main():
     }
 
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+
+    # Props arbitrage
+    props_arbs, props_near_misses = scan_props_arbitrage(ROOT)
+    print(f"Props arb opportunities: {len(props_arbs)}")
+    print(f"Props near misses: {len(props_near_misses)}")
+
+    all_arbs = arbitrage + props_arbs
+    all_near_misses = (near_misses + props_near_misses)
+    all_near_misses.sort(key=lambda x: x["arb_sum"])
+
+    output["arbitrage"] = all_arbs
+    output["near_misses"] = all_near_misses[:25]
+    output["arbitrage_count"] = len(all_arbs)
+    output["near_miss_count"] = len(all_near_misses)
+    output["props_arb_count"] = len(props_arbs)
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)

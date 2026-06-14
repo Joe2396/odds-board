@@ -179,6 +179,174 @@ def remove_bookmaker_vig(selection_prices):
     return averaged
 
 
+
+# ── Props EV alerts ────────────────────────────────────────────────────────────
+
+MIN_EV_PROPS = 10.0
+MIN_BOOKS_PROPS = 4
+
+
+def scan_props_ev_from_index(root):
+    """
+    Use generate_worldcup_page.py's load_all() and build_player_index() to get
+    cleanly normalised player props data, then find EV across bookmakers.
+    """
+    import sys
+    scripts_path = os.path.join(root, "scripts", "Football")
+    if scripts_path not in sys.path:
+        sys.path.insert(0, scripts_path)
+
+    try:
+        import generate_worldcup_page as gen
+    except ImportError as e:
+        print(f"Could not import generate_worldcup_page: {e}")
+        return []
+
+    try:
+        fixtures, _, _ = gen.load_all()
+    except Exception as e:
+        print(f"load_all() failed: {e}")
+        return []
+
+    alerts = []
+
+    for fixture in fixtures:
+        props = fixture.get("props") or {}
+        if not props:
+            continue
+
+        home = fixture.get("home_team", "")
+        away = fixture.get("away_team", "")
+        match_label = fixture.get("match", "")
+        date_label = fixture.get("date_label", "")
+        time_label = fixture.get("time", "")
+
+        try:
+            player_index = gen.build_player_index(props)
+        except Exception:
+            continue
+
+        # Bookmakers excluded from props EV (scraper not ready)
+        # Excluded bookmakers - props scraper not verified accurate yet
+        EXCLUDED_BK = {"Unibet", "Midnite"}
+
+        # Markets excluded from props EV (inconsistent structure across books)
+        EXCLUDED_MARKETS = {
+            # Goalscorer markets - structured differently per book
+            "anytime_scorer", "first_goalscorer", "last_goalscorer",
+            "player_to_score", "goalscorer", "to_score",
+            "anytime_goalscorer", "player_scored",
+            # Card markets - single odds, inconsistent across books
+            "player_to_get_a_card", "player_cards", "player_carded",
+            "player_booked", "to_be_carded", "player_card",
+        }
+
+        # For each player × market × threshold, collect prices across books
+        for pk, pdata in player_index.items():
+            player_name = pdata["name"]
+            for mk, mk_data in pdata["markets"].items():
+                if mk in EXCLUDED_MARKETS:
+                    continue
+                if mk in gen.THRESHOLD_MARKETS:
+                    # mk_data = {line: {bk: {odds, decimal}}}
+                    # Only compare line=0.5 - ensures same baseline across all books
+                    # (BoyleSports starts shots at 2.5+ which causes false EV vs books starting at 0.5)
+                    for line, line_data in mk_data.items():
+                        if line not in {"0.5", "1.5", "2.5"}:
+                            continue
+                        if len(line_data) < MIN_BOOKS_PROPS:
+                            continue
+
+                        # Remove outliers: drop any price more than 5x from the minimum
+                        # Also exclude bookmakers not ready for props EV
+                        pre_filtered = {b: o for b, o in line_data.items() if b not in EXCLUDED_BK}
+                        if not pre_filtered:
+                            continue
+                        min_dec = min(o["decimal"] for o in pre_filtered.values())
+                        filtered = {b: o for b, o in pre_filtered.items()
+                                   if o["decimal"] / min_dec <= 5}
+                        if len(filtered) < MIN_BOOKS_PROPS:
+                            continue
+                        decimals = [o["decimal"] for o in filtered.values()]
+                        avg_prob = sum(1/d for d in decimals) / len(decimals)
+                        if avg_prob <= 0:
+                            continue
+                        fair_decimal = 1 / avg_prob
+                        # Skip if fair price is longer than 25/1 (decimal 27)
+                        if fair_decimal > 27:
+                            continue
+                        line_data = filtered  # use filtered for EV calculation
+                        for bk, o in line_data.items():
+                            ev = ((o["decimal"] * avg_prob) - 1) * 100
+                            if ev >= MIN_EV_PROPS:
+                                threshold = gen.LINE_LABELS.get(line, line + "+")
+                                alerts.append({
+                                    "sport": "Football",
+                                    "competition": "FIFA World Cup",
+                                    "market": gen.pretty_market_name(mk),
+                                    "type": "props_player",
+                                    "match": match_label,
+                                    "date_label": date_label,
+                                    "time": time_label,
+                                    "selection": f"{player_name} {threshold}",
+                                    "bookmaker": bk,
+                                    "bookmaker_odds": o["odds"],
+                                    "bookmaker_decimal_odds": round(o["decimal"], 6),
+                                    "fair_decimal_odds": round(fair_decimal, 6),
+                                    "fair_fractional_odds": decimal_to_fractional(fair_decimal),
+                                    "fair_probability": round(avg_prob, 6),
+                                    "ev_percent": round(ev, 3),
+                                    "bookmaker_count": len(line_data),
+                                    "source_url": "",
+                                })
+                else:
+                    # mk_data = {bk: {odds, decimal}}
+                    filtered_mk = {bk: o for bk, o in mk_data.items() if bk not in EXCLUDED_BK}
+                    if len(filtered_mk) < MIN_BOOKS_PROPS:
+                        continue
+                    mk_data = filtered_mk
+                    decimals_raw = [o["decimal"] for o in mk_data.values()]
+                    sorted_dec2 = sorted(decimals_raw)
+                    median_dec2 = sorted_dec2[len(sorted_dec2)//2]
+                    filtered2 = {bk: o for bk, o in mk_data.items()
+                                if o["decimal"] / median_dec2 <= 8 and median_dec2 / o["decimal"] <= 8}
+                    if len(filtered2) < MIN_BOOKS_PROPS:
+                        continue
+                    decimals = [o["decimal"] for o in filtered2.values()]
+                    avg_prob = sum(1/d for d in decimals) / len(decimals)
+                    if avg_prob <= 0:
+                        continue
+                    fair_decimal = 1 / avg_prob
+                    if fair_decimal > 27:
+                        continue
+                    for bk, o in mk_data.items():
+                        ev = ((o["decimal"] * avg_prob) - 1) * 100
+                        if ev >= MIN_EV_PROPS:
+                            alerts.append({
+                                "sport": "Football",
+                                "competition": "FIFA World Cup",
+                                "market": gen.pretty_market_name(mk),
+                                "type": "props_player",
+                                "match": match_label,
+                                "date_label": date_label,
+                                "time": time_label,
+                                "selection": player_name,
+                                "bookmaker": bk,
+                                "bookmaker_odds": o["odds"],
+                                "bookmaker_decimal_odds": round(o["decimal"], 6),
+                                "fair_decimal_odds": round(fair_decimal, 6),
+                                "fair_fractional_odds": decimal_to_fractional(fair_decimal),
+                                "fair_probability": round(avg_prob, 6),
+                                "ev_percent": round(ev, 3),
+                                "bookmaker_count": len(mk_data),
+                                "source_url": "",
+                            })
+
+    alerts.sort(key=lambda x: x["ev_percent"], reverse=True)
+    print(f"Props EV alerts >= {MIN_EV_PROPS}%: {len(alerts)}")
+    return alerts
+
+
 def main():
     fixtures = {}
     strict_index = {}
@@ -325,6 +493,13 @@ def main():
                         "source_url": offer.get("source_url") or "",
                     })
 
+    # Props EV alerts
+    props_alerts = scan_props_ev_from_index(ROOT)
+    print(f"Props EV alerts >= {MIN_EV_PROPS}%: {len(props_alerts)}")
+
+    all_alerts = alerts + props_alerts
+    all_alerts.sort(key=lambda x: x["ev_percent"], reverse=True)
+
     alerts.sort(key=lambda x: x["ev_percent"], reverse=True)
 
     for fixture in fixtures.values():
@@ -340,8 +515,10 @@ def main():
         "fixture_count": len(fixtures),
         "compared_fixtures": compared_fixtures,
         "skipped_fixtures": skipped_fixtures,
-        "alert_count": len(alerts),
-        "alerts": alerts,
+        "alert_count": len(all_alerts),
+        "moneyline_alert_count": len(alerts),
+        "props_alert_count": len(props_alerts),
+        "alerts": all_alerts,
     }
 
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
@@ -354,13 +531,13 @@ def main():
     print(f"Fixtures found: {len(fixtures)}")
     print(f"Fixtures compared: {compared_fixtures}")
     print(f"Fixtures skipped: {skipped_fixtures}")
-    print(f"EV alerts >= {MIN_EV_PERCENT}%: {len(alerts)}")
+    print(f"EV alerts >= {MIN_EV_PERCENT}%: {len(all_alerts)} ({len(alerts)} moneyline, {len(props_alerts)} props)")
     print(f"Saved to: {OUT_PATH}")
 
-    if alerts:
+    if all_alerts:
         print("")
         print("Top Football EV alerts:")
-        for alert in alerts[:20]:
+        for alert in all_alerts[:20]:
             print(
                 f"- {alert['match']} | {alert['selection']} | "
                 f"{alert['bookmaker_odds']} {alert['bookmaker']} | "

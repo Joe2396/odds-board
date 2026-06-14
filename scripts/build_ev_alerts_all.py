@@ -185,6 +185,7 @@ def render_alert_card(alert, index):
         <div>
           <span>Selection</span>
           <strong>{esc(alert.get("selection"))}</strong>
+          <em class="market-label">{esc(alert.get("market"))}</em>
         </div>
         <div>
           <span>Best Price</span>
@@ -197,8 +198,6 @@ def render_alert_card(alert, index):
           <em>{esc(alert.get("fair_decimal_odds"))}</em>
         </div>
       </div>
-
-      <p class="market">{esc(alert.get("market"))}</p>
     </article>
     """
 
@@ -511,6 +510,12 @@ def render_page(alerts, football_data):
       margin-top: 4px;
     }}
 
+    .market-label {{
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted, #888);
+      margin-top: 2px;
+    }}
     .market {{
       color: var(--muted);
       font-size: 12px;

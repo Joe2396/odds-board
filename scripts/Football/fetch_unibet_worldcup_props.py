@@ -49,7 +49,7 @@ OUT_PATH = ROOT / "football" / "data" / "unibet_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "unibet_worldcup_props"
 LIST_URL = "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches"
 
-MAX_MATCHES = 4
+MAX_MATCHES = 15
 HEADLESS = False
 
 DECIMAL_RE = re.compile(r"^\d+(?:\.\d+)?$")
@@ -83,7 +83,7 @@ TEAM_ALIASES = {
 IGNORE_MARKET_KEYWORDS = [
     "correct score", "goal range", "draw no bet", "asian handicap", "3-way handicap",
     "3 way handicap", "halftime/fulltime", "half time/full time", "ht/ft",
-    "cashout", "early payout", "power sub", "bet builder",
+    "cashout", "early payout", "bet builder",
 ]
 
 WANTED_MARKET_HEADINGS = [
@@ -470,30 +470,77 @@ def is_probably_player_name(x, home="", away=""):
 
 def parse_goalscorers(lines, home, away):
     markets = []
-    selections_anytime, selections_first = [], []
+    selections_anytime = []
+    selections_first = []
 
-    # Unibet often has a single Goalscorer table with columns Anytime / 1st / Last.
-    # The old scraper's main issue was accidentally reading threshold rows as players.
+    # Unibet World Cup page uses: "Anytime Scorer - Power Sub"
+    # Layout is simple alternating player / decimal odds rows:
+    #   Anytime Scorer - Power Sub
+    #   Power Sub
+    #   Cashout unavailable for Power Sub markets
+    #   Kai Havertz
+    #   1.40
+    #   Deniz Undav
+    #   1.45
+    #   ...
+    # Important: do NOT use next_heading_index here because the cashout note
+    # contains an ignore keyword and would prematurely end the block.
     for idx, line in enumerate(lines):
-        if line not in {"Goalscorer", "Anytime Scorer", "Anytime Goalscorer", "First Goalscorer"}:
+        if line != "Anytime Scorer - Power Sub":
             continue
+
+        block = []
+        for x in lines[idx + 1:]:
+            if x == "View less":
+                break
+            block.append(x)
+
+        i = 0
+        while i < len(block) - 1:
+            player = block[i]
+            odd = block[i + 1]
+
+            if player.lower() in {
+                "power sub",
+                "cashout unavailable for power sub markets",
+            }:
+                i += 1
+                continue
+
+            if is_probably_player_name(player, home, away) and is_decimal_odds(odd):
+                selections_anytime.append(selection_obj(
+                    f"{player} Anytime Goalscorer",
+                    odd,
+                    {
+                        "player": player,
+                        "prop_type": "anytime_goalscorer",
+                    },
+                ))
+                i += 2
+            else:
+                i += 1
+        break
+
+    # Only parse a genuine player first-goalscorer block if Unibet exposes one.
+    # Do NOT parse "1st Goal" because that is team first-goal, not player first scorer.
+    for idx, line in enumerate(lines):
+        if line not in {"First Goalscorer", "1st Goalscorer"}:
+            continue
+
         end = next_heading_index(lines, idx)
         block = lines[idx:end]
-        for i in range(1, len(block) - 2):
+        i = 1
+        while i < len(block) - 1:
             player = block[i]
-            if not is_probably_player_name(player, home, away):
-                continue
-            if is_decimal_odds(block[i + 1]):
-                # if row has two odds after player, odds1=anytime, odds2=first scorer.
-                selections_anytime.append(selection_obj(f"{player} Anytime Goalscorer", block[i + 1], {
+            odd = block[i + 1]
+            if is_probably_player_name(player, home, away) and is_decimal_odds(odd):
+                selections_first.append(selection_obj(f"{player} First Goalscorer", odd, {
                     "player": player,
-                    "prop_type": "anytime_goalscorer",
+                    "prop_type": "first_goalscorer",
                 }))
-                if i + 2 < len(block) and is_decimal_odds(block[i + 2]):
-                    selections_first.append(selection_obj(f"{player} First Goalscorer", block[i + 2], {
-                        "player": player,
-                        "prop_type": "first_goalscorer",
-                    }))
+                i += 2
+            else:
+                i += 1
         break
 
     if selections_anytime:
@@ -501,59 +548,117 @@ def parse_goalscorers(lines, home, away):
     if selections_first:
         markets.append(market_obj("First Goalscorer", dedupe_selections(selections_first)))
     return markets
-
-
 def parse_player_grid(lines, heading, market_name, prop_type, home, away, allowed_thresholds=None):
+    """
+    Unibet renders player stat markets as a COLUMN grid in the body text:
+
+      Market heading
+      All
+      Home
+      Away
+      Players
+      Player A
+      Player B
+      Player C
+      1+
+      odds for Player A
+      odds for Player B
+      odds for Player C
+      2+
+      odds for Player A
+      odds for Player B
+      odds for Player C
+
+    The old row parser only grabbed one player incorrectly.
+    This parser zips each threshold odds column back to the player list.
+    """
     markets = []
     allowed_thresholds = allowed_thresholds or {"1+", "2+", "3+", "4+"}
+
     for idx, line in enumerate(lines):
         if not line.startswith(heading):
             continue
+
         end = next_heading_index(lines, idx)
         block = lines[idx:end]
 
-        # find header thresholds visible before rows
-        thresholds = []
-        for x in block[:25]:
-            if x in allowed_thresholds and x not in thresholds:
-                thresholds.append(x)
-        if not thresholds:
-            thresholds = ["1+"] if "Cards" in heading else ["1+", "2+", "3+", "4+"]
+        try:
+            players_marker = next(i for i, x in enumerate(block) if x.lower() == "players")
+            first_threshold_idx = next(
+                i for i in range(players_marker + 1, len(block))
+                if THRESHOLD_RE.match(block[i])
+            )
+        except StopIteration:
+            # Some Unibet markets, especially Player Total Cards, render as simple
+            # alternating player / odds rows rather than a threshold grid.
+            if heading == "Player Total Cards":
+                selections = []
+                i = 1
+                while i < len(block) - 1:
+                    player = block[i]
+                    odd = block[i + 1]
+                    if player.lower() in {"all", home.lower(), away.lower(), "view less", "view more"}:
+                        i += 1
+                        continue
+                    if is_probably_player_name(player, home, away) and is_decimal_odds(odd):
+                        th = "1+"
+                        selections.append(selection_obj(f"{player} {th} {market_name}", odd, {
+                            "player": player,
+                            "threshold": th,
+                            "line": threshold_to_line(th),
+                            "prop_type": prop_type,
+                        }))
+                        i += 2
+                    else:
+                        i += 1
+                if selections:
+                    markets.append(market_obj(market_name, dedupe_selections(selections)))
+            continue
+
+        players = []
+        for x in block[players_marker + 1:first_threshold_idx]:
+            if is_probably_player_name(x, home, away):
+                players.append(clean(x))
+
+        if not players:
+            continue
 
         selections = []
-        i = 1
-        while i < len(block):
-            player = block[i]
-            if not is_probably_player_name(player, home, away):
-                i += 1
-                continue
-            odds = []
-            j = i + 1
-            while j < len(block) and len(odds) < len(thresholds):
-                if is_decimal_odds(block[j]):
-                    odds.append(block[j])
-                    j += 1
-                    continue
-                # If another player/heading starts, stop this row.
-                if is_probably_player_name(block[j], home, away) or should_stop_at_heading(block[j]):
-                    break
-                j += 1
+        pos = first_threshold_idx
 
-            for th, odd in zip(thresholds, odds):
-                if th not in allowed_thresholds:
-                    continue
+        while pos < len(block):
+            th = block[pos]
+
+            if not THRESHOLD_RE.match(th):
+                pos += 1
+                continue
+
+            next_pos = pos + 1
+            while next_pos < len(block) and not THRESHOLD_RE.match(block[next_pos]):
+                if block[next_pos].lower() in {"view less", "view more"}:
+                    break
+                next_pos += 1
+
+            if th not in allowed_thresholds:
+                pos = next_pos
+                continue
+
+            odds_values = [x for x in block[pos + 1:next_pos] if is_decimal_odds(x)]
+
+            for player, odd in zip(players, odds_values):
                 selections.append(selection_obj(f"{player} {th} {market_name}", odd, {
                     "player": player,
                     "threshold": th,
                     "line": threshold_to_line(th),
                     "prop_type": prop_type,
                 }))
-            i = max(j, i + 1)
+
+            pos = next_pos
 
         if selections:
             markets.append(market_obj(market_name, dedupe_selections(selections)))
-    return markets
 
+    return markets
 
 def threshold_to_line(th):
     try:
@@ -569,8 +674,8 @@ def parse_player_markets(text, home, away):
     markets.extend(parse_goalscorers(lines, home, away))
 
     wanted_grids = [
-        ("Player Shots on Target", "Player Shots On Target", "player_shots_on_target", {"1+", "2+", "3+", "4+"}),
-        ("Player Shots", "Player Shots", "player_shots", {"1+", "2+", "3+", "4+"}),
+        ("Player Shots on Target", "Player Shots On Target", "player_shots_on_target", {"1+", "2+", "3+"}),
+        ("Player Shots", "Player Shots", "player_shots", {"1+", "2+", "3+", "4+", "5+"}),
         ("Player Total Cards", "Player Cards", "player_cards", {"1+"}),
         ("Player Assists", "Player Assists", "player_assists", {"1+", "2+"}),
         ("Player Fouls Committed", "Player Fouls Committed", "player_fouls_committed", {"1+", "2+", "3+", "4+"}),
@@ -584,16 +689,51 @@ def parse_player_markets(text, home, away):
 
 
 def dedupe_selections(selections):
+    """
+    Dedupe selections.
+
+    Important for Unibet player stat grids: the page text can include the same
+    player market from the All tab plus team-specific tab fragments. For site
+    comparison we only want the first All-tab price per player/threshold.
+    So player stat markets dedupe by (prop_type, player, threshold) and keep
+    the first price seen.
+    """
     out, seen = [], set()
+
     for s in selections:
-        key = (
-            s.get("selection"), s.get("player"), s.get("threshold"),
-            s.get("side"), s.get("line"), s.get("team"), s.get("decimal_odds")
-        )
+        prop_type = s.get("prop_type")
+
+        if (
+            s.get("player")
+            and s.get("threshold")
+            and prop_type in {
+                "player_shots",
+                "player_shots_on_target",
+                "player_assists",
+                "player_cards",
+                "player_fouls_committed",
+                "player_fouls_won",
+                "player_tackles",
+            }
+        ):
+            key = (prop_type, s.get("player"), s.get("threshold"))
+        else:
+            key = (
+                s.get("selection"),
+                s.get("player"),
+                s.get("threshold"),
+                s.get("side"),
+                s.get("line"),
+                s.get("team"),
+                s.get("decimal_odds"),
+            )
+
         if key in seen:
             continue
+
         seen.add(key)
         out.append(s)
+
     return out
 
 
