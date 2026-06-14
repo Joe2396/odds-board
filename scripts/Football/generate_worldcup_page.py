@@ -16,7 +16,7 @@ LADBROKES_PATH      = ROOT / "football" / "data" / "ladbrokes_worldcup_moneyline
 MIDNITE_PATH        = ROOT / "football" / "data" / "midnite_worldcup_moneylines.json"
 
 PADDY_PROPS_PATH    = ROOT / "football" / "data" / "paddypower_worldcup_props.json"
-BOYLE_PROPS_PATH    = ROOT / "football" / "data" / "boylesports_worldcup_props.json"
+BOYLE_PROPS_PATH    = ROOT / "football" / "data" / "boylesports_worldcup_props_complete.json"
 UNIBET_PROPS_PATH   = ROOT / "football" / "data" / "unibet_worldcup_props.json"
 LIVESCORE_PROPS_PATH= ROOT / "football" / "data" / "livescorebet_worldcup_props.json"
 EIGHTSPORT_PROPS_PATH= ROOT / "football" / "data" / "888sport_worldcup_props.json"
@@ -121,8 +121,11 @@ def normalize_prop_market_key(name):
         "scorer_2_plus":"scorer_2_plus",
         "shots_on_target":"shots_on_target","player_s_shots_on_target":"shots_on_target",
         "player_shots_on_target":"shots_on_target",
+        "player_shots_on_target_over":"shots_on_target",
         "shots":"shots","player_s_shots":"shots","player_shots":"shots",
+        "player_shots_over":"shots",
         "player_to_assist":"player_to_assist","to_give_an_assist":"player_to_assist",
+        "player_assists_over":"player_to_assist",
         "player_to_get_a_card":"player_to_get_a_card","to_get_a_card":"player_to_get_a_card",
         "player_fouls_committed":"player_fouls_committed","fouls_committed":"player_fouls_committed",
         "player_to_commit_a_foul":"player_fouls_committed",
@@ -132,10 +135,31 @@ def normalize_prop_market_key(name):
         "total_match_cards":"total_match_cards","total_cards":"total_match_cards",
         "cards_over_under_markets":"total_match_cards","cards_over_under":"total_match_cards",
         "corner_over_under_markets":"total_corners","corner_over_under":"total_corners","total_corners":"total_corners",
+        "over_under_total_corners":"total_corners","over_under_total_cards":"total_match_cards",
         "player_shots_on_target_including_woodwork":"shots_on_target",
         "player_shown_a_card":"player_to_get_a_card",
         "player_shots_1_3":"shots","player_shots_4_6":"shots",
         "player_booked":"player_to_get_a_card",
+        "player_to_be_booked":"player_to_get_a_card",
+        "player_to_be_sent_off":"player_sent_off",
+        "player_sent_off":"player_sent_off",
+        "player_shots":"shots",
+        "player_shots_on_target":"shots_on_target",
+        "player_assists":"player_to_assist",
+        "player_assists_over":"player_to_assist",
+        "player_tackles":"player_tackles_completed",
+        "player_tackles_over":"player_tackles_completed",
+        # Keep BoyleSports team and match stats separate.
+        # Previously these collapsed into total_shots / total_shots_on_target,
+        # which meant Team Shots and Match Shots could overwrite each other.
+        "team_shots":"team_shots",
+        "team_shots_over":"team_shots",
+        "team_shots_on_target":"team_shots_on_target",
+        "team_shots_on_target_over":"team_shots_on_target",
+        "match_shots":"match_shots",
+        "match_shots_over":"match_shots",
+        "match_shots_on_target":"match_shots_on_target",
+        "match_shots_on_target_over":"match_shots_on_target",
         "player_fouls_conceded":"player_fouls_conceded",
         "fouls_conceded":"player_fouls_conceded",
         "player_s_fouls_conceded":"player_fouls_conceded",
@@ -164,6 +188,12 @@ def pretty_market_name(name):
         "scorer_2_plus":"To Score 2+","shots_on_target":"Shots On Target",
         "shots":"Shots","player_to_assist":"To Assist","player_to_get_a_card":"To Get A Card",
         "player_fouls_committed":"Fouls Committed","player_fouls_won":"Fouls Won",
+        "player_fouls_conceded":"Fouls Conceded",
+        "player_tackles_completed":"Tackles Completed",
+        "team_shots":"Team Shots",
+        "team_shots_on_target":"Team Shots On Target",
+        "match_shots":"Match Shots",
+        "match_shots_on_target":"Match Shots On Target",
     }.get(k, clean(name).replace("_"," ").title())
 
 PLAYER_MARKET_KEYS = {"anytime_scorer","first_goalscorer","scorer_2_plus",
@@ -179,7 +209,11 @@ MATCH_MARKET_KEYS  = {"match_betting","total_goals","first_half_goals","btts","b
                        "total_shots_over_under","total_cards_over_under",
                        "brazil_shots_on_target_over_under","morocco_shots_on_target_over_under",
                        "haiti_shots_on_target_over_under","scotland_shots_on_target_over_under",
-                       "qatar_shots_on_target_over_under","switzerland_shots_on_target_over_under"}
+                       "qatar_shots_on_target_over_under","switzerland_shots_on_target_over_under",
+                       "total_shots","total_shots_on_target",
+                       "team_shots","team_shots_on_target",
+                       "match_shots","match_shots_on_target",
+                       "total_shots_on_target","total_shots"}
 GROUPED_OU_KEYS    = {"total_goals","first_half_goals"}
 
 # Markets that have threshold columns (1+, 2+, 3+)
@@ -194,11 +228,16 @@ def is_player_market(name):
 def is_team_market(name, home="", away=""):
     k = normalize_prop_market_key(name)
     n = name.lower()
+    if k in {"team_shots", "team_shots_on_target"}: return True
     if k.startswith("total_goals_by_") or k.startswith("team_total_goals"): return True
     if "team total" in n or "total goals by" in n: return True
     if home and f"by {home.lower()}" in n: return True
     if away and f"by {away.lower()}" in n: return True
+    # Ladbrokes team shots/corners: "Germany Shots Over / Under"
+    if home and (n.startswith(home.lower() + " shots") or n.startswith(home.lower() + " corners")): return True
+    if away and (n.startswith(away.lower() + " shots") or n.startswith(away.lower() + " corners")): return True
     return False
+
 
 def normalize_prop_selection_key(market_name, selection_name):
     mk = normalize_prop_market_key(market_name)
@@ -246,16 +285,15 @@ def normalize_prop_selection_key(market_name, selection_name):
 
     if mk == "double_chance":
         s_lower = s.lower()
+        if "1x" in s_lower: return "home_or_draw"
+        if "x2" in s_lower: return "away_or_draw"
+        if s_lower in {"12","home or away"}: return "home_or_away"
         parts = [p.strip() for p in re.split(r"\bor\b", s_lower)]
-        team_count = sum(1 for p in parts if "draw" not in p)
         draw_count = sum(1 for p in parts if "draw" in p)
-        if team_count == 2:
-            return "home_or_away"
-        if team_count == 1 and draw_count == 1:
-            if "1x" in s_lower or s_lower.startswith("home") or s_lower.endswith("draw") and parts[0] != "draw":
-                if parts[0] != "draw": return "home_or_draw"
-            if "x2" in s_lower or s_lower.startswith("draw") or (len(parts)>1 and parts[1] != "draw"):
-                return "away_or_draw"
+        if draw_count == 0:
+            return "home_or_away"  # e.g. "Germany or Curacao" (Ladbrokes)
+        if draw_count == 1:
+            if parts[0] == "draw": return "away_or_draw"
             return "home_or_draw"
         return normalize_text_key(s)
 
@@ -536,6 +574,14 @@ def convert_market(raw, internal_name=""):
         for field in ("player","line","side","prop_type","threshold"):
             if rs.get(field):
                 entry[field] = rs[field]
+        # Extract line from threshold field (BoyleSports stats format: "Over 0.5" -> "0.5")
+        if not entry.get("line") and rs.get("threshold"):
+            m2 = re.search(r"([\d.]+)", str(rs["threshold"]))
+            if m2:
+                entry["line"] = m2.group(1)
+        # Extract player name from selection field (BoyleSports stats: selection = player name)
+        if not entry.get("player") and rs.get("selection") and rs.get("threshold"):
+            entry["player"] = clean(rs["selection"])
         sels.append(entry)
     if not name or not sels: return None
     return {"market":name,"normalized_market":mk,"selection_count":len(sels),"selections":sels}
@@ -972,7 +1018,11 @@ def render_match_props_page(fixture):
     def bookmaker_cards():
         html = ""
         for bk,pd in sorted(props.items()):
-            markets = [m for m in pd.get("markets",[]) if normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS]
+            markets = [m for m in pd.get("markets",[]) if 
+                       normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS
+                       or (not is_player_market(m["market"]) and 
+                           re.search(r'shots|corners', m["market"].lower()) and
+                           not is_player_market(m["market"]))]
             if not markets: continue
             cards = ""
             for market in markets:
@@ -1066,9 +1116,40 @@ def build_player_index(props):
                     continue
 
                 # ── Strip player name ────────────────────────────────────
-                player_name = sn
-                if player_name.startswith("Anytime Goalscorer "):
-                    player_name = player_name[19:].strip()
+                # Prefer structured scraper fields first. PaddyPower threshold
+                # markets save the real player separately, e.g.
+                # {"player": "Shurandy Sambo", "threshold": "1+"}.
+                # If we parse only from the selection text, fouls/fouls-won can
+                # fail because the selection format is "Name 1+ Fouls Won".
+                player_name = clean(sel.get("player") or "")
+
+                # Drop fake heading rows accidentally captured as players.
+                if player_name.lower() in {
+                    "player shots on target including woodwork",
+                    "player shots 1 - 3",
+                    "player shots 4 - 6",
+                    "player to commit a foul",
+                    "player to be fouled",
+                    "player tackles",
+                    "player to have 4 or more tackles",
+                    "anytime assist",
+                    "player shown a card",
+                }:
+                    continue
+
+                if not player_name:
+                    player_name = sn
+                    if player_name.startswith("Anytime Goalscorer "):
+                        player_name = player_name[19:].strip()
+
+                    # Paddy-style threshold labels such as "Kai Havertz 1+ Shots"
+                    # and "Tahith Chong 2+ Fouls Won".
+                    player_name = re.sub(
+                        r"\s+\d\+\s+(?:shots on target|shots|fouls committed|fouls won|fouls conceded|tackles completed|tackles)$",
+                        "",
+                        player_name,
+                        flags=re.I,
+                    ).strip()
 
                 for suffix in [
                     " Anytime Goalscorer", " First Goalscorer", " Last Goalscorer",
@@ -1121,10 +1202,35 @@ def build_player_index(props):
                 store_mk = "player_fouls_committed" if actual_mk == "player_fouls_conceded" else actual_mk
 
                 if store_mk in THRESHOLD_MARKETS:
-                    line = (sel.get("line") or sel.get("threshold") or
-                            get_line_from_selection(sn))
+                    # PaddyPower player props come through as threshold labels like
+                    # 1+ / 2+ / 3+. The comparison tables use Asian-style lines
+                    # 0.5 / 1.5 / 2.5, same as BoyleSports, Midnite and LiveScore.
+                    threshold = clean(sel.get("threshold", ""))
+                    line = ""
+
+                    if threshold.endswith("+"):
+                        try:
+                            line = str(float(threshold[:-1]) - 0.5).rstrip("0").rstrip(".")
+                        except Exception:
+                            line = ""
+
+                    if not line:
+                        line = clean(sel.get("line", ""))
+
+                    # Some scrapers store raw count lines as 1 / 2 / 3 instead of
+                    # 0.5 / 1.5 / 2.5. Convert only for player threshold markets.
+                    if line and re.match(r"^\d+(?:\.0)?$", line):
+                        try:
+                            line = str(float(line) - 0.5).rstrip("0").rstrip(".")
+                        except Exception:
+                            pass
+
+                    if not line:
+                        line = get_line_from_selection(sn)
+
                     if not line:
                         continue
+
                     players[pk]["markets"].setdefault(store_mk, {})
                     players[pk]["markets"][store_mk].setdefault(line, {})
                     existing = players[pk]["markets"][store_mk][line].get(bk)

@@ -25,12 +25,14 @@ echo.
 echo Running football props scrapers...
 python scripts\Football\fetch_paddypower_worldcup_props.py
 python scripts\Football\fetch_boylesports_worldcup_props.py
+python scripts\Football\merge_boylesports_props.py
 python scripts\Football\fetch_unibet_worldcup_props.py
 python scripts\Football\fetch_livescorebet_worldcup_props.py
 python scripts\Football\fetch_888sport_worldcup_props.py
 python scripts\Football\fetch_williamhill_worldcup_props.py
 python scripts\Football\fetch_betvictor_worldcup_props.py
 python scripts\Football\fetch_ladbrokes_worldcup_props.py
+python scripts\Football\fetch_ladbrokes_shots_props.py
 python scripts\Football\fetch_midnite_worldcup_props.py
 echo.
 echo Validating World Cup moneyline data...

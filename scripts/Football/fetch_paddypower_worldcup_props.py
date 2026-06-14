@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-PaddyPower World Cup Props Scraper
-Markets: Over/Under Goals, BTTS, Double Chance, Half Time Result,
-         Match Shots, Match Shots On Target, Home Shots On Target,
-         Away Shots, First/Anytime Goalscorer, Player Shots On Target,
-         Player Fouls Committed, Player Fouls Won, Total Cards O/U,
-         Total Corners O/U, Home/Away Total Corners
+PaddyPower World Cup Props Scraper - clean shots + popular tackles version
+
+Scrapes:
+- Match props: goals, BTTS, double chance, half time result, cards, corners
+- Player props: first goalscorer, anytime goalscorer
+- Player stats: shots, shots on target, tackles, assists, carded
+- Team stats: team shots, team shots on target
+- Match stats: match shots, match shots on target
 """
 
 import json
@@ -14,58 +16,116 @@ from pathlib import Path
 from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 
-ROOT     = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[2]
 OUT_PATH = ROOT / "football" / "data" / "paddypower_worldcup_props.json"
-DBG_DIR  = ROOT / "football" / "debug" / "paddypower_worldcup_props"
+DBG_DIR = ROOT / "football" / "debug" / "paddypower_worldcup_props"
 
-LIST_URL    = "https://www.paddypower.com/fifa-world-cup"
-MAX_MATCHES = 1  # change to 15 when happy
+LIST_URL = "https://www.paddypower.com/fifa-world-cup"
+MAX_MATCHES = 15  # scrape first 15 real PaddyPower match URLs
 
 TABS = {
-    "":                 ["Double Chance", "Half Time"],
-    "?tab=goals":       ["Over/Under Goals Markets", "Player to Score", "Both Teams to Score Markets"],
-    "?tab=shots":       ["Player Shots On Target Including Woodwork", "Match Shots", "Match Shots On Target", "Team Shots On Target", "Team Shots"],
-    "?tab=cards-fouls": ["Player Shown a Card", "Player To Commit A Foul", "Player To Be Fouled", "Cards Over/Under Markets"],
-    "?tab=corners":     ["Corner Over/Under Markets", "Home Total Corners", "Away Total Corners"],
+    "": ["Double Chance", "Half Time"],
+    "?tab=popular": [],  # opened with targeted JS pass for Player Tackles / Anytime Assist
+    "?tab=goals": [
+        "Over/Under Goals Markets",
+        "Player to Score",
+        "Both Teams to Score Markets",
+        "Anytime Assist",
+    ],
+    "?tab=shots": [
+        "Player Shots On Target Including Woodwork",
+        "Player Shots 1 - 3",
+        "Player Shots 4 - 6",
+        "Player Tackles",
+        "Player To Have 4 Or More Tackles",
+        "Anytime Assist",
+        "Team Shots On Target",
+        "Team Shots",
+        "Team To Have 5 Or More Shots",
+        "Team To Have 6 Or More Shots",
+        "Team To Have 7 Or More Shots",
+        "Team To Have 8 Or More Shots",
+        "Team To Have 9 Or More Shots",
+        "Match Shots",
+        "Match Shots On Target",
+    ],
+    "?tab=cards-fouls": [
+        "Player Shown a Card",
+        "Player To Commit A Foul",
+        "Player To Be Fouled",
+        "Cards Over/Under Markets",
+    ],
+    "?tab=corners": [
+        "Corner Over/Under Markets",
+        "Home Total Corners",
+        "Away Total Corners",
+    ],
 }
 
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|Evens)$", re.IGNORECASE)
 
+
 def clean(s) -> str:
     return re.sub(r"\s+", " ", str(s or "")).strip()
 
+
 def is_odds(s) -> bool:
     return bool(ODDS_RE.match(clean(s)))
+
 
 def normalize(s) -> str:
     s = clean(s).lower().replace("&", "and").replace("?", "")
     return re.sub(r"[^a-z0-9]+", "_", s).strip("_")
 
+
 def slugify(s) -> str:
     return re.sub(r"[^a-z0-9_-]", "-", normalize(s)).strip("-")
+
 
 def safe_label(tab_param: str) -> str:
     return re.sub(r"[^a-z0-9_-]", "_", (tab_param or "main").lstrip("?"))
 
+
 def build_sel(selection, odds, extra=None) -> dict:
-    obj = {"selection": clean(selection), "normalized_selection": normalize(selection), "odds": clean(odds).upper()}
+    obj = {
+        "selection": clean(selection),
+        "normalized_selection": normalize(selection),
+        "odds": clean(odds).upper(),
+    }
     if extra:
         obj.update(extra)
     return obj
 
+
 def build_market(name, selections) -> dict:
-    return {"market": name, "normalized_market": normalize(name), "selection_count": len(selections), "selections": selections}
+    return {
+        "market": name,
+        "normalized_market": normalize(name),
+        "selection_count": len(selections),
+        "selections": selections,
+    }
+
 
 def dedupe(market) -> dict:
     seen, out = set(), []
     for s in market.get("selections", []):
-        key = (s.get("normalized_selection"), s.get("odds"), s.get("line"), s.get("threshold"), s.get("player"), s.get("team"), s.get("prop_type"))
+        key = (
+            s.get("normalized_selection"),
+            s.get("odds"),
+            s.get("line"),
+            s.get("threshold"),
+            s.get("player"),
+            s.get("team"),
+            s.get("prop_type"),
+            s.get("side"),
+        )
         if key not in seen:
             seen.add(key)
             out.append(s)
     market["selections"] = out
     market["selection_count"] = len(out)
     return market
+
 
 def find_line(lines, title) -> int:
     want = clean(title).lower()
@@ -74,10 +134,13 @@ def find_line(lines, title) -> int:
             return i
     return -1
 
-def get_block(lines, title, stops=None) -> list:
-    start = find_line(lines, title)
-    if start == -1:
-        return []
+
+def find_lines(lines, title) -> list:
+    want = clean(title).lower()
+    return [i for i, line in enumerate(lines) if clean(line).lower() == want]
+
+
+def _candidate_block(lines, start, title, stops=None) -> list:
     stop_set = {clean(t).lower() for t in (stops or []) if clean(t).lower() != clean(title).lower()}
     end = len(lines)
     for i in range(start + 1, len(lines)):
@@ -86,6 +149,38 @@ def get_block(lines, title, stops=None) -> list:
             break
     return lines[start:end]
 
+
+def get_block(lines, title, stops=None) -> list:
+    """
+    Paddy pages often list market headings near the top and then repeat the
+    real expanded market farther down with odds. The old version grabbed the
+    first heading, which meant markets like Player SOT, Tackles and Assists
+    sometimes returned the empty menu block instead of the real market block.
+
+    This chooses the matching heading block with the most odds in it.
+    """
+    starts = find_lines(lines, title)
+    if not starts:
+        return []
+
+    best_block = []
+    best_score = -1
+
+    for start in starts:
+        block = _candidate_block(lines, start, title, stops)
+        odds_count = sum(1 for x in block if is_odds(x))
+
+        # Bonus if it looks like a proper table with threshold headers.
+        threshold_count = sum(1 for x in block if clean(x).lower() in {"1+", "2+", "3+", "4+", "5+", "6+"})
+        score = odds_count * 10 + threshold_count
+
+        if score > best_score:
+            best_score = score
+            best_block = block
+
+    return best_block
+
+
 def get_first_block(lines, titles, stops=None) -> list:
     for title in titles:
         b = get_block(lines, title, stops)
@@ -93,20 +188,24 @@ def get_first_block(lines, titles, stops=None) -> list:
             return b
     return []
 
+
 _JUNK_NAMES = {
-    "super sub", "show all selections", "show all", "show more", "show less",
-    "show less selections", "over", "under", "1+", "2+", "3+", "4+",
-    "first", "anytime", "yes", "no", "draw", "the draw", "win more", "no goalscorer",
+    "super sub", "win more", "boosts", "show all selections", "show all", "show more",
+    "show less", "show less selections", "over", "under", "1+", "2+", "3+", "4+", "5+", "6+",
+    "first", "anytime", "yes", "no", "draw", "the draw", "no goalscorer",
 }
+
 _JUNK_SUBSTRINGS = [
     "you're betting", "means you win", "means you lose", "only cards shown",
     "going in the book", "stats below", "extra time", "penalty shootout",
     "tournament avg", "a free-kick", "a foul won", "cards awarded",
     "sports betting", "football betting", "popular events", "match odds",
     "both teams", "team with most", "over/under", "correct score",
-    "bet builder", "corner ", "corners over/under",
-    "own goals don", "shots that hit the woodwork", "no clean sheet", "to score or assist",
+    "bet builder", "corner ", "corners over/under", "own goals don",
+    "shots that hit the woodwork", "no clean sheet", "have a pop",
+    "opta guys", "what is and isn't", "applies to", "free bet", "t&cs",
 ]
+
 
 def is_junk_player(name) -> bool:
     n = clean(name).lower()
@@ -120,40 +219,48 @@ def is_junk_player(name) -> bool:
         return True
     return False
 
-def _parse_player_threshold(block, market_name, prop_type, label_tpl, max_t=3) -> dict:
-    sels = []
-    seen: dict = {}
+
+def parse_player_threshold_section(lines, section_title, market_name, prop_type, label_tpl, stops, thresholds) -> dict:
+    block = get_block(lines, section_title, stops)
+    sels, seen = [], {}
+
     for i, line in enumerate(block):
         player = clean(line)
-        if is_junk_player(player) or re.match(r"^Tournament Avg:", player, re.I):
+        if is_junk_player(player):
             continue
+
         odds_found = []
         j = i + 1
-        while j < min(i + max_t * 3, len(block)):
+        while j < min(i + 14, len(block)) and len(odds_found) < len(thresholds):
             tok = clean(block[j])
             if is_odds(tok):
                 odds_found.append(tok)
-                if len(odds_found) == max_t:
-                    break
-            elif re.match(r"^Tournament Avg:", tok, re.I):
+            elif tok.lower() in {"1+", "2+", "3+", "4+", "5+", "6+"} or re.match(r"^Tournament Avg:", tok, re.I):
                 pass
             elif odds_found:
                 break
             j += 1
+
         if not odds_found:
             continue
+
         key = player.lower()
         seen.setdefault(key, {"name": player, "odds": {}})
         for k, odd in enumerate(odds_found):
-            t = f"{k + 1}+"
-            seen[key]["odds"].setdefault(t, odd)
+            if k < len(thresholds):
+                seen[key]["odds"].setdefault(thresholds[k], odd)
+
     for _, pd in seen.items():
-        for k in range(max_t):
-            t = f"{k + 1}+"
+        for t in thresholds:
             if t in pd["odds"]:
-                sels.append(build_sel(label_tpl.format(player=pd["name"], threshold=t), pd["odds"][t],
-                                      {"player": pd["name"], "prop_type": prop_type, "threshold": t}))
+                sels.append(build_sel(
+                    label_tpl.format(player=pd["name"], threshold=t),
+                    pd["odds"][t],
+                    {"player": pd["name"], "prop_type": prop_type, "threshold": t},
+                ))
+
     return dedupe(build_market(market_name, sels))
+
 
 # ---------------------------------------------------------------------------
 # GOALS TAB
@@ -183,9 +290,10 @@ def parse_goals_ou(lines) -> dict:
             if len(odds) == 2:
                 break
         if len(odds) == 2:
-            sels.append(build_sel(f"Over {threshold}",  odds[0], {"side": "over",  "line": threshold}))
+            sels.append(build_sel(f"Over {threshold}", odds[0], {"side": "over", "line": threshold}))
             sels.append(build_sel(f"Under {threshold}", odds[1], {"side": "under", "line": threshold}))
     return dedupe(build_market("Over/Under Goals", sels))
+
 
 def parse_btts(lines) -> dict:
     block = get_first_block(lines, ["Both Teams to Score Markets", "Both Teams To Score Markets"],
@@ -202,8 +310,9 @@ def parse_btts(lines) -> dict:
             continue
         base = re.sub(r"\?$", "", label).strip()
         sels.append(build_sel(f"{base} - Yes", yes_odds, {"side": "yes"}))
-        sels.append(build_sel(f"{base} - No",  no_odds,  {"side": "no"}))
+        sels.append(build_sel(f"{base} - No", no_odds, {"side": "no"}))
     return dedupe(build_market("Both Teams To Score", sels))
+
 
 def parse_player_to_score(lines) -> tuple:
     block = get_block(lines, "Player to Score", [
@@ -217,6 +326,7 @@ def parse_player_to_score(lines) -> tuple:
             col_start = i
             break
     search_from = col_start + 2 if col_start >= 0 else 1
+
     for i in range(search_from, len(block)):
         player = clean(block[i])
         if is_junk_player(player) or i + 2 >= len(block):
@@ -224,11 +334,33 @@ def parse_player_to_score(lines) -> tuple:
         first_odds, anytime_odds = clean(block[i + 1]), clean(block[i + 2])
         if not is_odds(first_odds) or not is_odds(anytime_odds):
             continue
-        first_sels.append(build_sel(f"{player} First Goalscorer", first_odds,
-                                    {"player": player, "prop_type": "first_goalscorer"}))
-        anytime_sels.append(build_sel(f"{player} Anytime Goalscorer", anytime_odds,
-                                      {"player": player, "prop_type": "anytime_goalscorer"}))
+        first_sels.append(build_sel(f"{player} First Goalscorer", first_odds, {"player": player, "prop_type": "first_goalscorer"}))
+        anytime_sels.append(build_sel(f"{player} Anytime Goalscorer", anytime_odds, {"player": player, "prop_type": "anytime_goalscorer"}))
+
     return dedupe(build_market("First Goalscorer", first_sels)), dedupe(build_market("Anytime Goalscorer", anytime_sels))
+
+
+def parse_anytime_assist(lines) -> dict:
+    block = get_first_block(lines, ["Anytime Assist"], [
+        "Player to Create Shots", "Player To Create 4 Or More Shots",
+        "Player Shots 1 - 3", "Player Tackles", "To Score Or Assist",
+        "Team Shots", "Match Shots",
+    ])
+    sels, seen = [], set()
+    for i, line in enumerate(block):
+        player = clean(line)
+        if is_junk_player(player) or i + 1 >= len(block):
+            continue
+        odds = clean(block[i + 1])
+        if not is_odds(odds):
+            continue
+        key = player.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        sels.append(build_sel(f"{player} Anytime Assist", odds, {"player": player, "prop_type": "anytime_assist"}))
+    return dedupe(build_market("Anytime Assist", sels))
+
 
 # ---------------------------------------------------------------------------
 # MAIN TAB
@@ -238,7 +370,7 @@ def parse_double_chance(lines, home, away) -> dict:
     block = get_block(lines, "Double Chance", ["Player Foul Involvements", "Half Time", "Match Odds", "Team To Score the First Goal"])
     candidates = [
         (f"{home} And Draw", "home_draw"), (f"{away} And Draw", "away_draw"), (f"{home} And {away}", "home_away"),
-        (f"{home} or Draw",  "home_draw"), (f"{away} or Draw",  "away_draw"), (f"{home} or {away}",  "home_away"),
+        (f"{home} or Draw", "home_draw"), (f"{away} or Draw", "away_draw"), (f"{home} or {away}", "home_away"),
     ]
     sels = []
     for i, line in enumerate(block):
@@ -249,6 +381,7 @@ def parse_double_chance(lines, home, away) -> dict:
                 if is_odds(odds):
                     sels.append(build_sel(sel_name, odds, {"side": side}))
     return dedupe(build_market("Double Chance", sels))
+
 
 def parse_half_time_result(lines, home, away) -> dict:
     block = get_first_block(lines, ["Half Time", "Half Time Result"],
@@ -268,72 +401,54 @@ def parse_half_time_result(lines, home, away) -> dict:
         sels.append(build_sel(display, odds, {"side": side}))
     return dedupe(build_market("Half Time Result", sels))
 
+
 # ---------------------------------------------------------------------------
-# SHOTS TAB
+# SHOTS / STATS TAB
 # ---------------------------------------------------------------------------
 
 def parse_player_shots_on_target(lines) -> dict:
-    """
-    Scan for player name followed by 2-3 consecutive odds between the
-    section heading and the first team/match shots heading.
-    Avoids stop-list issues by scanning directly.
-    """
-    # Find start and end boundaries
-    start = find_line(lines, "Player Shots On Target Including Woodwork")
-    if start == -1:
-        return build_market("Player Shots On Target", [])
+    return parse_player_threshold_section(
+        lines, "Player Shots On Target Including Woodwork", "Player Shots On Target", "shots_on_target",
+        "{player} {threshold} Shots On Target",
+        ["Player To Have 4 Or More Shots On Target Including Woodwork", "Player Shots 1 - 3",
+         "Player Shots 4 - 6", "Team Shots On Target", "Team Shots", "Match Shots"],
+        ["1+", "2+", "3+"],
+    )
 
-    # End at first line that signals we are past player data
-    end_markers = {
-        "player to have 4 or more shots on target including woodwork",
-        "team shots on target",
-        "player shown a card", "player to commit a foul",
-    }
-    end = len(lines)
-    for i in range(start + 1, len(lines)):
-        if clean(lines[i]).lower() in end_markers:
-            end = i
-            break
 
-    block = lines[start:end]
+def parse_player_shots_1_3(lines) -> dict:
+    return parse_player_threshold_section(
+        lines, "Player Shots 1 - 3", "Player Shots", "shots", "{player} {threshold} Shots",
+        ["Player Shots 4 - 6", "Team Shots On Target", "Team Shots",
+         "Team To Have 5 Or More Shots", "Match Shots", "Match Shots On Target"],
+        ["1+", "2+", "3+"],
+    )
 
-    sels = []
-    seen: dict = {}
-    i = 0
-    while i < len(block):
-        player = clean(block[i])
-        if is_junk_player(player):
-            i += 1
-            continue
-        # Collect consecutive odds immediately after player name
-        odds_found = []
-        j = i + 1
-        while j < len(block) and len(odds_found) < 3:
-            tok = clean(block[j])
-            if is_odds(tok):
-                odds_found.append(tok)
-                j += 1
-            else:
-                break
-        if not odds_found:
-            i += 1
-            continue
-        key = player.lower()
-        seen.setdefault(key, {"name": player, "odds": []})
-        if not seen[key]["odds"]:
-            seen[key]["odds"] = odds_found
-        i = j  # jump past the odds we consumed
 
-    for _, pd in seen.items():
-        thresholds = ["1+", "2+", "3+"]
-        for k, odd in enumerate(pd["odds"][:2]):  # only 1+ and 2+
-            t = thresholds[k]
-            sels.append(build_sel(
-                f"{pd['name']} {t} Shots On Target", odd,
-                {"player": pd["name"], "prop_type": "shots_on_target", "threshold": t},
-            ))
+def parse_player_shots_4_6(lines) -> dict:
+    return parse_player_threshold_section(
+        lines, "Player Shots 4 - 6", "Player Shots 4+", "shots", "{player} {threshold} Shots",
+        ["Team Shots On Target", "Team Shots", "Team To Have 5 Or More Shots", "Match Shots", "Match Shots On Target"],
+        ["4+", "5+", "6+"],
+    )
 
-    return dedupe(build_market("Player Shots On Target", sels))
+
+def parse_player_tackles(lines) -> dict:
+    return parse_player_threshold_section(
+        lines, "Player Tackles", "Player Tackles", "tackles", "{player} {threshold} Tackles",
+        ["Player To Have 4 Or More Tackles", "To Score Or Assist", "Anytime Assist",
+         "Player to Create Shots", "Player Shots 1 - 3", "Team Shots"],
+        ["1+", "2+", "3+"],
+    )
+
+
+def parse_player_tackles_4plus(lines) -> dict:
+    return parse_player_threshold_section(
+        lines, "Player To Have 4 Or More Tackles", "Player Tackles 4+", "tackles", "{player} 4+ Tackles",
+        ["To Score Or Assist", "Anytime Assist", "Player to Create Shots", "Player Shots 1 - 3", "Team Shots"],
+        ["4+"],
+    )
+
 
 def parse_xor_more(lines, section_title, market_name, stops, team=None) -> dict:
     block = get_block(lines, section_title, stops)
@@ -354,56 +469,178 @@ def parse_xor_more(lines, section_title, market_name, stops, team=None) -> dict:
         m = re.search(r"([\d]+(?:\.\d+)?)", label)
         if m:
             extra["line"] = m.group(1)
+            extra["threshold"] = f"{m.group(1)}+"
         sels.append(build_sel(display, odds, extra))
     return dedupe(build_market(market_name, sels))
 
-def parse_shots_markets(lines, home, away) -> list:
-    markets = []
-    def add(m):
-        if m["selection_count"]:
-            markets.append(m)
-    add(parse_player_shots_on_target(lines))
-    add(parse_xor_more(lines, "Match Shots", "Match Shots",
-                       ["Match Shots On Target", "Player To Have 1 or More Shots on Target in Each Half"]))
-    add(parse_xor_more(lines, "Match Shots On Target", "Match Shots On Target",
-                       ["Player To Have 1 or More Shots on Target in Each Half",
-                        "Player Shots In The 1st Half", "Home Team Shots on Target in Each Half"]))
-    add(parse_xor_more(lines, "Team Shots On Target", "Home Shots On Target",
-                       ["Team Shots", "Match Shots"], team=home))
-    add(parse_xor_more(lines, "Team Shots", "Away Shots",
-                       ["Match Shots", "Match Shots On Target"], team=away))
-    return markets
 
-# ---------------------------------------------------------------------------
-# CARDS/FOULS TAB
-# ---------------------------------------------------------------------------
+def parse_team_market(lines, section_title, market_name, stops, home, away, prop_type) -> dict:
+    block = get_block(lines, section_title, stops)
+    sels = []
+    current_team = None
 
-def parse_player_card(lines) -> dict:
-    block = get_first_block(lines, ["Player Shown a Card", "Player To Be Carded", "Player Cards"],
-                            ["Player To Commit A Foul", "Player To Be Fouled", "Cards Over/Under Markets"])
-    sels, seen = [], set()
     for i, line in enumerate(block):
-        player = clean(line)
-        if is_junk_player(player) or i + 1 >= len(block):
+        label = clean(line)
+        if label.lower() == home.lower():
+            current_team = home
             continue
+        if label.lower() == away.lower():
+            current_team = away
+            continue
+
+        m = re.search(r"(\d+)\s+or\s+more", label, re.I)
+        if not m or i + 1 >= len(block):
+            continue
+
         odds = clean(block[i + 1])
         if not is_odds(odds):
             continue
+
+        line_no = m.group(1)
+        team = current_team
+        if not team:
+            if home.lower() in label.lower():
+                team = home
+            elif away.lower() in label.lower():
+                team = away
+
+        sels.append(build_sel(
+            f"{team + ' ' if team else ''}{line_no}+ {market_name}",
+            odds,
+            {"team": team, "side": "over", "line": line_no, "threshold": f"{line_no}+", "prop_type": prop_type},
+        ))
+
+    return dedupe(build_market(market_name, sels))
+
+
+def parse_team_threshold_single_sections(lines, home, away) -> list:
+    markets = []
+    for n in range(5, 10):
+        m = parse_team_market(
+            lines, f"Team To Have {n} Or More Shots", "Team Shots",
+            [f"Team To Have {n + 1} Or More Shots", "Match Shots", "Match Shots On Target"],
+            home, away, "team_shots",
+        )
+        if m["selection_count"]:
+            markets.append(m)
+    return markets
+
+
+def parse_shots_markets(lines, home, away) -> list:
+    markets = []
+
+    def add(m):
+        if m.get("selection_count", 0):
+            markets.append(m)
+
+    add(parse_player_shots_on_target(lines))
+    add(parse_player_shots_1_3(lines))
+    add(parse_player_shots_4_6(lines))
+    add(parse_player_tackles(lines))
+    add(parse_player_tackles_4plus(lines))
+    add(parse_anytime_assist(lines))
+
+    add(parse_team_market(
+        lines, "Team Shots On Target", "Team Shots On Target",
+        ["Team Shots", "Team To Have 5 Or More Shots", "Match Shots", "Match Shots On Target"],
+        home, away, "team_shots_on_target",
+    ))
+    add(parse_team_market(
+        lines, "Team Shots", "Team Shots",
+        ["Team To Have 5 Or More Shots", "Team To Have 6 Or More Shots", "Team To Have 7 Or More Shots",
+         "Team To Have 8 Or More Shots", "Team To Have 9 Or More Shots", "Match Shots", "Match Shots On Target"],
+        home, away, "team_shots",
+    ))
+
+    for m in parse_team_threshold_single_sections(lines, home, away):
+        add(m)
+
+    add(parse_xor_more(lines, "Match Shots", "Match Shots",
+                       ["Match Shots On Target", "Player To Have 1 or More Shots on Target in Each Half"]))
+    add(parse_xor_more(lines, "Match Shots On Target", "Match Shots On Target",
+                       ["Player To Have 1 or More Shots on Target in Each Half", "Player Shots In The 1st Half",
+                        "Home Team Shots on Target in Each Half", "Sports Betting"]))
+
+    return markets
+
+
+# ---------------------------------------------------------------------------
+# CARDS / FOULS TAB
+# ---------------------------------------------------------------------------
+
+def parse_player_card(lines) -> dict:
+    """Parse Paddy's Player Shown a Card market.
+
+    Paddy renders this market as a simple one-column player list:
+        Player Shown a Card
+        Player Name
+        23/10
+        Player Name
+        13/5
+
+    Sometimes extra FYI/show-more text is inserted between the title and rows,
+    so this parser looks ahead a few lines for the odds instead of assuming
+    the odds is always exactly the next line.
+    """
+    block = get_first_block(lines, ["Player Shown a Card", "Player To Be Carded", "Player Cards"],
+                            ["Player To Commit A Foul", "Player To Be Fouled", "Cards Over/Under Markets"])
+
+    sels, seen = [], set()
+    fake_players = {
+        "player shown a card", "player to be carded", "player cards",
+        "cards and fouls", "show more", "show all selections",
+    }
+
+    for i, line in enumerate(block):
+        player = clean(line)
+        low = player.lower()
+        if low in fake_players or is_junk_player(player):
+            continue
+
+        odds = ""
+        # Look ahead because Paddy can insert shirt icons/FYI/show-more rows.
+        for j in range(i + 1, min(i + 5, len(block))):
+            tok = clean(block[j])
+            if is_odds(tok):
+                odds = tok
+                break
+            # If another real-looking player starts before odds, this row had no price.
+            if j > i + 1 and tok and not is_junk_player(tok) and not is_odds(tok):
+                break
+
+        if not odds:
+            continue
+
         key = player.lower()
         if key in seen:
             continue
         seen.add(key)
-        sels.append(build_sel(f"{player} To Be Carded", odds, {"player": player, "prop_type": "player_card"}))
+        sels.append(build_sel(
+            f"{player} To Be Carded",
+            odds,
+            {"player": player, "prop_type": "player_card"},
+        ))
+
     return dedupe(build_market("Player Cards", sels))
 
+
 def parse_player_fouls_committed(lines) -> dict:
-    block = get_block(lines, "Player To Commit A Foul",
-                      ["Player To Commit 1 Or More Fouls In First Half", "Player To Be Fouled", "Cards Over/Under Markets"])
-    return _parse_player_threshold(block, "Player Fouls Committed", "fouls_committed", "{player} {threshold} Fouls Committed")
+    return parse_player_threshold_section(
+        lines, "Player To Commit A Foul", "Player Fouls Committed", "fouls_committed",
+        "{player} {threshold} Fouls Committed",
+        ["Player To Commit 1 Or More Fouls In First Half", "Player To Be Fouled", "Cards Over/Under Markets"],
+        ["1+", "2+", "3+"],
+    )
+
 
 def parse_player_fouls_won(lines) -> dict:
-    block = get_block(lines, "Player To Be Fouled", ["Player Foul Involvements", "Cards Over/Under Markets"])
-    return _parse_player_threshold(block, "Player Fouls Won", "fouls_won", "{player} {threshold} Fouls Won")
+    return parse_player_threshold_section(
+        lines, "Player To Be Fouled", "Player Fouls Won", "fouls_won",
+        "{player} {threshold} Fouls Won",
+        ["Player Foul Involvements", "Cards Over/Under Markets"],
+        ["1+", "2+", "3+"],
+    )
+
 
 def parse_cards_ou(lines) -> dict:
     block = get_block(lines, "Cards Over/Under Markets", ["Corner Over/Under Markets", "Home Total Corners", "Away Total Corners"])
@@ -421,9 +658,10 @@ def parse_cards_ou(lines) -> dict:
             pass
         over_odds, under_odds = clean(block[i + 1]), clean(block[i + 2])
         if is_odds(over_odds) and is_odds(under_odds):
-            sels.append(build_sel(f"Over {threshold}",  over_odds,  {"side": "over",  "line": threshold}))
+            sels.append(build_sel(f"Over {threshold}", over_odds, {"side": "over", "line": threshold}))
             sels.append(build_sel(f"Under {threshold}", under_odds, {"side": "under", "line": threshold}))
     return dedupe(build_market("Total Cards Over/Under", sels))
+
 
 # ---------------------------------------------------------------------------
 # CORNERS TAB
@@ -445,9 +683,10 @@ def parse_corners_ou(lines) -> dict:
             pass
         over_odds, under_odds = clean(block[i + 1]), clean(block[i + 2])
         if is_odds(over_odds) and is_odds(under_odds):
-            sels.append(build_sel(f"Over {threshold} Corners",  over_odds,  {"side": "over",  "line": threshold}))
+            sels.append(build_sel(f"Over {threshold} Corners", over_odds, {"side": "over", "line": threshold}))
             sels.append(build_sel(f"Under {threshold} Corners", under_odds, {"side": "under", "line": threshold}))
     return dedupe(build_market("Total Corners Over/Under", sels))
+
 
 def parse_team_corners_ou(lines, title, market_name, stops, team) -> dict:
     block = get_block(lines, title, stops)
@@ -461,16 +700,18 @@ def parse_team_corners_ou(lines, title, market_name, stops, team) -> dict:
         over_odds, under_odds = clean(block[i + 1]), clean(block[i + 2])
         if not is_odds(over_odds) or not is_odds(under_odds):
             continue
-        sels.append(build_sel(f"{team} Over {threshold}",  over_odds,  {"side": "over",  "line": threshold, "team": team}))
+        sels.append(build_sel(f"{team} Over {threshold}", over_odds, {"side": "over", "line": threshold, "team": team}))
         sels.append(build_sel(f"{team} Under {threshold}", under_odds, {"side": "under", "line": threshold, "team": team}))
     return dedupe(build_market(market_name, sels))
 
+
 # ---------------------------------------------------------------------------
-# Master parser
+# MASTER PARSER
 # ---------------------------------------------------------------------------
 
 def parse_tab(tab_param, lines, home, away) -> list:
     markets = []
+
     def add(m):
         if m.get("selection_count", 0) > 0:
             markets.append(m)
@@ -481,12 +722,17 @@ def parse_tab(tab_param, lines, home, away) -> list:
         add(first_gs)
         add(anytime_gs)
         add(parse_btts(lines))
+        add(parse_anytime_assist(lines))
     elif tab_param == "":
         add(parse_double_chance(lines, home, away))
         add(parse_half_time_result(lines, home, away))
+    elif tab_param == "?tab=popular":
+        add(parse_player_tackles(lines))
+        add(parse_player_tackles_4plus(lines))
+        add(parse_anytime_assist(lines))
     elif tab_param == "?tab=shots":
         for m in parse_shots_markets(lines, home, away):
-            markets.append(m)
+            add(m)
     elif tab_param == "?tab=cards-fouls":
         add(parse_player_card(lines))
         add(parse_player_fouls_committed(lines))
@@ -499,8 +745,9 @@ def parse_tab(tab_param, lines, home, away) -> list:
 
     return markets
 
+
 # ---------------------------------------------------------------------------
-# Browser helpers
+# BROWSER HELPERS - QUICKER VERSION
 # ---------------------------------------------------------------------------
 
 def accept_cookies(page) -> None:
@@ -508,33 +755,37 @@ def accept_cookies(page) -> None:
         try:
             btn = page.get_by_role("button", name=re.compile(label, re.I))
             if btn.count():
-                btn.first.click(timeout=3000)
-                page.wait_for_timeout(1000)
+                btn.first.click(timeout=2500)
+                page.wait_for_timeout(600)
                 return
         except Exception:
             pass
+
 
 def click_show_all(page) -> None:
     for text in ["Show all selections", "Show all", "Show more", "Show More"]:
         try:
             buttons = page.get_by_text(text, exact=True)
-            for i in range(min(buttons.count(), 6)):
+            for i in range(min(buttons.count(), 5)):
                 try:
-                    buttons.nth(i).click(timeout=700)
-                    page.wait_for_timeout(300)
+                    buttons.nth(i).click(timeout=600)
+                    page.wait_for_timeout(180)
                 except Exception:
                     pass
         except Exception:
             pass
+
 
 def expand_section(page, heading) -> None:
     try:
         loc = page.get_by_text(heading, exact=True)
         if not loc.count():
             return
+
         el = loc.first
-        el.scroll_into_view_if_needed(timeout=2000)
-        page.wait_for_timeout(200)
+        el.scroll_into_view_if_needed(timeout=1500)
+        page.wait_for_timeout(120)
+
         try:
             already_open = page.evaluate("""(h) => {
                 const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
@@ -556,48 +807,202 @@ def expand_section(page, heading) -> None:
                 return
         except Exception:
             pass
-        el.click(timeout=2000)
-        page.wait_for_timeout(900)
-        click_show_all(page)
+
+        el.click(timeout=1500)
+        page.wait_for_timeout(450)
+
     except Exception:
         pass
 
+
+
+
+def force_expand_market(page, heading) -> None:
+    """More aggressive accordion opener for Popular-tab sections.
+    Paddy sometimes renders Popular markets differently, so the normal
+    Playwright text click can hit the text span instead of the clickable row.
+    This clicks the nearest row/button/accordion ancestor and also tries JS.
+    """
+    try:
+        page.evaluate(
+            """(heading) => {
+                const norm = s => (s || '').replace(/\s+/g, ' ').trim();
+                const nodes = Array.from(document.querySelectorAll('body *'))
+                    .filter(el => norm(el.textContent) === heading);
+
+                for (const node of nodes) {
+                    let el = node;
+                    for (let i = 0; i < 8 && el; i++, el = el.parentElement) {
+                        const role = (el.getAttribute('role') || '').toLowerCase();
+                        const aria = el.getAttribute('aria-expanded');
+                        const tag = (el.tagName || '').toLowerCase();
+                        const cls = (el.className || '').toString().toLowerCase();
+
+                        if (tag === 'button' || role === 'button' || aria !== null || cls.includes('accordion') || cls.includes('header')) {
+                            el.scrollIntoView({block: 'center'});
+                            el.dispatchEvent(new MouseEvent('mouseover', {bubbles:true}));
+                            el.dispatchEvent(new MouseEvent('mousedown', {bubbles:true}));
+                            el.dispatchEvent(new MouseEvent('mouseup', {bubbles:true}));
+                            el.click();
+                            return true;
+                        }
+                    }
+
+                    node.scrollIntoView({block: 'center'});
+                    node.click();
+                    return true;
+                }
+                return false;
+            }""",
+            heading,
+        )
+        page.wait_for_timeout(800)
+    except Exception:
+        pass
+
+def quick_expand_tab(page, headings, tab_param=None) -> None:
+    # One normal pass, then a tiny targeted pass for the markets that Paddy
+    # tends to leave collapsed. This avoids the slow full double-pass.
+    click_show_all(page)
+    for heading in headings:
+        expand_section(page, heading)
+    click_show_all(page)
+
+    targeted = []
+    if tab_param == "?tab=shots":
+        targeted = [
+            "Player Shots On Target Including Woodwork",
+            "Player Tackles",
+            "Player To Have 4 Or More Tackles",
+            "Anytime Assist",
+        ]
+    elif tab_param == "?tab=goals":
+        targeted = ["Anytime Assist"]
+    elif tab_param == "?tab=cards-fouls":
+        targeted = [
+            "Player Shown a Card",
+            "Player To Commit A Foul",
+            "Player To Be Fouled",
+        ]
+
+    for heading in targeted:
+        expand_section(page, heading)
+        if tab_param in ("?tab=popular", "?tab=cards-fouls"):
+            force_expand_market(page, heading)
+        click_show_all(page)
+
+
 def get_body_text(page) -> str:
     try:
-        return page.locator("body").inner_text(timeout=10000)
+        return page.locator("body").inner_text(timeout=9000)
     except Exception:
         return ""
 
+
 # ---------------------------------------------------------------------------
-# Match-link collection
+# MATCH LINK COLLECTION
 # ---------------------------------------------------------------------------
 
 def collect_match_links(page) -> list:
+    """Collect real PaddyPower match URLs from the rendered World Cup page.
+
+    Important: do NOT use the moneyline JSON for URLs. That file stores the
+    generic competition URL for every match. This function only keeps real
+    event URLs like:
+      /football/fifa-world-cup/brazil-v-morocco-35035288
+    and rejects /bet redirects / generic competition URLs.
+    """
     print(f"Loading list page: {LIST_URL}")
     page.goto(LIST_URL, wait_until="domcontentloaded", timeout=60000)
-    page.wait_for_timeout(5000)
+    page.wait_for_timeout(7000)
     accept_cookies(page)
-    for _ in range(25):
-        page.mouse.wheel(0, 800)
-        page.wait_for_timeout(250)
+
+    try:
+        page.get_by_text("Matches", exact=True).first.click(timeout=4000)
+        page.wait_for_timeout(2500)
+    except Exception:
+        pass
+
+    # Scroll enough to load all lazy-loaded fixture cards.
+    for _ in range(28):
+        page.mouse.wheel(0, 900)
+        page.wait_for_timeout(350)
+
     links = page.evaluate("""
         () => Array.from(document.querySelectorAll('a'))
             .map(a => ({ href: a.href, text: a.innerText }))
-            .filter(x => x.href && x.href.includes('/football/fifa-world-cup/') && x.href.includes('-v-'))
+            .filter(x =>
+                x.href &&
+                x.href.includes('/football/fifa-world-cup/') &&
+                x.href.includes('-v-') &&
+                !x.href.includes('/bet')
+            )
     """)
+
     seen, out = set(), []
     for item in links:
         href = clean(item.get("href", "")).split("?")[0]
+        text = clean(item.get("text", ""))
+
         if not href or href in seen:
             continue
+        if "/football/fifa-world-cup/" not in href or "-v-" not in href or "/bet" in href:
+            continue
+
         seen.add(href)
-        out.append({"url": href, "text": clean(item.get("text", ""))})
-    print(f"Found {len(out)} match links")
+        out.append({"url": href, "text": text})
+
+    print(f"Found {len(out)} real match URLs")
+    for i, item in enumerate(out[:MAX_MATCHES], 1):
+        print(f"  URL {i:02d}: {item['url']}")
+
     return out
 
+
 # ---------------------------------------------------------------------------
-# Per-match scraper
+# PER MATCH SCRAPER
 # ---------------------------------------------------------------------------
+
+def match_name_from_url(url: str) -> str:
+    """Build 'Home v Away' from a Paddy event URL slug."""
+    from urllib.parse import unquote
+
+    slug = unquote(url.split("?")[0].rstrip("/").split("/")[-1]).lower()
+    slug = re.sub(r"-\d+$", "", slug)
+    slug = slug.replace("-odds", "")
+
+    if "-v-" not in slug:
+        return ""
+
+    home, away = slug.split("-v-", 1)
+
+    fixes = {
+        "turkiye": "Türkiye",
+        "türkiye": "Türkiye",
+        "curacao": "Curacao",
+        "czechia": "Czechia",
+        "ivory-coast": "Ivory Coast",
+        "cape-verde": "Cape Verde",
+        "saudi-arabia": "Saudi Arabia",
+        "new-zealand": "New Zealand",
+        "dr-congo": "DR Congo",
+        "south-korea": "South Korea",
+        "south-africa": "South Africa",
+        "usa": "USA",
+    }
+
+    def pretty(team_slug: str) -> str:
+        team_slug = team_slug.strip("-")
+        if team_slug in fixes:
+            return fixes[team_slug]
+        return " ".join(w.capitalize() for w in team_slug.split("-") if w)
+
+    home_name = pretty(home)
+    away_name = pretty(away)
+    if not home_name or not away_name:
+        return ""
+    return f"{home_name} v {away_name}"
+
 
 def get_match_name(text) -> str:
     for line in [clean(x) for x in text.splitlines() if clean(x)]:
@@ -605,32 +1010,38 @@ def get_match_name(text) -> str:
             return line
     return ""
 
+
 def scrape_match(page, url, fallback_text="") -> dict:
-    base_url    = url.split("?")[0]
+    base_url = url.split("?")[0]
     all_markets = []
-    tab_texts   = {}
-    match_name  = ""
+    tab_texts = {}
+    match_name = ""
 
     for tab_param, headings in TABS.items():
         label = safe_label(tab_param)
         try:
             print(f"    tab={label}", end=" ... ", flush=True)
+
             page.goto(base_url + tab_param, wait_until="domcontentloaded", timeout=30000)
-            wait_ms = 4000 if tab_param == "?tab=goals" else 2500
+            wait_ms = 3000 if tab_param in ("?tab=goals", "?tab=shots", "?tab=popular") else 2200
             page.wait_for_timeout(wait_ms)
+
             accept_cookies(page)
-            page.mouse.wheel(0, 3000)
-            page.wait_for_timeout(500)
-            click_show_all(page)
-            for heading in headings:
-                expand_section(page, heading)
-            page.wait_for_timeout(500)
-            click_show_all(page)
+
+            # one scroll to load content, one quick expansion pass, no double pass
+            page.mouse.wheel(0, 3200)
+            page.wait_for_timeout(350)
+
+            quick_expand_tab(page, headings, tab_param)
+
             tab_text = get_body_text(page)
             tab_texts[label] = tab_text
+
             if not match_name:
                 match_name = get_match_name(tab_text)
+
             print("ok")
+
         except PWTimeout:
             print("timeout")
             tab_texts[label] = ""
@@ -638,7 +1049,14 @@ def scrape_match(page, url, fallback_text="") -> dict:
             print(f"error: {e}")
             tab_texts[label] = ""
 
-    match_name = match_name or fallback_text
+    # Paddy sometimes returns list text like "Haiti Scotland" or live-score text.
+    # Always prefer the real event URL slug when the page text does not contain " v ".
+    url_match_name = match_name_from_url(base_url)
+    if " v " not in match_name and url_match_name:
+        match_name = url_match_name
+    elif not match_name:
+        match_name = fallback_text or url_match_name
+
     if " v " in match_name:
         home, away = [clean(x) for x in match_name.split(" v ", 1)]
     else:
@@ -646,7 +1064,7 @@ def scrape_match(page, url, fallback_text="") -> dict:
 
     if home and away:
         for tab_param in TABS:
-            label     = safe_label(tab_param)
+            label = safe_label(tab_param)
             tab_lines = [clean(x) for x in tab_texts.get(label, "").splitlines() if clean(x)]
             try:
                 all_markets.extend(parse_tab(tab_param, tab_lines, home, away))
@@ -655,59 +1073,75 @@ def scrape_match(page, url, fallback_text="") -> dict:
                 print(f"    parse error ({label}): {e}")
                 traceback.print_exc()
 
-    slug     = slugify(match_name or url[-30:])
+    slug = slugify(match_name or url[-30:])
     combined = "\n\n".join(f"=== {safe_label(t)} ===\n{tab_texts.get(safe_label(t), '')}" for t in TABS)
     (DBG_DIR / f"{slug}_combined.txt").write_text(combined, encoding="utf-8")
     for lbl, text in tab_texts.items():
         (DBG_DIR / f"{slug}_{lbl}.txt").write_text(text, encoding="utf-8")
 
     return {
-        "match":        match_name,
-        "home_team":    home,
-        "away_team":    away,
-        "source_url":   url,
+        "match": match_name,
+        "home_team": home,
+        "away_team": away,
+        "source_url": url,
         "market_count": len(all_markets),
-        "markets":      all_markets,
+        "markets": all_markets,
     }
 
+
 # ---------------------------------------------------------------------------
-# Main
+# MAIN
 # ---------------------------------------------------------------------------
 
 def main() -> None:
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     DBG_DIR.mkdir(parents=True, exist_ok=True)
+
     matches, errors = [], []
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
-        page    = browser.new_page(viewport={"width": 1280, "height": 900})
-        links   = collect_match_links(page)[:MAX_MATCHES]
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
+
+        links = collect_match_links(page)[:MAX_MATCHES]
 
         for idx, item in enumerate(links, 1):
             print(f"\n=== [{idx}/{len(links)}] {item.get('text') or item['url']} ===")
+            print(f"    url={item['url']}")
+
             try:
                 result = scrape_match(page, item["url"], item.get("text", ""))
                 matches.append(result)
+
                 print(f"  → {result['match']} | {result['market_count']} markets")
                 for m in result["markets"]:
                     print(f"      {m['market']:50s} {m['selection_count']} selections")
+
             except Exception as e:
                 print(f"  ERROR: {e}")
                 errors.append({"url": item["url"], "error": str(e)})
 
         browser.close()
 
-    good   = [m for m in matches if m.get("market_count", 0) > 0]
+    good = [m for m in matches if m.get("market_count", 0) > 0]
+
     output = {
-        "sport": "football", "competition": "FIFA World Cup", "bookmaker": "PaddyPower",
-        "market_type": "props", "source_url": LIST_URL,
+        "sport": "football",
+        "competition": "FIFA World Cup",
+        "bookmaker": "PaddyPower",
+        "market_type": "props",
+        "source_url": LIST_URL,
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "match_count": len(matches), "matches_with_markets": len(good),
-        "error_count": len(errors), "errors": errors, "matches": matches,
+        "match_count": len(matches),
+        "matches_with_markets": len(good),
+        "error_count": len(errors),
+        "errors": errors,
+        "matches": matches,
     }
+
     OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\n✅  Done — {len(good)}/{len(matches)} matches with markets → {OUT_PATH}")
+
 
 if __name__ == "__main__":
     main()
