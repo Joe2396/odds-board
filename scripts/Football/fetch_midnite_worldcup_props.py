@@ -30,6 +30,7 @@ USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
               "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 MAX_MATCHES = 15
 
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -56,6 +57,122 @@ def parse_section(lines, heading, n=80):
 
 def get_lines(page):
     return [l.strip() for l in (page.evaluate("document.body.innerText") or "").split("\n") if l.strip()]
+
+
+# JS that expands "Show all" inside a named section.
+_MIDNITE_GRID_JS = r"""
+(heading) => {
+  const all = [...document.querySelectorAll('*')];
+  const hdr = all.find(e => {
+    const own = [...e.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('');
+    return own === heading;
+  });
+  if (!hdr) return null;
+  let sec = hdr;
+  for (let i=0;i<10;i++){ sec = sec.parentElement; if(!sec) break; if((sec.innerText||'').match(/\d+\/\d+/)) break; }
+  if (!sec) return null;
+  for (let pass=0; pass<2; pass++){
+    const sa = [...sec.querySelectorAll('*')].find(e=>{
+      const own=[...e.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('');
+      return own==='Show all';
+    });
+    if (sa) {
+      sa.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}));
+      sa.dispatchEvent(new PointerEvent('pointerup',{bubbles:true}));
+      sa.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+    } else break;
+  }
+  return true;
+}
+"""
+
+# JS that reads a section's grid: maps each odds button to its player row
+# (nearest y) and threshold column (nearest x). Mirrors the visual grid and
+# tolerates missing cells, unlike flattened text.
+_MIDNITE_READ_JS = r"""
+(heading) => {
+  const all = [...document.querySelectorAll('*')];
+  const hdr = all.find(e => {
+    const own = [...e.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('');
+    return own === heading;
+  });
+  if (!hdr) return null;
+  let sec = hdr;
+  for (let i=0;i<10;i++){ sec = sec.parentElement; if(!sec) break; if((sec.innerText||'').match(/\d+\/\d+/)) break; }
+  if (!sec) return null;
+
+  const mid = el => { const r = el.getBoundingClientRect(); return {x:r.left+r.width/2, y:r.top+r.height/2}; };
+
+  const names = [...sec.querySelectorAll('span.line-clamp-2')]
+    .map(el => ({ name: el.textContent.trim(), ...mid(el) }))
+    .filter(n => n.name.length > 2);
+
+  let heads = [...sec.querySelectorAll('*')].filter(e=>{
+    const own=[...e.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('');
+    return /^\d+\+$/.test(own);
+  }).map(e=>({label:e.textContent.trim(), x:mid(e).x}));
+  const colMap={}; heads.forEach(h=>{ if(!(h.label in colMap)) colMap[h.label]=h.x; });
+  let cols = Object.entries(colMap).sort((a,b)=>a[1]-b[1]);
+
+  const odds = [...sec.querySelectorAll('button')].map(b=>{
+    const t=(b.innerText||'').trim(); const m=mid(b); return {t, x:m.x, y:m.y};
+  }).filter(o=>/^\d+\/\d+$|^EVS$/.test(o.t));
+
+  if (cols.length === 0 && odds.length) {
+    const xs=[...new Set(odds.map(o=>Math.round(o.x/5)*5))].sort((a,b)=>a-b);
+    cols = xs.map((x,i)=>[String(i),x]);
+  }
+
+  const result = {};
+  for (const o of odds) {
+    let bn=null,bd=1e9; for(const n of names){const d=Math.abs(n.y-o.y); if(d<bd){bd=d;bn=n;}}
+    let bc=null,cd=1e9; for(const [lab,cx] of cols){const d=Math.abs(cx-o.x); if(d<cd){cd=d;bc=lab;}}
+    if(bn&&bc&&bd<25&&cd<45){ (result[bn.name]=result[bn.name]||{})[bc]=o.t; }
+  }
+  return { colLabels: cols.map(c=>c[0]), grid: result };
+}
+"""
+
+
+def scrape_player_market_grid(page, heading, col_keys):
+    """
+    Geometry-based extraction of one player-prop section.
+    Returns {player_name: {col_key: decimal_odds}} matching the visual grid.
+    col_keys maps the on-screen column order (left->right) to internal keys.
+    """
+    import time as _t
+    try:
+        ok = page.evaluate(_MIDNITE_GRID_JS, heading)
+    except Exception:
+        ok = None
+    if not ok:
+        return None
+    _t.sleep(0.6)
+    try:
+        data = page.evaluate(_MIDNITE_READ_JS, heading)
+    except Exception:
+        return None
+    if not data or not data.get("grid"):
+        return None
+
+    col_labels = data.get("colLabels", [])
+    grid = data["grid"]
+    result = {}
+    for player, cells in grid.items():
+        out = {}
+        for screen_label, frac_str in cells.items():
+            if screen_label in col_labels:
+                pos = col_labels.index(screen_label)
+            else:
+                try: pos = int(screen_label)
+                except Exception: continue
+            if pos < len(col_keys):
+                dec = frac(frac_str)
+                if dec is not None:
+                    out[col_keys[pos]] = dec
+        if out:
+            result[player] = out
+    return result or None
 
 # ---------------------------------------------------------------------------
 # Tab clicking
@@ -121,11 +238,15 @@ def dismiss_popups(page):
 
 # ---------------------------------------------------------------------------
 # Player market parser
-# DOM structure: all player names listed first (with team/jersey junk between),
-# then column header lines, then all odds in column-major order.
+# DOM structure: player name, then their odds on the following lines (interleaved).
 # ---------------------------------------------------------------------------
 def parse_player_market(lines, heading, col_keys, skip_words=None):
-    seg = parse_section(lines, heading, 500)  # needs 300-500 lines for full player lists
+    """
+    DOM layout: all player names listed first (with team/jersey junk between),
+    then threshold headers (1+, 2+, 3+), then ALL odds in column-major order
+    (all 1+ odds first, then all 2+ odds, etc.)
+    """
+    seg = parse_section(lines, heading, 500)
     if not seg: return None
 
     junk = {
@@ -144,44 +265,49 @@ def parse_player_market(lines, heading, col_keys, skip_words=None):
 
     names = []
     fracs = []
-    in_odds = False
 
     for l in seg[1:]:
         ll = l.strip()
         lll = ll.lower()
 
         if is_frac(ll):
-            in_odds = True
             fracs.append(ll)
             continue
 
-        if in_odds:
-            continue
-
-        if re.match(r"^[A-Z]{2,4}(\s+\d+)?$", ll): continue
-        if re.match(r"^\d+$", ll): continue
-        if re.match(r"^\d+\+$", ll): continue
+        # Skip junk lines
+        if re.match(r"^[A-Z]{2,4}(\s+\d+)?$", ll): continue  # team codes
+        if re.match(r"^\d+$", ll): continue  # jersey numbers
+        if re.match(r"^\d+\+$", ll): continue  # threshold headers
         if lll in junk or lll in col_lower: continue
         if len(ll) < 4: continue
-        names.append(ll)
+
+        # Only collect names if we haven't found odds yet
+        # (names appear before odds in the DOM)
+        if not fracs:
+            names.append(ll)
 
     if not names or not fracs: return None
 
-    n_cols = len(col_keys)
-    for nc in range(n_cols, 0, -1):
-        if len(fracs) % nc == 0:
-            n_cols = nc
-            col_keys = col_keys[:nc]
-            break
+    # Odds are column-major with a stride of len(names): all of column 1's
+    # odds (one per player) come first, then column 2, etc. The names list is
+    # the reliable count; len(fracs) can contain trailing padding/junk.
+    n_players = len(names)
+    # How many full columns of odds do we actually have?
+    n_cols = min(len(col_keys), len(fracs) // n_players) if n_players else 0
+    if n_cols < 1:
+        return None
+    col_keys = col_keys[:n_cols]
 
-    n_players = len(fracs) // n_cols
     result = {}
-    for pi, name in enumerate(names[:n_players]):
+    for pi, name in enumerate(names):
         result[name] = {}
         for ci, ck in enumerate(col_keys):
-            idx = ci * n_players + pi
+            idx = ci * n_players + pi  # column-major, stride = number of players
             result[name][ck] = frac(fracs[idx]) if idx < len(fracs) else None
     return result or None
+
+
+
 
 # ---------------------------------------------------------------------------
 # Scrape one match
@@ -540,19 +666,18 @@ def scrape_match(page, match):
         time.sleep(0.8)
     except Exception:
         pass
-    lines2 = get_lines(page)
     skip = [home, away]
-    p = parse_player_market(lines2,"Player Carded",["carded_anytime","sent_off_anytime","carded_first"],skip)
+    p = scrape_player_market_grid(page, "Player Carded", ["carded_anytime","sent_off_anytime","carded_first","carded_last"])
     if p: props["player_carded"] = p
-    p = parse_player_market(lines2,"Player Shots on Target",["1+","2+","3+","4+"],skip)
+    p = scrape_player_market_grid(page, "Player Shots on Target", ["1+","2+","3+","4+"])
     if p: props["player_shots_on_target"] = p
-    p = parse_player_market(lines2,"Player Fouls Committed",["1+","2+","3+","4+","5+"],skip)
+    p = scrape_player_market_grid(page, "Player Fouls Committed", ["1+","2+","3+","4+","5+"])
     if p: props["player_fouls_committed"] = p
-    p = parse_player_market(lines2,"Player Fouls Won",["1+","2+","3+","4+","5+"],skip)
+    p = scrape_player_market_grid(page, "Player Fouls Won", ["1+","2+","3+","4+","5+"])
     if p: props["player_fouls_won"] = p
-    p = parse_player_market(lines2,"Player to Score",["to_score","first","last"],skip)
+    p = scrape_player_market_grid(page, "Player to Score", ["to_score","first","last"])
     if p: props["player_to_score"] = p
-    p = parse_player_market(lines2,"Player Shots",["1+","2+","3+","4+","5+","6+"],skip)
+    p = scrape_player_market_grid(page, "Player Shots", ["1+","2+","3+","4+","5+","6+"])
     if p: props["player_shots"] = p
 
     if not props: return None

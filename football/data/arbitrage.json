@@ -1,615 +1,100 @@
 {
-  "generated_at": "2026-06-14T13:49:33.579600+00:00",
+  "generated_at": "2026-06-15T19:14:18.105546+00:00",
   "sport": "Football",
   "competition": "FIFA World Cup",
   "bookmaker_summary": {
     "PaddyPower": {
       "file_found": true,
-      "matches_loaded": 64,
+      "matches_loaded": 59,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\paddypower_worldcup_moneylines.json"
     },
     "BoyleSports": {
       "file_found": true,
-      "matches_loaded": 64,
+      "matches_loaded": 59,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\boylesports_worldcup_moneylines.json"
     },
     "BetVictor": {
       "file_found": true,
-      "matches_loaded": 36,
+      "matches_loaded": 37,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\betvictor_worldcup_moneylines.json"
     },
     "Unibet": {
       "file_found": true,
-      "matches_loaded": 64,
+      "matches_loaded": 57,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\unibet_worldcup_moneylines.json"
     },
     "LiveScoreBet": {
       "file_found": true,
-      "matches_loaded": 57,
+      "matches_loaded": 54,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\livescorebet_worldcup_moneylines.json"
     },
     "WilliamHill": {
       "file_found": true,
-      "matches_loaded": 64,
+      "matches_loaded": 59,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\williamhill_worldcup_moneylines.json"
     },
     "888Sport": {
       "file_found": true,
-      "matches_loaded": 54,
+      "matches_loaded": 48,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\888sport_worldcup_moneylines.json"
     }
   },
-  "fixture_count": 64,
-  "compared_fixtures": 64,
+  "fixture_count": 59,
+  "compared_fixtures": 59,
   "skipped_fixtures": 0,
-  "arbitrage_count": 10,
-  "near_miss_count": 99,
+  "arbitrage_count": 13,
+  "near_miss_count": 85,
   "arbitrage": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Germany v Curacao",
-      "market": "Germany Shots On Target Over Under",
-      "line": "8.5",
-      "arb_sum": 0.869219,
-      "arb_percent": 86.922,
-      "profit_margin_percent": 15.046,
-      "selections": {
-        "over": {
-          "bookmaker": "Ladbrokes",
-          "odds": "13/20",
-          "decimal_odds": 1.65
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "14/5",
-          "decimal_odds": 3.8
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Germany v Curacao",
-      "market": "Germany Shots On Target Over Under",
-      "line": "9.5",
-      "arb_sum": 0.844948,
-      "arb_percent": 84.495,
-      "profit_margin_percent": 18.351,
-      "selections": {
-        "over": {
-          "bookmaker": "Ladbrokes",
-          "odds": "21/20",
-          "decimal_odds": 2.05
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "9/5",
-          "decimal_odds": 2.8
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Germany v Curacao",
-      "market": "Team Total Goals Over Under",
-      "line": "2.5",
-      "arb_sum": 0.297641,
-      "arb_percent": 29.764,
-      "profit_margin_percent": 235.976,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "28/1",
-          "decimal_odds": 29.0
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "14/5",
-          "decimal_odds": 3.8
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Germany v Curacao",
-      "market": "Team Total Goals Over Under",
-      "line": "3.5",
-      "arb_sum": 0.478936,
-      "arb_percent": 47.894,
-      "profit_margin_percent": 108.796,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "40/1",
-          "decimal_odds": 41.0
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "6/5",
-          "decimal_odds": 2.2
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Germany v Curacao",
-      "market": "Team Total Goals Over Under",
-      "line": "4.5",
-      "arb_sum": 0.673741,
-      "arb_percent": 67.374,
-      "profit_margin_percent": 48.425,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "40/1",
-          "decimal_odds": 41.0
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "27/50",
-          "decimal_odds": 1.54
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Netherlands v Japan",
-      "market": "Team Total Goals Over Under",
-      "line": "0.5",
-      "arb_sum": 0.939655,
-      "arb_percent": 93.966,
-      "profit_margin_percent": 6.422,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "9/20",
-          "decimal_odds": 1.45
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "3/1",
-          "decimal_odds": 4.0
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Netherlands v Japan",
-      "market": "Team Total Goals Over Under",
-      "line": "1.5",
-      "arb_sum": 0.910816,
-      "arb_percent": 91.082,
-      "profit_margin_percent": 9.792,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "21/10",
-          "decimal_odds": 3.1
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "7/10",
-          "decimal_odds": 1.7
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Netherlands v Japan",
-      "market": "Team Total Goals Over Under",
-      "line": "2.5",
-      "arb_sum": 0.965336,
-      "arb_percent": 96.534,
-      "profit_margin_percent": 3.591,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "7/1",
-          "decimal_odds": 8.0
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "19/100",
-          "decimal_odds": 1.19
-        }
-      }
-    },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
       "match": "Belgium v Egypt",
       "market": "Total Cards Over Under",
-      "line": "4.5",
-      "arb_sum": 0.998256,
-      "arb_percent": 99.826,
-      "profit_margin_percent": 0.175,
+      "line": "2.5",
+      "arb_sum": 0.989247,
+      "arb_percent": 98.925,
+      "profit_margin_percent": 1.087,
+      "bookmaker_count": 2,
       "selections": {
         "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "1/2",
+          "decimal_odds": 1.5
+        },
+        "under": {
           "bookmaker": "PaddyPower",
           "odds": "21/10",
           "decimal_odds": 3.1
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "12/25",
-          "decimal_odds": 1.48
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Iran v New Zealand",
-      "market": "Iran Shots On Target Over Under",
-      "line": "5.5",
-      "arb_sum": 0.702281,
-      "arb_percent": 70.228,
-      "profit_margin_percent": 42.393,
-      "selections": {
-        "over": {
-          "bookmaker": "Ladbrokes",
-          "odds": "29/20",
-          "decimal_odds": 2.45
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "12/5",
-          "decimal_odds": 3.4
-        }
-      }
-    }
-  ],
-  "near_misses": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Sweden v Tunisia",
-      "market": "Total Cards Over Under",
-      "line": "4.5",
-      "arb_sum": 1.004808,
-      "arb_percent": 100.481,
-      "profit_margin_percent": -0.478,
-      "selections": {
-        "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "11/5",
-          "decimal_odds": 3.2
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "4/9",
-          "decimal_odds": 1.444444
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Iran v New Zealand",
-      "market": "Total Cards Over Under",
-      "line": "2.5",
-      "arb_sum": 1.008547,
-      "arb_percent": 100.855,
-      "profit_margin_percent": -0.847,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "2/7",
-          "decimal_odds": 1.285714
-        },
-        "under": {
-          "bookmaker": "PaddyPower",
-          "odds": "10/3",
-          "decimal_odds": 4.333333
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Germany v Curacao",
-      "market": "Total Shots On Target Over Under",
-      "line": "11.5",
-      "arb_sum": 1.009288,
-      "arb_percent": 100.929,
-      "profit_margin_percent": -0.92,
-      "selections": {
-        "over": {
-          "bookmaker": "Ladbrokes",
-          "odds": "11/8",
-          "decimal_odds": 2.375
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "7/10",
-          "decimal_odds": 1.7
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Ivory Coast v Ecuador",
-      "market": "Team Total Goals Over Under",
-      "line": "1.5",
-      "arb_sum": 1.009427,
-      "arb_percent": 100.943,
-      "profit_margin_percent": -0.934,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "14/5",
-          "decimal_odds": 3.8
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "17/50",
-          "decimal_odds": 1.34
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Ivory Coast v Ecuador",
-      "market": "Team Total Goals Over Under",
-      "line": "0.5",
-      "arb_sum": 1.009615,
-      "arb_percent": 100.962,
-      "profit_margin_percent": -0.952,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "3/5",
-          "decimal_odds": 1.6
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "8/5",
-          "decimal_odds": 2.6
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Germany v Curacao",
-      "market": "Total Shots On Target Over Under",
-      "line": "10.5",
-      "arb_sum": 1.016731,
-      "arb_percent": 101.673,
-      "profit_margin_percent": -1.646,
-      "selections": {
-        "over": {
-          "bookmaker": "Ladbrokes",
-          "odds": "17/20",
-          "decimal_odds": 1.85
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "11/10",
-          "decimal_odds": 2.1
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Netherlands v Japan",
-      "market": "Team Total Goals Over Under",
-      "line": "3.5",
-      "arb_sum": 1.017094,
-      "arb_percent": 101.709,
-      "profit_margin_percent": -1.681,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "17/1",
-          "decimal_odds": 18.0
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "1/25",
-          "decimal_odds": 1.04
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Spain v Cape Verde",
-      "market": "Total Cards Over Under",
-      "line": "3.5",
-      "arb_sum": 1.020503,
-      "arb_percent": 102.05,
-      "profit_margin_percent": -2.009,
-      "selections": {
-        "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "19/10",
-          "decimal_odds": 2.9
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "12/25",
-          "decimal_odds": 1.48
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Germany v Curacao",
-      "market": "Total Corners Over Under",
-      "line": "9.5",
-      "arb_sum": 1.020672,
-      "arb_percent": 102.067,
-      "profit_margin_percent": -2.025,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "4/5",
-          "decimal_odds": 1.8
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "23/20",
-          "decimal_odds": 2.15
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "moneyline_1x2",
-      "match": "Spain v Cape Verde",
-      "home_team": "Spain",
-      "away_team": "Cape Verde",
-      "date_label": "",
-      "time": "17:00",
-      "market": "Match Odds",
-      "bookmaker_count": 4,
-      "arb_sum": 1.021795,
-      "arb_percent": 102.179,
-      "profit_margin_percent": -2.133,
-      "selections": {
-        "home": {
-          "bookmaker": "BoyleSports",
-          "odds": "1/9",
-          "decimal_odds": 1.111111,
-          "implied_probability": 0.9,
-          "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-        },
-        "draw": {
-          "bookmaker": "PaddyPower",
-          "odds": "11/1",
-          "decimal_odds": 12.0,
-          "implied_probability": 0.083333,
-          "source_url": "https://www.paddypower.com/fifa-world-cup"
-        },
-        "away": {
-          "bookmaker": "Unibet",
-          "odds": "25/1",
-          "decimal_odds": 26.0,
-          "implied_probability": 0.038462,
-          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
         }
       },
       "all_prices": {
-        "home": [
+        "over": [
           {
-            "bookmaker": "BoyleSports",
-            "odds": "1/9",
-            "decimal_odds": 1.111111,
-            "implied_probability": 0.9,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "1/10",
-            "decimal_odds": 1.1,
-            "implied_probability": 0.909091,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/10",
-            "decimal_odds": 1.1,
-            "implied_probability": 0.909091,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "match": "Belgium v Egypt"
           },
           {
             "bookmaker": "PaddyPower",
-            "odds": "1/14",
-            "decimal_odds": 1.071429,
-            "implied_probability": 0.933333,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Belgium v Egypt"
           }
         ],
-        "draw": [
+        "under": [
           {
             "bookmaker": "PaddyPower",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
+            "odds": "21/10",
+            "decimal": 3.1,
+            "match": "Belgium v Egypt"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "9/1",
-            "decimal_odds": 10.0,
-            "implied_probability": 0.1,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "17/2",
-            "decimal_odds": 9.5,
-            "implied_probability": 0.105263,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "8/1",
-            "decimal_odds": 9.0,
-            "implied_probability": 0.111111,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "25/1",
-            "decimal_odds": 26.0,
-            "implied_probability": 0.038462,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "22/1",
-            "decimal_odds": 23.0,
-            "implied_probability": 0.043478,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "22/1",
-            "decimal_odds": 23.0,
-            "implied_probability": 0.043478,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "22/1",
-            "decimal_odds": 23.0,
-            "implied_probability": 0.043478,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+            "bookmaker": "LiveScoreBet",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "match": "Belgium v Egypt"
           }
         ]
       }
@@ -618,69 +103,1503 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Ivory Coast v Ecuador",
-      "market": "Total Goals Over Under",
-      "line": "1.5",
-      "arb_sum": 1.023018,
-      "arb_percent": 102.302,
-      "profit_margin_percent": -2.25,
+      "match": "Belgium v Egypt",
+      "market": "Belgium Shots On Target Over Under",
+      "line": "6.5",
+      "arb_sum": 0.65641,
+      "arb_percent": 65.641,
+      "profit_margin_percent": 52.344,
+      "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "Unibet",
+          "bookmaker": "Ladbrokes",
+          "odds": "6/4",
+          "decimal_odds": 2.5
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "29/10",
+          "decimal_odds": 3.9
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "match": "Belgium v Egypt"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "2/13",
+            "decimal": 1.153846,
+            "match": "Belgium v Egypt"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "29/10",
+            "decimal": 3.9,
+            "match": "Belgium v Egypt"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/21",
+            "decimal": 1.47619,
+            "match": "Belgium v Egypt"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "France v Senegal",
+      "market": "France Shots On Target Over Under",
+      "line": "6.5",
+      "arb_sum": 0.748663,
+      "arb_percent": 74.866,
+      "profit_margin_percent": 33.571,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Ladbrokes",
+          "odds": "6/5",
+          "decimal_odds": 2.2
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "12/5",
+          "decimal_odds": 3.4
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "match": "France v Senegal"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "11/50",
+            "decimal": 1.22,
+            "match": "France v Senegal"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "12/5",
+            "decimal": 3.4,
+            "match": "France v Senegal"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/5",
+            "decimal": 1.6,
+            "match": "France v Senegal"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Iraq v Norway",
+      "market": "Norway Shots On Target Over Under",
+      "line": "6.5",
+      "arb_sum": 0.69883,
+      "arb_percent": 69.883,
+      "profit_margin_percent": 43.096,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Ladbrokes",
+          "odds": "11/8",
+          "decimal_odds": 2.375
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "13/5",
+          "decimal_odds": 3.6
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "match": "Iraq v Norway"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "2/11",
+            "decimal": 1.181818,
+            "match": "Iraq v Norway"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "13/5",
+            "decimal": 3.6,
+            "match": "Iraq v Norway"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "match": "Iraq v Norway"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Argentina v Algeria",
+      "market": "Argentina Shots On Target Over Under",
+      "line": "5.5",
+      "arb_sum": 0.858506,
+      "arb_percent": 85.851,
+      "profit_margin_percent": 16.481,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Ladbrokes",
           "odds": "7/10",
           "decimal_odds": 1.7
         },
         "under": {
-          "bookmaker": "BetVictor",
-          "odds": "13/10",
-          "decimal_odds": 2.3
+          "bookmaker": "LiveScoreBet",
+          "odds": "27/10",
+          "decimal_odds": 3.7
         }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/6",
+            "decimal": 1.166667,
+            "match": "Argentina v Algeria"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "27/10",
+            "decimal": 3.7,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "match": "Argentina v Algeria"
+          }
+        ]
       }
     },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Germany v Curacao",
-      "market": "Total Corners Over Under",
-      "line": "8.5",
-      "arb_sum": 1.02381,
-      "arb_percent": 102.381,
-      "profit_margin_percent": -2.326,
+      "match": "Argentina v Algeria",
+      "market": "Argentina Shots On Target Over Under",
+      "line": "6.5",
+      "arb_sum": 0.821053,
+      "arb_percent": 82.105,
+      "profit_margin_percent": 21.795,
+      "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "1/2",
-          "decimal_odds": 1.5
+          "bookmaker": "Ladbrokes",
+          "odds": "11/8",
+          "decimal_odds": 2.375
         },
         "under": {
-          "bookmaker": "Unibet",
-          "odds": "9/5",
-          "decimal_odds": 2.8
+          "bookmaker": "LiveScoreBet",
+          "odds": "6/4",
+          "decimal_odds": 2.5
         }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "match": "Argentina v Algeria"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "match": "Argentina v Algeria"
+          }
+        ]
       }
     },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Ivory Coast v Ecuador",
+      "match": "England v Croatia",
       "market": "Total Cards Over Under",
-      "line": "4.5",
-      "arb_sum": 1.02381,
-      "arb_percent": 102.381,
-      "profit_margin_percent": -2.326,
+      "line": "3.5",
+      "arb_sum": 1.0,
+      "arb_percent": 100.0,
+      "profit_margin_percent": 0.0,
+      "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "PaddyPower",
-          "odds": "9/5",
-          "decimal_odds": 2.8
+          "odds": "6/4",
+          "decimal_odds": 2.5
         },
         "under": {
-          "bookmaker": "Unibet",
-          "odds": "1/2",
-          "decimal_odds": 1.5
+          "bookmaker": "LiveScoreBet",
+          "odds": "4/6",
+          "decimal_odds": 1.666667
         }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "match": "England v Croatia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "England v Croatia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "match": "England v Croatia"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "England v Croatia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "England v Croatia",
+      "market": "Total Cards Over Under",
+      "line": "4.5",
+      "arb_sum": 0.991453,
+      "arb_percent": 99.145,
+      "profit_margin_percent": 0.862,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "7/2",
+          "decimal_odds": 4.5
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "3/10",
+          "decimal_odds": 1.3
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "match": "England v Croatia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "41/20",
+            "decimal": 3.05,
+            "match": "England v Croatia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "England v Croatia"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/13",
+            "decimal": 1.153846,
+            "match": "England v Croatia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Uzbekistan v Colombia",
+      "market": "Total Shots On Target Over Under",
+      "line": "8.5",
+      "arb_sum": 0.96729,
+      "arb_percent": 96.729,
+      "profit_margin_percent": 3.382,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "57/50",
+          "decimal_odds": 2.14
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "1/1",
+          "decimal_odds": 2.0
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "57/50",
+            "decimal": 2.14,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "match": "Uzbekistan v Colombia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "11/20",
+            "decimal": 1.55,
+            "match": "Uzbekistan v Colombia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Uzbekistan v Colombia",
+      "market": "Total Shots On Target Over Under",
+      "line": "9.5",
+      "arb_sum": 0.958031,
+      "arb_percent": 95.803,
+      "profit_margin_percent": 4.381,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "39/20",
+          "decimal_odds": 2.95
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "8/13",
+          "decimal_odds": 1.615385
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "39/20",
+            "decimal": 2.95,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "match": "Uzbekistan v Colombia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/13",
+            "decimal": 1.615385,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Uzbekistan v Colombia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Uzbekistan v Colombia",
+      "market": "Colombia Shots On Target Over Under",
+      "line": "5.5",
+      "arb_sum": 0.902174,
+      "arb_percent": 90.217,
+      "profit_margin_percent": 10.843,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Ladbrokes",
+          "odds": "8/15",
+          "decimal_odds": 1.533333
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "3/1",
+          "decimal_odds": 4.0
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/7",
+            "decimal": 1.142857,
+            "match": "Uzbekistan v Colombia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/1",
+            "decimal": 4.0,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "match": "Uzbekistan v Colombia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Uzbekistan v Colombia",
+      "market": "Colombia Shots On Target Over Under",
+      "line": "6.5",
+      "arb_sum": 0.87037,
+      "arb_percent": 87.037,
+      "profit_margin_percent": 14.894,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Ladbrokes",
+          "odds": "1/1",
+          "decimal_odds": 2.0
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "17/10",
+          "decimal_odds": 2.7
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "7/20",
+            "decimal": 1.35,
+            "match": "Uzbekistan v Colombia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "17/10",
+            "decimal": 2.7,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "match": "Uzbekistan v Colombia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Spain v Cape Verde",
+      "market": "Spain Corners Over Under",
+      "line": "9.5",
+      "arb_sum": 0.77381,
+      "arb_percent": 77.381,
+      "profit_margin_percent": 29.231,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Ladbrokes",
+          "odds": "7/5",
+          "decimal_odds": 2.4
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "9/5",
+          "decimal_odds": 2.8
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "match": "Spain v Cape Verde"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "match": "Spain v Cape Verde"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "9/5",
+            "decimal": 2.8,
+            "match": "Spain v Cape Verde"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "match": "Spain v Cape Verde"
+          }
+        ]
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Argentina v Algeria",
+      "market": "Total Cards Over Under",
+      "line": "5.5",
+      "arb_sum": 1.0,
+      "arb_percent": 100.0,
+      "profit_margin_percent": -0.0,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "10/3",
+          "decimal_odds": 4.333333
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "3/10",
+          "decimal_odds": 1.3
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "10/3",
+            "decimal": 4.333333,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "21/10",
+            "decimal": 3.1,
+            "match": "Argentina v Algeria"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/6",
+            "decimal": 1.166667,
+            "match": "Argentina v Algeria"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Argentina v Algeria",
+      "market": "Total Shots On Target Over Under",
+      "line": "7.5",
+      "arb_sum": 1.006211,
+      "arb_percent": 100.621,
+      "profit_margin_percent": -0.617,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "3/4",
+          "decimal_odds": 1.75
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "13/10",
+          "decimal_odds": 2.3
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "match": "Argentina v Algeria"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "match": "Argentina v Algeria"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Argentina v Algeria",
+      "market": "Total Shots On Target Over Under",
+      "line": "8.5",
+      "arb_sum": 1.006211,
+      "arb_percent": 100.621,
+      "profit_margin_percent": -0.617,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "13/10",
+          "decimal_odds": 2.3
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "3/4",
+          "decimal_odds": 1.75
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "match": "Argentina v Algeria"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "Argentina v Algeria"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Canada v Qatar",
+      "market": "Total Corners Over Under",
+      "line": "7.5",
+      "arb_sum": 1.007407,
+      "arb_percent": 100.741,
+      "profit_margin_percent": -0.735,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "7/20",
+          "decimal_odds": 1.35
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "11/4",
+          "decimal_odds": 3.75
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "7/20",
+            "decimal": 1.35,
+            "match": "Canada v Qatar"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "2/9",
+            "decimal": 1.222222,
+            "match": "Canada v Qatar"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "11/4",
+            "decimal": 3.75,
+            "match": "Canada v Qatar"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "2/1",
+            "decimal": 3.0,
+            "match": "Canada v Qatar"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Iran v New Zealand",
+      "market": "Total Cards Over Under",
+      "line": "5.5",
+      "arb_sum": 1.009624,
+      "arb_percent": 100.962,
+      "profit_margin_percent": -0.953,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "7/2",
+          "decimal_odds": 4.5
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "27/100",
+          "decimal_odds": 1.27
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "match": "Iran v New Zealand"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "23/10",
+            "decimal": 3.3,
+            "match": "Iran v New Zealand"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "27/100",
+            "decimal": 1.27,
+            "match": "Iran v New Zealand"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/13",
+            "decimal": 1.153846,
+            "match": "Iran v New Zealand"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "moneyline_1x2",
+      "match": "Iraq v Norway",
+      "home_team": "Iraq",
+      "away_team": "Norway",
+      "date_label": "",
+      "time": "23:00",
+      "market": "Match Odds",
+      "bookmaker_count": 5,
+      "arb_sum": 1.014015,
+      "arb_percent": 101.402,
+      "profit_margin_percent": -1.382,
+      "selections": {
+        "home": {
+          "bookmaker": "Unibet",
+          "odds": "15/1",
+          "decimal_odds": 16.0,
+          "implied_probability": 0.0625,
+          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+        },
+        "draw": {
+          "bookmaker": "PaddyPower",
+          "odds": "13/2",
+          "decimal_odds": 7.5,
+          "implied_probability": 0.133333,
+          "source_url": "https://www.paddypower.com/fifa-world-cup"
+        },
+        "away": {
+          "bookmaker": "WilliamHill",
+          "odds": "2/9",
+          "decimal_odds": 1.222222,
+          "implied_probability": 0.818182,
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "15/1",
+            "decimal_odds": 16.0,
+            "implied_probability": 0.0625,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "14/1",
+            "decimal_odds": 15.0,
+            "implied_probability": 0.066667,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "14/1",
+            "decimal_odds": 15.0,
+            "implied_probability": 0.066667,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "14/1",
+            "decimal_odds": 15.0,
+            "implied_probability": 0.066667,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "14/1",
+            "decimal_odds": 15.0,
+            "implied_probability": 0.066667,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "13/2",
+            "decimal_odds": 7.5,
+            "implied_probability": 0.133333,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "6/1",
+            "decimal_odds": 7.0,
+            "implied_probability": 0.142857,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "6/1",
+            "decimal_odds": 7.0,
+            "implied_probability": 0.142857,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "11/2",
+            "decimal_odds": 6.5,
+            "implied_probability": 0.153846,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "11/2",
+            "decimal_odds": 6.5,
+            "implied_probability": 0.153846,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "2/9",
+            "decimal_odds": 1.222222,
+            "implied_probability": 0.818182,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "19/100",
+            "decimal_odds": 1.19,
+            "implied_probability": 0.840336,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "2/11",
+            "decimal_odds": 1.181818,
+            "implied_probability": 0.846154,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/6",
+            "decimal_odds": 1.166667,
+            "implied_probability": 0.857143,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/6",
+            "decimal_odds": 1.166667,
+            "implied_probability": 0.857143,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Uzbekistan v Colombia",
+      "market": "Total Corners Over Under",
+      "line": "6.5",
+      "arb_sum": 1.015038,
+      "arb_percent": 101.504,
+      "profit_margin_percent": -1.481,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "33/100",
+          "decimal_odds": 1.33
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "14/5",
+          "decimal_odds": 3.8
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "33/100",
+            "decimal": 1.33,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "2/9",
+            "decimal": 1.222222,
+            "match": "Uzbekistan v Colombia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "14/5",
+            "decimal": 3.8,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "21/10",
+            "decimal": 3.1,
+            "match": "Uzbekistan v Colombia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Uzbekistan v Colombia",
+      "market": "Total Corners Over Under",
+      "line": "7.5",
+      "arb_sum": 1.017316,
+      "arb_percent": 101.732,
+      "profit_margin_percent": -1.702,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "4/7",
+          "decimal_odds": 1.571429
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "13/8",
+          "decimal_odds": 2.625
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/7",
+            "decimal": 1.571429,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "Uzbekistan v Colombia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "13/8",
+            "decimal": 2.625,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "5/4",
+            "decimal": 2.25,
+            "match": "Uzbekistan v Colombia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Canada v Qatar",
+      "market": "Total Corners Over Under",
+      "line": "8.5",
+      "arb_sum": 1.017316,
+      "arb_percent": 101.732,
+      "profit_margin_percent": -1.702,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "4/7",
+          "decimal_odds": 1.571429
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "13/8",
+          "decimal_odds": 2.625
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/7",
+            "decimal": 1.571429,
+            "match": "Canada v Qatar"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "Canada v Qatar"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "13/8",
+            "decimal": 2.625,
+            "match": "Canada v Qatar"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "5/4",
+            "decimal": 2.25,
+            "match": "Canada v Qatar"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Uzbekistan v Colombia",
+      "market": "Total Corners Over Under",
+      "line": "8.5",
+      "arb_sum": 1.017871,
+      "arb_percent": 101.787,
+      "profit_margin_percent": -1.756,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "49/50",
+          "decimal_odds": 1.98
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "19/20",
+          "decimal_odds": 1.95
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "49/50",
+            "decimal": 1.98,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "match": "Uzbekistan v Colombia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "match": "Uzbekistan v Colombia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Austria v Jordan",
+      "market": "Total Cards Over Under",
+      "line": "4.5",
+      "arb_sum": 1.02027,
+      "arb_percent": 102.027,
+      "profit_margin_percent": -1.987,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "27/10",
+          "decimal_odds": 3.7
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "1/3",
+          "decimal_odds": 1.333333
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "27/10",
+            "decimal": 3.7,
+            "match": "Austria v Jordan"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "39/20",
+            "decimal": 2.95,
+            "match": "Austria v Jordan"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "match": "Austria v Jordan"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/9",
+            "decimal": 1.222222,
+            "match": "Austria v Jordan"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Uzbekistan v Colombia",
+      "market": "Total Corners Over Under",
+      "line": "5.5",
+      "arb_sum": 1.023809,
+      "arb_percent": 102.381,
+      "profit_margin_percent": -2.326,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "1/6",
+          "decimal_odds": 1.166667
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "5/1",
+          "decimal_odds": 6.0
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/6",
+            "decimal": 1.166667,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "match": "Uzbekistan v Colombia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "5/1",
+            "decimal": 6.0,
+            "match": "Uzbekistan v Colombia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "18/5",
+            "decimal": 4.6,
+            "match": "Uzbekistan v Colombia"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Canada v Qatar",
+      "market": "Total Corners Over Under",
+      "line": "9.5",
+      "arb_sum": 1.023809,
+      "arb_percent": 102.381,
+      "profit_margin_percent": -2.326,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "10/11",
+          "decimal_odds": 1.909091
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "1/1",
+          "decimal_odds": 2.0
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "match": "Canada v Qatar"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "match": "Canada v Qatar"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "match": "Canada v Qatar"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "match": "Canada v Qatar"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Argentina v Algeria",
+      "market": "Total Cards Over Under",
+      "line": "4.5",
+      "arb_sum": 1.025,
+      "arb_percent": 102.5,
+      "profit_margin_percent": -2.439,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "6/4",
+          "decimal_odds": 2.5
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "3/5",
+          "decimal_odds": 1.6
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "match": "Argentina v Algeria"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/5",
+            "decimal": 1.6,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "Argentina v Algeria"
+          }
+        ]
       }
     },
     {
@@ -693,6 +1612,7 @@
       "arb_sum": 1.025641,
       "arb_percent": 102.564,
       "profit_margin_percent": -2.5,
+      "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "PaddyPower",
@@ -704,29 +1624,36 @@
           "odds": "3/10",
           "decimal_odds": 1.3
         }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Netherlands v Japan",
-      "market": "Total Goals Over Under",
-      "line": "1.5",
-      "arb_sum": 1.026455,
-      "arb_percent": 102.646,
-      "profit_margin_percent": -2.577,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "7/20",
-          "decimal_odds": 1.35
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "5/2",
-          "decimal_odds": 3.5
-        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "29/10",
+            "decimal": 3.9,
+            "match": "Saudi Arabia v Uruguay"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "43/20",
+            "decimal": 3.15,
+            "match": "Saudi Arabia v Uruguay"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Saudi Arabia v Uruguay"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "match": "Saudi Arabia v Uruguay"
+          }
+        ]
       }
     },
     {
@@ -734,58 +1661,197 @@
       "competition": "FIFA World Cup",
       "type": "props_ou",
       "match": "France v Senegal",
+      "market": "Total Cards Over Under",
+      "line": "4.5",
+      "arb_sum": 1.026786,
+      "arb_percent": 102.679,
+      "profit_margin_percent": -2.609,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "11/5",
+          "decimal_odds": 3.2
+        },
+        "under": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "2/5",
+          "decimal_odds": 1.4
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "11/5",
+            "decimal": 3.2,
+            "match": "France v Senegal"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "17/10",
+            "decimal": 2.7,
+            "match": "France v Senegal"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "match": "France v Senegal"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/7",
+            "decimal": 1.285714,
+            "match": "France v Senegal"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Argentina v Algeria",
       "market": "Total Corners Over Under",
-      "line": "7.5",
-      "arb_sum": 1.026806,
-      "arb_percent": 102.681,
-      "profit_margin_percent": -2.611,
+      "line": "6.5",
+      "arb_sum": 1.027846,
+      "arb_percent": 102.785,
+      "profit_margin_percent": -2.709,
+      "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "LiveScoreBet",
-          "odds": "21/50",
-          "decimal_odds": 1.42
+          "odds": "8/25",
+          "decimal_odds": 1.32
         },
         "under": {
           "bookmaker": "Ladbrokes",
-          "odds": "21/10",
-          "decimal_odds": 3.1
+          "odds": "27/10",
+          "decimal_odds": 3.7
         }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "8/25",
+            "decimal": 1.32,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "Argentina v Algeria"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "27/10",
+            "decimal": 3.7,
+            "match": "Argentina v Algeria"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "43/20",
+            "decimal": 3.15,
+            "match": "Argentina v Algeria"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Canada v Qatar",
+      "market": "Total Corners Over Under",
+      "line": "6.5",
+      "arb_sum": 1.027972,
+      "arb_percent": 102.797,
+      "profit_margin_percent": -2.721,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "2/11",
+          "decimal_odds": 1.181818
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "9/2",
+          "decimal_odds": 5.5
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "2/11",
+            "decimal": 1.181818,
+            "match": "Canada v Qatar"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/9",
+            "decimal": 1.111111,
+            "match": "Canada v Qatar"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "9/2",
+            "decimal": 5.5,
+            "match": "Canada v Qatar"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "33/10",
+            "decimal": 4.3,
+            "match": "Canada v Qatar"
+          }
+        ]
       }
     },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "moneyline_1x2",
-      "match": "Germany v Curacao",
-      "home_team": "Germany",
-      "away_team": "Curacao",
+      "match": "Iran v New Zealand",
+      "home_team": "Iran",
+      "away_team": "New Zealand",
       "date_label": "",
-      "time": "18:00",
+      "time": "02:00",
       "market": "Match Odds",
       "bookmaker_count": 5,
-      "arb_sum": 1.027015,
-      "arb_percent": 102.701,
-      "profit_margin_percent": -2.63,
+      "arb_sum": 1.029193,
+      "arb_percent": 102.919,
+      "profit_margin_percent": -2.836,
       "selections": {
         "home": {
           "bookmaker": "Unibet",
-          "odds": "1/25",
-          "decimal_odds": 1.04,
-          "implied_probability": 0.961538,
+          "odds": "21/25",
+          "decimal_odds": 1.84,
+          "implied_probability": 0.543478,
           "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
         },
         "draw": {
-          "bookmaker": "PaddyPower",
-          "odds": "20/1",
-          "decimal_odds": 21.0,
-          "implied_probability": 0.047619,
-          "source_url": "https://www.paddypower.com/fifa-world-cup"
+          "bookmaker": "Unibet",
+          "odds": "5/2",
+          "decimal_odds": 3.5,
+          "implied_probability": 0.285714,
+          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
         },
         "away": {
           "bookmaker": "BetVictor",
-          "odds": "55/1",
-          "decimal_odds": 56.0,
-          "implied_probability": 0.017857,
+          "odds": "4/1",
+          "decimal_odds": 5.0,
+          "implied_probability": 0.2,
           "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
         }
       },
@@ -793,353 +1859,307 @@
         "home": [
           {
             "bookmaker": "Unibet",
-            "odds": "1/25",
-            "decimal_odds": 1.04,
-            "implied_probability": 0.961538,
+            "odds": "21/25",
+            "decimal_odds": 1.84,
+            "implied_probability": 0.543478,
             "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "1/25",
-            "decimal_odds": 1.04,
-            "implied_probability": 0.961538,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
             "bookmaker": "PaddyPower",
-            "odds": "1/33",
-            "decimal_odds": 1.030303,
-            "implied_probability": 0.970588,
+            "odds": "3/4",
+            "decimal_odds": 1.75,
+            "implied_probability": 0.571429,
             "source_url": "https://www.paddypower.com/fifa-world-cup"
           },
           {
             "bookmaker": "BoyleSports",
-            "odds": "1/33",
-            "decimal_odds": 1.030303,
-            "implied_probability": 0.970588,
+            "odds": "3/4",
+            "decimal_odds": 1.75,
+            "implied_probability": 0.571429,
             "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "1/33",
-            "decimal_odds": 1.030303,
-            "implied_probability": 0.970588,
+            "odds": "3/4",
+            "decimal_odds": 1.75,
+            "implied_probability": 0.571429,
             "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "3/4",
+            "decimal_odds": 1.75,
+            "implied_probability": 0.571429,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
           }
         ],
         "draw": [
           {
+            "bookmaker": "Unibet",
+            "odds": "5/2",
+            "decimal_odds": 3.5,
+            "implied_probability": 0.285714,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/2",
+            "decimal_odds": 3.5,
+            "implied_probability": 0.285714,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
             "bookmaker": "PaddyPower",
-            "odds": "20/1",
-            "decimal_odds": 21.0,
-            "implied_probability": 0.047619,
+            "odds": "12/5",
+            "decimal_odds": 3.4,
+            "implied_probability": 0.294118,
             "source_url": "https://www.paddypower.com/fifa-world-cup"
           },
           {
             "bookmaker": "BoyleSports",
-            "odds": "16/1",
-            "decimal_odds": 17.0,
-            "implied_probability": 0.058824,
+            "odds": "12/5",
+            "decimal_odds": 3.4,
+            "implied_probability": 0.294118,
             "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "16/1",
-            "decimal_odds": 17.0,
-            "implied_probability": 0.058824,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "13/1",
-            "decimal_odds": 14.0,
-            "implied_probability": 0.071429,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
             "bookmaker": "BetVictor",
-            "odds": "12/1",
-            "decimal_odds": 13.0,
-            "implied_probability": 0.076923,
+            "odds": "23/10",
+            "decimal_odds": 3.3,
+            "implied_probability": 0.30303,
             "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
           }
         ],
         "away": [
           {
             "bookmaker": "BetVictor",
-            "odds": "55/1",
-            "decimal_odds": 56.0,
-            "implied_probability": 0.017857,
+            "odds": "4/1",
+            "decimal_odds": 5.0,
+            "implied_probability": 0.2,
             "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
           },
           {
             "bookmaker": "Unibet",
-            "odds": "45/1",
-            "decimal_odds": 46.0,
-            "implied_probability": 0.021739,
+            "odds": "4/1",
+            "decimal_odds": 5.0,
+            "implied_probability": 0.2,
             "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
             "bookmaker": "PaddyPower",
-            "odds": "40/1",
-            "decimal_odds": 41.0,
-            "implied_probability": 0.02439,
+            "odds": "15/4",
+            "decimal_odds": 4.75,
+            "implied_probability": 0.210526,
             "source_url": "https://www.paddypower.com/fifa-world-cup"
           },
           {
             "bookmaker": "BoyleSports",
-            "odds": "40/1",
-            "decimal_odds": 41.0,
-            "implied_probability": 0.02439,
+            "odds": "15/4",
+            "decimal_odds": 4.75,
+            "implied_probability": 0.210526,
             "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "40/1",
-            "decimal_odds": 41.0,
-            "implied_probability": 0.02439,
+            "odds": "18/5",
+            "decimal_odds": 4.6,
+            "implied_probability": 0.217391,
             "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
           }
         ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Iran v New Zealand",
-      "market": "Total Shots On Target Over Under",
-      "line": "7.5",
-      "arb_sum": 1.028345,
-      "arb_percent": 102.835,
-      "profit_margin_percent": -2.756,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "17/20",
-          "decimal_odds": 1.85
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "21/20",
-          "decimal_odds": 2.05
-        }
       }
     },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "moneyline_1x2",
-      "match": "Brazil v Haiti",
-      "home_team": "Brazil",
-      "away_team": "Haiti",
-      "date_label": "",
-      "time": "01:30",
+      "match": "Scotland v Brazil",
+      "home_team": "Scotland",
+      "away_team": "Brazil",
+      "date_label": "Wednesday 24",
+      "time": "23:00",
       "market": "Match Odds",
       "bookmaker_count": 7,
-      "arb_sum": 1.029371,
-      "arb_percent": 102.937,
-      "profit_margin_percent": -2.853,
+      "arb_sum": 1.029225,
+      "arb_percent": 102.923,
+      "profit_margin_percent": -2.84,
       "selections": {
         "home": {
-          "bookmaker": "WilliamHill",
-          "odds": "1/9",
-          "decimal_odds": 1.111111,
-          "implied_probability": 0.9,
-          "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          "bookmaker": "BetVictor",
+          "odds": "7/1",
+          "decimal_odds": 8.0,
+          "implied_probability": 0.125,
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
         },
         "draw": {
           "bookmaker": "PaddyPower",
-          "odds": "10/1",
-          "decimal_odds": 11.0,
-          "implied_probability": 0.090909,
+          "odds": "4/1",
+          "decimal_odds": 5.0,
+          "implied_probability": 0.2,
           "source_url": "https://www.paddypower.com/fifa-world-cup"
         },
         "away": {
-          "bookmaker": "BoyleSports",
-          "odds": "25/1",
-          "decimal_odds": 26.0,
-          "implied_probability": 0.038462,
-          "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          "bookmaker": "Unibet",
+          "odds": "21/50",
+          "decimal_odds": 1.42,
+          "implied_probability": 0.704225,
+          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
         }
       },
       "all_prices": {
         "home": [
           {
-            "bookmaker": "WilliamHill",
-            "odds": "1/9",
-            "decimal_odds": 1.111111,
-            "implied_probability": 0.9,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+            "bookmaker": "BetVictor",
+            "odds": "7/1",
+            "decimal_odds": 8.0,
+            "implied_probability": 0.125,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
           },
           {
             "bookmaker": "BoyleSports",
-            "odds": "1/10",
-            "decimal_odds": 1.1,
-            "implied_probability": 0.909091,
+            "odds": "13/2",
+            "decimal_odds": 7.5,
+            "implied_probability": 0.133333,
             "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
           },
           {
             "bookmaker": "Unibet",
-            "odds": "1/10",
-            "decimal_odds": 1.1,
-            "implied_probability": 0.909091,
+            "odds": "6/1",
+            "decimal_odds": 7.0,
+            "implied_probability": 0.142857,
             "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
-            "bookmaker": "888Sport",
-            "odds": "1/10",
-            "decimal_odds": 1.1,
-            "implied_probability": 0.909091,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          },
-          {
             "bookmaker": "PaddyPower",
-            "odds": "1/12",
-            "decimal_odds": 1.083333,
-            "implied_probability": 0.923077,
+            "odds": "11/2",
+            "decimal_odds": 6.5,
+            "implied_probability": 0.153846,
             "source_url": "https://www.paddypower.com/fifa-world-cup"
           },
           {
-            "bookmaker": "BetVictor",
-            "odds": "1/12",
-            "decimal_odds": 1.083333,
-            "implied_probability": 0.923077,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+            "bookmaker": "WilliamHill",
+            "odds": "11/2",
+            "decimal_odds": 6.5,
+            "implied_probability": 0.153846,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "11/2",
+            "decimal_odds": 6.5,
+            "implied_probability": 0.153846,
+            "source_url": "https://www.888sport.com/football/world-cup/"
           },
           {
             "bookmaker": "LiveScoreBet",
-            "odds": "1/12",
-            "decimal_odds": 1.083333,
-            "implied_probability": 0.923077,
+            "odds": "21/4",
+            "decimal_odds": 6.25,
+            "implied_probability": 0.16,
             "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
           }
         ],
         "draw": [
           {
             "bookmaker": "PaddyPower",
-            "odds": "10/1",
-            "decimal_odds": 11.0,
-            "implied_probability": 0.090909,
+            "odds": "4/1",
+            "decimal_odds": 5.0,
+            "implied_probability": 0.2,
             "source_url": "https://www.paddypower.com/fifa-world-cup"
           },
           {
+            "bookmaker": "LiveScoreBet",
+            "odds": "18/5",
+            "decimal_odds": 4.6,
+            "implied_probability": 0.217391,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "18/5",
+            "decimal_odds": 4.6,
+            "implied_probability": 0.217391,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
             "bookmaker": "BoyleSports",
-            "odds": "9/1",
-            "decimal_odds": 10.0,
-            "implied_probability": 0.1,
+            "odds": "7/2",
+            "decimal_odds": 4.5,
+            "implied_probability": 0.222222,
             "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "9/1",
-            "decimal_odds": 10.0,
-            "implied_probability": 0.1,
+            "odds": "7/2",
+            "decimal_odds": 4.5,
+            "implied_probability": 0.222222,
             "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "9/1",
-            "decimal_odds": 10.0,
-            "implied_probability": 0.1,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "17/2",
-            "decimal_odds": 9.5,
-            "implied_probability": 0.105263,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+            "bookmaker": "Unibet",
+            "odds": "7/2",
+            "decimal_odds": 4.5,
+            "implied_probability": 0.222222,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
             "bookmaker": "888Sport",
-            "odds": "17/2",
-            "decimal_odds": 9.5,
-            "implied_probability": 0.105263,
+            "odds": "7/2",
+            "decimal_odds": 4.5,
+            "implied_probability": 0.222222,
             "source_url": "https://www.888sport.com/football/world-cup/"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "15/2",
-            "decimal_odds": 8.5,
-            "implied_probability": 0.117647,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           }
         ],
         "away": [
           {
-            "bookmaker": "BoyleSports",
-            "odds": "25/1",
-            "decimal_odds": 26.0,
-            "implied_probability": 0.038462,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "22/1",
-            "decimal_odds": 23.0,
-            "implied_probability": 0.043478,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
             "bookmaker": "Unibet",
-            "odds": "22/1",
-            "decimal_odds": 23.0,
-            "implied_probability": 0.043478,
+            "odds": "21/50",
+            "decimal_odds": 1.42,
+            "implied_probability": 0.704225,
             "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
-            "bookmaker": "PaddyPower",
-            "odds": "18/1",
-            "decimal_odds": 19.0,
-            "implied_probability": 0.052632,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
+            "bookmaker": "BetVictor",
+            "odds": "2/5",
+            "decimal_odds": 1.4,
+            "implied_probability": 0.714286,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
           },
           {
             "bookmaker": "LiveScoreBet",
-            "odds": "18/1",
-            "decimal_odds": 19.0,
-            "implied_probability": 0.052632,
+            "odds": "2/5",
+            "decimal_odds": 1.4,
+            "implied_probability": 0.714286,
             "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "18/1",
-            "decimal_odds": 19.0,
-            "implied_probability": 0.052632,
+            "odds": "2/5",
+            "decimal_odds": 1.4,
+            "implied_probability": 0.714286,
             "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
           },
           {
             "bookmaker": "888Sport",
-            "odds": "18/1",
-            "decimal_odds": 19.0,
-            "implied_probability": 0.052632,
+            "odds": "2/5",
+            "decimal_odds": 1.4,
+            "implied_probability": 0.714286,
             "source_url": "https://www.888sport.com/football/world-cup/"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/11",
+            "decimal_odds": 1.363636,
+            "implied_probability": 0.733334,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "4/11",
+            "decimal_odds": 1.363636,
+            "implied_probability": 0.733334,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
           }
         ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Netherlands v Japan",
-      "market": "Total Goals Over Under",
-      "line": "0.5",
-      "arb_sum": 1.029818,
-      "arb_percent": 102.982,
-      "profit_margin_percent": -2.895,
-      "selections": {
-        "over": {
-          "bookmaker": "Unibet",
-          "odds": "7/100",
-          "decimal_odds": 1.07
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "19/2",
-          "decimal_odds": 10.5
-        }
       }
     },
     {
@@ -1152,6 +2172,7 @@
       "arb_sum": 1.030769,
       "arb_percent": 103.077,
       "profit_margin_percent": -2.985,
+      "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "LiveScoreBet",
@@ -1163,29 +2184,337 @@
           "odds": "10/3",
           "decimal_odds": 4.333333
         }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "England v Croatia"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "2/11",
+            "decimal": 1.181818,
+            "match": "England v Croatia"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/3",
+            "decimal": 4.333333,
+            "match": "England v Croatia"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "England v Croatia"
+          }
+        ]
       }
     },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Germany v Curacao",
+      "match": "Ghana v Panama",
       "market": "Total Corners Over Under",
-      "line": "10.5",
-      "arb_sum": 1.03258,
-      "arb_percent": 103.258,
-      "profit_margin_percent": -3.155,
+      "line": "5.5",
+      "arb_sum": 1.031056,
+      "arb_percent": 103.106,
+      "profit_margin_percent": -3.012,
+      "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "LiveScoreBet",
-          "odds": "6/5",
-          "decimal_odds": 2.2
+          "odds": "1/6",
+          "decimal_odds": 1.166667
         },
         "under": {
-          "bookmaker": "Unibet",
-          "odds": "73/100",
-          "decimal_odds": 1.73
+          "bookmaker": "Ladbrokes",
+          "odds": "19/4",
+          "decimal_odds": 5.75
         }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/6",
+            "decimal": 1.166667,
+            "match": "Ghana v Panama"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/9",
+            "decimal": 1.111111,
+            "match": "Ghana v Panama"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "19/4",
+            "decimal": 5.75,
+            "match": "Ghana v Panama"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "match": "Ghana v Panama"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "moneyline_1x2",
+      "match": "Spain v Saudi Arabia",
+      "home_team": "Spain",
+      "away_team": "Saudi Arabia",
+      "date_label": "",
+      "time": "17:00",
+      "market": "Match Odds",
+      "bookmaker_count": 7,
+      "arb_sum": 1.032258,
+      "arb_percent": 103.226,
+      "profit_margin_percent": -3.125,
+      "selections": {
+        "home": {
+          "bookmaker": "BoyleSports",
+          "odds": "1/11",
+          "decimal_odds": 1.090909,
+          "implied_probability": 0.916667,
+          "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+        },
+        "draw": {
+          "bookmaker": "PaddyPower",
+          "odds": "11/1",
+          "decimal_odds": 12.0,
+          "implied_probability": 0.083333,
+          "source_url": "https://www.paddypower.com/fifa-world-cup"
+        },
+        "away": {
+          "bookmaker": "Unibet",
+          "odds": "30/1",
+          "decimal_odds": 31.0,
+          "implied_probability": 0.032258,
+          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "1/11",
+            "decimal_odds": 1.090909,
+            "implied_probability": 0.916667,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/12",
+            "decimal_odds": 1.083333,
+            "implied_probability": 0.923077,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/12",
+            "decimal_odds": 1.083333,
+            "implied_probability": 0.923077,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/12",
+            "decimal_odds": 1.083333,
+            "implied_probability": 0.923077,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "1/12",
+            "decimal_odds": 1.083333,
+            "implied_probability": 0.923077,
+            "source_url": "https://www.888sport.com/football/world-cup/"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "2/25",
+            "decimal_odds": 1.08,
+            "implied_probability": 0.925926,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/14",
+            "decimal_odds": 1.071429,
+            "implied_probability": 0.933333,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "11/1",
+            "decimal_odds": 12.0,
+            "implied_probability": 0.083333,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "19/2",
+            "decimal_odds": 10.5,
+            "implied_probability": 0.095238,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "9/1",
+            "decimal_odds": 10.0,
+            "implied_probability": 0.1,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "9/1",
+            "decimal_odds": 10.0,
+            "implied_probability": 0.1,
+            "source_url": "https://www.888sport.com/football/world-cup/"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "8/1",
+            "decimal_odds": 9.0,
+            "implied_probability": 0.111111,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "8/1",
+            "decimal_odds": 9.0,
+            "implied_probability": 0.111111,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "6/1",
+            "decimal_odds": 7.0,
+            "implied_probability": 0.142857,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "30/1",
+            "decimal_odds": 31.0,
+            "implied_probability": 0.032258,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "28/1",
+            "decimal_odds": 29.0,
+            "implied_probability": 0.034483,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "28/1",
+            "decimal_odds": 29.0,
+            "implied_probability": 0.034483,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "28/1",
+            "decimal_odds": 29.0,
+            "implied_probability": 0.034483,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "28/1",
+            "decimal_odds": 29.0,
+            "implied_probability": 0.034483,
+            "source_url": "https://www.888sport.com/football/world-cup/"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "20/1",
+            "decimal_odds": 21.0,
+            "implied_probability": 0.047619,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "19/1",
+            "decimal_odds": 20.0,
+            "implied_probability": 0.05,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Ghana v Panama",
+      "market": "Total Corners Over Under",
+      "line": "7.5",
+      "arb_sum": 1.033163,
+      "arb_percent": 103.316,
+      "profit_margin_percent": -3.21,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "3/5",
+          "decimal_odds": 1.6
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "29/20",
+          "decimal_odds": 2.45
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/5",
+            "decimal": 1.6,
+            "match": "Ghana v Panama"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/21",
+            "decimal": 1.47619,
+            "match": "Ghana v Panama"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "match": "Ghana v Panama"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "match": "Ghana v Panama"
+          }
+        ]
       }
     },
     {
@@ -1199,54 +2528,47 @@
       "time": "22:00",
       "market": "Match Odds",
       "bookmaker_count": 7,
-      "arb_sum": 1.032614,
-      "arb_percent": 103.261,
-      "profit_margin_percent": -3.158,
+      "arb_sum": 1.034483,
+      "arb_percent": 103.448,
+      "profit_margin_percent": -3.333,
       "selections": {
         "home": {
-          "bookmaker": "WilliamHill",
-          "odds": "1/8",
-          "decimal_odds": 1.125,
-          "implied_probability": 0.888889,
-          "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          "bookmaker": "BoyleSports",
+          "odds": "1/9",
+          "decimal_odds": 1.111111,
+          "implied_probability": 0.9,
+          "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
         },
         "draw": {
-          "bookmaker": "BetVictor",
-          "odds": "17/2",
-          "decimal_odds": 9.5,
-          "implied_probability": 0.105263,
-          "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          "bookmaker": "PaddyPower",
+          "odds": "9/1",
+          "decimal_odds": 10.0,
+          "implied_probability": 0.1,
+          "source_url": "https://www.paddypower.com/fifa-world-cup"
         },
         "away": {
-          "bookmaker": "BoyleSports",
-          "odds": "25/1",
-          "decimal_odds": 26.0,
-          "implied_probability": 0.038462,
-          "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          "bookmaker": "WilliamHill",
+          "odds": "28/1",
+          "decimal_odds": 29.0,
+          "implied_probability": 0.034483,
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
         }
       },
       "all_prices": {
         "home": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/8",
-            "decimal_odds": 1.125,
-            "implied_probability": 0.888889,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "1/9",
-            "decimal_odds": 1.111111,
-            "implied_probability": 0.9,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
           {
             "bookmaker": "BoyleSports",
             "odds": "1/9",
             "decimal_odds": 1.111111,
             "implied_probability": 0.9,
             "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/9",
+            "decimal_odds": 1.111111,
+            "implied_probability": 0.9,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
           },
           {
             "bookmaker": "888Sport",
@@ -1263,21 +2585,35 @@
             "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/10",
+            "decimal_odds": 1.1,
+            "implied_probability": 0.909091,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/12",
+            "decimal_odds": 1.083333,
+            "implied_probability": 0.923077,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
             "bookmaker": "BetVictor",
             "odds": "1/12",
             "decimal_odds": 1.083333,
             "implied_probability": 0.923077,
             "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "1/12",
-            "decimal_odds": 1.083333,
-            "implied_probability": 0.923077,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
           }
         ],
         "draw": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "9/1",
+            "decimal_odds": 10.0,
+            "implied_probability": 0.1,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
           {
             "bookmaker": "BetVictor",
             "odds": "17/2",
@@ -1300,13 +2636,6 @@
             "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
           },
           {
-            "bookmaker": "PaddyPower",
-            "odds": "15/2",
-            "decimal_odds": 8.5,
-            "implied_probability": 0.117647,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
             "bookmaker": "Unibet",
             "odds": "7/1",
             "decimal_odds": 8.0,
@@ -1330,6 +2659,20 @@
         ],
         "away": [
           {
+            "bookmaker": "WilliamHill",
+            "odds": "28/1",
+            "decimal_odds": 29.0,
+            "implied_probability": 0.034483,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "28/1",
+            "decimal_odds": 29.0,
+            "implied_probability": 0.034483,
+            "source_url": "https://www.888sport.com/football/world-cup/"
+          },
+          {
             "bookmaker": "BoyleSports",
             "odds": "25/1",
             "decimal_odds": 26.0,
@@ -1351,24 +2694,10 @@
             "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "25/1",
-            "decimal_odds": 26.0,
-            "implied_probability": 0.038462,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "25/1",
-            "decimal_odds": 26.0,
-            "implied_probability": 0.038462,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          },
-          {
             "bookmaker": "PaddyPower",
-            "odds": "22/1",
-            "decimal_odds": 23.0,
-            "implied_probability": 0.043478,
+            "odds": "20/1",
+            "decimal_odds": 21.0,
+            "implied_probability": 0.047619,
             "source_url": "https://www.paddypower.com/fifa-world-cup"
           },
           {
@@ -1380,223 +2709,7 @@
           }
         ]
       }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "France v Senegal",
-      "market": "Total Corners Over Under",
-      "line": "8.5",
-      "arb_sum": 1.03268,
-      "arb_percent": 103.268,
-      "profit_margin_percent": -3.165,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "7/10",
-          "decimal_odds": 1.7
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "5/4",
-          "decimal_odds": 2.25
-        }
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "moneyline_1x2",
-      "match": "Czechia v South Africa",
-      "home_team": "Czechia",
-      "away_team": "South Africa",
-      "date_label": "",
-      "time": "17:00",
-      "market": "Match Odds",
-      "bookmaker_count": 7,
-      "arb_sum": 1.032749,
-      "arb_percent": 103.275,
-      "profit_margin_percent": -3.171,
-      "selections": {
-        "home": {
-          "bookmaker": "BoyleSports",
-          "odds": "4/5",
-          "decimal_odds": 1.8,
-          "implied_probability": 0.555556,
-          "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-        },
-        "draw": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "11/4",
-          "decimal_odds": 3.75,
-          "implied_probability": 0.266667,
-          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-        },
-        "away": {
-          "bookmaker": "BetVictor",
-          "odds": "15/4",
-          "decimal_odds": 4.75,
-          "implied_probability": 0.210526,
-          "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "4/5",
-            "decimal_odds": 1.8,
-            "implied_probability": 0.555556,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "3/4",
-            "decimal_odds": 1.75,
-            "implied_probability": 0.571429,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "3/4",
-            "decimal_odds": 1.75,
-            "implied_probability": 0.571429,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "3/4",
-            "decimal_odds": 1.75,
-            "implied_probability": 0.571429,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "3/4",
-            "decimal_odds": 1.75,
-            "implied_probability": 0.571429,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "8/11",
-            "decimal_odds": 1.727273,
-            "implied_probability": 0.578947,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "13/20",
-            "decimal_odds": 1.65,
-            "implied_probability": 0.606061,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "11/4",
-            "decimal_odds": 3.75,
-            "implied_probability": 0.266667,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "27/10",
-            "decimal_odds": 3.7,
-            "implied_probability": 0.27027,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "13/5",
-            "decimal_odds": 3.6,
-            "implied_probability": 0.277778,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "13/5",
-            "decimal_odds": 3.6,
-            "implied_probability": 0.277778,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "5/2",
-            "decimal_odds": 3.5,
-            "implied_probability": 0.285714,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "5/2",
-            "decimal_odds": 3.5,
-            "implied_probability": 0.285714,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "5/2",
-            "decimal_odds": 3.5,
-            "implied_probability": 0.285714,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "15/4",
-            "decimal_odds": 4.75,
-            "implied_probability": 0.210526,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "18/5",
-            "decimal_odds": 4.6,
-            "implied_probability": 0.217391,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "7/2",
-            "decimal_odds": 4.5,
-            "implied_probability": 0.222222,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "17/5",
-            "decimal_odds": 4.4,
-            "implied_probability": 0.227273,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "10/3",
-            "decimal_odds": 4.333333,
-            "implied_probability": 0.230769,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "16/5",
-            "decimal_odds": 4.2,
-            "implied_probability": 0.238095,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "16/5",
-            "decimal_odds": 4.2,
-            "implied_probability": 0.238095,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          }
-        ]
-      }
     }
   ],
-  "props_arb_count": 10
+  "props_arb_count": 13
 }

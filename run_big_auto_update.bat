@@ -27,6 +27,18 @@ python scripts\Football\fetch_paddypower_worldcup_props.py
 python scripts\Football\fetch_boylesports_worldcup_props.py
 python scripts\Football\merge_boylesports_props.py
 python scripts\Football\fetch_unibet_worldcup_props.py
+echo.
+echo Running corrected Unibet player shots/cards merge...
+python scripts\Football\fetch_unibet_worldcup_shots_cards.py
+IF ERRORLEVEL 1 (
+    echo Unibet shots/cards scraper failed. Stopping before build.
+    exit /b 1
+)
+python scripts\Football\merge_unibet_shots_cards.py
+IF ERRORLEVEL 1 (
+    echo Unibet shots/cards merge failed. Stopping before build.
+    exit /b 1
+)
 python scripts\Football\fetch_livescorebet_worldcup_props.py
 python scripts\Football\fetch_888sport_worldcup_props.py
 python scripts\Football\fetch_williamhill_worldcup_props.py

@@ -111,10 +111,10 @@ PROPS_FILES = {
     "BoyleSports":  ("boylesports_worldcup_props_complete.json", "fractional"),
     "LiveScoreBet": ("livescorebet_worldcup_props.json", "fractional"),
     "Ladbrokes":    ("ladbrokes_worldcup_props.json",    "fractional"),
-    "Midnite":      ("midnite_worldcup_props.json",      "fractional"),
     "WilliamHill":  ("williamhill_worldcup_props.json",  "fractional"),
     "BetVictor":    ("betvictor_worldcup_props.json",    "fractional"),
-    "Unibet":       ("unibet_worldcup_props.json",       "fractional"),
+    # "Midnite":    ("midnite_worldcup_props.json",      "fractional"),  # dict format, not list
+    # "Unibet":     ("unibet_worldcup_props.json",       "fractional"),  # not ready
 }
 
 OU_MARKET_KEYS = {
@@ -210,9 +210,14 @@ def scan_props_arbitrage(root):
                     "arb_sum": round(arb_sum, 6),
                     "arb_percent": round(arb_sum * 100, 3),
                     "profit_margin_percent": round(((1/arb_sum) - 1) * 100, 3),
+                    "bookmaker_count": 2,
                     "selections": {
                         "over":  {"bookmaker": best_over["bookmaker"],  "odds": best_over["odds"],  "decimal_odds": best_over["decimal"]},
                         "under": {"bookmaker": best_under["bookmaker"], "odds": best_under["odds"], "decimal_odds": best_under["decimal"]},
+                    },
+                    "all_prices": {
+                        "over":  sorted(sides["over"],  key=lambda x: x["decimal"], reverse=True),
+                        "under": sorted(sides["under"], key=lambda x: x["decimal"], reverse=True),
                     }
                 }
                 if arb_sum < 1:

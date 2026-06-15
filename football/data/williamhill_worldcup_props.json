@@ -3,15 +3,187 @@
   "competition": "FIFA World Cup",
   "bookmaker": "WilliamHill",
   "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches",
-  "generated_at": "2026-06-14T12:17:12.849870+00:00",
-  "match_count": 1,
+  "generated_at": "2026-06-15T17:26:41.515741+00:00",
+  "match_count": 2,
   "matches": [
     {
-      "match": "Netherlands V Japan",
+      "match": "Belgium V Egypt",
       "home_team": "",
       "away_team": "",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV37948297/netherlands-vs-japan",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV37948290/belgium-vs-egypt",
       "markets": []
+    },
+    {
+      "match": "England v Croatia",
+      "home_team": "England",
+      "away_team": "Croatia",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV37948298/england-vs-croatia",
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "England",
+              "normalized_selection": "england",
+              "odds": "7/10",
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "13/5",
+              "side": "draw"
+            },
+            {
+              "selection": "Croatia",
+              "normalized_selection": "croatia",
+              "odds": "15/4",
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "21/20",
+              "side": "yes"
+            },
+            {
+              "selection": "Both Teams To Score - No",
+              "normalized_selection": "both_teams_to_score_no",
+              "odds": "7/10",
+              "side": "no"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "2/1",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "21/20",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "7/10",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "1/4",
+              "side": "under",
+              "line": "3.5"
+            }
+          ]
+        },
+        {
+          "market": "1st Half Goals Over / Under",
+          "normalized_market": "1st_half_goals_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "2/1",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "21/20",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "7/10",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "1/4",
+              "side": "under",
+              "line": "3.5"
+            }
+          ]
+        },
+        {
+          "market": "Result & Both Teams To Score",
+          "normalized_market": "result_and_both_teams_to_score",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "England & Both Teams To Score",
+              "normalized_selection": "england_and_both_teams_to_score",
+              "odds": "11/4"
+            },
+            {
+              "selection": "Draw & Both Teams To Score",
+              "normalized_selection": "draw_and_both_teams_to_score",
+              "odds": "9/2"
+            },
+            {
+              "selection": "Croatia & Both Teams To Score",
+              "normalized_selection": "croatia_and_both_teams_to_score",
+              "odds": "17/2"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

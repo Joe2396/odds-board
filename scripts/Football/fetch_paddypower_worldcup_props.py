@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PaddyPower World Cup Props Scraper - clean shots + popular tackles version
+PaddyPower World Cup Props Scraper - FAST page-reset version
 
 Scrapes:
 - Match props: goals, BTTS, double chance, half time result, cards, corners
@@ -1101,14 +1101,23 @@ def main() -> None:
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
-        page = browser.new_page(viewport={"width": 1280, "height": 900})
 
-        links = collect_match_links(page)[:MAX_MATCHES]
+        # Use one page only for collecting fixture URLs.
+        list_page = browser.new_page(viewport={"width": 1280, "height": 900})
+        links = collect_match_links(list_page)[:MAX_MATCHES]
+        try:
+            list_page.close()
+        except Exception:
+            pass
 
         for idx, item in enumerate(links, 1):
             print(f"\n=== [{idx}/{len(links)}] {item.get('text') or item['url']} ===")
             print(f"    url={item['url']}")
 
+            # Fresh page per match, same browser.
+            # Faster than the stable retry build, but prevents one dead/live
+            # fixture from poisoning the next fixture.
+            page = browser.new_page(viewport={"width": 1280, "height": 900})
             try:
                 result = scrape_match(page, item["url"], item.get("text", ""))
                 matches.append(result)
@@ -1120,6 +1129,12 @@ def main() -> None:
             except Exception as e:
                 print(f"  ERROR: {e}")
                 errors.append({"url": item["url"], "error": str(e)})
+
+            finally:
+                try:
+                    page.close()
+                except Exception:
+                    pass
 
         browser.close()
 

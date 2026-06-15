@@ -228,7 +228,7 @@ def scan_props_ev_from_index(root):
 
         # Bookmakers excluded from props EV (scraper not ready)
         # Excluded bookmakers - props scraper not verified accurate yet
-        EXCLUDED_BK = {"Unibet", "Midnite"}
+        EXCLUDED_BK = {}
 
         # Markets excluded from props EV (inconsistent structure across books)
         EXCLUDED_MARKETS = {

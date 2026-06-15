@@ -576,8 +576,15 @@ def parse_player_grid(lines, heading, market_name, prop_type, home, away, allowe
     allowed_thresholds = allowed_thresholds or {"1+", "2+", "3+", "4+"}
 
     for idx, line in enumerate(lines):
-        if not line.startswith(heading):
-            continue
+        # Important: "Player Shots on Target" also starts with "Player Shots".
+        # When scraping total shots, only match the exact Player Shots block,
+        # not the SOT block.
+        if heading == "Player Shots":
+            if not re.match(r"^Player Shots\s*\(", line):
+                continue
+        else:
+            if not line.startswith(heading):
+                continue
 
         end = next_heading_index(lines, idx)
         block = lines[idx:end]

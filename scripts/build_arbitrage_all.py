@@ -62,20 +62,17 @@ def normalize_football():
         selections = row.get("selections") or {}
         books = []
 
-        for side in ["home", "draw", "away"]:
+        # Handle both moneyline (home/draw/away) and props O/U (over/under) arbs
+        sides = ["home", "draw", "away"] if row.get("type") != "props_ou" else ["over", "under"]
+        side_labels = {"home": row.get("home_team") or "Home", "draw": "Draw",
+                      "away": row.get("away_team") or "Away",
+                      "over": f"Over {row.get('line','')}", "under": f"Under {row.get('line','')}"}
+        for side in sides:
             info = selections.get(side) or {}
             if not info:
                 continue
-
-            if side == "home":
-                selection_name = row.get("home_team") or "Home"
-            elif side == "away":
-                selection_name = row.get("away_team") or "Away"
-            else:
-                selection_name = "Draw"
-
             books.append({
-                "selection": selection_name,
+                "selection": side_labels.get(side, side.title()),
                 "bookmaker": info.get("bookmaker") or "",
                 "odds": info.get("odds") or "",
                 "decimal_odds": info.get("decimal_odds") or "",

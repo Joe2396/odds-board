@@ -1359,9 +1359,13 @@ def render_player_market_page(fixture, mk, label, icon):
 
         raw_lines = {line for p in players_in_mkt.values() for line in p["markets"][mk]}
         all_lines = sorted(raw_lines, key=line_sort_key)
-        show_lines = [l for l in all_lines if normalise_line(l) in ("0.5","1.5","2.5")]
+
+        # Total Shots needs 4+ because Unibet often prices players only from 4+ upward.
+        # Keep Shots On Target / fouls / tackles at the original 1+, 2+, 3+ view.
+        wanted_lines = ("0.5", "1.5", "2.5", "3.5") if mk == "shots" else ("0.5", "1.5", "2.5")
+        show_lines = [l for l in all_lines if normalise_line(l) in wanted_lines]
         if not show_lines:
-            show_lines = all_lines[:3]
+            show_lines = all_lines[:len(wanted_lines)]
 
         col_headers = "".join(
             f'<th style="text-align:center">{LINE_LABELS.get(l, l+"+")} '
@@ -1479,7 +1483,11 @@ def render_player_detail_page(fixture, player_key, player_data):
                     m2 = re.match(r"(\d+)\+", str(x))
                     return float(m2.group(1)) - 0.5 if m2 else 999
             all_lines = sorted(mk_data.keys(), key=_line_sort)
-            show_lines = [l for l in all_lines if l in ("0.5","1.5","2.5")] or all_lines[:3]
+
+            # Total Shots needs 4+ because Unibet often prices players only from 4+ upward.
+            # Keep Shots On Target / fouls / tackles at the original 1+, 2+, 3+ view.
+            wanted_lines = ("0.5", "1.5", "2.5", "3.5") if mk == "shots" else ("0.5", "1.5", "2.5")
+            show_lines = [l for l in all_lines if l in wanted_lines] or all_lines[:len(wanted_lines)]
             col_headers = "".join(f'<th style="text-align:center">{LINE_LABELS.get(l,l+"+")}</th>' for l in show_lines)
             all_bks = sorted({bk for ld in mk_data.values() for bk in ld})
             rows = ""
