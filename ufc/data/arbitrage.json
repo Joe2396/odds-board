@@ -1,78 +1,12 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 21,
+  "total_moneyline_fights_checked": 18,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
   "arbitrage_count": 0,
   "moneyline_arbitrage_count": 0,
   "prop_arbitrage_count": 0,
   "fights": [
-    {
-      "type": "moneyline",
-      "event_id": "20d0d02349fe04d63631b1e3f1879fa3",
-      "commence_time": "2026-06-15T03:09:00Z",
-      "fight": "Aiemann Zahabi vs Sean O'Malley",
-      "market": "Moneyline",
-      "fighters": {
-        "Aiemann Zahabi": {
-          "best_bookmaker": "Betfair",
-          "best_price": 6.0,
-          "implied_probability": 16.67
-        },
-        "Sean O'Malley": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.2,
-          "implied_probability": 83.33
-        }
-      },
-      "arb_sum": 1.0,
-      "is_arbitrage": false,
-      "profit_margin_percent": 0.0
-    },
-    {
-      "type": "moneyline",
-      "event_id": "1e972b73d422aa4cadb9185ca87c3c93",
-      "commence_time": "2026-06-15T03:40:00Z",
-      "fight": "Alex Pereira vs Ciryl Gane",
-      "market": "Moneyline",
-      "fighters": {
-        "Alex Pereira": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.98,
-          "implied_probability": 50.51
-        },
-        "Ciryl Gane": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.0,
-          "implied_probability": 50.0
-        }
-      },
-      "arb_sum": 1.005051,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.51
-    },
-    {
-      "type": "moneyline",
-      "event_id": "e34a17d5cf2a82a5161a54631e06770c",
-      "commence_time": "2026-06-15T04:15:00Z",
-      "fight": "Ilia Topuria vs Justin Gaethje",
-      "market": "Moneyline",
-      "fighters": {
-        "Ilia Topuria": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.24,
-          "implied_probability": 80.65
-        },
-        "Justin Gaethje": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 5.0,
-          "implied_probability": 20.0
-        }
-      },
-      "arb_sum": 1.006452,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.65
-    },
     {
       "type": "moneyline",
       "event_id": "c5194d421280ed4cfe090f4383e3101e",
@@ -147,19 +81,19 @@
       "market": "Moneyline",
       "fighters": {
         "Beatriz Mesquita": {
-          "best_bookmaker": "Betway",
+          "best_bookmaker": "Unibet (UK)",
           "best_price": 1.18,
           "implied_probability": 84.75
         },
         "Melissa Mullins": {
-          "best_bookmaker": "888sport",
-          "best_price": 5.1,
-          "implied_probability": 19.61
+          "best_bookmaker": "Paddy Power",
+          "best_price": 5.0,
+          "implied_probability": 20.0
         }
       },
-      "arb_sum": 1.043536,
+      "arb_sum": 1.047458,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.35
+      "profit_margin_percent": -4.75
     },
     {
       "type": "moneyline",
@@ -214,8 +148,8 @@
       "fighters": {
         "Gaston Bolanos": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 4.25,
-          "implied_probability": 23.53
+          "best_price": 4.0,
+          "implied_probability": 25.0
         },
         "Michael Aswell": {
           "best_bookmaker": "Paddy Power",
@@ -223,9 +157,9 @@
           "implied_probability": 80.0
         }
       },
-      "arb_sum": 1.035294,
+      "arb_sum": 1.05,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.53
+      "profit_margin_percent": -5.0
     },
     {
       "type": "moneyline",
@@ -235,9 +169,9 @@
       "market": "Moneyline",
       "fighters": {
         "Ion Cutelaba": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 3.25,
-          "implied_probability": 30.77
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 3.6,
+          "implied_probability": 27.78
         },
         "Navajo Stirling": {
           "best_bookmaker": "Paddy Power",
@@ -245,9 +179,9 @@
           "implied_probability": 75.19
         }
       },
-      "arb_sum": 1.059572,
+      "arb_sum": 1.029657,
       "is_arbitrage": false,
-      "profit_margin_percent": -5.96
+      "profit_margin_percent": -2.97
     },
     {
       "type": "moneyline",
@@ -262,14 +196,14 @@
           "implied_probability": 57.8
         },
         "Luana Santos": {
-          "best_bookmaker": "888sport",
-          "best_price": 2.2,
-          "implied_probability": 45.45
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.15,
+          "implied_probability": 46.51
         }
       },
-      "arb_sum": 1.03258,
+      "arb_sum": 1.043151,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.26
+      "profit_margin_percent": -4.32
     },
     {
       "type": "moneyline",
@@ -279,9 +213,9 @@
       "market": "Moneyline",
       "fighters": {
         "Melsik Baghdasaryan": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 3.25,
-          "implied_probability": 30.77
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 3.35,
+          "implied_probability": 29.85
         },
         "Murtazali Magomedov": {
           "best_bookmaker": "Betway",
@@ -289,9 +223,9 @@
           "implied_probability": 73.53
         }
       },
-      "arb_sum": 1.042986,
+      "arb_sum": 1.033802,
       "is_arbitrage": false,
-      "profit_margin_percent": -4.3
+      "profit_margin_percent": -3.38
     },
     {
       "type": "moneyline",
@@ -434,8 +368,8 @@
       "fighters": {
         "Conor McGregor": {
           "best_bookmaker": "Betfair",
-          "best_price": 3.65,
-          "implied_probability": 27.4
+          "best_price": 3.7,
+          "implied_probability": 27.03
         },
         "Max Holloway": {
           "best_bookmaker": "Betfair",
@@ -443,9 +377,9 @@
           "implied_probability": 74.07
         }
       },
-      "arb_sum": 1.014713,
+      "arb_sum": 1.011011,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.47
+      "profit_margin_percent": -1.1
     },
     {
       "type": "moneyline",
