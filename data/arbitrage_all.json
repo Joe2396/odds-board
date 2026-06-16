@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T03:30:26.671135+00:00",
+  "generated_at": "2026-06-16T09:21:48.145164+00:00",
   "total_arbitrage": 14,
   "sports": {
     "All": 14,
@@ -308,6 +308,36 @@
       "source_file": "football/data/arbitrage.json"
     },
     {
+      "sport": "UFC",
+      "competition": "UFC",
+      "event": "Christian Rodriguez vs Hyder Amil",
+      "market": "Moneyline",
+      "type": "moneyline",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 1.66,
+      "arb_percent": "",
+      "arb_sum": 0.983418,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Christian Rodriguez",
+          "bookmaker": "Betway",
+          "odds": 1.67,
+          "decimal_odds": 1.67,
+          "implied_probability": 59.88
+        },
+        {
+          "selection": "Hyder Amil",
+          "bookmaker": "Betfair",
+          "odds": 2.6,
+          "decimal_odds": 2.6,
+          "implied_probability": 38.46
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "event": "Belgium v Egypt",
@@ -366,36 +396,6 @@
         }
       ],
       "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "UFC",
-      "competition": "UFC",
-      "event": "Christian Rodriguez vs Hyder Amil",
-      "market": "Moneyline",
-      "type": "moneyline",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 0.44,
-      "arb_percent": "",
-      "arb_sum": 0.995628,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Christian Rodriguez",
-          "bookmaker": "Betway",
-          "odds": 1.67,
-          "decimal_odds": 1.67,
-          "implied_probability": 59.88
-        },
-        {
-          "selection": "Hyder Amil",
-          "bookmaker": "Matchbook",
-          "odds": 2.52,
-          "decimal_odds": 2.52,
-          "implied_probability": 39.68
-        }
-      ],
-      "source_file": "ufc/data/arbitrage.json"
     },
     {
       "sport": "Football",

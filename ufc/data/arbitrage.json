@@ -1,6 +1,6 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 18,
+  "total_moneyline_fights_checked": 20,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
   "arbitrage_count": 1,
@@ -21,13 +21,13 @@
         },
         "Mitch Raposo": {
           "best_bookmaker": "Matchbook",
-          "best_price": 2.66,
-          "implied_probability": 37.59
+          "best_price": 2.7,
+          "implied_probability": 37.04
         }
       },
-      "arb_sum": 1.021101,
+      "arb_sum": 1.015532,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.11
+      "profit_margin_percent": -1.55
     },
     {
       "type": "moneyline",
@@ -42,14 +42,14 @@
           "implied_probability": 33.56
         },
         "Vinicius Oliveira": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.45,
-          "implied_probability": 68.97
+          "best_bookmaker": "Betway",
+          "best_price": 1.44,
+          "implied_probability": 69.44
         }
       },
-      "arb_sum": 1.025226,
+      "arb_sum": 1.030015,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.52
+      "profit_margin_percent": -3.0
     },
     {
       "type": "moneyline",
@@ -81,7 +81,7 @@
       "market": "Moneyline",
       "fighters": {
         "Beatriz Mesquita": {
-          "best_bookmaker": "Betway",
+          "best_bookmaker": "Unibet (UK)",
           "best_price": 1.18,
           "implied_probability": 84.75
         },
@@ -108,14 +108,14 @@
           "implied_probability": 59.88
         },
         "Hyder Amil": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.52,
-          "implied_probability": 39.68
+          "best_bookmaker": "Betfair",
+          "best_price": 2.6,
+          "implied_probability": 38.46
         }
       },
-      "arb_sum": 0.995628,
+      "arb_sum": 0.983418,
       "is_arbitrage": true,
-      "profit_margin_percent": 0.44
+      "profit_margin_percent": 1.66
     },
     {
       "type": "moneyline",
@@ -152,14 +152,14 @@
           "implied_probability": 23.26
         },
         "Michael Aswell": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.26,
-          "implied_probability": 79.37
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.25,
+          "implied_probability": 80.0
         }
       },
-      "arb_sum": 1.026209,
+      "arb_sum": 1.032558,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.62
+      "profit_margin_percent": -3.26
     },
     {
       "type": "moneyline",
@@ -207,6 +207,28 @@
     },
     {
       "type": "moneyline",
+      "event_id": "34e99e9ea067903296ce3e24751c893c",
+      "commence_time": "2026-06-20T21:00:00Z",
+      "fight": "Leon Shahbazyan vs Levan Chokheli",
+      "market": "Moneyline",
+      "fighters": {
+        "Leon Shahbazyan": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 3.5,
+          "implied_probability": 28.57
+        },
+        "Levan Chokheli": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.31,
+          "implied_probability": 76.34
+        }
+      },
+      "arb_sum": 1.049073,
+      "is_arbitrage": false,
+      "profit_margin_percent": -4.91
+    },
+    {
+      "type": "moneyline",
       "event_id": "8476f6ff083b25ee4f443f934288400a",
       "commence_time": "2026-06-20T21:00:00Z",
       "fight": "Melsik Baghdasaryan vs Murtazali Magomedov",
@@ -229,6 +251,28 @@
     },
     {
       "type": "moneyline",
+      "event_id": "49b0b9445bb999b9f868681c3fa43b86",
+      "commence_time": "2026-06-20T21:00:00Z",
+      "fight": "Otari Tanzilovi vs Shane Collins",
+      "market": "Moneyline",
+      "fighters": {
+        "Otari Tanzilovi": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.43,
+          "implied_probability": 41.15
+        },
+        "Shane Collins": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.61,
+          "implied_probability": 62.11
+        }
+      },
+      "arb_sum": 1.032641,
+      "is_arbitrage": false,
+      "profit_margin_percent": -3.26
+    },
+    {
+      "type": "moneyline",
       "event_id": "f6ed64841c71aefe05ffdfc1f99321b6",
       "commence_time": "2026-06-21T02:15:00Z",
       "fight": "Kyoji Horiguchi vs Manel Kape",
@@ -236,18 +280,18 @@
       "fighters": {
         "Kyoji Horiguchi": {
           "best_bookmaker": "Betfair",
-          "best_price": 2.44,
-          "implied_probability": 40.98
+          "best_price": 2.52,
+          "implied_probability": 39.68
         },
         "Manel Kape": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.62,
-          "implied_probability": 61.73
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.63,
+          "implied_probability": 61.35
         }
       },
-      "arb_sum": 1.02712,
+      "arb_sum": 1.010322,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.71
+      "profit_margin_percent": -1.03
     },
     {
       "type": "moneyline",
@@ -372,14 +416,14 @@
           "implied_probability": 27.03
         },
         "Max Holloway": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.35,
-          "implied_probability": 74.07
+          "best_bookmaker": "William Hill",
+          "best_price": 1.36,
+          "implied_probability": 73.53
         }
       },
-      "arb_sum": 1.011011,
+      "arb_sum": 1.005564,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.1
+      "profit_margin_percent": -0.56
     },
     {
       "type": "moneyline",
@@ -765,14 +809,14 @@
           "implied_probability": 59.88
         },
         "Hyder Amil": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.52,
-          "implied_probability": 39.68
+          "best_bookmaker": "Betfair",
+          "best_price": 2.6,
+          "implied_probability": 38.46
         }
       },
-      "arb_sum": 0.995628,
+      "arb_sum": 0.983418,
       "is_arbitrage": true,
-      "profit_margin_percent": 0.44
+      "profit_margin_percent": 1.66
     }
   ]
 }
