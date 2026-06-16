@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-06-15T22:13:49.968516+00:00",
-  "total_arbitrage": 13,
+  "generated_at": "2026-06-16T03:30:26.671135+00:00",
+  "total_arbitrage": 14,
   "sports": {
-    "All": 13,
-    "Football": 13
+    "All": 14,
+    "Football": 13,
+    "UFC": 1
   },
   "arbitrage": [
     {
@@ -367,6 +368,36 @@
       "source_file": "football/data/arbitrage.json"
     },
     {
+      "sport": "UFC",
+      "competition": "UFC",
+      "event": "Christian Rodriguez vs Hyder Amil",
+      "market": "Moneyline",
+      "type": "moneyline",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.44,
+      "arb_percent": "",
+      "arb_sum": 0.995628,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Christian Rodriguez",
+          "bookmaker": "Betway",
+          "odds": 1.67,
+          "decimal_odds": 1.67,
+          "implied_probability": 59.88
+        },
+        {
+          "selection": "Hyder Amil",
+          "bookmaker": "Matchbook",
+          "odds": 2.52,
+          "decimal_odds": 2.52,
+          "implied_probability": 39.68
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "event": "England v Croatia",
@@ -404,7 +435,7 @@
   },
   "source_counts": {
     "football": 13,
-    "ufc": 0,
+    "ufc": 1,
     "darts": 0
   }
 }
