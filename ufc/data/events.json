@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T16:53:02Z",
+  "generated_at": "2026-06-17T20:06:26Z",
   "events": [
     {
       "id": "2026-06-21-ufc-fight-night-kape-vs-horiguchi",
@@ -53,13 +53,13 @@
         },
         {
           "id": "600059467-3",
-          "bout": "Vinicius Oliveira vs Andre Fili",
+          "bout": "Hyder Amil vs Christian Rodriguez",
           "red": {
-            "name": "Vinicius Oliveira",
+            "name": "Hyder Amil",
             "espn_id": ""
           },
           "blue": {
-            "name": "Andre Fili",
+            "name": "Christian Rodriguez",
             "espn_id": ""
           },
           "weight_class": "Featherweight",
@@ -72,13 +72,13 @@
         },
         {
           "id": "600059467-4",
-          "bout": "Hyder Amil vs Christian Rodriguez",
+          "bout": "Melsik Baghdasaryan vs Murtazali Magomedov",
           "red": {
-            "name": "Hyder Amil",
+            "name": "Melsik Baghdasaryan",
             "espn_id": ""
           },
           "blue": {
-            "name": "Christian Rodriguez",
+            "name": "Murtazali Magomedov",
             "espn_id": ""
           },
           "weight_class": "Featherweight",
@@ -91,6 +91,25 @@
         },
         {
           "id": "600059467-5",
+          "bout": "Vinicius Oliveira vs Andre Fili",
+          "red": {
+            "name": "Vinicius Oliveira",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Andre Fili",
+            "espn_id": ""
+          },
+          "weight_class": "Featherweight",
+          "order": 5,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059467"
+          }
+        },
+        {
+          "id": "600059467-6",
           "bout": "Andre Lima vs Kevin Borjas",
           "red": {
             "name": "Andre Lima",
@@ -101,25 +120,6 @@
             "espn_id": ""
           },
           "weight_class": "Flyweight",
-          "order": 5,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600059467"
-          }
-        },
-        {
-          "id": "600059467-6",
-          "bout": "Melsik Baghdasaryan vs Murtazali Magomedov",
-          "red": {
-            "name": "Melsik Baghdasaryan",
-            "espn_id": ""
-          },
-          "blue": {
-            "name": "Murtazali Magomedov",
-            "espn_id": ""
-          },
-          "weight_class": "Featherweight",
           "order": 6,
           "status": "scheduled",
           "source": {
@@ -186,25 +186,6 @@
         },
         {
           "id": "600059467-10",
-          "bout": "Karol Rosa vs Luana Santos",
-          "red": {
-            "name": "Karol Rosa",
-            "espn_id": ""
-          },
-          "blue": {
-            "name": "Luana Santos",
-            "espn_id": ""
-          },
-          "weight_class": "Women's Bantamweight",
-          "order": 10,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600059467"
-          }
-        },
-        {
-          "id": "600059467-11",
           "bout": "Leon Shahbazyan vs Levan Chokheli",
           "red": {
             "name": "Leon Shahbazyan",
@@ -215,6 +196,25 @@
             "espn_id": ""
           },
           "weight_class": "Welterweight",
+          "order": 10,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059467"
+          }
+        },
+        {
+          "id": "600059467-11",
+          "bout": "Karol Rosa vs Luana Santos",
+          "red": {
+            "name": "Karol Rosa",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Luana Santos",
+            "espn_id": ""
+          },
+          "weight_class": "Women's Bantamweight",
           "order": 11,
           "status": "scheduled",
           "source": {
@@ -1169,9 +1169,9 @@
       ]
     },
     {
-      "id": "2026-08-16-ufc-330",
-      "slug": "2026-08-16-ufc-330",
-      "name": "UFC 330",
+      "id": "2026-08-16-ufc-330-makhachev-vs-machado-garry",
+      "slug": "2026-08-16-ufc-330-makhachev-vs-machado-garry",
+      "name": "UFC 330: Makhachev vs. Machado Garry",
       "date": "2026-08-16",
       "location": "",
       "status": "upcoming",
@@ -1179,7 +1179,46 @@
         "provider": "espn",
         "event_id": "600059185"
       },
-      "fights": []
+      "fights": [
+        {
+          "id": "600059185-1",
+          "bout": "Islam Makhachev vs Ian Machado Garry",
+          "red": {
+            "name": "Islam Makhachev",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Ian Machado Garry",
+            "espn_id": ""
+          },
+          "weight_class": "Welterweight - Main Event - Title Fight",
+          "order": 1,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059185"
+          }
+        },
+        {
+          "id": "600059185-2",
+          "bout": "Mackenzie Dern vs Gillian Robertson",
+          "red": {
+            "name": "Mackenzie Dern",
+            "espn_id": ""
+          },
+          "blue": {
+            "name": "Gillian Robertson",
+            "espn_id": ""
+          },
+          "weight_class": "Women's Strawweight - Title Fight",
+          "order": 2,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059185"
+          }
+        }
+      ]
     },
     {
       "id": "2026-09-05-ufc-fight-night-paris",
@@ -1235,5 +1274,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-06-17T16:53:02Z"
+  "_debug_saved_at": "2026-06-17T20:06:26Z"
 }
