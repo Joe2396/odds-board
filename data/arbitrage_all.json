@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-06-18T12:48:18.591351+00:00",
-  "total_arbitrage": 13,
+  "generated_at": "2026-06-18T16:53:45.637712+00:00",
+  "total_arbitrage": 14,
   "sports": {
-    "All": 13,
-    "Football": 13
+    "All": 14,
+    "Football": 13,
+    "UFC": 1
   },
   "arbitrage": [
     {
@@ -367,6 +368,36 @@
       "source_file": "football/data/arbitrage.json"
     },
     {
+      "sport": "UFC",
+      "competition": "UFC",
+      "event": "Karol Rosa vs Luana Santos",
+      "market": "Moneyline",
+      "type": "moneyline",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.08,
+      "arb_percent": "",
+      "arb_sum": 0.999205,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Karol Rosa",
+          "bookmaker": "LeoVegas",
+          "odds": 1.88,
+          "decimal_odds": 1.88,
+          "implied_probability": 53.19
+        },
+        {
+          "selection": "Luana Santos",
+          "bookmaker": "Betfair",
+          "odds": 2.14,
+          "decimal_odds": 2.14,
+          "implied_probability": 46.73
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "event": "England v Croatia",
@@ -404,7 +435,7 @@
   },
   "source_counts": {
     "football": 13,
-    "ufc": 0,
+    "ufc": 1,
     "darts": 0
   }
 }

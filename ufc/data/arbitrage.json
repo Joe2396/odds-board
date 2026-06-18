@@ -1,16 +1,170 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 21,
+  "total_moneyline_fights_checked": 24,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
-  "arbitrage_count": 0,
-  "moneyline_arbitrage_count": 0,
+  "arbitrage_count": 1,
+  "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
     {
       "type": "moneyline",
+      "event_id": "a4d7523b6b70e8a0bb6b0847514ec438",
+      "commence_time": "2026-06-19T23:00:00Z",
+      "fight": "Andreeas Binder vs Sado Ucar",
+      "market": "Moneyline",
+      "fighters": {
+        "Andreeas Binder": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.35,
+          "implied_probability": 74.07
+        },
+        "Sado Ucar": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 3.0,
+          "implied_probability": 33.33
+        }
+      },
+      "arb_sum": 1.074074,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.41
+    },
+    {
+      "type": "moneyline",
+      "event_id": "6708f081d7c2f50a7c606967c3510e0e",
+      "commence_time": "2026-06-19T23:00:00Z",
+      "fight": "Angelo Terenzio vs Jordan Molinari",
+      "market": "Moneyline",
+      "fighters": {
+        "Angelo Terenzio": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 2.25,
+          "implied_probability": 44.44
+        },
+        "Jordan Molinari": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.56,
+          "implied_probability": 64.1
+        }
+      },
+      "arb_sum": 1.08547,
+      "is_arbitrage": false,
+      "profit_margin_percent": -8.55
+    },
+    {
+      "type": "moneyline",
+      "event_id": "d9623cf99eca14085b58f2f03c6821f5",
+      "commence_time": "2026-06-19T23:00:00Z",
+      "fight": "Jake McHugh vs Lorenzo de Nigris",
+      "market": "Moneyline",
+      "fighters": {
+        "Jake McHugh": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 1.28,
+          "implied_probability": 78.12
+        },
+        "Lorenzo de Nigris": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 3.4,
+          "implied_probability": 29.41
+        }
+      },
+      "arb_sum": 1.075368,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.54
+    },
+    {
+      "type": "moneyline",
+      "event_id": "49b0b9445bb999b9f868681c3fa43b86",
+      "commence_time": "2026-06-20T21:10:00Z",
+      "fight": "Otari Tanzilovi vs Shane Collins",
+      "market": "Moneyline",
+      "fighters": {
+        "Otari Tanzilovi": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 2.8,
+          "implied_probability": 35.71
+        },
+        "Shane Collins": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.5,
+          "implied_probability": 66.67
+        }
+      },
+      "arb_sum": 1.02381,
+      "is_arbitrage": false,
+      "profit_margin_percent": -2.38
+    },
+    {
+      "type": "moneyline",
+      "event_id": "34e99e9ea067903296ce3e24751c893c",
+      "commence_time": "2026-06-20T22:00:00Z",
+      "fight": "Leon Shahbazyan vs Levan Chokheli",
+      "market": "Moneyline",
+      "fighters": {
+        "Leon Shahbazyan": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 3.95,
+          "implied_probability": 25.32
+        },
+        "Levan Chokheli": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.29,
+          "implied_probability": 77.52
+        }
+      },
+      "arb_sum": 1.028358,
+      "is_arbitrage": false,
+      "profit_margin_percent": -2.84
+    },
+    {
+      "type": "moneyline",
+      "event_id": "ef182a814c6177d5c36ae129852a4c4d",
+      "commence_time": "2026-06-20T22:15:00Z",
+      "fight": "Karol Rosa vs Luana Santos",
+      "market": "Moneyline",
+      "fighters": {
+        "Karol Rosa": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.88,
+          "implied_probability": 53.19
+        },
+        "Luana Santos": {
+          "best_bookmaker": "Betfair",
+          "best_price": 2.14,
+          "implied_probability": 46.73
+        }
+      },
+      "arb_sum": 0.999205,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.08
+    },
+    {
+      "type": "moneyline",
+      "event_id": "2ec1ec80a3a8b06c4eab4ea1039538df",
+      "commence_time": "2026-06-20T22:45:00Z",
+      "fight": "Gaston Bolanos vs Michael Aswell",
+      "market": "Moneyline",
+      "fighters": {
+        "Gaston Bolanos": {
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 4.5,
+          "implied_probability": 22.22
+        },
+        "Michael Aswell": {
+          "best_bookmaker": "Betfair",
+          "best_price": 1.27,
+          "implied_probability": 78.74
+        }
+      },
+      "arb_sum": 1.009624,
+      "is_arbitrage": false,
+      "profit_margin_percent": -0.96
+    },
+    {
+      "type": "moneyline",
       "event_id": "c5194d421280ed4cfe090f4383e3101e",
-      "commence_time": "2026-06-20T21:00:00Z",
+      "commence_time": "2026-06-20T23:15:00Z",
       "fight": "Allan Nascimento vs Mitch Raposo",
       "market": "Moneyline",
       "fighters": {
@@ -20,41 +174,41 @@
           "implied_probability": 66.23
         },
         "Mitch Raposo": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.7,
-          "implied_probability": 37.04
+          "best_bookmaker": "Betfair Sportsbook",
+          "best_price": 2.63,
+          "implied_probability": 38.02
         }
       },
-      "arb_sum": 1.032622,
+      "arb_sum": 1.04248,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.26
+      "profit_margin_percent": -4.25
     },
     {
       "type": "moneyline",
-      "event_id": "86e2829bdf184a66b5cfd57c2753a52a",
-      "commence_time": "2026-06-20T21:00:00Z",
-      "fight": "Andre Fili vs Vinicius Oliveira",
+      "event_id": "32abdf1152fbbde47eff32c7f8361352",
+      "commence_time": "2026-06-20T23:30:00Z",
+      "fight": "Beatriz Mesquita vs Melissa Mullins",
       "market": "Moneyline",
       "fighters": {
-        "Andre Fili": {
-          "best_bookmaker": "888sport",
-          "best_price": 3.25,
-          "implied_probability": 30.77
+        "Beatriz Mesquita": {
+          "best_bookmaker": "Paddy Power",
+          "best_price": 1.2,
+          "implied_probability": 83.33
         },
-        "Vinicius Oliveira": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.38,
-          "implied_probability": 72.46
+        "Melissa Mullins": {
+          "best_bookmaker": "Betfair",
+          "best_price": 5.7,
+          "implied_probability": 17.54
         }
       },
-      "arb_sum": 1.03233,
+      "arb_sum": 1.008772,
       "is_arbitrage": false,
-      "profit_margin_percent": -3.23
+      "profit_margin_percent": -0.88
     },
     {
       "type": "moneyline",
       "event_id": "a1eb61ada4ef72f563624ea9ee15ac34",
-      "commence_time": "2026-06-20T21:00:00Z",
+      "commence_time": "2026-06-20T23:45:00Z",
       "fight": "Andre Lima vs Kevin Borjas",
       "market": "Moneyline",
       "fighters": {
@@ -75,140 +229,8 @@
     },
     {
       "type": "moneyline",
-      "event_id": "32abdf1152fbbde47eff32c7f8361352",
-      "commence_time": "2026-06-20T21:00:00Z",
-      "fight": "Beatriz Mesquita vs Melissa Mullins",
-      "market": "Moneyline",
-      "fighters": {
-        "Beatriz Mesquita": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.2,
-          "implied_probability": 83.33
-        },
-        "Melissa Mullins": {
-          "best_bookmaker": "LiveScore Bet",
-          "best_price": 5.6,
-          "implied_probability": 17.86
-        }
-      },
-      "arb_sum": 1.011905,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.19
-    },
-    {
-      "type": "moneyline",
-      "event_id": "03b274ada7d41342d970ecaa2868fb95",
-      "commence_time": "2026-06-20T21:00:00Z",
-      "fight": "Christian Rodriguez vs Hyder Amil",
-      "market": "Moneyline",
-      "fighters": {
-        "Christian Rodriguez": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.54,
-          "implied_probability": 64.94
-        },
-        "Hyder Amil": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.64,
-          "implied_probability": 37.88
-        }
-      },
-      "arb_sum": 1.028139,
-      "is_arbitrage": false,
-      "profit_margin_percent": -2.81
-    },
-    {
-      "type": "moneyline",
-      "event_id": "2ec1ec80a3a8b06c4eab4ea1039538df",
-      "commence_time": "2026-06-20T21:00:00Z",
-      "fight": "Gaston Bolanos vs Michael Aswell",
-      "market": "Moneyline",
-      "fighters": {
-        "Gaston Bolanos": {
-          "best_bookmaker": "888sport",
-          "best_price": 4.5,
-          "implied_probability": 22.22
-        },
-        "Michael Aswell": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.27,
-          "implied_probability": 78.74
-        }
-      },
-      "arb_sum": 1.009624,
-      "is_arbitrage": false,
-      "profit_margin_percent": -0.96
-    },
-    {
-      "type": "moneyline",
-      "event_id": "045e13ebd6980f71df23162db6f4c13c",
-      "commence_time": "2026-06-20T21:00:00Z",
-      "fight": "Ion Cutelaba vs Navajo Stirling",
-      "market": "Moneyline",
-      "fighters": {
-        "Ion Cutelaba": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 3.65,
-          "implied_probability": 27.4
-        },
-        "Navajo Stirling": {
-          "best_bookmaker": "Betfair",
-          "best_price": 1.31,
-          "implied_probability": 76.34
-        }
-      },
-      "arb_sum": 1.037331,
-      "is_arbitrage": false,
-      "profit_margin_percent": -3.73
-    },
-    {
-      "type": "moneyline",
-      "event_id": "ef182a814c6177d5c36ae129852a4c4d",
-      "commence_time": "2026-06-20T21:00:00Z",
-      "fight": "Karol Rosa vs Luana Santos",
-      "market": "Moneyline",
-      "fighters": {
-        "Karol Rosa": {
-          "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.83,
-          "implied_probability": 54.64
-        },
-        "Luana Santos": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.12,
-          "implied_probability": 47.17
-        }
-      },
-      "arb_sum": 1.018146,
-      "is_arbitrage": false,
-      "profit_margin_percent": -1.81
-    },
-    {
-      "type": "moneyline",
-      "event_id": "34e99e9ea067903296ce3e24751c893c",
-      "commence_time": "2026-06-20T21:00:00Z",
-      "fight": "Leon Shahbazyan vs Levan Chokheli",
-      "market": "Moneyline",
-      "fighters": {
-        "Leon Shahbazyan": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 3.95,
-          "implied_probability": 25.32
-        },
-        "Levan Chokheli": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.26,
-          "implied_probability": 79.37
-        }
-      },
-      "arb_sum": 1.046815,
-      "is_arbitrage": false,
-      "profit_margin_percent": -4.68
-    },
-    {
-      "type": "moneyline",
       "event_id": "8476f6ff083b25ee4f443f934288400a",
-      "commence_time": "2026-06-20T21:00:00Z",
+      "commence_time": "2026-06-21T00:15:00Z",
       "fight": "Melsik Baghdasaryan vs Murtazali Magomedov",
       "market": "Moneyline",
       "fighters": {
@@ -229,25 +251,69 @@
     },
     {
       "type": "moneyline",
-      "event_id": "49b0b9445bb999b9f868681c3fa43b86",
-      "commence_time": "2026-06-20T21:00:00Z",
-      "fight": "Otari Tanzilovi vs Shane Collins",
+      "event_id": "03b274ada7d41342d970ecaa2868fb95",
+      "commence_time": "2026-06-21T00:45:00Z",
+      "fight": "Christian Rodriguez vs Hyder Amil",
       "market": "Moneyline",
       "fighters": {
-        "Otari Tanzilovi": {
-          "best_bookmaker": "Betfair Sportsbook",
-          "best_price": 2.63,
-          "implied_probability": 38.02
+        "Christian Rodriguez": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.54,
+          "implied_probability": 64.94
         },
-        "Shane Collins": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.56,
-          "implied_probability": 64.1
+        "Hyder Amil": {
+          "best_bookmaker": "Betfair",
+          "best_price": 2.64,
+          "implied_probability": 37.88
         }
       },
-      "arb_sum": 1.021254,
+      "arb_sum": 1.028139,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.13
+      "profit_margin_percent": -2.81
+    },
+    {
+      "type": "moneyline",
+      "event_id": "86e2829bdf184a66b5cfd57c2753a52a",
+      "commence_time": "2026-06-21T01:15:00Z",
+      "fight": "Andre Fili vs Vinicius Oliveira",
+      "market": "Moneyline",
+      "fighters": {
+        "Andre Fili": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 3.55,
+          "implied_probability": 28.17
+        },
+        "Vinicius Oliveira": {
+          "best_bookmaker": "Betway",
+          "best_price": 1.36,
+          "implied_probability": 73.53
+        }
+      },
+      "arb_sum": 1.016984,
+      "is_arbitrage": false,
+      "profit_margin_percent": -1.7
+    },
+    {
+      "type": "moneyline",
+      "event_id": "045e13ebd6980f71df23162db6f4c13c",
+      "commence_time": "2026-06-21T01:45:00Z",
+      "fight": "Ion Cutelaba vs Navajo Stirling",
+      "market": "Moneyline",
+      "fighters": {
+        "Ion Cutelaba": {
+          "best_bookmaker": "Grosvenor",
+          "best_price": 3.65,
+          "implied_probability": 27.4
+        },
+        "Navajo Stirling": {
+          "best_bookmaker": "Matchbook",
+          "best_price": 1.33,
+          "implied_probability": 75.19
+        }
+      },
+      "arb_sum": 1.025852,
+      "is_arbitrage": false,
+      "profit_margin_percent": -2.59
     },
     {
       "type": "moneyline",
@@ -279,9 +345,9 @@
       "market": "Moneyline",
       "fighters": {
         "Manuel Torres": {
-          "best_bookmaker": "Betway",
-          "best_price": 2.1,
-          "implied_probability": 47.62
+          "best_bookmaker": "888sport",
+          "best_price": 2.15,
+          "implied_probability": 46.51
         },
         "Rafael Fiziev": {
           "best_bookmaker": "Betway",
@@ -289,9 +355,9 @@
           "implied_probability": 57.8
         }
       },
-      "arb_sum": 1.054225,
+      "arb_sum": 1.043151,
       "is_arbitrage": false,
-      "profit_margin_percent": -5.42
+      "profit_margin_percent": -4.32
     },
     {
       "type": "moneyline",
@@ -389,19 +455,19 @@
       "market": "Moneyline",
       "fighters": {
         "Conor McGregor": {
-          "best_bookmaker": "Virgin Bet",
-          "best_price": 3.6,
-          "implied_probability": 27.78
+          "best_bookmaker": "Betfair",
+          "best_price": 3.65,
+          "implied_probability": 27.4
         },
         "Max Holloway": {
-          "best_bookmaker": "William Hill",
-          "best_price": 1.36,
-          "implied_probability": 73.53
+          "best_bookmaker": "Betfair",
+          "best_price": 1.37,
+          "implied_probability": 72.99
         }
       },
-      "arb_sum": 1.013072,
+      "arb_sum": 1.0039,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.31
+      "profit_margin_percent": -0.39
     },
     {
       "type": "moneyline",
@@ -416,14 +482,14 @@
           "implied_probability": 28.57
         },
         "Magomed Ankalaev": {
-          "best_bookmaker": "Betway",
-          "best_price": 1.3,
-          "implied_probability": 76.92
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.32,
+          "implied_probability": 75.76
         }
       },
-      "arb_sum": 1.054945,
+      "arb_sum": 1.04329,
       "is_arbitrage": false,
-      "profit_margin_percent": -5.49
+      "profit_margin_percent": -4.33
     },
     {
       "type": "moneyline",
@@ -434,18 +500,18 @@
       "fighters": {
         "Gillian Robertson": {
           "best_bookmaker": "Paddy Power",
-          "best_price": 2.25,
-          "implied_probability": 44.44
+          "best_price": 2.5,
+          "implied_probability": 40.0
         },
         "Mackenzie Dern": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 1.62,
-          "implied_probability": 61.73
+          "best_bookmaker": "LiveScore Bet",
+          "best_price": 1.56,
+          "implied_probability": 64.1
         }
       },
-      "arb_sum": 1.061728,
+      "arb_sum": 1.041026,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.17
+      "profit_margin_percent": -4.1
     },
     {
       "type": "moneyline",
@@ -455,9 +521,9 @@
       "market": "Moneyline",
       "fighters": {
         "Ian Garry": {
-          "best_bookmaker": "Paddy Power",
-          "best_price": 3.5,
-          "implied_probability": 28.57
+          "best_bookmaker": "LeoVegas",
+          "best_price": 4.1,
+          "implied_probability": 24.39
         },
         "Islam Makhachev": {
           "best_bookmaker": "Paddy Power",
@@ -465,9 +531,9 @@
           "implied_probability": 77.52
         }
       },
-      "arb_sum": 1.060908,
+      "arb_sum": 1.019096,
       "is_arbitrage": false,
-      "profit_margin_percent": -6.09
+      "profit_margin_percent": -1.91
     }
   ],
   "prop_markets": [
@@ -817,5 +883,28 @@
       "profit_margin_percent": -5.74
     }
   ],
-  "arbitrage_opportunities": []
+  "arbitrage_opportunities": [
+    {
+      "type": "moneyline",
+      "event_id": "ef182a814c6177d5c36ae129852a4c4d",
+      "commence_time": "2026-06-20T22:15:00Z",
+      "fight": "Karol Rosa vs Luana Santos",
+      "market": "Moneyline",
+      "fighters": {
+        "Karol Rosa": {
+          "best_bookmaker": "LeoVegas",
+          "best_price": 1.88,
+          "implied_probability": 53.19
+        },
+        "Luana Santos": {
+          "best_bookmaker": "Betfair",
+          "best_price": 2.14,
+          "implied_probability": 46.73
+        }
+      },
+      "arb_sum": 0.999205,
+      "is_arbitrage": true,
+      "profit_margin_percent": 0.08
+    }
+  ]
 }
