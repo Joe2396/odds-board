@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-06-19T19:41:17.200836+00:00",
-  "total_arbitrage": 20,
+  "generated_at": "2026-06-19T21:04:22.515578+00:00",
+  "total_arbitrage": 21,
   "sports": {
-    "All": 20,
-    "Football": 20
+    "All": 21,
+    "Football": 20,
+    "UFC": 1
   },
   "arbitrage": [
     {
@@ -577,6 +578,36 @@
       "source_file": "football/data/arbitrage.json"
     },
     {
+      "sport": "UFC",
+      "competition": "UFC",
+      "event": "Conor McGregor vs Max Holloway",
+      "market": "Moneyline",
+      "type": "moneyline",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.09,
+      "arb_percent": "",
+      "arb_sum": 0.999075,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Conor McGregor",
+          "bookmaker": "Virgin Bet",
+          "odds": 3.45,
+          "decimal_odds": 3.45,
+          "implied_probability": 28.99
+        },
+        {
+          "selection": "Max Holloway",
+          "bookmaker": "Betfair",
+          "odds": 1.41,
+          "decimal_odds": 1.41,
+          "implied_probability": 70.92
+        }
+      ],
+      "source_file": "ufc/data/arbitrage.json"
+    },
+    {
       "sport": "Football",
       "competition": "FIFA World Cup",
       "event": "Netherlands v Sweden",
@@ -614,7 +645,7 @@
   },
   "source_counts": {
     "football": 20,
-    "ufc": 0,
+    "ufc": 1,
     "darts": 0
   }
 }
