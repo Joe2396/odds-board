@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
-fetch_betvictor_worldcup_moneylines_SCROLL_CONTAINERS.py
+fetch_betvictor_worldcup_moneylines_DATE_ACCORDIONS.py
 
-BetVictor World Cup moneyline scraper — no clicking, no props.
+BetVictor World Cup moneyline scraper — MONEYLINES ONLY.
 
-This version scrolls the page AND any internal scrollable BetVictor containers.
-The previous moneyline-only script stayed stuck on the same 38 visible matches,
-which usually means the fixture list is inside its own scroll container.
+This fixes the 37/38 match cap by opening collapsed date accordions
+like Thu 25 June 2026, Fri 26 June 2026, Sat 27 June 2026, etc.
+
+No broad clicking.
+No props.
+No help-centre/event-url discovery.
+Only clicks text that exactly matches a date header.
 
 Output:
   football/data/betvictor_worldcup_moneylines.json
-Debug:
-  football/debug/betvictor_worldcup_text_debug.txt
-  football/debug/betvictor_worldcup_snapshots.txt
 """
 
 import json
@@ -31,7 +32,7 @@ SNAP_DEBUG_PATH = ROOT / "football" / "debug" / "betvictor_worldcup_snapshots.tx
 URL = "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
 
 HEADLESS = False
-SCROLL_PASSES = 120
+SCROLL_PASSES = 45
 
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
 TIME_RE = re.compile(r"^\d{1,2}:\d{2}$")
@@ -100,12 +101,12 @@ def is_team_line(s):
 
 
 def accept_cookies(page):
-    for label in ["Accept All", "Accept all", "I Accept", "Accept", "Agree", "Allow all", "OK"]:
+    for label in ["Accept All", "Accept all", "I Accept", "Accept", "Agree", "Allow all", "OK", "I have read the above"]:
         try:
             btn = page.get_by_role("button", name=re.compile(label, re.I))
             if btn.count():
                 btn.first.click(timeout=2500)
-                page.wait_for_timeout(900)
+                page.wait_for_timeout(700)
                 return
         except Exception:
             pass
@@ -116,6 +117,7 @@ def parse_snapshot(text, fallback_date=""):
     lines = [x for x in lines if x]
 
     matches = []
+    dates_seen = []
     current_date = fallback_date
 
     i = 0
@@ -124,6 +126,8 @@ def parse_snapshot(text, fallback_date=""):
 
         if is_date(line):
             current_date = line
+            if line not in dates_seen:
+                dates_seen.append(line)
             i += 1
             continue
 
@@ -167,43 +171,30 @@ def parse_snapshot(text, fallback_date=""):
 
         i += 1
 
-    return matches, current_date
+    return matches, current_date, dates_seen
 
 
-def get_scrollables(page):
-    try:
-        return page.evaluate(
-            """() => {
-                const els = Array.from(document.querySelectorAll('body *'));
-                const out = [];
-                for (let i = 0; i < els.length; i++) {
-                    const el = els[i];
-                    const st = getComputedStyle(el);
-                    const canScroll = (el.scrollHeight > el.clientHeight + 80) &&
-                                      ['auto','scroll','overlay'].includes(st.overflowY);
-                    if (canScroll) {
-                        const r = el.getBoundingClientRect();
-                        out.push({
-                            idx: i,
-                            tag: el.tagName,
-                            cls: String(el.className || '').slice(0, 120),
-                            h: el.clientHeight,
-                            sh: el.scrollHeight,
-                            y: r.y,
-                            text: (el.innerText || '').replace(/\\s+/g, ' ').trim().slice(0, 120)
-                        });
-                    }
-                }
-                out.sort((a,b) => (b.sh-b.h) - (a.sh-a.h));
-                return out.slice(0, 12);
-            }"""
-        )
-    except Exception:
-        return []
+def add_matches(found, snapshot_matches):
+    added = 0
+    for m in snapshot_matches:
+        loose = fixture_key(m["home_team"], m["away_team"])
+        existing = [
+            k for k, v in found.items()
+            if fixture_key(v["home_team"], v["away_team"]) == loose and v.get("time") == m.get("time")
+        ]
+        if existing:
+            old_key = existing[0]
+            if m.get("date_label") and not found[old_key].get("date_label"):
+                found[old_key]["date_label"] = m["date_label"]
+            continue
+
+        key = (m.get("date_label") or "", m.get("time") or "", loose)
+        found[key] = m
+        added += 1
+    return added
 
 
 def scroll_all_containers(page):
-    """Scroll window and every scrollable container. No clicking."""
     return page.evaluate(
         """() => {
             window.scrollBy(0, 900);
@@ -223,6 +214,53 @@ def scroll_all_containers(page):
     )
 
 
+def click_date_header(page, date_label):
+    """Safely click only an exact date header, never generic page containers."""
+    try:
+        loc = page.get_by_text(date_label, exact=True).first
+        if loc and loc.count():
+            loc.scroll_into_view_if_needed(timeout=2500)
+            page.wait_for_timeout(250)
+            loc.click(timeout=2500)
+            page.wait_for_timeout(1300)
+            return True
+    except Exception:
+        pass
+
+    # JS fallback: exact text only, click nearest clickable/date row ancestor.
+    try:
+        return bool(page.evaluate(
+            """(dateLabel) => {
+                const clean = s => (s || '').replace(/\\s+/g, ' ').trim();
+                const nodes = Array.from(document.querySelectorAll('body *'))
+                    .filter(el => clean(el.innerText || el.textContent || '') === dateLabel);
+
+                for (const node of nodes) {
+                    let el = node;
+                    for (let i = 0; i < 6 && el; i++, el = el.parentElement) {
+                        const role = (el.getAttribute('role') || '').toLowerCase();
+                        const tag = (el.tagName || '').toLowerCase();
+                        const txt = clean(el.innerText || el.textContent || '');
+                        if (txt.length > 180) continue;
+
+                        if (tag === 'button' || role === 'button' || el.onclick || i >= 1) {
+                            el.scrollIntoView({block: 'center'});
+                            el.dispatchEvent(new MouseEvent('mouseover', {bubbles:true}));
+                            el.dispatchEvent(new MouseEvent('mousedown', {bubbles:true}));
+                            el.dispatchEvent(new MouseEvent('mouseup', {bubbles:true}));
+                            el.click();
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }""",
+            date_label,
+        ))
+    except Exception:
+        return False
+
+
 def main():
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     DEBUG_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -230,6 +268,7 @@ def main():
     found = {}
     snapshots_debug = []
     last_date = ""
+    discovered_dates = []
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=HEADLESS)
@@ -243,42 +282,26 @@ def main():
         page.keyboard.press("Home")
         page.wait_for_timeout(1000)
 
-        scrollables = get_scrollables(page)
-        print(f"Detected {len(scrollables)} scrollable containers")
-        for s in scrollables[:8]:
-            print(f"  container idx={s['idx']} tag={s['tag']} h={s['h']} sh={s['sh']} cls={s['cls']} text={s['text']}")
-
+        # Pass 1: accumulate all currently expanded/visible dates.
         stable = 0
         last_total = 0
 
         for n in range(SCROLL_PASSES):
             text = page.locator("body").inner_text(timeout=25000)
-            snapshot_matches, last_date = parse_snapshot(text, last_date)
+            snapshot_matches, last_date, dates = parse_snapshot(text, last_date)
 
-            added = 0
-            for m in snapshot_matches:
-                loose = fixture_key(m["home_team"], m["away_team"])
-                existing = [
-                    k for k, v in found.items()
-                    if fixture_key(v["home_team"], v["away_team"]) == loose and v.get("time") == m.get("time")
-                ]
-                if existing:
-                    old_key = existing[0]
-                    if m.get("date_label") and not found[old_key].get("date_label"):
-                        found[old_key]["date_label"] = m["date_label"]
-                    continue
+            for d in dates:
+                if d not in discovered_dates:
+                    discovered_dates.append(d)
 
-                key = (m.get("date_label") or "", m.get("time") or "", loose)
-                found[key] = m
-                added += 1
-
+            added = add_matches(found, snapshot_matches)
             moved = scroll_all_containers(page)
-            page.wait_for_timeout(600)
+            page.wait_for_timeout(500)
 
-            print(f"Scroll {n+1:03d}/{SCROLL_PASSES}: visible {len(snapshot_matches)} | added {added} | total {len(found)} | moved_containers {moved}")
+            print(f"Scroll {n+1:02d}/{SCROLL_PASSES}: visible {len(snapshot_matches)} | added {added} | total {len(found)} | dates {len(discovered_dates)} | moved {moved}")
 
             snapshots_debug.append(
-                f"\n\n===== SNAPSHOT {n+1:03d} | visible {len(snapshot_matches)} | total {len(found)} | moved {moved} =====\n{text}"
+                f"\n\n===== SCROLL SNAPSHOT {n+1:02d} | visible {len(snapshot_matches)} | total {len(found)} =====\n{text}"
             )
 
             if len(found) == last_total:
@@ -287,10 +310,43 @@ def main():
                 stable = 0
             last_total = len(found)
 
-            if len(found) >= 60 and n >= 25:
+            # Enough scrolling to reveal collapsed date headers at bottom.
+            if n >= 28 and stable >= 10:
                 break
 
-            if n >= 35 and stable >= 18 and moved == 0:
+        print(f"\nDate headers discovered: {discovered_dates}")
+
+        # Pass 2: click every date accordion once and parse immediately after.
+        # Existing expanded dates may collapse, but we already captured them.
+        for idx, date_label in enumerate(discovered_dates, 1):
+            print(f"Opening date {idx}/{len(discovered_dates)}: {date_label}", end=" ... ", flush=True)
+
+            clicked = click_date_header(page, date_label)
+            if not clicked:
+                print("not clicked")
+                continue
+
+            page.wait_for_timeout(1000)
+
+            # Parse after click.
+            text = page.locator("body").inner_text(timeout=25000)
+            snapshot_matches, last_date, dates = parse_snapshot(text, date_label)
+            added = add_matches(found, snapshot_matches)
+            print(f"visible {len(snapshot_matches)} | added {added} | total {len(found)}")
+
+            snapshots_debug.append(
+                f"\n\n===== DATE CLICK {date_label} | visible {len(snapshot_matches)} | total {len(found)} =====\n{text}"
+            )
+
+            # Small scroll within newly opened date section.
+            for _ in range(4):
+                scroll_all_containers(page)
+                page.wait_for_timeout(300)
+                text2 = page.locator("body").inner_text(timeout=25000)
+                snapshot_matches2, last_date, _ = parse_snapshot(text2, date_label)
+                add_matches(found, snapshot_matches2)
+
+            if len(found) >= 60:
                 break
 
         final_text = page.locator("body").inner_text(timeout=25000)

@@ -12,6 +12,7 @@ print("FETCHING BOYLESPORTS UFC PROPS")
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_PATH = ROOT / "ufc" / "data" / "boylesports_props.json"
+URLS_PATH = ROOT / "ufc" / "data" / "boylesports_fight_urls.json"
 FILTERED_OUT_PATH = ROOT / "ufc" / "data" / "boylesports_props_filtered.json"
 DEBUG_DIR = ROOT / "ufc" / "data" / "debug"
 
@@ -627,6 +628,17 @@ def main():
         page = context.new_page()
 
         fight_links = get_fight_urls_from_hub(page)
+
+        # Save fresh fight URLs so fetch_boylesports_moneylines.py stays current
+        try:
+            URLS_PATH.write_text(
+                json.dumps({"fights": fight_links, "updated_at": datetime.now(timezone.utc).isoformat()},
+                           indent=2, ensure_ascii=False),
+                encoding="utf-8"
+            )
+            print(f"Saved {len(fight_links)} fight URLs to {URLS_PATH}")
+        except Exception as e:
+            print(f"Warning: could not save fight URLs: {e}")
 
         if not fight_links:
             print("No UFC fight URLs found on hub page.")

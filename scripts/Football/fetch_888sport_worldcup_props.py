@@ -33,8 +33,7 @@ OUT_PATH  = ROOT / "football" / "data" / "888sport_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "888sport_worldcup_props"
 
 COMPETITION_URL = "https://www.888sport.com/football/world-cup/"
-MAX_MATCHES     = 15
-
+MAX_MATCHES     = 3
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
@@ -137,6 +136,146 @@ def parse_double_chance(lines):
     idx = next((i for i,l in enumerate(lines) if "DOUBLE CHANCE" in clean(l).upper()), -1)
     if idx == -1:
         return mkt("Double Chance", selections)
+    label_map = {"1X":"Home or Draw","X2":"Away or Draw","12":"Home or Away"}
+    block = lines[idx:idx+15]
+    for i, line in enumerate(block):
+        label = clean(line)
+        if label in label_map and i+1 < len(block) and is_odds(block[i+1]):
+            selections.append(sel(label_map[label], block[i+1]))
+    return mkt("Double Chance", selections)
+
+
+# ── Player Props Parsers ────────────────────────────────────────────────────
+
+# 888Sport threshold label mapping:
+# "PLAYER TO HAVE ONE OR MORE SHOTS AT GOAL" = SOT 1+ (line 0.5)
+# "OVER 1 SHOTS ON TARGET"                   = SOT 2+ (line 1.5)
+# "OVER 2 SHOTS ON TARGET"                   = SOT 3+ (line 2.5)
+# "OVER 3 SHOTS ON TARGET"                   = SOT 4+ (line 3.5)
+# "PLAYER OVER 1 SHOT"                       = Shots 2+ (line 1.5)
+# "PLAYER OVER 2 SHOTS"                      = Shots 3+ (line 2.5)
+# "PLAYER OVER 3 SHOTS"                      = Shots 4+ (line 3.5)
+
+PLAYER_PROP_HEADINGS = {
+    # (heading_upper, market_name, prop_type, line, threshold_label)
+    # NOTE: 888Sport "Over N" means N+1 threshold (e.g. "Over 1 Shots" = 2+ shots)
+    # But "Player To Have One Or More Shots At Goal" = SOT 1+ (line 0.5)
+    "PLAYER TO SCORE":                            ("Player to Score",              "anytime_scorer",    "0.5", "To Score"),
+    "PLAYER TO HAVE ONE OR MORE SHOTS AT GOAL":   ("Shots On Target",              "shots_on_target",   "0.5", "1+"),
+    "OVER 1 SHOTS ON TARGET":                     ("Shots On Target",              "shots_on_target",   "1.5", "2+"),
+    "OVER 2 SHOTS ON TARGET":                     ("Shots On Target",              "shots_on_target",   "2.5", "3+"),
+    "OVER 3 SHOTS ON TARGET":                     ("Shots On Target",              "shots_on_target",   "3.5", "4+"),
+    "PLAYER OVER 1 SHOT":                         ("Shots",                        "shots",             "1.5", "2+"),
+    "PLAYER OVER 2 SHOTS":                        ("Shots",                        "shots",             "2.5", "3+"),
+    "PLAYER OVER 3 SHOTS":                        ("Shots",                        "shots",             "3.5", "4+"),
+    "PLAYER OVER 4 SHOTS":                        ("Shots",                        "shots",             "4.5", "5+"),
+    "PLAYER TO ASSIST":                           ("Player Assists",               "assists",           "0.5", "1+"),
+    "PLAYER SHOWN A CARD":                        ("Player Cards",                 "player_card",       "0.5", "To Be Carded"),
+}
+
+# Stop words — uppercase headings that end a player block
+PLAYER_SECTION_STOPS = {
+    "PLAYER TO SCORE", "PLAYER FIRST GOALSCORER", "PLAYER TO ASSIST",
+    "PLAYER SHOWN A CARD", "PLAYER TO BE SENT OFF", "PLAYER TO HAVE TWO OR MORE ASSISTS",
+    "PLAYER TO HAVE ONE OR MORE SHOTS AT GOAL", "PLAYER OVER 1 SHOT", "PLAYER OVER 2 SHOTS",
+    "PLAYER OVER 3 SHOTS", "PLAYER OVER 4 SHOTS", "PLAYER OVER 5 SHOTS", "PLAYER OVER 6 SHOTS",
+    "OVER 1 SHOTS ON TARGET", "OVER 2 SHOTS ON TARGET", "OVER 3 SHOTS ON TARGET",
+    "FIRST PLAYER TO BE CARDED", "PLAYER TO SCORE OR ASSIST",
+    "TOTAL GOALS OVER/UNDER", "1ST HALF - TOTAL GOALS OVER/UNDER",
+    "MATCH WINNER", "BOTH TEAMS TO SCORE", "DOUBLE CHANCE", "CORRECT SCORE",
+    "CORNERS", "CARDS", "BET BUILDER", "HALF TIME",
+    "1ST FRANCE GOALSCORER", "1ST SENEGAL GOALSCORER",
+    "1ST HOME GOALSCORER", "1ST AWAY GOALSCORER",
+    "PLAYER TO SCORE A HEADER", "PLAYER TO SCORE FROM OUTSIDE THE BOX",
+}
+
+
+def parse_player_section(lines, heading_upper, market_name, prop_type, line, threshold_label):
+    """
+    Parse a player prop section from flattened text.
+    Format:
+      SECTION HEADING
+      Player Name
+      Odds
+      Player Name
+      Odds
+      ...
+      See more / next heading
+    """
+    # Find the occurrence of the heading that has actual player data following it.
+    # 888Sport renders headings twice: first collapsed (just 'BB' follows),
+    # then expanded (player names and odds follow). We want the expanded one.
+    idx = -1
+    for i, l in enumerate(lines):
+        if clean(l).upper() == heading_upper:
+            # Check if odds appear within the next 15 lines
+            has_data = any(
+                is_odds(clean(lines[j]))
+                for j in range(i+1, min(i+15, len(lines)))
+            )
+            if has_data:
+                idx = i
+                break
+    if idx == -1:
+        return mkt(market_name, [])
+
+    block = lines[idx+1 : idx+200]
+    sels = []
+    i = 0
+    while i < len(block):
+        player = clean(block[i])
+
+        # Stop at next section heading
+        if player.upper() in PLAYER_SECTION_STOPS:
+            break
+        # Stop at obvious non-player lines
+        if not player or len(player) < 3:
+            i += 1; continue
+        if player.upper() == player and len(player) > 8:
+            break  # all-caps long string = new section
+        # Skip bet builder badges, info text, and other non-player lines
+        if player in {"See more", "See More", "Show more", "Show More", "BB"}:
+            i += 1; continue
+        if player.startswith("Impact Sub"):
+            i += 1; continue
+        if player.startswith("If your player"):
+            i += 1; continue
+        if is_odds(player):
+            i += 1; continue
+        # Next line should be odds
+        if i+1 < len(block) and is_odds(clean(block[i+1])):
+            odds = clean(block[i+1])
+            sels.append(sel(
+                f"{player} {threshold_label}",
+                odds,
+                {"player": player, "prop_type": prop_type, "line": line}
+            ))
+            i += 2
+        else:
+            i += 1
+
+    return mkt(f"{market_name}", sels)
+
+
+def parse_player_props(lines):
+    """Parse all player prop markets from Player tab text."""
+    all_markets = []
+    seen_mkt_line = set()  # (market_name, line)
+
+    for heading_upper, (market_name, prop_type, line, threshold_label) in PLAYER_PROP_HEADINGS.items():
+        key = (prop_type, line)
+        if key in seen_mkt_line:
+            continue
+        try:
+            m = parse_player_section(lines, heading_upper, market_name, prop_type, line, threshold_label)
+            if m and m.get("selections"):
+                seen_mkt_line.add(key)
+                all_markets.append(m)
+        except Exception:
+            pass
+
+    return all_markets
+
 
     label_map = {"1X":"Home or Draw","X2":"Away or Draw","12":"Home or Away"}
     block = lines[idx:idx+15]
@@ -145,6 +284,149 @@ def parse_double_chance(lines):
         if label in label_map and i+1 < len(block) and is_odds(block[i+1]):
             selections.append(sel(label_map[label], block[i+1]))
     return mkt("Double Chance", selections)
+
+
+# ── Player Props Parsers ────────────────────────────────────────────────────
+
+# 888Sport threshold label mapping:
+# "PLAYER TO HAVE ONE OR MORE SHOTS AT GOAL" = SOT 1+ (line 0.5)
+# "OVER 1 SHOTS ON TARGET"                   = SOT 2+ (line 1.5)
+# "OVER 2 SHOTS ON TARGET"                   = SOT 3+ (line 2.5)
+# "OVER 3 SHOTS ON TARGET"                   = SOT 4+ (line 3.5)
+# "PLAYER OVER 1 SHOT"                       = Shots 2+ (line 1.5)
+# "PLAYER OVER 2 SHOTS"                      = Shots 3+ (line 2.5)
+# "PLAYER OVER 3 SHOTS"                      = Shots 4+ (line 3.5)
+
+PLAYER_PROP_HEADINGS = {
+    # (heading_upper, market_name, prop_type, line, threshold_label)
+    # NOTE: 888Sport "Over N" means N+1 threshold (e.g. "Over 1 Shots" = 2+ shots)
+    # But "Player To Have One Or More Shots At Goal" = SOT 1+ (line 0.5)
+    "PLAYER TO SCORE":                            ("Player to Score",              "anytime_scorer",    "0.5", "To Score"),
+    "PLAYER TO HAVE ONE OR MORE SHOTS AT GOAL":   ("Shots On Target",              "shots_on_target",   "0.5", "1+"),
+    "OVER 1 SHOTS ON TARGET":                     ("Shots On Target",              "shots_on_target",   "1.5", "2+"),
+    "OVER 2 SHOTS ON TARGET":                     ("Shots On Target",              "shots_on_target",   "2.5", "3+"),
+    "OVER 3 SHOTS ON TARGET":                     ("Shots On Target",              "shots_on_target",   "3.5", "4+"),
+    "PLAYER OVER 1 SHOT":                         ("Shots",                        "shots",             "1.5", "2+"),
+    "PLAYER OVER 2 SHOTS":                        ("Shots",                        "shots",             "2.5", "3+"),
+    "PLAYER OVER 3 SHOTS":                        ("Shots",                        "shots",             "3.5", "4+"),
+    "PLAYER OVER 4 SHOTS":                        ("Shots",                        "shots",             "4.5", "5+"),
+    "PLAYER TO ASSIST":                           ("Player Assists",               "assists",           "0.5", "1+"),
+    "PLAYER SHOWN A CARD":                        ("Player Cards",                 "player_card",       "0.5", "To Be Carded"),
+}
+
+# Stop words — uppercase headings that end a player block
+PLAYER_SECTION_STOPS = {
+    "PLAYER TO SCORE", "PLAYER FIRST GOALSCORER", "PLAYER TO ASSIST",
+    "PLAYER SHOWN A CARD", "PLAYER TO BE SENT OFF", "PLAYER TO HAVE TWO OR MORE ASSISTS",
+    "PLAYER TO HAVE ONE OR MORE SHOTS AT GOAL", "PLAYER OVER 1 SHOT", "PLAYER OVER 2 SHOTS",
+    "PLAYER OVER 3 SHOTS", "PLAYER OVER 4 SHOTS", "PLAYER OVER 5 SHOTS", "PLAYER OVER 6 SHOTS",
+    "OVER 1 SHOTS ON TARGET", "OVER 2 SHOTS ON TARGET", "OVER 3 SHOTS ON TARGET",
+    "FIRST PLAYER TO BE CARDED", "PLAYER TO SCORE OR ASSIST",
+    "TOTAL GOALS OVER/UNDER", "1ST HALF - TOTAL GOALS OVER/UNDER",
+    "MATCH WINNER", "BOTH TEAMS TO SCORE", "DOUBLE CHANCE", "CORRECT SCORE",
+    "CORNERS", "CARDS", "BET BUILDER", "HALF TIME",
+    "1ST FRANCE GOALSCORER", "1ST SENEGAL GOALSCORER",
+    "1ST HOME GOALSCORER", "1ST AWAY GOALSCORER",
+    "PLAYER TO SCORE A HEADER", "PLAYER TO SCORE FROM OUTSIDE THE BOX",
+}
+
+
+def parse_player_section(lines, heading_upper, market_name, prop_type, line, threshold_label):
+    """
+    Parse a player prop section from flattened text.
+    Format:
+      SECTION HEADING
+      Player Name
+      Odds
+      Player Name
+      Odds
+      ...
+      See more / next heading
+    """
+    # Find the occurrence of the heading that has actual player data following it.
+    # 888Sport renders headings twice: first collapsed (just 'BB' follows),
+    # then expanded (player names and odds follow). We want the expanded one.
+    idx = -1
+    for i, l in enumerate(lines):
+        if clean(l).upper() == heading_upper:
+            # Check if odds appear within the next 15 lines
+            has_data = any(
+                is_odds(clean(lines[j]))
+                for j in range(i+1, min(i+15, len(lines)))
+            )
+            if has_data:
+                idx = i
+                break
+    if idx == -1:
+        return mkt(market_name, [])
+
+    block = lines[idx+1 : idx+200]
+    sels = []
+    i = 0
+    while i < len(block):
+        player = clean(block[i])
+
+        # Stop at next section heading
+        if player.upper() in PLAYER_SECTION_STOPS:
+            break
+        # Stop at obvious non-player lines
+        if not player or len(player) < 3:
+            i += 1; continue
+        if player.upper() == player and len(player) > 8:
+            break  # all-caps long string = new section
+        # Skip bet builder badges, info text, and other non-player lines
+        if player in {"See more", "See More", "Show more", "Show More", "BB"}:
+            i += 1; continue
+        if player.startswith("Impact Sub"):
+            i += 1; continue
+        if player.startswith("If your player"):
+            i += 1; continue
+        if is_odds(player):
+            i += 1; continue
+        # Next line should be odds
+        if i+1 < len(block) and is_odds(clean(block[i+1])):
+            odds = clean(block[i+1])
+            sels.append(sel(
+                f"{player} {threshold_label}",
+                odds,
+                {"player": player, "prop_type": prop_type, "line": line}
+            ))
+            i += 2
+        else:
+            i += 1
+
+    return mkt(f"{market_name}", sels)
+
+
+def parse_player_props(lines):
+    """Parse all player prop markets from Player tab text."""
+    all_markets = []
+    seen_mkt_line = set()  # (market_name, line)
+
+    for heading_upper, (market_name, prop_type, line, threshold_label) in PLAYER_PROP_HEADINGS.items():
+        key = (prop_type, line)
+        if key in seen_mkt_line:
+            continue
+        try:
+            m = parse_player_section(lines, heading_upper, market_name, prop_type, line, threshold_label)
+            if m and m.get("selections"):
+                seen_mkt_line.add(key)
+                all_markets.append(m)
+        except Exception:
+            pass
+
+    return all_markets
+
+
+
+def parse_correct_score(lines):
+    """Correct Score — stub, not needed for props EV/arb."""
+    return mkt("Correct Score", [])
+
+
+def parse_ht_ft(lines):
+    """Half Time / Full Time — stub."""
+    return mkt("Half Time / Full Time", [])
 
 
 def parse_all_markets(text, home, away):
@@ -162,13 +444,24 @@ def parse_all_markets(text, home, away):
         lambda: parse_double_chance(lines),
     ]
 
-    for parser in parsers:
+    parser_names = ["match_winner","total_goals","half_goals","correct_score","half_result","ht_ft","btts","double_chance"]
+    for name, parser in zip(parser_names, parsers):
         try:
             m = parser()
+            if m is None:
+                print(f"    WARNING: {name} returned None")
+                continue
             if m["selections"]:
                 markets.append(m)
         except Exception as e:
-            print(f"    Parser error: {e}")
+            print(f"    Parser error ({name}): {e}")
+
+    # Parse player props
+    try:
+        player_markets = parse_player_props(lines)
+        markets += player_markets
+    except Exception as e:
+        print(f"    Player props error: {e}")
 
     return markets
 
@@ -204,6 +497,74 @@ def scroll_page(page, steps=12):
     for _ in range(steps):
         page.mouse.wheel(0, 600)
         page.wait_for_timeout(300)
+
+
+def expand_player_accordions(page):
+    """
+    Click collapsed player prop accordions using JS to find element coordinates,
+    then page.mouse.click() to trigger React event handlers reliably.
+    """
+    target_headings = [
+        "PLAYER TO HAVE ONE OR MORE SHOTS AT GOAL",
+        "OVER 1 SHOTS ON TARGET",
+        "OVER 2 SHOTS ON TARGET",
+        "OVER 3 SHOTS ON TARGET",
+        "PLAYER OVER 1 SHOT",
+        "PLAYER OVER 2 SHOTS",
+        "PLAYER OVER 3 SHOTS",
+        "PLAYER OVER 4 SHOTS",
+        "PLAYER TO ASSIST",
+        "PLAYER SHOWN A CARD",
+        "PLAYER TO SCORE OR ASSIST",
+    ]
+    for heading in target_headings:
+        try:
+            coords = page.evaluate(f"""() => {{
+                const heading = {repr(heading)};
+                // Find the innermost text node that matches the heading exactly
+                const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+                let tn;
+                while (tn = walk.nextNode()) {{
+                    if (tn.textContent.trim() === heading) {{
+                        // Found the text node - walk up to clickable container
+                        let el = tn.parentElement;
+                        for (let i = 0; i < 10; i++) {{
+                            if (!el || el === document.body) break;
+                            el.scrollIntoView({{behavior:'instant', block:'center'}});
+                            const r = el.getBoundingClientRect();
+                            // Look for header row: wide, short height, visible
+                            if (r.width > 200 && r.height > 10 && r.height < 80 && r.top >= 0) {{
+                                return {{x: r.left + r.width/2, y: r.top + r.height/2, w: r.width, h: r.height}};
+                            }}
+                            el = el.parentElement;
+                        }}
+                        break;
+                    }}
+                }}
+                return null;
+            }}""")
+            if coords:
+                page.mouse.click(coords['x'], coords['y'])
+                page.wait_for_timeout(700)
+                print(f"      clicked {heading[:30]} at ({coords['x']:.0f},{coords['y']:.0f}) w={coords.get('w',0):.0f}")
+            else:
+                print(f"      no coords for: {heading[:40]}")
+        except Exception as e:
+            print(f"      expand error ({heading[:30]}): {e}")
+
+    # Click all "See more" buttons to load full player lists
+    page.wait_for_timeout(500)
+    for _ in range(25):
+        try:
+            sm = page.get_by_text("See more", exact=True)
+            if sm.count() > 0:
+                sm.first.scroll_into_view_if_needed(timeout=1000)
+                sm.first.click(timeout=1000)
+                page.wait_for_timeout(300)
+            else:
+                break
+        except Exception:
+            break
 
 
 def get_match_links(page):
@@ -275,26 +636,39 @@ def scrape_match(page, fixture):
 
     all_text = ""
 
-    # Click Goals tab — gets Total Goals O/U, 1st Half Goals, Correct Score
+    # Click Goals tab
     if click_tab(page, "Goals"):
         print(f"    ✓ Goals tab")
         scroll_page(page, 15)
         all_text += "\n" + page.locator("body").inner_text(timeout=15000)
 
-    # Click Half tab — gets 1st Half Result, HT/FT
+    # Click Half tab
     if click_tab(page, "Half"):
         print(f"    ✓ Half tab")
         scroll_page(page, 10)
         all_text += "\n" + page.locator("body").inner_text(timeout=15000)
 
-    # Click All Markets tab — gets BTTS, Double Chance, Match Winner
+    # Click All Markets tab
     if click_tab(page, "All Markets"):
         print(f"    ✓ All Markets tab")
         scroll_page(page, 20)
         all_text += "\n" + page.locator("body").inner_text(timeout=15000)
 
+    # Click Player tab and expand all player prop accordions
+    if click_tab(page, "Player"):
+        print(f"    ✓ Player tab")
+        page.wait_for_timeout(2000)
+        scroll_page(page, 5)
+        # Expand all collapsed accordions on player tab
+        try:
+            expand_player_accordions(page)
+        except Exception as e:
+            print(f"    accordion expand error: {e}")
+        scroll_page(page, 20)
+        player_text = page.locator("body").inner_text(timeout=15000)
+        all_text += "\n" + player_text
+
     if not all_text:
-        # Fallback — just grab whatever is on the page
         scroll_page(page, 15)
         all_text = page.locator("body").inner_text(timeout=15000)
 

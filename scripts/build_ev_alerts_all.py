@@ -67,6 +67,7 @@ def load_football_alerts():
             "time": row.get("time") or "",
             "date_label": row.get("date_label") or "",
             "source_url": row.get("source_url") or "",
+            "type": row.get("type") or "moneyline_1x2",
         })
 
     return alerts, data
@@ -128,6 +129,31 @@ def render_filter_buttons(counts):
         """
 
     return html
+
+
+def slugify(s):
+    """Convert display name to URL slug e.g. 'Iran v New Zealand' -> 'iran-v-new-zealand'"""
+    import re as _re
+    s = str(s or "").lower().strip()
+    s = s.replace(" v ", "-v-").replace(" vs ", "-v-")
+    return _re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+
+
+def player_props_url(alert):
+    """Build local/GitHub Pages URL to this player's props page, or None."""
+    match = alert.get("event") or ""
+    selection = alert.get("selection") or ""
+    market_type = alert.get("type") or ""
+    if "props" not in market_type:
+        return None
+    # Extract player name — strip threshold suffix like "2+" or "1+"
+    import re as _re
+    player = _re.sub(r"\s+\d+\+\s*$", "", selection).strip()
+    if not player or not match:
+        return None
+    match_slug = slugify(match)
+    player_slug = slugify(player)
+    return f"../football/world-cup/{match_slug}/player-props/players/{player_slug}/index.html"
 
 
 def render_alert_card(alert, index):
@@ -198,6 +224,7 @@ def render_alert_card(alert, index):
           <em>{esc(alert.get("fair_decimal_odds"))}</em>
         </div>
       </div>
+      {f'<a class="player-link" href="{player_props_url(alert)}">View all bookmaker prices →</a>' if player_props_url(alert) else ""}
     </article>
     """
 
@@ -515,6 +542,20 @@ def render_page(alerts, football_data):
       font-size: 0.75rem;
       color: var(--text-muted, #888);
       margin-top: 2px;
+    }}
+    .player-link {{
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--accent, #00e676);
+      text-decoration: none;
+      border: 1px solid var(--accent, #00e676);
+      border-radius: 4px;
+      padding: 4px 10px;
+    }}
+    .player-link:hover {{
+      background: var(--accent, #00e676);
+      color: #000;
     }}
     .market {{
       color: var(--muted);

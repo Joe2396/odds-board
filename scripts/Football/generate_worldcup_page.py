@@ -1124,7 +1124,9 @@ def build_player_index(props):
                 player_name = clean(sel.get("player") or "")
 
                 # Drop fake heading rows accidentally captured as players.
-                if player_name.lower() in {
+                _pn_low = player_name.lower()
+                # Known junk player names from various bleed-in sources
+                if _pn_low in {
                     "player shots on target including woodwork",
                     "player shots 1 - 3",
                     "player shots 4 - 6",
@@ -1134,8 +1136,25 @@ def build_player_index(props):
                     "player to have 4 or more tackles",
                     "anytime assist",
                     "player shown a card",
-                }:
-                    continue
+                    "player to be carded",
+                    # BetVictor stat-category rows
+                    "match stats", "odd/even", "to have the most",
+                    "shots", "shots on target", "tackles", "offsides",
+                    "corners", "cards", "fouls", "assists", "goals", "saves",
+                    "yellow cards", "red cards", "clearances", "interceptions",
+                    # BetVictor UI / navigation elements
+                    "log in", "login", "sign up", "signup", "register",
+                    "home", "away", "all", "sports", "casino", "offers",
+                    "bingo", "search", "betslip", "in-play", "in play", "slots",
+                    "mini games", "lucky dip", "live casino", "horse racing",
+                    "bet calculator", "settings", "help & contact",
+                    "a-z sports", "betvictor news",
+                }: continue
+                # BetVictor casino game names (sidebar thumbnails bleed in)
+                if any(kw in _pn_low for kw in (
+                    "big bass", "fishin'", "fishin ", "bonanza", "megaways",
+                    "slot", "jackpot", "roulette", "blackjack",
+                )): continue
 
                 if not player_name:
                     player_name = sn
