@@ -41,39 +41,9 @@ jobs:
       - name: Install deps
         run: |
           pip install requests beautifulsoup4 playwright
-          playwright install chromium
+          playwright install chromium --with-deps
 
-      - name: Use committed bookmaker props data
-        run: |
-          echo "Using committed local bookmaker data"
-          python - <<'PY'
-          import json, os
-          files = [
-              "ufc/data/paddypower_fight_urls.json",
-              "ufc/data/props.json",
-              "ufc/data/props_filtered.json",
-              "ufc/data/boylesports_fight_urls.json",
-              "ufc/data/boylesports_props.json",
-              "ufc/data/boylesports_props_filtered.json",
-              "ufc/data/betvictor_fight_urls.json",
-              "ufc/data/betvictor_props.json",
-              "ufc/data/betvictor_props_filtered.json",
-              "ufc/data/coral_fight_urls.json",
-              "ufc/data/coral_props.json",
-              "ufc/data/coral_props_filtered.json",
-              "ufc/data/betmgm_fight_urls.json",
-              "ufc/data/betmgm_props.json",
-              "ufc/data/betmgm_props_filtered.json",
-          ]
-          for path in files:
-              if not os.path.exists(path):
-                  print(f"{path}: MISSING")
-                  continue
-              data = json.load(open(path, encoding="utf-8"))
-              fights_count = len(data.get("fights") or [])
-              props_count = len(data.get("props") or [])
-              print(f"{path}: fights={fights_count} props={props_count}")
-          PY
+      # --- Events / fighters base data ---
 
       - name: Fetch upcoming UFC events
         run: python scripts/fetch_upcoming_events.py
@@ -87,29 +57,99 @@ jobs:
       - name: Fetch UFCStats fighter stats
         run: python scripts/fetch_ufcstats_fighter_stats.py || echo "UFCStats failed, continuing with existing fighter data"
 
-      - name: Fetch UFC odds UK bookies
-        run: python scripts/fetch_ufc_odds.py || echo "OddsAPI failed, continuing with existing odds data"
+      - name: Build fighter recent fights
+        run: python scripts/build_fighter_recent_fights.py || echo "build_fighter_recent_fights failed, continuing"
 
-      - name: Analyze UFC arbitrage
-        run: python scripts/analyze_ufc_arbitrage.py
+      # --- Fight URL discovery (must run before matching prop fetchers) ---
 
-      - name: Build unified arbitrage
-        run: python scripts/build_arbitrage_all.py
+      - name: Fetch BetVictor fight URLs
+        run: python scripts/fetch_betvictor_fight_urls.py || echo "BetVictor URL fetch failed, continuing"
 
-      - name: Generate EV Alerts
-        run: python scripts/generate_ev_alerts.py
+      - name: Fetch Coral fight URLs
+        run: python scripts/fetch_coral_fight_urls.py || echo "Coral URL fetch failed, continuing"
 
-      - name: Generate UFC hub
-        run: python scripts/generate_ufc_hub.py
+      - name: Fetch PaddyPower fight URLs
+        run: python scripts/fetch_paddypower_fight_urls.py || echo "PaddyPower URL fetch failed, continuing"
+
+      # --- Bookmaker props / moneylines ---
+      # NOTE: BoyleSports props must run before BoyleSports moneylines —
+      # moneylines reads the fight URLs file that props discovers and writes.
+
+      - name: Fetch 888Sport props
+        run: python scripts/fetch_888sport_props.py || echo "888Sport failed, continuing"
+
+      - name: Fetch Betfred props
+        run: python scripts/fetch_betfred_props.py || echo "Betfred failed, continuing"
+
+      - name: Fetch BetVictor props
+        run: python scripts/fetch_betvictor_props.py || echo "BetVictor props failed, continuing"
+
+      - name: Fetch BoyleSports props
+        run: python scripts/fetch_boylesports_props.py || echo "BoyleSports props failed, continuing (Cloudflare may block CI IPs)"
+
+      - name: Fetch BoyleSports moneylines
+        run: python scripts/fetch_boylesports_moneylines.py || echo "BoyleSports moneylines failed, continuing"
+
+      - name: Fetch Bwin props
+        run: python scripts/fetch_bwin_props.py || echo "Bwin failed, continuing"
+
+      - name: Fetch Coral props
+        run: python scripts/fetch_coral_props.py || echo "Coral props failed, continuing"
+
+      - name: Fetch LiveScoreBet UFC moneylines
+        run: python scripts/fetch_livescorebet_ufc_moneylines.py || echo "LiveScoreBet failed, continuing"
+
+      - name: Fetch Tote props
+        run: python scripts/fetch_tote_props.py || echo "Tote failed, continuing"
+
+      - name: Fetch PaddyPower props
+        run: python scripts/fetch_ufc_props_paddypower.py || echo "PaddyPower props failed, continuing"
+
+      - name: Fetch Unibet props
+        run: python scripts/fetch_unibet_props.py || echo "Unibet failed, continuing"
+
+      - name: Fetch WilliamHill props
+        run: python scripts/fetch_williamhill_props.py || echo "WilliamHill failed, continuing"
+
+      # --- Filtering ---
+
+      - name: Filter BetVictor props
+        run: python scripts/filter_betvictor_props.py
+
+      - name: Filter BoyleSports props
+        run: python scripts/filter_boylesports_props.py
+
+      - name: Filter Coral props
+        run: python scripts/filter_coral_props.py
+
+      - name: Filter props
+        run: python scripts/filter_props.py
+
+      # --- Page generation ---
 
       - name: Generate UFC events
         run: python scripts/generate_ufc_events.py
 
+      - name: Generate UFC fighters
+        run: python scripts/generate_ufc_fighters.py
+
       - name: Generate UFC fights
         run: python scripts/generate_ufc_fights.py
 
-      - name: Generate UFC fighters
-        run: python scripts/generate_ufc_fighters.py
+      - name: Generate UFC hub
+        run: python scripts/generate_ufc_hub.py
+
+      - name: Generate UFC tracker
+        run: python scripts/generate_ufc_tracker.py
+
+      - name: Generate EV Alerts
+        run: python scripts/generate_ev_alerts.py
+
+      - name: Build unified EV alerts
+        run: python scripts/build_ev_alerts_all.py
+
+      - name: Build unified arbitrage
+        run: python scripts/build_arbitrage_all.py
 
       - name: Debug UFC data counts
         run: |
@@ -118,19 +158,14 @@ jobs:
           files = [
               "ufc/data/events.json",
               "ufc/data/fighters.json",
-              "ufc/data/odds.json",
-              "ufc/data/arbitrage.json",
-              "ufc/data/arbitrage_all.json",
-              "ufc/data/props.json",
+              "data/arbitrage_all.json",
+              "data/ev_alerts_all.json",
               "ufc/data/props_filtered.json",
-              "ufc/data/boylesports_props.json",
               "ufc/data/boylesports_props_filtered.json",
-              "ufc/data/betvictor_props.json",
               "ufc/data/betvictor_props_filtered.json",
-              "ufc/data/coral_props.json",
               "ufc/data/coral_props_filtered.json",
-              "ufc/data/betmgm_props.json",
-              "ufc/data/betmgm_props_filtered.json",
+              "ufc/data/livescorebet_moneylines.json",
+              "ufc/data/boylesports_moneylines.json",
           ]
           for path in files:
               if not os.path.exists(path):
