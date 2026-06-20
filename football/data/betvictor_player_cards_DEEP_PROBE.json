@@ -1,0 +1,113 @@
+{
+  "bookmaker": "BetVictor",
+  "match": "Argentina v Austria",
+  "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780975500",
+  "discovered_market_groups": [
+    {
+      "market_group": "19296",
+      "text": "current",
+      "href": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780975500?market_group=19296"
+    }
+  ],
+  "views": [
+    {
+      "label": "base",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780975500",
+      "expand_controls_clicked": 2,
+      "scroll_containers": [
+        {
+          "id": 0,
+          "range": 5754,
+          "width": 1690,
+          "height": 1000,
+          "tag": "BODY",
+          "className": "en-ie brand-id-1 has-scroll-bars site-is-scrolling"
+        },
+        {
+          "id": 1,
+          "range": 428,
+          "width": 320,
+          "height": 942,
+          "tag": "DIV",
+          "className": "left-subnavigation__content has-scroll-bars"
+        }
+      ],
+      "controls": [],
+      "keyword_hits": [],
+      "exact_player_card_rows": [],
+      "raw_exact_rows": []
+    },
+    {
+      "label": "clicked relevant controls: Popular, Bet Builder, Player",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780975500?market_group=19296",
+      "expand_controls_clicked": 1,
+      "scroll_containers": [
+        {
+          "id": 0,
+          "range": 559,
+          "width": 1690,
+          "height": 1000,
+          "tag": "BODY",
+          "className": "en-ie brand-id-1 has-scroll-bars site-is-scrolling"
+        },
+        {
+          "id": 1,
+          "range": 428,
+          "width": 320,
+          "height": 942,
+          "tag": "DIV",
+          "className": "left-subnavigation__content has-scroll-bars"
+        }
+      ],
+      "controls": [],
+      "keyword_hits": [],
+      "exact_player_card_rows": [],
+      "raw_exact_rows": []
+    },
+    {
+      "label": "market_group=19296 text=current",
+      "url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780975500?market_group=19296",
+      "expand_controls_clicked": 1,
+      "scroll_containers": [
+        {
+          "id": 0,
+          "range": 3079,
+          "width": 1690,
+          "height": 1000,
+          "tag": "BODY",
+          "className": "en-ie brand-id-1 has-scroll-bars site-is-scrolling"
+        },
+        {
+          "id": 1,
+          "range": 428,
+          "width": 320,
+          "height": 942,
+          "tag": "DIV",
+          "className": "left-subnavigation__content has-scroll-bars"
+        }
+      ],
+      "controls": [],
+      "keyword_hits": [],
+      "exact_player_card_rows": [],
+      "raw_exact_rows": []
+    }
+  ],
+  "network_response_hits": [
+    {
+      "url": "https://www.betvictor.com/bv_api/dictionary/en-ie/100",
+      "status": 200,
+      "resource_type": "fetch",
+      "content_type": "application/json; charset=utf-8",
+      "debug_file": "response_001_https_www_betvictor_com_bv_api_dictionary_en_ie_100.txt",
+      "sample": "{\"-2000\":\"Kick Off\",\"-1005\":\"End Of Regular Time\",\"-1004\":\"Extra Time - 2nd Half\",\"-1002\":\"Extra Time - Half Time\",\"-1001\":\"Half Time\",\"-2\":\"Starts\",\"-1\":\"End Of Event\",\"0\":\"Not Started\",\"100\":\"90 Mins\",\"101\":\"Extra Time\",\"102\":\"First Half\",\"103\":\"Second Half\",\"955\":\"Match\",\"956\":\"Penalties\",\"100001\":\"00:00 To 15:00 Minutes\",\"100002\":\"15:01 To 30:00 Minutes\",\"100003\":\"30:01 To Half Time\",\"100004\":\"Half Time To 60:00 Minutes\",\"100005\":\"60:01 To 75:00 Minutes\",\"100006\":\"75:01 To Full Time\",\"100008\":\"00:00 To 30:00 Minutes\",\"100009\":\"00:00 To 60:00 Minutes\",\"100010\":\"00:00 To 75:00 Minutes\",\"100011\":\"00:00 To 05:00 Minutes\",\"123000\":\"Outright\",\"232\":\"90 Mins\",\"233\":\"Extra Time\",\"234\":\"First Half\",\"235\":\"Second Half\",\"957\":\"Match\",\"954\":\"Penalties\",\"in_running_messages\":{\"goal_kick\":\"Goal Kick\",\"goal\":\"Goal\",\"disallowed_goal\":\"Disallowed Goal\",\"red_card\":\"Red Card\",\"disallowed_red_card\":\"Disallowed Red Card\",\"yellow_card\":\"Yellow Card\",\"disallowed_yellow_card\":\"Disallowed Yellow Card\",\"cor"
+    },
+    {
+      "url": "https://www.betvictor.com/bv_event_level/en-ie/1/coupon_groups/100?event_id=2780975500",
+      "status": 200,
+      "resource_type": "fetch",
+      "content_type": "application/json; charset=utf-8",
+      "debug_file": "response_002_https_www_betvictor_com_bv_event_level_en_ie_1_coupon_groups_100_event_id_2780975500.txt",
+      "sample": "[{\"id\":19945,\"name\":\"Popular\",\"default\":false,\"coupon_count\":8,\"icon\":\"\"},{\"id\":19292,\"name\":\"Outrights\",\"default\":false,\"coupon_count\":0,\"icon\":\"\"},{\"id\":12536,\"name\":\"Bet Builder\",\"default\":false,\"coupon_count\":1,\"icon\":\"\"},{\"id\":28635,\"name\":\"Specials\",\"default\":false,\"coupon_count\":1,\"icon\":\"\"},{\"id\":28579,\"name\":\"Bet Boost\",\"default\":false,\"coupon_count\":1,\"icon\":\"\"},{\"id\":23908,\"name\":\"Early Payout\",\"default\":false,\"coupon_count\":4,\"icon\":\"\"},{\"id\":19293,\"name\":\"Goals\",\"default\":false,\"coupon_count\":26,\"icon\":\"\"},{\"id\":19294,\"name\":\"Corners\",\"default\":false,\"coupon_count\":11,\"icon\":\"\"},{\"id\":19295,\"name\":\"Cards\",\"default\":false,\"coupon_count\":0,\"icon\":\"\"},{\"id\":19296,\"name\":\"Player\",\"default\":false,\"coupon_count\":11,\"icon\":\"\"},{\"id\":19297,\"name\":\"Half\",\"default\":false,\"coupon_count\":14,\"icon\":\"\"},{\"id\":19298,\"name\":\"Asian Lines\",\"default\":false,\"coupon_count\":6,\"icon\":\"\"},{\"id\":19299,\"name\":\"Other\",\"default\":false,\"coupon_count\":19,\"icon\":\"\"},{\"id\":17168,\"name\":\"Lucky dip\",\"defau"
+    }
+  ]
+}

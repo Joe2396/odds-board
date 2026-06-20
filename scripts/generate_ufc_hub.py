@@ -322,8 +322,8 @@ def main():
         </div>
 
         <div class="actions">
-          <a class="btn primary" href="{BASE}/ufc/fights/{featured["fight_id"]}/">View full breakdown →</a>
-          <a class="btn" href="{BASE}/ufc/events/{featured["event_slug"]}/">View full event →</a>
+          <a class="btn primary" href="fights/{featured["fight_id"]}/">View full breakdown →</a>
+          <a class="btn" href="events/{featured["event_slug"]}/">View full event →</a>
         </div>
       </div>
 
@@ -357,7 +357,7 @@ def main():
                 continue
 
             rows_html += f"""
-            <a class="event-card" href="{BASE}/ufc/events/{slug}/">
+            <a class="event-card" href="events/{slug}/">
               <div>
                 <div class="event-kicker">Upcoming event</div>
                 <h3>{name}</h3>
@@ -797,7 +797,7 @@ def main():
           </p>
 
           <div class="actions">
-            <a class="btn primary" href="{BASE}/ufc/fighters/">Browse fighters →</a>
+            <a class="btn primary" href="fighters/">Browse fighters →</a>
             <a class="btn" href="#events">View all events →</a>
           </div>
         </div>
@@ -826,7 +826,7 @@ def main():
         <h2>Upcoming Events</h2>
         <p class="muted">Select an event to view fight cards. Full odds and props are shown inside each fight page.</p>
       </div>
-      <a class="btn" href="{BASE}/ufc/fighters/">Fighter database →</a>
+      <a class="btn" href="fighters/">Fighter database →</a>
     </div>
 
     <section id="events" class="events-grid">
@@ -835,7 +835,7 @@ def main():
 
     <div class="footer">
       <span>Generated: {esc(fmt_generated(generated_at))}</span>
-      <a href="{BASE}/">← Back to home</a>
+      <a href="../">← Back to home</a>
     </div>
   </main>
 

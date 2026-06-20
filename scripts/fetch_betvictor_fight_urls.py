@@ -196,11 +196,13 @@ def get_mma_meeting_links(page):
         if href.startswith("/"):
             href = BETVICTOR_BASE + href
 
-        # HARD FILTER: only MMA/UFC sport ID 1327866 meeting pages.
-        if "/en-ie/sports/1327866/meetings/" not in href:
+        # Filter to BetVictor MMA/UFC sport pages only
+        if "betvictor.com" not in href:
             continue
-
-        if "/all" not in href:
+        if "1327866" not in href and "mma" not in href.lower():
+            continue
+        # Skip non-event pages
+        if any(x in href for x in ["#", "casino", "bingo", "poker", "lotto", "virtual"]):
             continue
 
         if href not in meeting_links:
@@ -238,6 +240,11 @@ def main():
         print(f"\nUFC meeting links found: {len(meeting_links)}")
         for link in meeting_links:
             print(" -", link)
+
+        # Fallback: if no meeting links found, use the main MMA page directly
+        if not meeting_links:
+            print("No meeting links found - falling back to main MMA page")
+            meeting_links = [BETVICTOR_MMA_PAGE]
 
         for meeting_url in meeting_links:
             print(f"\nOpening UFC meeting page: {meeting_url}")

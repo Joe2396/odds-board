@@ -60,7 +60,7 @@ def url_param(s):
 
 def build_tracker_href(sport, event_name, market, selection, bookmaker, odds):
     return (
-        f"{BASE_PATH}/tracker/"
+        f"../../tracker/"
         f"?sport={url_param(sport)}"
         f"&event={url_param(event_name)}"
         f"&market={url_param(market)}"
@@ -1240,7 +1240,7 @@ def fighter_panel(fighter, odds_event, corner_label):
     form = html_escape(get_recent_form(recent_fights))
     finish_rate = html_escape(get_finish_rate(methods))
 
-    fighter_href = f"{BASE_PATH}/fighters/{slug}/" if slug else "#"
+    fighter_href = f"../../fighters/{slug}/" if slug else "#"
 
     ufcstats_link = ""
     if ufcstats_url:
@@ -2081,8 +2081,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
       <div class="fight-hero">
         <div>
           <p class="muted">
-            <a href="{BASE_PATH}/">UFC Hub</a> /
-            <a href="{BASE_PATH}/events/{event_slug}/">{event_name}</a> /
+            <a href="../../">UFC Hub</a> /
+            <a href="../../events/{event_slug}/">{event_name}</a> /
             Fight
           </p>
 

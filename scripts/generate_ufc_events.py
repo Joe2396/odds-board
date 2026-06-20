@@ -159,7 +159,7 @@ def render_event_page(ev):
             fid = fight_id(f)
 
             if fid:
-                link = f"{BASE}/ufc/fights/{esc(fid)}/"
+                link = f"../../fights/{esc(fid)}/"
                 action = f'<a class="fight-link" href="{link}">View fight odds →</a>'
             else:
                 action = ""
@@ -188,7 +188,7 @@ def render_event_page(ev):
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{name} | UFC Event</title>
-  <link rel="stylesheet" href="{BASE}/ufc/assets/ufc.css">
+  <link rel="stylesheet" href="../../assets/ufc.css">
   <style>
     body {{
       background:#0F1621;
@@ -267,7 +267,7 @@ def render_event_page(ev):
 <body>
   <main class="event-page">
     <section class="event-card">
-      <p><a href="{BASE}/ufc/">← Back to UFC Hub</a></p>
+      <p><a href="../../">← Back to UFC Hub</a></p>
       <h1>{name}</h1>
       <p class="muted">{date}{location_line} • {status}</p>
 

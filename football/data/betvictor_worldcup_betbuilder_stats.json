@@ -3,1253 +3,51 @@
   "competition": "FIFA World Cup",
   "bookmaker": "BetVictor",
   "market_type": "bet_builder_match_stats",
-  "generated_at": "2026-06-18T19:33:34.108312+00:00",
-  "match_count": 14,
-  "matches_with_markets": 13,
+  "generated_at": "2026-06-20T12:28:11.409192+00:00",
+  "source_props_generated_at": "2026-06-19T17:56:34.909374+00:00",
+  "max_matches": 15,
+  "match_count": 15,
+  "matches_with_markets": 11,
   "matches": [
-    {
-      "match": "Canada v Qatar",
-      "home_team": "Canada",
-      "away_team": "Qatar",
-      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780924500",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots On Target 6+",
-              "normalized_selection": "match_shots_on_target_6",
-              "odds": "3/25",
-              "stat": "shots_on_target",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Match Shots On Target 7+",
-              "normalized_selection": "match_shots_on_target_7",
-              "odds": "1/4",
-              "stat": "shots_on_target",
-              "threshold": "7+"
-            },
-            {
-              "selection": "Match Shots On Target 8+",
-              "normalized_selection": "match_shots_on_target_8",
-              "odds": "20/43",
-              "stat": "shots_on_target",
-              "threshold": "8+"
-            },
-            {
-              "selection": "Match Shots On Target 9+",
-              "normalized_selection": "match_shots_on_target_9",
-              "odds": "31/40",
-              "stat": "shots_on_target",
-              "threshold": "9+"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots 21+",
-              "normalized_selection": "match_shots_21",
-              "odds": "1/3",
-              "stat": "shots",
-              "threshold": "21+"
-            },
-            {
-              "selection": "Match Shots 22+",
-              "normalized_selection": "match_shots_22",
-              "odds": "4/9",
-              "stat": "shots",
-              "threshold": "22+"
-            },
-            {
-              "selection": "Match Shots 23+",
-              "normalized_selection": "match_shots_23",
-              "odds": "11/20",
-              "stat": "shots",
-              "threshold": "23+"
-            },
-            {
-              "selection": "Match Shots 24+",
-              "normalized_selection": "match_shots_24",
-              "odds": "7/10",
-              "stat": "shots",
-              "threshold": "24+"
-            }
-          ]
-        },
-        {
-          "market": "Canada Shots On Target",
-          "normalized_market": "canada_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Canada Shots On Target 4+",
-              "normalized_selection": "canada_shots_on_target_4",
-              "odds": "2/17",
-              "team": "Canada",
-              "stat": "shots_on_target",
-              "threshold": "4+"
-            },
-            {
-              "selection": "Canada Shots On Target 5+",
-              "normalized_selection": "canada_shots_on_target_5",
-              "odds": "2/7",
-              "team": "Canada",
-              "stat": "shots_on_target",
-              "threshold": "5+"
-            },
-            {
-              "selection": "Canada Shots On Target 6+",
-              "normalized_selection": "canada_shots_on_target_6",
-              "odds": "4/7",
-              "team": "Canada",
-              "stat": "shots_on_target",
-              "threshold": "6+"
-            }
-          ]
-        },
-        {
-          "market": "Canada Shots",
-          "normalized_market": "canada_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Canada Shots 14+",
-              "normalized_selection": "canada_shots_14",
-              "odds": "1/3",
-              "team": "Canada",
-              "stat": "shots",
-              "threshold": "14+"
-            },
-            {
-              "selection": "Canada Shots 15+",
-              "normalized_selection": "canada_shots_15",
-              "odds": "20/43",
-              "team": "Canada",
-              "stat": "shots",
-              "threshold": "15+"
-            },
-            {
-              "selection": "Canada Shots 16+",
-              "normalized_selection": "canada_shots_16",
-              "odds": "5/8",
-              "team": "Canada",
-              "stat": "shots",
-              "threshold": "16+"
-            },
-            {
-              "selection": "Canada Shots 17+",
-              "normalized_selection": "canada_shots_17",
-              "odds": "17/20",
-              "team": "Canada",
-              "stat": "shots",
-              "threshold": "17+"
-            }
-          ]
-        },
-        {
-          "market": "Qatar Shots On Target",
-          "normalized_market": "qatar_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Qatar Shots On Target 1+",
-              "normalized_selection": "qatar_shots_on_target_1",
-              "odds": "1/16",
-              "team": "Qatar",
-              "stat": "shots_on_target",
-              "threshold": "1+"
-            },
-            {
-              "selection": "Qatar Shots On Target 2+",
-              "normalized_selection": "qatar_shots_on_target_2",
-              "odds": "17/50",
-              "team": "Qatar",
-              "stat": "shots_on_target",
-              "threshold": "2+"
-            },
-            {
-              "selection": "Qatar Shots On Target 3+",
-              "normalized_selection": "qatar_shots_on_target_3",
-              "odds": "39/40",
-              "team": "Qatar",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            }
-          ]
-        },
-        {
-          "market": "Qatar Shots",
-          "normalized_market": "qatar_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Qatar Shots 4+",
-              "normalized_selection": "qatar_shots_4",
-              "odds": "2/21",
-              "team": "Qatar",
-              "stat": "shots",
-              "threshold": "4+"
-            },
-            {
-              "selection": "Qatar Shots 5+",
-              "normalized_selection": "qatar_shots_5",
-              "odds": "21/100",
-              "team": "Qatar",
-              "stat": "shots",
-              "threshold": "5+"
-            },
-            {
-              "selection": "Qatar Shots 6+",
-              "normalized_selection": "qatar_shots_6",
-              "odds": "4/11",
-              "team": "Qatar",
-              "stat": "shots",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Qatar Shots 7+",
-              "normalized_selection": "qatar_shots_7",
-              "odds": "3/5",
-              "team": "Qatar",
-              "stat": "shots",
-              "threshold": "7+"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Mexico v South Korea",
-      "home_team": "Mexico",
-      "away_team": "South Korea",
-      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780975600",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots On Target 4+",
-              "normalized_selection": "match_shots_on_target_4",
-              "odds": "1/24",
-              "stat": "shots_on_target",
-              "threshold": "4+"
-            },
-            {
-              "selection": "Match Shots On Target 5+",
-              "normalized_selection": "match_shots_on_target_5",
-              "odds": "7/50",
-              "stat": "shots_on_target",
-              "threshold": "5+"
-            },
-            {
-              "selection": "Match Shots On Target 6+",
-              "normalized_selection": "match_shots_on_target_6",
-              "odds": "3/10",
-              "stat": "shots_on_target",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Match Shots On Target 7+",
-              "normalized_selection": "match_shots_on_target_7",
-              "odds": "11/20",
-              "stat": "shots_on_target",
-              "threshold": "7+"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots 19+",
-              "normalized_selection": "match_shots_19",
-              "odds": "29/100",
-              "stat": "shots",
-              "threshold": "19+"
-            },
-            {
-              "selection": "Match Shots 20+",
-              "normalized_selection": "match_shots_20",
-              "odds": "2/5",
-              "stat": "shots",
-              "threshold": "20+"
-            },
-            {
-              "selection": "Match Shots 21+",
-              "normalized_selection": "match_shots_21",
-              "odds": "21/40",
-              "stat": "shots",
-              "threshold": "21+"
-            },
-            {
-              "selection": "Match Shots 22+",
-              "normalized_selection": "match_shots_22",
-              "odds": "27/40",
-              "stat": "shots",
-              "threshold": "22+"
-            }
-          ]
-        },
-        {
-          "market": "Mexico Shots On Target",
-          "normalized_market": "mexico_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Mexico Shots On Target 2+",
-              "normalized_selection": "mexico_shots_on_target_2",
-              "odds": "1/23",
-              "team": "Mexico",
-              "stat": "shots_on_target",
-              "threshold": "2+"
-            },
-            {
-              "selection": "Mexico Shots On Target 3+",
-              "normalized_selection": "mexico_shots_on_target_3",
-              "odds": "1/5",
-              "team": "Mexico",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            },
-            {
-              "selection": "Mexico Shots On Target 4+",
-              "normalized_selection": "mexico_shots_on_target_4",
-              "odds": "19/40",
-              "team": "Mexico",
-              "stat": "shots_on_target",
-              "threshold": "4+"
-            }
-          ]
-        },
-        {
-          "market": "Mexico Shots",
-          "normalized_market": "mexico_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Mexico Shots 10+",
-              "normalized_selection": "mexico_shots_10",
-              "odds": "13/50",
-              "team": "Mexico",
-              "stat": "shots",
-              "threshold": "10+"
-            },
-            {
-              "selection": "Mexico Shots 11+",
-              "normalized_selection": "mexico_shots_11",
-              "odds": "3/8",
-              "team": "Mexico",
-              "stat": "shots",
-              "threshold": "11+"
-            },
-            {
-              "selection": "Mexico Shots 12+",
-              "normalized_selection": "mexico_shots_12",
-              "odds": "11/20",
-              "team": "Mexico",
-              "stat": "shots",
-              "threshold": "12+"
-            },
-            {
-              "selection": "Mexico Shots 13+",
-              "normalized_selection": "mexico_shots_13",
-              "odds": "3/4",
-              "team": "Mexico",
-              "stat": "shots",
-              "threshold": "13+"
-            }
-          ]
-        },
-        {
-          "market": "South Korea Shots On Target",
-          "normalized_market": "south_korea_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "South Korea Shots On Target 1+",
-              "normalized_selection": "south_korea_shots_on_target_1",
-              "odds": "1/47",
-              "team": "South Korea",
-              "stat": "shots_on_target",
-              "threshold": "1+"
-            },
-            {
-              "selection": "South Korea Shots On Target 2+",
-              "normalized_selection": "south_korea_shots_on_target_2",
-              "odds": "21/100",
-              "team": "South Korea",
-              "stat": "shots_on_target",
-              "threshold": "2+"
-            },
-            {
-              "selection": "South Korea Shots On Target 3+",
-              "normalized_selection": "south_korea_shots_on_target_3",
-              "odds": "5/8",
-              "team": "South Korea",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            }
-          ]
-        },
-        {
-          "market": "South Korea Shots",
-          "normalized_market": "south_korea_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "South Korea Shots 6+",
-              "normalized_selection": "south_korea_shots_6",
-              "odds": "3/20",
-              "team": "South Korea",
-              "stat": "shots",
-              "threshold": "6+"
-            },
-            {
-              "selection": "South Korea Shots 7+",
-              "normalized_selection": "south_korea_shots_7",
-              "odds": "13/50",
-              "team": "South Korea",
-              "stat": "shots",
-              "threshold": "7+"
-            },
-            {
-              "selection": "South Korea Shots 8+",
-              "normalized_selection": "south_korea_shots_8",
-              "odds": "5/12",
-              "team": "South Korea",
-              "stat": "shots",
-              "threshold": "8+"
-            },
-            {
-              "selection": "South Korea Shots 9+",
-              "normalized_selection": "south_korea_shots_9",
-              "odds": "5/8",
-              "team": "South Korea",
-              "stat": "shots",
-              "threshold": "9+"
-            }
-          ]
-        }
-      ]
-    },
     {
       "match": "USA v Australia",
       "home_team": "USA",
       "away_team": "Australia",
       "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780924000",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots On Target 4+",
-              "normalized_selection": "match_shots_on_target_4",
-              "odds": "1/47",
-              "stat": "shots_on_target",
-              "threshold": "4+"
-            },
-            {
-              "selection": "Match Shots On Target 5+",
-              "normalized_selection": "match_shots_on_target_5",
-              "odds": "2/21",
-              "stat": "shots_on_target",
-              "threshold": "5+"
-            },
-            {
-              "selection": "Match Shots On Target 6+",
-              "normalized_selection": "match_shots_on_target_6",
-              "odds": "23/100",
-              "stat": "shots_on_target",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Match Shots On Target 7+",
-              "normalized_selection": "match_shots_on_target_7",
-              "odds": "9/20",
-              "stat": "shots_on_target",
-              "threshold": "7+"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots 21+",
-              "normalized_selection": "match_shots_21",
-              "odds": "13/40",
-              "stat": "shots",
-              "threshold": "21+"
-            },
-            {
-              "selection": "Match Shots 22+",
-              "normalized_selection": "match_shots_22",
-              "odds": "5/12",
-              "stat": "shots",
-              "threshold": "22+"
-            },
-            {
-              "selection": "Match Shots 23+",
-              "normalized_selection": "match_shots_23",
-              "odds": "8/15",
-              "stat": "shots",
-              "threshold": "23+"
-            },
-            {
-              "selection": "Match Shots 24+",
-              "normalized_selection": "match_shots_24",
-              "odds": "27/40",
-              "stat": "shots",
-              "threshold": "24+"
-            }
-          ]
-        },
-        {
-          "market": "USA Shots On Target",
-          "normalized_market": "usa_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "USA Shots On Target 3+",
-              "normalized_selection": "usa_shots_on_target_3",
-              "odds": "2/17",
-              "team": "USA",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            },
-            {
-              "selection": "USA Shots On Target 4+",
-              "normalized_selection": "usa_shots_on_target_4",
-              "odds": "31/100",
-              "team": "USA",
-              "stat": "shots_on_target",
-              "threshold": "4+"
-            },
-            {
-              "selection": "USA Shots On Target 5+",
-              "normalized_selection": "usa_shots_on_target_5",
-              "odds": "27/40",
-              "team": "USA",
-              "stat": "shots_on_target",
-              "threshold": "5+"
-            }
-          ]
-        },
-        {
-          "market": "USA Shots",
-          "normalized_market": "usa_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "USA Shots 12+",
-              "normalized_selection": "usa_shots_12",
-              "odds": "1/4",
-              "team": "USA",
-              "stat": "shots",
-              "threshold": "12+"
-            },
-            {
-              "selection": "USA Shots 13+",
-              "normalized_selection": "usa_shots_13",
-              "odds": "4/11",
-              "team": "USA",
-              "stat": "shots",
-              "threshold": "13+"
-            },
-            {
-              "selection": "USA Shots 14+",
-              "normalized_selection": "usa_shots_14",
-              "odds": "1/2",
-              "team": "USA",
-              "stat": "shots",
-              "threshold": "14+"
-            },
-            {
-              "selection": "USA Shots 15+",
-              "normalized_selection": "usa_shots_15",
-              "odds": "4/6",
-              "team": "USA",
-              "stat": "shots",
-              "threshold": "15+"
-            }
-          ]
-        },
-        {
-          "market": "Australia Shots On Target",
-          "normalized_market": "australia_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Australia Shots On Target 1+",
-              "normalized_selection": "australia_shots_on_target_1",
-              "odds": "1/27",
-              "team": "Australia",
-              "stat": "shots_on_target",
-              "threshold": "1+"
-            },
-            {
-              "selection": "Australia Shots On Target 2+",
-              "normalized_selection": "australia_shots_on_target_2",
-              "odds": "13/50",
-              "team": "Australia",
-              "stat": "shots_on_target",
-              "threshold": "2+"
-            },
-            {
-              "selection": "Australia Shots On Target 3+",
-              "normalized_selection": "australia_shots_on_target_3",
-              "odds": "3/4",
-              "team": "Australia",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            }
-          ]
-        },
-        {
-          "market": "Australia Shots",
-          "normalized_market": "australia_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Australia Shots 6+",
-              "normalized_selection": "australia_shots_6",
-              "odds": "19/100",
-              "team": "Australia",
-              "stat": "shots",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Australia Shots 7+",
-              "normalized_selection": "australia_shots_7",
-              "odds": "13/40",
-              "team": "Australia",
-              "stat": "shots",
-              "threshold": "7+"
-            },
-            {
-              "selection": "Australia Shots 8+",
-              "normalized_selection": "australia_shots_8",
-              "odds": "1/2",
-              "team": "Australia",
-              "stat": "shots",
-              "threshold": "8+"
-            },
-            {
-              "selection": "Australia Shots 9+",
-              "normalized_selection": "australia_shots_9",
-              "odds": "3/4",
-              "team": "Australia",
-              "stat": "shots",
-              "threshold": "9+"
-            }
-          ]
-        }
-      ]
+      "market_count": 0,
+      "markets": [],
+      "error": "zero_markets_after_parse",
+      "attempts": 3
     },
     {
       "match": "Scotland v Morocco",
       "home_team": "Scotland",
       "away_team": "Morocco",
       "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2781140400",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots On Target 4+",
-              "normalized_selection": "match_shots_on_target_4",
-              "odds": "1/29",
-              "stat": "shots_on_target",
-              "threshold": "4+"
-            },
-            {
-              "selection": "Match Shots On Target 5+",
-              "normalized_selection": "match_shots_on_target_5",
-              "odds": "3/25",
-              "stat": "shots_on_target",
-              "threshold": "5+"
-            },
-            {
-              "selection": "Match Shots On Target 6+",
-              "normalized_selection": "match_shots_on_target_6",
-              "odds": "4/15",
-              "stat": "shots_on_target",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Match Shots On Target 7+",
-              "normalized_selection": "match_shots_on_target_7",
-              "odds": "1/2",
-              "stat": "shots_on_target",
-              "threshold": "7+"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots 21+",
-              "normalized_selection": "match_shots_21",
-              "odds": "3/8",
-              "stat": "shots",
-              "threshold": "21+"
-            },
-            {
-              "selection": "Match Shots 22+",
-              "normalized_selection": "match_shots_22",
-              "odds": "1/2",
-              "stat": "shots",
-              "threshold": "22+"
-            },
-            {
-              "selection": "Match Shots 23+",
-              "normalized_selection": "match_shots_23",
-              "odds": "5/8",
-              "stat": "shots",
-              "threshold": "23+"
-            },
-            {
-              "selection": "Match Shots 24+",
-              "normalized_selection": "match_shots_24",
-              "odds": "31/40",
-              "stat": "shots",
-              "threshold": "24+"
-            }
-          ]
-        },
-        {
-          "market": "Scotland Shots On Target",
-          "normalized_market": "scotland_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Scotland Shots On Target 1+",
-              "normalized_selection": "scotland_shots_on_target_1",
-              "odds": "1/26",
-              "team": "Scotland",
-              "stat": "shots_on_target",
-              "threshold": "1+"
-            },
-            {
-              "selection": "Scotland Shots On Target 2+",
-              "normalized_selection": "scotland_shots_on_target_2",
-              "odds": "11/40",
-              "team": "Scotland",
-              "stat": "shots_on_target",
-              "threshold": "2+"
-            },
-            {
-              "selection": "Scotland Shots On Target 3+",
-              "normalized_selection": "scotland_shots_on_target_3",
-              "odds": "31/40",
-              "team": "Scotland",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            }
-          ]
-        },
-        {
-          "market": "Scotland Shots",
-          "normalized_market": "scotland_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Scotland Shots 5+",
-              "normalized_selection": "scotland_shots_5",
-              "odds": "2/15",
-              "team": "Scotland",
-              "stat": "shots",
-              "threshold": "5+"
-            },
-            {
-              "selection": "Scotland Shots 6+",
-              "normalized_selection": "scotland_shots_6",
-              "odds": "6/25",
-              "team": "Scotland",
-              "stat": "shots",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Scotland Shots 7+",
-              "normalized_selection": "scotland_shots_7",
-              "odds": "2/5",
-              "team": "Scotland",
-              "stat": "shots",
-              "threshold": "7+"
-            },
-            {
-              "selection": "Scotland Shots 8+",
-              "normalized_selection": "scotland_shots_8",
-              "odds": "8/13",
-              "team": "Scotland",
-              "stat": "shots",
-              "threshold": "8+"
-            }
-          ]
-        },
-        {
-          "market": "Morocco Shots On Target",
-          "normalized_market": "morocco_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Morocco Shots On Target 3+",
-              "normalized_selection": "morocco_shots_on_target_3",
-              "odds": "1/8",
-              "team": "Morocco",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            },
-            {
-              "selection": "Morocco Shots On Target 4+",
-              "normalized_selection": "morocco_shots_on_target_4",
-              "odds": "5/14",
-              "team": "Morocco",
-              "stat": "shots_on_target",
-              "threshold": "4+"
-            },
-            {
-              "selection": "Morocco Shots On Target 5+",
-              "normalized_selection": "morocco_shots_on_target_5",
-              "odds": "31/40",
-              "team": "Morocco",
-              "stat": "shots_on_target",
-              "threshold": "5+"
-            }
-          ]
-        },
-        {
-          "market": "Morocco Shots",
-          "normalized_market": "morocco_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Morocco Shots 12+",
-              "normalized_selection": "morocco_shots_12",
-              "odds": "13/50",
-              "team": "Morocco",
-              "stat": "shots",
-              "threshold": "12+"
-            },
-            {
-              "selection": "Morocco Shots 13+",
-              "normalized_selection": "morocco_shots_13",
-              "odds": "4/11",
-              "team": "Morocco",
-              "stat": "shots",
-              "threshold": "13+"
-            },
-            {
-              "selection": "Morocco Shots 14+",
-              "normalized_selection": "morocco_shots_14",
-              "odds": "1/2",
-              "team": "Morocco",
-              "stat": "shots",
-              "threshold": "14+"
-            },
-            {
-              "selection": "Morocco Shots 15+",
-              "normalized_selection": "morocco_shots_15",
-              "odds": "7/10",
-              "team": "Morocco",
-              "stat": "shots",
-              "threshold": "15+"
-            }
-          ]
-        }
-      ]
+      "market_count": 0,
+      "markets": [],
+      "error": "zero_markets_after_parse",
+      "attempts": 3
     },
     {
       "match": "Brazil v Haiti",
       "home_team": "Brazil",
       "away_team": "Haiti",
       "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780975400",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots On Target 6+",
-              "normalized_selection": "match_shots_on_target_6",
-              "odds": "1/16",
-              "stat": "shots_on_target",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Match Shots On Target 7+",
-              "normalized_selection": "match_shots_on_target_7",
-              "odds": "7/50",
-              "stat": "shots_on_target",
-              "threshold": "7+"
-            },
-            {
-              "selection": "Match Shots On Target 8+",
-              "normalized_selection": "match_shots_on_target_8",
-              "odds": "11/40",
-              "stat": "shots_on_target",
-              "threshold": "8+"
-            },
-            {
-              "selection": "Match Shots On Target 9+",
-              "normalized_selection": "match_shots_on_target_9",
-              "odds": "19/40",
-              "stat": "shots_on_target",
-              "threshold": "9+"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots 21+",
-              "normalized_selection": "match_shots_21",
-              "odds": "2/17",
-              "stat": "shots",
-              "threshold": "21+"
-            },
-            {
-              "selection": "Match Shots 23+",
-              "normalized_selection": "match_shots_23",
-              "odds": "11/50",
-              "stat": "shots",
-              "threshold": "23+"
-            },
-            {
-              "selection": "Match Shots 25+",
-              "normalized_selection": "match_shots_25",
-              "odds": "3/8",
-              "stat": "shots",
-              "threshold": "25+"
-            },
-            {
-              "selection": "Match Shots 27+",
-              "normalized_selection": "match_shots_27",
-              "odds": "3/5",
-              "stat": "shots",
-              "threshold": "27+"
-            }
-          ]
-        },
-        {
-          "market": "Brazil Shots On Target",
-          "normalized_market": "brazil_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Brazil Shots On Target 5+",
-              "normalized_selection": "brazil_shots_on_target_5",
-              "odds": "2/19",
-              "team": "Brazil",
-              "stat": "shots_on_target",
-              "threshold": "5+"
-            },
-            {
-              "selection": "Brazil Shots On Target 6+",
-              "normalized_selection": "brazil_shots_on_target_6",
-              "odds": "1/4",
-              "team": "Brazil",
-              "stat": "shots_on_target",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Brazil Shots On Target 7+",
-              "normalized_selection": "brazil_shots_on_target_7",
-              "odds": "20/43",
-              "team": "Brazil",
-              "stat": "shots_on_target",
-              "threshold": "7+"
-            }
-          ]
-        },
-        {
-          "market": "Brazil Shots",
-          "normalized_market": "brazil_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Brazil Shots 17+",
-              "normalized_selection": "brazil_shots_17",
-              "odds": "1/3",
-              "team": "Brazil",
-              "stat": "shots",
-              "threshold": "17+"
-            },
-            {
-              "selection": "Brazil Shots 18+",
-              "normalized_selection": "brazil_shots_18",
-              "odds": "9/20",
-              "team": "Brazil",
-              "stat": "shots",
-              "threshold": "18+"
-            },
-            {
-              "selection": "Brazil Shots 19+",
-              "normalized_selection": "brazil_shots_19",
-              "odds": "3/5",
-              "team": "Brazil",
-              "stat": "shots",
-              "threshold": "19+"
-            },
-            {
-              "selection": "Brazil Shots 20+",
-              "normalized_selection": "brazil_shots_20",
-              "odds": "31/40",
-              "team": "Brazil",
-              "stat": "shots",
-              "threshold": "20+"
-            }
-          ]
-        },
-        {
-          "market": "Haiti Shots On Target",
-          "normalized_market": "haiti_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Haiti Shots On Target 1+",
-              "normalized_selection": "haiti_shots_on_target_1",
-              "odds": "1/9",
-              "team": "Haiti",
-              "stat": "shots_on_target",
-              "threshold": "1+"
-            },
-            {
-              "selection": "Haiti Shots On Target 2+",
-              "normalized_selection": "haiti_shots_on_target_2",
-              "odds": "8/15",
-              "team": "Haiti",
-              "stat": "shots_on_target",
-              "threshold": "2+"
-            },
-            {
-              "selection": "Haiti Shots On Target 3+",
-              "normalized_selection": "haiti_shots_on_target_3",
-              "odds": "6/4",
-              "team": "Haiti",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            }
-          ]
-        },
-        {
-          "market": "Haiti Shots",
-          "normalized_market": "haiti_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Haiti Shots 5+",
-              "normalized_selection": "haiti_shots_5",
-              "odds": "2/13",
-              "team": "Haiti",
-              "stat": "shots",
-              "threshold": "5+"
-            },
-            {
-              "selection": "Haiti Shots 6+",
-              "normalized_selection": "haiti_shots_6",
-              "odds": "2/7",
-              "team": "Haiti",
-              "stat": "shots",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Haiti Shots 7+",
-              "normalized_selection": "haiti_shots_7",
-              "odds": "40/85",
-              "team": "Haiti",
-              "stat": "shots",
-              "threshold": "7+"
-            },
-            {
-              "selection": "Haiti Shots 8+",
-              "normalized_selection": "haiti_shots_8",
-              "odds": "8/11",
-              "team": "Haiti",
-              "stat": "shots",
-              "threshold": "8+"
-            }
-          ]
-        }
-      ]
+      "market_count": 0,
+      "markets": [],
+      "error": "zero_markets_after_parse",
+      "attempts": 3
     },
     {
       "match": "Türkiye v Paraguay",
       "home_team": "Türkiye",
       "away_team": "Paraguay",
       "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2783151300",
-      "market_count": 4,
-      "markets": [
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots On Target 5+",
-              "normalized_selection": "match_shots_on_target_5",
-              "odds": "2/25",
-              "stat": "shots_on_target",
-              "threshold": "5+"
-            },
-            {
-              "selection": "Match Shots On Target 6+",
-              "normalized_selection": "match_shots_on_target_6",
-              "odds": "1/5",
-              "stat": "shots_on_target",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Match Shots On Target 7+",
-              "normalized_selection": "match_shots_on_target_7",
-              "odds": "3/8",
-              "stat": "shots_on_target",
-              "threshold": "7+"
-            },
-            {
-              "selection": "Match Shots On Target 8+",
-              "normalized_selection": "match_shots_on_target_8",
-              "odds": "27/40",
-              "stat": "shots_on_target",
-              "threshold": "8+"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots 18+",
-              "normalized_selection": "match_shots_18",
-              "odds": "1/12",
-              "stat": "shots",
-              "threshold": "18+"
-            },
-            {
-              "selection": "Match Shots 20+",
-              "normalized_selection": "match_shots_20",
-              "odds": "2/11",
-              "stat": "shots",
-              "threshold": "20+"
-            },
-            {
-              "selection": "Match Shots 22+",
-              "normalized_selection": "match_shots_22",
-              "odds": "13/40",
-              "stat": "shots",
-              "threshold": "22+"
-            },
-            {
-              "selection": "Match Shots 24+",
-              "normalized_selection": "match_shots_24",
-              "odds": "11/20",
-              "stat": "shots",
-              "threshold": "24+"
-            }
-          ]
-        },
-        {
-          "market": "Paraguay Shots On Target",
-          "normalized_market": "paraguay_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Paraguay Shots On Target 1+",
-              "normalized_selection": "paraguay_shots_on_target_1",
-              "odds": "1/90",
-              "team": "Paraguay",
-              "stat": "shots_on_target",
-              "threshold": "1+"
-            },
-            {
-              "selection": "Paraguay Shots On Target 2+",
-              "normalized_selection": "paraguay_shots_on_target_2",
-              "odds": "9/50",
-              "team": "Paraguay",
-              "stat": "shots_on_target",
-              "threshold": "2+"
-            },
-            {
-              "selection": "Paraguay Shots On Target 3+",
-              "normalized_selection": "paraguay_shots_on_target_3",
-              "odds": "11/20",
-              "team": "Paraguay",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            }
-          ]
-        },
-        {
-          "market": "Paraguay Shots",
-          "normalized_market": "paraguay_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Paraguay Shots 8+",
-              "normalized_selection": "paraguay_shots_8",
-              "odds": "6/25",
-              "team": "Paraguay",
-              "stat": "shots",
-              "threshold": "8+"
-            },
-            {
-              "selection": "Paraguay Shots 9+",
-              "normalized_selection": "paraguay_shots_9",
-              "odds": "3/8",
-              "team": "Paraguay",
-              "stat": "shots",
-              "threshold": "9+"
-            },
-            {
-              "selection": "Paraguay Shots 10+",
-              "normalized_selection": "paraguay_shots_10",
-              "odds": "11/20",
-              "team": "Paraguay",
-              "stat": "shots",
-              "threshold": "10+"
-            },
-            {
-              "selection": "Paraguay Shots 11+",
-              "normalized_selection": "paraguay_shots_11",
-              "odds": "31/40",
-              "team": "Paraguay",
-              "stat": "shots",
-              "threshold": "11+"
-            }
-          ]
-        }
-      ]
+      "market_count": 0,
+      "markets": [],
+      "error": "event_page_not_ready",
+      "attempts": 3
     },
     {
       "match": "Netherlands v Sweden",
@@ -1266,226 +64,14 @@
             {
               "selection": "Match Shots On Target 5+",
               "normalized_selection": "match_shots_on_target_5",
-              "odds": "1/11",
+              "odds": "1/24",
               "stat": "shots_on_target",
               "threshold": "5+"
             },
             {
               "selection": "Match Shots On Target 6+",
               "normalized_selection": "match_shots_on_target_6",
-              "odds": "1/5",
-              "stat": "shots_on_target",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Match Shots On Target 7+",
-              "normalized_selection": "match_shots_on_target_7",
-              "odds": "2/5",
-              "stat": "shots_on_target",
-              "threshold": "7+"
-            },
-            {
-              "selection": "Match Shots On Target 8+",
-              "normalized_selection": "match_shots_on_target_8",
-              "odds": "7/10",
-              "stat": "shots_on_target",
-              "threshold": "8+"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots 21+",
-              "normalized_selection": "match_shots_21",
-              "odds": "2/5",
-              "stat": "shots",
-              "threshold": "21+"
-            },
-            {
-              "selection": "Match Shots 22+",
-              "normalized_selection": "match_shots_22",
-              "odds": "1/2",
-              "stat": "shots",
-              "threshold": "22+"
-            },
-            {
-              "selection": "Match Shots 23+",
-              "normalized_selection": "match_shots_23",
-              "odds": "5/8",
-              "stat": "shots",
-              "threshold": "23+"
-            },
-            {
-              "selection": "Match Shots 24+",
-              "normalized_selection": "match_shots_24",
-              "odds": "4/5",
-              "stat": "shots",
-              "threshold": "24+"
-            }
-          ]
-        },
-        {
-          "market": "Netherlands Shots On Target",
-          "normalized_market": "netherlands_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Netherlands Shots On Target 3+",
-              "normalized_selection": "netherlands_shots_on_target_3",
-              "odds": "3/25",
-              "team": "Netherlands",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            },
-            {
-              "selection": "Netherlands Shots On Target 4+",
-              "normalized_selection": "netherlands_shots_on_target_4",
-              "odds": "13/40",
-              "team": "Netherlands",
-              "stat": "shots_on_target",
-              "threshold": "4+"
-            },
-            {
-              "selection": "Netherlands Shots On Target 5+",
-              "normalized_selection": "netherlands_shots_on_target_5",
-              "odds": "27/40",
-              "team": "Netherlands",
-              "stat": "shots_on_target",
-              "threshold": "5+"
-            }
-          ]
-        },
-        {
-          "market": "Netherlands Shots",
-          "normalized_market": "netherlands_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Netherlands Shots 11+",
-              "normalized_selection": "netherlands_shots_11",
-              "odds": "4/15",
-              "team": "Netherlands",
-              "stat": "shots",
-              "threshold": "11+"
-            },
-            {
-              "selection": "Netherlands Shots 12+",
-              "normalized_selection": "netherlands_shots_12",
-              "odds": "3/8",
-              "team": "Netherlands",
-              "stat": "shots",
-              "threshold": "12+"
-            },
-            {
-              "selection": "Netherlands Shots 13+",
-              "normalized_selection": "netherlands_shots_13",
-              "odds": "8/15",
-              "team": "Netherlands",
-              "stat": "shots",
-              "threshold": "13+"
-            },
-            {
-              "selection": "Netherlands Shots 14+",
-              "normalized_selection": "netherlands_shots_14",
-              "odds": "3/4",
-              "team": "Netherlands",
-              "stat": "shots",
-              "threshold": "14+"
-            }
-          ]
-        },
-        {
-          "market": "Sweden Shots On Target",
-          "normalized_market": "sweden_shots_on_target",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Sweden Shots On Target 1+",
-              "normalized_selection": "sweden_shots_on_target_1",
-              "odds": "1/60",
-              "team": "Sweden",
-              "stat": "shots_on_target",
-              "threshold": "1+"
-            },
-            {
-              "selection": "Sweden Shots On Target 2+",
-              "normalized_selection": "sweden_shots_on_target_2",
-              "odds": "1/5",
-              "team": "Sweden",
-              "stat": "shots_on_target",
-              "threshold": "2+"
-            },
-            {
-              "selection": "Sweden Shots On Target 3+",
-              "normalized_selection": "sweden_shots_on_target_3",
-              "odds": "3/5",
-              "team": "Sweden",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            }
-          ]
-        },
-        {
-          "market": "Sweden Shots",
-          "normalized_market": "sweden_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Sweden Shots 6+",
-              "normalized_selection": "sweden_shots_6",
-              "odds": "7/50",
-              "team": "Sweden",
-              "stat": "shots",
-              "threshold": "6+"
-            },
-            {
-              "selection": "Sweden Shots 7+",
-              "normalized_selection": "sweden_shots_7",
-              "odds": "1/4",
-              "team": "Sweden",
-              "stat": "shots",
-              "threshold": "7+"
-            },
-            {
-              "selection": "Sweden Shots 8+",
-              "normalized_selection": "sweden_shots_8",
-              "odds": "5/12",
-              "team": "Sweden",
-              "stat": "shots",
-              "threshold": "8+"
-            },
-            {
-              "selection": "Sweden Shots 9+",
-              "normalized_selection": "sweden_shots_9",
-              "odds": "5/8",
-              "team": "Sweden",
-              "stat": "shots",
-              "threshold": "9+"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Germany v Ivory Coast",
-      "home_team": "Germany",
-      "away_team": "Ivory Coast",
-      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780924200",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Match Shots On Target 6+",
-              "normalized_selection": "match_shots_on_target_6",
-              "odds": "3/25",
+              "odds": "1/8",
               "stat": "shots_on_target",
               "threshold": "6+"
             },
@@ -1502,11 +88,233 @@
               "odds": "9/20",
               "stat": "shots_on_target",
               "threshold": "8+"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots 22+",
+              "normalized_selection": "match_shots_22",
+              "odds": "2/5",
+              "stat": "shots",
+              "threshold": "22+"
+            },
+            {
+              "selection": "Match Shots 23+",
+              "normalized_selection": "match_shots_23",
+              "odds": "1/2",
+              "stat": "shots",
+              "threshold": "23+"
+            },
+            {
+              "selection": "Match Shots 24+",
+              "normalized_selection": "match_shots_24",
+              "odds": "5/8",
+              "stat": "shots",
+              "threshold": "24+"
+            },
+            {
+              "selection": "Match Shots 25+",
+              "normalized_selection": "match_shots_25",
+              "odds": "4/5",
+              "stat": "shots",
+              "threshold": "25+"
+            }
+          ]
+        },
+        {
+          "market": "Netherlands Shots On Target",
+          "normalized_market": "netherlands_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Netherlands Shots On Target 3+",
+              "normalized_selection": "netherlands_shots_on_target_3",
+              "odds": "1/14",
+              "team": "Netherlands",
+              "stat": "shots_on_target",
+              "threshold": "3+"
+            },
+            {
+              "selection": "Netherlands Shots On Target 4+",
+              "normalized_selection": "netherlands_shots_on_target_4",
+              "odds": "23/100",
+              "team": "Netherlands",
+              "stat": "shots_on_target",
+              "threshold": "4+"
+            },
+            {
+              "selection": "Netherlands Shots On Target 5+",
+              "normalized_selection": "netherlands_shots_on_target_5",
+              "odds": "1/2",
+              "team": "Netherlands",
+              "stat": "shots_on_target",
+              "threshold": "5+"
+            }
+          ]
+        },
+        {
+          "market": "Netherlands Shots",
+          "normalized_market": "netherlands_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Netherlands Shots 12+",
+              "normalized_selection": "netherlands_shots_12",
+              "odds": "8/25",
+              "team": "Netherlands",
+              "stat": "shots",
+              "threshold": "12+"
+            },
+            {
+              "selection": "Netherlands Shots 13+",
+              "normalized_selection": "netherlands_shots_13",
+              "odds": "4/9",
+              "team": "Netherlands",
+              "stat": "shots",
+              "threshold": "13+"
+            },
+            {
+              "selection": "Netherlands Shots 14+",
+              "normalized_selection": "netherlands_shots_14",
+              "odds": "3/5",
+              "team": "Netherlands",
+              "stat": "shots",
+              "threshold": "14+"
+            },
+            {
+              "selection": "Netherlands Shots 15+",
+              "normalized_selection": "netherlands_shots_15",
+              "odds": "4/5",
+              "team": "Netherlands",
+              "stat": "shots",
+              "threshold": "15+"
+            }
+          ]
+        },
+        {
+          "market": "Sweden Shots On Target",
+          "normalized_market": "sweden_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Sweden Shots On Target 1+",
+              "normalized_selection": "sweden_shots_on_target_1",
+              "odds": "1/200",
+              "team": "Sweden",
+              "stat": "shots_on_target",
+              "threshold": "1+"
+            },
+            {
+              "selection": "Sweden Shots On Target 2+",
+              "normalized_selection": "sweden_shots_on_target_2",
+              "odds": "2/13",
+              "team": "Sweden",
+              "stat": "shots_on_target",
+              "threshold": "2+"
+            },
+            {
+              "selection": "Sweden Shots On Target 3+",
+              "normalized_selection": "sweden_shots_on_target_3",
+              "odds": "9/20",
+              "team": "Sweden",
+              "stat": "shots_on_target",
+              "threshold": "3+"
+            }
+          ]
+        },
+        {
+          "market": "Sweden Shots",
+          "normalized_market": "sweden_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Sweden Shots 7+",
+              "normalized_selection": "sweden_shots_7",
+              "odds": "21/100",
+              "team": "Sweden",
+              "stat": "shots",
+              "threshold": "7+"
+            },
+            {
+              "selection": "Sweden Shots 8+",
+              "normalized_selection": "sweden_shots_8",
+              "odds": "7/20",
+              "team": "Sweden",
+              "stat": "shots",
+              "threshold": "8+"
+            },
+            {
+              "selection": "Sweden Shots 9+",
+              "normalized_selection": "sweden_shots_9",
+              "odds": "11/20",
+              "team": "Sweden",
+              "stat": "shots",
+              "threshold": "9+"
+            },
+            {
+              "selection": "Sweden Shots 10+",
+              "normalized_selection": "sweden_shots_10",
+              "odds": "4/5",
+              "team": "Sweden",
+              "stat": "shots",
+              "threshold": "10+"
+            }
+          ]
+        }
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "Netherlands Shots on Target": "Netherlands Shots on Target",
+        "Netherlands Shots": "Netherlands Shots",
+        "Sweden Shots on Target": "Sweden Shots on Target",
+        "Sweden Shots": "Sweden Shots"
+      }
+    },
+    {
+      "match": "Germany v Ivory Coast",
+      "home_team": "Germany",
+      "away_team": "Ivory Coast",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780924200",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots On Target 6+",
+              "normalized_selection": "match_shots_on_target_6",
+              "odds": "1/10",
+              "stat": "shots_on_target",
+              "threshold": "6+"
+            },
+            {
+              "selection": "Match Shots On Target 7+",
+              "normalized_selection": "match_shots_on_target_7",
+              "odds": "2/9",
+              "stat": "shots_on_target",
+              "threshold": "7+"
+            },
+            {
+              "selection": "Match Shots On Target 8+",
+              "normalized_selection": "match_shots_on_target_8",
+              "odds": "2/5",
+              "stat": "shots_on_target",
+              "threshold": "8+"
             },
             {
               "selection": "Match Shots On Target 9+",
               "normalized_selection": "match_shots_on_target_9",
-              "odds": "3/4",
+              "odds": "7/10",
               "stat": "shots_on_target",
               "threshold": "9+"
             }
@@ -1518,32 +326,32 @@
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Match Shots 19+",
-              "normalized_selection": "match_shots_19",
-              "odds": "1/11",
+              "selection": "Match Shots 20+",
+              "normalized_selection": "match_shots_20",
+              "odds": "2/21",
               "stat": "shots",
-              "threshold": "19+"
+              "threshold": "20+"
             },
             {
-              "selection": "Match Shots 21+",
-              "normalized_selection": "match_shots_21",
-              "odds": "19/100",
+              "selection": "Match Shots 22+",
+              "normalized_selection": "match_shots_22",
+              "odds": "2/11",
               "stat": "shots",
-              "threshold": "21+"
+              "threshold": "22+"
             },
             {
-              "selection": "Match Shots 23+",
-              "normalized_selection": "match_shots_23",
-              "odds": "1/3",
+              "selection": "Match Shots 24+",
+              "normalized_selection": "match_shots_24",
+              "odds": "13/40",
               "stat": "shots",
-              "threshold": "23+"
+              "threshold": "24+"
             },
             {
-              "selection": "Match Shots 25+",
-              "normalized_selection": "match_shots_25",
-              "odds": "11/20",
+              "selection": "Match Shots 26+",
+              "normalized_selection": "match_shots_26",
+              "odds": "8/15",
               "stat": "shots",
-              "threshold": "25+"
+              "threshold": "26+"
             }
           ]
         },
@@ -1552,14 +360,6 @@
           "normalized_market": "germany_shots_on_target",
           "selection_count": 3,
           "selections": [
-            {
-              "selection": "Germany Shots On Target 3+",
-              "normalized_selection": "germany_shots_on_target_3",
-              "odds": "1/20",
-              "team": "Germany",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            },
             {
               "selection": "Germany Shots On Target 4+",
               "normalized_selection": "germany_shots_on_target_4",
@@ -1571,10 +371,18 @@
             {
               "selection": "Germany Shots On Target 5+",
               "normalized_selection": "germany_shots_on_target_5",
-              "odds": "5/12",
+              "odds": "2/5",
               "team": "Germany",
               "stat": "shots_on_target",
               "threshold": "5+"
+            },
+            {
+              "selection": "Germany Shots On Target 6+",
+              "normalized_selection": "germany_shots_on_target_6",
+              "odds": "4/5",
+              "team": "Germany",
+              "stat": "shots_on_target",
+              "threshold": "6+"
             }
           ]
         },
@@ -1610,7 +418,7 @@
             {
               "selection": "Germany Shots 16+",
               "normalized_selection": "germany_shots_16",
-              "odds": "7/10",
+              "odds": "27/40",
               "team": "Germany",
               "stat": "shots",
               "threshold": "16+"
@@ -1625,7 +433,7 @@
             {
               "selection": "Ivory Coast Shots On Target 1+",
               "normalized_selection": "ivory_coast_shots_on_target_1",
-              "odds": "1/60",
+              "odds": "1/200",
               "team": "Ivory Coast",
               "stat": "shots_on_target",
               "threshold": "1+"
@@ -1633,7 +441,7 @@
             {
               "selection": "Ivory Coast Shots On Target 2+",
               "normalized_selection": "ivory_coast_shots_on_target_2",
-              "odds": "19/100",
+              "odds": "3/20",
               "team": "Ivory Coast",
               "stat": "shots_on_target",
               "threshold": "2+"
@@ -1641,7 +449,7 @@
             {
               "selection": "Ivory Coast Shots On Target 3+",
               "normalized_selection": "ivory_coast_shots_on_target_3",
-              "odds": "11/20",
+              "odds": "19/40",
               "team": "Ivory Coast",
               "stat": "shots_on_target",
               "threshold": "3+"
@@ -1654,17 +462,9 @@
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Ivory Coast Shots 7+",
-              "normalized_selection": "ivory_coast_shots_7",
-              "odds": "21/100",
-              "team": "Ivory Coast",
-              "stat": "shots",
-              "threshold": "7+"
-            },
-            {
               "selection": "Ivory Coast Shots 8+",
               "normalized_selection": "ivory_coast_shots_8",
-              "odds": "17/50",
+              "odds": "1/5",
               "team": "Ivory Coast",
               "stat": "shots",
               "threshold": "8+"
@@ -1672,7 +472,7 @@
             {
               "selection": "Ivory Coast Shots 9+",
               "normalized_selection": "ivory_coast_shots_9",
-              "odds": "1/2",
+              "odds": "13/40",
               "team": "Ivory Coast",
               "stat": "shots",
               "threshold": "9+"
@@ -1680,14 +480,32 @@
             {
               "selection": "Ivory Coast Shots 10+",
               "normalized_selection": "ivory_coast_shots_10",
-              "odds": "8/11",
+              "odds": "1/2",
               "team": "Ivory Coast",
               "stat": "shots",
               "threshold": "10+"
+            },
+            {
+              "selection": "Ivory Coast Shots 11+",
+              "normalized_selection": "ivory_coast_shots_11",
+              "odds": "7/10",
+              "team": "Ivory Coast",
+              "stat": "shots",
+              "threshold": "11+"
             }
           ]
         }
-      ]
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "Germany Shots on Target": "Germany Shots on Target",
+        "Germany Shots": "Germany Shots",
+        "Ivory Coast Shots on Target": "Ivory Coast Shots on Target",
+        "Ivory Coast Shots": "Ivory Coast Shots"
+      }
     },
     {
       "match": "Ecuador v Curacao",
@@ -1704,28 +522,28 @@
             {
               "selection": "Match Shots On Target 6+",
               "normalized_selection": "match_shots_on_target_6",
-              "odds": "2/19",
+              "odds": "1/10",
               "stat": "shots_on_target",
               "threshold": "6+"
             },
             {
               "selection": "Match Shots On Target 7+",
               "normalized_selection": "match_shots_on_target_7",
-              "odds": "23/100",
+              "odds": "9/40",
               "stat": "shots_on_target",
               "threshold": "7+"
             },
             {
               "selection": "Match Shots On Target 8+",
               "normalized_selection": "match_shots_on_target_8",
-              "odds": "4/9",
+              "odds": "5/12",
               "stat": "shots_on_target",
               "threshold": "8+"
             },
             {
               "selection": "Match Shots On Target 9+",
               "normalized_selection": "match_shots_on_target_9",
-              "odds": "3/4",
+              "odds": "7/10",
               "stat": "shots_on_target",
               "threshold": "9+"
             }
@@ -1739,28 +557,28 @@
             {
               "selection": "Match Shots 20+",
               "normalized_selection": "match_shots_20",
-              "odds": "1/10",
+              "odds": "2/21",
               "stat": "shots",
               "threshold": "20+"
             },
             {
               "selection": "Match Shots 22+",
               "normalized_selection": "match_shots_22",
-              "odds": "1/5",
+              "odds": "19/100",
               "stat": "shots",
               "threshold": "22+"
             },
             {
               "selection": "Match Shots 24+",
               "normalized_selection": "match_shots_24",
-              "odds": "1/3",
+              "odds": "13/40",
               "stat": "shots",
               "threshold": "24+"
             },
             {
               "selection": "Match Shots 26+",
               "normalized_selection": "match_shots_26",
-              "odds": "8/15",
+              "odds": "21/40",
               "stat": "shots",
               "threshold": "26+"
             }
@@ -1774,7 +592,7 @@
             {
               "selection": "Ecuador Shots On Target 5+",
               "normalized_selection": "ecuador_shots_on_target_5",
-              "odds": "4/25",
+              "odds": "2/13",
               "team": "Ecuador",
               "stat": "shots_on_target",
               "threshold": "5+"
@@ -1782,7 +600,7 @@
             {
               "selection": "Ecuador Shots On Target 6+",
               "normalized_selection": "ecuador_shots_on_target_6",
-              "odds": "7/20",
+              "odds": "1/3",
               "team": "Ecuador",
               "stat": "shots_on_target",
               "threshold": "6+"
@@ -1790,7 +608,7 @@
             {
               "selection": "Ecuador Shots On Target 7+",
               "normalized_selection": "ecuador_shots_on_target_7",
-              "odds": "13/20",
+              "odds": "5/8",
               "team": "Ecuador",
               "stat": "shots_on_target",
               "threshold": "7+"
@@ -1813,7 +631,7 @@
             {
               "selection": "Ecuador Shots 19+",
               "normalized_selection": "ecuador_shots_19",
-              "odds": "20/43",
+              "odds": "9/20",
               "team": "Ecuador",
               "stat": "shots",
               "threshold": "19+"
@@ -1821,7 +639,7 @@
             {
               "selection": "Ecuador Shots 20+",
               "normalized_selection": "ecuador_shots_20",
-              "odds": "3/5",
+              "odds": "4/7",
               "team": "Ecuador",
               "stat": "shots",
               "threshold": "20+"
@@ -1829,7 +647,7 @@
             {
               "selection": "Ecuador Shots 21+",
               "normalized_selection": "ecuador_shots_21",
-              "odds": "31/40",
+              "odds": "8/11",
               "team": "Ecuador",
               "stat": "shots",
               "threshold": "21+"
@@ -1844,7 +662,7 @@
             {
               "selection": "Curacao Shots On Target 1+",
               "normalized_selection": "curacao_shots_on_target_1",
-              "odds": "4/25",
+              "odds": "1/6",
               "team": "Curacao",
               "stat": "shots_on_target",
               "threshold": "1+"
@@ -1860,7 +678,7 @@
             {
               "selection": "Curacao Shots On Target 3+",
               "normalized_selection": "curacao_shots_on_target_3",
-              "odds": "2/1",
+              "odds": "39/20",
               "team": "Curacao",
               "stat": "shots_on_target",
               "threshold": "3+"
@@ -1875,7 +693,7 @@
             {
               "selection": "Curacao Shots 3+",
               "normalized_selection": "curacao_shots_3",
-              "odds": "1/14",
+              "odds": "1/15",
               "team": "Curacao",
               "stat": "shots",
               "threshold": "3+"
@@ -1891,7 +709,7 @@
             {
               "selection": "Curacao Shots 5+",
               "normalized_selection": "curacao_shots_5",
-              "odds": "7/20",
+              "odds": "4/11",
               "team": "Curacao",
               "stat": "shots",
               "threshold": "5+"
@@ -1906,7 +724,17 @@
             }
           ]
         }
-      ]
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "Ecuador Shots on Target": "Ecuador Shots on Target",
+        "Ecuador Shots": "Ecuador Shots",
+        "Curacao Shots on Target": "Curacao Shots on Target",
+        "Curacao Shots": "Curacao Shots"
+      }
     },
     {
       "match": "Tunisia v Japan",
@@ -1923,28 +751,28 @@
             {
               "selection": "Match Shots On Target 4+",
               "normalized_selection": "match_shots_on_target_4",
-              "odds": "1/30",
+              "odds": "1/26",
               "stat": "shots_on_target",
               "threshold": "4+"
             },
             {
               "selection": "Match Shots On Target 5+",
               "normalized_selection": "match_shots_on_target_5",
-              "odds": "1/9",
+              "odds": "2/15",
               "stat": "shots_on_target",
               "threshold": "5+"
             },
             {
               "selection": "Match Shots On Target 6+",
               "normalized_selection": "match_shots_on_target_6",
-              "odds": "1/4",
+              "odds": "29/100",
               "stat": "shots_on_target",
               "threshold": "6+"
             },
             {
               "selection": "Match Shots On Target 7+",
               "normalized_selection": "match_shots_on_target_7",
-              "odds": "40/85",
+              "odds": "11/20",
               "stat": "shots_on_target",
               "threshold": "7+"
             }
@@ -1956,32 +784,32 @@
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Match Shots 19+",
-              "normalized_selection": "match_shots_19",
-              "odds": "29/100",
-              "stat": "shots",
-              "threshold": "19+"
-            },
-            {
               "selection": "Match Shots 20+",
               "normalized_selection": "match_shots_20",
-              "odds": "2/5",
+              "odds": "1/3",
               "stat": "shots",
               "threshold": "20+"
             },
             {
               "selection": "Match Shots 21+",
               "normalized_selection": "match_shots_21",
-              "odds": "1/2",
+              "odds": "4/9",
               "stat": "shots",
               "threshold": "21+"
             },
             {
               "selection": "Match Shots 22+",
               "normalized_selection": "match_shots_22",
-              "odds": "13/20",
+              "odds": "4/7",
               "stat": "shots",
               "threshold": "22+"
+            },
+            {
+              "selection": "Match Shots 23+",
+              "normalized_selection": "match_shots_23",
+              "odds": "7/10",
+              "stat": "shots",
+              "threshold": "23+"
             }
           ]
         },
@@ -1993,7 +821,7 @@
             {
               "selection": "Tunisia Shots On Target 1+",
               "normalized_selection": "tunisia_shots_on_target_1",
-              "odds": "1/26",
+              "odds": "1/18",
               "team": "Tunisia",
               "stat": "shots_on_target",
               "threshold": "1+"
@@ -2001,7 +829,7 @@
             {
               "selection": "Tunisia Shots On Target 2+",
               "normalized_selection": "tunisia_shots_on_target_2",
-              "odds": "4/15",
+              "odds": "8/25",
               "team": "Tunisia",
               "stat": "shots_on_target",
               "threshold": "2+"
@@ -2009,7 +837,7 @@
             {
               "selection": "Tunisia Shots On Target 3+",
               "normalized_selection": "tunisia_shots_on_target_3",
-              "odds": "8/11",
+              "odds": "37/40",
               "team": "Tunisia",
               "stat": "shots_on_target",
               "threshold": "3+"
@@ -2040,7 +868,7 @@
             {
               "selection": "Tunisia Shots 8+",
               "normalized_selection": "tunisia_shots_8",
-              "odds": "1/2",
+              "odds": "21/40",
               "team": "Tunisia",
               "stat": "shots",
               "threshold": "8+"
@@ -2079,7 +907,7 @@
             {
               "selection": "Japan Shots On Target 5+",
               "normalized_selection": "japan_shots_on_target_5",
-              "odds": "8/11",
+              "odds": "7/10",
               "team": "Japan",
               "stat": "shots_on_target",
               "threshold": "5+"
@@ -2092,17 +920,9 @@
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Japan Shots 10+",
-              "normalized_selection": "japan_shots_10",
-              "odds": "1/5",
-              "team": "Japan",
-              "stat": "shots",
-              "threshold": "10+"
-            },
-            {
               "selection": "Japan Shots 11+",
               "normalized_selection": "japan_shots_11",
-              "odds": "8/25",
+              "odds": "1/4",
               "team": "Japan",
               "stat": "shots",
               "threshold": "11+"
@@ -2110,7 +930,7 @@
             {
               "selection": "Japan Shots 12+",
               "normalized_selection": "japan_shots_12",
-              "odds": "40/85",
+              "odds": "9/25",
               "team": "Japan",
               "stat": "shots",
               "threshold": "12+"
@@ -2118,14 +938,32 @@
             {
               "selection": "Japan Shots 13+",
               "normalized_selection": "japan_shots_13",
-              "odds": "13/20",
+              "odds": "21/40",
               "team": "Japan",
               "stat": "shots",
               "threshold": "13+"
+            },
+            {
+              "selection": "Japan Shots 14+",
+              "normalized_selection": "japan_shots_14",
+              "odds": "7/10",
+              "team": "Japan",
+              "stat": "shots",
+              "threshold": "14+"
             }
           ]
         }
-      ]
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "Tunisia Shots on Target": "Tunisia Shots on Target",
+        "Tunisia Shots": "Tunisia Shots",
+        "Japan Shots on Target": "Japan Shots on Target",
+        "Japan Shots": "Japan Shots"
+      }
     },
     {
       "match": "Spain v Saudi Arabia",
@@ -2142,28 +980,28 @@
             {
               "selection": "Match Shots On Target 7+",
               "normalized_selection": "match_shots_on_target_7",
-              "odds": "1/9",
+              "odds": "1/8",
               "stat": "shots_on_target",
               "threshold": "7+"
             },
             {
               "selection": "Match Shots On Target 8+",
               "normalized_selection": "match_shots_on_target_8",
-              "odds": "2/9",
+              "odds": "13/50",
               "stat": "shots_on_target",
               "threshold": "8+"
             },
             {
               "selection": "Match Shots On Target 9+",
               "normalized_selection": "match_shots_on_target_9",
-              "odds": "2/5",
+              "odds": "4/9",
               "stat": "shots_on_target",
               "threshold": "9+"
             },
             {
               "selection": "Match Shots On Target 10+",
               "normalized_selection": "match_shots_on_target_10",
-              "odds": "13/20",
+              "odds": "7/10",
               "stat": "shots_on_target",
               "threshold": "10+"
             }
@@ -2177,7 +1015,7 @@
             {
               "selection": "Match Shots 21+",
               "normalized_selection": "match_shots_21",
-              "odds": "1/10",
+              "odds": "2/19",
               "stat": "shots",
               "threshold": "21+"
             },
@@ -2212,7 +1050,7 @@
             {
               "selection": "Spain Shots On Target 6+",
               "normalized_selection": "spain_shots_on_target_6",
-              "odds": "17/100",
+              "odds": "19/100",
               "team": "Spain",
               "stat": "shots_on_target",
               "threshold": "6+"
@@ -2220,7 +1058,7 @@
             {
               "selection": "Spain Shots On Target 7+",
               "normalized_selection": "spain_shots_on_target_7",
-              "odds": "1/3",
+              "odds": "3/8",
               "team": "Spain",
               "stat": "shots_on_target",
               "threshold": "7+"
@@ -2228,7 +1066,7 @@
             {
               "selection": "Spain Shots On Target 8+",
               "normalized_selection": "spain_shots_on_target_8",
-              "odds": "3/5",
+              "odds": "13/20",
               "team": "Spain",
               "stat": "shots_on_target",
               "threshold": "8+"
@@ -2251,7 +1089,7 @@
             {
               "selection": "Spain Shots 20+",
               "normalized_selection": "spain_shots_20",
-              "odds": "9/20",
+              "odds": "20/43",
               "team": "Spain",
               "stat": "shots",
               "threshold": "20+"
@@ -2282,7 +1120,7 @@
             {
               "selection": "Saudi Arabia Shots On Target 1+",
               "normalized_selection": "saudi_arabia_shots_on_target_1",
-              "odds": "1/7",
+              "odds": "2/13",
               "team": "Saudi Arabia",
               "stat": "shots_on_target",
               "threshold": "1+"
@@ -2290,7 +1128,7 @@
             {
               "selection": "Saudi Arabia Shots On Target 2+",
               "normalized_selection": "saudi_arabia_shots_on_target_2",
-              "odds": "13/20",
+              "odds": "27/40",
               "team": "Saudi Arabia",
               "stat": "shots_on_target",
               "threshold": "2+"
@@ -2298,7 +1136,7 @@
             {
               "selection": "Saudi Arabia Shots On Target 3+",
               "normalized_selection": "saudi_arabia_shots_on_target_3",
-              "odds": "9/5",
+              "odds": "37/20",
               "team": "Saudi Arabia",
               "stat": "shots_on_target",
               "threshold": "3+"
@@ -2329,7 +1167,7 @@
             {
               "selection": "Saudi Arabia Shots 5+",
               "normalized_selection": "saudi_arabia_shots_5",
-              "odds": "10/27",
+              "odds": "5/14",
               "team": "Saudi Arabia",
               "stat": "shots",
               "threshold": "5+"
@@ -2337,14 +1175,24 @@
             {
               "selection": "Saudi Arabia Shots 6+",
               "normalized_selection": "saudi_arabia_shots_6",
-              "odds": "8/13",
+              "odds": "3/5",
               "team": "Saudi Arabia",
               "stat": "shots",
               "threshold": "6+"
             }
           ]
         }
-      ]
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "Spain Shots on Target": "Spain Shots on Target",
+        "Spain Shots": "Spain Shots",
+        "Saudi Arabia Shots on Target": "Saudi Arabia Shots on Target",
+        "Saudi Arabia Shots": "Saudi Arabia Shots"
+      }
     },
     {
       "match": "Belgium v Iran",
@@ -2361,28 +1209,28 @@
             {
               "selection": "Match Shots On Target 5+",
               "normalized_selection": "match_shots_on_target_5",
-              "odds": "1/16",
+              "odds": "1/21",
               "stat": "shots_on_target",
               "threshold": "5+"
             },
             {
               "selection": "Match Shots On Target 6+",
               "normalized_selection": "match_shots_on_target_6",
-              "odds": "4/25",
+              "odds": "2/15",
               "stat": "shots_on_target",
               "threshold": "6+"
             },
             {
               "selection": "Match Shots On Target 7+",
               "normalized_selection": "match_shots_on_target_7",
-              "odds": "8/25",
+              "odds": "11/40",
               "stat": "shots_on_target",
               "threshold": "7+"
             },
             {
               "selection": "Match Shots On Target 8+",
               "normalized_selection": "match_shots_on_target_8",
-              "odds": "4/7",
+              "odds": "1/2",
               "stat": "shots_on_target",
               "threshold": "8+"
             }
@@ -2394,32 +1242,32 @@
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Match Shots 20+",
-              "normalized_selection": "match_shots_20",
-              "odds": "9/50",
+              "selection": "Match Shots 19+",
+              "normalized_selection": "match_shots_19",
+              "odds": "2/21",
               "stat": "shots",
-              "threshold": "20+"
+              "threshold": "19+"
             },
             {
-              "selection": "Match Shots 22+",
-              "normalized_selection": "match_shots_22",
-              "odds": "8/25",
+              "selection": "Match Shots 21+",
+              "normalized_selection": "match_shots_21",
+              "odds": "1/5",
               "stat": "shots",
-              "threshold": "22+"
+              "threshold": "21+"
             },
             {
-              "selection": "Match Shots 24+",
-              "normalized_selection": "match_shots_24",
-              "odds": "21/40",
+              "selection": "Match Shots 23+",
+              "normalized_selection": "match_shots_23",
+              "odds": "17/50",
               "stat": "shots",
-              "threshold": "24+"
+              "threshold": "23+"
             },
             {
-              "selection": "Match Shots 26+",
-              "normalized_selection": "match_shots_26",
-              "odds": "4/5",
+              "selection": "Match Shots 25+",
+              "normalized_selection": "match_shots_25",
+              "odds": "11/20",
               "stat": "shots",
-              "threshold": "26+"
+              "threshold": "25+"
             }
           ]
         },
@@ -2429,17 +1277,9 @@
           "selection_count": 3,
           "selections": [
             {
-              "selection": "Belgium Shots On Target 3+",
-              "normalized_selection": "belgium_shots_on_target_3",
-              "odds": "1/18",
-              "team": "Belgium",
-              "stat": "shots_on_target",
-              "threshold": "3+"
-            },
-            {
               "selection": "Belgium Shots On Target 4+",
               "normalized_selection": "belgium_shots_on_target_4",
-              "odds": "19/100",
+              "odds": "1/6",
               "team": "Belgium",
               "stat": "shots_on_target",
               "threshold": "4+"
@@ -2447,10 +1287,18 @@
             {
               "selection": "Belgium Shots On Target 5+",
               "normalized_selection": "belgium_shots_on_target_5",
-              "odds": "4/9",
+              "odds": "9/25",
               "team": "Belgium",
               "stat": "shots_on_target",
               "threshold": "5+"
+            },
+            {
+              "selection": "Belgium Shots On Target 6+",
+              "normalized_selection": "belgium_shots_on_target_6",
+              "odds": "27/40",
+              "team": "Belgium",
+              "stat": "shots_on_target",
+              "threshold": "6+"
             }
           ]
         },
@@ -2460,17 +1308,9 @@
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Belgium Shots 13+",
-              "normalized_selection": "belgium_shots_13",
-              "odds": "13/50",
-              "team": "Belgium",
-              "stat": "shots",
-              "threshold": "13+"
-            },
-            {
               "selection": "Belgium Shots 14+",
               "normalized_selection": "belgium_shots_14",
-              "odds": "7/20",
+              "odds": "17/50",
               "team": "Belgium",
               "stat": "shots",
               "threshold": "14+"
@@ -2478,7 +1318,7 @@
             {
               "selection": "Belgium Shots 15+",
               "normalized_selection": "belgium_shots_15",
-              "odds": "19/40",
+              "odds": "20/43",
               "team": "Belgium",
               "stat": "shots",
               "threshold": "15+"
@@ -2486,10 +1326,18 @@
             {
               "selection": "Belgium Shots 16+",
               "normalized_selection": "belgium_shots_16",
-              "odds": "13/20",
+              "odds": "8/13",
               "team": "Belgium",
               "stat": "shots",
               "threshold": "16+"
+            },
+            {
+              "selection": "Belgium Shots 17+",
+              "normalized_selection": "belgium_shots_17",
+              "odds": "33/40",
+              "team": "Belgium",
+              "stat": "shots",
+              "threshold": "17+"
             }
           ]
         },
@@ -2501,7 +1349,7 @@
             {
               "selection": "Iran Shots On Target 1+",
               "normalized_selection": "iran_shots_on_target_1",
-              "odds": "1/25",
+              "odds": "1/26",
               "team": "Iran",
               "stat": "shots_on_target",
               "threshold": "1+"
@@ -2509,7 +1357,7 @@
             {
               "selection": "Iran Shots On Target 2+",
               "normalized_selection": "iran_shots_on_target_2",
-              "odds": "7/25",
+              "odds": "27/100",
               "team": "Iran",
               "stat": "shots_on_target",
               "threshold": "2+"
@@ -2530,17 +1378,9 @@
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Iran Shots 6+",
-              "normalized_selection": "iran_shots_6",
-              "odds": "19/100",
-              "team": "Iran",
-              "stat": "shots",
-              "threshold": "6+"
-            },
-            {
               "selection": "Iran Shots 7+",
               "normalized_selection": "iran_shots_7",
-              "odds": "13/40",
+              "odds": "13/50",
               "team": "Iran",
               "stat": "shots",
               "threshold": "7+"
@@ -2548,7 +1388,7 @@
             {
               "selection": "Iran Shots 8+",
               "normalized_selection": "iran_shots_8",
-              "odds": "1/2",
+              "odds": "2/5",
               "team": "Iran",
               "stat": "shots",
               "threshold": "8+"
@@ -2556,14 +1396,32 @@
             {
               "selection": "Iran Shots 9+",
               "normalized_selection": "iran_shots_9",
-              "odds": "3/4",
+              "odds": "3/5",
               "team": "Iran",
               "stat": "shots",
               "threshold": "9+"
+            },
+            {
+              "selection": "Iran Shots 10+",
+              "normalized_selection": "iran_shots_10",
+              "odds": "20/23",
+              "team": "Iran",
+              "stat": "shots",
+              "threshold": "10+"
             }
           ]
         }
-      ]
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "Belgium Shots on Target": "Belgium Shots on Target",
+        "Belgium Shots": "Belgium Shots",
+        "Iran Shots on Target": "Iran Shots on Target",
+        "Iran Shots": "Iran Shots"
+      }
     },
     {
       "match": "New Zealand v Egypt",
@@ -2580,21 +1438,21 @@
             {
               "selection": "Match Shots On Target 5+",
               "normalized_selection": "match_shots_on_target_5",
-              "odds": "2/19",
+              "odds": "1/11",
               "stat": "shots_on_target",
               "threshold": "5+"
             },
             {
               "selection": "Match Shots On Target 6+",
               "normalized_selection": "match_shots_on_target_6",
-              "odds": "6/25",
+              "odds": "11/50",
               "stat": "shots_on_target",
               "threshold": "6+"
             },
             {
               "selection": "Match Shots On Target 7+",
               "normalized_selection": "match_shots_on_target_7",
-              "odds": "4/9",
+              "odds": "5/12",
               "stat": "shots_on_target",
               "threshold": "7+"
             },
@@ -2615,28 +1473,28 @@
             {
               "selection": "Match Shots 21+",
               "normalized_selection": "match_shots_21",
-              "odds": "3/8",
+              "odds": "7/20",
               "stat": "shots",
               "threshold": "21+"
             },
             {
               "selection": "Match Shots 22+",
               "normalized_selection": "match_shots_22",
-              "odds": "19/40",
+              "odds": "20/43",
               "stat": "shots",
               "threshold": "22+"
             },
             {
               "selection": "Match Shots 23+",
               "normalized_selection": "match_shots_23",
-              "odds": "5/8",
+              "odds": "3/5",
               "stat": "shots",
               "threshold": "23+"
             },
             {
               "selection": "Match Shots 24+",
               "normalized_selection": "match_shots_24",
-              "odds": "31/40",
+              "odds": "3/4",
               "stat": "shots",
               "threshold": "24+"
             }
@@ -2650,7 +1508,7 @@
             {
               "selection": "New Zealand Shots On Target 1+",
               "normalized_selection": "new_zealand_shots_on_target_1",
-              "odds": "1/26",
+              "odds": "1/32",
               "team": "New Zealand",
               "stat": "shots_on_target",
               "threshold": "1+"
@@ -2658,7 +1516,7 @@
             {
               "selection": "New Zealand Shots On Target 2+",
               "normalized_selection": "new_zealand_shots_on_target_2",
-              "odds": "7/25",
+              "odds": "1/4",
               "team": "New Zealand",
               "stat": "shots_on_target",
               "threshold": "2+"
@@ -2666,7 +1524,7 @@
             {
               "selection": "New Zealand Shots On Target 3+",
               "normalized_selection": "new_zealand_shots_on_target_3",
-              "odds": "31/40",
+              "odds": "3/4",
               "team": "New Zealand",
               "stat": "shots_on_target",
               "threshold": "3+"
@@ -2697,7 +1555,7 @@
             {
               "selection": "New Zealand Shots 9+",
               "normalized_selection": "new_zealand_shots_9",
-              "odds": "3/5",
+              "odds": "4/7",
               "team": "New Zealand",
               "stat": "shots",
               "threshold": "9+"
@@ -2705,7 +1563,7 @@
             {
               "selection": "New Zealand Shots 10+",
               "normalized_selection": "new_zealand_shots_10",
-              "odds": "20/23",
+              "odds": "5/6",
               "team": "New Zealand",
               "stat": "shots",
               "threshold": "10+"
@@ -2720,7 +1578,7 @@
             {
               "selection": "Egypt Shots On Target 3+",
               "normalized_selection": "egypt_shots_on_target_3",
-              "odds": "1/9",
+              "odds": "2/19",
               "team": "Egypt",
               "stat": "shots_on_target",
               "threshold": "3+"
@@ -2751,7 +1609,7 @@
             {
               "selection": "Egypt Shots 11+",
               "normalized_selection": "egypt_shots_11",
-              "odds": "13/50",
+              "odds": "1/4",
               "team": "Egypt",
               "stat": "shots",
               "threshold": "11+"
@@ -2759,7 +1617,7 @@
             {
               "selection": "Egypt Shots 12+",
               "normalized_selection": "egypt_shots_12",
-              "odds": "3/8",
+              "odds": "5/14",
               "team": "Egypt",
               "stat": "shots",
               "threshold": "12+"
@@ -2767,7 +1625,7 @@
             {
               "selection": "Egypt Shots 13+",
               "normalized_selection": "egypt_shots_13",
-              "odds": "8/15",
+              "odds": "1/2",
               "team": "Egypt",
               "stat": "shots",
               "threshold": "13+"
@@ -2775,22 +1633,940 @@
             {
               "selection": "Egypt Shots 14+",
               "normalized_selection": "egypt_shots_14",
-              "odds": "8/11",
+              "odds": "27/40",
               "team": "Egypt",
               "stat": "shots",
               "threshold": "14+"
             }
           ]
         }
-      ]
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "New Zealand Shots on Target": "New Zealand Shots on Target",
+        "New Zealand Shots": "New Zealand Shots",
+        "Egypt Shots on Target": "Egypt Shots on Target",
+        "Egypt Shots": "Egypt Shots"
+      }
     },
     {
       "match": "Argentina v Austria",
       "home_team": "Argentina",
       "away_team": "Austria",
       "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780975500",
-      "market_count": 0,
-      "markets": []
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots On Target 5+",
+              "normalized_selection": "match_shots_on_target_5",
+              "odds": "1/11",
+              "stat": "shots_on_target",
+              "threshold": "5+"
+            },
+            {
+              "selection": "Match Shots On Target 6+",
+              "normalized_selection": "match_shots_on_target_6",
+              "odds": "21/100",
+              "stat": "shots_on_target",
+              "threshold": "6+"
+            },
+            {
+              "selection": "Match Shots On Target 7+",
+              "normalized_selection": "match_shots_on_target_7",
+              "odds": "5/12",
+              "stat": "shots_on_target",
+              "threshold": "7+"
+            },
+            {
+              "selection": "Match Shots On Target 8+",
+              "normalized_selection": "match_shots_on_target_8",
+              "odds": "7/10",
+              "stat": "shots_on_target",
+              "threshold": "8+"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots 19+",
+              "normalized_selection": "match_shots_19",
+              "odds": "3/10",
+              "stat": "shots",
+              "threshold": "19+"
+            },
+            {
+              "selection": "Match Shots 20+",
+              "normalized_selection": "match_shots_20",
+              "odds": "2/5",
+              "stat": "shots",
+              "threshold": "20+"
+            },
+            {
+              "selection": "Match Shots 21+",
+              "normalized_selection": "match_shots_21",
+              "odds": "21/40",
+              "stat": "shots",
+              "threshold": "21+"
+            },
+            {
+              "selection": "Match Shots 22+",
+              "normalized_selection": "match_shots_22",
+              "odds": "13/20",
+              "stat": "shots",
+              "threshold": "22+"
+            }
+          ]
+        },
+        {
+          "market": "Argentina Shots On Target",
+          "normalized_market": "argentina_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Argentina Shots On Target 3+",
+              "normalized_selection": "argentina_shots_on_target_3",
+              "odds": "1/9",
+              "team": "Argentina",
+              "stat": "shots_on_target",
+              "threshold": "3+"
+            },
+            {
+              "selection": "Argentina Shots On Target 4+",
+              "normalized_selection": "argentina_shots_on_target_4",
+              "odds": "3/10",
+              "team": "Argentina",
+              "stat": "shots_on_target",
+              "threshold": "4+"
+            },
+            {
+              "selection": "Argentina Shots On Target 5+",
+              "normalized_selection": "argentina_shots_on_target_5",
+              "odds": "13/20",
+              "team": "Argentina",
+              "stat": "shots_on_target",
+              "threshold": "5+"
+            }
+          ]
+        },
+        {
+          "market": "Argentina Shots",
+          "normalized_market": "argentina_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Argentina Shots 11+",
+              "normalized_selection": "argentina_shots_11",
+              "odds": "11/40",
+              "team": "Argentina",
+              "stat": "shots",
+              "threshold": "11+"
+            },
+            {
+              "selection": "Argentina Shots 12+",
+              "normalized_selection": "argentina_shots_12",
+              "odds": "2/5",
+              "team": "Argentina",
+              "stat": "shots",
+              "threshold": "12+"
+            },
+            {
+              "selection": "Argentina Shots 13+",
+              "normalized_selection": "argentina_shots_13",
+              "odds": "11/20",
+              "team": "Argentina",
+              "stat": "shots",
+              "threshold": "13+"
+            },
+            {
+              "selection": "Argentina Shots 14+",
+              "normalized_selection": "argentina_shots_14",
+              "odds": "3/4",
+              "team": "Argentina",
+              "stat": "shots",
+              "threshold": "14+"
+            }
+          ]
+        },
+        {
+          "market": "Austria Shots On Target",
+          "normalized_market": "austria_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Austria Shots On Target 1+",
+              "normalized_selection": "austria_shots_on_target_1",
+              "odds": "1/30",
+              "team": "Austria",
+              "stat": "shots_on_target",
+              "threshold": "1+"
+            },
+            {
+              "selection": "Austria Shots On Target 2+",
+              "normalized_selection": "austria_shots_on_target_2",
+              "odds": "6/25",
+              "team": "Austria",
+              "stat": "shots_on_target",
+              "threshold": "2+"
+            },
+            {
+              "selection": "Austria Shots On Target 3+",
+              "normalized_selection": "austria_shots_on_target_3",
+              "odds": "27/40",
+              "team": "Austria",
+              "stat": "shots_on_target",
+              "threshold": "3+"
+            }
+          ]
+        },
+        {
+          "market": "Austria Shots",
+          "normalized_market": "austria_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Austria Shots 5+",
+              "normalized_selection": "austria_shots_5",
+              "odds": "1/8",
+              "team": "Austria",
+              "stat": "shots",
+              "threshold": "5+"
+            },
+            {
+              "selection": "Austria Shots 6+",
+              "normalized_selection": "austria_shots_6",
+              "odds": "23/100",
+              "team": "Austria",
+              "stat": "shots",
+              "threshold": "6+"
+            },
+            {
+              "selection": "Austria Shots 7+",
+              "normalized_selection": "austria_shots_7",
+              "odds": "3/8",
+              "team": "Austria",
+              "stat": "shots",
+              "threshold": "7+"
+            },
+            {
+              "selection": "Austria Shots 8+",
+              "normalized_selection": "austria_shots_8",
+              "odds": "3/5",
+              "team": "Austria",
+              "stat": "shots",
+              "threshold": "8+"
+            }
+          ]
+        }
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "Argentina Shots on Target": "Argentina Shots on Target",
+        "Argentina Shots": "Argentina Shots",
+        "Austria Shots on Target": "Austria Shots on Target",
+        "Austria Shots": "Austria Shots"
+      }
+    },
+    {
+      "match": "France v Iraq",
+      "home_team": "France",
+      "away_team": "Iraq",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2777584700",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots On Target 6+",
+              "normalized_selection": "match_shots_on_target_6",
+              "odds": "1/15",
+              "stat": "shots_on_target",
+              "threshold": "6+"
+            },
+            {
+              "selection": "Match Shots On Target 7+",
+              "normalized_selection": "match_shots_on_target_7",
+              "odds": "4/25",
+              "stat": "shots_on_target",
+              "threshold": "7+"
+            },
+            {
+              "selection": "Match Shots On Target 8+",
+              "normalized_selection": "match_shots_on_target_8",
+              "odds": "3/10",
+              "stat": "shots_on_target",
+              "threshold": "8+"
+            },
+            {
+              "selection": "Match Shots On Target 9+",
+              "normalized_selection": "match_shots_on_target_9",
+              "odds": "21/40",
+              "stat": "shots_on_target",
+              "threshold": "9+"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots 20+",
+              "normalized_selection": "match_shots_20",
+              "odds": "2/13",
+              "stat": "shots",
+              "threshold": "20+"
+            },
+            {
+              "selection": "Match Shots 22+",
+              "normalized_selection": "match_shots_22",
+              "odds": "2/7",
+              "stat": "shots",
+              "threshold": "22+"
+            },
+            {
+              "selection": "Match Shots 24+",
+              "normalized_selection": "match_shots_24",
+              "odds": "19/40",
+              "stat": "shots",
+              "threshold": "24+"
+            },
+            {
+              "selection": "Match Shots 26+",
+              "normalized_selection": "match_shots_26",
+              "odds": "3/4",
+              "stat": "shots",
+              "threshold": "26+"
+            }
+          ]
+        },
+        {
+          "market": "France Shots On Target",
+          "normalized_market": "france_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "France Shots On Target 6+",
+              "normalized_selection": "france_shots_on_target_6",
+              "odds": "19/100",
+              "team": "France",
+              "stat": "shots_on_target",
+              "threshold": "6+"
+            },
+            {
+              "selection": "France Shots On Target 7+",
+              "normalized_selection": "france_shots_on_target_7",
+              "odds": "10/27",
+              "team": "France",
+              "stat": "shots_on_target",
+              "threshold": "7+"
+            },
+            {
+              "selection": "France Shots On Target 8+",
+              "normalized_selection": "france_shots_on_target_8",
+              "odds": "4/6",
+              "team": "France",
+              "stat": "shots_on_target",
+              "threshold": "8+"
+            }
+          ]
+        },
+        {
+          "market": "France Shots",
+          "normalized_market": "france_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "France Shots 18+",
+              "normalized_selection": "france_shots_18",
+              "odds": "17/50",
+              "team": "France",
+              "stat": "shots",
+              "threshold": "18+"
+            },
+            {
+              "selection": "France Shots 19+",
+              "normalized_selection": "france_shots_19",
+              "odds": "9/20",
+              "team": "France",
+              "stat": "shots",
+              "threshold": "19+"
+            },
+            {
+              "selection": "France Shots 20+",
+              "normalized_selection": "france_shots_20",
+              "odds": "3/5",
+              "team": "France",
+              "stat": "shots",
+              "threshold": "20+"
+            },
+            {
+              "selection": "France Shots 21+",
+              "normalized_selection": "france_shots_21",
+              "odds": "3/4",
+              "team": "France",
+              "stat": "shots",
+              "threshold": "21+"
+            }
+          ]
+        },
+        {
+          "market": "Iraq Shots On Target",
+          "normalized_market": "iraq_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Iraq Shots On Target 1+",
+              "normalized_selection": "iraq_shots_on_target_1",
+              "odds": "1/4",
+              "team": "Iraq",
+              "stat": "shots_on_target",
+              "threshold": "1+"
+            },
+            {
+              "selection": "Iraq Shots On Target 2+",
+              "normalized_selection": "iraq_shots_on_target_2",
+              "odds": "21/20",
+              "team": "Iraq",
+              "stat": "shots_on_target",
+              "threshold": "2+"
+            },
+            {
+              "selection": "Iraq Shots On Target 3+",
+              "normalized_selection": "iraq_shots_on_target_3",
+              "odds": "3/1",
+              "team": "Iraq",
+              "stat": "shots_on_target",
+              "threshold": "3+"
+            }
+          ]
+        },
+        {
+          "market": "Iraq Shots",
+          "normalized_market": "iraq_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Iraq Shots 2+",
+              "normalized_selection": "iraq_shots_2",
+              "odds": "1/16",
+              "team": "Iraq",
+              "stat": "shots",
+              "threshold": "2+"
+            },
+            {
+              "selection": "Iraq Shots 3+",
+              "normalized_selection": "iraq_shots_3",
+              "odds": "21/100",
+              "team": "Iraq",
+              "stat": "shots",
+              "threshold": "3+"
+            },
+            {
+              "selection": "Iraq Shots 4+",
+              "normalized_selection": "iraq_shots_4",
+              "odds": "4/9",
+              "team": "Iraq",
+              "stat": "shots",
+              "threshold": "4+"
+            },
+            {
+              "selection": "Iraq Shots 5+",
+              "normalized_selection": "iraq_shots_5",
+              "odds": "3/4",
+              "team": "Iraq",
+              "stat": "shots",
+              "threshold": "5+"
+            }
+          ]
+        }
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "France Shots on Target": "France Shots on Target",
+        "France Shots": "France Shots",
+        "Iraq Shots on Target": "Iraq Shots on Target",
+        "Iraq Shots": "Iraq Shots"
+      }
+    },
+    {
+      "match": "Norway v Senegal",
+      "home_team": "Norway",
+      "away_team": "Senegal",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780924600",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots On Target 5+",
+              "normalized_selection": "match_shots_on_target_5",
+              "odds": "1/15",
+              "stat": "shots_on_target",
+              "threshold": "5+"
+            },
+            {
+              "selection": "Match Shots On Target 6+",
+              "normalized_selection": "match_shots_on_target_6",
+              "odds": "1/6",
+              "stat": "shots_on_target",
+              "threshold": "6+"
+            },
+            {
+              "selection": "Match Shots On Target 7+",
+              "normalized_selection": "match_shots_on_target_7",
+              "odds": "1/3",
+              "stat": "shots_on_target",
+              "threshold": "7+"
+            },
+            {
+              "selection": "Match Shots On Target 8+",
+              "normalized_selection": "match_shots_on_target_8",
+              "odds": "23/40",
+              "stat": "shots_on_target",
+              "threshold": "8+"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots 21+",
+              "normalized_selection": "match_shots_21",
+              "odds": "4/11",
+              "stat": "shots",
+              "threshold": "21+"
+            },
+            {
+              "selection": "Match Shots 22+",
+              "normalized_selection": "match_shots_22",
+              "odds": "40/85",
+              "stat": "shots",
+              "threshold": "22+"
+            },
+            {
+              "selection": "Match Shots 23+",
+              "normalized_selection": "match_shots_23",
+              "odds": "3/5",
+              "stat": "shots",
+              "threshold": "23+"
+            },
+            {
+              "selection": "Match Shots 24+",
+              "normalized_selection": "match_shots_24",
+              "odds": "3/4",
+              "stat": "shots",
+              "threshold": "24+"
+            }
+          ]
+        },
+        {
+          "market": "Norway Shots On Target",
+          "normalized_market": "norway_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Norway Shots On Target 2+",
+              "normalized_selection": "norway_shots_on_target_2",
+              "odds": "1/25",
+              "team": "Norway",
+              "stat": "shots_on_target",
+              "threshold": "2+"
+            },
+            {
+              "selection": "Norway Shots On Target 3+",
+              "normalized_selection": "norway_shots_on_target_3",
+              "odds": "2/11",
+              "team": "Norway",
+              "stat": "shots_on_target",
+              "threshold": "3+"
+            },
+            {
+              "selection": "Norway Shots On Target 4+",
+              "normalized_selection": "norway_shots_on_target_4",
+              "odds": "4/9",
+              "team": "Norway",
+              "stat": "shots_on_target",
+              "threshold": "4+"
+            }
+          ]
+        },
+        {
+          "market": "Norway Shots",
+          "normalized_market": "norway_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Norway Shots 10+",
+              "normalized_selection": "norway_shots_10",
+              "odds": "11/40",
+              "team": "Norway",
+              "stat": "shots",
+              "threshold": "10+"
+            },
+            {
+              "selection": "Norway Shots 11+",
+              "normalized_selection": "norway_shots_11",
+              "odds": "2/5",
+              "team": "Norway",
+              "stat": "shots",
+              "threshold": "11+"
+            },
+            {
+              "selection": "Norway Shots 12+",
+              "normalized_selection": "norway_shots_12",
+              "odds": "23/40",
+              "team": "Norway",
+              "stat": "shots",
+              "threshold": "12+"
+            },
+            {
+              "selection": "Norway Shots 13+",
+              "normalized_selection": "norway_shots_13",
+              "odds": "31/40",
+              "team": "Norway",
+              "stat": "shots",
+              "threshold": "13+"
+            }
+          ]
+        },
+        {
+          "market": "Senegal Shots On Target",
+          "normalized_market": "senegal_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Senegal Shots On Target 2+",
+              "normalized_selection": "senegal_shots_on_target_2",
+              "odds": "1/11",
+              "team": "Senegal",
+              "stat": "shots_on_target",
+              "threshold": "2+"
+            },
+            {
+              "selection": "Senegal Shots On Target 3+",
+              "normalized_selection": "senegal_shots_on_target_3",
+              "odds": "3/10",
+              "team": "Senegal",
+              "stat": "shots_on_target",
+              "threshold": "3+"
+            },
+            {
+              "selection": "Senegal Shots On Target 4+",
+              "normalized_selection": "senegal_shots_on_target_4",
+              "odds": "8/11",
+              "team": "Senegal",
+              "stat": "shots_on_target",
+              "threshold": "4+"
+            }
+          ]
+        },
+        {
+          "market": "Senegal Shots",
+          "normalized_market": "senegal_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Senegal Shots 8+",
+              "normalized_selection": "senegal_shots_8",
+              "odds": "11/50",
+              "team": "Senegal",
+              "stat": "shots",
+              "threshold": "8+"
+            },
+            {
+              "selection": "Senegal Shots 9+",
+              "normalized_selection": "senegal_shots_9",
+              "odds": "7/20",
+              "team": "Senegal",
+              "stat": "shots",
+              "threshold": "9+"
+            },
+            {
+              "selection": "Senegal Shots 10+",
+              "normalized_selection": "senegal_shots_10",
+              "odds": "21/40",
+              "team": "Senegal",
+              "stat": "shots",
+              "threshold": "10+"
+            },
+            {
+              "selection": "Senegal Shots 11+",
+              "normalized_selection": "senegal_shots_11",
+              "odds": "8/11",
+              "team": "Senegal",
+              "stat": "shots",
+              "threshold": "11+"
+            }
+          ]
+        }
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "Norway Shots on Target": "Norway Shots on Target",
+        "Norway Shots": "Norway Shots",
+        "Senegal Shots on Target": "Senegal Shots on Target",
+        "Senegal Shots": "Senegal Shots"
+      }
+    },
+    {
+      "match": "Jordan v Algeria",
+      "home_team": "Jordan",
+      "away_team": "Algeria",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2780965400",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots On Target 4+",
+              "normalized_selection": "match_shots_on_target_4",
+              "odds": "1/37",
+              "stat": "shots_on_target",
+              "threshold": "4+"
+            },
+            {
+              "selection": "Match Shots On Target 5+",
+              "normalized_selection": "match_shots_on_target_5",
+              "odds": "1/9",
+              "stat": "shots_on_target",
+              "threshold": "5+"
+            },
+            {
+              "selection": "Match Shots On Target 6+",
+              "normalized_selection": "match_shots_on_target_6",
+              "odds": "1/4",
+              "stat": "shots_on_target",
+              "threshold": "6+"
+            },
+            {
+              "selection": "Match Shots On Target 7+",
+              "normalized_selection": "match_shots_on_target_7",
+              "odds": "1/2",
+              "stat": "shots_on_target",
+              "threshold": "7+"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Match Shots 19+",
+              "normalized_selection": "match_shots_19",
+              "odds": "17/50",
+              "stat": "shots",
+              "threshold": "19+"
+            },
+            {
+              "selection": "Match Shots 20+",
+              "normalized_selection": "match_shots_20",
+              "odds": "20/43",
+              "stat": "shots",
+              "threshold": "20+"
+            },
+            {
+              "selection": "Match Shots 21+",
+              "normalized_selection": "match_shots_21",
+              "odds": "3/5",
+              "stat": "shots",
+              "threshold": "21+"
+            },
+            {
+              "selection": "Match Shots 22+",
+              "normalized_selection": "match_shots_22",
+              "odds": "31/40",
+              "stat": "shots",
+              "threshold": "22+"
+            }
+          ]
+        },
+        {
+          "market": "Jordan Shots On Target",
+          "normalized_market": "jordan_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Jordan Shots On Target 1+",
+              "normalized_selection": "jordan_shots_on_target_1",
+              "odds": "1/27",
+              "team": "Jordan",
+              "stat": "shots_on_target",
+              "threshold": "1+"
+            },
+            {
+              "selection": "Jordan Shots On Target 2+",
+              "normalized_selection": "jordan_shots_on_target_2",
+              "odds": "4/15",
+              "team": "Jordan",
+              "stat": "shots_on_target",
+              "threshold": "2+"
+            },
+            {
+              "selection": "Jordan Shots On Target 3+",
+              "normalized_selection": "jordan_shots_on_target_3",
+              "odds": "31/40",
+              "team": "Jordan",
+              "stat": "shots_on_target",
+              "threshold": "3+"
+            }
+          ]
+        },
+        {
+          "market": "Jordan Shots",
+          "normalized_market": "jordan_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Jordan Shots 6+",
+              "normalized_selection": "jordan_shots_6",
+              "odds": "1/5",
+              "team": "Jordan",
+              "stat": "shots",
+              "threshold": "6+"
+            },
+            {
+              "selection": "Jordan Shots 7+",
+              "normalized_selection": "jordan_shots_7",
+              "odds": "17/50",
+              "team": "Jordan",
+              "stat": "shots",
+              "threshold": "7+"
+            },
+            {
+              "selection": "Jordan Shots 8+",
+              "normalized_selection": "jordan_shots_8",
+              "odds": "21/40",
+              "team": "Jordan",
+              "stat": "shots",
+              "threshold": "8+"
+            },
+            {
+              "selection": "Jordan Shots 9+",
+              "normalized_selection": "jordan_shots_9",
+              "odds": "31/40",
+              "team": "Jordan",
+              "stat": "shots",
+              "threshold": "9+"
+            }
+          ]
+        },
+        {
+          "market": "Algeria Shots On Target",
+          "normalized_market": "algeria_shots_on_target",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Algeria Shots On Target 3+",
+              "normalized_selection": "algeria_shots_on_target_3",
+              "odds": "1/8",
+              "team": "Algeria",
+              "stat": "shots_on_target",
+              "threshold": "3+"
+            },
+            {
+              "selection": "Algeria Shots On Target 4+",
+              "normalized_selection": "algeria_shots_on_target_4",
+              "odds": "9/25",
+              "team": "Algeria",
+              "stat": "shots_on_target",
+              "threshold": "4+"
+            },
+            {
+              "selection": "Algeria Shots On Target 5+",
+              "normalized_selection": "algeria_shots_on_target_5",
+              "odds": "31/40",
+              "team": "Algeria",
+              "stat": "shots_on_target",
+              "threshold": "5+"
+            }
+          ]
+        },
+        {
+          "market": "Algeria Shots",
+          "normalized_market": "algeria_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Algeria Shots 10+",
+              "normalized_selection": "algeria_shots_10",
+              "odds": "1/4",
+              "team": "Algeria",
+              "stat": "shots",
+              "threshold": "10+"
+            },
+            {
+              "selection": "Algeria Shots 11+",
+              "normalized_selection": "algeria_shots_11",
+              "odds": "3/8",
+              "team": "Algeria",
+              "stat": "shots",
+              "threshold": "11+"
+            },
+            {
+              "selection": "Algeria Shots 12+",
+              "normalized_selection": "algeria_shots_12",
+              "odds": "8/15",
+              "team": "Algeria",
+              "stat": "shots",
+              "threshold": "12+"
+            },
+            {
+              "selection": "Algeria Shots 13+",
+              "normalized_selection": "algeria_shots_13",
+              "odds": "3/4",
+              "team": "Algeria",
+              "stat": "shots",
+              "threshold": "13+"
+            }
+          ]
+        }
+      ],
+      "attempts": 1,
+      "match_stats_active": true,
+      "found_row_titles": {
+        "Match Shots on Target": "Match Shots on Target",
+        "Match Shots": "Match Shots",
+        "Jordan Shots on Target": "Jordan Shots on Target",
+        "Jordan Shots": "Jordan Shots",
+        "Algeria Shots on Target": "Algeria Shots on Target",
+        "Algeria Shots": "Algeria Shots"
+      }
     }
   ]
 }
