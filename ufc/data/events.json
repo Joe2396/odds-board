@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T22:46:33Z",
+  "generated_at": "2026-06-20T23:02:24Z",
   "events": [
     {
       "id": "2026-06-21-ufc-fight-night-kape-vs-horiguchi-2",
@@ -461,44 +461,6 @@
       },
       "fights": [
         {
-          "id": "401879329",
-          "bout": "Oban Elliott vs Michael Oliveira",
-          "red": {
-            "name": "Oban Elliott",
-            "espn_id": "4900808"
-          },
-          "blue": {
-            "name": "Michael Oliveira",
-            "espn_id": "5282411"
-          },
-          "weight_class": "Welterweight",
-          "order": 1,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600059339"
-          }
-        },
-        {
-          "id": "401879328",
-          "bout": "Jan Blachowicz vs Bogdan Guskov",
-          "red": {
-            "name": "Jan Blachowicz",
-            "espn_id": "2506250"
-          },
-          "blue": {
-            "name": "Bogdan Guskov",
-            "espn_id": "5152109"
-          },
-          "weight_class": "Light Heavyweight",
-          "order": 2,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600059339"
-          }
-        },
-        {
           "id": "401875163",
           "bout": "Dennis Buzukja vs Bogdan Grad",
           "red": {
@@ -510,7 +472,7 @@
             "espn_id": "5144006"
           },
           "weight_class": "Featherweight",
-          "order": 3,
+          "order": 1,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -529,26 +491,7 @@
             "espn_id": "5212850"
           },
           "weight_class": "Bantamweight",
-          "order": 4,
-          "status": "scheduled",
-          "source": {
-            "provider": "espn",
-            "event_id": "600059339"
-          }
-        },
-        {
-          "id": "401870844",
-          "bout": "Jovan Leka vs Max Gimenis",
-          "red": {
-            "name": "Jovan Leka",
-            "espn_id": "5312090"
-          },
-          "blue": {
-            "name": "Max Gimenis",
-            "espn_id": "5316622"
-          },
-          "weight_class": "Heavyweight",
-          "order": 5,
+          "order": 2,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -567,7 +510,26 @@
             "espn_id": "4423264"
           },
           "weight_class": "Lightweight",
-          "order": 6,
+          "order": 3,
+          "status": "scheduled",
+          "source": {
+            "provider": "espn",
+            "event_id": "600059339"
+          }
+        },
+        {
+          "id": "401870844",
+          "bout": "Jovan Leka vs Max Gimenis",
+          "red": {
+            "name": "Jovan Leka",
+            "espn_id": "5312090"
+          },
+          "blue": {
+            "name": "Max Gimenis",
+            "espn_id": "5316622"
+          },
+          "weight_class": "Heavyweight",
+          "order": 4,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -586,7 +548,7 @@
             "espn_id": "4375574"
           },
           "weight_class": "Middleweight",
-          "order": 7,
+          "order": 5,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -605,7 +567,7 @@
             "espn_id": "4686237"
           },
           "weight_class": "Middleweight",
-          "order": 8,
+          "order": 6,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -624,7 +586,7 @@
             "espn_id": "3093559"
           },
           "weight_class": "Heavyweight",
-          "order": 9,
+          "order": 7,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -643,7 +605,7 @@
             "espn_id": "3146944"
           },
           "weight_class": "Heavyweight",
-          "order": 10,
+          "order": 8,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -662,7 +624,7 @@
             "espn_id": "4426312"
           },
           "weight_class": "Welterweight",
-          "order": 11,
+          "order": 9,
           "status": "scheduled",
           "source": {
             "provider": "espn",
@@ -738,5 +700,5 @@
     }
   ],
   "_debug_saved_by": "fetch_espn_event_fightcards.py",
-  "_debug_saved_at": "2026-06-20T22:46:33Z"
+  "_debug_saved_at": "2026-06-20T23:02:24Z"
 }
