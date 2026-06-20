@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import re
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -654,7 +655,24 @@ def add_book_rows(fixtures, si, li, rows, bookmaker):
     for row in rows:
         tk = si.get(row["strict_key"]) or li.get(row["loose_key"])
         if tk:
-            fixtures[tk]["bookmakers"][bookmaker] = {"bookmaker":bookmaker,"odds":row["odds"],"source_url":row["source_url"]}
+            # WORLD_CUP_DATE_GROUPING_V1
+            fixture = fixtures[tk]
+            fixture["bookmakers"][bookmaker] = {
+                "bookmaker": bookmaker,
+                "odds": row["odds"],
+                "source_url": row["source_url"],
+            }
+
+            current_date = clean(fixture.get("date_label"))
+            incoming_date = clean(row.get("date_label"))
+            current_time = clean(fixture.get("time"))
+            incoming_time = clean(row.get("time"))
+
+            if (not current_date or current_date.lower() in {"upcoming", "tbc", "date tbc"}) and incoming_date:
+                fixture["date_label"] = incoming_date
+
+            if not current_time and incoming_time:
+                fixture["time"] = incoming_time
         else:
             k = row["strict_key"]
             fixtures[k] = {
@@ -667,8 +685,43 @@ def add_book_rows(fixtures, si, li, rows, bookmaker):
             }
             si[k]=k; li[row["loose_key"]]=k
 
+def format_fixture_date_heading(value):
+    raw = clean(value)
+    if not raw:
+        return ""
+
+    iso = raw.replace("Z", "+00:00")
+    try:
+        dt = datetime.fromisoformat(iso)
+        return f"{dt.strftime('%A')} {dt.day} {dt.strftime('%B')}"
+    except (TypeError, ValueError):
+        pass
+
+    return raw
+
+
+def fixture_date_heading(fixture):
+    heading = format_fixture_date_heading(fixture.get("date_label"))
+    if heading:
+        return heading
+
+    time_value = clean(fixture.get("time"))
+    if "T" in time_value and re.match(r"^\d{4}-\d{2}-\d{2}T", time_value):
+        heading = format_fixture_date_heading(time_value)
+        if heading:
+            return heading
+
+    return "Date TBC"
+
+
 def date_sort_key(label):
-    label = str(label or "")
+    label = format_fixture_date_heading(label)
+    iso = clean(label).replace("Z", "+00:00")
+    try:
+        dt = datetime.fromisoformat(iso)
+        return (dt.year, dt.month, dt.day, label)
+    except (TypeError, ValueError):
+        pass
     days  = {"Monday":1,"Tuesday":2,"Wednesday":3,"Thursday":4,"Friday":5,"Saturday":6,"Sunday":7,
              "Mon":1,"Tue":2,"Wed":3,"Thu":4,"Fri":5,"Sat":6,"Sun":7}
     parts = label.split()
@@ -832,10 +885,10 @@ td strong { color: #22c55e; font-size: 19px; }
 def render_index(fixtures, bk_count, generated):
     grouped = {}
     for f in fixtures:
-        grouped.setdefault(f.get("date_label") or "Upcoming",[]).append(f)
+        grouped.setdefault(fixture_date_heading(f), []).append(f)
 
     groups = ""
-    for date,items in grouped.items():
+    for date, items in grouped.items():
         cards = ""
         for f in items:
             home,away,slug = f["home_team"],f["away_team"],f["slug"]
@@ -1092,7 +1145,7 @@ def get_line_from_selection(sn):
         return str(float(m2.group(1)) - 0.5)
     return None
 
-def build_player_index(props):
+def build_player_index(props, home="", away=""):
     """
     player_key → {name, key, markets: {
         mk: {threshold: {bk: {odds, decimal}}}   # for THRESHOLD_MARKETS
@@ -1192,7 +1245,48 @@ def build_player_index(props):
                         player_name = player_name[:-len(suffix)].strip()
                         break
 
+                # WORLD_CUP_SAFE_PLAYER_FILTER_V1
+                player_name = re.sub(
+                    r"\s+(?:over|under)\s+\d+(?:\.\d+)?(?:\s+"
+                    r"(?:player\s+)?(?:shots?(?:\s+on\s+target)?|"
+                    r"fouls?(?:\s+(?:won|committed|conceded))?|"
+                    r"tackles?(?:\s+completed)?|cards?|corners?|goals?))?.*$",
+                    "",
+                    player_name,
+                    flags=re.I,
+                ).strip()
+
+                player_name = re.sub(
+                    r"\s+\d+\+\s+(?:shots?(?:\s+on\s+target)?|"
+                    r"fouls?(?:\s+(?:won|committed|conceded))?|"
+                    r"tackles?(?:\s+completed)?)$",
+                    "",
+                    player_name,
+                    flags=re.I,
+                ).strip()
+
+                player_low = player_name.lower()
+                invalid_player_phrases = (
+                    " win or draw", " win either half", " to win either half",
+                    " to win or draw", " and over ", " and under ",
+                    " both teams", " total corners", " total cards",
+                    " team corners", " team cards", " match corners",
+                    " match cards",
+                )
+
                 if not player_name or len(player_name) < 3: continue
+                if re.match(r"^[\d\.\s\/\+]+$", player_name): continue
+                if re.match(r"^(?:u|o)[\s\-]*\d", player_low): continue
+                if re.match(r"^(?:over|under|both|draw|yes|no|home|away)\b", player_low): continue
+                if any(p in player_low for p in invalid_player_phrases): continue
+                if home and key_team(player_name) == key_team(home): continue
+                if away and key_team(player_name) == key_team(away): continue
+                if re.search(
+                    r"\b(?:corners?|cards?|win\s+or\s+draw|"
+                    r"win\s+either\s+half|total\s+goals?)\b",
+                    player_low,
+                ):
+                    continue
                 if re.match(r"^[\d\.\s\/\+]+$", player_name): continue
                 if re.match(r"^(over|under|both|draw)\b", player_name.lower()): continue
                 if re.match(r"^\d+(\.\d+)?$", player_name): continue
@@ -1268,7 +1362,7 @@ def build_player_index(props):
 def render_player_props_page(fixture):
     home, away, slug = fixture["home_team"], fixture["away_team"], fixture["slug"]
     props = fixture.get("props") or {}
-    player_index = build_player_index(props)
+    player_index = build_player_index(props, home, away)
 
     subnav = f'<nav class="sub-nav"><a href="../index.html">Odds</a>'
     has_match = any(any(normalize_prop_market_key(m["market"]) in MATCH_MARKET_KEYS
@@ -1349,7 +1443,7 @@ def render_player_props_page(fixture):
 def render_player_market_page(fixture, mk, label, icon):
     home, away, slug = fixture["home_team"], fixture["away_team"], fixture["slug"]
     props = fixture.get("props") or {}
-    player_index = build_player_index(props)
+    player_index = build_player_index(props, home, away)
     players_in_mkt = {pk: pd for pk, pd in player_index.items() if mk in pd["markets"]}
 
     subnav = (f'<nav class="sub-nav"><a href="../../index.html">Odds</a>'
@@ -1626,7 +1720,7 @@ def main():
             (pp / "index.html").write_text(render_player_props_page(f), encoding="utf-8")
             player_pages += 1
 
-            player_index = build_player_index(props)
+            player_index = build_player_index(props, f["home_team"], f["away_team"])
             for mk, label, icon in PLAYER_MARKET_PAGES:
                 players_in_mkt = {pk: pd for pk, pd in player_index.items() if mk in pd["markets"]}
                 if not players_in_mkt: continue
