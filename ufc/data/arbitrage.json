@@ -1,276 +1,12 @@
 {
   "source": "odds_json_plus_bookmaker_props",
-  "total_moneyline_fights_checked": 51,
+  "total_moneyline_fights_checked": 39,
   "total_prop_markets_checked": 15,
   "total_prop_rows_loaded": 37,
   "arbitrage_count": 1,
   "moneyline_arbitrage_count": 1,
   "prop_arbitrage_count": 0,
   "fights": [
-    {
-      "type": "moneyline",
-      "event_id": "17a65d6c756a0838db2c1224f8cb7228",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Adam Masaev vs Konrad Rusinski",
-      "market": "Moneyline",
-      "fighters": {
-        "Adam Masaev": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.41,
-          "implied_probability": 70.92
-        },
-        "Konrad Rusinski": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 2.7,
-          "implied_probability": 37.04
-        }
-      },
-      "arb_sum": 1.07959,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.96
-    },
-    {
-      "type": "moneyline",
-      "event_id": "9f551f7af193869edf3aac1011226efd",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Alina Dalaslan vs Djulia Ariana",
-      "market": "Moneyline",
-      "fighters": {
-        "Alina Dalaslan": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.14,
-          "implied_probability": 87.72
-        },
-        "Djulia Ariana": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 5.2,
-          "implied_probability": 19.23
-        }
-      },
-      "arb_sum": 1.069501,
-      "is_arbitrage": false,
-      "profit_margin_percent": -6.95
-    },
-    {
-      "type": "moneyline",
-      "event_id": "cb2d1067a38d661f0cfb1edd034c9aab",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Andrzej Grzebyk vs Tymoteusz Łopaczyk",
-      "market": "Moneyline",
-      "fighters": {
-        "Andrzej Grzebyk": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.66,
-          "implied_probability": 60.24
-        },
-        "Tymoteusz Łopaczyk": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 2.1,
-          "implied_probability": 47.62
-        }
-      },
-      "arb_sum": 1.0786,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.86
-    },
-    {
-      "type": "moneyline",
-      "event_id": "b30cb0e2ea84b27d0dd82e2048c23215",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Arijan Topallaj vs Jan Stanovský",
-      "market": "Moneyline",
-      "fighters": {
-        "Arijan Topallaj": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 2.1,
-          "implied_probability": 47.62
-        },
-        "Jan Stanovský": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.66,
-          "implied_probability": 60.24
-        }
-      },
-      "arb_sum": 1.0786,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.86
-    },
-    {
-      "type": "moneyline",
-      "event_id": "7d54c9958031679e49a531c87c387ee6",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Arkadiusz Wrzosek vs Tefan Vojcak",
-      "market": "Moneyline",
-      "fighters": {
-        "Arkadiusz Wrzosek": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.33,
-          "implied_probability": 75.19
-        },
-        "Tefan Vojcak": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 3.05,
-          "implied_probability": 32.79
-        }
-      },
-      "arb_sum": 1.079749,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.97
-    },
-    {
-      "type": "moneyline",
-      "event_id": "17f2830ae7887474ba8196128f3e950c",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Attila Korkmaz vs Dawid Smielowski",
-      "market": "Moneyline",
-      "fighters": {
-        "Attila Korkmaz": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.47,
-          "implied_probability": 68.03
-        },
-        "Dawid Smielowski": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 2.5,
-          "implied_probability": 40.0
-        }
-      },
-      "arb_sum": 1.080272,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.03
-    },
-    {
-      "type": "moneyline",
-      "event_id": "26ecc3849c561992e42dc5e363de49c5",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Damian Janikowski vs Wiktor Zalewski",
-      "market": "Moneyline",
-      "fighters": {
-        "Damian Janikowski": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 3.2,
-          "implied_probability": 31.25
-        },
-        "Wiktor Zalewski": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.3,
-          "implied_probability": 76.92
-        }
-      },
-      "arb_sum": 1.081731,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.17
-    },
-    {
-      "type": "moneyline",
-      "event_id": "b8b83859979d71c6a3b21d64c2cde7c8",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Daniel Rutkowski vs Danu Tarchila",
-      "market": "Moneyline",
-      "fighters": {
-        "Daniel Rutkowski": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.44,
-          "implied_probability": 69.44
-        },
-        "Danu Tarchila": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 2.55,
-          "implied_probability": 39.22
-        }
-      },
-      "arb_sum": 1.086601,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.66
-    },
-    {
-      "type": "moneyline",
-      "event_id": "005a767a40ce3a39bc2432d1d29b54a6",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Denis Frimpong vs Niko Samsonidse",
-      "market": "Moneyline",
-      "fighters": {
-        "Denis Frimpong": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 2.1,
-          "implied_probability": 47.62
-        },
-        "Niko Samsonidse": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.66,
-          "implied_probability": 60.24
-        }
-      },
-      "arb_sum": 1.0786,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.86
-    },
-    {
-      "type": "moneyline",
-      "event_id": "760b66fdc11bd7993b265fd8088f5802",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Marek Samociuk vs Michal Martínek",
-      "market": "Moneyline",
-      "fighters": {
-        "Marek Samociuk": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 1.38,
-          "implied_probability": 72.46
-        },
-        "Michal Martínek": {
-          "best_bookmaker": "Grosvenor",
-          "best_price": 2.8,
-          "implied_probability": 35.71
-        }
-      },
-      "arb_sum": 1.081781,
-      "is_arbitrage": false,
-      "profit_margin_percent": -8.18
-    },
-    {
-      "type": "moneyline",
-      "event_id": "0db1304c1d033e0ad7a16ec6c3e5f794",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Niklas Stolze vs Tyrone Pfeifer",
-      "market": "Moneyline",
-      "fighters": {
-        "Niklas Stolze": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.32,
-          "implied_probability": 43.1
-        },
-        "Tyrone Pfeifer": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.55,
-          "implied_probability": 64.52
-        }
-      },
-      "arb_sum": 1.076196,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.62
-    },
-    {
-      "type": "moneyline",
-      "event_id": "539f56d5667378f1c8b4e73e5fed8fea",
-      "commence_time": "2026-06-20T15:00:00Z",
-      "fight": "Richie Smullen vs Zafar Mohsen",
-      "market": "Moneyline",
-      "fighters": {
-        "Richie Smullen": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.32,
-          "implied_probability": 43.1
-        },
-        "Zafar Mohsen": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 1.55,
-          "implied_probability": 64.52
-        }
-      },
-      "arb_sum": 1.076196,
-      "is_arbitrage": false,
-      "profit_margin_percent": -7.62
-    },
     {
       "type": "moneyline",
       "event_id": "ce732fe43a0b86236f3a7c4d860483eb",
@@ -368,18 +104,18 @@
       "fighters": {
         "Matteo Martignoni": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 1.82,
-          "implied_probability": 54.95
+          "best_price": 2.06,
+          "implied_probability": 48.54
         },
         "Tom Wright": {
           "best_bookmaker": "Grosvenor",
-          "best_price": 1.88,
-          "implied_probability": 53.19
+          "best_price": 1.68,
+          "implied_probability": 59.52
         }
       },
-      "arb_sum": 1.081365,
+      "arb_sum": 1.080675,
       "is_arbitrage": false,
-      "profit_margin_percent": -8.14
+      "profit_margin_percent": -8.07
     },
     {
       "type": "moneyline",
@@ -411,9 +147,9 @@
       "market": "Moneyline",
       "fighters": {
         "Otari Tanzilovi": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 2.8,
-          "implied_probability": 35.71
+          "best_bookmaker": "Matchbook",
+          "best_price": 2.82,
+          "implied_probability": 35.46
         },
         "Shane Collins": {
           "best_bookmaker": "Unibet (UK)",
@@ -421,9 +157,9 @@
           "implied_probability": 66.67
         }
       },
-      "arb_sum": 1.02381,
+      "arb_sum": 1.021277,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.38
+      "profit_margin_percent": -2.13
     },
     {
       "type": "moneyline",
@@ -477,19 +213,19 @@
       "market": "Moneyline",
       "fighters": {
         "Karol Rosa": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 1.94,
-          "implied_probability": 51.55
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 1.88,
+          "implied_probability": 53.19
         },
         "Luana Santos": {
-          "best_bookmaker": "Matchbook",
-          "best_price": 2.02,
-          "implied_probability": 49.5
+          "best_bookmaker": "Betfair",
+          "best_price": 2.04,
+          "implied_probability": 49.02
         }
       },
-      "arb_sum": 1.010513,
+      "arb_sum": 1.022111,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.05
+      "profit_margin_percent": -2.21
     },
     {
       "type": "moneyline",
@@ -522,8 +258,8 @@
       "fighters": {
         "Allan Nascimento": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.62,
-          "implied_probability": 61.73
+          "best_price": 1.63,
+          "implied_probability": 61.35
         },
         "Mitch Raposo": {
           "best_bookmaker": "Matchbook",
@@ -531,9 +267,9 @@
           "implied_probability": 38.76
         }
       },
-      "arb_sum": 1.004881,
+      "arb_sum": 1.001094,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.49
+      "profit_margin_percent": -0.11
     },
     {
       "type": "moneyline",
@@ -570,7 +306,7 @@
           "implied_probability": 85.47
         },
         "Kevin Borjas": {
-          "best_bookmaker": "Matchbook",
+          "best_bookmaker": "Betfair",
           "best_price": 6.0,
           "implied_probability": 16.67
         }
@@ -587,19 +323,19 @@
       "market": "Moneyline",
       "fighters": {
         "Andre Fili": {
-          "best_bookmaker": "LeoVegas",
-          "best_price": 3.3,
-          "implied_probability": 30.3
+          "best_bookmaker": "Matchbook",
+          "best_price": 3.4,
+          "implied_probability": 29.41
         },
         "Vinicius Oliveira": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.39,
-          "implied_probability": 71.94
+          "best_price": 1.38,
+          "implied_probability": 72.46
         }
       },
-      "arb_sum": 1.022455,
+      "arb_sum": 1.018755,
       "is_arbitrage": false,
-      "profit_margin_percent": -2.25
+      "profit_margin_percent": -1.88
     },
     {
       "type": "moneyline",
@@ -636,14 +372,14 @@
           "implied_probability": 65.36
         },
         "Hyder Amil": {
-          "best_bookmaker": "Betfair",
-          "best_price": 2.76,
-          "implied_probability": 36.23
+          "best_bookmaker": "Unibet (UK)",
+          "best_price": 2.7,
+          "implied_probability": 37.04
         }
       },
-      "arb_sum": 1.015914,
+      "arb_sum": 1.023965,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.59
+      "profit_margin_percent": -2.4
     },
     {
       "type": "moneyline",
@@ -659,13 +395,13 @@
         },
         "Navajo Stirling": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.35,
-          "implied_probability": 74.07
+          "best_price": 1.34,
+          "implied_probability": 74.63
         }
       },
-      "arb_sum": 1.003899,
+      "arb_sum": 1.009427,
       "is_arbitrage": false,
-      "profit_margin_percent": -0.39
+      "profit_margin_percent": -0.94
     },
     {
       "type": "moneyline",
@@ -681,13 +417,13 @@
         },
         "Manel Kape": {
           "best_bookmaker": "Betfair",
-          "best_price": 1.66,
-          "implied_probability": 60.24
+          "best_price": 1.69,
+          "implied_probability": 59.17
         }
       },
-      "arb_sum": 1.019076,
+      "arb_sum": 1.008383,
       "is_arbitrage": false,
-      "profit_margin_percent": -1.91
+      "profit_margin_percent": -0.84
     },
     {
       "type": "moneyline",
@@ -698,8 +434,8 @@
       "fighters": {
         "Abdulrakhman Yakhyaev": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 1.22,
-          "implied_probability": 81.97
+          "best_price": 1.24,
+          "implied_probability": 80.65
         },
         "Julius Walker": {
           "best_bookmaker": "Betway",
@@ -707,9 +443,9 @@
           "implied_probability": 23.09
         }
       },
-      "arb_sum": 1.050619,
+      "arb_sum": 1.037398,
       "is_arbitrage": false,
-      "profit_margin_percent": -5.06
+      "profit_margin_percent": -3.74
     },
     {
       "type": "moneyline",
@@ -742,8 +478,8 @@
       "fighters": {
         "Andrey Pulyaev": {
           "best_bookmaker": "Unibet (UK)",
-          "best_price": 2.75,
-          "implied_probability": 36.36
+          "best_price": 2.8,
+          "implied_probability": 35.71
         },
         "Nursultan Ruziboev": {
           "best_bookmaker": "Betway",
@@ -751,9 +487,9 @@
           "implied_probability": 69.44
         }
       },
-      "arb_sum": 1.058081,
+      "arb_sum": 1.051587,
       "is_arbitrage": false,
-      "profit_margin_percent": -5.81
+      "profit_margin_percent": -5.16
     },
     {
       "type": "moneyline",
@@ -851,12 +587,12 @@
       "market": "Moneyline",
       "fighters": {
         "Eric Nolan": {
-          "best_bookmaker": "Betway",
+          "best_bookmaker": "Unibet (UK)",
           "best_price": 2.3,
           "implied_probability": 43.48
         },
         "Farman Hasanov": {
-          "best_bookmaker": "Betway",
+          "best_bookmaker": "Unibet (UK)",
           "best_price": 1.61,
           "implied_probability": 62.11
         }
