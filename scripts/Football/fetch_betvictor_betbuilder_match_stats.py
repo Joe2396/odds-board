@@ -1,42 +1,32 @@
 #!/usr/bin/env python3
 """
-fetch_betvictor_betbuilder_match_stats_TEST3_SHOTS_ONLY.py
+fetch_betvictor_betbuilder_match_stats.py
 
-Separate BetVictor Bet Builder Match Stats scraper.
-
-TEST MODE:
-  MAX_MATCHES = 3
-
-Purpose:
-  Get only the useful Bet Builder Match Stats markets, then merge them into
-  betvictor_worldcup_props.json once confirmed.
+BetVictor Bet Builder Match/Team Shots scraper.
 
 Keeps:
-  - Match Shots On Target
-  - Match Shots
-  - Team Shots On Target
-  - Team Shots
+- Match Shots On Target
+- Match Shots
+- Home/Away Shots On Target
+- Home/Away Shots
 
-Ignores:
-  - Tackles
-  - Offsides
-
-Input:
-  football/data/betvictor_worldcup_props.json
-    Uses exact event URLs already found by the main BetVictor props scraper.
-
-Output:
-  football/data/betvictor_worldcup_betbuilder_stats.json
-
-Debug:
-  football/debug/betvictor_betbuilder_stats/<match>/ALL.txt
-  football/debug/betvictor_betbuilder_stats/<match>/HITS.txt
+Key reliability fixes:
+- MAX_MATCHES = 15
+- retries zero-market fixtures up to 3 times
+- uses a fresh browser context for each retry
+- verifies the event page and Match Stats tab actually loaded
+- supports Turkey / Turkiye / Türkiye row labels
+- overwrites the stats JSON from the CURRENT main props fixture list
+- records each attempt in the debug folder
 """
+
+from __future__ import annotations
 
 import json
 import re
-from pathlib import Path
 from datetime import datetime, timezone
+from pathlib import Path
+from typing import Iterable
 
 from playwright.sync_api import sync_playwright
 
@@ -47,6 +37,7 @@ OUT_PATH = ROOT / "football" / "data" / "betvictor_worldcup_betbuilder_stats.jso
 DEBUG_ROOT = ROOT / "football" / "debug" / "betvictor_betbuilder_stats"
 
 MAX_MATCHES = 15
+MAX_ATTEMPTS = 3
 HEADLESS = False
 BETBUILDER_GROUP = "12536"
 
@@ -65,31 +56,39 @@ TEAM_ALIASES = {
     "Curaçao": "Curacao",
 }
 
-
-def clean(s):
-    return re.sub(r"\s+", " ", str(s or "")).strip()
-
-
-def canonical_team(s):
-    s = clean(s)
-    return TEAM_ALIASES.get(s, s)
-
-
-def normalize(s):
-    s = clean(s).lower().replace("&", "and").replace("?", "")
-    return re.sub(r"[^a-z0-9]+", "_", s).strip("_")
+TEAM_ROW_ALIASES = {
+    "USA": ["USA", "United States", "United States of America"],
+    "Türkiye": ["Türkiye", "Turkey", "Turkiye"],
+    "Czechia": ["Czechia", "Czech Republic"],
+    "Bosnia": ["Bosnia", "Bosnia and Herzegovina", "Bosnia & Herzegovina"],
+    "Curacao": ["Curacao", "Curaçao"],
+}
 
 
-def slugify(s):
-    return re.sub(r"[^a-z0-9]+", "-", str(s or "").lower()).strip("-")
+def clean(value):
+    return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
-def is_odds(s):
-    return bool(ODDS_RE.match(clean(s)))
+def canonical_team(value):
+    value = clean(value)
+    return TEAM_ALIASES.get(value, value)
 
 
-def is_plus(s):
-    return bool(PLUS_RE.match(clean(s)))
+def normalize(value):
+    value = clean(value).lower().replace("&", "and").replace("?", "")
+    return re.sub(r"[^a-z0-9]+", "_", value).strip("_")
+
+
+def slugify(value):
+    return re.sub(r"[^a-z0-9]+", "-", str(value or "").lower()).strip("-")
+
+
+def is_odds(value):
+    return bool(ODDS_RE.match(clean(value)))
+
+
+def is_plus(value):
+    return bool(PLUS_RE.match(clean(value)))
 
 
 def base_event_url(url):
@@ -101,40 +100,56 @@ def group_url(event_url):
 
 
 def lines_from_text(text):
-    return [clean(x) for x in text.splitlines() if clean(x)]
+    return [clean(line) for line in text.splitlines() if clean(line)]
+
+
+def row_team_aliases(team):
+    values = TEAM_ROW_ALIASES.get(team, [team])
+    result = []
+    for value in values:
+        value = clean(value)
+        if value and value not in result:
+            result.append(value)
+    return result
+
+
+def row_title_candidates(team, stat_label):
+    return [f"{name} {stat_label}" for name in row_team_aliases(team)]
 
 
 def selection(name, odds, **extra):
-    out = {
+    item = {
         "selection": clean(name),
         "normalized_selection": normalize(name),
         "odds": clean(odds).upper(),
     }
-    out.update({k: v for k, v in extra.items() if v is not None})
-    return out
+    item.update({key: value for key, value in extra.items() if value is not None})
+    return item
 
 
 def market(name, selections):
-    seen, out = set(), []
-    for s in selections:
+    seen = set()
+    output = []
+
+    for item in selections:
         key = (
-            s.get("selection"),
-            s.get("odds"),
-            s.get("side"),
-            s.get("line"),
-            s.get("team"),
-            s.get("stat"),
+            item.get("selection"),
+            item.get("odds"),
+            item.get("side"),
+            item.get("line"),
+            item.get("team"),
+            item.get("stat"),
         )
         if key in seen:
             continue
         seen.add(key)
-        out.append(s)
+        output.append(item)
 
     return {
         "market": name,
         "normalized_market": normalize(name),
-        "selection_count": len(out),
-        "selections": out,
+        "selection_count": len(output),
+        "selections": output,
     }
 
 
@@ -142,83 +157,63 @@ def load_fixtures():
     data = json.loads(PROPS_PATH.read_text(encoding="utf-8"))
     fixtures = []
 
-    for m in data.get("matches", []):
-        url = m.get("source_url", "")
+    for match_data in data.get("matches", []):
+        url = match_data.get("source_url", "")
         if "/events/" not in url:
             continue
 
-        home = canonical_team(m.get("home_team", ""))
-        away = canonical_team(m.get("away_team", ""))
-        match = clean(m.get("match") or f"{home} v {away}")
+        home = canonical_team(match_data.get("home_team", ""))
+        away = canonical_team(match_data.get("away_team", ""))
+        match_name = clean(match_data.get("match") or f"{home} v {away}")
 
-        if not home or not away:
-            if " v " in match:
-                home, away = [canonical_team(x) for x in match.split(" v ", 1)]
+        if (not home or not away) and " v " in match_name:
+            home, away = [canonical_team(part) for part in match_name.split(" v ", 1)]
 
         if not home or not away:
             continue
 
-        fixtures.append({
-            "match": match,
-            "home": home,
-            "away": away,
-            "source_url": base_event_url(url),
-        })
+        fixtures.append(
+            {
+                "match": match_name,
+                "home": home,
+                "away": away,
+                "source_url": base_event_url(url),
+            }
+        )
 
-    seen, out = set(), []
-    for f in fixtures:
-        key = (normalize(f["match"]), f["source_url"])
+    seen = set()
+    output = []
+
+    for fixture in fixtures:
+        key = (normalize(fixture["match"]), fixture["source_url"])
         if key in seen:
             continue
         seen.add(key)
-        out.append(f)
+        output.append(fixture)
 
-    return out[:MAX_MATCHES]
+    return output[:MAX_MATCHES], data.get("generated_at")
 
 
 def accept_cookies(page):
-    for label in ["Accept All", "Accept all", "I Accept", "Accept", "Agree", "Allow all", "OK", "I have read the above", "Dismiss"]:
+    labels = [
+        "Accept All",
+        "Accept all",
+        "I Accept",
+        "Accept",
+        "Agree",
+        "Allow all",
+        "OK",
+        "I have read the above",
+        "Dismiss",
+    ]
+
+    for label in labels:
         try:
-            loc = page.get_by_role("button", name=re.compile(label, re.I))
-            if loc.count():
-                loc.first.click(timeout=1200)
-                page.wait_for_timeout(400)
+            locator = page.get_by_role("button", name=re.compile(f"^{re.escape(label)}$", re.I))
+            if locator.count():
+                locator.first.click(timeout=1500)
+                page.wait_for_timeout(500)
                 return
-        except Exception:
-            pass
-
-
-def scroll_all(page, passes=1):
-    for _ in range(passes):
-        try:
-            page.evaluate(
-                """() => {
-                    window.scrollBy(0, 600);
-                    const els = Array.from(document.querySelectorAll('body *'));
-                    for (const el of els) {
-                        const st = getComputedStyle(el);
-                        if (el.scrollHeight > el.clientHeight + 80 &&
-                            ['auto','scroll','overlay'].includes(st.overflowY)) {
-                            el.scrollTop = Math.min(el.scrollTop + 600, el.scrollHeight);
-                        }
-                    }
-                }"""
-            )
-        except Exception:
-            page.mouse.wheel(0, 600)
-        page.wait_for_timeout(250)
-
-
-def click_show_more(page):
-    for label in ["Show More", "Show more", "View More", "View more", "Show All", "Show all"]:
-        try:
-            loc = page.get_by_text(label, exact=True)
-            for i in range(min(loc.count(), 8)):
-                try:
-                    loc.nth(i).click(timeout=800)
-                    page.wait_for_timeout(300)
-                except Exception:
-                    pass
         except Exception:
             pass
 
@@ -230,162 +225,271 @@ def body_text(page):
         return ""
 
 
-def click_match_stats_tab(page):
-    def active():
-        txt = body_text(page)
-        return "To Have the Most" in txt or "Match Shots on Target" in txt or "Match Shots" in txt
+def click_show_more(page):
+    for label in ["Show More", "Show more", "View More", "View more", "Show All", "Show all"]:
+        try:
+            locator = page.get_by_text(label, exact=True)
+            for index in range(min(locator.count(), 10)):
+                try:
+                    locator.nth(index).click(timeout=900)
+                    page.wait_for_timeout(250)
+                except Exception:
+                    pass
+        except Exception:
+            pass
 
+
+def wait_for_event_page(page, fixture, timeout_ms=18000):
+    deadline = datetime.now().timestamp() + timeout_ms / 1000
+
+    while datetime.now().timestamp() < deadline:
+        text = body_text(page)
+        low = text.lower()
+
+        has_team = (
+            fixture["home"].lower() in low
+            or fixture["away"].lower() in low
+            or any(alias.lower() in low for alias in row_team_aliases(fixture["home"]))
+            or any(alias.lower() in low for alias in row_team_aliases(fixture["away"]))
+        )
+        has_event_ui = "bet builder" in low or "match stats" in low or "popular" in low
+
+        if has_team and has_event_ui:
+            return True
+
+        page.wait_for_timeout(750)
+
+    return False
+
+
+def click_locator(page, locator):
     try:
-        page.evaluate("window.scrollTo(0, 0)")
+        locator.scroll_into_view_if_needed(timeout=2500)
     except Exception:
         pass
-    page.wait_for_timeout(700)
 
     try:
-        loc = page.get_by_text("Match Stats", exact=True)
-        count = min(loc.count(), 12)
-        print(f"      Match Stats labels found: {count}")
-        for i in range(count):
-            try:
-                item = loc.nth(i)
-                item.scroll_into_view_if_needed(timeout=2000)
-                page.wait_for_timeout(250)
-                box = item.bounding_box()
-                if not box:
-                    continue
-                if box["width"] <= 5 or box["height"] <= 5 or box["width"] > 260:
-                    continue
-                page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
-                page.wait_for_timeout(1500)
-                if active():
-                    return True
-            except Exception:
-                pass
+        locator.click(timeout=2500)
+        page.wait_for_timeout(1400)
+        return True
     except Exception:
         pass
 
-    return active()
-
-
-def click_row_chevron(page, label):
-    """Open a BetVictor accordion row by exact label, clicking far-right chevron area."""
     try:
-        loc = page.get_by_text(label, exact=True)
-        count = min(loc.count(), 8)
+        locator.evaluate("(el) => el.click()")
+        page.wait_for_timeout(1400)
+        return True
+    except Exception:
+        pass
 
-        for i in range(count):
-            try:
-                item = loc.nth(i)
-                item.scroll_into_view_if_needed(timeout=2500)
-                page.wait_for_timeout(250)
-                box = item.bounding_box()
-                if not box:
-                    continue
-                if box["width"] <= 5 or box["height"] <= 5 or box["width"] > 360:
-                    continue
-
-                x = min(max(box["x"] + 700, box["x"] + 80), 1215)
-                y = box["y"] + box["height"] / 2
-                page.mouse.click(x, y)
-                page.wait_for_timeout(900)
-                return True
-            except Exception:
-                pass
+    try:
+        box = locator.bounding_box()
+        if box:
+            page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
+            page.wait_for_timeout(1400)
+            return True
     except Exception:
         pass
 
     return False
 
 
-def capture_match_stats_page(page, fixture, debug_dir):
+def match_stats_active(page):
+    low = body_text(page).lower()
+    return "match shots on target" in low and "match shots" in low
+
+
+def click_match_stats_tab(page):
+    if match_stats_active(page):
+        return True
+
+    try:
+        page.evaluate("window.scrollTo(0, 0)")
+    except Exception:
+        pass
+    page.wait_for_timeout(500)
+
+    locators = []
+
+    try:
+        locators.append(page.get_by_role("tab", name=re.compile(r"^Match Stats$", re.I)))
+    except Exception:
+        pass
+
+    try:
+        locators.append(page.get_by_role("button", name=re.compile(r"^Match Stats$", re.I)))
+    except Exception:
+        pass
+
+    try:
+        locators.append(page.get_by_text("Match Stats", exact=True))
+    except Exception:
+        pass
+
+    for locator in locators:
+        try:
+            for index in range(min(locator.count(), 12)):
+                if click_locator(page, locator.nth(index)) and match_stats_active(page):
+                    return True
+        except Exception:
+            pass
+
+    return match_stats_active(page)
+
+
+def find_exact_text(page, labels: Iterable[str]):
+    for label in labels:
+        try:
+            locator = page.get_by_text(label, exact=True)
+            for index in range(min(locator.count(), 10)):
+                item = locator.nth(index)
+                try:
+                    box = item.bounding_box()
+                except Exception:
+                    box = None
+                if box and box["width"] > 4 and box["height"] > 4:
+                    return label, item
+        except Exception:
+            pass
+
+    return None, None
+
+
+def click_row_chevron(page, labels):
+    label, item = find_exact_text(page, labels)
+    if not item:
+        return None
+
+    try:
+        item.scroll_into_view_if_needed(timeout=2500)
+    except Exception:
+        pass
+    page.wait_for_timeout(250)
+
+    before = body_text(page)
+
+    # Find a wide, row-like ancestor and click its far-right chevron area.
+    try:
+        rect = item.evaluate(
+            """(el) => {
+                let node = el;
+                while (node) {
+                    const r = node.getBoundingClientRect();
+                    if (r.width >= 420 && r.height >= 24 && r.height <= 130) {
+                        return {x: r.x, y: r.y, width: r.width, height: r.height};
+                    }
+                    node = node.parentElement;
+                }
+                const r = el.getBoundingClientRect();
+                return {x: r.x, y: r.y, width: r.width, height: r.height};
+            }"""
+        )
+        x = min(rect["x"] + rect["width"] - 24, 1650)
+        y = rect["y"] + rect["height"] / 2
+        page.mouse.click(x, y)
+        page.wait_for_timeout(1000)
+    except Exception:
+        click_locator(page, item)
+
+    after = body_text(page)
+
+    # Even if the body text did not change, the row may already have been open.
+    return label if label else None
+
+
+def write_hits(text, debug_dir, filename="HITS.txt"):
+    words = ["Match Shots", "Shots on Target", "Shots", "Over", "Under"]
+    lines = text.splitlines()
+    hits = []
+
+    for index, line in enumerate(lines):
+        if any(word.lower() in line.lower() for word in words):
+            hits.append(f"{index:04d}: {line}")
+            for next_index in range(index + 1, min(index + 16, len(lines))):
+                if lines[next_index].strip():
+                    hits.append(f"      {next_index:04d}: {lines[next_index]}")
+            hits.append("")
+
+    (debug_dir / filename).write_text("\n".join(hits), encoding="utf-8")
+
+
+def capture_match_stats_page(page, fixture, debug_dir, attempt):
     chunks = []
 
     def capture(label):
         click_show_more(page)
-        txt = body_text(page)
-        chunks.append(f"=== {label} ===\n{txt}")
+        text = body_text(page)
+        chunks.append(f"=== {label} ===\n{text}")
 
-    ok = click_match_stats_tab(page)
-    print(f"      Match Stats clicked: {ok}")
-    capture(f"MATCH_STATS_TAB clicked={ok}")
+    tab_ok = click_match_stats_tab(page)
+    print(f"      Match Stats active: {tab_ok}")
+    capture(f"MATCH_STATS_TAB active={tab_ok}")
 
-    home = fixture["home"]
-    away = fixture["away"]
-
-    # Only desired rows. No tackles, no offsides.
-    rows = [
-        "Match Shots on Target",
-        "Match Shots",
-        f"{home} Shots on Target",
-        f"{home} Shots",
-        f"{away} Shots on Target",
-        f"{away} Shots",
+    row_specs = [
+        ("Match Shots on Target", ["Match Shots on Target"]),
+        ("Match Shots", ["Match Shots"]),
+        (
+            f"{fixture['home']} Shots on Target",
+            row_title_candidates(fixture["home"], "Shots on Target"),
+        ),
+        (
+            f"{fixture['home']} Shots",
+            row_title_candidates(fixture["home"], "Shots"),
+        ),
+        (
+            f"{fixture['away']} Shots on Target",
+            row_title_candidates(fixture["away"], "Shots on Target"),
+        ),
+        (
+            f"{fixture['away']} Shots",
+            row_title_candidates(fixture["away"], "Shots"),
+        ),
     ]
 
-    for row in rows:
-        clicked = click_row_chevron(page, row)
-        capture(f"ROW {row} clicked={clicked}")
+    found_titles = {}
+
+    for canonical_title, candidates in row_specs:
+        actual_title = click_row_chevron(page, candidates)
+        found_titles[canonical_title] = actual_title
+        capture(f"ROW {canonical_title} actual={actual_title!r}")
 
     all_text = "\n\n".join(chunks)
+
+    attempt_all = debug_dir / f"ALL_attempt_{attempt}.txt"
+    attempt_hits = f"HITS_attempt_{attempt}.txt"
+    attempt_all.write_text(all_text, encoding="utf-8")
+    write_hits(all_text, debug_dir, attempt_hits)
+
+    # Keep the latest attempt under the familiar filenames too.
     (debug_dir / "ALL.txt").write_text(all_text, encoding="utf-8")
-    write_hits(all_text, debug_dir)
-    return all_text
+    write_hits(all_text, debug_dir, "HITS.txt")
 
-
-def write_hits(text, debug_dir):
-    words = [
-        "Match Shots", "Shots on Target", "Shots", "Over", "Under",
-    ]
-    lines = text.splitlines()
-    hits = []
-    for i, line in enumerate(lines):
-        if any(w.lower() in line.lower() for w in words):
-            hits.append(f"{i:04d}: {line}")
-            for j in range(i + 1, min(i + 16, len(lines))):
-                if lines[j].strip():
-                    hits.append(f"      {j:04d}: {lines[j]}")
-            hits.append("")
-    (debug_dir / "HITS.txt").write_text("\n".join(hits), encoding="utf-8")
+    return all_text, found_titles, tab_ok
 
 
 def split_title_block(lines, title, all_titles):
-    """Return lines after an exact title until next exact title/footer.
-
-    BetVictor layout for these markets is:
-      Match Shots
-      19-25
-      27-33
-      19+
-      21+
-      23+
-      25+
-      1/10
-      19/100
-      17/50
-      11/20
-
-    We ignore range labels and pair plus thresholds with the following odds.
-    """
     title_norm = normalize(title)
-    idxs = [i for i, x in enumerate(lines) if normalize(x) == title_norm]
-    if not idxs:
+    indexes = [index for index, value in enumerate(lines) if normalize(value) == title_norm]
+    if not indexes:
         return []
 
-    # Pick the instance with most odds before the next title.
-    best, best_score = [], -1
-    for idx in idxs:
-        block = []
-        for j in range(idx + 1, min(idx + 80, len(lines))):
-            tok = clean(lines[j])
-            if not tok:
-                continue
-            if normalize(tok) != title_norm and normalize(tok) in all_titles:
-                break
-            if tok in {"Add to Betslip", "Save to Betslip and build a Multiple"}:
-                break
-            block.append(tok)
+    best = []
+    best_score = -1
 
-        score = sum(1 for x in block if is_odds(x))
+    for index in indexes:
+        block = []
+
+        for next_index in range(index + 1, min(index + 90, len(lines))):
+            token = clean(lines[next_index])
+            if not token:
+                continue
+            if normalize(token) != title_norm and normalize(token) in all_titles:
+                break
+            if token in {"Add to Betslip", "Save to Betslip and build a Multiple"}:
+                break
+            block.append(token)
+
+        score = sum(1 for token in block if is_odds(token))
         if score > best_score:
             best = block
             best_score = score
@@ -398,140 +502,207 @@ def parse_threshold_market(lines, title, market_name, stat, team=None):
         normalize("To Have the Most"),
         normalize("Match Shots on Target"),
         normalize("Match Shots"),
-        normalize("France Shots on Target"),
-        normalize("France Shots"),
-        normalize("Senegal Shots on Target"),
-        normalize("Senegal Shots"),
-        # dynamic team titles are added below before split
     }
 
-    # Add dynamic team titles by scanning lines ending with these words.
-    for x in lines:
-        lx = clean(x).lower()
-        if lx.endswith("shots on target") or lx.endswith("shots"):
-            all_titles.add(normalize(x))
+    for value in lines:
+        low = clean(value).lower()
+        if low.endswith("shots on target") or low.endswith("shots"):
+            all_titles.add(normalize(value))
 
     block = split_title_block(lines, title, all_titles)
     if not block:
         return market(market_name, [])
 
-    thresholds = [x for x in block if is_plus(x)]
-    odds = [x for x in block if is_odds(x)]
+    thresholds = [value for value in block if is_plus(value)]
+    odds = [value for value in block if is_odds(value)]
 
-    # BetVictor usually has ranges first, then plus thresholds, then odds.
-    # Example: 6-9, 10-13, 6+, 7+, 8+, 9+, 2/21, 1/5, 10/27, 5/8
-    n = min(len(thresholds), len(odds))
-    out = []
-    for th, odd in zip(thresholds[:n], odds[:n]):
-        out.append(selection(
-            f"{market_name} {th}",
-            odd,
-            team=team,
-            stat=stat,
-            threshold=th,
-        ))
+    count = min(len(thresholds), len(odds))
+    selections = []
 
-    return market(market_name, out)
+    for threshold, odd in zip(thresholds[:count], odds[:count]):
+        selections.append(
+            selection(
+                f"{market_name} {threshold}",
+                odd,
+                team=team,
+                stat=stat,
+                threshold=threshold,
+            )
+        )
+
+    return market(market_name, selections)
+
+
+def parse_first_market(lines, titles, market_name, stat, team=None):
+    for title in titles:
+        parsed = parse_threshold_market(lines, title, market_name, stat, team=team)
+        if parsed["selection_count"] > 0:
+            return parsed
+    return market(market_name, [])
 
 
 def parse_markets(text, fixture):
     lines = lines_from_text(text)
-    home, away = fixture["home"], fixture["away"]
+    home = fixture["home"]
+    away = fixture["away"]
 
     candidates = [
-        parse_threshold_market(lines, "Match Shots on Target", "Match Shots On Target", "shots_on_target"),
-        parse_threshold_market(lines, "Match Shots", "Match Shots", "shots"),
-        parse_threshold_market(lines, f"{home} Shots on Target", f"{home} Shots On Target", "shots_on_target", team=home),
-        parse_threshold_market(lines, f"{home} Shots", f"{home} Shots", "shots", team=home),
-        parse_threshold_market(lines, f"{away} Shots on Target", f"{away} Shots On Target", "shots_on_target", team=away),
-        parse_threshold_market(lines, f"{away} Shots", f"{away} Shots", "shots", team=away),
+        parse_first_market(
+            lines,
+            ["Match Shots on Target"],
+            "Match Shots On Target",
+            "shots_on_target",
+        ),
+        parse_first_market(lines, ["Match Shots"], "Match Shots", "shots"),
+        parse_first_market(
+            lines,
+            row_title_candidates(home, "Shots on Target"),
+            f"{home} Shots On Target",
+            "shots_on_target",
+            team=home,
+        ),
+        parse_first_market(
+            lines,
+            row_title_candidates(home, "Shots"),
+            f"{home} Shots",
+            "shots",
+            team=home,
+        ),
+        parse_first_market(
+            lines,
+            row_title_candidates(away, "Shots on Target"),
+            f"{away} Shots On Target",
+            "shots_on_target",
+            team=away,
+        ),
+        parse_first_market(
+            lines,
+            row_title_candidates(away, "Shots"),
+            f"{away} Shots",
+            "shots",
+            team=away,
+        ),
     ]
 
-    return [m for m in candidates if m["selection_count"] > 0]
+    return [candidate for candidate in candidates if candidate["selection_count"] > 0]
+
+
+def empty_result(fixture, **extra):
+    result = {
+        "match": fixture["match"],
+        "home_team": fixture["home"],
+        "away_team": fixture["away"],
+        "source_url": fixture["source_url"],
+        "market_count": 0,
+        "markets": [],
+    }
+    result.update(extra)
+    return result
 
 
 def scrape_fixture(browser, fixture):
     debug_dir = DEBUG_ROOT / slugify(fixture["match"])
     debug_dir.mkdir(parents=True, exist_ok=True)
 
-    page = browser.new_page(viewport={"width": 1700, "height": 1000})
-    url = group_url(fixture["source_url"])
+    last_error = None
 
-    try:
-        print(f"\n{fixture['match']}")
-        print(f"  {url}")
-        page.goto(url, wait_until="domcontentloaded", timeout=60000)
-        page.wait_for_timeout(5500)
-        accept_cookies(page)
+    for attempt in range(1, MAX_ATTEMPTS + 1):
+        context = browser.new_context(viewport={"width": 1700, "height": 1000})
+        page = context.new_page()
+        url = group_url(fixture["source_url"])
 
-        body = body_text(page)
-        if "There are currently no markets available" in body:
-            print("  Bet Builder unavailable for this fixture")
-            (debug_dir / "ALL.txt").write_text(body, encoding="utf-8")
-            return {
-                "match": fixture["match"],
-                "home_team": fixture["home"],
-                "away_team": fixture["away"],
-                "source_url": fixture["source_url"],
-                "market_count": 0,
-                "markets": [],
-                "note": "bet_builder_unavailable",
-            }
-
-        text = capture_match_stats_page(page, fixture, debug_dir)
-        markets = parse_markets(text, fixture)
-
-        print(f"  markets: {len(markets)}")
-        for m in markets:
-            print(f"    {m['market']:<35} {m['selection_count']} selections")
-
-        return {
-            "match": fixture["match"],
-            "home_team": fixture["home"],
-            "away_team": fixture["away"],
-            "source_url": fixture["source_url"],
-            "market_count": len(markets),
-            "markets": markets,
-        }
-
-    finally:
         try:
-            page.close()
-        except Exception:
-            pass
+            print(f"\n{fixture['match']} — attempt {attempt}/{MAX_ATTEMPTS}")
+            print(f"  {url}")
+
+            page.goto(url, wait_until="domcontentloaded", timeout=70000)
+            page.wait_for_timeout(5500)
+            accept_cookies(page)
+
+            ready = wait_for_event_page(page, fixture)
+            print(f"      Event page ready: {ready}")
+
+            if not ready:
+                last_error = "event_page_not_ready"
+                continue
+
+            page_text = body_text(page)
+            if "There are currently no markets available" in page_text:
+                return empty_result(
+                    fixture,
+                    note="bet_builder_unavailable",
+                    attempts=attempt,
+                )
+
+            text, found_titles, tab_ok = capture_match_stats_page(
+                page,
+                fixture,
+                debug_dir,
+                attempt,
+            )
+            markets = parse_markets(text, fixture)
+
+            print(f"  markets: {len(markets)}")
+            for parsed_market in markets:
+                print(
+                    f"    {parsed_market['market']:<35} "
+                    f"{parsed_market['selection_count']} selections"
+                )
+
+            if markets:
+                return {
+                    "match": fixture["match"],
+                    "home_team": fixture["home"],
+                    "away_team": fixture["away"],
+                    "source_url": fixture["source_url"],
+                    "market_count": len(markets),
+                    "markets": markets,
+                    "attempts": attempt,
+                    "match_stats_active": tab_ok,
+                    "found_row_titles": found_titles,
+                }
+
+            last_error = "zero_markets_after_parse"
+            print("      Zero markets parsed; retrying with a fresh context.")
+
+        except KeyboardInterrupt:
+            raise
+        except Exception as exc:
+            last_error = f"{type(exc).__name__}: {exc}"
+            print(f"      Attempt error: {last_error}")
+        finally:
+            try:
+                context.close()
+            except Exception:
+                pass
+
+    return empty_result(
+        fixture,
+        error=last_error or "zero_markets",
+        attempts=MAX_ATTEMPTS,
+    )
 
 
 def main():
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     DEBUG_ROOT.mkdir(parents=True, exist_ok=True)
 
-    fixtures = load_fixtures()
-    print(f"Loaded {len(fixtures)} BetVictor event URLs from main props JSON")
-    print("TEST MODE: MAX_MATCHES = 3")
+    fixtures, source_generated_at = load_fixtures()
+
+    print(f"Loaded {len(fixtures)} CURRENT BetVictor event URLs from main props JSON")
+    for index, fixture in enumerate(fixtures, 1):
+        print(f"  {index:02d}. {fixture['match']}")
+    print(f"MAX_MATCHES = {MAX_MATCHES}")
 
     results = []
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=HEADLESS)
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=HEADLESS)
 
-        for i, fixture in enumerate(fixtures, 1):
-            print("\n" + "=" * 70)
-            print(f"[{i}/{len(fixtures)}]")
-            try:
-                results.append(scrape_fixture(browser, fixture))
-            except KeyboardInterrupt:
-                raise
-            except Exception as e:
-                print(f"  ERROR: {type(e).__name__}: {e}")
-                results.append({
-                    "match": fixture["match"],
-                    "home_team": fixture["home"],
-                    "away_team": fixture["away"],
-                    "source_url": fixture["source_url"],
-                    "market_count": 0,
-                    "markets": [],
-                    "error": str(e),
-                })
+        for index, fixture in enumerate(fixtures, 1):
+            print("\n" + "=" * 72)
+            print(f"[{index}/{len(fixtures)}]")
+            results.append(scrape_fixture(browser, fixture))
 
         browser.close()
 
@@ -541,16 +712,26 @@ def main():
         "bookmaker": "BetVictor",
         "market_type": "bet_builder_match_stats",
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "source_props_generated_at": source_generated_at,
+        "max_matches": MAX_MATCHES,
         "match_count": len(results),
-        "matches_with_markets": len([r for r in results if r.get("market_count", 0) > 0]),
+        "matches_with_markets": len(
+            [result for result in results if result.get("market_count", 0) > 0]
+        ),
         "matches": results,
     }
 
-    OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+    OUT_PATH.write_text(
+        json.dumps(output, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
 
     print("\nSaved:")
     print(OUT_PATH)
-    print(f"Matches with markets: {output['matches_with_markets']}/{output['match_count']}")
+    print(
+        f"Matches with markets: "
+        f"{output['matches_with_markets']}/{output['match_count']}"
+    )
 
 
 if __name__ == "__main__":
