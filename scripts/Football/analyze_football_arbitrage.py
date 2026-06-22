@@ -138,88 +138,126 @@ PLAYER_MARKET_WORDS = {
 }
 
 
-def canonical_prop_market(market_name, home, away):
-    """
-    Return a strict market identity so match totals can never be compared with
-    team totals. Returns (canonical_key, display_name, scope_team).
-
-    scope_team is blank for a match total and contains the canonical team name
-    for a team total.
-    """
+def classify_prop_metric(market_name):
     mk = normalize_key(market_name)
 
     if any(word in mk for word in PLAYER_MARKET_WORDS):
         return None
 
-    # Longest/specific names first.
     if "shots_on_target" in mk:
-        prop = "shots_on_target"
-        label = "Shots On Target"
-    elif "shots" in mk:
-        prop = "shots"
-        label = "Shots"
-    elif "corners" in mk:
-        prop = "corners"
-        label = "Corners"
-    elif "cards" in mk or "booking_points" in mk:
-        prop = "cards"
-        label = "Cards"
-    elif "first_half" in mk and "goals" in mk:
-        prop = "first_half_goals"
-        label = "First Half Goals"
-    elif "goals" in mk:
-        prop = "goals"
-        label = "Goals"
-    else:
-        return None
+        return "shots_on_target", "Shots On Target"
+    if "shots" in mk:
+        return "shots", "Shots"
+    if "corners" in mk:
+        return "corners", "Corners"
+    if "cards" in mk or "booking_points" in mk:
+        return "cards", "Cards"
+    if "first_half" in mk and "goals" in mk:
+        return "first_half_goals", "First Half Goals"
+    if "goals" in mk:
+        return "goals", "Goals"
 
-    home_norm = normalize_key(normalize_team(home))
-    away_norm = normalize_key(normalize_team(away))
-    scope_team = ""
+    return None
 
-    # A market is a team total only when the actual team name appears in the
-    # market title. "Home"/"Away" alone is not trusted by the arb scanner.
-    if home_norm and home_norm in mk:
-        scope_team = normalize_team(home)
-    elif away_norm and away_norm in mk:
-        scope_team = normalize_team(away)
 
-    if scope_team:
-        canonical = f"team_{prop}::{scope_team}"
+def _canonical_fixture_team(value, home, away):
+    value = normalize_team(value)
+    home_c = normalize_team(home)
+    away_c = normalize_team(away)
+
+    if value == home_c:
+        return home_c
+    if value == away_c:
+        return away_c
+    return ""
+
+
+def resolve_prop_identity(market_name, selection, selection_name, home, away):
+    """
+    Resolve a strict market identity using all available evidence.
+
+    This understands:
+      - actual team names in the market title
+      - Home / Away market titles
+      - selection["team"] metadata
+      - actual team names in the selection label
+
+    Returns:
+      (canonical_key, display_name, scope, scope_team, metric)
+    or:
+      (None, reason)
+    """
+    metric_info = classify_prop_metric(market_name)
+    if not metric_info:
+        return None, "unsupported/player market"
+
+    metric, label = metric_info
+    mk = normalize_key(market_name)
+    sn = normalize_key(selection_name)
+
+    home_c = normalize_team(home)
+    away_c = normalize_team(away)
+    home_k = normalize_key(home_c)
+    away_k = normalize_key(away_c)
+
+    candidates = []
+
+    # Actual team names in the market title.
+    if home_k and home_k in mk:
+        candidates.append(home_c)
+    if away_k and away_k in mk:
+        candidates.append(away_c)
+
+    # Generic Home / Away market titles.
+    title_tokens = set(mk.split("_"))
+    if "home" in title_tokens:
+        candidates.append(home_c)
+    if "away" in title_tokens:
+        candidates.append(away_c)
+
+    # Explicit team metadata from the scraper.
+    explicit_team = _canonical_fixture_team(
+        selection.get("team") or "",
+        home,
+        away,
+    )
+    if explicit_team:
+        candidates.append(explicit_team)
+
+    # Actual team names in the selection text.
+    if home_k and home_k in sn:
+        candidates.append(home_c)
+    if away_k and away_k in sn:
+        candidates.append(away_c)
+
+    unique_candidates = {x for x in candidates if x}
+
+    if len(unique_candidates) > 1:
+        return None, "conflicting team scope"
+
+    if len(unique_candidates) == 1:
+        scope_team = next(iter(unique_candidates))
+        canonical = f"team_{metric}::{scope_team}"
         display = f"{scope_team.title()} Total {label} Over Under"
-    else:
-        canonical = f"match_{prop}"
-        display = f"Total {label} Over Under"
+        return canonical, display, "team", scope_team, metric
 
-    return canonical, display, scope_team
+    # A title that explicitly says home/away/team but could not be resolved
+    # must not silently become a match total.
+    team_markers = {
+        "home", "away", "team", "team_total", "home_team", "away_team",
+    }
+    if any(marker in mk for marker in team_markers):
+        return None, "ambiguous team scope"
 
-
-def selection_verifies_team_scope(selection, selection_name, scope_team):
-    """
-    Team totals must carry a matching team field or contain the team name in
-    the selection text. Generic 'Over 5.5' rows are not trusted as team props.
-    """
-    if not scope_team:
-        return True
-
-    explicit_team = normalize_team(selection.get("team") or "")
-    selection_text = normalize_team(selection_name)
-
-    return explicit_team == scope_team or scope_team in selection_text
+    canonical = f"match_{metric}"
+    display = f"Total {label} Over Under"
+    return canonical, display, "match", "", metric
 
 
 def should_quarantine_offer(bookmaker, canonical_market, line):
     """
-    Temporary fail-closed rules for confirmed source-parser issues.
-
-    BetVictor:
-      Some fixtures whose Total Goals market starts at 1.5 are currently being
-      written as 0.5. Do not publish BetVictor match-goals 0.5 offers.
-
-    Ladbrokes:
-      Some named team-corner markets currently contain match-corner prices.
-      Do not publish Ladbrokes team-corner offers until that source parser is
-      fixed and verified.
+    Keep confirmed bad source rows off the live board until their source parser
+    has been repaired and verified.
     """
     line = str(line or "").strip()
 
@@ -230,18 +268,90 @@ def should_quarantine_offer(bookmaker, canonical_market, line):
     ):
         return "BetVictor unverified Total Goals 0.5"
 
-    if (
-        bookmaker == "Ladbrokes"
-        and canonical_market.startswith("team_corners::")
-    ):
-        return "Ladbrokes unverified team-corners scope"
-
     return ""
 
 
+def remove_duplicate_match_team_ladders(data, rejected):
+    """
+    If one bookmaker produces an identical full ladder for a match total and a
+    team total, the team scope is almost certainly a parser copy/misclick.
+
+    The comparison requires at least four identical selections, so one
+    coincidental matching price is not enough to trigger it.
+    """
+    for fixture_markets in data.values():
+        by_metric = {}
+
+        for canonical_mk, lines in fixture_markets.items():
+            if canonical_mk.startswith("match_"):
+                metric = canonical_mk[len("match_"):]
+                scope = "match"
+            elif canonical_mk.startswith("team_"):
+                metric = canonical_mk[len("team_"):].split("::", 1)[0]
+                scope = "team"
+            else:
+                continue
+
+            by_metric.setdefault(metric, []).append(
+                (canonical_mk, scope, lines)
+            )
+
+        for metric, entries in by_metric.items():
+            match_entries = [e for e in entries if e[1] == "match"]
+            team_entries = [e for e in entries if e[1] == "team"]
+
+            if not match_entries or not team_entries:
+                continue
+
+            match_key, _, match_lines = match_entries[0]
+
+            bookmakers = set()
+            for sides in match_lines.values():
+                for offers in sides.values():
+                    bookmakers.update(o["bookmaker"] for o in offers)
+
+            for bookmaker in bookmakers:
+                match_fp = set()
+                for line, sides in match_lines.items():
+                    for side, offers in sides.items():
+                        for offer in offers:
+                            if offer["bookmaker"] == bookmaker:
+                                match_fp.add((line, side, offer["odds"]))
+
+                if len(match_fp) < 4:
+                    continue
+
+                for team_key, _, team_lines in team_entries:
+                    team_fp = set()
+                    for line, sides in team_lines.items():
+                        for side, offers in sides.items():
+                            for offer in offers:
+                                if offer["bookmaker"] == bookmaker:
+                                    team_fp.add((line, side, offer["odds"]))
+
+                    if team_fp != match_fp:
+                        continue
+
+                    removed = 0
+                    for line, sides in team_lines.items():
+                        for side in list(sides):
+                            before = len(sides[side])
+                            sides[side] = [
+                                o for o in sides[side]
+                                if o["bookmaker"] != bookmaker
+                            ]
+                            removed += before - len(sides[side])
+
+                    if removed:
+                        reason = (
+                            f"{bookmaker} duplicate match/team {metric} ladder"
+                        )
+                        rejected[reason] = rejected.get(reason, 0) + removed
+
+
+
 def scan_props_arbitrage(root):
-    """Scan strictly matched O/U prop markets across bookmakers for arbitrage."""
-    # {fixture: {canonical_market: {line: {side: [offers]}}}}
+    """Scan strictly matched O/U prop markets across bookmakers."""
     data = {}
     rejected = {}
 
@@ -266,6 +376,7 @@ def scan_props_arbitrage(root):
 
             fk = fixture_key(home, away)
             markets = m.get("markets") or {}
+
             if isinstance(markets, list):
                 markets = {
                     mk.get("market", ""): mk
@@ -277,11 +388,6 @@ def scan_props_arbitrage(root):
                 if not isinstance(mkt_data, dict):
                     continue
 
-                identity = canonical_prop_market(mkt_name, home, away)
-                if not identity:
-                    continue
-
-                canonical_mk, display_name, scope_team = identity
                 sels = mkt_data.get("selections") or []
 
                 for sel in sels:
@@ -293,7 +399,6 @@ def scan_props_arbitrage(root):
                     side = str(sel.get("side") or "").lower().strip()
                     line = str(sel.get("line") or "").strip()
 
-                    # Supports both "Over 5.5" and "Algeria Over 5.5".
                     if not side or not line:
                         m2 = re.search(
                             r"\b(over|under)\s+([\d.]+)\b",
@@ -307,9 +412,30 @@ def scan_props_arbitrage(root):
                     if side not in {"over", "under"} or not line or not odds_raw:
                         continue
 
-                    if not selection_verifies_team_scope(sel, sn, scope_team):
-                        reject("Unverified team-market selection scope")
+                    identity = resolve_prop_identity(
+                        mkt_name,
+                        sel,
+                        sn,
+                        home,
+                        away,
+                    )
+
+                    if not identity or identity[0] is None:
+                        reason = (
+                            identity[1]
+                            if identity and len(identity) > 1
+                            else "unresolved market identity"
+                        )
+                        reject(reason)
                         continue
+
+                    (
+                        canonical_mk,
+                        display_name,
+                        scope,
+                        scope_team,
+                        metric,
+                    ) = identity
 
                     quarantine_reason = should_quarantine_offer(
                         bk,
@@ -331,12 +457,16 @@ def scan_props_arbitrage(root):
                         "match": f"{home} v {away}",
                         "market": display_name,
                         "source_market": mkt_name,
+                        "scope": scope,
                         "scope_team": scope_team,
+                        "metric": metric,
                     }
 
                     data.setdefault(fk, {}).setdefault(
                         canonical_mk, {}
                     ).setdefault(line, {}).setdefault(side, []).append(offer)
+
+    remove_duplicate_match_team_ladders(data, rejected)
 
     arbs = []
     near_misses = []
@@ -349,8 +479,6 @@ def scan_props_arbitrage(root):
                 if not overs or not unders:
                     continue
 
-                # A valid arb must use two different bookmakers. Search every
-                # cross-book pair rather than blindly taking same-book maxima.
                 pairs = [
                     (over, under)
                     for over in overs
@@ -380,6 +508,8 @@ def scan_props_arbitrage(root):
                     "match": best_over["match"],
                     "market": best_over["market"],
                     "canonical_market": canonical_mk,
+                    "scope": best_over["scope"],
+                    "scope_team": best_over["scope_team"],
                     "line": line,
                     "arb_sum": round(arb_sum, 6),
                     "arb_percent": round(arb_sum * 100, 3),
@@ -421,7 +551,10 @@ def scan_props_arbitrage(root):
                 elif arb_sum < 1.04:
                     near_misses.append(row)
 
-    arbs.sort(key=lambda x: x["profit_margin_percent"], reverse=True)
+    arbs.sort(
+        key=lambda x: x["profit_margin_percent"],
+        reverse=True,
+    )
     near_misses.sort(key=lambda x: x["arb_sum"])
 
     if rejected:
