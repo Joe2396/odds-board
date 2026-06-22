@@ -819,6 +819,78 @@ def _base_named_row(match_name, market, arb_type, arb_sum, selections, all_price
     }
 
 
+def validate_double_chance_source_triplets(data, audit):
+    """
+    Remove a bookmaker's Double Chance offers for a fixture unless that source
+    supplied a complete and internally plausible triplet.
+    """
+    for fixture in data.values():
+        dc = fixture.get("double_chance") or {}
+        outcomes = ("home_draw", "away_draw", "home_away")
+
+        bookmakers = set()
+        for outcome in outcomes:
+            for offer in dc.get(outcome) or []:
+                bookmakers.add(offer.get("bookmaker"))
+
+        for bookmaker in sorted(bookmakers):
+            offers = {}
+
+            for outcome in outcomes:
+                candidates = [
+                    offer
+                    for offer in dc.get(outcome) or []
+                    if offer.get("bookmaker") == bookmaker
+                ]
+                if candidates:
+                    offers[outcome] = max(
+                        candidates,
+                        key=lambda offer: offer["decimal"],
+                    )
+
+            valid = len(offers) == 3
+            self_sum = None
+
+            if valid:
+                self_sum = 0.5 * sum(
+                    1.0 / offers[outcome]["decimal"]
+                    for outcome in outcomes
+                )
+                valid = 0.97 <= self_sum <= 1.25
+
+            if valid:
+                continue
+
+            removed = 0
+            for outcome in outcomes:
+                before = len(dc.get(outcome) or [])
+                dc[outcome] = [
+                    offer
+                    for offer in dc.get(outcome) or []
+                    if offer.get("bookmaker") != bookmaker
+                ]
+                removed += before - len(dc[outcome])
+
+            if removed:
+                counts = audit.setdefault(
+                    bookmaker,
+                    {"matches": 0, "offers": 0},
+                )
+                counts["double_chance_rejected"] = (
+                    counts.get("double_chance_rejected", 0) + removed
+                )
+                detail = (
+                    f"{self_sum:.3f}"
+                    if self_sum is not None
+                    else "incomplete"
+                )
+                print(
+                    f"  Double Chance safety: removed {removed} "
+                    f"{bookmaker} offer(s) for {fixture.get('match')} "
+                    f"(self sum {detail})"
+                )
+
+
 def scan_named_prop_arbitrage(root):
     """
     Scan:
@@ -954,6 +1026,8 @@ def scan_named_prop_arbitrage(root):
             "matches": matches_seen,
             "offers": offers_added,
         }
+
+    validate_double_chance_source_triplets(data, audit)
 
     arbs = []
     near_misses = []

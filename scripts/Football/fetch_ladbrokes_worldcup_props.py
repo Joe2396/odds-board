@@ -194,31 +194,124 @@ def parse_ou_generic(lines, heading, market_name, max_line=None):
     return mkt(market_name, sels)
 
 
-def parse_double_chance(lines, home, away):
-    idx = -1
-    for i, l in enumerate(lines):
-        if clean(l) == "Double Chance":
-            block_check = lines[i:i+15]
-            if any(is_odds(clean(x)) for x in block_check):
-                idx = i
-                break
-    if idx == -1: return mkt("Double Chance", [])
-    block = lines[idx:idx+25]
-    sels = []
-    for i, line in enumerate(block):
-        label = clean(line)
-        if label in {"Double Chance","Show All","Show Less","1st Half","2nd Half"}: continue
-        if " or " in label.lower() and i+1 < len(block) and is_odds(block[i+1]):
-            parts = re.split(r" or ", label, flags=re.I)
-            if len(parts) == 2:
-                p1, p2 = parts[0].strip(), parts[1].strip()
-                side = "away_draw" if p1.lower() == "draw" else ("home_draw" if p2.lower() == "draw" else "home_away")
-                sels.append(sel(label, block[i+1], {"side": side}))
-        elif label in {"1X","X2","12"} and i+1 < len(block) and is_odds(block[i+1]):
-            m = {"1X":"Home or Draw","X2":"Away or Draw","12":"Home or Away"}
-            sels.append(sel(m[label], block[i+1]))
-    return mkt("Double Chance", sels)
+def parse_double_chance(lines, home="", away=""):
+    """
+    Parse only the standard 90-minute Double Chance triplet.
 
+    This version does not rely on each label being immediately followed by its
+    price. Ladbrokes commonly renders all labels first, followed by a 90 Mins
+    row containing the three prices.
+    """
+    selections = []
+
+    idx = next(
+        (i for i, line in enumerate(lines) if clean(line) == "Double Chance"),
+        -1,
+    )
+    if idx == -1:
+        return mkt("Double Chance", selections)
+
+    block = lines[idx:idx + 35]
+    label_map = {
+        "1X": ("home_draw", f"{home or 'Home'} or Draw"),
+        "X2": ("away_draw", f"{away or 'Away'} or Draw"),
+        "12": ("home_away", f"{home or 'Home'} or {away or 'Away'}"),
+    }
+
+    ordered_labels = []
+    for line in block:
+        label = clean(line)
+        if label in label_map and label not in ordered_labels:
+            ordered_labels.append(label)
+
+    if set(ordered_labels) != {"1X", "X2", "12"}:
+        return mkt("Double Chance", selections)
+
+    odds = []
+
+    # Preferred Ladbrokes layout: "90 Mins" followed by three prices.
+    ninety_idx = next(
+        (i for i, line in enumerate(block) if clean(line) == "90 Mins"),
+        -1,
+    )
+    if ninety_idx >= 0:
+        odds = [
+            clean(line)
+            for line in block[ninety_idx + 1:ninety_idx + 10]
+            if is_odds(line)
+        ][:3]
+
+    # Fallback: first three prices after all labels.
+    if len(odds) != 3:
+        last_label_idx = max(
+            i for i, line in enumerate(block)
+            if clean(line) in label_map
+        )
+        odds = [
+            clean(line)
+            for line in block[last_label_idx + 1:last_label_idx + 12]
+            if is_odds(line)
+        ][:3]
+
+    # Final fallback: a true alternating label/price layout.
+    if len(odds) != 3:
+        direct = {}
+        for i, line in enumerate(block):
+            label = clean(line)
+            if (
+                label in label_map
+                and i + 1 < len(block)
+                and is_odds(block[i + 1])
+            ):
+                direct[label] = clean(block[i + 1])
+
+        if set(direct) == {"1X", "X2", "12"}:
+            odds = [direct[label] for label in ordered_labels]
+
+    if len(odds) != 3:
+        return mkt("Double Chance", selections)
+
+    def decimal(price):
+        price = clean(price).upper()
+        if price in {"EVS", "EVENS", "EVEN"}:
+            return 2.0
+        if "/" not in price:
+            return None
+        try:
+            num, den = price.split("/", 1)
+            return (float(num) / float(den)) + 1.0
+        except Exception:
+            return None
+
+    decimals = [decimal(price) for price in odds]
+    if any(not value or value <= 1 for value in decimals):
+        return mkt("Double Chance", selections)
+
+    # A complete Double Chance triplet should be close to 1 after accounting
+    # for the overlapping outcomes. A much smaller value means wrong prices.
+    self_arb_sum = 0.5 * sum(1.0 / value for value in decimals)
+    if not 0.97 <= self_arb_sum <= 1.25:
+        print(
+            f"    Rejecting invalid Ladbrokes Double Chance triplet: "
+            f"{odds} (self sum {self_arb_sum:.3f})"
+        )
+        return mkt("Double Chance", selections)
+
+    for label, price in zip(ordered_labels, odds):
+        side, display = label_map[label]
+        selections.append(
+            sel(
+                display,
+                price,
+                {
+                    "side": side,
+                    "base_market": "double_chance",
+                    "period": "full_time",
+                },
+            )
+        )
+
+    return mkt("Double Chance", selections)
 
 def parse_total_shots_ou(lines):
     """Over/Under Total Shots On Target and Total Shots."""

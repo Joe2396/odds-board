@@ -1,160 +1,12 @@
 {
-  "generated_at": "2026-06-22T19:02:14.889848+00:00",
-  "total_arbitrage": 10,
+  "generated_at": "2026-06-22T19:13:07.794381+00:00",
+  "total_arbitrage": 6,
   "sports": {
-    "All": 10,
-    "Football": 8,
+    "All": 6,
+    "Football": 4,
     "UFC": 2
   },
   "arbitrage": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Morocco v Haiti",
-      "market": "Double Chance",
-      "type": "props_double_chance",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 50.775,
-      "arb_percent": 66.324,
-      "arb_sum": 0.663241,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Morocco or Draw",
-          "bookmaker": "Ladbrokes",
-          "odds": "18/5",
-          "decimal_odds": 4.6,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Haiti or Draw",
-          "bookmaker": "BetVictor",
-          "odds": "4/1",
-          "decimal_odds": 5.0,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Morocco or Haiti",
-          "bookmaker": "Ladbrokes",
-          "odds": "1/10",
-          "decimal_odds": 1.1,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Portugal v Uzbekistan",
-      "market": "Double Chance",
-      "type": "props_double_chance",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 49.049,
-      "arb_percent": 67.092,
-      "arb_sum": 0.67092,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Portugal or Draw",
-          "bookmaker": "Ladbrokes",
-          "odds": "7/2",
-          "decimal_odds": 4.5,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Uzbekistan or Draw",
-          "bookmaker": "BetVictor",
-          "odds": "15/4",
-          "decimal_odds": 4.75,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Portugal or Uzbekistan",
-          "bookmaker": "Ladbrokes",
-          "odds": "1/10",
-          "decimal_odds": 1.1,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "England v Ghana",
-      "market": "Double Chance",
-      "type": "props_double_chance",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 45.749,
-      "arb_percent": 68.611,
-      "arb_sum": 0.686111,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "England or Draw",
-          "bookmaker": "Ladbrokes",
-          "odds": "3/1",
-          "decimal_odds": 4.0,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Ghana or Draw",
-          "bookmaker": "BetVictor",
-          "odds": "7/2",
-          "decimal_odds": 4.5,
-          "implied_probability": ""
-        },
-        {
-          "selection": "England or Ghana",
-          "bookmaker": "Ladbrokes",
-          "odds": "1/9",
-          "decimal_odds": 1.111111,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Colombia v DR Congo",
-      "market": "Double Chance",
-      "type": "props_double_chance",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 22.975,
-      "arb_percent": 81.317,
-      "arb_sum": 0.813173,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Colombia or Draw",
-          "bookmaker": "Ladbrokes",
-          "odds": "6/4",
-          "decimal_odds": 2.5,
-          "implied_probability": ""
-        },
-        {
-          "selection": "DR Congo or Draw",
-          "bookmaker": "BetVictor",
-          "odds": "29/20",
-          "decimal_odds": 2.45,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Colombia or DR Congo",
-          "bookmaker": "Ladbrokes",
-          "odds": "2/9",
-          "decimal_odds": 1.222222,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
@@ -342,7 +194,7 @@
     "darts": "C:\\Users\\joete\\odds-board\\darts\\data\\arbitrage.json"
   },
   "source_counts": {
-    "football": 8,
+    "football": 4,
     "ufc": 2,
     "darts": 0
   }
