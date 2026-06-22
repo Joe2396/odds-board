@@ -18,6 +18,11 @@ import re
 from pathlib import Path
 from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
+import os
+
+def is_github_actions():
+    return os.getenv("GITHUB_ACTIONS") == "true"
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -145,7 +150,7 @@ def main():
     print(f"Opening {URL}")
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=is_github_actions())
         page = browser.new_page(viewport={"width": 1700, "height": 1000})
 
         page.goto(URL, wait_until="domcontentloaded", timeout=60000)

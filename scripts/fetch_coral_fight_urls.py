@@ -4,6 +4,11 @@ import time
 import re
 from pathlib import Path
 from datetime import datetime, timezone
+import os
+
+def is_github_actions():
+    return os.getenv("GITHUB_ACTIONS") == "true"
+
 
 print("FETCHING CORAL UFC FIGHT URLS - CLICK CAPTURE REAL URLS")
 
@@ -274,7 +279,7 @@ def main():
     all_debug_items = []
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=is_github_actions())
 
         page = browser.new_page(
             viewport={"width": 1500, "height": 1000},

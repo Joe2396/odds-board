@@ -3,6 +3,11 @@ from datetime import datetime, timezone
 import json
 import re
 from playwright.sync_api import sync_playwright
+import os
+
+def is_github_actions():
+    return os.getenv("GITHUB_ACTIONS") == "true"
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -48,7 +53,7 @@ def main():
     with sync_playwright() as p:
         browser = p.chromium.launch_persistent_context(
             user_data_dir=str(ROOT / "ufc" / "data" / "betfred_browser_profile"),
-            headless=False,
+            headless=is_github_actions(),
             viewport={"width": 1400, "height": 900},
         )
 

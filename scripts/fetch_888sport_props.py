@@ -4,6 +4,11 @@ import json
 import re
 import unicodedata
 from playwright.sync_api import sync_playwright
+import os
+
+def is_github_actions():
+    return os.getenv("GITHUB_ACTIONS") == "true"
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -243,7 +248,7 @@ def main():
     print(f"KNOWN FIGHTERS LOADED: {len(KNOWN_FIGHTERS)}")
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=is_github_actions())
 
         page = browser.new_page(
             viewport={"width": 1500, "height": 1000}
