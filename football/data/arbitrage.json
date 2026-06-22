@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T19:05:11.205451+00:00",
+  "generated_at": "2026-06-22T19:50:26.858929+00:00",
   "sport": "Football",
   "competition": "FIFA World Cup",
   "bookmaker_summary": {
@@ -42,8 +42,8 @@
   "fixture_count": 32,
   "compared_fixtures": 32,
   "skipped_fixtures": 0,
-  "arbitrage_count": 4,
-  "near_miss_count": 102,
+  "arbitrage_count": 6,
+  "near_miss_count": 109,
   "arbitrage": [
     {
       "sport": "Football",
@@ -210,6 +210,17 @@
             "metric": "corners"
           },
           {
+            "bookmaker": "Unibet",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
             "bookmaker": "WilliamHill",
             "odds": "2/7",
             "decimal": 1.285714,
@@ -234,9 +245,121 @@
             "metric": "corners"
           },
           {
+            "bookmaker": "Unibet",
+            "odds": "23/10",
+            "decimal": 3.3,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
             "bookmaker": "BetVictor",
             "odds": "13/8",
             "decimal": 2.625,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Argentina v Austria",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "8.5",
+      "arb_sum": 0.995086,
+      "arb_percent": 99.509,
+      "profit_margin_percent": 0.494,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "6/5",
+          "decimal_odds": 2.2,
+          "source_market": "Total Corners Over / Under"
+        },
+        "under": {
+          "bookmaker": "Unibet",
+          "odds": "17/20",
+          "decimal_odds": 1.85,
+          "source_market": "Total Corners Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "9/10",
+            "decimal": 1.9,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "4/7",
+            "decimal": 1.571429,
             "match": "Argentina v Austria",
             "market": "Total Corners Over Under",
             "source_market": "Total Corners Over / Under",
@@ -366,6 +489,85 @@
             "scope": "match",
             "scope_team": "",
             "metric": "cards"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Argentina v Austria",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "9.5",
+      "arb_sum": 0.997177,
+      "arb_percent": 99.718,
+      "profit_margin_percent": 0.283,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "15/8",
+          "decimal_odds": 2.875,
+          "source_market": "Total Corners Over / Under"
+        },
+        "under": {
+          "bookmaker": "Unibet",
+          "odds": "27/50",
+          "decimal_odds": 1.54,
+          "source_market": "Total Corners Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "15/8",
+            "decimal": 2.875,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "27/50",
+            "decimal": 1.54,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
           }
         ]
       }
@@ -823,6 +1025,107 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Argentina v Austria",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "7.5",
+      "arb_sum": 1.008403,
+      "arb_percent": 100.84,
+      "profit_margin_percent": -0.833,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "7/10",
+          "decimal_odds": 1.7,
+          "source_market": "Total Corners Over / Under"
+        },
+        "under": {
+          "bookmaker": "Unibet",
+          "odds": "69/50",
+          "decimal_odds": 2.38,
+          "source_market": "Total Corners Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "27/50",
+            "decimal": 1.54,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "69/50",
+            "decimal": 2.38,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "39/40",
+            "decimal": 1.975,
+            "match": "Argentina v Austria",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
       "type": "props_btts",
       "match": "Curacao v Ivory Coast",
       "market": "Both Teams To Score",
@@ -951,85 +1254,6 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Argentina v Austria",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "7.5",
-      "arb_sum": 1.009288,
-      "arb_percent": 100.929,
-      "profit_margin_percent": -0.92,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "BetVictor",
-          "odds": "7/10",
-          "decimal_odds": 1.7,
-          "source_market": "Total Corners Over / Under"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "11/8",
-          "decimal_odds": 2.375,
-          "source_market": "Total Corners"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "7/10",
-            "decimal": 1.7,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "8/15",
-            "decimal": 1.533333,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "11/8",
-            "decimal": 2.375,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "39/40",
-            "decimal": 1.975,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
       "match": "Jordan v Algeria",
       "market": "Jordan Total Shots On Target Over Under",
       "canonical_market": "team_shots_on_target::jordan",
@@ -1101,85 +1325,6 @@
             "scope": "team",
             "scope_team": "jordan",
             "metric": "shots_on_target"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Argentina v Austria",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "8.5",
-      "arb_sum": 1.010101,
-      "arb_percent": 101.01,
-      "profit_margin_percent": -1.0,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "BetVictor",
-          "odds": "6/5",
-          "decimal_odds": 2.2,
-          "source_market": "Total Corners Over / Under"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "4/5",
-          "decimal_odds": 1.8,
-          "source_market": "Total Corners"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "6/5",
-            "decimal": 2.2,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "17/20",
-            "decimal": 1.85,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "4/5",
-            "decimal": 1.8,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "4/7",
-            "decimal": 1.571429,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
           }
         ]
       }
@@ -2202,6 +2347,129 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
+      "match": "Switzerland v Canada",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 1.020202,
+      "arb_percent": 102.02,
+      "profit_margin_percent": -1.98,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "8/1",
+          "decimal_odds": 9.0,
+          "source_market": "Total Goals Over / Under"
+        },
+        "under": {
+          "bookmaker": "Unibet",
+          "odds": "1/10",
+          "decimal_odds": 1.1,
+          "source_market": "Total Goals Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "8/1",
+            "decimal": 9.0,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "11/2",
+            "decimal": 6.5,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/16",
+            "decimal": 1.0625,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
       "match": "Czechia v Mexico",
       "market": "Total Goals Over Under",
       "canonical_market": "match_goals",
@@ -2232,6 +2500,17 @@
             "bookmaker": "BetVictor",
             "odds": "8/1",
             "decimal": 9.0,
+            "match": "Czechia v Mexico",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "13/2",
+            "decimal": 7.5,
             "match": "Czechia v Mexico",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
@@ -2281,6 +2560,17 @@
             "match": "Czechia v Mexico",
             "market": "Total Goals Over Under",
             "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "2/25",
+            "decimal": 1.08,
+            "match": "Czechia v Mexico",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
             "metric": "goals"
@@ -2341,6 +2631,17 @@
             "metric": "goals"
           },
           {
+            "bookmaker": "Unibet",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "match": "South Africa v South Korea",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
             "bookmaker": "WilliamHill",
             "odds": "11/2",
             "decimal": 6.5,
@@ -2382,6 +2683,17 @@
             "match": "South Africa v South Korea",
             "market": "Total Goals Over Under",
             "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "match": "South Africa v South Korea",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
             "metric": "goals"
@@ -2442,6 +2754,17 @@
             "metric": "goals"
           },
           {
+            "bookmaker": "Unibet",
+            "odds": "13/2",
+            "decimal": 7.5,
+            "match": "Curacao v Ivory Coast",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
             "bookmaker": "WilliamHill",
             "odds": "11/2",
             "decimal": 6.5,
@@ -2483,6 +2806,17 @@
             "match": "Curacao v Ivory Coast",
             "market": "Total Goals Over Under",
             "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "2/25",
+            "decimal": 1.08,
+            "match": "Curacao v Ivory Coast",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
             "metric": "goals"
@@ -3237,7 +3571,7 @@
       }
     }
   ],
-  "props_arb_count": 4,
-  "props_ou_arb_count": 4,
+  "props_arb_count": 6,
+  "props_ou_arb_count": 6,
   "props_named_arb_count": 0
 }

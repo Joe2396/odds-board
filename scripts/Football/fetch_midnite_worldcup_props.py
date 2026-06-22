@@ -28,7 +28,7 @@ COMPETITION_ID = "38826387"
 BASE_URL   = f"https://www.midnite.com/sports/football/world-cup-2026-{COMPETITION_ID}/"
 USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
               "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
-MAX_MATCHES = 15
+MAX_MATCHES = 3
 
 
 # ---------------------------------------------------------------------------
@@ -364,6 +364,151 @@ def parse_thresholds(lines, heading, n=25):
         if m: result[f"over_{m.group(1)}"] = frac(fracs[i]) if i < len(fracs) else None
     return result or None
 
+def get_midnite_market_card_lines(page, heading):
+    """
+    Return the smallest DOM container for one Midnite market card.
+
+    Reading the whole page caused odds from neighbouring markets to be attached
+    to Half Result. This helper scopes extraction to the exact card.
+    """
+    try:
+        return page.evaluate(
+            """(heading) => {
+                const norm = value =>
+                    (value || "").replace(/\\s+/g, " ").trim();
+
+                const fraction = /(?:^|\\s)\\d+\\/\\d+(?=\\s|$)/g;
+
+                const headings = Array.from(
+                    document.querySelectorAll("body *")
+                ).filter(element =>
+                    element.childElementCount === 0
+                    && norm(element.innerText) === heading
+                );
+
+                const candidates = [];
+
+                for (const headingElement of headings) {
+                    let node = headingElement;
+
+                    for (
+                        let depth = 0;
+                        depth < 10 && node;
+                        depth += 1, node = node.parentElement
+                    ) {
+                        const text = norm(node.innerText);
+                        const prices = text.match(fraction) || [];
+
+                        if (
+                            text.includes(heading)
+                            && prices.length >= 3
+                        ) {
+                            candidates.push({
+                                text,
+                                length: text.length,
+                            });
+                            break;
+                        }
+                    }
+                }
+
+                candidates.sort((a, b) => a.length - b.length);
+
+                if (!candidates.length) {
+                    return [];
+                }
+
+                return candidates[0].text
+                    .split(/\\n/)
+                    .map(value => value.trim())
+                    .filter(Boolean);
+            }""",
+            heading,
+        ) or []
+    except Exception as error:
+        print(f" Half Result card extraction failed: {error}")
+        return []
+
+
+def _midnite_three_way_sum(decimal_prices):
+    if len(decimal_prices) != 3:
+        return None
+    if any(not value or value <= 1 for value in decimal_prices):
+        return None
+    return sum(1.0 / value for value in decimal_prices)
+
+
+def parse_midnite_half_result_card(page, home, away):
+    """
+    Parse Midnite's first-half 1X2 prices from the exact Half Result card.
+
+    Midnite's six-price grid is column-major:
+        home 1H, home 2H,
+        draw 1H, draw 2H,
+        away 1H, away 2H
+
+    The previous parser incorrectly used the first three prices, which mixed
+    home 1H, home 2H and draw 1H.
+    """
+    expand_accordion(page, "Half Result")
+    time.sleep(0.8)
+
+    card_lines = get_midnite_market_card_lines(
+        page,
+        "Half Result",
+    )
+    fractions = [
+        line for line in card_lines
+        if is_frac(line)
+    ]
+
+    if len(fractions) < 3:
+        print(" Half Result rejected: fewer than three prices")
+        return None
+
+    candidates = []
+
+    # Preferred actual Midnite six-price grid: first-half prices are 0,2,4.
+    if len(fractions) >= 6:
+        candidates.append(
+            (
+                "column-major first half",
+                [fractions[0], fractions[2], fractions[4]],
+            )
+        )
+
+    # Fallback for a genuine row-major layout.
+    candidates.append(
+        (
+            "row-major first half",
+            fractions[:3],
+        )
+    )
+
+    for layout, raw_prices in candidates:
+        decimal_prices = [frac(price) for price in raw_prices]
+        implied_sum = _midnite_three_way_sum(decimal_prices)
+
+        if implied_sum is None:
+            continue
+
+        if 0.98 <= implied_sum <= 1.35:
+            print(
+                f" Half Result 1H: {raw_prices} "
+                f"({layout}, sum {implied_sum:.3f})"
+            )
+            return {
+                "home": decimal_prices[0],
+                "draw": decimal_prices[1],
+                "away": decimal_prices[2],
+            }
+
+    print(
+        f" Half Result rejected: implausible prices {fractions[:6]}"
+    )
+    return None
+
+
 def scrape_match(page, match):
     url  = match.get("url") or f"{BASE_URL}{match['match_id']}-{match['event_id']}"
     home = match.get("home", "")
@@ -473,13 +618,17 @@ def scrape_match(page, match):
         dc[key] = frac(f[k]) if k < len(f) else None
     if dc: props["double_chance"] = dc
 
-    # Half Result
-    seg = parse_section(lines, "Half Result", 20)
-    f   = [l for l in seg if is_frac(l)]
-    if len(f) >= 3:
-        props["half_result_1h"] = {"home": frac(f[0]), "draw": frac(f[1]), "away": frac(f[2])}
-    if len(f) >= 6:
-        props["half_result_2h"] = {"home": frac(f[3]), "draw": frac(f[4]), "away": frac(f[5])}
+    # Half Result — scoped card parser
+    half_result_1h = parse_midnite_half_result_card(
+        page,
+        home,
+        away,
+    )
+    if half_result_1h:
+        props["half_result_1h"] = half_result_1h
+
+    # 2H is deliberately not saved until its grid has a separate verified
+    # parser. This prevents first-half and second-half prices being mixed.
 
     # HT/FT
     seg    = parse_section(lines, "Half Time/Full Time", 40)

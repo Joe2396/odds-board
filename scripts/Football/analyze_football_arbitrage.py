@@ -115,7 +115,7 @@ PROPS_FILES = {
     "WilliamHill":  ("williamhill_worldcup_props.json",  "fractional"),
     "BetVictor":    ("betvictor_worldcup_props.json",    "fractional"),
     # "Midnite":    ("midnite_worldcup_props.json",      "fractional"),  # dict format, not list
-    # "Unibet":     ("unibet_worldcup_props.json",       "fractional"),  # not ready
+    "Unibet":      ("unibet_worldcup_props.json", "fractional"),
 }
 
 
@@ -132,6 +132,7 @@ NAMED_PROPS_FILES = {
     # even though they are not yet enabled for the strict O/U scope scanner.
     "Unibet":       "unibet_worldcup_props.json",
     "888Sport":     "888sport_worldcup_props.json",
+    "Midnite":       "midnite_worldcup_props.json",
 }
 
 OU_MARKET_KEYS = {
@@ -367,6 +368,104 @@ def remove_duplicate_match_team_ladders(data, rejected):
 
 
 
+def unibet_ou_market_is_safe(market_name, market_data, home, away):
+    """
+    Allow only Unibet match/team O/U markets that can be scoped safely.
+
+    The Unibet file also contains player Shots, SOT, Cards and other props.
+    Some of those market titles are generic, so this check also inspects every
+    selection for player metadata before allowing the market into the match/team
+    O/U arb scanner.
+    """
+    mk = normalize_key(market_name)
+    selections = market_data.get("selections") or []
+
+    named_only = {
+        "both_teams_to_score",
+        "btts",
+        "double_chance",
+        "half_time_result",
+        "half_time",
+        "match_betting",
+        "anytime_goalscorer",
+        "first_goalscorer",
+    }
+    if mk in named_only:
+        return False
+
+    player_words = {
+        "player",
+        "goalscorer",
+        "anytime_scorer",
+        "first_scorer",
+        "assist",
+        "tackle",
+        "foul",
+        "to_get_a_card",
+        "player_cards",
+    }
+    if any(word in mk for word in player_words):
+        return False
+
+    for selection in selections:
+        if not isinstance(selection, dict):
+            continue
+
+        if selection.get("player"):
+            return False
+
+        prop_type = normalize_key(selection.get("prop_type") or "")
+        if any(word in prop_type for word in {
+            "player",
+            "shots",
+            "shots_on_target",
+            "cards",
+            "assist",
+            "tackles",
+            "fouls",
+            "goalscorer",
+        }):
+            return False
+
+    # Require an explicitly aggregate market. This stops a generic Unibet
+    # "Shots" or "Shots On Target" player table from becoming a match total.
+    safe_aggregate_markers = {
+        "total_goals",
+        "first_half_goals",
+        "1st_half_goals",
+        "total_cards",
+        "total_corners",
+        "team_total_goals",
+        "total_team_goals",
+        "match_shots",
+        "match_shots_on_target",
+        "team_shots",
+        "team_shots_on_target",
+        "home_shots",
+        "away_shots",
+        "home_shots_on_target",
+        "away_shots_on_target",
+    }
+
+    if any(marker in mk for marker in safe_aggregate_markers):
+        return True
+
+    home_key = normalize_key(normalize_team(home))
+    away_key = normalize_key(normalize_team(away))
+
+    # Named-team aggregate market, e.g. "Germany Total Goals Over / Under".
+    if (
+        ("total" in mk or "over_under" in mk)
+        and (
+            (home_key and home_key in mk)
+            or (away_key and away_key in mk)
+        )
+    ):
+        return True
+
+    return False
+
+
 def scan_props_arbitrage(root):
     """Scan strictly matched O/U prop markets across bookmakers."""
     data = {}
@@ -386,25 +485,27 @@ def scan_props_arbitrage(root):
             matches = raw
 
         for m in matches:
-            home = m.get("home_team", "")
-            away = m.get("away_team", "")
+            home, away = get_prop_match_teams(m)
             if not home or not away:
                 continue
 
             fk = fixture_key(home, away)
-            markets = m.get("markets") or {}
-
-            if isinstance(markets, list):
-                markets = {
-                    mk.get("market", ""): mk
-                    for mk in markets
-                    if isinstance(mk, dict)
-                }
-
-            for mkt_name, mkt_data in markets.items():
+            for mkt_name, mkt_data in iter_market_items(
+                m,
+                bk,
+            ):
                 if not isinstance(mkt_data, dict):
                     continue
 
+
+                if bk == "Unibet" and not unibet_ou_market_is_safe(
+                    mkt_name,
+                    mkt_data,
+                    home,
+                    away,
+                ):
+                    reject("Unibet unsupported/player O/U market")
+                    continue
                 sels = mkt_data.get("selections") or []
 
                 for sel in sels:
@@ -583,8 +684,323 @@ def scan_props_arbitrage(root):
 
 
 
-def iter_market_items(match):
-    """Yield (market name, market dict) from either list or dict schemas."""
+def get_prop_match_teams(match):
+    """Support both the common props schema and Midnite's home/away schema."""
+    home = match.get("home_team") or match.get("home") or ""
+    away = match.get("away_team") or match.get("away") or ""
+    return str(home).strip(), str(away).strip()
+
+
+def _midnite_selection(name, odds, side="", line="", team="", **extra):
+    if odds in {None, ""}:
+        return None
+
+    selection = {
+        "selection": name,
+        "normalized_selection": normalize_key(name),
+        "odds": odds,
+    }
+
+    if side:
+        selection["side"] = side
+    if line != "":
+        selection["line"] = str(line)
+    if team:
+        selection["team"] = team
+
+    selection.update(extra)
+    return selection
+
+
+def _midnite_market(name, selections):
+    selections = [
+        selection for selection in selections
+        if isinstance(selection, dict)
+    ]
+    return {
+        "market": name,
+        "normalized_market": normalize_key(name),
+        "selection_count": len(selections),
+        "selections": selections,
+    }
+
+
+def _midnite_decimal_line(raw):
+    """Convert a Midnite key suffix such as 0_5 to the line 0.5."""
+    raw = str(raw or "").strip("_")
+    if not raw:
+        return ""
+
+    try:
+        value = float(raw.replace("_", "."))
+    except Exception:
+        return ""
+
+    if value.is_integer():
+        return str(int(value))
+    return str(value)
+
+
+def _midnite_plus_line(raw):
+    """
+    Midnite threshold markets use N+ labels.
+
+    Examples:
+      1+ shot  == Over 0.5
+      5+ cards == Over 4.5
+    """
+    raw = str(raw or "").strip("_")
+    try:
+        value = float(raw.replace("_", "."))
+    except Exception:
+        return ""
+
+    line = value - 0.5
+    if line.is_integer():
+        return str(int(line))
+    return str(line)
+
+
+def _midnite_three_way_market_is_plausible(market):
+    """Validate one complete Midnite three-way result market."""
+    if not isinstance(market, dict):
+        return False
+
+    values = [
+        fractional_to_decimal(market.get(key))
+        for key in ("home", "draw", "away")
+    ]
+
+    if not all(values):
+        return False
+
+    implied_sum = sum(1.0 / value for value in values)
+    return 0.98 <= implied_sum <= 1.35
+
+
+def iter_midnite_market_items(match):
+    """
+    Adapt football/data/midnite_worldcup_props.json to the common market schema.
+
+    Included:
+      - Total Goals O/U
+      - Total Cards, Corners, Shots and SOT threshold Overs
+      - Home/Away team Shots and SOT threshold Overs
+      - BTTS
+      - Double Chance
+      - First-half Result
+
+    Player props remain outside the current football arb scanner.
+    """
+    home, away = get_prop_match_teams(match)
+    raw_markets = match.get("markets") or {}
+
+    if not isinstance(raw_markets, dict):
+        return
+
+    btts = raw_markets.get("btts") or {}
+    if isinstance(btts, dict):
+        market = _midnite_market(
+            "Both Teams To Score",
+            [
+                _midnite_selection(
+                    "Both Teams To Score - Yes",
+                    btts.get("yes"),
+                    side="yes",
+                    period="full_time",
+                    base_market="full_time_btts",
+                ),
+                _midnite_selection(
+                    "Both Teams To Score - No",
+                    btts.get("no"),
+                    side="no",
+                    period="full_time",
+                    base_market="full_time_btts",
+                ),
+            ],
+        )
+        if market["selections"]:
+            yield market["market"], market
+
+    double_chance = raw_markets.get("double_chance") or {}
+    if isinstance(double_chance, dict):
+        market = _midnite_market(
+            "Double Chance",
+            [
+                _midnite_selection(
+                    f"{home} or Draw",
+                    double_chance.get("home_or_draw"),
+                    side="home_draw",
+                    period="full_time",
+                    base_market="double_chance",
+                ),
+                _midnite_selection(
+                    f"{away} or Draw",
+                    double_chance.get("away_or_draw"),
+                    side="away_draw",
+                    period="full_time",
+                    base_market="double_chance",
+                ),
+                _midnite_selection(
+                    f"{home} or {away}",
+                    double_chance.get("home_or_away"),
+                    side="home_away",
+                    period="full_time",
+                    base_market="double_chance",
+                ),
+            ],
+        )
+        if market["selections"]:
+            yield market["market"], market
+
+    half_result = raw_markets.get("half_result_1h") or {}
+    if _midnite_three_way_market_is_plausible(half_result):
+        market = _midnite_market(
+            "Half Time Result",
+            [
+                _midnite_selection(
+                    home,
+                    half_result.get("home"),
+                    side="home",
+                    period="first_half",
+                    base_market="half_time_result",
+                ),
+                _midnite_selection(
+                    "Draw",
+                    half_result.get("draw"),
+                    side="draw",
+                    period="first_half",
+                    base_market="half_time_result",
+                ),
+                _midnite_selection(
+                    away,
+                    half_result.get("away"),
+                    side="away",
+                    period="first_half",
+                    base_market="half_time_result",
+                ),
+            ],
+        )
+        if market["selections"]:
+            yield market["market"], market
+    elif half_result:
+        print(
+            f"  Midnite Half Time rejected for {home} v {away}: "
+            f"{half_result}"
+        )
+
+    total_goals = raw_markets.get("total_goals") or {}
+    if isinstance(total_goals, dict):
+        selections = []
+
+        for key, odds in total_goals.items():
+            parsed = re.fullmatch(
+                r"(over|under)_(\d+(?:_\d+)?)",
+                str(key),
+                re.I,
+            )
+            if not parsed:
+                continue
+
+            side = parsed.group(1).lower()
+            line = _midnite_decimal_line(parsed.group(2))
+            if not line:
+                continue
+
+            selections.append(
+                _midnite_selection(
+                    f"{side.title()} {line}",
+                    odds,
+                    side=side,
+                    line=line,
+                )
+            )
+
+        market = _midnite_market(
+            "Total Goals Over / Under",
+            selections,
+        )
+        if market["selections"]:
+            yield market["market"], market
+
+    threshold_markets = [
+        ("total_cards", "Total Cards Over / Under", ""),
+        ("total_corners", "Total Corners Over / Under", ""),
+        (
+            "total_shots_on_target",
+            "Total Shots On Target Over / Under",
+            "",
+        ),
+        ("total_shots", "Total Shots Over / Under", ""),
+        (
+            "home_shots_on_target",
+            f"{home} Shots On Target Over / Under",
+            home,
+        ),
+        (
+            "away_shots_on_target",
+            f"{away} Shots On Target Over / Under",
+            away,
+        ),
+        ("home_shots", f"{home} Shots Over / Under", home),
+        ("away_shots", f"{away} Shots Over / Under", away),
+    ]
+
+    for source_key, market_name, team in threshold_markets:
+        raw_market = raw_markets.get(source_key) or {}
+        if not isinstance(raw_market, dict):
+            continue
+
+        selections = []
+
+        for key, odds in raw_market.items():
+            parsed = re.fullmatch(
+                r"over_(\d+(?:_\d+)?)",
+                str(key),
+                re.I,
+            )
+            if not parsed:
+                continue
+
+            line = _midnite_plus_line(parsed.group(1))
+            if not line:
+                continue
+
+            label = (
+                f"{team} Over {line}"
+                if team
+                else f"Over {line}"
+            )
+
+            selections.append(
+                _midnite_selection(
+                    label,
+                    odds,
+                    side="over",
+                    line=line,
+                    team=team,
+                    source_threshold=(
+                        f"{parsed.group(1).replace('_', '.')}+"
+                    ),
+                )
+            )
+
+        market = _midnite_market(market_name, selections)
+        if market["selections"]:
+            yield market["market"], market
+
+
+def iter_market_items(match, bookmaker=None):
+    """
+    Yield (market name, market dict) from all supported bookmaker schemas.
+    """
+    if (
+        bookmaker == "Midnite"
+        or str(match.get("bookmaker") or "").lower() == "midnite"
+    ):
+        yield from iter_midnite_market_items(match)
+        return
+
     markets = match.get("markets") or {}
 
     if isinstance(markets, list):
@@ -600,7 +1016,6 @@ def iter_market_items(match):
         for name, market in markets.items():
             if isinstance(market, dict):
                 yield name, market
-
 
 def _selection_offer(bookmaker, odds_raw, match_name, market_name, label):
     decimal = fractional_to_decimal(odds_raw)
@@ -923,8 +1338,7 @@ def scan_named_prop_arbitrage(root):
             if not isinstance(match, dict):
                 continue
 
-            home = match.get("home_team") or ""
-            away = match.get("away_team") or ""
+            home, away = get_prop_match_teams(match)
             if not home or not away:
                 continue
 
@@ -949,7 +1363,7 @@ def scan_named_prop_arbitrage(root):
                 },
             })
 
-            for market_name, market in iter_market_items(match):
+            for market_name, market in iter_market_items(match, bookmaker):
                 selections = market.get("selections") or []
 
                 if _is_standard_btts_market(market_name):
