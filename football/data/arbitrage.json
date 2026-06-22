@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T17:12:00.269792+00:00",
+  "generated_at": "2026-06-22T17:20:17.992261+00:00",
   "sport": "Football",
   "competition": "FIFA World Cup",
   "bookmaker_summary": {
@@ -42,9 +42,3121 @@
   "fixture_count": 32,
   "compared_fixtures": 32,
   "skipped_fixtures": 0,
-  "arbitrage_count": 1,
-  "near_miss_count": 95,
+  "arbitrage_count": 21,
+  "near_miss_count": 97,
   "arbitrage": [
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Norway v Senegal",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.5671,
+      "arb_percent": 56.71,
+      "profit_margin_percent": 76.336,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "10/1",
+          "decimal": 11.0,
+          "decimal_odds": 11.0,
+          "match": "Norway v Senegal",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "Ladbrokes",
+          "odds": "11/10",
+          "decimal": 2.1,
+          "decimal_odds": 2.1,
+          "match": "Norway v Senegal",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "10/1",
+            "decimal": 11.0,
+            "decimal_odds": 11.0,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/1",
+            "decimal": 5.0,
+            "decimal_odds": 5.0,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "decimal_odds": 2.5,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "decimal_odds": 1.666667,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "decimal_odds": 1.666667,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "decimal_odds": 1.666667,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "13/20",
+            "decimal": 1.65,
+            "decimal_odds": 1.65,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/10",
+            "decimal": 1.6,
+            "decimal_odds": 1.6,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "decimal_odds": 2.2,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "11/10",
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "11/10",
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "11/10",
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "27/25",
+            "decimal": 2.08,
+            "decimal_odds": 2.08,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/8",
+            "decimal": 1.125,
+            "decimal_odds": 1.125,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/40",
+            "decimal": 1.025,
+            "decimal_odds": 1.025,
+            "match": "Norway v Senegal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Switzerland v Canada",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.571429,
+      "arb_percent": 57.143,
+      "profit_margin_percent": 75.0,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "13/1",
+          "decimal": 14.0,
+          "decimal_odds": 14.0,
+          "match": "Switzerland v Canada",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "Unibet",
+          "odds": "EVS",
+          "decimal": 2.0,
+          "decimal_odds": 2.0,
+          "match": "Switzerland v Canada",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "13/1",
+            "decimal": 14.0,
+            "decimal_odds": 14.0,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "5/1",
+            "decimal": 6.0,
+            "decimal_odds": 6.0,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "15/8",
+            "decimal": 2.875,
+            "decimal_odds": 2.875,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "31/40",
+            "decimal": 1.775,
+            "decimal_odds": 1.775,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "decimal_odds": 1.727273,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "20/21",
+            "decimal": 1.952381,
+            "decimal_odds": 1.952381,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "decimal_odds": 1.363636,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "decimal_odds": 1.083333,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/50",
+            "decimal": 1.02,
+            "decimal_odds": 1.02,
+            "match": "Switzerland v Canada",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Czechia v Mexico",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.576441,
+      "arb_percent": 57.644,
+      "profit_margin_percent": 73.478,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "18/1",
+          "decimal": 19.0,
+          "decimal_odds": 19.0,
+          "match": "Czechia v Mexico",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "10/11",
+          "decimal": 1.909091,
+          "decimal_odds": 1.909091,
+          "match": "Czechia v Mexico",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "18/1",
+            "decimal": 19.0,
+            "decimal_odds": 19.0,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "13/2",
+            "decimal": 7.5,
+            "decimal_odds": 7.5,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "15/8",
+            "decimal": 2.875,
+            "decimal_odds": 2.875,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "91/100",
+            "decimal": 1.91,
+            "decimal_odds": 1.91,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "20/23",
+            "decimal": 1.869565,
+            "decimal_odds": 1.869565,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "decimal_odds": 1.85,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "21/25",
+            "decimal": 1.84,
+            "decimal_odds": 1.84,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "5/6",
+            "decimal": 1.833333,
+            "decimal_odds": 1.833333,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "decimal_odds": 1.727273,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "decimal_odds": 1.363636,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/20",
+            "decimal": 1.05,
+            "decimal_odds": 1.05,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/80",
+            "decimal": 1.0125,
+            "decimal_odds": 1.0125,
+            "match": "Czechia v Mexico",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Bosnia v Qatar",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.589744,
+      "arb_percent": 58.974,
+      "profit_margin_percent": 69.565,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "12/1",
+          "decimal": 13.0,
+          "decimal_odds": 13.0,
+          "match": "Bosnia v Qatar",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "19/20",
+          "decimal": 1.95,
+          "decimal_odds": 1.95,
+          "match": "Bosnia v Qatar",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "12/1",
+            "decimal": 13.0,
+            "decimal_odds": 13.0,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "5/1",
+            "decimal": 6.0,
+            "decimal_odds": 6.0,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "decimal_odds": 2.5,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "21/25",
+            "decimal": 1.84,
+            "decimal_odds": 1.84,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/6",
+            "decimal": 1.833333,
+            "decimal_odds": 1.833333,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "37/40",
+            "decimal": 1.925,
+            "decimal_odds": 1.925,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "91/100",
+            "decimal": 1.91,
+            "decimal_odds": 1.91,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "decimal_odds": 1.083333,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/40",
+            "decimal": 1.025,
+            "decimal_odds": 1.025,
+            "match": "Bosnia v Qatar",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Panama v Croatia",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.60101,
+      "arb_percent": 60.101,
+      "profit_margin_percent": 66.387,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "17/1",
+          "decimal": 18.0,
+          "decimal_odds": 18.0,
+          "match": "Panama v Croatia",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "5/6",
+          "decimal": 1.833333,
+          "decimal_odds": 1.833333,
+          "match": "Panama v Croatia",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "17/1",
+            "decimal": 18.0,
+            "decimal_odds": 18.0,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "decimal_odds": 7.0,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "15/8",
+            "decimal": 2.875,
+            "decimal_odds": 2.875,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/6",
+            "decimal": 1.833333,
+            "decimal_odds": 1.833333,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "decimal_odds": 1.363636,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/18",
+            "decimal": 1.055556,
+            "decimal_odds": 1.055556,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/80",
+            "decimal": 1.0125,
+            "decimal_odds": 1.0125,
+            "match": "Panama v Croatia",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Jordan v Algeria",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.614379,
+      "arb_percent": 61.438,
+      "profit_margin_percent": 62.766,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "16/1",
+          "decimal": 17.0,
+          "decimal_odds": 17.0,
+          "match": "Jordan v Algeria",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "4/5",
+          "decimal": 1.8,
+          "decimal_odds": 1.8,
+          "match": "Jordan v Algeria",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "16/1",
+            "decimal": 17.0,
+            "decimal_odds": 17.0,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "decimal_odds": 7.0,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "15/8",
+            "decimal": 2.875,
+            "decimal_odds": 2.875,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "decimal_odds": 1.363636,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/18",
+            "decimal": 1.055556,
+            "decimal_odds": 1.055556,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/80",
+            "decimal": 1.0125,
+            "decimal_odds": 1.0125,
+            "match": "Jordan v Algeria",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "South Africa v South Korea",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.614379,
+      "arb_percent": 61.438,
+      "profit_margin_percent": 62.766,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "16/1",
+          "decimal": 17.0,
+          "decimal_odds": 17.0,
+          "match": "South Africa v South Korea",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "4/5",
+          "decimal": 1.8,
+          "decimal_odds": 1.8,
+          "match": "South Africa v South Korea",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "16/1",
+            "decimal": 17.0,
+            "decimal_odds": 17.0,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "11/2",
+            "decimal": 6.5,
+            "decimal_odds": 6.5,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "15/8",
+            "decimal": 2.875,
+            "decimal_odds": 2.875,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "decimal_odds": 2.05,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "decimal_odds": 2.05,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "73/100",
+            "decimal": 1.73,
+            "decimal_odds": 1.73,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "decimal_odds": 1.727273,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "decimal_odds": 1.363636,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/14",
+            "decimal": 1.071429,
+            "decimal_odds": 1.071429,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/80",
+            "decimal": 1.0125,
+            "decimal_odds": 1.0125,
+            "match": "South Africa v South Korea",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Scotland v Brazil",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.614907,
+      "arb_percent": 61.491,
+      "profit_margin_percent": 62.626,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "22/1",
+          "decimal": 23.0,
+          "decimal_odds": 23.0,
+          "match": "Scotland v Brazil",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "3/4",
+          "decimal": 1.75,
+          "decimal_odds": 1.75,
+          "match": "Scotland v Brazil",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "22/1",
+            "decimal": 23.0,
+            "decimal_odds": 23.0,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "15/2",
+            "decimal": 8.5,
+            "decimal_odds": 8.5,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "11/5",
+            "decimal": 3.2,
+            "decimal_odds": 3.2,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "11/10",
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "11/10",
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "decimal_odds": 2.05,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "67/100",
+            "decimal": 1.67,
+            "decimal_odds": 1.67,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "13/20",
+            "decimal": 1.65,
+            "decimal_odds": 1.65,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "13/20",
+            "decimal": 1.65,
+            "decimal_odds": 1.65,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/13",
+            "decimal": 1.615385,
+            "decimal_odds": 1.615385,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "decimal_odds": 1.3,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/33",
+            "decimal": 1.030303,
+            "decimal_odds": 1.030303,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/100",
+            "decimal": 1.01,
+            "decimal_odds": 1.01,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_double_chance",
+      "match": "Morocco v Haiti",
+      "market": "Double Chance",
+      "arb_sum": 0.663241,
+      "arb_percent": 66.324,
+      "profit_margin_percent": 50.775,
+      "bookmaker_count": 2,
+      "selections": {
+        "home_draw": {
+          "bookmaker": "Ladbrokes",
+          "odds": "18/5",
+          "decimal": 4.6,
+          "decimal_odds": 4.6,
+          "match": "Morocco v Haiti",
+          "source_market": "Double Chance",
+          "selection_label": "Morocco or Draw"
+        },
+        "away_draw": {
+          "bookmaker": "BetVictor",
+          "odds": "4/1",
+          "decimal": 5.0,
+          "decimal_odds": 5.0,
+          "match": "Morocco v Haiti",
+          "source_market": "Double Chance",
+          "selection_label": "Haiti or Draw"
+        },
+        "home_away": {
+          "bookmaker": "Ladbrokes",
+          "odds": "1/10",
+          "decimal": 1.1,
+          "decimal_odds": 1.1,
+          "match": "Morocco v Haiti",
+          "source_market": "Double Chance",
+          "selection_label": "Morocco or Haiti"
+        }
+      },
+      "all_prices": {
+        "home_draw": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "18/5",
+            "decimal": 4.6,
+            "decimal_odds": 4.6,
+            "match": "Morocco v Haiti",
+            "source_market": "Double Chance",
+            "selection_label": "Morocco or Draw"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/28",
+            "decimal": 1.035714,
+            "decimal_odds": 1.035714,
+            "match": "Morocco v Haiti",
+            "source_market": "Double Chance",
+            "selection_label": "Morocco or Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/50",
+            "decimal": 1.02,
+            "decimal_odds": 1.02,
+            "match": "Morocco v Haiti",
+            "source_market": "Double Chance",
+            "selection_label": "Morocco or Draw"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "1/100",
+            "decimal": 1.01,
+            "decimal_odds": 1.01,
+            "match": "Morocco v Haiti",
+            "source_market": "Double Chance",
+            "selection_label": "Morocco or Draw"
+          }
+        ],
+        "away_draw": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "4/1",
+            "decimal": 5.0,
+            "decimal_odds": 5.0,
+            "match": "Morocco v Haiti",
+            "source_market": "Double Chance",
+            "selection_label": "Haiti or Draw"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "decimal_odds": 4.5,
+            "match": "Morocco v Haiti",
+            "source_market": "Double Chance",
+            "selection_label": "Haiti or Draw"
+          }
+        ],
+        "home_away": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "decimal_odds": 1.1,
+            "match": "Morocco v Haiti",
+            "source_market": "Double Chance",
+            "selection_label": "Morocco or Haiti"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "decimal_odds": 1.1,
+            "match": "Morocco v Haiti",
+            "source_market": "Double Chance",
+            "selection_label": "Morocco or Haiti"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "decimal_odds": 1.083333,
+            "match": "Morocco v Haiti",
+            "source_market": "Double Chance",
+            "selection_label": "Morocco or Haiti"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Morocco v Haiti",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.668478,
+      "arb_percent": 66.848,
+      "profit_margin_percent": 49.593,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "22/1",
+          "decimal": 23.0,
+          "decimal_odds": 23.0,
+          "match": "Morocco v Haiti",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "6/10",
+          "decimal": 1.6,
+          "decimal_odds": 1.6,
+          "match": "Morocco v Haiti",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "22/1",
+            "decimal": 23.0,
+            "decimal_odds": 23.0,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "8/1",
+            "decimal": 9.0,
+            "decimal_odds": 9.0,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/1",
+            "decimal": 3.0,
+            "decimal_odds": 3.0,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "decimal_odds": 2.45,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "decimal_odds": 2.4,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "69/50",
+            "decimal": 2.38,
+            "decimal_odds": 2.38,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "decimal_odds": 2.375,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/4",
+            "decimal": 2.25,
+            "decimal_odds": 2.25,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "6/10",
+            "decimal": 1.6,
+            "decimal_odds": 1.6,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "27/50",
+            "decimal": 1.54,
+            "decimal_odds": 1.54,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "decimal_odds": 1.533333,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "decimal_odds": 1.333333,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/50",
+            "decimal": 1.02,
+            "decimal_odds": 1.02,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/100",
+            "decimal": 1.01,
+            "decimal_odds": 1.01,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_double_chance",
+      "match": "Portugal v Uzbekistan",
+      "market": "Double Chance",
+      "arb_sum": 0.67092,
+      "arb_percent": 67.092,
+      "profit_margin_percent": 49.049,
+      "bookmaker_count": 2,
+      "selections": {
+        "home_draw": {
+          "bookmaker": "Ladbrokes",
+          "odds": "7/2",
+          "decimal": 4.5,
+          "decimal_odds": 4.5,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Double Chance",
+          "selection_label": "Portugal or Draw"
+        },
+        "away_draw": {
+          "bookmaker": "BetVictor",
+          "odds": "15/4",
+          "decimal": 4.75,
+          "decimal_odds": 4.75,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Double Chance",
+          "selection_label": "Uzbekistan or Draw"
+        },
+        "home_away": {
+          "bookmaker": "Ladbrokes",
+          "odds": "1/10",
+          "decimal": 1.1,
+          "decimal_odds": 1.1,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Double Chance",
+          "selection_label": "Portugal or Uzbekistan"
+        }
+      },
+      "all_prices": {
+        "home_draw": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "decimal_odds": 4.5,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Draw"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/25",
+            "decimal": 1.04,
+            "decimal_odds": 1.04,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/33",
+            "decimal": 1.030303,
+            "decimal_odds": 1.030303,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Draw"
+          }
+        ],
+        "away_draw": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "15/4",
+            "decimal": 4.75,
+            "decimal_odds": 4.75,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Uzbekistan or Draw"
+          }
+        ],
+        "home_away": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "decimal_odds": 1.1,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Uzbekistan"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "decimal_odds": 1.1,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Uzbekistan"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Colombia v DR Congo",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.674825,
+      "arb_percent": 67.483,
+      "profit_margin_percent": 48.187,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "25/1",
+          "decimal": 26.0,
+          "decimal_odds": 26.0,
+          "match": "Colombia v DR Congo",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "4/7",
+          "decimal": 1.571429,
+          "decimal_odds": 1.571429,
+          "match": "Colombia v DR Congo",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "25/1",
+            "decimal": 26.0,
+            "decimal_odds": 26.0,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "8/1",
+            "decimal": 9.0,
+            "decimal_odds": 9.0,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "decimal_odds": 3.5,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "decimal_odds": 2.4,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "decimal_odds": 2.375,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "decimal_odds": 2.375,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/4",
+            "decimal": 2.25,
+            "decimal_odds": 2.25,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/7",
+            "decimal": 1.571429,
+            "decimal_odds": 1.571429,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "decimal_odds": 1.533333,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "decimal_odds": 1.25,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/50",
+            "decimal": 1.02,
+            "decimal_odds": 1.02,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/100",
+            "decimal": 1.01,
+            "decimal_odds": 1.01,
+            "match": "Colombia v DR Congo",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Curacao v Ivory Coast",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.677419,
+      "arb_percent": 67.742,
+      "profit_margin_percent": 47.619,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "30/1",
+          "decimal": 31.0,
+          "decimal_odds": 31.0,
+          "match": "Curacao v Ivory Coast",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "11/20",
+          "decimal": 1.55,
+          "decimal_odds": 1.55,
+          "match": "Curacao v Ivory Coast",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "30/1",
+            "decimal": 31.0,
+            "decimal_odds": 31.0,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "9/1",
+            "decimal": 10.0,
+            "decimal_odds": 10.0,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "decimal_odds": 3.25,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/4",
+            "decimal": 2.75,
+            "decimal_odds": 2.75,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "8/5",
+            "decimal": 2.6,
+            "decimal_odds": 2.6,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "decimal_odds": 2.5,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "decimal_odds": 2.45,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "11/20",
+            "decimal": 1.55,
+            "decimal_odds": 1.55,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/21",
+            "decimal": 1.47619,
+            "decimal_odds": 1.47619,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "9/20",
+            "decimal": 1.45,
+            "decimal_odds": 1.45,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "decimal_odds": 1.4,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/7",
+            "decimal": 1.285714,
+            "decimal_odds": 1.285714,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/100",
+            "decimal": 1.01,
+            "decimal_odds": 1.01,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/200",
+            "decimal": 1.005,
+            "decimal_odds": 1.005,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Portugal v Uzbekistan",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.679842,
+      "arb_percent": 67.984,
+      "profit_margin_percent": 47.093,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "22/1",
+          "decimal": 23.0,
+          "decimal_odds": 23.0,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "4/7",
+          "decimal": 1.571429,
+          "decimal_odds": 1.571429,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "22/1",
+            "decimal": 23.0,
+            "decimal_odds": 23.0,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "8/1",
+            "decimal": 9.0,
+            "decimal_odds": 9.0,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/1",
+            "decimal": 3.0,
+            "decimal_odds": 3.0,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "decimal_odds": 2.4,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "decimal_odds": 2.4,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "decimal_odds": 2.4,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/7",
+            "decimal": 1.571429,
+            "decimal_odds": 1.571429,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "decimal_odds": 1.533333,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "decimal_odds": 1.333333,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/50",
+            "decimal": 1.02,
+            "decimal_odds": 1.02,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/100",
+            "decimal": 1.01,
+            "decimal_odds": 1.01,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "England v Ghana",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.679842,
+      "arb_percent": 67.984,
+      "profit_margin_percent": 47.093,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "22/1",
+          "decimal": 23.0,
+          "decimal_odds": 23.0,
+          "match": "England v Ghana",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "4/7",
+          "decimal": 1.571429,
+          "decimal_odds": 1.571429,
+          "match": "England v Ghana",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "22/1",
+            "decimal": 23.0,
+            "decimal_odds": 23.0,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "8/1",
+            "decimal": 9.0,
+            "decimal_odds": 9.0,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/1",
+            "decimal": 3.0,
+            "decimal_odds": 3.0,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "decimal_odds": 2.4,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "decimal_odds": 2.4,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "decimal_odds": 2.375,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/7",
+            "decimal": 1.571429,
+            "decimal_odds": 1.571429,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "decimal_odds": 1.533333,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "decimal_odds": 1.333333,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/50",
+            "decimal": 1.02,
+            "decimal_odds": 1.02,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/100",
+            "decimal": 1.01,
+            "decimal_odds": 1.01,
+            "match": "England v Ghana",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_double_chance",
+      "match": "England v Ghana",
+      "market": "Double Chance",
+      "arb_sum": 0.686111,
+      "arb_percent": 68.611,
+      "profit_margin_percent": 45.749,
+      "bookmaker_count": 2,
+      "selections": {
+        "home_draw": {
+          "bookmaker": "Ladbrokes",
+          "odds": "3/1",
+          "decimal": 4.0,
+          "decimal_odds": 4.0,
+          "match": "England v Ghana",
+          "source_market": "Double Chance",
+          "selection_label": "England or Draw"
+        },
+        "away_draw": {
+          "bookmaker": "BetVictor",
+          "odds": "7/2",
+          "decimal": 4.5,
+          "decimal_odds": 4.5,
+          "match": "England v Ghana",
+          "source_market": "Double Chance",
+          "selection_label": "Ghana or Draw"
+        },
+        "home_away": {
+          "bookmaker": "Ladbrokes",
+          "odds": "1/9",
+          "decimal": 1.111111,
+          "decimal_odds": 1.111111,
+          "match": "England v Ghana",
+          "source_market": "Double Chance",
+          "selection_label": "England or Ghana"
+        }
+      },
+      "all_prices": {
+        "home_draw": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/1",
+            "decimal": 4.0,
+            "decimal_odds": 4.0,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "England or Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/25",
+            "decimal": 1.04,
+            "decimal_odds": 1.04,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "England or Draw"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/25",
+            "decimal": 1.04,
+            "decimal_odds": 1.04,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "England or Draw"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/40",
+            "decimal": 1.025,
+            "decimal_odds": 1.025,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "England or Draw"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "1/50",
+            "decimal": 1.02,
+            "decimal_odds": 1.02,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "England or Draw"
+          }
+        ],
+        "away_draw": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "decimal_odds": 4.5,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "Ghana or Draw"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "10/3",
+            "decimal": 4.333333,
+            "decimal_odds": 4.333333,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "Ghana or Draw"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "16/5",
+            "decimal": 4.2,
+            "decimal_odds": 4.2,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "Ghana or Draw"
+          }
+        ],
+        "home_away": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/9",
+            "decimal": 1.111111,
+            "decimal_odds": 1.111111,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "England or Ghana"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/9",
+            "decimal": 1.111111,
+            "decimal_odds": 1.111111,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "England or Ghana"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "decimal_odds": 1.1,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "England or Ghana"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "decimal_odds": 1.083333,
+            "match": "England v Ghana",
+            "source_market": "Double Chance",
+            "selection_label": "England or Ghana"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_half_time_result",
+      "match": "Norway v Senegal",
+      "market": "Half Time Result",
+      "arb_sum": 0.733766,
+      "arb_percent": 73.377,
+      "profit_margin_percent": 36.283,
+      "bookmaker_count": 2,
+      "selections": {
+        "home": {
+          "bookmaker": "888Sport",
+          "odds": "9/5",
+          "decimal": 2.8,
+          "decimal_odds": 2.8,
+          "match": "Norway v Senegal",
+          "source_market": "Half Time Result",
+          "selection_label": "Norway"
+        },
+        "draw": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "10/1",
+          "decimal": 11.0,
+          "decimal_odds": 11.0,
+          "match": "Norway v Senegal",
+          "source_market": "Half Time Result",
+          "selection_label": "Draw"
+        },
+        "away": {
+          "bookmaker": "888Sport",
+          "odds": "5/2",
+          "decimal": 3.5,
+          "decimal_odds": 3.5,
+          "match": "Norway v Senegal",
+          "source_market": "Half Time Result",
+          "selection_label": "Senegal"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "9/5",
+            "decimal": 2.8,
+            "decimal_odds": 2.8,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Norway"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "10/13",
+            "decimal": 1.769231,
+            "decimal_odds": 1.769231,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Norway"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Norway"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "10/1",
+            "decimal": 11.0,
+            "decimal_odds": 11.0,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "decimal_odds": 1.75,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "decimal_odds": 3.5,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Senegal"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "decimal_odds": 2.45,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Senegal"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Senegal"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_half_time_result",
+      "match": "Argentina v Austria",
+      "market": "Half Time Result",
+      "arb_sum": 0.774307,
+      "arb_percent": 77.431,
+      "profit_margin_percent": 29.148,
+      "bookmaker_count": 2,
+      "selections": {
+        "home": {
+          "bookmaker": "888Sport",
+          "odds": "17/20",
+          "decimal": 1.85,
+          "decimal_odds": 1.85,
+          "match": "Argentina v Austria",
+          "source_market": "Half Time Result",
+          "selection_label": "Argentina"
+        },
+        "draw": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "10/1",
+          "decimal": 11.0,
+          "decimal_odds": 11.0,
+          "match": "Argentina v Austria",
+          "source_market": "Half Time Result",
+          "selection_label": "Draw"
+        },
+        "away": {
+          "bookmaker": "888Sport",
+          "odds": "6/1",
+          "decimal": 7.0,
+          "decimal_odds": 7.0,
+          "match": "Argentina v Austria",
+          "source_market": "Half Time Result",
+          "selection_label": "Austria"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "decimal_odds": 1.85,
+            "match": "Argentina v Austria",
+            "source_market": "Half Time Result",
+            "selection_label": "Argentina"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "decimal_odds": 1.363636,
+            "match": "Argentina v Austria",
+            "source_market": "Half Time Result",
+            "selection_label": "Argentina"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "decimal_odds": 1.333333,
+            "match": "Argentina v Austria",
+            "source_market": "Half Time Result",
+            "selection_label": "Argentina"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "10/1",
+            "decimal": 11.0,
+            "decimal_odds": 11.0,
+            "match": "Argentina v Austria",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "Argentina v Austria",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Argentina v Austria",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "decimal_odds": 7.0,
+            "match": "Argentina v Austria",
+            "source_market": "Half Time Result",
+            "selection_label": "Austria"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "16/5",
+            "decimal": 4.2,
+            "decimal_odds": 4.2,
+            "match": "Argentina v Austria",
+            "source_market": "Half Time Result",
+            "selection_label": "Austria"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "14/5",
+            "decimal": 3.8,
+            "decimal_odds": 3.8,
+            "match": "Argentina v Austria",
+            "source_market": "Half Time Result",
+            "selection_label": "Austria"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_double_chance",
+      "match": "Colombia v DR Congo",
+      "market": "Double Chance",
+      "arb_sum": 0.813173,
+      "arb_percent": 81.317,
+      "profit_margin_percent": 22.975,
+      "bookmaker_count": 2,
+      "selections": {
+        "home_draw": {
+          "bookmaker": "Ladbrokes",
+          "odds": "6/4",
+          "decimal": 2.5,
+          "decimal_odds": 2.5,
+          "match": "Colombia v DR Congo",
+          "source_market": "Double Chance",
+          "selection_label": "Colombia or Draw"
+        },
+        "away_draw": {
+          "bookmaker": "BetVictor",
+          "odds": "29/20",
+          "decimal": 2.45,
+          "decimal_odds": 2.45,
+          "match": "Colombia v DR Congo",
+          "source_market": "Double Chance",
+          "selection_label": "DR Congo or Draw"
+        },
+        "home_away": {
+          "bookmaker": "Ladbrokes",
+          "odds": "2/9",
+          "decimal": 1.222222,
+          "decimal_odds": 1.222222,
+          "match": "Colombia v DR Congo",
+          "source_market": "Double Chance",
+          "selection_label": "Colombia or DR Congo"
+        }
+      },
+      "all_prices": {
+        "home_draw": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "decimal_odds": 2.5,
+            "match": "Colombia v DR Congo",
+            "source_market": "Double Chance",
+            "selection_label": "Colombia or Draw"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/8",
+            "decimal": 1.125,
+            "decimal_odds": 1.125,
+            "match": "Colombia v DR Congo",
+            "source_market": "Double Chance",
+            "selection_label": "Colombia or Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "decimal_odds": 1.1,
+            "match": "Colombia v DR Congo",
+            "source_market": "Double Chance",
+            "selection_label": "Colombia or Draw"
+          }
+        ],
+        "away_draw": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "decimal_odds": 2.45,
+            "match": "Colombia v DR Congo",
+            "source_market": "Double Chance",
+            "selection_label": "DR Congo or Draw"
+          }
+        ],
+        "home_away": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "2/9",
+            "decimal": 1.222222,
+            "decimal_odds": 1.222222,
+            "match": "Colombia v DR Congo",
+            "source_market": "Double Chance",
+            "selection_label": "Colombia or DR Congo"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "decimal_odds": 1.2,
+            "match": "Colombia v DR Congo",
+            "source_market": "Double Chance",
+            "selection_label": "Colombia or DR Congo"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_half_time_result",
+      "match": "France v Iraq",
+      "market": "Half Time Result",
+      "arb_sum": 0.861862,
+      "arb_percent": 86.186,
+      "profit_margin_percent": 16.028,
+      "bookmaker_count": 2,
+      "selections": {
+        "home": {
+          "bookmaker": "888Sport",
+          "odds": "3/10",
+          "decimal": 1.3,
+          "decimal_odds": 1.3,
+          "match": "France v Iraq",
+          "source_market": "Half Time Result",
+          "selection_label": "France"
+        },
+        "draw": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "24/1",
+          "decimal": 25.0,
+          "decimal_odds": 25.0,
+          "match": "France v Iraq",
+          "source_market": "Half Time Result",
+          "selection_label": "Draw"
+        },
+        "away": {
+          "bookmaker": "888Sport",
+          "odds": "18/1",
+          "decimal": 19.0,
+          "decimal_odds": 19.0,
+          "match": "France v Iraq",
+          "source_market": "Half Time Result",
+          "selection_label": "Iraq"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "decimal_odds": 1.3,
+            "match": "France v Iraq",
+            "source_market": "Half Time Result",
+            "selection_label": "France"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/9",
+            "decimal": 1.111111,
+            "decimal_odds": 1.111111,
+            "match": "France v Iraq",
+            "source_market": "Half Time Result",
+            "selection_label": "France"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "24/1",
+            "decimal": 25.0,
+            "decimal_odds": 25.0,
+            "match": "France v Iraq",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "13/5",
+            "decimal": 3.6,
+            "decimal_odds": 3.6,
+            "match": "France v Iraq",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "18/1",
+            "decimal": 19.0,
+            "decimal_odds": 19.0,
+            "match": "France v Iraq",
+            "source_market": "Half Time Result",
+            "selection_label": "Iraq"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "decimal_odds": 7.0,
+            "match": "France v Iraq",
+            "source_market": "Half Time Result",
+            "selection_label": "Iraq"
+          }
+        ]
+      }
+    },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
@@ -526,6 +3638,135 @@
             "scope": "match",
             "scope_team": "",
             "metric": "cards"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_double_chance",
+      "match": "Switzerland v Canada",
+      "market": "Double Chance",
+      "arb_sum": 1.007905,
+      "arb_percent": 100.791,
+      "profit_margin_percent": -0.784,
+      "bookmaker_count": 3,
+      "selections": {
+        "home_draw": {
+          "bookmaker": "Ladbrokes",
+          "odds": "8/15",
+          "decimal": 1.533333,
+          "decimal_odds": 1.533333,
+          "match": "Switzerland v Canada",
+          "source_market": "Double Chance",
+          "selection_label": "Switzerland or Draw"
+        },
+        "away_draw": {
+          "bookmaker": "Unibet",
+          "odds": "27/50",
+          "decimal": 1.54,
+          "decimal_odds": 1.54,
+          "match": "Switzerland v Canada",
+          "source_market": "Double Chance",
+          "selection_label": "Canada or Draw"
+        },
+        "home_away": {
+          "bookmaker": "BetVictor",
+          "odds": "2/5",
+          "decimal": 1.4,
+          "decimal_odds": 1.4,
+          "match": "Switzerland v Canada",
+          "source_market": "Double Chance",
+          "selection_label": "Switzerland or Canada"
+        }
+      },
+      "all_prices": {
+        "home_draw": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "decimal_odds": 1.533333,
+            "match": "Switzerland v Canada",
+            "source_market": "Double Chance",
+            "selection_label": "Switzerland or Draw"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "decimal_odds": 1.4,
+            "match": "Switzerland v Canada",
+            "source_market": "Double Chance",
+            "selection_label": "Switzerland or Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "decimal_odds": 1.363636,
+            "match": "Switzerland v Canada",
+            "source_market": "Double Chance",
+            "selection_label": "Switzerland or Draw"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "7/20",
+            "decimal": 1.35,
+            "decimal_odds": 1.35,
+            "match": "Switzerland v Canada",
+            "source_market": "Double Chance",
+            "selection_label": "Switzerland or Draw"
+          }
+        ],
+        "away_draw": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "27/50",
+            "decimal": 1.54,
+            "decimal_odds": 1.54,
+            "match": "Switzerland v Canada",
+            "source_market": "Double Chance",
+            "selection_label": "Canada or Draw"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "decimal_odds": 1.444444,
+            "match": "Switzerland v Canada",
+            "source_market": "Double Chance",
+            "selection_label": "Canada or Draw"
+          }
+        ],
+        "home_away": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "decimal_odds": 1.4,
+            "match": "Switzerland v Canada",
+            "source_market": "Double Chance",
+            "selection_label": "Switzerland or Canada"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "37/100",
+            "decimal": 1.37,
+            "decimal_odds": 1.37,
+            "match": "Switzerland v Canada",
+            "source_market": "Double Chance",
+            "selection_label": "Switzerland or Canada"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "7/20",
+            "decimal": 1.35,
+            "decimal_odds": 1.35,
+            "match": "Switzerland v Canada",
+            "source_market": "Double Chance",
+            "selection_label": "Switzerland or Canada"
           }
         ]
       }
@@ -2827,86 +6068,9 @@
           }
         ]
       }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Panama v Croatia",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "5.5",
-      "arb_sum": 1.023809,
-      "arb_percent": 102.381,
-      "profit_margin_percent": -2.326,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "5/1",
-          "decimal_odds": 6.0,
-          "source_market": "Total Cards Over/Under"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "1/6",
-          "decimal_odds": 1.166667,
-          "source_market": "Total Cards"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "5/1",
-            "decimal": 6.0,
-            "match": "Panama v Croatia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "7/2",
-            "decimal": 4.5,
-            "match": "Panama v Croatia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/6",
-            "decimal": 1.166667,
-            "match": "Panama v Croatia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "1/12",
-            "decimal": 1.083333,
-            "match": "Panama v Croatia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
     }
   ],
-  "props_arb_count": 1
+  "props_arb_count": 21,
+  "props_ou_arb_count": 1,
+  "props_named_arb_count": 20
 }

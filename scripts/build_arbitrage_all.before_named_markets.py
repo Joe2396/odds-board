@@ -58,58 +58,24 @@ def normalize_football():
     rows = data.get("arbitrage") or data.get("arbitrage_opportunities") or []
     out = []
 
-    type_orders = {
-        "moneyline_1x2": ["home", "draw", "away"],
-        "props_ou": ["over", "under"],
-        "props_btts": ["yes", "no"],
-        "props_half_time_result": ["home", "draw", "away"],
-        "props_double_chance": [
-            "home_draw", "away_draw", "home_away"
-        ],
-    }
-
     for row in rows:
         selections = row.get("selections") or {}
-        row_type = row.get("type") or "moneyline_1x2"
-        order = type_orders.get(row_type, list(selections.keys()))
         books = []
 
-        for key in order:
-            info = selections.get(key) or {}
+        # Handle both moneyline (home/draw/away) and props O/U (over/under) arbs
+        sides = ["home", "draw", "away"] if row.get("type") != "props_ou" else ["over", "under"]
+        side_labels = {"home": row.get("home_team") or "Home", "draw": "Draw",
+                      "away": row.get("away_team") or "Away",
+                      "over": f"Over {row.get('line','')}", "under": f"Under {row.get('line','')}"}
+        for side in sides:
+            info = selections.get(side) or {}
             if not info:
                 continue
-
-            label = info.get("selection_label") or ""
-
-            if not label:
-                if key == "home":
-                    label = row.get("home_team") or "Home"
-                elif key == "away":
-                    label = row.get("away_team") or "Away"
-                elif key == "draw":
-                    label = "Draw"
-                elif key == "over":
-                    label = f"Over {row.get('line', '')}".strip()
-                elif key == "under":
-                    label = f"Under {row.get('line', '')}".strip()
-                elif key == "yes":
-                    label = "Yes"
-                elif key == "no":
-                    label = "No"
-                elif key == "home_draw":
-                    label = "Home or Draw"
-                elif key == "away_draw":
-                    label = "Away or Draw"
-                elif key == "home_away":
-                    label = "Home or Away"
-                else:
-                    label = key.replace("_", " ").title()
-
             books.append({
-                "selection": label,
+                "selection": side_labels.get(side, side.title()),
                 "bookmaker": info.get("bookmaker") or "",
                 "odds": info.get("odds") or "",
-                "decimal_odds": info.get("decimal_odds") or info.get("decimal") or "",
+                "decimal_odds": info.get("decimal_odds") or "",
                 "implied_probability": info.get("implied_probability") or "",
             })
 
@@ -118,20 +84,19 @@ def normalize_football():
             "competition": row.get("competition") or "FIFA World Cup",
             "event": row.get("match") or "",
             "market": row.get("market") or "Match Odds",
-            "type": row_type,
+            "type": row.get("type") or "moneyline_1x2",
             "date_label": row.get("date_label") or "",
             "time": row.get("time") or "",
             "profit_margin_percent": normalize_profit(row),
             "arb_percent": row.get("arb_percent") or "",
             "arb_sum": row.get("arb_sum") or "",
-            "bookmaker_count": row.get("bookmaker_count") or len({
-                book.get("bookmaker") for book in books if book.get("bookmaker")
-            }),
+            "bookmaker_count": row.get("bookmaker_count") or len(books),
             "bookmakers": books,
             "source_file": "football/data/arbitrage.json",
         })
 
     return out, data
+
 
 def normalize_ufc():
     data = load_json(UFC_ARB_PATH)

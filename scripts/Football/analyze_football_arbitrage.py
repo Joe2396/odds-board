@@ -3,6 +3,7 @@ import json
 import os
 import re
 from datetime import datetime, timezone
+from itertools import product
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -115,6 +116,22 @@ PROPS_FILES = {
     "BetVictor":    ("betvictor_worldcup_props.json",    "fractional"),
     # "Midnite":    ("midnite_worldcup_props.json",      "fractional"),  # dict format, not list
     # "Unibet":     ("unibet_worldcup_props.json",       "fractional"),  # not ready
+}
+
+
+NAMED_PROPS_FILES = {
+    # Existing scope-verified props sources
+    "PaddyPower":   "paddypower_worldcup_props.json",
+    "BoyleSports":  "boylesports_worldcup_props_complete.json",
+    "LiveScoreBet": "livescorebet_worldcup_props.json",
+    "Ladbrokes":    "ladbrokes_worldcup_props.json",
+    "WilliamHill":  "williamhill_worldcup_props.json",
+    "BetVictor":    "betvictor_worldcup_props.json",
+
+    # These formats are reliable for BTTS / Double Chance / Half Time Result,
+    # even though they are not yet enabled for the strict O/U scope scanner.
+    "Unibet":       "unibet_worldcup_props.json",
+    "888Sport":     "888sport_worldcup_props.json",
 }
 
 OU_MARKET_KEYS = {
@@ -564,6 +581,508 @@ def scan_props_arbitrage(root):
 
     return arbs, near_misses
 
+
+
+def iter_market_items(match):
+    """Yield (market name, market dict) from either list or dict schemas."""
+    markets = match.get("markets") or {}
+
+    if isinstance(markets, list):
+        for market in markets:
+            if not isinstance(market, dict):
+                continue
+            name = market.get("market") or market.get("name") or ""
+            if name:
+                yield name, market
+        return
+
+    if isinstance(markets, dict):
+        for name, market in markets.items():
+            if isinstance(market, dict):
+                yield name, market
+
+
+def _selection_offer(bookmaker, odds_raw, match_name, market_name, label):
+    decimal = fractional_to_decimal(odds_raw)
+    if not decimal or decimal <= 1:
+        return None
+
+    return {
+        "bookmaker": bookmaker,
+        "odds": odds_raw,
+        "decimal": decimal,
+        "decimal_odds": decimal,
+        "match": match_name,
+        "source_market": market_name,
+        "selection_label": label,
+    }
+
+
+def _is_standard_btts_market(market_name):
+    mk = normalize_key(market_name)
+
+    if "both_teams_to_score" not in mk and mk != "btts":
+        return False
+
+    blocked = {
+        "result", "match_result", "first_half", "second_half",
+        "1st_half", "2nd_half", "half_time", "halftime",
+    }
+    return not any(token in mk for token in blocked)
+
+
+def resolve_btts_outcome(selection):
+    """Return yes/no only for the standard full-time BTTS market."""
+    name = normalize_key(
+        selection.get("normalized_selection")
+        or selection.get("selection")
+        or ""
+    )
+    side = normalize_key(selection.get("side") or "")
+
+    # LiveScoreBet can place full-time, first-half and second-half BTTS
+    # selections inside one market. Only keep the standard full-time pair.
+    blocked = {
+        "first_half", "second_half", "1st_half", "2nd_half",
+        "in_the_first_half", "in_the_second_half",
+    }
+    if any(token in name for token in blocked):
+        return None
+
+    if side in {"yes", "no"}:
+        return side
+    if name == "yes" or name.endswith("_yes"):
+        return "yes"
+    if name == "no" or name.endswith("_no"):
+        return "no"
+    return None
+
+
+def _contains_team(text_key, team):
+    team_key = normalize_key(normalize_team(team))
+    return bool(team_key and team_key in text_key)
+
+
+def resolve_double_chance_outcome(selection, home, away):
+    """Map bookmaker-specific labels to home_draw/away_draw/home_away."""
+    side = normalize_key(selection.get("side") or "")
+    if side in {"home_draw", "away_draw", "home_away"}:
+        return side
+
+    name = normalize_key(
+        selection.get("normalized_selection")
+        or selection.get("selection")
+        or ""
+    )
+    compact = name.replace("_", "")
+
+    if compact in {"1x", "homedraw"}:
+        return "home_draw"
+    if compact in {"x2", "awaydraw"}:
+        return "away_draw"
+    if compact in {"12", "homeaway"}:
+        return "home_away"
+
+    has_home = _contains_team(name, home) or "home" in name.split("_")
+    has_away = _contains_team(name, away) or "away" in name.split("_")
+    has_draw = "draw" in name.split("_") or "the_draw" in name
+
+    if has_home and has_draw and not has_away:
+        return "home_draw"
+    if has_away and has_draw and not has_home:
+        return "away_draw"
+    if has_home and has_away and not has_draw:
+        return "home_away"
+
+    return None
+
+
+def _is_half_time_result_market(market_name):
+    mk = normalize_key(market_name)
+
+    # Explicitly exclude HT/FT and first-half totals.
+    if any(token in mk for token in {
+        "half_time_full_time", "half_time_fulltime", "ht_ft",
+        "first_half_goals", "1st_half_goals", "total",
+    }):
+        return False
+
+    accepted = {
+        "half_time_result",
+        "half_time",
+        "halftime_result",
+        "first_half_result",
+        "1st_half_result",
+        "1st_half_betting",
+        "first_half_betting",
+    }
+    return mk in accepted or any(token in mk for token in {
+        "half_time_result", "first_half_result", "1st_half_betting",
+    })
+
+
+def resolve_three_way_outcome(selection, home, away):
+    """Map a selection to home/draw/away using side metadata or its label."""
+    side = normalize_key(selection.get("side") or "")
+    if side in {"home", "draw", "away"}:
+        return side
+
+    name = normalize_key(
+        selection.get("normalized_selection")
+        or selection.get("selection")
+        or ""
+    )
+
+    if name in {"draw", "the_draw", "tie"}:
+        return "draw"
+    if _contains_team(name, home) or name == "home":
+        return "home"
+    if _contains_team(name, away) or name == "away":
+        return "away"
+
+    return None
+
+
+def _best_two_way_pair(first, second):
+    """Return the best cross-book pair for a two-outcome market."""
+    pairs = [
+        (a, b)
+        for a in first
+        for b in second
+        if a["bookmaker"] != b["bookmaker"]
+    ]
+    if not pairs:
+        return None
+
+    return min(
+        pairs,
+        key=lambda pair: (1 / pair[0]["decimal"]) + (1 / pair[1]["decimal"]),
+    )
+
+
+def _best_multiway_combo(outcome_lists):
+    """
+    Pick one offer per outcome, requiring at least two different bookmakers.
+    """
+    combos = [
+        combo
+        for combo in product(*outcome_lists)
+        if len({offer["bookmaker"] for offer in combo}) >= 2
+    ]
+    if not combos:
+        return None
+
+    return min(
+        combos,
+        key=lambda combo: sum(1 / offer["decimal"] for offer in combo),
+    )
+
+
+def _base_named_row(match_name, market, arb_type, arb_sum, selections, all_prices):
+    return {
+        "sport": "Football",
+        "competition": "FIFA World Cup",
+        "type": arb_type,
+        "match": match_name,
+        "market": market,
+        "arb_sum": round(arb_sum, 6),
+        "arb_percent": round(arb_sum * 100, 3),
+        "profit_margin_percent": round(((1 / arb_sum) - 1) * 100, 3),
+        "bookmaker_count": len({
+            info["bookmaker"] for info in selections.values()
+        }),
+        "selections": selections,
+        "all_prices": all_prices,
+    }
+
+
+def scan_named_prop_arbitrage(root):
+    """
+    Scan:
+      - Both Teams To Score (Yes / No)
+      - Double Chance (Home/Draw, Away/Draw, Home/Away)
+      - Half Time Result (Home / Draw / Away)
+
+    Double Chance uses the correct overlapping-outcome hedge formula:
+        total stake for £1 guaranteed return
+        = 0.5 * (1/d_1X + 1/d_X2 + 1/d_12)
+    """
+    data = {}
+    audit = {}
+
+    for bookmaker, filename in NAMED_PROPS_FILES.items():
+        path = os.path.join(root, "football", "data", filename)
+        raw = load_json(path)
+        if not raw:
+            audit[bookmaker] = {"matches": 0, "offers": 0}
+            continue
+
+        matches = raw.get("matches") or []
+        if isinstance(raw, list):
+            matches = raw
+
+        offers_added = 0
+        matches_seen = 0
+
+        for match in matches:
+            if not isinstance(match, dict):
+                continue
+
+            home = match.get("home_team") or ""
+            away = match.get("away_team") or ""
+            if not home or not away:
+                continue
+
+            matches_seen += 1
+            fk = fixture_key(home, away)
+            match_name = match.get("match") or f"{home} v {away}"
+
+            fixture = data.setdefault(fk, {
+                "match": match_name,
+                "home": home,
+                "away": away,
+                "btts": {"yes": [], "no": []},
+                "double_chance": {
+                    "home_draw": [],
+                    "away_draw": [],
+                    "home_away": [],
+                },
+                "half_time_result": {
+                    "home": [],
+                    "draw": [],
+                    "away": [],
+                },
+            })
+
+            for market_name, market in iter_market_items(match):
+                selections = market.get("selections") or []
+
+                if _is_standard_btts_market(market_name):
+                    for selection in selections:
+                        if not isinstance(selection, dict):
+                            continue
+                        outcome = resolve_btts_outcome(selection)
+                        if not outcome:
+                            continue
+                        offer = _selection_offer(
+                            bookmaker,
+                            selection.get("odds") or selection.get("price"),
+                            match_name,
+                            market_name,
+                            "Yes" if outcome == "yes" else "No",
+                        )
+                        if offer:
+                            fixture["btts"][outcome].append(offer)
+                            offers_added += 1
+                    continue
+
+                if normalize_key(market_name) == "double_chance":
+                    labels = {
+                        "home_draw": f"{home} or Draw",
+                        "away_draw": f"{away} or Draw",
+                        "home_away": f"{home} or {away}",
+                    }
+                    for selection in selections:
+                        if not isinstance(selection, dict):
+                            continue
+                        outcome = resolve_double_chance_outcome(
+                            selection, home, away
+                        )
+                        if not outcome:
+                            continue
+                        offer = _selection_offer(
+                            bookmaker,
+                            selection.get("odds") or selection.get("price"),
+                            match_name,
+                            market_name,
+                            labels[outcome],
+                        )
+                        if offer:
+                            fixture["double_chance"][outcome].append(offer)
+                            offers_added += 1
+                    continue
+
+                if _is_half_time_result_market(market_name):
+                    labels = {
+                        "home": home,
+                        "draw": "Draw",
+                        "away": away,
+                    }
+                    for selection in selections:
+                        if not isinstance(selection, dict):
+                            continue
+                        outcome = resolve_three_way_outcome(
+                            selection, home, away
+                        )
+                        if not outcome:
+                            continue
+                        offer = _selection_offer(
+                            bookmaker,
+                            selection.get("odds") or selection.get("price"),
+                            match_name,
+                            market_name,
+                            labels[outcome],
+                        )
+                        if offer:
+                            fixture["half_time_result"][outcome].append(offer)
+                            offers_added += 1
+
+        audit[bookmaker] = {
+            "matches": matches_seen,
+            "offers": offers_added,
+        }
+
+    arbs = []
+    near_misses = []
+
+    for fixture in data.values():
+        match_name = fixture["match"]
+        home = fixture["home"]
+        away = fixture["away"]
+
+        # BTTS
+        yes_offers = fixture["btts"]["yes"]
+        no_offers = fixture["btts"]["no"]
+        pair = _best_two_way_pair(yes_offers, no_offers)
+        if pair:
+            best_yes, best_no = pair
+            arb_sum = (1 / best_yes["decimal"]) + (1 / best_no["decimal"])
+            row = _base_named_row(
+                match_name,
+                "Both Teams To Score",
+                "props_btts",
+                arb_sum,
+                {
+                    "yes": {
+                        **best_yes,
+                        "selection_label": "Yes",
+                    },
+                    "no": {
+                        **best_no,
+                        "selection_label": "No",
+                    },
+                },
+                {
+                    "yes": sorted(
+                        yes_offers,
+                        key=lambda x: x["decimal"],
+                        reverse=True,
+                    ),
+                    "no": sorted(
+                        no_offers,
+                        key=lambda x: x["decimal"],
+                        reverse=True,
+                    ),
+                },
+            )
+            if arb_sum < 1:
+                arbs.append(row)
+            elif arb_sum < 1.04:
+                near_misses.append(row)
+
+        # Half Time Result
+        htr = fixture["half_time_result"]
+        combo = _best_multiway_combo([
+            htr["home"], htr["draw"], htr["away"]
+        ]) if all(htr[key] for key in ["home", "draw", "away"]) else None
+
+        if combo:
+            best_home, best_draw, best_away = combo
+            arb_sum = sum(1 / offer["decimal"] for offer in combo)
+            row = _base_named_row(
+                match_name,
+                "Half Time Result",
+                "props_half_time_result",
+                arb_sum,
+                {
+                    "home": {
+                        **best_home,
+                        "selection_label": home,
+                    },
+                    "draw": {
+                        **best_draw,
+                        "selection_label": "Draw",
+                    },
+                    "away": {
+                        **best_away,
+                        "selection_label": away,
+                    },
+                },
+                {
+                    key: sorted(
+                        htr[key],
+                        key=lambda x: x["decimal"],
+                        reverse=True,
+                    )
+                    for key in ["home", "draw", "away"]
+                },
+            )
+            if arb_sum < 1:
+                arbs.append(row)
+            elif arb_sum < 1.04:
+                near_misses.append(row)
+
+        # Double Chance: overlapping outcomes. Each match result wins two bets.
+        dc = fixture["double_chance"]
+        combo = _best_multiway_combo([
+            dc["home_draw"],
+            dc["away_draw"],
+            dc["home_away"],
+        ]) if all(dc[key] for key in [
+            "home_draw", "away_draw", "home_away"
+        ]) else None
+
+        if combo:
+            best_hd, best_ad, best_ha = combo
+            inverse_sum = sum(1 / offer["decimal"] for offer in combo)
+            arb_sum = 0.5 * inverse_sum
+            row = _base_named_row(
+                match_name,
+                "Double Chance",
+                "props_double_chance",
+                arb_sum,
+                {
+                    "home_draw": {
+                        **best_hd,
+                        "selection_label": f"{home} or Draw",
+                    },
+                    "away_draw": {
+                        **best_ad,
+                        "selection_label": f"{away} or Draw",
+                    },
+                    "home_away": {
+                        **best_ha,
+                        "selection_label": f"{home} or {away}",
+                    },
+                },
+                {
+                    key: sorted(
+                        dc[key],
+                        key=lambda x: x["decimal"],
+                        reverse=True,
+                    )
+                    for key in [
+                        "home_draw", "away_draw", "home_away"
+                    ]
+                },
+            )
+            if arb_sum < 1:
+                arbs.append(row)
+            elif arb_sum < 1.04:
+                near_misses.append(row)
+
+    arbs.sort(key=lambda row: row["profit_margin_percent"], reverse=True)
+    near_misses.sort(key=lambda row: row["arb_sum"])
+
+    print("Named props coverage:")
+    for bookmaker, counts in audit.items():
+        print(
+            f"  - {bookmaker}: "
+            f"{counts['matches']} matches, {counts['offers']} offers"
+        )
+
+    return arbs, near_misses
+
 def main():
     fixtures = {}
     strict_index = {}
@@ -727,8 +1246,23 @@ def main():
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
 
     # Props arbitrage
-    props_arbs, props_near_misses = scan_props_arbitrage(ROOT)
-    print(f"Props arb opportunities: {len(props_arbs)}")
+    ou_props_arbs, ou_props_near_misses = scan_props_arbitrage(ROOT)
+    named_props_arbs, named_props_near_misses = scan_named_prop_arbitrage(ROOT)
+
+    props_arbs = ou_props_arbs + named_props_arbs
+    props_near_misses = (
+        ou_props_near_misses + named_props_near_misses
+    )
+
+    props_arbs.sort(
+        key=lambda row: row["profit_margin_percent"],
+        reverse=True,
+    )
+    props_near_misses.sort(key=lambda row: row["arb_sum"])
+
+    print(f"O/U props arb opportunities: {len(ou_props_arbs)}")
+    print(f"Named props arb opportunities: {len(named_props_arbs)}")
+    print(f"Total props arb opportunities: {len(props_arbs)}")
     print(f"Props near misses: {len(props_near_misses)}")
 
     all_arbs = arbitrage + props_arbs
@@ -740,6 +1274,8 @@ def main():
     output["arbitrage_count"] = len(all_arbs)
     output["near_miss_count"] = len(all_near_misses)
     output["props_arb_count"] = len(props_arbs)
+    output["props_ou_arb_count"] = len(ou_props_arbs)
+    output["props_named_arb_count"] = len(named_props_arbs)
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
