@@ -132,16 +132,128 @@ def normalize_key(s):
     return _re.sub(r"[^a-z0-9]+", "_", s).strip("_")
 
 
+PLAYER_MARKET_WORDS = {
+    "player", "goalscorer", "to_score", "to_assist", "tackles",
+    "fouls", "carded", "to_get_a_card",
+}
+
+
+def canonical_prop_market(market_name, home, away):
+    """
+    Return a strict market identity so match totals can never be compared with
+    team totals. Returns (canonical_key, display_name, scope_team).
+
+    scope_team is blank for a match total and contains the canonical team name
+    for a team total.
+    """
+    mk = normalize_key(market_name)
+
+    if any(word in mk for word in PLAYER_MARKET_WORDS):
+        return None
+
+    # Longest/specific names first.
+    if "shots_on_target" in mk:
+        prop = "shots_on_target"
+        label = "Shots On Target"
+    elif "shots" in mk:
+        prop = "shots"
+        label = "Shots"
+    elif "corners" in mk:
+        prop = "corners"
+        label = "Corners"
+    elif "cards" in mk or "booking_points" in mk:
+        prop = "cards"
+        label = "Cards"
+    elif "first_half" in mk and "goals" in mk:
+        prop = "first_half_goals"
+        label = "First Half Goals"
+    elif "goals" in mk:
+        prop = "goals"
+        label = "Goals"
+    else:
+        return None
+
+    home_norm = normalize_key(normalize_team(home))
+    away_norm = normalize_key(normalize_team(away))
+    scope_team = ""
+
+    # A market is a team total only when the actual team name appears in the
+    # market title. "Home"/"Away" alone is not trusted by the arb scanner.
+    if home_norm and home_norm in mk:
+        scope_team = normalize_team(home)
+    elif away_norm and away_norm in mk:
+        scope_team = normalize_team(away)
+
+    if scope_team:
+        canonical = f"team_{prop}::{scope_team}"
+        display = f"{scope_team.title()} Total {label} Over Under"
+    else:
+        canonical = f"match_{prop}"
+        display = f"Total {label} Over Under"
+
+    return canonical, display, scope_team
+
+
+def selection_verifies_team_scope(selection, selection_name, scope_team):
+    """
+    Team totals must carry a matching team field or contain the team name in
+    the selection text. Generic 'Over 5.5' rows are not trusted as team props.
+    """
+    if not scope_team:
+        return True
+
+    explicit_team = normalize_team(selection.get("team") or "")
+    selection_text = normalize_team(selection_name)
+
+    return explicit_team == scope_team or scope_team in selection_text
+
+
+def should_quarantine_offer(bookmaker, canonical_market, line):
+    """
+    Temporary fail-closed rules for confirmed source-parser issues.
+
+    BetVictor:
+      Some fixtures whose Total Goals market starts at 1.5 are currently being
+      written as 0.5. Do not publish BetVictor match-goals 0.5 offers.
+
+    Ladbrokes:
+      Some named team-corner markets currently contain match-corner prices.
+      Do not publish Ladbrokes team-corner offers until that source parser is
+      fixed and verified.
+    """
+    line = str(line or "").strip()
+
+    if (
+        bookmaker == "BetVictor"
+        and canonical_market == "match_goals"
+        and line == "0.5"
+    ):
+        return "BetVictor unverified Total Goals 0.5"
+
+    if (
+        bookmaker == "Ladbrokes"
+        and canonical_market.startswith("team_corners::")
+    ):
+        return "Ladbrokes unverified team-corners scope"
+
+    return ""
+
+
 def scan_props_arbitrage(root):
-    """Scan O/U prop markets across bookmakers for arbitrage."""
-    # Structure: {fixture_key: {market_key: {line: {side: [{bk, odds, decimal}]}}}}
+    """Scan strictly matched O/U prop markets across bookmakers for arbitrage."""
+    # {fixture: {canonical_market: {line: {side: [offers]}}}}
     data = {}
+    rejected = {}
+
+    def reject(reason):
+        rejected[reason] = rejected.get(reason, 0) + 1
 
     for bk, (fname, fmt) in PROPS_FILES.items():
         path = os.path.join(root, "football", "data", fname)
         raw = load_json(path)
         if not raw:
             continue
+
         matches = raw.get("matches") or []
         if isinstance(raw, list):
             matches = raw
@@ -151,79 +263,171 @@ def scan_props_arbitrage(root):
             away = m.get("away_team", "")
             if not home or not away:
                 continue
+
             fk = fixture_key(home, away)
             markets = m.get("markets") or {}
             if isinstance(markets, list):
-                markets = {mk.get("market", ""): mk for mk in markets}
+                markets = {
+                    mk.get("market", ""): mk
+                    for mk in markets
+                    if isinstance(mk, dict)
+                }
 
             for mkt_name, mkt_data in markets.items():
-                mk = normalize_key(mkt_name)
-                if not any(ok in mk for ok in ["over_under", "over", "corners", "cards", "shots", "goals"]):
+                if not isinstance(mkt_data, dict):
                     continue
+
+                identity = canonical_prop_market(mkt_name, home, away)
+                if not identity:
+                    continue
+
+                canonical_mk, display_name, scope_team = identity
                 sels = mkt_data.get("selections") or []
+
                 for sel in sels:
-                    if not isinstance(sel, dict): continue
+                    if not isinstance(sel, dict):
+                        continue
+
                     sn = sel.get("selection", "")
                     odds_raw = sel.get("odds") or sel.get("price", "")
-                    side = sel.get("side", "")
-                    line = sel.get("line", "")
+                    side = str(sel.get("side") or "").lower().strip()
+                    line = str(sel.get("line") or "").strip()
 
-                    # Extract side/line from selection name if not set
+                    # Supports both "Over 5.5" and "Algeria Over 5.5".
                     if not side or not line:
-                        import re as _re
-                        m2 = _re.match(r"(over|under)\s+([\d.]+)", sn, _re.I)
+                        m2 = re.search(
+                            r"\b(over|under)\s+([\d.]+)\b",
+                            str(sn),
+                            re.I,
+                        )
                         if m2:
                             side = m2.group(1).lower()
                             line = m2.group(2)
 
-                    if not side or not line or not odds_raw:
+                    if side not in {"over", "under"} or not line or not odds_raw:
+                        continue
+
+                    if not selection_verifies_team_scope(sel, sn, scope_team):
+                        reject("Unverified team-market selection scope")
+                        continue
+
+                    quarantine_reason = should_quarantine_offer(
+                        bk,
+                        canonical_mk,
+                        line,
+                    )
+                    if quarantine_reason:
+                        reject(quarantine_reason)
                         continue
 
                     dec = fractional_to_decimal(odds_raw)
                     if not dec or dec <= 1:
                         continue
 
-                    data.setdefault(fk, {}).setdefault(mk, {}).setdefault(line, {}).setdefault(side, [])
-                    data[fk][mk][line][side].append({
-                        "bookmaker": bk, "odds": odds_raw, "decimal": dec,
-                        "match": f"{home} v {away}"
-                    })
+                    offer = {
+                        "bookmaker": bk,
+                        "odds": odds_raw,
+                        "decimal": dec,
+                        "match": f"{home} v {away}",
+                        "market": display_name,
+                        "source_market": mkt_name,
+                        "scope_team": scope_team,
+                    }
 
-    # Find arbs
+                    data.setdefault(fk, {}).setdefault(
+                        canonical_mk, {}
+                    ).setdefault(line, {}).setdefault(side, []).append(offer)
+
     arbs = []
     near_misses = []
+
     for fk, markets in data.items():
-        for mk, lines in markets.items():
+        for canonical_mk, lines in markets.items():
             for line, sides in lines.items():
-                if "over" not in sides or "under" not in sides:
+                overs = sides.get("over") or []
+                unders = sides.get("under") or []
+                if not overs or not unders:
                     continue
-                best_over  = max(sides["over"],  key=lambda x: x["decimal"])
-                best_under = max(sides["under"], key=lambda x: x["decimal"])
-                arb_sum = (1/best_over["decimal"]) + (1/best_under["decimal"])
+
+                # A valid arb must use two different bookmakers. Search every
+                # cross-book pair rather than blindly taking same-book maxima.
+                pairs = [
+                    (over, under)
+                    for over in overs
+                    for under in unders
+                    if over["bookmaker"] != under["bookmaker"]
+                ]
+                if not pairs:
+                    continue
+
+                best_over, best_under = min(
+                    pairs,
+                    key=lambda pair: (
+                        (1 / pair[0]["decimal"])
+                        + (1 / pair[1]["decimal"])
+                    ),
+                )
+
+                arb_sum = (
+                    (1 / best_over["decimal"])
+                    + (1 / best_under["decimal"])
+                )
+
                 row = {
                     "sport": "Football",
                     "competition": "FIFA World Cup",
                     "type": "props_ou",
                     "match": best_over["match"],
-                    "market": mk.replace("_", " ").title(),
+                    "market": best_over["market"],
+                    "canonical_market": canonical_mk,
                     "line": line,
                     "arb_sum": round(arb_sum, 6),
                     "arb_percent": round(arb_sum * 100, 3),
-                    "profit_margin_percent": round(((1/arb_sum) - 1) * 100, 3),
+                    "profit_margin_percent": round(
+                        ((1 / arb_sum) - 1) * 100,
+                        3,
+                    ),
                     "bookmaker_count": 2,
                     "selections": {
-                        "over":  {"bookmaker": best_over["bookmaker"],  "odds": best_over["odds"],  "decimal_odds": best_over["decimal"]},
-                        "under": {"bookmaker": best_under["bookmaker"], "odds": best_under["odds"], "decimal_odds": best_under["decimal"]},
+                        "over": {
+                            "bookmaker": best_over["bookmaker"],
+                            "odds": best_over["odds"],
+                            "decimal_odds": best_over["decimal"],
+                            "source_market": best_over["source_market"],
+                        },
+                        "under": {
+                            "bookmaker": best_under["bookmaker"],
+                            "odds": best_under["odds"],
+                            "decimal_odds": best_under["decimal"],
+                            "source_market": best_under["source_market"],
+                        },
                     },
                     "all_prices": {
-                        "over":  sorted(sides["over"],  key=lambda x: x["decimal"], reverse=True),
-                        "under": sorted(sides["under"], key=lambda x: x["decimal"], reverse=True),
-                    }
+                        "over": sorted(
+                            overs,
+                            key=lambda x: x["decimal"],
+                            reverse=True,
+                        ),
+                        "under": sorted(
+                            unders,
+                            key=lambda x: x["decimal"],
+                            reverse=True,
+                        ),
+                    },
                 }
+
                 if arb_sum < 1:
                     arbs.append(row)
                 elif arb_sum < 1.04:
                     near_misses.append(row)
+
+    arbs.sort(key=lambda x: x["profit_margin_percent"], reverse=True)
+    near_misses.sort(key=lambda x: x["arb_sum"])
+
+    if rejected:
+        print("Props safety filters:")
+        for reason, count in sorted(rejected.items()):
+            print(f"  - {reason}: {count} offer(s) skipped")
 
     return arbs, near_misses
 

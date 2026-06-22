@@ -816,69 +816,166 @@ def bad_player(x, home, away):
 
 
 def parse_over_under(lines, title, market_name):
-    block = find_block(lines, title, 220)
+    block = find_block(lines, title, 120)
 
     if not block:
-        # Fallback for headings embedded with slightly different case/spacing.
-        idxs = [i for i, x in enumerate(lines) if clean(title).lower() in clean(x).lower()]
+        idxs = [
+            i for i, x in enumerate(lines)
+            if clean(title).lower() in clean(x).lower()
+        ]
         if idxs:
-            block = lines[idxs[0]:idxs[0] + 220]
+            block = lines[idxs[0]:idxs[0] + 120]
 
     out = []
-    mode = None
+    seen = set()
+
+    def add(side, line, odds):
+        side = clean(side).lower()
+        line = clean(line)
+        odds = clean(odds)
+
+        if side not in {"over", "under"}:
+            return
+        if not re.fullmatch(r"\d+(?:\.\d+)?", line):
+            return
+        if not is_odds(odds):
+            return
+
+        key = (side, line)
+        if key in seen:
+            return
+        seen.add(key)
+
+        out.append(
+            sel(
+                f"{side.title()} {line}",
+                odds,
+                side=side,
+                line=line,
+            )
+        )
+
+    # Parse explicit BetVictor rows first:
+    # O 1.5
+    # 1/6
+    # U 1.5
+    # 4/1
+    explicit_started = False
+    misses_after_start = 0
     i = 0
 
     while i < len(block):
-        tok = clean(block[i])
+        token = clean(block[i])
+        explicit = re.fullmatch(
+            r"(O|U|Over|Under)\s*(\d+(?:\.\d+)?)",
+            token,
+            re.I,
+        )
 
-        if tok.lower() == "over":
+        if explicit and i + 1 < len(block) and is_odds(block[i + 1]):
+            side_token = explicit.group(1).lower()
+            side = "over" if side_token in {"o", "over"} else "under"
+            add(side, explicit.group(2), block[i + 1])
+            explicit_started = True
+            misses_after_start = 0
+            i += 2
+            continue
+
+        if explicit_started:
+            if token not in {"Show More", "Show Less", "Over", "Under"} and not is_odds(token):
+                misses_after_start += 1
+                if misses_after_start >= 2:
+                    break
+
+        i += 1
+
+    if out:
+        return market(market_name, out)
+
+    # Fallback for a genuine two-column layout.
+    first_line_idx = next(
+        (
+            i for i, token in enumerate(block)
+            if re.fullmatch(r"\d+(?:\.\d+)?", clean(token))
+        ),
+        -1,
+    )
+    over_header_idx = next(
+        (i for i, token in enumerate(block) if clean(token).lower() == "over"),
+        -1,
+    )
+    under_header_idx = next(
+        (i for i, token in enumerate(block) if clean(token).lower() == "under"),
+        -1,
+    )
+
+    if (
+        first_line_idx >= 0
+        and over_header_idx >= 0
+        and under_header_idx >= 0
+        and over_header_idx < first_line_idx
+        and under_header_idx < first_line_idx
+    ):
+        i = first_line_idx
+        while i < len(block):
+            token = clean(block[i])
+
+            if not re.fullmatch(r"\d+(?:\.\d+)?", token):
+                i += 1
+                continue
+
+            odds = []
+            j = i + 1
+            while j < min(i + 7, len(block)):
+                nxt = clean(block[j])
+
+                if re.fullmatch(r"\d+(?:\.\d+)?", nxt):
+                    break
+                if is_odds(nxt):
+                    odds.append(nxt)
+                    if len(odds) == 2:
+                        break
+                j += 1
+
+            if len(odds) == 2:
+                add("over", token, odds[0])
+                add("under", token, odds[1])
+                i = j + 1
+            else:
+                i += 1
+
+        if out:
+            return market(market_name, out)
+
+    # Final fallback for separate Over and Under blocks.
+    mode = None
+    i = 0
+    while i < len(block):
+        token = clean(block[i])
+        lower = token.lower()
+
+        if lower == "over":
             mode = "over"
             i += 1
             continue
-        if tok.lower() == "under":
+        if lower == "under":
             mode = "under"
             i += 1
             continue
 
-        # Format A:
-        # Over
-        # 7.5
-        # 1/3
-        m = re.match(r"^(?:O|U)?\s*(\d+(?:\.\d+)?)$", tok, re.I)
-        if mode and m and i + 1 < len(block) and is_odds(block[i + 1]):
-            line = m.group(1)
-            out.append(sel(f"{mode.title()} {line}", block[i + 1], side=mode, line=line))
-            i += 2
-            continue
-
-        # Format B:
-        # O 2.5
-        # 17/20
-        # U 2.5
-        # 20/21
-        m2 = re.match(r"^([OU])\s*(\d+(?:\.\d+)?)$", tok, re.I)
-        if m2 and i + 1 < len(block) and is_odds(block[i + 1]):
-            side = "over" if m2.group(1).upper() == "O" else "under"
-            line = m2.group(2)
-            out.append(sel(f"{side.title()} {line}", block[i + 1], side=side, line=line))
+        if (
+            mode
+            and re.fullmatch(r"\d+(?:\.\d+)?", token)
+            and i + 1 < len(block)
+            and is_odds(block[i + 1])
+        ):
+            add(mode, token, block[i + 1])
             i += 2
             continue
 
         i += 1
 
-    # Deduplicate by (side, line) — keeps first-seen odds for each line.
-    # Prevents duplicate entries when the same market appears in both
-    # the popular group and its dedicated group (e.g. Total Goals).
-    seen_lines, deduped = set(), []
-    for s in out:
-        k = (s.get("side"), s.get("line"))
-        if k in seen_lines:
-            continue
-        seen_lines.add(k)
-        deduped.append(s)
-
-    return market(market_name, deduped)
-
+    return market(market_name, out)
 
 def parse_match_betting(lines, home, away):
     block = (find_block(lines, "Match Betting", 50) or

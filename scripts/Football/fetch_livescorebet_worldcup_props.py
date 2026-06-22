@@ -12,7 +12,7 @@ DEBUG_DIR = ROOT / "football" / "debug" / "livescorebet_worldcup_props"
 
 COUPON_URL     = "https://www.livescorebet.com/ie/coupon/21127/"
 PLAYER_GRP_ID  = "757"
-MAX_MATCHES    = 15
+MAX_MATCHES    = 3
 
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
 SCOPE_MARKER = "__LSB_SCOPE__"
@@ -167,29 +167,25 @@ def parse_total_cards(lines):
     return markets[0] if markets else mkt("Total Cards Over / Under", [])
 
 def parse_total_shots_on_target_scoped(lines, home, away):
-    marker_markets = parse_scoped_markers(lines, "Total Shots on Target", "Shots On Target", max_line=12.5)
-    if marker_markets:
-        return marker_markets
-    return parse_scoped_ou(
+    # Shots scopes are tabbed on LiveScoreBet. Only trust text captured
+    # immediately after an explicit scope click. Parsing the full page body can
+    # attach the active "Both Teams Combined" prices to the final visible team
+    # tab, which creates false team-total arbitrage opportunities.
+    return parse_scoped_markers(
         lines,
         "Total Shots on Target",
         "Shots On Target",
         max_line=12.5,
-        home=home,
-        away=away,
     )
 
 def parse_total_shots_scoped(lines, home, away):
-    marker_markets = parse_scoped_markers(lines, "Total Shots", "Shots", max_line=35.5)
-    if marker_markets:
-        return marker_markets
-    return parse_scoped_ou(
+    # See parse_total_shots_on_target_scoped: marker captures are deliberately
+    # fail-closed. Missing scope captures are safer than mislabelled team odds.
+    return parse_scoped_markers(
         lines,
         "Total Shots",
         "Shots",
         max_line=35.5,
-        home=home,
-        away=away,
     )
 
 def parse_scoped_ou(lines, heading, label_suffix, max_line=None, home=None, away=None):
@@ -735,69 +731,257 @@ def detect_teams(text, fallback_slug=""):
     return "", ""
 
 
+def _has_fractional_price(text):
+    return bool(re.search(r"(?:^|\s)(?:\d+/\d+|EVS|EVENS|EVEN)(?:\s|$)", clean(text), re.I))
+
+
+def _visible_exact_text(root, text):
+    """Return the first visible exact-text locator inside root."""
+    try:
+        loc = root.get_by_text(text, exact=True)
+        for i in range(loc.count()):
+            item = loc.nth(i)
+            try:
+                if item.is_visible():
+                    return item
+            except Exception:
+                continue
+    except Exception:
+        pass
+    return None
+
+
+def _market_container(page, heading, require_prices=False):
+    """
+    Find the smallest visible ancestor containing one specific market card.
+
+    LiveScoreBet repeats scope labels elsewhere on the page. Scoping clicks to
+    the card containing the requested heading prevents a click intended for
+    "Total Shots on Target" from hitting a similarly named tab in another card.
+    """
+    try:
+        headings = page.get_by_text(heading, exact=True)
+        for i in range(headings.count()):
+            heading_loc = headings.nth(i)
+            try:
+                if not heading_loc.is_visible():
+                    continue
+            except Exception:
+                continue
+
+            node = heading_loc
+            for _ in range(10):
+                try:
+                    node = node.locator("xpath=..")
+                    text = clean(node.inner_text(timeout=1500))
+                except Exception:
+                    break
+
+                if heading not in text:
+                    continue
+
+                has_scope_tabs = "Both Teams Combined" in text
+                has_ou_headers = "Over" in text and "Under" in text
+                has_prices = _has_fractional_price(text)
+
+                if has_scope_tabs and has_ou_headers and (has_prices or not require_prices):
+                    return node
+    except Exception:
+        pass
+    return None
+
+
+def _scope_state(item):
+    """
+    Return True/False when the DOM exposes an active state, otherwise None.
+
+    The site has changed its tab markup before, so this checks ARIA flags,
+    active/selected class names, data attributes, and the visible underline.
+    """
+    try:
+        return item.evaluate(
+            """el => {
+                const nodes = [el, el.parentElement, el.parentElement && el.parentElement.parentElement]
+                    .filter(Boolean);
+                let sawExplicitFalse = false;
+
+                for (const node of nodes) {
+                    const attrs = [
+                        node.getAttribute('aria-selected'),
+                        node.getAttribute('aria-pressed'),
+                        node.getAttribute('data-active'),
+                        node.getAttribute('data-selected')
+                    ].filter(v => v !== null);
+
+                    if (attrs.some(v => String(v).toLowerCase() === 'true')) return true;
+                    if (attrs.some(v => String(v).toLowerCase() === 'false')) sawExplicitFalse = true;
+
+                    const cls = String(node.className || '').toLowerCase();
+                    if (/(^|[\\s_-])(active|selected|current)([\\s_-]|$)/.test(cls)) return true;
+
+                    const style = getComputedStyle(node);
+                    if (parseFloat(style.borderBottomWidth || '0') >= 2 &&
+                        style.borderBottomStyle !== 'none' &&
+                        style.borderBottomColor !== 'rgba(0, 0, 0, 0)') {
+                        return true;
+                    }
+
+                    for (const child of node.children || []) {
+                        const cs = getComputedStyle(child);
+                        if (parseFloat(cs.borderBottomWidth || '0') >= 2 &&
+                            cs.borderBottomStyle !== 'none' &&
+                            cs.borderBottomColor !== 'rgba(0, 0, 0, 0)') {
+                            return true;
+                        }
+                    }
+                }
+
+                return sawExplicitFalse ? false : null;
+            }"""
+        )
+    except Exception:
+        return None
+
+
+def _detect_active_scope(container, scopes):
+    active = []
+    for scope in scopes:
+        item = _visible_exact_text(container, scope)
+        if item is None:
+            continue
+        if _scope_state(item) is True:
+            active.append(scope)
+    return active[0] if len(active) == 1 else ""
+
+
+def expand_view_more_in_market(page, container):
+    """Expand only buttons belonging to the current market card."""
+    try:
+        buttons = container.get_by_text("View more", exact=True)
+        count = buttons.count()
+        for i in range(count):
+            try:
+                button = buttons.nth(i)
+                if not button.is_visible():
+                    continue
+                button.scroll_into_view_if_needed(timeout=2000)
+                button.click(timeout=3000)
+                page.wait_for_timeout(450)
+            except Exception:
+                pass
+    except Exception:
+        pass
+
+
 def click_market_heading_if_needed(page, heading):
     try:
-        loc = page.get_by_text(heading, exact=True)
-        if not loc.count():
+        item = _visible_exact_text(page, heading)
+        if item is None:
             return False
-        item = loc.first
-        item.scroll_into_view_if_needed(timeout=2000)
+
+        item.scroll_into_view_if_needed(timeout=2500)
         page.wait_for_timeout(300)
-        visible = page.evaluate(
-            """(heading) => {
-                const norm = s => (s || '').replace(/\s+/g, ' ').trim();
-                const els = Array.from(document.querySelectorAll('body *')).filter(e => norm(e.innerText) === heading);
-                if (!els.length) return false;
-                let node = els[0];
-                for (let d = 0; d < 8 && node; d++, node = node.parentElement) {
-                    const txt = norm(node.innerText);
-                    if (txt.includes(heading) && txt.includes('Over') && txt.includes('Under') && /(?:\d+\/\d+|EVS|EVENS|Evens)/i.test(txt)) return true;
-                }
-                return false;
-            }""",
-            heading,
-        )
-        if not visible:
-            item.click(timeout=2000)
-            page.wait_for_timeout(900)
-        return True
-    except Exception:
+
+        container = _market_container(page, heading, require_prices=True)
+        if container is None:
+            item.click(timeout=2500)
+            page.wait_for_timeout(1000)
+
+        return _market_container(page, heading, require_prices=False) is not None
+    except Exception as e:
+        print(f"    heading open failed: {heading}: {e}")
         return False
 
 
-def click_scope_in_market(page, heading, scope):
-    try:
-        loc = page.get_by_text(scope, exact=True)
-        count = loc.count()
-        print(f"    scope click: {heading} / {scope} count={count}")
-        if not count:
-            return False
+def capture_scope_market_text(page, heading, scope, all_scopes):
+    """
+    Click one scope within one market and return only that market card's text.
 
-        item = loc.last
+    Returning card text rather than the entire page is the key protection
+    against assigning the active combined prices to a team tab.
+    """
+    container = _market_container(page, heading, require_prices=False)
+    if container is None:
+        print(f"    market container not found: {heading}")
+        return ""
+
+    item = _visible_exact_text(container, scope)
+    count = container.get_by_text(scope, exact=True).count()
+    print(f"    scope click: {heading} / {scope} count={count}")
+    if item is None:
+        return ""
+
+    try:
         item.scroll_into_view_if_needed(timeout=3000)
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(350)
         item.click(timeout=3000)
         page.wait_for_timeout(1400)
-        expand_view_more(page)
-        return True
     except Exception as e:
         print(f"    scope click failed: {heading} / {scope}: {e}")
-        return False
+        return ""
+
+    # LiveScoreBet can rerender the market after a tab click, so reacquire it.
+    container = _market_container(page, heading, require_prices=True)
+    if container is None:
+        print(f"    no prices after scope click: {heading} / {scope}")
+        return ""
+
+    expand_view_more_in_market(page, container)
+    page.wait_for_timeout(350)
+    container = _market_container(page, heading, require_prices=True) or container
+
+    active_scope = _detect_active_scope(container, all_scopes)
+    if active_scope and active_scope != scope:
+        # One retry if the first click was swallowed by a rerender.
+        retry_item = _visible_exact_text(container, scope)
+        if retry_item is not None:
+            try:
+                retry_item.click(timeout=3000, force=True)
+                page.wait_for_timeout(1200)
+                container = _market_container(page, heading, require_prices=True) or container
+                active_scope = _detect_active_scope(container, all_scopes)
+            except Exception:
+                pass
+
+    if active_scope and active_scope != scope:
+        print(
+            f"    scope verification failed: wanted {scope}, "
+            f"active {active_scope}; skipping"
+        )
+        return ""
+
+    try:
+        text = container.inner_text(timeout=30000)
+    except Exception:
+        return ""
+
+    if heading not in text or not _has_fractional_price(text):
+        return ""
+
+    return text
+
 
 def collect_shots_scope_text(page, home, away):
     chunks = []
+    scopes = [scope for scope in ["Both Teams Combined", home, away] if scope]
+
     for heading in ["Total Shots", "Total Shots on Target"]:
-        click_market_heading_if_needed(page, heading)
-        for scope in ["Both Teams Combined", home, away]:
-            if not scope:
+        if not click_market_heading_if_needed(page, heading):
+            continue
+
+        for scope in scopes:
+            market_text = capture_scope_market_text(
+                page,
+                heading,
+                scope,
+                scopes,
+            )
+            if not market_text:
                 continue
-            if not click_scope_in_market(page, heading, scope):
-                continue
-            try:
-                body = page.locator("body").inner_text(timeout=30000)
-                chunks.append(f"\n{SCOPE_MARKER}|{heading}|{scope}\n{body}\n")
-            except Exception:
-                pass
+            chunks.append(
+                f"\n{SCOPE_MARKER}|{heading}|{scope}\n{market_text}\n"
+            )
+
     return "".join(chunks)
 
 def scrape_match(page, fixture):
