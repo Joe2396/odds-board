@@ -296,64 +296,23 @@ def parse_goals_ou(lines) -> dict:
 
 
 def parse_btts(lines) -> dict:
-    """
-    Parse only the ordinary full-time Both Teams To Score Yes/No row.
-
-    Paddy Power also lists several different propositions in this section
-    (first half, both halves, no draw, both teams 2+ goals). Those are separate
-    markets and must not be merged into the standard BTTS market.
-    """
-    block = get_first_block(
-        lines,
-        ["Both Teams to Score Markets", "Both Teams To Score Markets"],
-        ["Result & Both to Score", "Match Odds", "1st Half Over/Under Goals"],
-    )
-
-    accepted_labels = {
-        "both teams to score?",
-        "both team to score?",
-        "both teams to score",
-        "both team to score",
-    }
-
+    block = get_first_block(lines, ["Both Teams to Score Markets", "Both Teams To Score Markets"],
+                            ["Result & Both to Score", "Match Odds", "1st Half Over/Under Goals"])
+    sels = []
     for i, line in enumerate(block):
-        label = clean(line).strip().lower()
-
-        if label not in accepted_labels:
+        label = clean(line)
+        if "both teams" not in label.lower() and "both team" not in label.lower():
             continue
         if i + 2 >= len(block):
             continue
-
-        yes_odds = clean(block[i + 1])
-        no_odds = clean(block[i + 2])
-
+        yes_odds, no_odds = clean(block[i + 1]), clean(block[i + 2])
         if not is_odds(yes_odds) or not is_odds(no_odds):
             continue
+        base = re.sub(r"\?$", "", label).strip()
+        sels.append(build_sel(f"{base} - Yes", yes_odds, {"side": "yes"}))
+        sels.append(build_sel(f"{base} - No", no_odds, {"side": "no"}))
+    return dedupe(build_market("Both Teams To Score", sels))
 
-        selections = [
-            build_sel(
-                "Both Teams To Score - Yes",
-                yes_odds,
-                {
-                    "side": "yes",
-                    "base_market": "full_time_btts",
-                    "period": "full_time",
-                },
-            ),
-            build_sel(
-                "Both Teams To Score - No",
-                no_odds,
-                {
-                    "side": "no",
-                    "base_market": "full_time_btts",
-                    "period": "full_time",
-                },
-            ),
-        ]
-
-        return dedupe(build_market("Both Teams To Score", selections))
-
-    return build_market("Both Teams To Score", [])
 
 def parse_player_to_score(lines) -> tuple:
     block = get_block(lines, "Player to Score", [

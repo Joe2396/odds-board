@@ -632,54 +632,31 @@ def _is_standard_btts_market(market_name):
 
 
 def resolve_btts_outcome(selection):
-    """
-    Accept only the ordinary full-time BTTS Yes/No selections.
-
-    Exotic BTTS variants are rejected even if a scraper accidentally placed
-    them inside a generic Both Teams To Score market.
-    """
+    """Return yes/no only for the standard full-time BTTS market."""
     name = normalize_key(
         selection.get("normalized_selection")
         or selection.get("selection")
         or ""
     )
     side = normalize_key(selection.get("side") or "")
-    period = normalize_key(selection.get("period") or "")
-    base_market = normalize_key(selection.get("base_market") or "")
 
-    yes_names = {
-        "yes",
-        "btts_yes",
-        "both_team_to_score_yes",
-        "both_teams_to_score_yes",
-        "both_teams_to_score_full_time_yes",
-        "full_time_btts_yes",
+    # LiveScoreBet can place full-time, first-half and second-half BTTS
+    # selections inside one market. Only keep the standard full-time pair.
+    blocked = {
+        "first_half", "second_half", "1st_half", "2nd_half",
+        "in_the_first_half", "in_the_second_half",
     }
-    no_names = {
-        "no",
-        "btts_no",
-        "both_team_to_score_no",
-        "both_teams_to_score_no",
-        "both_teams_to_score_full_time_no",
-        "full_time_btts_no",
-    }
-
-    if period and period not in {"full_time", "fulltime"}:
+    if any(token in name for token in blocked):
         return None
 
-    if base_market and base_market not in {
-        "full_time_btts",
-        "both_teams_to_score",
-        "btts",
-    }:
-        return None
-
-    if name in yes_names and side in {"", "yes"}:
+    if side in {"yes", "no"}:
+        return side
+    if name == "yes" or name.endswith("_yes"):
         return "yes"
-    if name in no_names and side in {"", "no"}:
+    if name == "no" or name.endswith("_no"):
         return "no"
-
     return None
+
 
 def _contains_team(text_key, team):
     team_key = normalize_key(normalize_team(team))
