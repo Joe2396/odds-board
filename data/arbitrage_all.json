@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T17:50:02.731495+00:00",
+  "generated_at": "2026-06-22T19:02:14.889848+00:00",
   "total_arbitrage": 10,
   "sports": {
     "All": 10,
@@ -121,80 +121,6 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "event": "Norway v Senegal",
-      "market": "Half Time Result",
-      "type": "props_half_time_result",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 36.283,
-      "arb_percent": 73.377,
-      "arb_sum": 0.733766,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Norway",
-          "bookmaker": "888Sport",
-          "odds": "9/5",
-          "decimal_odds": 2.8,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Draw",
-          "bookmaker": "LiveScoreBet",
-          "odds": "10/1",
-          "decimal_odds": 11.0,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Senegal",
-          "bookmaker": "888Sport",
-          "odds": "5/2",
-          "decimal_odds": 3.5,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Argentina v Austria",
-      "market": "Half Time Result",
-      "type": "props_half_time_result",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 29.148,
-      "arb_percent": 77.431,
-      "arb_sum": 0.774307,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Argentina",
-          "bookmaker": "888Sport",
-          "odds": "17/20",
-          "decimal_odds": 1.85,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Draw",
-          "bookmaker": "LiveScoreBet",
-          "odds": "10/1",
-          "decimal_odds": 11.0,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Austria",
-          "bookmaker": "888Sport",
-          "odds": "6/1",
-          "decimal_odds": 7.0,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
       "event": "Colombia v DR Congo",
       "market": "Double Chance",
       "type": "props_double_chance",
@@ -232,35 +158,28 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "event": "France v Iraq",
-      "market": "Half Time Result",
-      "type": "props_half_time_result",
+      "event": "Norway v Senegal",
+      "market": "Total Cards Over Under",
+      "type": "props_ou",
       "date_label": "",
       "time": "",
-      "profit_margin_percent": 16.028,
-      "arb_percent": 86.186,
-      "arb_sum": 0.861862,
+      "profit_margin_percent": 4.478,
+      "arb_percent": 95.714,
+      "arb_sum": 0.957143,
       "bookmaker_count": 2,
       "bookmakers": [
         {
-          "selection": "France",
-          "bookmaker": "888Sport",
-          "odds": "3/10",
-          "decimal_odds": 1.3,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Draw",
+          "selection": "Over 2.5",
           "bookmaker": "LiveScoreBet",
-          "odds": "24/1",
-          "decimal_odds": 25.0,
+          "odds": "4/6",
+          "decimal_odds": 1.666667,
           "implied_probability": ""
         },
         {
-          "selection": "Iraq",
-          "bookmaker": "888Sport",
-          "odds": "18/1",
-          "decimal_odds": 19.0,
+          "selection": "Under 2.5",
+          "bookmaker": "PaddyPower",
+          "odds": "9/5",
+          "decimal_odds": 2.8,
           "implied_probability": ""
         }
       ],
@@ -355,6 +274,66 @@
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Norway v Senegal",
+      "market": "Total Cards Over Under",
+      "type": "props_ou",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.361,
+      "arb_percent": 99.64,
+      "arb_sum": 0.996399,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Over 3.5",
+          "bookmaker": "LiveScoreBet",
+          "odds": "29/20",
+          "decimal_odds": 2.45,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Under 3.5",
+          "bookmaker": "WilliamHill",
+          "odds": "7/10",
+          "decimal_odds": 1.7,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Jordan v Algeria",
+      "market": "Total Cards Over Under",
+      "type": "props_ou",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 0.0,
+      "arb_percent": 100.0,
+      "arb_sum": 1.0,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Over 2.5",
+          "bookmaker": "LiveScoreBet",
+          "odds": "8/13",
+          "decimal_odds": 1.615385,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Under 2.5",
+          "bookmaker": "WilliamHill",
+          "odds": "13/8",
+          "decimal_odds": 2.625,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
     }
   ],
   "sources": {
