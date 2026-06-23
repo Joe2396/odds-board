@@ -1,3454 +1,2211 @@
 {
   "bookmaker": "Midnite",
   "competition": "FIFA World Cup 2026",
-  "scraped_at": "2026-06-22T11:11:44.488831+00:00",
+  "scraped_at": "2026-06-22T21:11:02.097786+00:00",
   "matches": [
     {
-      "match_id": "argentina-v-austria",
-      "event_id": "52875450",
-      "home": "Argentina",
-      "away": "Austria",
-      "kickoff": "Today 18:00",
+      "match_id": "france-v-iraq",
+      "event_id": "52875342",
+      "home": "France",
+      "away": "0",
+      "kickoff": "",
       "bookmaker": "Midnite",
-      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/argentina-v-austria-52875450",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/france-v-iraq-52875342",
       "markets": {
         "match_result": {
-          "home": 1.4,
-          "draw": 4.0,
-          "away": 6.5
+          "home": 1.1,
+          "draw": 10.0,
+          "away": 29.0
+        },
+        "total_goals": {
+          "over_0_5": 1.0067,
+          "under_0_5": 21.0,
+          "over_1_5": 1.125,
+          "under_1_5": 5.5,
+          "over_2_5": 1.4,
+          "under_2_5": 2.75,
+          "over_3_5": 2.0,
+          "under_3_5": 1.7273,
+          "over_4_5": 3.25,
+          "under_4_5": 1.3333,
+          "over_5_5": 5.5,
+          "under_5_5": 1.125,
+          "over_6_5": 10.0,
+          "under_6_5": 1.04
+        },
+        "btts": {
+          "yes": 3,
+          "no": 1.0625
+        },
+        "htft": {
+          "half time_full time": 1.4444,
+          "home_home": 51.0,
+          "home_draw": 51.0,
+          "home_iraq": 4.0,
+          "draw_home": 15.0,
+          "draw_draw": 51.0,
+          "draw_iraq": 1.3
+        },
+        "total_shots_on_target": {
+          "over_9": 1.3,
+          "over_10": 1.5,
+          "over_11": 1.75,
+          "over_12": 2.2,
+          "over_13": 2.9,
+          "over_14": 3.9
+        },
+        "home_shots_on_target": {
+          "over_7": 1.4,
+          "over_8": 1.6667,
+          "over_9": 2.05,
+          "over_10": 2.75,
+          "over_11": 3.8
+        },
+        "away_shots_on_target": {
+          "over_7": 1.4,
+          "over_8": 1.6667,
+          "over_9": 2.05,
+          "over_10": 2.75,
+          "over_11": 3.8
+        },
+        "total_shots": {
+          "over_27": 1.5333,
+          "over_28": 1.6667,
+          "over_29": 1.8333,
+          "over_30": 2
+        },
+        "home_shots": {
+          "over_27": 1.5333,
+          "over_28": 1.6667,
+          "over_29": 1.8333,
+          "over_30": 2
+        },
+        "away_shots": {
+          "over_27": 1.5333,
+          "over_28": 1.6667,
+          "over_29": 1.8333,
+          "over_30": 2
+        },
+        "total_cards": {
+          "over_3": 1.2,
+          "over_4": 1.5714,
+          "over_2": 2.45,
+          "over_5": 4.3333,
+          "over_6": 8.0,
+          "over_7": null
+        },
+        "total_corners": {
+          "over_9": 1.02,
+          "over_10": 26.0,
+          "over_11": 34.0,
+          "over_12": null,
+          "over_13": null,
+          "over_14": null
+        },
+        "team_most_corners": {
+          "home": 1.02,
+          "draw": 26.0,
+          "away": 34.0
+        },
+        "player_carded": {
+          "Zaid Ismail Al-Dulaimi": {
+            "carded_anytime": 2.875,
+            "sent_off_anytime": 26.0
+          },
+          "Merchas Doski": {
+            "carded_anytime": 3.4,
+            "sent_off_anytime": 29.0
+          },
+          "Zaid Tahseen": {
+            "carded_anytime": 3.4,
+            "sent_off_anytime": 29.0
+          },
+          "Ahmed Ihab Qasem": {
+            "carded_anytime": 4.0,
+            "sent_off_anytime": 29.0
+          },
+          "Hussein Ali": {
+            "carded_anytime": 3.8,
+            "sent_off_anytime": 34.0
+          },
+          "Zidane Iqbal": {
+            "carded_anytime": 3.9,
+            "sent_off_anytime": 34.0
+          },
+          "Ibrahim Bayesh": {
+            "carded_anytime": 5.0,
+            "sent_off_anytime": 34.0
+          },
+          "Akam Hashem": {
+            "carded_anytime": 4.3333,
+            "sent_off_anytime": 41.0
+          },
+          "Aymen Hussein": {
+            "carded_anytime": 5.0,
+            "sent_off_anytime": 41.0
+          },
+          "Ahmed Basil": {
+            "carded_anytime": 7.5,
+            "sent_off_anytime": 67.0
+          },
+          "Amir Al-Ammari": {
+            "sent_off_anytime": 13.0
+          }
+        },
+        "player_shots_on_target": {
+          "Akam Hashem": {
+            "1+": 6.5,
+            "2+": 15.0
+          },
+          "Zaid Tahseen": {
+            "1+": 7.5,
+            "2+": 15.0
+          },
+          "Aymen Hussein": {
+            "1+": 2.0,
+            "2+": 6.25,
+            "3+": 11.0,
+            "4+": 26.0
+          },
+          "Hussein Ali": {
+            "1+": 8.0,
+            "2+": 15.0
+          },
+          "Zaid Ismail Al-Dulaimi": {
+            "1+": 4.0,
+            "2+": 9.0
+          },
+          "Ibrahim Bayesh": {
+            "1+": 4.2,
+            "2+": 9.0
+          },
+          "Merchas Doski": {
+            "1+": 9.5,
+            "2+": 19.0
+          },
+          "Ahmed Ihab Qasem": {
+            "1+": 4.3333,
+            "2+": 9.5
+          },
+          "Zidane Iqbal": {
+            "1+": 5.25,
+            "2+": 12.0
+          },
+          "Amir Al-Ammari": {
+            "1+": 6.25,
+            "2+": 15.0
+          }
+        },
+        "player_fouls_committed": {
+          "Adrien Rabiot": {
+            "1+": 1.2222,
+            "2+": 2.1,
+            "3+": 4.6,
+            "4+": 9.5
+          },
+          "Lucas Digne": {
+            "1+": 1.3636,
+            "2+": 2.625,
+            "3+": 6.5,
+            "4+": 11.0
+          },
+          "Michael Olise": {
+            "1+": 1.3636,
+            "2+": 2.8,
+            "3+": 7.0,
+            "4+": 11.0
+          },
+          "Bradley Barcola": {
+            "1+": 1.4444,
+            "2+": 3.25,
+            "3+": 8.0,
+            "4+": 13.0
+          },
+          "Ousmane Dembele": {
+            "1+": 1.5333,
+            "2+": 3.5,
+            "3+": 9.0,
+            "4+": 15.0
+          },
+          "Dayot Upamecano": {
+            "1+": 1.5333,
+            "2+": 3.6,
+            "3+": 9.0,
+            "4+": 15.0
+          },
+          "William Saliba": {
+            "1+": 1.5333,
+            "2+": 3.75,
+            "3+": 9.0,
+            "4+": 15.0
+          },
+          "Jules Kounde": {
+            "1+": 1.5714,
+            "2+": 3.8,
+            "3+": 9.5,
+            "4+": 15.0
+          },
+          "Kylian Mbappe": {
+            "1+": 1.6,
+            "2+": 4.0,
+            "3+": 9.5,
+            "4+": 15.0
+          },
+          "Mike Maignan": {
+            "1+": 19.0
+          },
+          "Manu Kone": {
+            "2+": 1.1818,
+            "3+": 1.85,
+            "4+": 3.6,
+            "5+": 8.0
+          }
+        },
+        "player_fouls_won": {
+          "Ibrahim Bayesh": {
+            "1+": 1.25,
+            "2+": 2.25,
+            "3+": 5.25,
+            "4+": 10.0
+          },
+          "Ahmed Ihab Qasem": {
+            "1+": 1.2857,
+            "2+": 2.3,
+            "3+": 5.25,
+            "4+": 10.0
+          },
+          "Aymen Hussein": {
+            "1+": 1.3333,
+            "2+": 2.5,
+            "3+": 6.25,
+            "4+": 10.0
+          },
+          "Zidane Iqbal": {
+            "1+": 1.3333,
+            "2+": 2.6,
+            "3+": 6.25,
+            "4+": 10.0
+          },
+          "Amir Al-Ammari": {
+            "1+": 1.4444,
+            "2+": 3.2,
+            "3+": 8.0,
+            "4+": 13.0
+          },
+          "Zaid Ismail Al-Dulaimi": {
+            "1+": 1.4444,
+            "2+": 3.2,
+            "3+": 8.0,
+            "4+": 13.0
+          },
+          "Akam Hashem": {
+            "1+": 1.7,
+            "2+": 4.5,
+            "3+": 9.5,
+            "4+": 17.0
+          },
+          "Hussein Ali": {
+            "1+": 1.7,
+            "2+": 4.6,
+            "3+": 9.5,
+            "4+": 17.0
+          },
+          "Zaid Tahseen": {
+            "1+": 1.9091,
+            "2+": 5.75,
+            "3+": 11.0,
+            "4+": 23.0
+          },
+          "Merchas Doski": {
+            "2+": 1.1111,
+            "3+": 1.4444,
+            "4+": 2.45,
+            "5+": 4.8
+          }
+        },
+        "player_to_score": {
+          "Kylian Mbappe": {
+            "to_score": 1.4
+          },
+          "Ousmane Dembele": {
+            "to_score": 1.85
+          },
+          "Michael Olise": {
+            "to_score": 2.0
+          },
+          "Bradley Barcola": {
+            "to_score": 2.1
+          },
+          "Adrien Rabiot": {
+            "to_score": 4.0
+          },
+          "Manu Kone": {
+            "to_score": 5.0
+          },
+          "Aymen Hussein": {
+            "to_score": 5.25
+          },
+          "William Saliba": {
+            "to_score": 7.5
+          },
+          "Lucas Digne": {
+            "to_score": 8.0
+          },
+          "Dayot Upamecano": {
+            "to_score": 8.0
+          },
+          "Jules Kounde": {
+            "to_score": 8.5
+          },
+          "Ahmed Ihab Qasem": {
+            "to_score": 11.0
+          },
+          "Ibrahim Bayesh": {
+            "to_score": 11.0
+          },
+          "Zaid Ismail Al-Dulaimi": {
+            "to_score": 13.0
+          },
+          "Zidane Iqbal": {
+            "to_score": 15.0
+          },
+          "Amir Al-Ammari": {
+            "to_score": 19.0
+          },
+          "Akam Hashem": {
+            "to_score": 23.0
+          },
+          "Zaid Tahseen": {
+            "to_score": 23.0
+          },
+          "Hussein Ali": {
+            "to_score": 26.0
+          },
+          "Merchas Doski": {
+            "to_score": 26.0
+          }
+        },
+        "player_shots": {
+          "Aymen Hussein": {
+            "1+": 1.2,
+            "2+": 1.9091,
+            "3+": 4.0,
+            "4+": 9.0
+          },
+          "Ahmed Ihab Qasem": {
+            "1+": 1.4,
+            "2+": 3.0,
+            "3+": 7.5,
+            "4+": 13.0
+          },
+          "Ibrahim Bayesh": {
+            "1+": 1.6154,
+            "2+": 4.0,
+            "3+": 9.5,
+            "4+": 17.0
+          },
+          "Zidane Iqbal": {
+            "1+": 1.95,
+            "2+": 6.25,
+            "3+": 11.0,
+            "4+": 26.0
+          },
+          "Merchas Doski": {
+            "1+": 3.75,
+            "2+": 7.5,
+            "3+": 26.0
+          },
+          "Zaid Ismail Al-Dulaimi": {
+            "1+": 2.05,
+            "2+": 6.5,
+            "3+": 13.0
+          },
+          "Amir Al-Ammari": {
+            "1+": 2.1,
+            "2+": 6.5,
+            "3+": 13.0
+          },
+          "Hussein Ali": {
+            "1+": 2.9,
+            "2+": 9.0,
+            "3+": 19.0
+          },
+          "Akam Hashem": {
+            "1+": 3.3,
+            "2+": 8.0,
+            "3+": 23.0
+          },
+          "Zaid Tahseen": {
+            "1+": 3.4,
+            "2+": 7.5,
+            "3+": 23.0
+          }
+        }
+      }
+    },
+    {
+      "match_id": "norway-v-senegal",
+      "event_id": "52875632",
+      "home": "Norway",
+      "away": "Senegal",
+      "kickoff": "Tomorrow 01:00",
+      "bookmaker": "Midnite",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/norway-v-senegal-52875632",
+      "markets": {
+        "match_result": {
+          "home": 2.15,
+          "draw": 3.4,
+          "away": 2.8
         },
         "total_goals": {
           "over_0_5": 1.05,
           "under_0_5": 9.0,
           "over_1_5": 1.3333,
           "under_1_5": 3.25,
-          "over_2_5": 1.8333,
-          "under_2_5": 1.8333,
+          "over_2_5": 1.9091,
+          "under_2_5": 1.8,
           "over_3_5": 3.25,
           "under_3_5": 1.3333,
           "over_4_5": 6.0,
           "under_4_5": 1.1111
         },
         "btts": {
-          "yes": 2.1,
-          "no": 1.6667
+          "yes": 1.7273,
+          "no": 2
         },
         "htft": {
-          "half time_full time": 2.2,
-          "home_home": 17.0,
-          "home_draw": 51.0,
-          "home_away": 4.3333,
-          "draw_home": 6.0,
-          "draw_draw": 15.0,
+          "half time_full time": 3.6,
+          "home_home": 15.0,
+          "home_draw": 34.0,
+          "home_away": 6.0,
+          "draw_home": 5.0,
+          "draw_draw": 7.5,
           "draw_away": null
         },
         "total_shots_on_target": {
           "over_8": 1.3636,
           "over_9": 1.6154,
           "over_10": 2,
-          "over_11": 2.6,
+          "over_11": 2.625,
           "over_12": 3.5
         },
         "home_shots_on_target": {
           "over_8": 1.3636,
           "over_9": 1.6154,
           "over_10": 2,
-          "over_11": 2.6,
+          "over_11": 2.625,
           "over_12": 3.5
         },
         "away_shots_on_target": {
           "over_8": 1.3636,
           "over_9": 1.6154,
           "over_10": 2,
-          "over_11": 2.6,
+          "over_11": 2.625,
           "over_12": 3.5
         },
         "total_shots": {
-          "over_22": 1.4444,
-          "over_23": 1.6154,
-          "over_24": 1.75,
-          "over_25": 1.95,
-          "over_26": 2.2,
-          "over_27": 2.5
+          "over_22": 1.3,
+          "over_23": 1.4,
+          "over_24": 1.5,
+          "over_25": 1.6154,
+          "over_26": 1.8,
+          "over_27": 2
         },
         "home_shots": {
-          "over_22": 1.4444,
-          "over_23": 1.6154,
-          "over_24": 1.75,
-          "over_25": 1.95,
-          "over_26": 2.2,
-          "over_27": 2.5
+          "over_22": 1.3,
+          "over_23": 1.4,
+          "over_24": 1.5,
+          "over_25": 1.6154,
+          "over_26": 1.8,
+          "over_27": 2
         },
         "away_shots": {
-          "over_22": 1.4444,
-          "over_23": 1.6154,
-          "over_24": 1.75,
-          "over_25": 1.95,
-          "over_26": 2.2,
-          "over_27": 2.5
+          "over_22": 1.3,
+          "over_23": 1.4,
+          "over_24": 1.5,
+          "over_25": 1.6154,
+          "over_26": 1.8,
+          "over_27": 2
         },
         "total_cards": {
-          "over_3": 1.2222,
-          "over_4": 1.6,
-          "over_5": 2.3,
-          "over_6": 3.6,
-          "over_7": 6.5
+          "over_3": 1.4,
+          "over_4": 1.95,
+          "over_5": 3.1,
+          "over_6": 5.5
         },
         "total_corners": {
-          "over_8": 1.6667,
-          "over_9": 2.05,
-          "over_10": 2.5,
-          "over_11": 3.3
+          "over_8": 1.5,
+          "over_9": 1.8,
+          "over_10": 2.15,
+          "over_11": 2.7,
+          "over_12": 3.4
         },
         "team_most_corners": {
-          "home": 1.4,
+          "home": 1.6154,
           "draw": 7.5,
-          "away": 4.0
+          "away": 2.75
         },
         "player_carded": {
-          "Patrick Wimmer": {
-            "carded_anytime": 2.9,
-            "sent_off_anytime": 29.0,
-            "carded_first": 8.5,
-            "carded_last": 8.5
-          },
-          "Marco Friedl": {
-            "carded_anytime": 3.1,
-            "sent_off_anytime": 29.0,
-            "carded_first": 9.0,
-            "carded_last": 9.0
-          },
-          "Konrad Laimer": {
-            "carded_anytime": 3.0,
-            "sent_off_anytime": 29.0,
+          "Pathe Ciss": {
+            "carded_anytime": 3.4,
+            "sent_off_anytime": 34.0,
             "carded_first": 9.5,
             "carded_last": 9.5
           },
-          "Stefan Posch": {
-            "carded_anytime": 2.9,
-            "sent_off_anytime": 29.0,
-            "carded_first": 10.0,
-            "carded_last": 10.0
-          },
-          "Kevin Danso": {
+          "Pape Gueye": {
             "carded_anytime": 3.5,
             "sent_off_anytime": 34.0,
-            "carded_first": 10.0,
-            "carded_last": 10.0
-          },
-          "Nico Gonzalez": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 29.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Florian Grillitsch": {
-            "carded_anytime": 3.6,
-            "sent_off_anytime": 34.0,
-            "carded_first": 11.0,
-            "carded_last": 11.0
-          },
-          "Romano Schmid": {
-            "carded_anytime": 3.8,
-            "sent_off_anytime": 34.0,
-            "carded_first": 11.0,
-            "carded_last": 11.0
-          },
-          "Dejan Ljubicic": {
-            "carded_anytime": 3.6,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Paul Wanner": {
-            "carded_anytime": 3.8,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Leandro Paredes": {
-            "carded_anytime": 3.9,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Cristian Romero": {
-            "carded_anytime": 3.9,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Facundo Medina": {
-            "carded_anytime": 3.9,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Michael Gregoritsch": {
-            "carded_anytime": 4.3333,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Philipp Mwene": {
-            "carded_anytime": 3.1,
-            "sent_off_anytime": 41.0,
             "carded_first": 9.5,
             "carded_last": 9.5
           },
-          "Marko Arnautovic": {
+          "Kalidou Koulibaly": {
+            "carded_anytime": 3.75,
+            "sent_off_anytime": 34.0,
+            "carded_first": 10.0,
+            "carded_last": 10.0
+          },
+          "Pape Matar Sarr": {
+            "carded_anytime": 3.75,
+            "sent_off_anytime": 34.0,
+            "carded_first": 10.0,
+            "carded_last": 10.0
+          },
+          "Habib Diarra": {
+            "carded_anytime": 3.9,
+            "sent_off_anytime": 34.0,
+            "carded_first": 10.0,
+            "carded_last": 10.0
+          },
+          "Bara Joseph Sapoko Ndiaye": {
+            "carded_anytime": 3.9,
+            "sent_off_anytime": 34.0,
+            "carded_first": 10.0,
+            "carded_last": 10.0
+          },
+          "Lamine Camara": {
+            "carded_anytime": 3.9,
+            "sent_off_anytime": 34.0,
+            "carded_first": 11.0,
+            "carded_last": 11.0
+          },
+          "Morten Thorsby": {
             "carded_anytime": 4.3333,
             "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
+            "carded_first": 12.0,
+            "carded_last": 12.0
           },
-          "Sasa Kalajdzic": {
-            "carded_anytime": 4.3333,
+          "Leo Ostigard": {
+            "carded_anytime": 4.75,
             "sent_off_anytime": 34.0,
             "carded_first": 13.0,
             "carded_last": 13.0
           },
-          "Valentin Barco": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
+          "Mamadou Sarr": {
+            "carded_anytime": 3.75,
+            "sent_off_anytime": 41.0,
+            "carded_first": 10.0,
+            "carded_last": 10.0
           },
-          "Xaver Schlager": {
+          "Krepin Diatta": {
             "carded_anytime": 3.8,
+            "sent_off_anytime": 41.0,
+            "carded_first": 10.0,
+            "carded_last": 10.0
+          },
+          "Sondre Klingen Langas": {
+            "carded_anytime": 4.8,
+            "sent_off_anytime": 34.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Cherif Ndiaye": {
+            "carded_anytime": 4.8,
+            "sent_off_anytime": 34.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "David Moller Wolfe": {
+            "carded_anytime": 3.9,
+            "sent_off_anytime": 41.0,
+            "carded_first": 10.0,
+            "carded_last": 10.0
+          },
+          "Abdoulaye Seck": {
+            "carded_anytime": 4.0,
             "sent_off_anytime": 41.0,
             "carded_first": 11.0,
             "carded_last": 11.0
           },
-          "Philipp Lienhart": {
+          "Julian Ryerson": {
+            "carded_anytime": 4.0,
+            "sent_off_anytime": 41.0,
+            "carded_first": 11.0,
+            "carded_last": 11.0
+          },
+          "Idrissa Gueye": {
             "carded_anytime": 4.0,
             "sent_off_anytime": 41.0,
             "carded_first": 12.0,
             "carded_last": 12.0
           },
-          "Michael Svoboda": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 41.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Alessandro Schopf": {
-            "carded_anytime": 3.9,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Marcel Sabitzer": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "David Leopold Affengruber": {
+          "Antoine Mendy": {
             "carded_anytime": 4.2,
             "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
+            "carded_first": 12.0,
+            "carded_last": 12.0
           },
-          "Alexander Prass": {
+          "El Hadji Malick Diouf": {
+            "carded_anytime": 4.3333,
+            "sent_off_anytime": 41.0,
+            "carded_first": 12.0,
+            "carded_last": 12.0
+          },
+          "Ismail Jakobs": {
             "carded_anytime": 4.3333,
             "sent_off_anytime": 41.0,
             "carded_first": 13.0,
             "carded_last": 13.0
           },
-          "Giovani Lo Celso": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Nicolas Otamendi": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Marcos Senesi": {
-            "carded_anytime": 4.8,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Lautaro Martinez": {
-            "carded_anytime": 4.8,
-            "sent_off_anytime": 41.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
-          },
-          "Nicolas Seiwald": {
+          "Nicolas Jackson": {
             "carded_anytime": 4.3333,
-            "sent_off_anytime": 51.0,
+            "sent_off_anytime": 41.0,
             "carded_first": 13.0,
             "carded_last": 13.0
           },
-          "Alexis Mac Allister": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 51.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Rodrigo De Paul": {
-            "carded_anytime": 5.0,
-            "sent_off_anytime": 51.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Enzo Fernandez": {
-            "carded_anytime": 5.0,
-            "sent_off_anytime": 51.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Jose Manuel Alberto Lopez": {
-            "carded_anytime": 5.25,
-            "sent_off_anytime": 51.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Carney Chukwuemeka": {
+          "Bamba Dieng": {
             "carded_anytime": 4.6,
+            "sent_off_anytime": 41.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Kristian Thorstvedt": {
+            "carded_anytime": 4.6,
+            "sent_off_anytime": 41.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Assane Diao": {
+            "carded_anytime": 4.6,
+            "sent_off_anytime": 41.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Sadio Mane": {
+            "carded_anytime": 4.8,
+            "sent_off_anytime": 41.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Moussa Niakhate": {
+            "carded_anytime": 4.8,
+            "sent_off_anytime": 41.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Kristoffer Ajer": {
+            "carded_anytime": 5.0,
+            "sent_off_anytime": 41.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Marcus Holmgren Pedersen": {
+            "carded_anytime": 4.8,
+            "sent_off_anytime": 41.0,
+            "carded_first": 15.0,
+            "carded_last": 15.0
+          },
+          "Sander Berge": {
+            "carded_anytime": 5.0,
+            "sent_off_anytime": 41.0,
+            "carded_first": 15.0,
+            "carded_last": 15.0
+          },
+          "Ibrahim Mbaye": {
+            "carded_anytime": 5.0,
+            "sent_off_anytime": 41.0,
+            "carded_first": 15.0,
+            "carded_last": 15.0
+          },
+          "Patrick Berg": {
+            "carded_anytime": 5.25,
+            "sent_off_anytime": 41.0,
+            "carded_first": 17.0,
+            "carded_last": 17.0
+          },
+          "Jens Petter Hauge": {
+            "carded_anytime": 5.5,
+            "sent_off_anytime": 41.0,
+            "carded_first": 17.0,
+            "carded_last": 17.0
+          },
+          "Alexander Sorloth": {
+            "carded_anytime": 5.75,
+            "sent_off_anytime": 41.0,
+            "carded_first": 17.0,
+            "carded_last": 17.0
+          },
+          "Henrik Falchener": {
+            "carded_anytime": 6.0,
+            "sent_off_anytime": 41.0,
+            "carded_first": 17.0,
+            "carded_last": 17.0
+          },
+          "Fredrik Andre Bjorkan": {
+            "carded_anytime": 5.5,
+            "sent_off_anytime": 51.0,
+            "carded_first": 15.0,
+            "carded_last": 15.0
+          },
+          "Fredrik Aursnes": {
+            "carded_anytime": 5.5,
+            "sent_off_anytime": 51.0,
+            "carded_first": 15.0,
+            "carded_last": 15.0
+          },
+          "Thelonious Gerard Aasgaard": {
+            "carded_anytime": 5.0,
             "sent_off_anytime": 51.0,
             "carded_first": 17.0,
             "carded_last": 17.0
           },
-          "Exequiel Palacios": {
-            "carded_anytime": 5.0,
+          "Ismaila Sarr": {
+            "carded_anytime": 6.0,
+            "sent_off_anytime": 51.0,
+            "carded_first": 17.0,
+            "carded_last": 17.0
+          },
+          "Iliman Ndiaye": {
+            "carded_anytime": 6.0,
+            "sent_off_anytime": 51.0,
+            "carded_first": 17.0,
+            "carded_last": 17.0
+          },
+          "Jorgen Strand Larsen": {
+            "carded_anytime": 6.5,
             "sent_off_anytime": 51.0,
             "carded_first": 19.0,
             "carded_last": 19.0
           },
-          "Giuliano Simeone Baldini": {
-            "carded_anytime": 5.0,
+          "Andreas Schjelderup": {
+            "carded_anytime": 6.5,
             "sent_off_anytime": 51.0,
             "carded_first": 19.0,
             "carded_last": 19.0
           },
-          "Nico Paz": {
-            "carded_anytime": 5.5,
-            "sent_off_anytime": 51.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
-          },
-          "Lisandro Martinez": {
-            "carded_anytime": 5.75,
-            "sent_off_anytime": 51.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
-          },
-          "Thiago Almada": {
-            "carded_anytime": 5.5,
+          "Erling Haaland": {
+            "carded_anytime": 7.0,
             "sent_off_anytime": 51.0,
             "carded_first": 21.0,
             "carded_last": 21.0
           },
-          "David Alaba": {
-            "carded_anytime": 5.0,
+          "Torbjorn Heggem": {
+            "carded_anytime": 6.25,
             "sent_off_anytime": 67.0,
             "carded_first": 19.0,
             "carded_last": 19.0
           },
-          "Alexander Schlager": {
+          "Edouard Mendy": {
             "carded_anytime": 7.0,
-            "sent_off_anytime": 51.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Patrick Pentz": {
-            "carded_anytime": 7.0,
-            "sent_off_anytime": 51.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Andreas Wiegel": {
-            "carded_anytime": 7.0,
-            "sent_off_anytime": 51.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Nahuel Molina": {
-            "carded_anytime": 6.5,
             "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
+            "carded_first": 19.0,
+            "carded_last": 19.0
           },
-          "Lionel Messi": {
+          "Martin Odegaard": {
+            "carded_anytime": 7.0,
+            "sent_off_anytime": 67.0,
+            "carded_first": 19.0,
+            "carded_last": 19.0
+          },
+          "Mory Diaw": {
             "carded_anytime": 7.5,
             "sent_off_anytime": 67.0,
+            "carded_first": 23.0,
+            "carded_last": 23.0
+          },
+          "Yehvann Diouf": {
+            "carded_anytime": 7.5,
+            "sent_off_anytime": 67.0,
+            "carded_first": 23.0,
+            "carded_last": 23.0
+          },
+          "Orjan Nyland": {
+            "carded_anytime": 8.5,
+            "sent_off_anytime": 67.0,
+            "carded_first": 23.0,
+            "carded_last": 23.0
+          },
+          "Antonio Nusa": {
+            "carded_anytime": 7.0,
+            "sent_off_anytime": 67.0,
             "carded_first": 26.0,
             "carded_last": 26.0
           },
-          "Julian Alvarez": {
-            "carded_anytime": 7.5,
+          "Oscar Bobb": {
+            "carded_anytime": 8.0,
             "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
+            "carded_first": 26.0,
+            "carded_last": 26.0
           },
-          "Emiliano Martinez": {
+          "Sander Tangvik": {
+            "carded_anytime": 9.0,
+            "sent_off_anytime": 67.0,
+            "carded_first": 26.0,
+            "carded_last": 26.0
+          },
+          "Egil Selvik": {
             "carded_anytime": 9.5,
             "sent_off_anytime": 67.0,
-            "carded_first": 34.0,
-            "carded_last": 34.0
-          },
-          "Geronimo Rulli": {
-            "carded_anytime": 9.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 34.0,
-            "carded_last": 34.0
-          },
-          "Juan Musso": {
-            "carded_anytime": 9.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 34.0,
-            "carded_last": 34.0
+            "carded_first": 26.0,
+            "carded_last": 26.0
           }
         },
         "player_shots_on_target": {
-          "Lionel Messi": {
-            "1+": 1.1667,
-            "2+": 1.7,
-            "3+": 3.1,
-            "4+": 6.5
-          },
-          "Jose Manuel Alberto Lopez": {
-            "1+": 1.25,
-            "2+": 2.2,
-            "3+": 4.8,
-            "4+": 12.0
-          },
-          "Lautaro Martinez": {
-            "1+": 1.2857,
-            "2+": 2.25,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Julian Alvarez": {
-            "1+": 1.3333,
-            "2+": 2.5,
-            "3+": 6.0,
-            "4+": 13.0
-          },
-          "Giuliano Simeone Baldini": {
-            "1+": 1.4,
-            "2+": 2.9,
-            "3+": 7.5,
-            "4+": 17.0
-          },
-          "Nico Paz": {
-            "1+": 1.4,
-            "2+": 2.9,
-            "3+": 7.5,
-            "4+": 17.0
-          },
-          "Marko Arnautovic": {
-            "1+": 1.6,
-            "2+": 3.6,
-            "3+": 10.0,
-            "4+": 17.0
-          },
-          "Nahuel Molina": {
-            "1+": 3.4,
-            "2+": 13.0
-          },
-          "Cristian Romero": {
-            "1+": 3.6,
-            "2+": 13.0
-          },
-          "Michael Svoboda": {
-            "1+": 5.25,
-            "2+": 12.0
-          },
-          "Thiago Almada": {
-            "1+": 1.6154,
-            "2+": 3.9,
-            "3+": 11.0,
-            "4+": 19.0
-          },
-          "Nico Gonzalez": {
-            "1+": 1.75,
-            "2+": 4.75,
-            "3+": 11.0,
-            "4+": 19.0
-          },
-          "Marcos Senesi": {
-            "1+": 3.8,
-            "2+": 15.0
-          },
-          "Michael Gregoritsch": {
-            "1+": 1.6154,
-            "2+": 4.0,
-            "3+": 11.0,
-            "4+": 21.0
-          },
-          "Leandro Paredes": {
-            "1+": 2.5,
-            "2+": 9.0,
-            "3+": 17.0
-          },
-          "Rodrigo De Paul": {
-            "1+": 2.4,
-            "2+": 8.0,
-            "3+": 19.0
-          },
-          "Patrick Wimmer": {
-            "1+": 2.625,
-            "2+": 9.5,
-            "3+": 19.0
-          },
-          "Paul Wanner": {
-            "1+": 2.8,
-            "2+": 9.5,
-            "3+": 19.0
-          },
-          "Giovani Lo Celso": {
-            "1+": 1.7273,
-            "2+": 4.5,
-            "3+": 13.0,
-            "4+": 23.0
-          },
-          "Marcel Sabitzer": {
-            "1+": 1.75,
-            "2+": 4.6,
-            "3+": 13.0,
-            "4+": 23.0
-          },
-          "Sasa Kalajdzic": {
-            "1+": 1.75,
-            "2+": 4.75,
-            "3+": 13.0,
-            "4+": 23.0
-          },
-          "Philipp Lienhart": {
-            "1+": 6.5,
-            "2+": 15.0
-          },
-          "Marco Friedl": {
-            "1+": 6.5,
-            "2+": 15.0
-          },
-          "Kevin Danso": {
-            "1+": 6.5,
-            "2+": 15.0
-          },
-          "Xaver Schlager": {
-            "1+": 4.6,
-            "2+": 17.0
-          },
-          "Exequiel Palacios": {
-            "1+": 2.9,
-            "2+": 10.0,
-            "3+": 21.0
-          },
-          "David Alaba": {
-            "1+": 5.75,
-            "2+": 17.0
-          },
-          "Enzo Fernandez": {
-            "1+": 1.8333,
-            "2+": 4.8,
-            "3+": 13.0,
-            "4+": 26.0
-          },
-          "Philipp Mwene": {
-            "1+": 7.0,
-            "2+": 17.0
-          },
-          "Valentin Barco": {
-            "1+": 2.15,
-            "2+": 5.75,
-            "3+": 12.0,
-            "4+": 29.0
-          },
-          "Alexis Mac Allister": {
-            "1+": 1.85,
-            "2+": 5.25,
-            "3+": 13.0,
-            "4+": 29.0
-          },
-          "Dejan Ljubicic": {
-            "1+": 2.25,
-            "2+": 6.5,
-            "3+": 13.0,
-            "4+": 34.0
-          },
-          "Romano Schmid": {
-            "1+": 2.375,
-            "2+": 8.0,
-            "3+": 15.0,
-            "4+": 34.0
-          },
-          "Facundo Medina": {
-            "1+": 3.4,
-            "2+": 13.0,
-            "3+": 29.0
-          },
-          "Alexander Prass": {
-            "1+": 3.4,
-            "2+": 13.0,
-            "3+": 29.0
-          },
-          "Carney Chukwuemeka": {
-            "1+": 2.6,
-            "2+": 9.5,
-            "3+": 19.0,
-            "4+": 34.0
-          },
-          "Alessandro Schopf": {
-            "1+": 2.875,
-            "2+": 10.0,
-            "3+": 21.0,
-            "4+": 34.0
-          },
-          "Lisandro Martinez": {
-            "1+": 4.8,
-            "2+": 13.0,
-            "3+": 34.0
-          },
-          "Nicolas Seiwald": {
-            "1+": 5.25,
-            "2+": 13.0,
-            "3+": 34.0
-          },
-          "David Leopold Affengruber": {
-            "1+": 5.25,
-            "2+": 13.0,
-            "3+": 34.0
-          },
-          "Konrad Laimer": {
-            "1+": 4.0,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Florian Grillitsch": {
-            "1+": 4.2,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Stefan Posch": {
-            "1+": 4.2,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Nicolas Otamendi": {
-            "1+": 4.5,
-            "2+": 15.0,
-            "3+": 34.0
-          }
-        },
-        "player_fouls_committed": {
-          "Philipp Mwene": {
-            "1+": 1.1111,
-            "2+": 1.4444,
-            "3+": 2.3,
-            "4+": 4.0
-          },
-          "Jose Manuel Alberto Lopez": {
-            "1+": 1.125,
-            "2+": 1.6,
-            "3+": 2.75,
-            "4+": 5.25
-          },
-          "Xaver Schlager": {
+          "Erling Haaland": {
             "1+": 1.1429,
             "2+": 1.6154,
-            "3+": 2.9,
+            "3+": 2.875,
             "4+": 6.0
           },
-          "Sasa Kalajdzic": {
-            "1+": 1.1429,
-            "2+": 1.6154,
-            "3+": 2.9,
-            "4+": 6.0
-          },
-          "Patrick Wimmer": {
-            "1+": 1.0833,
-            "2+": 1.3636,
-            "3+": 2.1,
-            "4+": 3.8,
-            "5+": 7.5
-          },
-          "Alessandro Schopf": {
-            "1+": 1.1667,
-            "2+": 1.7273,
-            "3+": 3.25,
-            "4+": 7.0
-          },
-          "Konrad Laimer": {
-            "1+": 1.0909,
-            "2+": 1.4,
-            "3+": 2.25,
-            "4+": 4.2,
-            "5+": 8.5
-          },
-          "Paul Wanner": {
-            "1+": 1.1818,
-            "2+": 1.8,
-            "3+": 3.5,
-            "4+": 7.5
-          },
-          "Romano Schmid": {
-            "1+": 1.2,
-            "2+": 1.85,
-            "3+": 3.6,
-            "4+": 8.0
-          },
-          "Stefan Posch": {
-            "1+": 1.1,
-            "2+": 1.4444,
-            "3+": 2.3,
-            "4+": 4.5,
-            "5+": 9.0
-          },
-          "Cristian Romero": {
-            "1+": 1.2,
-            "2+": 1.9091,
-            "3+": 3.8,
-            "4+": 8.0
-          },
-          "Lautaro Martinez": {
-            "1+": 1.2,
-            "2+": 1.85,
-            "3+": 3.75,
-            "4+": 8.5
-          },
-          "Alexander Prass": {
-            "1+": 1.2,
-            "2+": 1.85,
-            "3+": 3.75,
-            "4+": 8.5
-          },
-          "Kevin Danso": {
-            "1+": 1.2222,
-            "2+": 1.95,
-            "3+": 3.9,
-            "4+": 8.5
-          },
-          "Marko Arnautovic": {
-            "1+": 1.2222,
-            "2+": 2.0,
-            "3+": 4.2,
-            "4+": 9.0
-          },
-          "Carney Chukwuemeka": {
-            "1+": 1.2222,
-            "2+": 1.95,
-            "3+": 4.0,
-            "4+": 9.5
-          },
-          "Dejan Ljubicic": {
-            "1+": 1.2222,
-            "2+": 2.0,
-            "3+": 4.0,
-            "4+": 9.5
-          },
-          "Enzo Fernandez": {
-            "1+": 1.2222,
-            "2+": 2.0,
-            "3+": 4.2,
-            "4+": 9.5
-          },
-          "Alexis Mac Allister": {
-            "1+": 1.2222,
-            "2+": 2.05,
-            "3+": 4.2,
-            "4+": 9.5
-          },
-          "Giovani Lo Celso": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.3333,
-            "4+": 9.5
-          },
-          "Florian Grillitsch": {
-            "1+": 1.2222,
-            "2+": 2.05,
-            "3+": 4.3333,
-            "4+": 10.0
-          },
-          "Facundo Medina": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.5,
-            "4+": 10.0
-          },
-          "Valentin Barco": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.5,
-            "4+": 10.0
-          },
-          "Julian Alvarez": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.6,
-            "4+": 10.0
-          },
-          "Giuliano Simeone Baldini": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.8,
-            "4+": 11.0
-          },
-          "Nico Paz": {
-            "1+": 1.25,
-            "2+": 2.2,
-            "3+": 4.8,
-            "4+": 11.0
-          },
-          "Lisandro Martinez": {
-            "1+": 1.3333,
-            "2+": 2.3,
-            "3+": 4.8,
-            "4+": 11.0
-          },
-          "David Leopold Affengruber": {
-            "1+": 1.2857,
-            "2+": 2.25,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Marco Friedl": {
-            "1+": 1.2857,
-            "2+": 2.3,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Nicolas Seiwald": {
+          "Jorgen Strand Larsen": {
             "1+": 1.3,
             "2+": 2.3,
-            "3+": 5.25,
+            "3+": 5.0,
             "4+": 12.0
           },
-          "Marcos Senesi": {
-            "1+": 1.3333,
-            "2+": 2.45,
-            "3+": 5.75,
+          "Alexander Sorloth": {
+            "1+": 1.3,
+            "2+": 2.4,
+            "3+": 5.5,
             "4+": 13.0
           },
-          "Rodrigo De Paul": {
-            "1+": 1.3333,
-            "2+": 2.5,
-            "3+": 5.75,
-            "4+": 13.0
+          "Assane Diao": {
+            "1+": 1.75,
+            "2+": 4.2,
+            "3+": 11.0
           },
-          "Marcel Sabitzer": {
-            "1+": 1.3636,
-            "2+": 2.5,
-            "3+": 5.75,
-            "4+": 13.0
-          },
-          "Michael Gregoritsch": {
-            "1+": 1.3333,
-            "2+": 2.5,
-            "3+": 6.0,
-            "4+": 13.0
-          },
-          "Philipp Lienhart": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.25,
-            "4+": 13.0
-          },
-          "Nico Gonzalez": {
-            "1+": 1.4444,
-            "2+": 3.1,
-            "3+": 8.0,
-            "4+": 13.0
-          },
-          "David Alaba": {
-            "1+": 1.4,
-            "2+": 2.75,
-            "3+": 6.5,
-            "4+": 15.0
-          },
-          "Leandro Paredes": {
+          "Bamba Dieng": {
             "1+": 1.4,
             "2+": 2.8,
             "3+": 7.0,
             "4+": 15.0
           },
-          "Michael Svoboda": {
+          "Sadio Mane": {
             "1+": 1.4444,
             "2+": 3.0,
             "3+": 7.5,
-            "4+": 15.0
-          },
-          "Nicolas Otamendi": {
-            "1+": 1.4444,
-            "2+": 3.1,
-            "3+": 7.5,
             "4+": 17.0
           },
-          "Exequiel Palacios": {
+          "Nicolas Jackson": {
             "1+": 1.4444,
             "2+": 3.1,
             "3+": 8.0,
             "4+": 17.0
           },
-          "Nahuel Molina": {
+          "Kristian Thorstvedt": {
+            "1+": 2.0,
+            "2+": 5.25,
+            "3+": 15.0
+          },
+          "Habib Diarra": {
+            "1+": 1.95,
+            "2+": 5.75,
+            "3+": 15.0
+          },
+          "Cherif Ndiaye": {
             "1+": 1.5,
             "2+": 3.3,
             "3+": 8.5,
+            "4+": 17.0
+          },
+          "Krepin Diatta": {
+            "1+": 3.25,
+            "2+": 12.0
+          },
+          "Antonio Nusa": {
+            "1+": 1.5714,
+            "2+": 3.6,
+            "3+": 10.0,
+            "4+": 17.0
+          },
+          "Jens Petter Hauge": {
+            "1+": 1.5333,
+            "2+": 3.5,
+            "3+": 9.5,
             "4+": 19.0
           },
-          "Lionel Messi": {
+          "Thelonious Gerard Aasgaard": {
+            "1+": 1.5333,
+            "2+": 3.5,
+            "3+": 9.5,
+            "4+": 19.0
+          },
+          "Morten Thorsby": {
+            "1+": 2.1,
+            "2+": 6.5,
+            "3+": 17.0
+          },
+          "Marcus Holmgren Pedersen": {
+            "1+": 4.8,
+            "2+": 13.0
+          },
+          "Ismaila Sarr": {
             "1+": 1.6154,
-            "2+": 3.9,
+            "2+": 4.0,
             "3+": 11.0,
             "4+": 19.0
           },
-          "Thiago Almada": {
+          "Iliman Ndiaye": {
             "1+": 1.6154,
-            "2+": 3.9,
+            "2+": 4.0,
             "3+": 11.0,
             "4+": 19.0
           },
-          "Alexander Schlager": {
-            "1+": 23.0
+          "Andreas Schjelderup": {
+            "1+": 1.6667,
+            "2+": 4.0,
+            "3+": 11.0,
+            "4+": 19.0
           },
-          "Patrick Pentz": {
-            "1+": 23.0
+          "Kristoffer Ajer": {
+            "1+": 5.75,
+            "2+": 13.0
           },
-          "Andreas Wiegel": {
-            "1+": 23.0
+          "Patrick Berg": {
+            "1+": 2.5,
+            "2+": 8.0,
+            "3+": 19.0
           },
-          "Emiliano Martinez": {
-            "1+": 26.0
+          "Torbjorn Heggem": {
+            "1+": 4.8,
+            "2+": 15.0
           },
-          "Geronimo Rulli": {
-            "1+": 26.0
+          "Ibrahim Mbaye": {
+            "1+": 1.7,
+            "2+": 4.2,
+            "3+": 11.0,
+            "4+": 23.0
           },
-          "Juan Musso": {
-            "1+": 26.0
+          "Ismail Jakobs": {
+            "1+": 5.75,
+            "2+": 15.0
+          },
+          "Moussa Niakhate": {
+            "1+": 6.5,
+            "2+": 15.0
+          },
+          "Mamadou Sarr": {
+            "1+": 6.5,
+            "2+": 15.0
+          },
+          "David Moller Wolfe": {
+            "1+": 4.5,
+            "2+": 17.0
+          },
+          "Kalidou Koulibaly": {
+            "1+": 4.8,
+            "2+": 17.0
+          },
+          "Pathe Ciss": {
+            "1+": 2.75,
+            "2+": 10.0,
+            "3+": 21.0
+          },
+          "Antoine Mendy": {
+            "1+": 5.5,
+            "2+": 17.0
+          },
+          "Martin Odegaard": {
+            "1+": 1.8333,
+            "2+": 5.0,
+            "3+": 13.0,
+            "4+": 26.0
+          },
+          "Bara Joseph Sapoko Ndiaye": {
+            "1+": 3.0,
+            "2+": 10.0,
+            "3+": 23.0
+          },
+          "Oscar Bobb": {
+            "1+": 1.85,
+            "2+": 5.0,
+            "3+": 13.0,
+            "4+": 29.0
+          },
+          "Leo Ostigard": {
+            "1+": 3.0,
+            "2+": 11.0,
+            "3+": 23.0
+          },
+          "Henrik Falchener": {
+            "1+": 3.0,
+            "2+": 12.0,
+            "3+": 23.0
+          },
+          "Pape Gueye": {
+            "1+": 1.9091,
+            "2+": 5.5,
+            "3+": 15.0,
+            "4+": 29.0
+          },
+          "El Hadji Malick Diouf": {
+            "1+": 3.1,
+            "2+": 12.0,
+            "3+": 26.0
+          },
+          "Pape Matar Sarr": {
+            "1+": 2.25,
+            "2+": 7.5,
+            "3+": 15.0,
+            "4+": 34.0
+          },
+          "Fredrik Andre Bjorkan": {
+            "1+": 3.4,
+            "2+": 12.0,
+            "3+": 29.0
+          },
+          "Fredrik Aursnes": {
+            "1+": 2.4,
+            "2+": 8.0,
+            "3+": 15.0,
+            "4+": 34.0
+          },
+          "Lamine Camara": {
+            "1+": 2.1,
+            "2+": 6.5,
+            "3+": 17.0,
+            "4+": 34.0
+          },
+          "Abdoulaye Seck": {
+            "1+": 3.3,
+            "2+": 13.0,
+            "3+": 29.0
+          },
+          "Sondre Klingen Langas": {
+            "1+": 3.4,
+            "2+": 13.0,
+            "3+": 29.0
+          },
+          "Sander Berge": {
+            "1+": 3.8,
+            "2+": 13.0,
+            "3+": 34.0
+          },
+          "Julian Ryerson": {
+            "1+": 4.6,
+            "2+": 13.0,
+            "3+": 34.0
+          },
+          "Idrissa Gueye": {
+            "1+": 4.3333,
+            "2+": 15.0,
+            "3+": 34.0
           }
         },
-        "player_fouls_won": {
-          "Valentin Barco": {
-            "1+": 1.04,
-            "2+": 1.1818,
-            "3+": 1.5714,
-            "4+": 2.4,
-            "5+": 4.2
-          },
-          "Jose Manuel Alberto Lopez": {
-            "1+": 1.0909,
+        "player_fouls_committed": {
+          "Pape Gueye": {
+            "1+": 1.1,
             "2+": 1.4,
-            "3+": 2.15,
-            "4+": 3.9
+            "3+": 2.2,
+            "4+": 3.8
           },
-          "Giuliano Simeone Baldini": {
-            "1+": 1.1538,
-            "2+": 1.5333,
-            "3+": 2.3,
-            "4+": 3.9
-          },
-          "Rodrigo De Paul": {
-            "1+": 1.1,
-            "2+": 1.4444,
-            "3+": 2.3,
-            "4+": 4.3333
-          },
-          "Exequiel Palacios": {
-            "1+": 1.1,
+          "Lamine Camara": {
+            "1+": 1.1111,
             "2+": 1.4444,
             "3+": 2.375,
             "4+": 4.3333
           },
-          "Leandro Paredes": {
-            "1+": 1.1111,
-            "2+": 1.4444,
-            "3+": 2.4,
-            "4+": 4.5
-          },
-          "Lautaro Martinez": {
+          "Pape Matar Sarr": {
             "1+": 1.125,
-            "2+": 1.5,
-            "3+": 2.5,
-            "4+": 4.75
-          },
-          "Patrick Wimmer": {
-            "1+": 1.125,
-            "2+": 1.5333,
+            "2+": 1.5714,
             "3+": 2.625,
-            "4+": 5.25
+            "4+": 5.0
           },
-          "Thiago Almada": {
-            "1+": 1.1538,
-            "2+": 1.6154,
-            "3+": 2.875,
-            "4+": 5.5
-          },
-          "Enzo Fernandez": {
-            "1+": 1.1429,
-            "2+": 1.6154,
-            "3+": 2.9,
+          "Idrissa Gueye": {
+            "1+": 1.1667,
+            "2+": 1.7,
+            "3+": 3.0,
             "4+": 6.0
           },
-          "Giovani Lo Celso": {
-            "1+": 1.0714,
-            "2+": 1.3333,
-            "3+": 2.0,
-            "4+": 3.5,
-            "5+": 7.0
-          },
-          "Alexis Mac Allister": {
+          "Nicolas Jackson": {
             "1+": 1.1538,
-            "2+": 1.6667,
-            "3+": 3.0,
-            "4+": 6.25
+            "2+": 1.7,
+            "3+": 3.1,
+            "4+": 6.5
           },
-          "Florian Grillitsch": {
+          "Pathe Ciss": {
             "1+": 1.1667,
             "2+": 1.7273,
             "3+": 3.1,
             "4+": 6.5
           },
-          "Lionel Messi": {
-            "1+": 1.0833,
-            "2+": 1.3636,
-            "3+": 2.15,
-            "4+": 3.9,
-            "5+": 7.5
+          "Assane Diao": {
+            "1+": 1.1667,
+            "2+": 1.7273,
+            "3+": 3.2,
+            "4+": 6.5
           },
-          "Nico Paz": {
+          "David Moller Wolfe": {
             "1+": 1.1818,
-            "2+": 1.8333,
-            "3+": 3.5,
-            "4+": 8.0
-          },
-          "Carney Chukwuemeka": {
-            "1+": 1.1818,
-            "2+": 1.85,
-            "3+": 3.6,
-            "4+": 8.0
-          },
-          "Sasa Kalajdzic": {
-            "1+": 1.1,
-            "2+": 1.4444,
-            "3+": 2.3,
-            "4+": 4.5,
-            "5+": 9.5
-          },
-          "Xaver Schlager": {
-            "1+": 1.2,
-            "2+": 1.9091,
-            "3+": 3.8,
-            "4+": 8.5
-          },
-          "Alexander Prass": {
-            "1+": 1.2,
-            "2+": 1.9091,
-            "3+": 3.8,
-            "4+": 8.5
-          },
-          "Romano Schmid": {
-            "1+": 1.2,
-            "2+": 1.9091,
-            "3+": 3.9,
-            "4+": 8.5
-          },
-          "Michael Gregoritsch": {
-            "1+": 1.2222,
-            "2+": 2.0,
-            "3+": 4.0,
-            "4+": 8.5
-          },
-          "Paul Wanner": {
-            "1+": 1.2222,
-            "2+": 2.0,
-            "3+": 4.2,
-            "4+": 9.5
-          },
-          "Marcel Sabitzer": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.3333,
-            "4+": 9.5
-          },
-          "Nico Gonzalez": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.8,
-            "4+": 10.0
-          },
-          "Julian Alvarez": {
-            "1+": 1.3,
-            "2+": 2.3,
-            "3+": 5.0,
-            "4+": 11.0
-          },
-          "Marko Arnautovic": {
-            "1+": 1.2857,
-            "2+": 2.2,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Stefan Posch": {
-            "1+": 1.2857,
-            "2+": 2.25,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Alessandro Schopf": {
-            "1+": 1.3,
-            "2+": 2.3,
-            "3+": 5.25,
-            "4+": 12.0
-          },
-          "Philipp Mwene": {
-            "1+": 1.3333,
-            "2+": 2.45,
-            "3+": 5.5,
-            "4+": 12.0
-          },
-          "Marcos Senesi": {
-            "1+": 1.3333,
-            "2+": 2.45,
-            "3+": 5.5,
-            "4+": 12.0
-          },
-          "Dejan Ljubicic": {
-            "1+": 1.4444,
-            "2+": 2.875,
-            "3+": 6.0,
-            "4+": 12.0
-          },
-          "Cristian Romero": {
-            "1+": 1.4,
-            "2+": 2.875,
-            "3+": 7.0,
-            "4+": 15.0
-          },
-          "Kevin Danso": {
-            "1+": 1.4444,
-            "2+": 3.0,
-            "3+": 7.5,
-            "4+": 17.0
-          },
-          "David Leopold Affengruber": {
-            "1+": 1.5333,
-            "2+": 3.5,
-            "3+": 9.5,
-            "4+": 15.0
-          },
-          "Konrad Laimer": {
-            "1+": 1.4444,
-            "2+": 3.2,
-            "3+": 8.5,
-            "4+": 17.0
-          },
-          "Facundo Medina": {
-            "1+": 1.5333,
-            "2+": 3.4,
-            "3+": 9.5,
-            "4+": 17.0
-          },
-          "Nicolas Otamendi": {
-            "1+": 1.5333,
-            "2+": 3.4,
-            "3+": 8.5,
-            "4+": 19.0
-          },
-          "Nahuel Molina": {
-            "1+": 1.6154,
-            "2+": 3.9,
-            "3+": 10.0,
-            "4+": 21.0
-          },
-          "Nicolas Seiwald": {
-            "1+": 1.7273,
-            "2+": 4.6,
-            "3+": 13.0,
-            "4+": 23.0
-          },
-          "Lisandro Martinez": {
-            "1+": 1.8,
-            "2+": 4.8,
-            "3+": 13.0,
-            "4+": 23.0
-          },
-          "Philipp Lienhart": {
-            "1+": 1.85,
-            "2+": 5.25,
-            "3+": 13.0,
-            "4+": 29.0
-          },
-          "Michael Svoboda": {
-            "1+": 1.95,
-            "2+": 5.75,
-            "3+": 13.0,
-            "4+": 29.0
-          },
-          "David Alaba": {
-            "1+": 1.95,
-            "2+": 5.75,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "Marco Friedl": {
-            "1+": 2.0,
-            "2+": 6.0,
-            "3+": 15.0,
-            "4+": 29.0
-          }
-        },
-        "player_to_score": {
-          "Lionel Messi": {
-            "to_score": 1.9091,
-            "first": 3.75,
-            "last": 3.6
-          },
-          "Lautaro Martinez": {
-            "to_score": 2.3,
-            "first": 4.5,
-            "last": 4.6
-          },
-          "Jose Manuel Alberto Lopez": {
-            "to_score": 2.5,
-            "first": 4.8,
-            "last": 4.75
-          },
-          "Julian Alvarez": {
-            "to_score": 2.5,
-            "first": 5.0,
-            "last": 5.0
-          },
-          "Nico Paz": {
-            "to_score": 3.25,
-            "first": 6.5,
-            "last": 6.5
-          },
-          "Giuliano Simeone Baldini": {
-            "to_score": 4.0,
-            "first": 7.5,
-            "last": 6.5
-          },
-          "Thiago Almada": {
-            "to_score": 3.75,
-            "first": 7.5,
-            "last": 7.0
-          },
-          "Marko Arnautovic": {
-            "to_score": 4.0,
-            "first": 8.0,
-            "last": 7.5
-          },
-          "Michael Gregoritsch": {
-            "to_score": 4.3333,
-            "first": 8.5,
-            "last": 8.0
-          },
-          "Sasa Kalajdzic": {
-            "to_score": 4.5,
-            "first": 9.0,
-            "last": 8.5
-          },
-          "Valentin Barco": {
-            "to_score": 5.25,
-            "first": 10.0,
-            "last": 9.0
-          },
-          "Marcel Sabitzer": {
-            "to_score": 5.25,
-            "first": 10.0,
-            "last": 9.5
-          },
-          "Giovani Lo Celso": {
-            "to_score": 4.8,
-            "first": 10.0,
-            "last": 10.0
-          },
-          "Enzo Fernandez": {
-            "to_score": 5.0,
-            "first": 10.0,
-            "last": 10.0
-          },
-          "Alexis Mac Allister": {
-            "to_score": 5.75,
-            "first": 11.0,
-            "last": 11.0
-          },
-          "Dejan Ljubicic": {
-            "to_score": 6.25,
-            "first": 12.0,
-            "last": 11.0
-          },
-          "Nico Gonzalez": {
-            "to_score": 6.0,
-            "first": 12.0,
-            "last": 12.0
-          },
-          "Leandro Paredes": {
-            "to_score": 6.25,
-            "first": 12.0,
-            "last": 12.0
-          },
-          "Romano Schmid": {
-            "to_score": 6.5,
-            "first": 13.0,
-            "last": 11.0
-          },
-          "Carney Chukwuemeka": {
-            "to_score": 7.0,
-            "first": 13.0,
-            "last": 12.0
-          },
-          "Exequiel Palacios": {
-            "to_score": 6.5,
-            "first": 13.0,
-            "last": 13.0
-          },
-          "Rodrigo De Paul": {
-            "to_score": 7.5,
-            "first": 13.0,
-            "last": 13.0
-          },
-          "Patrick Wimmer": {
-            "to_score": 8.5,
-            "first": 15.0,
-            "last": 15.0
-          },
-          "Alessandro Schopf": {
-            "to_score": 9.5,
-            "first": 17.0,
-            "last": 15.0
-          },
-          "Konrad Laimer": {
-            "to_score": 11.0,
-            "first": 21.0,
-            "last": 15.0
-          },
-          "Cristian Romero": {
-            "to_score": 10.0,
-            "first": 21.0,
-            "last": 17.0
-          },
-          "Paul Wanner": {
-            "to_score": 10.0,
-            "first": 19.0,
-            "last": 19.0
-          },
-          "Marcos Senesi": {
-            "to_score": 11.0,
-            "first": 21.0,
-            "last": 17.0
-          },
-          "Nicolas Otamendi": {
-            "to_score": 10.0,
-            "first": 21.0,
-            "last": 19.0
-          },
-          "Xaver Schlager": {
-            "to_score": 11.0,
-            "first": 23.0,
-            "last": 21.0
-          },
-          "Nahuel Molina": {
-            "to_score": 11.0,
-            "first": 23.0,
-            "last": 26.0
-          },
-          "Lisandro Martinez": {
-            "to_score": 11.0,
-            "first": 23.0,
-            "last": 26.0
-          },
-          "Facundo Medina": {
-            "to_score": 12.0,
-            "first": 26.0,
-            "last": 26.0
-          },
-          "Stefan Posch": {
-            "to_score": 13.0,
-            "first": 29.0,
-            "last": 23.0
-          },
-          "Alexander Prass": {
-            "to_score": 13.0,
-            "first": 26.0,
-            "last": 29.0
-          },
-          "Nicolas Seiwald": {
-            "to_score": 15.0,
-            "first": 29.0,
-            "last": 29.0
-          },
-          "Florian Grillitsch": {
-            "to_score": 15.0,
-            "first": 34.0,
-            "last": 34.0
-          },
-          "Michael Svoboda": {
-            "to_score": 15.0,
-            "first": 34.0,
-            "last": 34.0
-          },
-          "David Alaba": {
-            "to_score": 17.0,
-            "first": 34.0,
-            "last": 41.0
-          },
-          "David Leopold Affengruber": {
-            "to_score": 21.0,
-            "first": 41.0,
-            "last": 34.0
-          },
-          "Kevin Danso": {
-            "to_score": 19.0,
-            "first": 41.0,
-            "last": 41.0
-          },
-          "Philipp Mwene": {
-            "to_score": 21.0,
-            "first": 41.0,
-            "last": 41.0
-          },
-          "Philipp Lienhart": {
-            "to_score": 23.0,
-            "first": 41.0,
-            "last": 41.0
-          },
-          "Marco Friedl": {
-            "to_score": 23.0,
-            "first": 41.0,
-            "last": 41.0
-          }
-        },
-        "player_shots": {
-          "Jose Manuel Alberto Lopez": {
-            "1+": 1.0303,
-            "2+": 1.1667,
-            "3+": 1.5,
-            "4+": 2.2,
-            "5+": 3.75
-          },
-          "Nico Paz": {
-            "1+": 1.05,
-            "2+": 1.2222,
-            "3+": 1.7273,
-            "4+": 2.8,
-            "5+": 5.0
-          },
-          "Julian Alvarez": {
-            "1+": 1.05,
-            "2+": 1.25,
-            "3+": 1.7273,
-            "4+": 2.8,
-            "5+": 5.0
-          },
-          "Lionel Messi": {
-            "1+": 1.0152,
-            "2+": 1.0833,
-            "3+": 1.25,
-            "4+": 1.6154,
-            "5+": 2.375,
-            "6+": 3.9
-          },
-          "Giuliano Simeone Baldini": {
-            "1+": 1.0714,
-            "2+": 1.3333,
-            "3+": 2.0,
-            "4+": 3.5,
-            "5+": 6.5
-          },
-          "Lautaro Martinez": {
-            "1+": 1.04,
-            "2+": 1.1818,
-            "3+": 1.5714,
-            "4+": 2.4,
-            "5+": 4.2,
-            "6+": 8.0
-          },
-          "Enzo Fernandez": {
+            "2+": 1.75,
+            "3+": 3.3,
+            "4+": 7.0
+          },
+          "Mamadou Sarr": {
             "1+": 1.1818,
             "2+": 1.8,
             "3+": 3.4,
             "4+": 7.0
           },
-          "Alexis Mac Allister": {
-            "1+": 1.1667,
-            "2+": 1.75,
-            "3+": 3.3,
+          "Morten Thorsby": {
+            "1+": 1.1818,
+            "2+": 1.8,
+            "3+": 3.4,
             "4+": 7.5
           },
-          "Nico Gonzalez": {
+          "Kalidou Koulibaly": {
+            "1+": 1.2,
+            "2+": 1.9091,
+            "3+": 3.75,
+            "4+": 7.5
+          },
+          "Kristian Thorstvedt": {
             "1+": 1.2,
             "2+": 1.85,
+            "3+": 3.6,
+            "4+": 8.0
+          },
+          "Bamba Dieng": {
+            "1+": 1.2,
+            "2+": 1.85,
+            "3+": 3.75,
+            "4+": 8.5
+          },
+          "Julian Ryerson": {
+            "1+": 1.2,
+            "2+": 1.9091,
             "3+": 3.8,
             "4+": 8.5
           },
-          "Thiago Almada": {
-            "1+": 1.1111,
-            "2+": 1.5,
-            "3+": 2.5,
-            "4+": 4.8,
-            "5+": 10.0
+          "Fredrik Aursnes": {
+            "1+": 1.2,
+            "2+": 1.9091,
+            "3+": 3.8,
+            "4+": 8.5
           },
-          "Marko Arnautovic": {
-            "1+": 1.1111,
-            "2+": 1.5,
-            "3+": 2.5,
-            "4+": 5.0,
-            "5+": 10.0
+          "Alexander Sorloth": {
+            "1+": 1.2,
+            "2+": 1.95,
+            "3+": 3.9,
+            "4+": 9.0
           },
-          "Michael Gregoritsch": {
-            "1+": 1.1111,
-            "2+": 1.5,
-            "3+": 2.5,
-            "4+": 5.0,
-            "5+": 11.0
-          },
-          "Sasa Kalajdzic": {
-            "1+": 1.125,
-            "2+": 1.5333,
-            "3+": 2.6,
-            "4+": 5.25,
-            "5+": 11.0
-          },
-          "Valentin Barco": {
+          "Patrick Berg": {
             "1+": 1.25,
             "2+": 2.1,
+            "3+": 4.5,
+            "4+": 9.5
+          },
+          "El Hadji Malick Diouf": {
+            "1+": 1.25,
+            "2+": 2.05,
             "3+": 4.3333,
             "4+": 10.0
           },
-          "Giovani Lo Celso": {
-            "1+": 1.125,
-            "2+": 1.5714,
-            "3+": 2.7,
-            "4+": 5.5,
-            "5+": 12.0
+          "Bara Joseph Sapoko Ndiaye": {
+            "1+": 1.25,
+            "2+": 2.1,
+            "3+": 4.5,
+            "4+": 10.0
           },
-          "Paul Wanner": {
+          "Jorgen Strand Larsen": {
             "1+": 1.2857,
             "2+": 2.25,
             "3+": 4.8,
+            "4+": 10.0
+          },
+          "Antoine Mendy": {
+            "1+": 1.25,
+            "2+": 2.2,
+            "3+": 4.8,
             "4+": 11.0
           },
-          "Marcel Sabitzer": {
+          "Torbjorn Heggem": {
+            "1+": 1.3,
+            "2+": 2.375,
+            "3+": 5.0,
+            "4+": 11.0
+          },
+          "Cherif Ndiaye": {
             "1+": 1.1538,
             "2+": 1.6667,
             "3+": 3.0,
             "4+": 6.25,
             "5+": 13.0
           },
-          "Rodrigo De Paul": {
+          "Thelonious Gerard Aasgaard": {
             "1+": 1.3,
             "2+": 2.3,
             "3+": 5.25,
             "4+": 12.0
           },
-          "Dejan Ljubicic": {
+          "Sander Berge": {
             "1+": 1.3,
-            "2+": 2.375,
-            "3+": 5.25,
+            "2+": 2.4,
+            "3+": 5.5,
             "4+": 12.0
           },
-          "Carney Chukwuemeka": {
+          "Ismail Jakobs": {
+            "1+": 1.3,
+            "2+": 2.4,
+            "3+": 5.5,
+            "4+": 12.0
+          },
+          "Leo Ostigard": {
             "1+": 1.3333,
             "2+": 2.4,
             "3+": 5.5,
-            "4+": 13.0
+            "4+": 12.0
           },
-          "Patrick Wimmer": {
+          "Henrik Falchener": {
+            "1+": 1.3333,
+            "2+": 2.45,
+            "3+": 5.75,
+            "4+": 12.0
+          },
+          "Abdoulaye Seck": {
             "1+": 1.3333,
             "2+": 2.5,
             "3+": 5.75,
             "4+": 13.0
           },
-          "Romano Schmid": {
+          "Krepin Diatta": {
+            "1+": 1.3333,
+            "2+": 2.5,
+            "3+": 5.75,
+            "4+": 13.0
+          },
+          "Sadio Mane": {
+            "1+": 1.3333,
+            "2+": 2.5,
+            "3+": 6.0,
+            "4+": 13.0
+          },
+          "Fredrik Andre Bjorkan": {
+            "1+": 1.3333,
+            "2+": 2.5,
+            "3+": 6.0,
+            "4+": 13.0
+          },
+          "Moussa Niakhate": {
+            "1+": 1.3636,
+            "2+": 2.6,
+            "3+": 6.0,
+            "4+": 13.0
+          },
+          "Sondre Klingen Langas": {
             "1+": 1.3333,
             "2+": 2.6,
             "3+": 6.25,
             "4+": 13.0
           },
-          "Leandro Paredes": {
+          "Ibrahim Mbaye": {
             "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.5,
-            "4+": 15.0
-          },
-          "Nahuel Molina": {
-            "1+": 1.8,
-            "2+": 4.6,
-            "3+": 13.0
-          },
-          "Cristian Romero": {
-            "1+": 1.85,
-            "2+": 5.25,
-            "3+": 15.0
-          },
-          "Alessandro Schopf": {
-            "1+": 1.4444,
-            "2+": 3.1,
-            "3+": 8.5,
-            "4+": 17.0
-          },
-          "Philipp Mwene": {
-            "1+": 2.05,
-            "2+": 6.25,
-            "3+": 17.0
-          },
-          "Exequiel Palacios": {
-            "1+": 1.5714,
-            "2+": 3.2,
-            "3+": 8.0,
-            "4+": 21.0
-          },
-          "Alexander Prass": {
-            "1+": 1.6667,
-            "2+": 4.0,
-            "3+": 11.0,
-            "4+": 19.0
-          },
-          "Michael Svoboda": {
-            "1+": 2.45,
-            "2+": 8.5,
-            "3+": 17.0
-          },
-          "Kevin Danso": {
-            "1+": 2.5,
-            "2+": 9.0,
-            "3+": 17.0
-          },
-          "Stefan Posch": {
-            "1+": 1.6667,
-            "2+": 4.2,
-            "3+": 12.0,
-            "4+": 21.0
-          },
-          "Facundo Medina": {
-            "1+": 1.6667,
-            "2+": 4.2,
-            "3+": 12.0,
-            "4+": 21.0
-          },
-          "Florian Grillitsch": {
-            "1+": 1.7,
-            "2+": 4.2,
-            "3+": 12.0,
-            "4+": 23.0
-          },
-          "Philipp Lienhart": {
-            "1+": 2.625,
-            "2+": 9.5,
-            "3+": 19.0
-          },
-          "Konrad Laimer": {
-            "1+": 1.7273,
-            "2+": 4.5,
-            "3+": 13.0,
-            "4+": 23.0
-          },
-          "Marcos Senesi": {
-            "1+": 1.8,
-            "2+": 4.8,
-            "3+": 13.0,
-            "4+": 26.0
-          },
-          "Xaver Schlager": {
-            "1+": 1.8333,
-            "2+": 5.0,
-            "3+": 13.0,
-            "4+": 26.0
-          },
-          "Lisandro Martinez": {
-            "1+": 1.85,
-            "2+": 5.25,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "Nicolas Otamendi": {
-            "1+": 1.9091,
-            "2+": 5.5,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "David Alaba": {
-            "1+": 2.05,
-            "2+": 6.25,
-            "3+": 15.0,
-            "4+": 34.0
-          },
-          "David Leopold Affengruber": {
-            "1+": 2.4,
-            "2+": 8.5,
-            "3+": 15.0,
-            "4+": 34.0
-          },
-          "Nicolas Seiwald": {
-            "1+": 2.15,
-            "2+": 7.0,
-            "3+": 17.0,
-            "4+": 34.0
-          },
-          "Marco Friedl": {
-            "1+": 2.6,
-            "2+": 9.5,
-            "3+": 19.0,
-            "4+": 34.0
-          }
-        }
-      }
-    },
-    {
-      "match_id": "france-v-iraq",
-      "event_id": "52875342",
-      "home": "France",
-      "away": "Iraq",
-      "kickoff": "Today 22:00",
-      "bookmaker": "Midnite",
-      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/france-v-iraq-52875342",
-      "markets": {
-        "match_result": {
-          "home": 1.0714,
-          "draw": 9.5,
-          "away": 19.0
-        },
-        "total_goals": {
-          "over_1_5": 1.1,
-          "under_1_5": 6.5,
-          "over_2_5": 1.3333,
-          "under_2_5": 3.25,
-          "over_3_5": 1.8,
-          "under_3_5": 1.9091,
-          "over_4_5": 2.625,
-          "under_4_5": 1.4444,
-          "over_5_5": 4.3333,
-          "under_5_5": 1.2
-        },
-        "btts": {
-          "yes": 2.5,
-          "no": 1.5
-        },
-        "htft": {
-          "half time_full time": 1.4,
-          "home_home": 51.0,
-          "home_draw": 51.0,
-          "home_away": 4.6,
-          "draw_home": 15.0,
-          "draw_draw": 51.0,
-          "draw_away": null
-        },
-        "total_shots_on_target": {
-          "over_9": 1.2222,
-          "over_10": 1.3636,
-          "over_11": 1.5714,
-          "over_12": 1.9091,
-          "over_13": 2.375,
-          "over_14": 3
-        },
-        "home_shots_on_target": {
-          "over_7": 1.1818,
-          "over_8": 1.3333,
-          "over_9": 1.5333,
-          "over_10": 1.9091,
-          "over_11": 2.45,
-          "over_12": 3.25
-        },
-        "away_shots_on_target": {
-          "over_1": 1.1429,
-          "over_2": 1.6154,
-          "over_3": 2.8,
-          "over_4": 5.5
-        },
-        "total_shots": {
-          "over_27": 1.3636,
-          "over_28": 1.4444,
-          "over_29": 1.5333,
-          "over_30": 1.6667,
-          "over_31": 1.8333,
-          "over_32": 2
-        },
-        "home_shots": {
-          "over_27": 1.3636,
-          "over_28": 1.4444,
-          "over_29": 1.5333,
-          "over_30": 1.6667,
-          "over_31": 1.8333,
-          "over_32": 2
-        },
-        "away_shots": {
-          "over_27": 1.3636,
-          "over_28": 1.4444,
-          "over_29": 1.5333,
-          "over_30": 1.6667,
-          "over_31": 1.8333,
-          "over_32": 2
-        },
-        "total_cards": {
-          "over_3": 1.5333,
-          "over_4": 2.3,
-          "over_5": 4.0,
-          "over_6": 7.5
-        },
-        "total_corners": {
-          "over_9": 1.6667,
-          "over_10": 1.95,
-          "over_11": 2.375,
-          "over_12": 2.9,
-          "over_13": 3.6
-        },
-        "team_most_corners": {
-          "home": 1.04,
-          "draw": 21.0,
-          "away": 21.0
-        },
-        "player_carded": {
-          "Zaid Ismail Al-Dulaimi": {
-            "carded_anytime": 3.1,
-            "sent_off_anytime": 29.0,
-            "carded_first": 9.0,
-            "carded_last": 9.0
-          },
-          "Merchas Doski": {
-            "carded_anytime": 3.6,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Frans Dhia Putros": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Aimar Sher": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Zaid Tahseen": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Mustafa Saadoon Abbood Al-Korji": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Hussein Ali": {
-            "carded_anytime": 3.8,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Zidane Iqbal": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Manaf Younis": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Ahmed Hassan Maknzi": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Amir Al-Ammari": {
-            "carded_anytime": 4.3333,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Ahmed Ihab Qasem": {
-            "carded_anytime": 4.3333,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Rebin Gharib": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Akam Hashem": {
-            "carded_anytime": 4.6,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Ali Al Hamadi": {
-            "carded_anytime": 4.75,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Ibrahim Bayesh": {
-            "carded_anytime": 4.75,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Marko Hussein Farji": {
-            "carded_anytime": 5.0,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Mimi": {
-            "carded_anytime": 5.0,
-            "sent_off_anytime": 41.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
-          },
-          "Kevin Yako": {
-            "carded_anytime": 5.0,
-            "sent_off_anytime": 51.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
-          },
-          "Youssef Amyn": {
-            "carded_anytime": 5.25,
-            "sent_off_anytime": 51.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
-          },
-          "Aymen Hussein": {
-            "carded_anytime": 5.5,
-            "sent_off_anytime": 51.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
-          },
-          "Ali Yousif": {
-            "carded_anytime": 5.5,
-            "sent_off_anytime": 51.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
-          },
-          "Manu Kone": {
-            "carded_anytime": 5.25,
-            "sent_off_anytime": 67.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
-          },
-          "Dayot Upamecano": {
-            "carded_anytime": 6.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
-          },
-          "Lucas Hernández": {
-            "carded_anytime": 6.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 21.0,
-            "carded_last": 21.0
-          },
-          "Aurelien Tchouameni": {
-            "carded_anytime": 6.25,
-            "sent_off_anytime": 67.0,
-            "carded_first": 21.0,
-            "carded_last": 21.0
-          },
-          "Theo Hernandez": {
-            "carded_anytime": 6.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 21.0,
-            "carded_last": 21.0
-          },
-          "Maghnes Akliouche": {
-            "carded_anytime": 7.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 21.0,
-            "carded_last": 21.0
-          },
-          "Adrien Rabiot": {
-            "carded_anytime": 6.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 23.0,
-            "carded_last": 23.0
-          },
-          "Ibrahima Konate": {
-            "carded_anytime": 6.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 23.0,
-            "carded_last": 23.0
-          },
-          "Ali Jasim": {
-            "carded_anytime": 6.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 23.0,
-            "carded_last": 23.0
-          },
-          "Maxence Lacroix": {
-            "carded_anytime": 7.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 23.0,
-            "carded_last": 23.0
-          },
-          "Malo Gusto": {
-            "carded_anytime": 7.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 23.0,
-            "carded_last": 23.0
-          },
-          "Lucas Digne": {
-            "carded_anytime": 7.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Desire Doue": {
-            "carded_anytime": 7.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Ahmed Basil": {
-            "carded_anytime": 7.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Fahad Talib Raheem": {
-            "carded_anytime": 7.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Jalal Hassan Hachim": {
-            "carded_anytime": 7.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Marcus Thuram": {
-            "carded_anytime": 8.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Ousmane Dembele": {
-            "carded_anytime": 9.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Kylian Mbappe": {
-            "carded_anytime": 7.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
-          },
-          "Michael Olise": {
-            "carded_anytime": 8.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
-          },
-          "Bradley Barcola": {
-            "carded_anytime": 8.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
-          },
-          "N'Golo Kante": {
-            "carded_anytime": 8.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
-          },
-          "Jean-Philippe Mateta": {
-            "carded_anytime": 8.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
-          },
-          "William Saliba": {
-            "carded_anytime": 8.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
-          },
-          "Warren Zaire-Emery": {
-            "carded_anytime": 8.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
-          },
-          "Jules Kounde": {
-            "carded_anytime": 9.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
-          },
-          "Rayan Cherki": {
-            "carded_anytime": 9.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 29.0,
-            "carded_last": 29.0
-          },
-          "Brice Samba": {
-            "carded_anytime": 10.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 34.0,
-            "carded_last": 34.0
-          },
-          "Mike Maignan": {
-            "carded_anytime": 13.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 34.0,
-            "carded_last": 34.0
-          },
-          "Robin Risser Birckel": {
-            "carded_anytime": 13.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 34.0,
-            "carded_last": 34.0
-          }
-        },
-        "player_shots_on_target": {
-          "Kylian Mbappe": {
-            "1+": 1.05,
-            "2+": 1.25,
-            "3+": 1.75,
-            "4+": 2.9
-          },
-          "Jean-Philippe Mateta": {
-            "1+": 1.1111,
-            "2+": 1.5,
-            "3+": 2.5,
-            "4+": 5.0
-          },
-          "Marcus Thuram": {
-            "1+": 1.125,
-            "2+": 1.5333,
-            "3+": 2.625,
-            "4+": 5.25
-          },
-          "Michael Olise": {
-            "1+": 1.1667,
-            "2+": 1.75,
-            "3+": 3.3,
-            "4+": 7.0
-          },
-          "Bradley Barcola": {
-            "1+": 1.2,
-            "2+": 1.9091,
-            "3+": 3.8,
-            "4+": 8.5
-          },
-          "Ousmane Dembele": {
-            "1+": 1.2222,
-            "2+": 2.0,
-            "3+": 4.2,
-            "4+": 9.5
-          },
-          "Rayan Cherki": {
-            "1+": 1.25,
-            "2+": 2.05,
-            "3+": 4.3333,
-            "4+": 10.0
-          },
-          "Maghnes Akliouche": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.5,
-            "4+": 10.0
-          },
-          "Manu Kone": {
-            "1+": 1.75,
-            "2+": 4.3333,
-            "3+": 12.0
-          },
-          "Desire Doue": {
+            "2+": 2.6,
+            "3+": 6.25,
+            "4+": 13.0
+          },
+          "Habib Diarra": {
             "1+": 1.2,
             "2+": 1.85,
-            "3+": 3.6,
-            "4+": 8.0
-          },
-          "Ibrahima Konate": {
-            "1+": 3.2,
-            "2+": 11.0
-          },
-          "Theo Hernandez": {
-            "1+": 1.95,
-            "2+": 5.25,
-            "3+": 15.0
-          },
-          "Dayot Upamecano": {
-            "1+": 3.2,
-            "2+": 12.0
-          },
-          "William Saliba": {
-            "1+": 3.4,
-            "2+": 12.0
-          },
-          "Malo Gusto": {
-            "1+": 2.45,
-            "2+": 8.5,
-            "3+": 15.0
-          },
-          "Aurelien Tchouameni": {
-            "1+": 2.45,
-            "2+": 8.5,
-            "3+": 17.0
-          },
-          "Maxence Lacroix": {
-            "1+": 2.7,
-            "2+": 9.0,
-            "3+": 19.0
-          },
-          "Warren Zaire-Emery": {
-            "1+": 1.75,
-            "2+": 4.6,
-            "3+": 12.0,
-            "4+": 23.0
-          },
-          "Akam Hashem": {
-            "1+": 6.25,
-            "2+": 15.0
-          },
-          "Adrien Rabiot": {
-            "1+": 1.8,
-            "2+": 4.8,
-            "3+": 13.0,
-            "4+": 23.0
-          },
-          "Zaid Tahseen": {
-            "1+": 7.0,
-            "2+": 17.0
-          },
-          "Lucas Digne": {
-            "1+": 2.9,
-            "2+": 11.0,
-            "3+": 23.0
-          },
-          "Marko Hussein Farji": {
-            "1+": 3.0,
-            "2+": 12.0,
-            "3+": 23.0
-          },
-          "Aymen Hussein": {
-            "1+": 2.1,
-            "2+": 6.0,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "Hussein Ali": {
-            "1+": 7.5,
-            "2+": 19.0
-          },
-          "Lucas Hernández": {
-            "1+": 3.1,
-            "2+": 11.0,
-            "3+": 26.0
-          },
-          "Jules Kounde": {
-            "1+": 3.2,
-            "2+": 11.0,
-            "3+": 26.0
-          },
-          "Youssef Amyn": {
-            "1+": 3.1,
-            "2+": 12.0,
-            "3+": 26.0
-          },
-          "Ali Jasim": {
-            "1+": 3.1,
-            "2+": 12.0,
-            "3+": 26.0
-          },
-          "Rebin Gharib": {
-            "1+": 8.0,
-            "2+": 21.0
-          },
-          "Mimi": {
-            "1+": 2.3,
-            "2+": 7.5,
-            "3+": 15.0,
-            "4+": 34.0
-          },
-          "Frans Dhia Putros": {
-            "1+": 8.5,
-            "2+": 21.0
-          },
-          "Merchas Doski": {
-            "1+": 8.5,
-            "2+": 21.0
-          },
-          "Ali Al Hamadi": {
-            "1+": 2.45,
-            "2+": 8.5,
-            "3+": 15.0,
-            "4+": 34.0
-          },
-          "N'Golo Kante": {
-            "1+": 2.15,
-            "2+": 7.0,
-            "3+": 17.0,
-            "4+": 34.0
-          },
-          "Mustafa Saadoon Abbood Al-Korji": {
-            "1+": 9.5,
-            "2+": 23.0
-          },
-          "Ali Yousif": {
-            "1+": 2.625,
-            "2+": 10.0,
-            "3+": 19.0,
-            "4+": 34.0
-          },
-          "Zidane Iqbal": {
-            "1+": 5.0,
-            "2+": 12.0,
-            "3+": 34.0
-          },
-          "Zaid Ismail Al-Dulaimi": {
-            "1+": 4.2,
-            "2+": 13.0,
-            "3+": 34.0
-          },
-          "Aimar Sher": {
-            "1+": 5.0,
-            "2+": 13.0,
-            "3+": 34.0
-          },
-          "Ibrahim Bayesh": {
-            "1+": 4.2,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Kevin Yako": {
-            "1+": 3.0,
-            "2+": 11.0,
-            "3+": 23.0,
-            "4+": 34.0
-          },
-          "Ahmed Ihab Qasem": {
-            "1+": 4.3333,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Amir Al-Ammari": {
-            "1+": 6.0,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Manaf Younis": {
-            "1+": 6.0,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Ahmed Hassan Maknzi": {
-            "1+": 6.0,
-            "2+": 15.0,
-            "3+": 34.0
-          }
-        },
-        "player_fouls_committed": {
-          "Ahmed Ihab Qasem": {
-            "1+": 1.1538,
-            "2+": 1.6154,
-            "3+": 2.7,
-            "4+": 4.8
-          },
-          "Hussein Ali": {
-            "1+": 1.1667,
-            "2+": 1.6667,
-            "3+": 2.8,
-            "4+": 5.25
-          },
-          "Zaid Ismail Al-Dulaimi": {
-            "1+": 1.125,
-            "2+": 1.5714,
-            "3+": 2.7,
-            "4+": 5.5
-          },
-          "Mimi": {
-            "1+": 1.1818,
-            "2+": 1.75,
-            "3+": 3.2,
-            "4+": 6.25
-          },
-          "Aimar Sher": {
-            "1+": 1.1818,
-            "2+": 1.75,
-            "3+": 3.3,
-            "4+": 6.5
-          },
-          "Merchas Doski": {
-            "1+": 1.2,
-            "2+": 1.8333,
-            "3+": 3.4,
-            "4+": 6.5
-          },
-          "Akam Hashem": {
-            "1+": 1.25,
-            "2+": 1.9091,
-            "3+": 3.4,
-            "4+": 6.5
-          },
-          "Amir Al-Ammari": {
-            "1+": 1.2222,
-            "2+": 2.0,
-            "3+": 4.0,
-            "4+": 8.5
-          },
-          "Desire Doue": {
-            "1+": 1.25,
-            "2+": 2.05,
-            "3+": 4.2,
-            "4+": 9.0
-          },
-          "Ali Al Hamadi": {
-            "1+": 1.25,
-            "2+": 2.05,
-            "3+": 4.3333,
-            "4+": 9.5
-          },
-          "Ibrahim Bayesh": {
-            "1+": 1.2222,
-            "2+": 2.05,
-            "3+": 4.2,
-            "4+": 10.0
-          },
-          "Adrien Rabiot": {
-            "1+": 1.25,
-            "2+": 2.05,
-            "3+": 4.3333,
-            "4+": 10.0
-          },
-          "Frans Dhia Putros": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.6,
-            "4+": 10.0
-          },
-          "Maghnes Akliouche": {
-            "1+": 1.25,
-            "2+": 2.2,
-            "3+": 4.8,
-            "4+": 10.0
-          },
-          "Ali Yousif": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.6,
-            "4+": 11.0
-          },
-          "Marcus Thuram": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.75,
-            "4+": 11.0
-          },
-          "Manu Kone": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.75,
-            "4+": 11.0
-          },
-          "Mustafa Saadoon Abbood Al-Korji": {
-            "1+": 1.3,
-            "2+": 2.25,
-            "3+": 4.8,
-            "4+": 11.0
-          },
-          "Kevin Yako": {
-            "1+": 1.1538,
-            "2+": 1.6667,
-            "3+": 3.0,
-            "4+": 6.5,
-            "5+": 13.0
-          },
-          "Aymen Hussein": {
-            "1+": 1.2857,
-            "2+": 2.25,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Ahmed Hassan Maknzi": {
-            "1+": 1.3,
-            "2+": 2.3,
-            "3+": 5.25,
-            "4+": 12.0
-          },
-          "Aurelien Tchouameni": {
-            "1+": 1.3,
-            "2+": 2.375,
-            "3+": 5.5,
-            "4+": 12.0
-          },
-          "Zaid Tahseen": {
-            "1+": 1.3,
-            "2+": 2.4,
-            "3+": 5.5,
-            "4+": 13.0
-          },
-          "Zidane Iqbal": {
-            "1+": 1.3636,
-            "2+": 2.5,
-            "3+": 5.75,
-            "4+": 13.0
-          },
-          "Warren Zaire-Emery": {
-            "1+": 1.3636,
-            "2+": 2.5,
-            "3+": 6.0,
-            "4+": 13.0
-          },
-          "Michael Olise": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.0,
-            "4+": 13.0
-          },
-          "Marko Hussein Farji": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.0,
-            "4+": 13.0
-          },
-          "Manaf Younis": {
-            "1+": 1.3636,
-            "2+": 2.6,
-            "3+": 6.25,
-            "4+": 13.0
-          },
-          "Maxence Lacroix": {
-            "1+": 1.3636,
-            "2+": 2.7,
-            "3+": 6.25,
-            "4+": 15.0
-          },
-          "Lucas Hernández": {
+            "3+": 3.5,
+            "4+": 7.5,
+            "5+": 15.0
+          },
+          "Kristoffer Ajer": {
             "1+": 1.4,
-            "2+": 2.75,
+            "2+": 2.8,
             "3+": 6.5,
             "4+": 15.0
           },
-          "N'Golo Kante": {
+          "Iliman Ndiaye": {
             "1+": 1.4,
-            "2+": 2.8,
+            "2+": 2.875,
             "3+": 7.0,
             "4+": 15.0
           },
-          "Youssef Amyn": {
-            "1+": 1.4,
-            "2+": 2.8,
-            "3+": 7.0,
-            "4+": 15.0
-          },
-          "Ali Jasim": {
+          "Andreas Schjelderup": {
             "1+": 1.4,
             "2+": 2.9,
+            "3+": 7.0,
+            "4+": 15.0
+          },
+          "Marcus Holmgren Pedersen": {
+            "1+": 1.4444,
+            "2+": 3.0,
             "3+": 7.5,
             "4+": 17.0
           },
-          "Bradley Barcola": {
+          "Jens Petter Hauge": {
             "1+": 1.4444,
             "2+": 3.0,
             "3+": 8.0,
             "4+": 17.0
           },
-          "Malo Gusto": {
+          "Martin Odegaard": {
             "1+": 1.4444,
             "2+": 3.1,
             "3+": 8.0,
             "4+": 17.0
           },
-          "Lucas Digne": {
+          "Erling Haaland": {
             "1+": 1.4444,
-            "2+": 3.25,
-            "3+": 8.5,
+            "2+": 3.1,
+            "3+": 8.0,
             "4+": 17.0
           },
-          "Jean-Philippe Mateta": {
-            "1+": 1.5333,
-            "2+": 3.4,
-            "3+": 9.5,
+          "Ismaila Sarr": {
+            "1+": 1.4444,
+            "2+": 3.2,
+            "3+": 8.0,
             "4+": 17.0
           },
-          "Ibrahima Konate": {
-            "1+": 1.5,
-            "2+": 3.3,
-            "3+": 8.5,
-            "4+": 19.0
+          "Antonio Nusa": {
+            "1+": 1.5714,
+            "2+": 3.6,
+            "3+": 10.0,
+            "4+": 17.0
           },
-          "Ousmane Dembele": {
-            "1+": 1.5,
-            "2+": 3.3,
-            "3+": 9.0,
-            "4+": 19.0
-          },
-          "Rebin Gharib": {
-            "1+": 1.5,
-            "2+": 3.3,
-            "3+": 9.0,
-            "4+": 19.0
-          },
-          "Theo Hernandez": {
-            "1+": 1.5333,
-            "2+": 3.5,
-            "3+": 9.0,
-            "4+": 19.0
-          },
-          "Dayot Upamecano": {
+          "Oscar Bobb": {
             "1+": 1.5714,
             "2+": 3.6,
             "3+": 10.0,
             "4+": 19.0
           },
-          "Jules Kounde": {
-            "1+": 1.5714,
-            "2+": 3.75,
-            "3+": 10.0,
-            "4+": 19.0
-          },
-          "Kylian Mbappe": {
-            "1+": 1.6154,
-            "2+": 4.0,
-            "3+": 11.0,
-            "4+": 19.0
-          },
-          "William Saliba": {
-            "1+": 1.6154,
-            "2+": 4.0,
-            "3+": 11.0,
-            "4+": 19.0
-          },
-          "Rayan Cherki": {
-            "1+": 1.6154,
-            "2+": 4.0,
-            "3+": 11.0,
-            "4+": 19.0
-          },
-          "Ahmed Basil": {
+          "Orjan Nyland": {
             "1+": 23.0
           },
-          "Fahad Talib Raheem": {
+          "Mory Diaw": {
             "1+": 23.0
           },
-          "Jalal Hassan Hachim": {
+          "Edouard Mendy": {
             "1+": 23.0
           },
-          "Brice Samba": {
-            "1+": 26.0
+          "Yehvann Diouf": {
+            "1+": 23.0
           },
-          "Mike Maignan": {
-            "1+": 26.0
+          "Sander Tangvik": {
+            "1+": 23.0
           },
-          "Robin Risser Birckel": {
-            "1+": 26.0
+          "Egil Selvik": {
+            "1+": 23.0
           }
         },
         "player_fouls_won": {
-          "Michael Olise": {
-            "1+": 1.1,
-            "2+": 1.4,
-            "3+": 2.2,
-            "4+": 3.8
+          "Cherif Ndiaye": {
+            "1+": 1.0714,
+            "2+": 1.3333,
+            "3+": 1.95,
+            "4+": 3.25
           },
-          "Desire Doue": {
+          "Assane Diao": {
+            "1+": 1.04,
+            "2+": 1.2,
+            "3+": 1.6154,
+            "4+": 2.5,
+            "5+": 4.6
+          },
+          "Antonio Nusa": {
+            "1+": 1.05,
+            "2+": 1.2222,
+            "3+": 1.7,
+            "4+": 2.8,
+            "5+": 5.0
+          },
+          "Thelonious Gerard Aasgaard": {
             "1+": 1.1538,
             "2+": 1.6154,
             "3+": 2.75,
             "4+": 5.0
           },
-          "Marcus Thuram": {
-            "1+": 1.1538,
-            "2+": 1.6154,
-            "3+": 2.875,
+          "Martin Odegaard": {
+            "1+": 1.125,
+            "2+": 1.5333,
+            "3+": 2.625,
+            "4+": 5.25
+          },
+          "Kristian Thorstvedt": {
+            "1+": 1.125,
+            "2+": 1.5714,
+            "3+": 2.75,
             "4+": 5.5
           },
-          "Manu Kone": {
+          "Alexander Sorloth": {
+            "1+": 1.1538,
+            "2+": 1.6667,
+            "3+": 3.0,
+            "4+": 6.25
+          },
+          "Habib Diarra": {
+            "1+": 1.1538,
+            "2+": 1.6667,
+            "3+": 3.1,
+            "4+": 6.5
+          },
+          "Andreas Schjelderup": {
+            "1+": 1.1818,
+            "2+": 1.75,
+            "3+": 3.4,
+            "4+": 7.5
+          },
+          "Lamine Camara": {
+            "1+": 1.1818,
+            "2+": 1.8,
+            "3+": 3.5,
+            "4+": 7.5
+          },
+          "Oscar Bobb": {
+            "1+": 1.0909,
+            "2+": 1.4,
+            "3+": 2.25,
+            "4+": 4.3333,
+            "5+": 9.0
+          },
+          "Ismaila Sarr": {
+            "1+": 1.1818,
+            "2+": 1.8333,
+            "3+": 3.5,
+            "4+": 8.0
+          },
+          "Jens Petter Hauge": {
+            "1+": 1.1818,
+            "2+": 1.85,
+            "3+": 3.6,
+            "4+": 8.0
+          },
+          "Iliman Ndiaye": {
+            "1+": 1.2,
+            "2+": 1.9091,
+            "3+": 3.75,
+            "4+": 8.0
+          },
+          "Julian Ryerson": {
+            "1+": 1.2,
+            "2+": 1.9091,
+            "3+": 3.8,
+            "4+": 8.5
+          },
+          "Pape Gueye": {
+            "1+": 1.2222,
+            "2+": 2.0,
+            "3+": 4.2,
+            "4+": 9.5
+          },
+          "Sadio Mane": {
+            "1+": 1.125,
+            "2+": 1.5333,
+            "3+": 2.6,
+            "4+": 5.0,
+            "5+": 11.0
+          },
+          "Ibrahim Mbaye": {
+            "1+": 1.25,
+            "2+": 2.05,
+            "3+": 4.3333,
+            "4+": 10.0
+          },
+          "Bara Joseph Sapoko Ndiaye": {
+            "1+": 1.25,
+            "2+": 2.2,
+            "3+": 4.8,
+            "4+": 11.0
+          },
+          "Fredrik Andre Bjorkan": {
+            "1+": 1.3,
+            "2+": 2.3,
+            "3+": 5.0,
+            "4+": 11.0
+          },
+          "David Moller Wolfe": {
+            "1+": 1.3,
+            "2+": 2.3,
+            "3+": 5.25,
+            "4+": 12.0
+          },
+          "Patrick Berg": {
+            "1+": 1.3,
+            "2+": 2.4,
+            "3+": 5.5,
+            "4+": 12.0
+          },
+          "Pape Matar Sarr": {
+            "1+": 1.4444,
+            "2+": 3.2,
+            "3+": 8.0,
+            "4+": 13.0
+          },
+          "Bamba Dieng": {
+            "1+": 1.2222,
+            "2+": 1.95,
+            "3+": 3.9,
+            "4+": 8.5,
+            "5+": 17.0
+          },
+          "Krepin Diatta": {
+            "1+": 1.4,
+            "2+": 2.8,
+            "3+": 7.0,
+            "4+": 15.0
+          },
+          "Jorgen Strand Larsen": {
+            "1+": 1.4,
+            "2+": 2.875,
+            "3+": 7.0,
+            "4+": 15.0
+          },
+          "Nicolas Jackson": {
+            "1+": 1.4,
+            "2+": 2.9,
+            "3+": 7.5,
+            "4+": 15.0
+          },
+          "Erling Haaland": {
+            "1+": 1.4444,
+            "2+": 3.0,
+            "3+": 7.5,
+            "4+": 15.0
+          },
+          "El Hadji Malick Diouf": {
+            "1+": 1.5333,
+            "2+": 3.5,
+            "3+": 9.0,
+            "4+": 15.0
+          },
+          "Morten Thorsby": {
+            "1+": 1.4444,
+            "2+": 3.1,
+            "3+": 8.0,
+            "4+": 17.0
+          },
+          "Fredrik Aursnes": {
+            "1+": 1.4444,
+            "2+": 3.1,
+            "3+": 8.0,
+            "4+": 17.0
+          },
+          "Antoine Mendy": {
+            "1+": 1.4444,
+            "2+": 3.2,
+            "3+": 8.0,
+            "4+": 17.0
+          },
+          "Sander Berge": {
+            "1+": 1.4444,
+            "2+": 3.2,
+            "3+": 8.5,
+            "4+": 17.0
+          },
+          "Ismail Jakobs": {
+            "1+": 1.4444,
+            "2+": 3.2,
+            "3+": 8.5,
+            "4+": 17.0
+          },
+          "Pathe Ciss": {
+            "1+": 1.5333,
+            "2+": 3.4,
+            "3+": 9.0,
+            "4+": 17.0
+          },
+          "Marcus Holmgren Pedersen": {
+            "1+": 1.5333,
+            "2+": 3.5,
+            "3+": 9.5,
+            "4+": 17.0
+          },
+          "Idrissa Gueye": {
+            "1+": 1.5333,
+            "2+": 3.6,
+            "3+": 9.5,
+            "4+": 19.0
+          },
+          "Sondre Klingen Langas": {
+            "1+": 1.6,
+            "2+": 3.8,
+            "3+": 10.0,
+            "4+": 19.0
+          },
+          "Leo Ostigard": {
+            "1+": 1.6154,
+            "2+": 4.0,
+            "3+": 10.0,
+            "4+": 19.0
+          },
+          "Abdoulaye Seck": {
+            "1+": 1.6,
+            "2+": 3.75,
+            "3+": 9.5,
+            "4+": 21.0
+          },
+          "Moussa Niakhate": {
+            "1+": 1.6154,
+            "2+": 3.9,
+            "3+": 9.5,
+            "4+": 21.0
+          },
+          "Henrik Falchener": {
+            "1+": 1.7273,
+            "2+": 4.6,
+            "3+": 11.0,
+            "4+": 19.0
+          },
+          "Kristoffer Ajer": {
+            "1+": 1.6154,
+            "2+": 4.0,
+            "3+": 10.0,
+            "4+": 21.0
+          },
+          "Torbjorn Heggem": {
+            "1+": 1.85,
+            "2+": 5.5,
+            "3+": 15.0,
+            "4+": 29.0
+          },
+          "Kalidou Koulibaly": {
+            "1+": 2.0,
+            "2+": 6.25,
+            "3+": 15.0,
+            "4+": 29.0
+          },
+          "Mamadou Sarr": {
+            "1+": 2.05,
+            "2+": 6.5,
+            "3+": 15.0,
+            "4+": 29.0
+          }
+        },
+        "player_to_score": {
+          "Erling Haaland": {
+            "to_score": 1.95,
+            "first": 3.9,
+            "last": 3.9
+          },
+          "Jorgen Strand Larsen": {
+            "to_score": 3.0,
+            "first": 6.25,
+            "last": 6.5
+          },
+          "Alexander Sorloth": {
+            "to_score": 3.1,
+            "first": 6.5,
+            "last": 6.5
+          },
+          "Nicolas Jackson": {
+            "to_score": 3.3,
+            "first": 7.0,
+            "last": 7.0
+          },
+          "Cherif Ndiaye": {
+            "to_score": 3.4,
+            "first": 7.0,
+            "last": 7.5
+          },
+          "Bamba Dieng": {
+            "to_score": 3.4,
+            "first": 7.5,
+            "last": 7.5
+          },
+          "Sadio Mane": {
+            "to_score": 3.6,
+            "first": 8.0,
+            "last": 8.0
+          },
+          "Thelonious Gerard Aasgaard": {
+            "to_score": 4.0,
+            "first": 8.0,
+            "last": 8.0
+          },
+          "Assane Diao": {
+            "to_score": 4.0,
+            "first": 9.0,
+            "last": 9.0
+          },
+          "Ismaila Sarr": {
+            "to_score": 4.0,
+            "first": 9.0,
+            "last": 9.5
+          },
+          "Jens Petter Hauge": {
+            "to_score": 4.2,
+            "first": 9.5,
+            "last": 9.5
+          },
+          "Iliman Ndiaye": {
+            "to_score": 4.5,
+            "first": 9.5,
+            "last": 9.5
+          },
+          "Antonio Nusa": {
+            "to_score": 4.5,
+            "first": 9.5,
+            "last": 10.0
+          },
+          "Ibrahim Mbaye": {
+            "to_score": 4.75,
+            "first": 10.0,
+            "last": 10.0
+          },
+          "Habib Diarra": {
+            "to_score": 5.5,
+            "first": 10.0,
+            "last": 10.0
+          },
+          "Andreas Schjelderup": {
+            "to_score": 5.0,
+            "first": 11.0,
+            "last": 11.0
+          },
+          "Oscar Bobb": {
+            "to_score": 5.0,
+            "first": 11.0,
+            "last": 11.0
+          },
+          "Kristian Thorstvedt": {
+            "to_score": 5.25,
+            "first": 12.0,
+            "last": 12.0
+          },
+          "Martin Odegaard": {
+            "to_score": 6.5,
+            "first": 13.0,
+            "last": 13.0
+          },
+          "Lamine Camara": {
+            "to_score": 7.5,
+            "first": 13.0,
+            "last": 12.0
+          },
+          "Pape Gueye": {
+            "to_score": 6.5,
+            "first": 15.0,
+            "last": 15.0
+          },
+          "Morten Thorsby": {
+            "to_score": 7.0,
+            "first": 15.0,
+            "last": 15.0
+          },
+          "Pape Matar Sarr": {
+            "to_score": 7.0,
+            "first": 15.0,
+            "last": 15.0
+          },
+          "Fredrik Aursnes": {
+            "to_score": 8.0,
+            "first": 17.0,
+            "last": 17.0
+          },
+          "Bara Joseph Sapoko Ndiaye": {
+            "to_score": 8.0,
+            "first": 17.0,
+            "last": 17.0
+          },
+          "Patrick Berg": {
+            "to_score": 8.0,
+            "first": 17.0,
+            "last": 19.0
+          },
+          "Pathe Ciss": {
+            "to_score": 9.0,
+            "first": 19.0,
+            "last": 21.0
+          },
+          "Idrissa Gueye": {
+            "to_score": 11.0,
+            "first": 23.0,
+            "last": 19.0
+          },
+          "Krepin Diatta": {
+            "to_score": 11.0,
+            "first": 23.0,
+            "last": 29.0
+          },
+          "Kalidou Koulibaly": {
+            "to_score": 12.0,
+            "first": 26.0,
+            "last": 26.0
+          },
+          "Sander Berge": {
+            "to_score": 12.0,
+            "first": 26.0,
+            "last": 26.0
+          },
+          "Henrik Falchener": {
+            "to_score": 12.0,
+            "first": 26.0,
+            "last": 26.0
+          },
+          "David Moller Wolfe": {
+            "to_score": 12.0,
+            "first": 26.0,
+            "last": 29.0
+          },
+          "Abdoulaye Seck": {
+            "to_score": 13.0,
+            "first": 29.0,
+            "last": 29.0
+          },
+          "Leo Ostigard": {
+            "to_score": 13.0,
+            "first": 29.0,
+            "last": 29.0
+          },
+          "Julian Ryerson": {
+            "to_score": 13.0,
+            "first": 29.0,
+            "last": 29.0
+          },
+          "Ismail Jakobs": {
+            "to_score": 13.0,
+            "first": 29.0,
+            "last": 29.0
+          },
+          "Fredrik Andre Bjorkan": {
+            "to_score": 13.0,
+            "first": 29.0,
+            "last": 29.0
+          },
+          "Mamadou Sarr": {
+            "to_score": 13.0,
+            "first": 29.0,
+            "last": 29.0
+          },
+          "El Hadji Malick Diouf": {
+            "to_score": 13.0,
+            "first": 29.0,
+            "last": 29.0
+          },
+          "Sondre Klingen Langas": {
+            "to_score": 13.0,
+            "first": 29.0,
+            "last": 34.0
+          },
+          "Moussa Niakhate": {
+            "to_score": 15.0,
+            "first": 34.0,
+            "last": 34.0
+          },
+          "Kristoffer Ajer": {
+            "to_score": 15.0,
+            "first": 34.0,
+            "last": 34.0
+          },
+          "Marcus Holmgren Pedersen": {
+            "to_score": 15.0,
+            "first": 34.0,
+            "last": 34.0
+          },
+          "Torbjorn Heggem": {
+            "to_score": 17.0,
+            "first": 34.0,
+            "last": 34.0
+          },
+          "Antoine Mendy": {
+            "to_score": 15.0,
+            "first": 41.0,
+            "last": 34.0
+          }
+        },
+        "player_shots": {
+          "Erling Haaland": {
+            "1+": 1.01,
+            "2+": 1.0625,
+            "3+": 1.1818,
+            "4+": 1.4444,
+            "5+": 2.0,
+            "6+": 3.0
+          },
+          "Alexander Sorloth": {
+            "1+": 1.04,
+            "2+": 1.2,
+            "3+": 1.6,
+            "4+": 2.45,
+            "5+": 4.3333
+          },
+          "Jorgen Strand Larsen": {
+            "1+": 1.04,
+            "2+": 1.2,
+            "3+": 1.6,
+            "4+": 2.5,
+            "5+": 4.3333
+          },
+          "Sadio Mane": {
+            "1+": 1.0625,
+            "2+": 1.3,
+            "3+": 1.85,
+            "4+": 3.25,
+            "5+": 6.25
+          },
+          "Nicolas Jackson": {
             "1+": 1.0625,
             "2+": 1.3,
             "3+": 1.9091,
             "4+": 3.3,
             "5+": 6.5
           },
-          "Merchas Doski": {
-            "1+": 1.1429,
-            "2+": 1.6154,
-            "3+": 2.875,
+          "Bamba Dieng": {
+            "1+": 1.0714,
+            "2+": 1.3,
+            "3+": 1.95,
+            "4+": 3.4,
+            "5+": 6.5
+          },
+          "Oscar Bobb": {
+            "1+": 1.1538,
+            "2+": 1.6667,
+            "3+": 3.0,
             "4+": 6.0
           },
-          "Rayan Cherki": {
+          "Cherif Ndiaye": {
+            "1+": 1.0714,
+            "2+": 1.3636,
+            "3+": 2.05,
+            "4+": 3.6,
+            "5+": 7.0
+          },
+          "Jens Petter Hauge": {
+            "1+": 1.0714,
+            "2+": 1.3636,
+            "3+": 2.05,
+            "4+": 3.6,
+            "5+": 7.5
+          },
+          "Ismaila Sarr": {
+            "1+": 1.0833,
+            "2+": 1.3636,
+            "3+": 2.1,
+            "4+": 3.8,
+            "5+": 7.5
+          },
+          "Pape Gueye": {
             "1+": 1.1667,
-            "2+": 1.7273,
-            "3+": 3.2,
+            "2+": 1.75,
+            "3+": 3.3,
             "4+": 7.0
           },
-          "Theo Hernandez": {
-            "1+": 1.2222,
-            "2+": 1.95,
+          "Andreas Schjelderup": {
+            "1+": 1.0909,
+            "2+": 1.4,
+            "3+": 2.2,
+            "4+": 4.0,
+            "5+": 8.0
+          },
+          "Thelonious Gerard Aasgaard": {
+            "1+": 1.0909,
+            "2+": 1.4,
+            "3+": 2.2,
+            "4+": 4.0,
+            "5+": 8.5
+          },
+          "Morten Thorsby": {
+            "1+": 1.2,
+            "2+": 1.9091,
             "3+": 3.8,
-            "4+": 8.0
+            "4+": 8.5
           },
-          "Adrien Rabiot": {
-            "1+": 1.2222,
-            "2+": 1.95,
-            "3+": 3.9,
-            "4+": 8.0
+          "Martin Odegaard": {
+            "1+": 1.1111,
+            "2+": 1.5,
+            "3+": 2.5,
+            "4+": 4.8,
+            "5+": 10.0
           },
-          "Maghnes Akliouche": {
+          "Assane Diao": {
+            "1+": 1.1111,
+            "2+": 1.5,
+            "3+": 2.5,
+            "4+": 5.0,
+            "5+": 10.0
+          },
+          "Ibrahim Mbaye": {
+            "1+": 1.125,
+            "2+": 1.5333,
+            "3+": 2.6,
+            "4+": 5.0,
+            "5+": 10.0
+          },
+          "Habib Diarra": {
             "1+": 1.25,
             "2+": 2.05,
             "3+": 4.3333,
-            "4+": 9.5
+            "4+": 10.0
           },
-          "Aurelien Tchouameni": {
+          "Pape Matar Sarr": {
             "1+": 1.25,
             "2+": 2.1,
             "3+": 4.5,
-            "4+": 9.5
-          },
-          "Marko Hussein Farji": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.3333,
             "4+": 10.0
           },
-          "Youssef Amyn": {
-            "1+": 1.1818,
-            "2+": 1.75,
-            "3+": 3.1,
+          "Iliman Ndiaye": {
+            "1+": 1.1429,
+            "2+": 1.6154,
+            "3+": 2.8,
             "4+": 6.0,
-            "5+": 11.0
+            "5+": 12.0
           },
-          "Ahmed Ihab Qasem": {
+          "Kristian Thorstvedt": {
+            "1+": 1.1429,
+            "2+": 1.6154,
+            "3+": 2.9,
+            "4+": 6.0,
+            "5+": 12.0
+          },
+          "Lamine Camara": {
             "1+": 1.25,
-            "2+": 2.2,
-            "3+": 4.8,
+            "2+": 2.1,
+            "3+": 4.6,
             "4+": 11.0
           },
-          "Ibrahim Bayesh": {
-            "1+": 1.2857,
-            "2+": 2.2,
-            "3+": 4.8,
-            "4+": 11.0
-          },
-          "Ali Yousif": {
-            "1+": 1.2857,
-            "2+": 2.3,
-            "3+": 5.25,
-            "4+": 11.0
-          },
-          "Ali Jasim": {
-            "1+": 1.2857,
-            "2+": 2.25,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Aimar Sher": {
-            "1+": 1.2857,
-            "2+": 2.3,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Jean-Philippe Mateta": {
+          "Patrick Berg": {
             "1+": 1.3,
-            "2+": 2.4,
-            "3+": 5.5,
-            "4+": 12.0
+            "2+": 2.3,
+            "3+": 5.0,
+            "4+": 11.0
           },
-          "Aymen Hussein": {
+          "Antonio Nusa": {
+            "1+": 1.0833,
+            "2+": 1.3636,
+            "3+": 2.1,
+            "4+": 3.8,
+            "5+": 7.5,
+            "6+": 15.0
+          },
+          "Fredrik Aursnes": {
             "1+": 1.3333,
-            "2+": 2.45,
+            "2+": 2.5,
             "3+": 5.75,
             "4+": 13.0
           },
-          "Kylian Mbappe": {
-            "1+": 1.3333,
-            "2+": 2.5,
-            "3+": 6.0,
-            "4+": 13.0
-          },
-          "Zidane Iqbal": {
-            "1+": 1.3333,
-            "2+": 2.5,
-            "3+": 6.0,
-            "4+": 13.0
-          },
-          "Ousmane Dembele": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.25,
-            "4+": 13.0
-          },
-          "Ali Al Hamadi": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.25,
-            "4+": 13.0
-          },
-          "Kevin Yako": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.5,
-            "4+": 13.0
-          },
-          "Ahmed Hassan Maknzi": {
-            "1+": 1.4444,
-            "2+": 3.1,
-            "3+": 8.0,
-            "4+": 13.0
-          },
-          "Zaid Ismail Al-Dulaimi": {
-            "1+": 1.4444,
-            "2+": 3.1,
-            "3+": 8.0,
-            "4+": 13.0
-          },
-          "Lucas Hernández": {
-            "1+": 1.3636,
-            "2+": 2.7,
-            "3+": 6.5,
-            "4+": 15.0
-          },
-          "Bradley Barcola": {
+          "Bara Joseph Sapoko Ndiaye": {
             "1+": 1.4,
-            "2+": 2.9,
+            "2+": 2.875,
             "3+": 7.0,
             "4+": 15.0
           },
-          "Amir Al-Ammari": {
-            "1+": 1.4444,
-            "2+": 3.0,
-            "3+": 7.5,
-            "4+": 17.0
-          },
-          "Mimi": {
-            "1+": 1.5,
-            "2+": 3.5,
-            "3+": 9.0,
-            "4+": 15.0
-          },
-          "Warren Zaire-Emery": {
-            "1+": 1.4444,
-            "2+": 3.0,
-            "3+": 8.0,
-            "4+": 17.0
-          },
-          "Malo Gusto": {
+          "Pathe Ciss": {
             "1+": 1.4444,
             "2+": 3.1,
             "3+": 8.0,
             "4+": 17.0
           },
-          "Jules Kounde": {
-            "1+": 1.5333,
-            "2+": 3.5,
-            "3+": 9.0,
-            "4+": 19.0
+          "Fredrik Andre Bjorkan": {
+            "1+": 1.9091,
+            "2+": 5.25,
+            "3+": 15.0
           },
-          "Frans Dhia Putros": {
-            "1+": 1.5333,
-            "2+": 3.5,
-            "3+": 9.5,
-            "4+": 19.0
-          },
-          "N'Golo Kante": {
+          "Idrissa Gueye": {
             "1+": 1.5333,
             "2+": 3.5,
             "3+": 9.5,
             "4+": 19.0
           },
-          "Mustafa Saadoon Abbood Al-Korji": {
-            "1+": 1.5333,
-            "2+": 3.5,
-            "3+": 9.5,
+          "Leo Ostigard": {
+            "1+": 1.5714,
+            "2+": 3.6,
+            "3+": 10.0,
             "4+": 19.0
           },
-          "Akam Hashem": {
+          "El Hadji Malick Diouf": {
+            "1+": 1.6,
+            "2+": 3.8,
+            "3+": 10.0,
+            "4+": 19.0
+          },
+          "Sander Berge": {
+            "1+": 1.6154,
+            "2+": 3.9,
+            "3+": 10.0,
+            "4+": 21.0
+          },
+          "Henrik Falchener": {
             "1+": 1.7,
-            "2+": 4.5,
+            "2+": 4.3333,
             "3+": 11.0,
-            "4+": 17.0
-          },
-          "Lucas Digne": {
-            "1+": 1.6154,
-            "2+": 4.0,
-            "3+": 11.0,
-            "4+": 19.0
-          },
-          "Hussein Ali": {
-            "1+": 1.6154,
-            "2+": 4.0,
-            "3+": 11.0,
-            "4+": 19.0
-          },
-          "Ibrahima Konate": {
-            "1+": 1.6154,
-            "2+": 4.0,
-            "3+": 10.0,
             "4+": 21.0
           },
-          "Maxence Lacroix": {
-            "1+": 1.6154,
-            "2+": 4.0,
-            "3+": 10.0,
-            "4+": 21.0
+          "Moussa Niakhate": {
+            "1+": 2.4,
+            "2+": 8.0,
+            "3+": 19.0
           },
-          "Zaid Tahseen": {
-            "1+": 1.95,
-            "2+": 5.75,
-            "3+": 10.0,
+          "Krepin Diatta": {
+            "1+": 1.75,
+            "2+": 4.6,
+            "3+": 13.0,
             "4+": 23.0
           },
-          "Rebin Gharib": {
-            "1+": 1.95,
-            "2+": 6.0,
-            "3+": 10.0,
+          "Antoine Mendy": {
+            "1+": 1.8,
+            "2+": 4.6,
+            "3+": 13.0,
             "4+": 23.0
           },
-          "Manaf Younis": {
-            "1+": 2.0,
-            "2+": 6.25,
-            "3+": 11.0,
+          "Sondre Klingen Langas": {
+            "1+": 1.8,
+            "2+": 4.8,
+            "3+": 13.0,
             "4+": 26.0
           },
-          "Dayot Upamecano": {
+          "Abdoulaye Seck": {
+            "1+": 1.8,
+            "2+": 5.0,
+            "3+": 13.0,
+            "4+": 26.0
+          },
+          "Marcus Holmgren Pedersen": {
+            "1+": 1.85,
+            "2+": 5.0,
+            "3+": 13.0,
+            "4+": 26.0
+          },
+          "Torbjorn Heggem": {
             "1+": 1.85,
             "2+": 5.25,
             "3+": 13.0,
             "4+": 29.0
           },
-          "William Saliba": {
-            "1+": 1.95,
+          "Julian Ryerson": {
+            "1+": 1.85,
+            "2+": 5.25,
+            "3+": 15.0,
+            "4+": 29.0
+          },
+          "David Moller Wolfe": {
+            "1+": 1.9091,
             "2+": 5.5,
             "3+": 15.0,
             "4+": 29.0
-          }
-        },
-        "player_to_score": {
-          "Kylian Mbappe": {
-            "to_score": 1.4444,
-            "first": 3.1,
-            "last": 3.2
           },
-          "Jean-Philippe Mateta": {
-            "to_score": 1.85,
-            "first": 3.9,
-            "last": 4.0
-          },
-          "Marcus Thuram": {
-            "to_score": 1.75,
-            "first": 4.3333,
-            "last": 4.3333
-          },
-          "Ousmane Dembele": {
-            "to_score": 1.95,
-            "first": 5.0,
-            "last": 4.75
-          },
-          "Desire Doue": {
-            "to_score": 2.05,
-            "first": 5.0,
-            "last": 5.0
-          },
-          "Bradley Barcola": {
-            "to_score": 2.25,
-            "first": 5.25,
-            "last": 4.8
-          },
-          "Michael Olise": {
-            "to_score": 2.1,
-            "first": 5.5,
-            "last": 5.0
-          },
-          "Rayan Cherki": {
-            "to_score": 2.3,
-            "first": 5.5,
-            "last": 4.8
-          },
-          "Maghnes Akliouche": {
-            "to_score": 2.5,
-            "first": 6.5,
-            "last": 6.5
-          },
-          "Adrien Rabiot": {
-            "to_score": 3.6,
-            "first": 9.5,
-            "last": 8.5
-          },
-          "Warren Zaire-Emery": {
-            "to_score": 4.3333,
-            "first": 11.0,
-            "last": 10.0
-          },
-          "Manu Kone": {
-            "to_score": 4.6,
-            "first": 11.0,
-            "last": 11.0
-          },
-          "N'Golo Kante": {
-            "to_score": 5.5,
-            "first": 13.0,
-            "last": 12.0
-          },
-          "Mimi": {
-            "to_score": 5.25,
-            "first": 13.0,
-            "last": 13.0
-          },
-          "Theo Hernandez": {
-            "to_score": 6.0,
-            "first": 13.0,
-            "last": 13.0
-          },
-          "Aurelien Tchouameni": {
-            "to_score": 6.25,
-            "first": 13.0,
-            "last": 13.0
-          },
-          "Aymen Hussein": {
-            "to_score": 5.5,
-            "first": 15.0,
-            "last": 13.0
-          },
-          "Ali Yousif": {
-            "to_score": 6.25,
-            "first": 15.0,
-            "last": 15.0
-          },
-          "Ali Al Hamadi": {
-            "to_score": 6.5,
-            "first": 17.0,
-            "last": 15.0
-          },
-          "Maxence Lacroix": {
-            "to_score": 7.0,
-            "first": 17.0,
-            "last": 19.0
-          },
-          "Dayot Upamecano": {
-            "to_score": 8.0,
-            "first": 19.0,
-            "last": 17.0
-          },
-          "Malo Gusto": {
-            "to_score": 7.5,
-            "first": 19.0,
-            "last": 19.0
-          },
-          "Lucas Digne": {
-            "to_score": 8.5,
-            "first": 19.0,
-            "last": 19.0
-          },
-          "Lucas Hernández": {
-            "to_score": 9.5,
-            "first": 23.0,
-            "last": 19.0
-          },
-          "Jules Kounde": {
-            "to_score": 9.0,
-            "first": 23.0,
-            "last": 21.0
-          },
-          "Ali Jasim": {
-            "to_score": 9.0,
-            "first": 23.0,
-            "last": 21.0
-          },
-          "Marko Hussein Farji": {
-            "to_score": 9.5,
-            "first": 23.0,
-            "last": 21.0
-          },
-          "Ibrahim Bayesh": {
-            "to_score": 9.5,
-            "first": 23.0,
-            "last": 21.0
-          },
-          "Ibrahima Konate": {
-            "to_score": 9.5,
-            "first": 23.0,
-            "last": 26.0
-          },
-          "Ahmed Ihab Qasem": {
-            "to_score": 9.5,
-            "first": 26.0,
-            "last": 23.0
-          },
-          "Youssef Amyn": {
-            "to_score": 10.0,
-            "first": 26.0,
-            "last": 23.0
-          },
-          "William Saliba": {
-            "to_score": 10.0,
-            "first": 26.0,
-            "last": 29.0
-          },
-          "Kevin Yako": {
-            "to_score": 10.0,
-            "first": 29.0,
-            "last": 34.0
-          },
-          "Zidane Iqbal": {
-            "to_score": 13.0,
-            "first": 34.0,
-            "last": 34.0
-          },
-          "Zaid Ismail Al-Dulaimi": {
-            "to_score": 13.0,
-            "first": 34.0,
-            "last": 34.0
-          },
-          "Amir Al-Ammari": {
-            "to_score": 19.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Aimar Sher": {
-            "to_score": 21.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Ahmed Hassan Maknzi": {
-            "to_score": 23.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Akam Hashem": {
-            "to_score": 26.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Zaid Tahseen": {
-            "to_score": 26.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Frans Dhia Putros": {
-            "to_score": 29.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Hussein Ali": {
-            "to_score": 29.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Merchas Doski": {
-            "to_score": 29.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Rebin Gharib": {
-            "to_score": 29.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Manaf Younis": {
-            "to_score": 29.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Mustafa Saadoon Abbood Al-Korji": {
-            "to_score": 29.0,
-            "first": 51.0,
-            "last": 51.0
-          }
-        },
-        "player_shots": {
-          "Marcus Thuram": {
-            "1+": 1.0067,
-            "2+": 1.04,
-            "3+": 1.1429,
-            "4+": 1.3636,
-            "5+": 1.8,
-            "6+": 2.625
-          },
-          "Jean-Philippe Mateta": {
-            "1+": 1.0067,
-            "2+": 1.04,
-            "3+": 1.1538,
-            "4+": 1.3636,
-            "5+": 1.85,
-            "6+": 2.7
-          },
-          "Rayan Cherki": {
-            "1+": 1.0152,
-            "2+": 1.0909,
-            "3+": 1.2857,
-            "4+": 1.7,
-            "5+": 2.5,
-            "6+": 4.2
-          },
-          "Ousmane Dembele": {
-            "1+": 1.02,
-            "2+": 1.1,
-            "3+": 1.3,
-            "4+": 1.75,
-            "5+": 2.7,
-            "6+": 4.6
-          },
-          "Maghnes Akliouche": {
-            "1+": 1.02,
-            "2+": 1.1,
-            "3+": 1.3,
-            "4+": 1.75,
-            "5+": 2.7,
-            "6+": 4.6
-          },
-          "Bradley Barcola": {
-            "1+": 1.02,
-            "2+": 1.1,
-            "3+": 1.3,
-            "4+": 1.8,
-            "5+": 2.75,
-            "6+": 4.6
-          },
-          "Kylian Mbappe": {
-            "1+": 1.002,
-            "2+": 1.0152,
-            "3+": 1.05,
-            "4+": 1.1538,
-            "5+": 1.3333,
-            "6+": 1.7273
-          },
-          "Michael Olise": {
-            "1+": 1.01,
-            "2+": 1.0714,
-            "3+": 1.2222,
-            "4+": 1.5714,
-            "5+": 2.25,
-            "6+": 3.6
-          },
-          "Manu Kone": {
-            "1+": 1.1111,
-            "2+": 1.5,
-            "3+": 2.5,
-            "4+": 5.0
-          },
-          "Warren Zaire-Emery": {
-            "1+": 1.125,
-            "2+": 1.6,
-            "3+": 2.8,
-            "4+": 5.75
-          },
-          "Desire Doue": {
-            "1+": 1.02,
-            "2+": 1.1,
-            "3+": 1.3333,
-            "4+": 1.8,
-            "5+": 2.75,
-            "6+": 4.75
-          },
-          "Adrien Rabiot": {
-            "1+": 1.1667,
-            "2+": 1.75,
-            "3+": 3.25,
-            "4+": 6.5
-          },
-          "Theo Hernandez": {
-            "1+": 1.2,
-            "2+": 1.85,
-            "3+": 3.6,
-            "4+": 8.0
-          },
-          "Aurelien Tchouameni": {
-            "1+": 1.2,
-            "2+": 1.85,
-            "3+": 3.6,
-            "4+": 8.0
-          },
-          "Ali Al Hamadi": {
-            "1+": 1.2222,
-            "2+": 1.95,
-            "3+": 4.0,
-            "4+": 9.0
-          },
-          "N'Golo Kante": {
-            "1+": 1.3636,
-            "2+": 2.6,
-            "3+": 6.25,
-            "4+": 15.0
-          },
-          "Aymen Hussein": {
-            "1+": 1.2,
-            "2+": 1.9091,
-            "3+": 3.75,
-            "4+": 8.0,
-            "5+": 17.0
-          },
-          "Maxence Lacroix": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.5,
-            "4+": 15.0
-          },
-          "Malo Gusto": {
-            "1+": 1.3636,
-            "2+": 2.75,
-            "3+": 6.5,
-            "4+": 15.0
-          },
-          "Ali Jasim": {
-            "1+": 1.4,
-            "2+": 2.9,
-            "3+": 7.0,
-            "4+": 17.0
-          },
-          "Lucas Digne": {
-            "1+": 1.4,
-            "2+": 2.9,
-            "3+": 7.5,
-            "4+": 17.0
-          },
-          "Marko Hussein Farji": {
-            "1+": 1.4444,
-            "2+": 3.1,
-            "3+": 8.0,
-            "4+": 17.0
-          },
-          "Mimi": {
-            "1+": 1.3,
-            "2+": 2.25,
-            "3+": 4.75,
-            "4+": 10.0,
-            "5+": 19.0
-          },
-          "Ahmed Ihab Qasem": {
-            "1+": 1.6,
-            "2+": 3.5,
-            "3+": 9.0,
-            "4+": 17.0
-          },
-          "William Saliba": {
-            "1+": 1.5333,
-            "2+": 3.3,
-            "3+": 8.0,
-            "4+": 19.0
-          },
-          "Youssef Amyn": {
-            "1+": 1.5333,
-            "2+": 3.5,
-            "3+": 10.0,
-            "4+": 17.0
-          },
-          "Ibrahima Konate": {
-            "1+": 1.4444,
-            "2+": 3.2,
-            "3+": 8.5,
-            "4+": 19.0
-          },
-          "Kevin Yako": {
-            "1+": 1.6,
-            "2+": 3.8,
-            "3+": 10.0,
-            "4+": 17.0
-          },
-          "Frans Dhia Putros": {
-            "1+": 3.8,
-            "2+": 13.0
-          },
-          "Dayot Upamecano": {
-            "1+": 1.5333,
-            "2+": 3.6,
-            "3+": 9.5,
-            "4+": 19.0
-          },
-          "Jules Kounde": {
-            "1+": 1.6,
-            "2+": 3.75,
-            "3+": 10.0,
-            "4+": 19.0
-          },
-          "Ibrahim Bayesh": {
-            "1+": 1.6154,
-            "2+": 3.75,
-            "3+": 10.0,
-            "4+": 19.0
-          },
-          "Ali Yousif": {
-            "1+": 1.4,
-            "2+": 2.7,
-            "3+": 6.0,
-            "4+": 12.0,
-            "5+": 23.0
-          },
-          "Lucas Hernández": {
-            "1+": 1.7,
-            "2+": 4.0,
-            "3+": 11.0,
-            "4+": 23.0
-          },
-          "Aimar Sher": {
+          "Kalidou Koulibaly": {
             "1+": 1.95,
             "2+": 5.75,
             "3+": 15.0,
             "4+": 29.0
           },
-          "Zaid Ismail Al-Dulaimi": {
+          "Ismail Jakobs": {
+            "1+": 2.05,
+            "2+": 6.25,
+            "3+": 15.0,
+            "4+": 34.0
+          },
+          "Mamadou Sarr": {
             "1+": 2.05,
             "2+": 6.5,
             "3+": 15.0,
-            "4+": 29.0
+            "4+": 34.0
           },
-          "Amir Al-Ammari": {
-            "1+": 2.1,
-            "2+": 6.5,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "Zidane Iqbal": {
-            "1+": 2.1,
-            "2+": 6.5,
+          "Kristoffer Ajer": {
+            "1+": 2.05,
+            "2+": 6.25,
             "3+": 17.0,
-            "4+": 34.0
-          },
-          "Manaf Younis": {
-            "1+": 3.5,
-            "2+": 13.0,
-            "3+": 29.0
-          },
-          "Mustafa Saadoon Abbood Al-Korji": {
-            "1+": 3.5,
-            "2+": 13.0,
-            "3+": 29.0
-          },
-          "Merchas Doski": {
-            "1+": 3.6,
-            "2+": 13.0,
-            "3+": 29.0
-          },
-          "Hussein Ali": {
-            "1+": 2.9,
-            "2+": 11.0,
-            "3+": 23.0,
-            "4+": 34.0
-          },
-          "Rebin Gharib": {
-            "1+": 4.3333,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Ahmed Hassan Maknzi": {
-            "1+": 3.25,
-            "2+": 12.0,
-            "3+": 23.0,
-            "4+": 34.0
-          },
-          "Akam Hashem": {
-            "1+": 3.3,
-            "2+": 12.0,
-            "3+": 23.0,
-            "4+": 34.0
-          },
-          "Zaid Tahseen": {
-            "1+": 3.4,
-            "2+": 13.0,
-            "3+": 26.0,
             "4+": 34.0
           }
         }
@@ -3465,8 +2222,8 @@
       "markets": {
         "match_result": {
           "home": 6.0,
-          "draw": 3.9,
-          "away": 1.5
+          "draw": 4.0,
+          "away": 1.4444
         },
         "total_goals": {
           "over_0_5": 1.05,
@@ -3494,51 +2251,51 @@
           "draw_away": null
         },
         "total_shots_on_target": {
-          "over_7": 1.2,
+          "over_7": 1.2222,
           "over_8": 1.3636,
           "over_9": 1.6154,
           "over_10": 2.05,
-          "over_11": 2.625
+          "over_11": 2.7
         },
         "home_shots_on_target": {
-          "over_7": 1.2,
+          "over_7": 1.2222,
           "over_8": 1.3636,
           "over_9": 1.6154,
           "over_10": 2.05,
-          "over_11": 2.625
+          "over_11": 2.7
         },
         "away_shots_on_target": {
-          "over_7": 1.2,
+          "over_7": 1.2222,
           "over_8": 1.3636,
           "over_9": 1.6154,
           "over_10": 2.05,
-          "over_11": 2.625
+          "over_11": 2.7
         },
         "total_shots": {
           "over_24": 1.5714,
           "over_25": 1.7273,
           "over_26": 1.9091,
-          "over_27": 2.1,
+          "over_27": 2.15,
           "over_28": 2.4
         },
         "home_shots": {
           "over_24": 1.5714,
           "over_25": 1.7273,
           "over_26": 1.9091,
-          "over_27": 2.1,
+          "over_27": 2.15,
           "over_28": 2.4
         },
         "away_shots": {
           "over_24": 1.5714,
           "over_25": 1.7273,
           "over_26": 1.9091,
-          "over_27": 2.1,
+          "over_27": 2.15,
           "over_28": 2.4
         },
         "total_cards": {
           "over_3": 1.2222,
-          "over_4": 1.5714,
-          "over_5": 2.25,
+          "over_4": 1.6,
+          "over_5": 2.3,
           "over_6": 3.6
         },
         "total_corners": {
@@ -3548,16 +2305,16 @@
           "over_11": 3.0
         },
         "team_most_corners": {
-          "home": 3.2,
-          "draw": 7.5,
-          "away": 1.5
+          "home": 3.6,
+          "draw": 8.0,
+          "away": 1.4444
         },
         "player_carded": {
           "Amer Rasem Adel Jamous": {
             "carded_anytime": 2.5,
             "sent_off_anytime": 26.0,
-            "carded_first": 7.0,
-            "carded_last": 7.0
+            "carded_first": 6.5,
+            "carded_last": 6.5
           },
           "Odeh Burhan Shehade Fakhoury": {
             "carded_anytime": 3.3,
@@ -3568,14 +2325,20 @@
           "Saed Ahmad Salameh Al-Rosan": {
             "carded_anytime": 3.0,
             "sent_off_anytime": 34.0,
-            "carded_first": 9.0,
-            "carded_last": 9.0
+            "carded_first": 8.5,
+            "carded_last": 8.5
           },
           "Husam Abu Dahab": {
             "carded_anytime": 3.6,
             "sent_off_anytime": 34.0,
-            "carded_first": 11.0,
-            "carded_last": 11.0
+            "carded_first": 10.0,
+            "carded_last": 10.0
+          },
+          "Nizar Mahmoud Ahmed Al Rashdan": {
+            "carded_anytime": 3.6,
+            "sent_off_anytime": 34.0,
+            "carded_first": 10.0,
+            "carded_last": 10.0
           },
           "Saleem Amer Saleem Obaid": {
             "carded_anytime": 3.6,
@@ -3583,8 +2346,8 @@
             "carded_first": 11.0,
             "carded_last": 11.0
           },
-          "Nizar Mahmoud Ahmed Al Rashdan": {
-            "carded_anytime": 3.6,
+          "Ramy Bensebaini": {
+            "carded_anytime": 3.75,
             "sent_off_anytime": 34.0,
             "carded_first": 11.0,
             "carded_last": 11.0
@@ -3595,44 +2358,44 @@
             "carded_first": 11.0,
             "carded_last": 11.0
           },
-          "Ramy Bensebaini": {
-            "carded_anytime": 3.75,
-            "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
           "Mohammad Ali Hasan Abu Hasheesh": {
             "carded_anytime": 4.0,
             "sent_off_anytime": 34.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
+            "carded_first": 11.0,
+            "carded_last": 11.0
           },
           "Yazan Al Arab": {
             "carded_anytime": 4.0,
             "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
+            "carded_first": 12.0,
+            "carded_last": 12.0
           },
           "Abdallah Mousa Musallam Nasib": {
             "carded_anytime": 4.0,
             "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Mohamed El Amine Amoura": {
-            "carded_anytime": 4.8,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
+            "carded_first": 12.0,
+            "carded_last": 12.0
           },
           "Ibrahim Mohammad Sami Sadeh": {
+            "carded_anytime": 4.0,
+            "sent_off_anytime": 41.0,
+            "carded_first": 11.0,
+            "carded_last": 11.0
+          },
+          "Rajaei Ayed Fadel Hasan": {
             "carded_anytime": 4.0,
             "sent_off_anytime": 41.0,
             "carded_first": 12.0,
             "carded_last": 12.0
           },
-          "Rajaei Ayed Fadel Hasan": {
-            "carded_anytime": 4.0,
+          "Ehsan Nabil Farhan Haddad": {
+            "carded_anytime": 4.2,
+            "sent_off_anytime": 41.0,
+            "carded_first": 12.0,
+            "carded_last": 12.0
+          },
+          "Nabil Bentaleb": {
+            "carded_anytime": 4.3333,
             "sent_off_anytime": 41.0,
             "carded_first": 12.0,
             "carded_last": 12.0
@@ -3649,19 +2412,13 @@
             "carded_first": 13.0,
             "carded_last": 13.0
           },
-          "Ehsan Nabil Farhan Haddad": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
           "Mohammad Ahmed Mohammad Taha": {
             "carded_anytime": 4.2,
             "sent_off_anytime": 41.0,
             "carded_first": 13.0,
             "carded_last": 13.0
           },
-          "Nabil Bentaleb": {
+          "Noor Al Deen Mahmoud Ali Al Rawabdeh": {
             "carded_anytime": 4.3333,
             "sent_off_anytime": 41.0,
             "carded_first": 13.0,
@@ -3673,17 +2430,23 @@
             "carded_first": 13.0,
             "carded_last": 13.0
           },
+          "Mohammad Faisal Yousef Abu Zrayq": {
+            "carded_anytime": 4.5,
+            "sent_off_anytime": 41.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
           "Yacine Mohamed El Ghazali Titraoui": {
             "carded_anytime": 4.6,
             "sent_off_anytime": 41.0,
             "carded_first": 13.0,
             "carded_last": 13.0
           },
-          "Mohammad Faisal Yousef Abu Zrayq": {
-            "carded_anytime": 4.5,
+          "Fares Ghedjemis": {
+            "carded_anytime": 4.8,
             "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
+            "carded_first": 13.0,
+            "carded_last": 13.0
           },
           "Anis Hadj Moussa": {
             "carded_anytime": 4.6,
@@ -3691,29 +2454,53 @@
             "carded_first": 15.0,
             "carded_last": 15.0
           },
-          "Fares Ghedjemis": {
+          "Ali Iyad Ali Olwan": {
             "carded_anytime": 4.8,
             "sent_off_anytime": 41.0,
             "carded_first": 15.0,
             "carded_last": 15.0
           },
-          "Ali Iyad Ali Olwan": {
-            "carded_anytime": 4.8,
-            "sent_off_anytime": 41.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
-          },
           "Ali Ahmad Ali Azaizeh": {
             "carded_anytime": 5.0,
             "sent_off_anytime": 41.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
+            "carded_first": 15.0,
+            "carded_last": 15.0
           },
-          "Noor Al Deen Mahmoud Ali Al Rawabdeh": {
-            "carded_anytime": 4.3333,
+          "Mohammad Rateb Al Dawoud": {
+            "carded_anytime": 4.5,
             "sent_off_anytime": 51.0,
             "carded_first": 13.0,
             "carded_last": 13.0
+          },
+          "Anas Badawi": {
+            "carded_anytime": 4.5,
+            "sent_off_anytime": 51.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Samir Chergui": {
+            "carded_anytime": 4.75,
+            "sent_off_anytime": 51.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Rayan Aït-Nouri": {
+            "carded_anytime": 4.8,
+            "sent_off_anytime": 51.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Rafik Belghali": {
+            "carded_anytime": 5.0,
+            "sent_off_anytime": 51.0,
+            "carded_first": 13.0,
+            "carded_last": 13.0
+          },
+          "Abdallah Raeed Al Fakhouri": {
+            "carded_anytime": 6.0,
+            "sent_off_anytime": 41.0,
+            "carded_first": 19.0,
+            "carded_last": 19.0
           },
           "Mohammad Abualnadi": {
             "carded_anytime": 4.5,
@@ -3721,53 +2508,17 @@
             "carded_first": 15.0,
             "carded_last": 15.0
           },
-          "Mohammad Rateb Al Dawoud": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 51.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Anas Badawi": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 51.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Samir Chergui": {
-            "carded_anytime": 4.75,
-            "sent_off_anytime": 51.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Rayan Aït-Nouri": {
-            "carded_anytime": 4.8,
-            "sent_off_anytime": 51.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Rafik Belghali": {
-            "carded_anytime": 5.0,
-            "sent_off_anytime": 51.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Abdallah Raeed Al Fakhouri": {
-            "carded_anytime": 6.0,
-            "sent_off_anytime": 41.0,
-            "carded_first": 21.0,
-            "carded_last": 21.0
-          },
           "Ramiz Zerrouki": {
             "carded_anytime": 4.6,
             "sent_off_anytime": 51.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
+            "carded_first": 15.0,
+            "carded_last": 15.0
           },
           "Aissa Mandi": {
             "carded_anytime": 5.0,
             "sent_off_anytime": 51.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
+            "carded_first": 15.0,
+            "carded_last": 15.0
           },
           "Musa Al-Taamari": {
             "carded_anytime": 5.0,
@@ -3778,32 +2529,32 @@
           "Adil Boulbina": {
             "carded_anytime": 5.0,
             "sent_off_anytime": 51.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
+            "carded_first": 17.0,
+            "carded_last": 17.0
           },
           "Achref Abada": {
             "carded_anytime": 5.0,
             "sent_off_anytime": 51.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
+            "carded_first": 17.0,
+            "carded_last": 17.0
           },
           "Ahmed Nadir Benbouali": {
             "carded_anytime": 5.25,
             "sent_off_anytime": 51.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
+            "carded_first": 17.0,
+            "carded_last": 17.0
           },
           "Ibrahim Maza": {
             "carded_anytime": 5.5,
             "sent_off_anytime": 51.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
+            "carded_first": 17.0,
+            "carded_last": 17.0
           },
           "Zineddine Belaid": {
             "carded_anytime": 5.5,
             "sent_off_anytime": 51.0,
-            "carded_first": 19.0,
-            "carded_last": 19.0
+            "carded_first": 17.0,
+            "carded_last": 17.0
           },
           "Mohamed Tougai": {
             "carded_anytime": 4.8,
@@ -3811,17 +2562,17 @@
             "carded_first": 13.0,
             "carded_last": 13.0
           },
-          "Noureddin Zaid Khalil Bani Attaya": {
+          "Yazeed Abu Laila": {
             "carded_anytime": 7.0,
             "sent_off_anytime": 51.0,
             "carded_first": 23.0,
             "carded_last": 23.0
           },
-          "Yazeed Abu Laila": {
+          "Noureddin Zaid Khalil Bani Attaya": {
             "carded_anytime": 7.0,
             "sent_off_anytime": 51.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
+            "carded_first": 23.0,
+            "carded_last": 23.0
           },
           "Houssem Aouar": {
             "carded_anytime": 5.75,
@@ -3832,8 +2583,8 @@
           "Amine Gouiri": {
             "carded_anytime": 6.0,
             "sent_off_anytime": 67.0,
-            "carded_first": 21.0,
-            "carded_last": 21.0
+            "carded_first": 19.0,
+            "carded_last": 19.0
           },
           "Fares Chaibi": {
             "carded_anytime": 6.5,
@@ -3844,8 +2595,8 @@
           "Riyad Mahrez": {
             "carded_anytime": 7.0,
             "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
+            "carded_first": 23.0,
+            "carded_last": 23.0
           },
           "Oussama Benbout": {
             "carded_anytime": 9.0,
@@ -3856,8 +2607,8 @@
           "Luca Zidane": {
             "carded_anytime": 9.5,
             "sent_off_anytime": 67.0,
-            "carded_first": 34.0,
-            "carded_last": 34.0
+            "carded_first": 29.0,
+            "carded_last": 29.0
           },
           "Melvin Feycal Mastil": {
             "carded_anytime": 15.0,
@@ -3880,12 +2631,6 @@
             "4+": 8.5
           },
           "Amine Gouiri": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.75,
-            "4+": 11.0
-          },
-          "Mohamed El Amine Amoura": {
             "1+": 1.25,
             "2+": 2.15,
             "3+": 4.75,
@@ -4224,7 +2969,7 @@
             "1+": 1.2222,
             "2+": 1.95,
             "3+": 4.0,
-            "4+": 9.5
+            "4+": 9.0
           },
           "Fares Ghedjemis": {
             "1+": 1.2222,
@@ -4287,12 +3032,6 @@
             "3+": 5.5,
             "4+": 13.0
           },
-          "Mohamed El Amine Amoura": {
-            "1+": 1.3,
-            "2+": 2.45,
-            "3+": 5.5,
-            "4+": 13.0
-          },
           "Mohammad Ali Hasan Abu Hasheesh": {
             "1+": 1.3333,
             "2+": 2.5,
@@ -4311,16 +3050,16 @@
             "3+": 6.5,
             "4+": 15.0
           },
-          "Zineddine Belaid": {
-            "1+": 1.3636,
-            "2+": 2.8,
-            "3+": 6.5,
-            "4+": 15.0
-          },
           "Adil Boulbina": {
             "1+": 1.3636,
             "2+": 2.8,
             "3+": 6.5,
+            "4+": 17.0
+          },
+          "Zineddine Belaid": {
+            "1+": 1.4,
+            "2+": 2.8,
+            "3+": 7.0,
             "4+": 17.0
           },
           "Mahmoud Nayef Ahmad Al Mardi": {
@@ -4502,7 +3241,7 @@
           },
           "Ramiz Zerrouki": {
             "1+": 1.3,
-            "2+": 2.4,
+            "2+": 2.375,
             "3+": 5.25,
             "4+": 12.0
           },
@@ -4604,12 +3343,6 @@
             "3+": 9.0,
             "4+": 19.0
           },
-          "Mohamed El Amine Amoura": {
-            "1+": 1.5333,
-            "2+": 3.6,
-            "3+": 10.0,
-            "4+": 19.0
-          },
           "Aissa Mandi": {
             "1+": 1.5714,
             "2+": 3.8,
@@ -4695,15 +3428,10 @@
             "first": 4.8,
             "last": 4.6
           },
-          "Mohamed El Amine Amoura": {
-            "to_score": 2.5,
-            "first": 4.8,
-            "last": 4.75
-          },
           "Adil Boulbina": {
             "to_score": 2.5,
             "first": 5.25,
-            "last": 4.8
+            "last": 5.0
           },
           "Riyad Mahrez": {
             "to_score": 2.625,
@@ -4713,17 +3441,17 @@
           "Fares Ghedjemis": {
             "to_score": 3.3,
             "first": 6.5,
-            "last": 5.75
+            "last": 6.0
           },
           "Anis Hadj Moussa": {
-            "to_score": 3.1,
+            "to_score": 3.2,
             "first": 6.5,
             "last": 6.5
           },
           "Houssem Aouar": {
             "to_score": 3.5,
             "first": 7.0,
-            "last": 6.25
+            "last": 6.5
           },
           "Ibrahim Maza": {
             "to_score": 3.75,
@@ -4731,7 +3459,7 @@
             "last": 7.0
           },
           "Ali Iyad Ali Olwan": {
-            "to_score": 3.75,
+            "to_score": 3.8,
             "first": 8.0,
             "last": 8.0
           },
@@ -4780,18 +3508,18 @@
             "first": 12.0,
             "last": 12.0
           },
-          "Ramy Bensebaini": {
-            "to_score": 6.5,
-            "first": 13.0,
-            "last": 12.0
-          },
           "Jaouen Hadjam": {
             "to_score": 7.5,
             "first": 13.0,
             "last": 11.0
           },
+          "Ramy Bensebaini": {
+            "to_score": 7.0,
+            "first": 13.0,
+            "last": 12.0
+          },
           "Rafik Belghali": {
-            "to_score": 7.5,
+            "to_score": 8.0,
             "first": 13.0,
             "last": 13.0
           },
@@ -4801,7 +3529,7 @@
             "last": 13.0
           },
           "Ramiz Zerrouki": {
-            "to_score": 7.5,
+            "to_score": 8.0,
             "first": 15.0,
             "last": 13.0
           },
@@ -4856,7 +3584,7 @@
             "last": 21.0
           },
           "Achref Abada": {
-            "to_score": 10.0,
+            "to_score": 11.0,
             "first": 23.0,
             "last": 23.0
           },
@@ -4922,7 +3650,7 @@
             "2+": 1.0714,
             "3+": 1.2222,
             "4+": 1.5714,
-            "5+": 2.25,
+            "5+": 2.3,
             "6+": 3.6
           },
           "Adil Boulbina": {
@@ -4932,13 +3660,6 @@
             "4+": 1.6154,
             "5+": 2.375,
             "6+": 3.8
-          },
-          "Mohamed El Amine Amoura": {
-            "1+": 1.0303,
-            "2+": 1.1667,
-            "3+": 1.4444,
-            "4+": 2.2,
-            "5+": 3.6
           },
           "Riyad Mahrez": {
             "1+": 1.05,
@@ -5201,1697 +3922,6 @@
             "1+": 2.45,
             "2+": 8.5,
             "3+": 17.0,
-            "4+": 34.0
-          }
-        }
-      }
-    },
-    {
-      "match_id": "scotland-v-brazil",
-      "event_id": "54520507",
-      "home": "Scotland",
-      "away": "Brazil",
-      "kickoff": "Wed 23:00",
-      "bookmaker": "Midnite",
-      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/scotland-v-brazil-54520507",
-      "markets": {
-        "match_result": {
-          "home": 8.5,
-          "draw": 4.6,
-          "away": 1.3
-        },
-        "total_goals": {
-          "over_0_5": 1.04,
-          "under_0_5": 10.0,
-          "over_1_5": 1.2857,
-          "under_1_5": 3.5,
-          "over_2_5": 1.7273,
-          "under_2_5": 2.0,
-          "over_3_5": 3.0,
-          "under_3_5": 1.3636,
-          "over_4_5": 5.0,
-          "under_4_5": 1.1429
-        },
-        "btts": {
-          "yes": 2.2,
-          "no": 1.6154
-        },
-        "htft": {
-          "half time_full time": 15.0,
-          "home_home": 26.0,
-          "home_draw": 26.0,
-          "home_away": 21.0,
-          "draw_home": 7.0,
-          "draw_draw": 4.0,
-          "draw_away": 1.6667
-        },
-        "total_shots_on_target": {
-          "over_8": 1.6667,
-          "over_9": 2.1,
-          "over_10": 2.8,
-          "over_11": 3.9
-        },
-        "home_shots_on_target": {
-          "over_8": 1.6667,
-          "over_9": 2.1,
-          "over_10": 2.8,
-          "over_11": 3.9
-        },
-        "away_shots_on_target": {
-          "over_8": 1.6667,
-          "over_9": 2.1,
-          "over_10": 2.8,
-          "over_11": 3.9
-        },
-        "total_shots": {
-          "over_24": 2.1,
-          "over_23": 1.85,
-          "over_25": 2.4,
-          "over_26": 2.75,
-          "over_27": 3.2
-        },
-        "home_shots": {
-          "over_24": 2.1,
-          "over_23": 1.85,
-          "over_25": 2.4,
-          "over_26": 2.75,
-          "over_27": 3.2
-        },
-        "away_shots": {
-          "over_24": 2.1,
-          "over_23": 1.85,
-          "over_25": 2.4,
-          "over_26": 2.75,
-          "over_27": 3.2
-        },
-        "total_cards": {
-          "over_3": 1.125,
-          "over_4": 1.3,
-          "over_5": 1.6667,
-          "over_6": 2.4
-        },
-        "total_corners": {
-          "over_9": 1.75,
-          "over_10": 2.1,
-          "over_11": 2.625,
-          "over_12": 3.3
-        },
-        "team_most_corners": {
-          "home": 5.5,
-          "draw": 9.0,
-          "away": 1.25
-        },
-        "player_carded": {
-          "Tyler Fletcher": {
-            "carded_anytime": 2.5,
-            "sent_off_anytime": 15.0,
-            "carded_first": 7.0,
-            "carded_last": 7.0
-          },
-          "Findlay Kenneth Curtis": {
-            "carded_anytime": 2.9,
-            "sent_off_anytime": 12.0,
-            "carded_first": 8.5,
-            "carded_last": 8.5
-          },
-          "Roger Ibañez": {
-            "carded_anytime": 2.9,
-            "sent_off_anytime": 15.0,
-            "carded_first": 9.0,
-            "carded_last": 9.0
-          },
-          "Lewis Ferguson": {
-            "carded_anytime": 2.6,
-            "sent_off_anytime": 23.0,
-            "carded_first": 7.5,
-            "carded_last": 7.5
-          },
-          "Rayan": {
-            "carded_anytime": 3.3,
-            "sent_off_anytime": 21.0,
-            "carded_first": 10.0,
-            "carded_last": 10.0
-          },
-          "Aaron Hickey": {
-            "carded_anytime": 3.0,
-            "sent_off_anytime": 26.0,
-            "carded_first": 9.0,
-            "carded_last": 9.0
-          },
-          "Ederson": {
-            "carded_anytime": 3.25,
-            "sent_off_anytime": 26.0,
-            "carded_first": 10.0,
-            "carded_last": 10.0
-          },
-          "Fabinho": {
-            "carded_anytime": 3.3,
-            "sent_off_anytime": 26.0,
-            "carded_first": 10.0,
-            "carded_last": 10.0
-          },
-          "Lucas Paqueta": {
-            "carded_anytime": 3.3,
-            "sent_off_anytime": 26.0,
-            "carded_first": 10.0,
-            "carded_last": 10.0
-          },
-          "Casemiro": {
-            "carded_anytime": 3.5,
-            "sent_off_anytime": 29.0,
-            "carded_first": 10.0,
-            "carded_last": 10.0
-          },
-          "Ross Stewart": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 23.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Neymar": {
-            "carded_anytime": 3.9,
-            "sent_off_anytime": 26.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Igor Thiago": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 26.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Ryan Christie": {
-            "carded_anytime": 3.6,
-            "sent_off_anytime": 29.0,
-            "carded_first": 11.0,
-            "carded_last": 11.0
-          },
-          "Scott McKenna": {
-            "carded_anytime": 3.6,
-            "sent_off_anytime": 29.0,
-            "carded_first": 11.0,
-            "carded_last": 11.0
-          },
-          "Dominic Hyam": {
-            "carded_anytime": 3.6,
-            "sent_off_anytime": 29.0,
-            "carded_first": 11.0,
-            "carded_last": 11.0
-          },
-          "George David Eric Hirst": {
-            "carded_anytime": 4.3333,
-            "sent_off_anytime": 26.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Bremer": {
-            "carded_anytime": 3.8,
-            "sent_off_anytime": 29.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Leo Pereira": {
-            "carded_anytime": 3.9,
-            "sent_off_anytime": 29.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Kieran Tierney": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 29.0,
-            "carded_first": 12.0,
-            "carded_last": 12.0
-          },
-          "Endrick": {
-            "carded_anytime": 4.0,
-            "sent_off_anytime": 29.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Douglas Santos": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 29.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Vinicius Junior": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 29.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "John McGinn": {
-            "carded_anytime": 4.3333,
-            "sent_off_anytime": 29.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Bruno Guimaraes": {
-            "carded_anytime": 3.5,
-            "sent_off_anytime": 34.0,
-            "carded_first": 11.0,
-            "carded_last": 11.0
-          },
-          "Ben Doak": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 29.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Kenny McLean": {
-            "carded_anytime": 3.6,
-            "sent_off_anytime": 34.0,
-            "carded_first": 11.0,
-            "carded_last": 11.0
-          },
-          "Anthony Ralston": {
-            "carded_anytime": 3.75,
-            "sent_off_anytime": 34.0,
-            "carded_first": 11.0,
-            "carded_last": 11.0
-          },
-          "Che Adams": {
-            "carded_anytime": 4.8,
-            "sent_off_anytime": 29.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Lyndon Dykes": {
-            "carded_anytime": 4.8,
-            "sent_off_anytime": 29.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Danilo": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Luiz Henrique": {
-            "carded_anytime": 4.2,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Grant Hanley": {
-            "carded_anytime": 4.3333,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Gabriel": {
-            "carded_anytime": 4.3333,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Matheus Cunha": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Gabriel Martinelli": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 34.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Andrew Robertson": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "John Souttar": {
-            "carded_anytime": 4.5,
-            "sent_off_anytime": 41.0,
-            "carded_first": 13.0,
-            "carded_last": 13.0
-          },
-          "Lawrence Shankland": {
-            "carded_anytime": 5.5,
-            "sent_off_anytime": 34.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
-          },
-          "Jack Hendry": {
-            "carded_anytime": 4.75,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Nathan Patterson": {
-            "carded_anytime": 4.75,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Marquinhos": {
-            "carded_anytime": 5.0,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Scott McTominay": {
-            "carded_anytime": 5.25,
-            "sent_off_anytime": 41.0,
-            "carded_first": 15.0,
-            "carded_last": 15.0
-          },
-          "Alex Sandro": {
-            "carded_anytime": 5.25,
-            "sent_off_anytime": 41.0,
-            "carded_first": 17.0,
-            "carded_last": 17.0
-          },
-          "Liam Kelly": {
-            "carded_anytime": 8.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 23.0,
-            "carded_last": 23.0
-          },
-          "Craig Gordon": {
-            "carded_anytime": 8.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Angus Gunn": {
-            "carded_anytime": 8.5,
-            "sent_off_anytime": 67.0,
-            "carded_first": 26.0,
-            "carded_last": 26.0
-          },
-          "Weverton": {
-            "carded_anytime": 15.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 34.0,
-            "carded_last": 34.0
-          },
-          "Alisson": {
-            "carded_anytime": 15.0,
-            "sent_off_anytime": 67.0,
-            "carded_first": 34.0,
-            "carded_last": 34.0
-          }
-        },
-        "player_shots_on_target": {
-          "Neymar": {
-            "1+": 1.2222,
-            "2+": 2.05,
-            "3+": 4.2,
-            "4+": 10.0
-          },
-          "Vinicius Junior": {
-            "1+": 1.25,
-            "2+": 2.05,
-            "3+": 4.3333,
-            "4+": 10.0
-          },
-          "Endrick": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.6,
-            "4+": 11.0
-          },
-          "Matheus Cunha": {
-            "1+": 1.25,
-            "2+": 2.2,
-            "3+": 4.8,
-            "4+": 11.0
-          },
-          "Rayan": {
-            "1+": 1.2857,
-            "2+": 2.25,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Igor Thiago": {
-            "1+": 1.1818,
-            "2+": 1.8,
-            "3+": 3.3,
-            "4+": 7.0
-          },
-          "Luiz Henrique": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.5,
-            "4+": 15.0
-          },
-          "Gabriel Martinelli": {
-            "1+": 1.4,
-            "2+": 2.8,
-            "3+": 7.0,
-            "4+": 15.0
-          },
-          "Douglas Santos": {
-            "1+": 3.0,
-            "2+": 11.0
-          },
-          "Jack Hendry": {
-            "1+": 7.0
-          },
-          "Danilo": {
-            "1+": 1.5333,
-            "2+": 3.3,
-            "3+": 9.0,
-            "4+": 17.0
-          },
-          "Lucas Paqueta": {
-            "1+": 1.6,
-            "2+": 3.8,
-            "3+": 10.0,
-            "4+": 19.0
-          },
-          "Andrew Robertson": {
-            "1+": 5.75,
-            "2+": 13.0
-          },
-          "Grant Hanley": {
-            "1+": 4.0,
-            "2+": 15.0
-          },
-          "Bruno Guimaraes": {
-            "1+": 2.5,
-            "2+": 9.0,
-            "3+": 17.0
-          },
-          "Nathan Patterson": {
-            "1+": 6.25,
-            "2+": 13.0
-          },
-          "Scott McTominay": {
-            "1+": 1.7273,
-            "2+": 4.3333,
-            "3+": 12.0,
-            "4+": 23.0
-          },
-          "Leo Pereira": {
-            "1+": 2.6,
-            "2+": 9.5,
-            "3+": 19.0
-          },
-          "Che Adams": {
-            "1+": 1.7273,
-            "2+": 4.5,
-            "3+": 13.0,
-            "4+": 23.0
-          },
-          "John Souttar": {
-            "1+": 6.5,
-            "2+": 15.0
-          },
-          "Marquinhos": {
-            "1+": 5.25,
-            "2+": 17.0
-          },
-          "Roger Ibañez": {
-            "1+": 2.8,
-            "2+": 10.0,
-            "3+": 21.0
-          },
-          "Casemiro": {
-            "1+": 1.85,
-            "2+": 5.0,
-            "3+": 13.0,
-            "4+": 26.0
-          },
-          "Bremer": {
-            "1+": 2.8,
-            "2+": 11.0,
-            "3+": 21.0
-          },
-          "Scott McKenna": {
-            "1+": 6.5,
-            "2+": 17.0
-          },
-          "Anthony Ralston": {
-            "1+": 7.0,
-            "2+": 17.0
-          },
-          "Ross Stewart": {
-            "1+": 2.0,
-            "2+": 5.5,
-            "3+": 13.0,
-            "4+": 29.0
-          },
-          "Lawrence Shankland": {
-            "1+": 2.0,
-            "2+": 5.5,
-            "3+": 13.0,
-            "4+": 29.0
-          },
-          "Ederson": {
-            "1+": 1.9091,
-            "2+": 5.25,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "George David Eric Hirst": {
-            "1+": 2.05,
-            "2+": 6.0,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "Alex Sandro": {
-            "1+": 3.0,
-            "2+": 11.0,
-            "3+": 26.0
-          },
-          "Findlay Kenneth Curtis": {
-            "1+": 2.2,
-            "2+": 6.5,
-            "3+": 13.0,
-            "4+": 34.0
-          },
-          "John McGinn": {
-            "1+": 2.15,
-            "2+": 6.5,
-            "3+": 17.0,
-            "4+": 34.0
-          },
-          "Ryan Christie": {
-            "1+": 2.4,
-            "2+": 8.5,
-            "3+": 15.0,
-            "4+": 34.0
-          },
-          "Lyndon Dykes": {
-            "1+": 2.15,
-            "2+": 7.0,
-            "3+": 17.0,
-            "4+": 34.0
-          },
-          "Gabriel": {
-            "1+": 3.5,
-            "2+": 13.0,
-            "3+": 29.0
-          },
-          "Fabinho": {
-            "1+": 2.45,
-            "2+": 8.0,
-            "3+": 17.0,
-            "4+": 34.0
-          },
-          "Ben Doak": {
-            "1+": 2.5,
-            "2+": 9.0,
-            "3+": 19.0,
-            "4+": 34.0
-          },
-          "Kieran Tierney": {
-            "1+": 4.8,
-            "2+": 12.0,
-            "3+": 34.0
-          },
-          "Aaron Hickey": {
-            "1+": 5.5,
-            "2+": 12.0,
-            "3+": 34.0
-          },
-          "Dominic Hyam": {
-            "1+": 6.0,
-            "2+": 13.0,
-            "3+": 34.0
-          },
-          "Kenny McLean": {
-            "1+": 4.2,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Lewis Ferguson": {
-            "1+": 4.6,
-            "2+": 15.0,
-            "3+": 34.0
-          },
-          "Tyler Fletcher": {
-            "1+": 3.75,
-            "2+": 13.0,
-            "3+": 29.0,
-            "4+": 34.0
-          }
-        },
-        "player_fouls_committed": {
-          "Lucas Paqueta": {
-            "1+": 1.0714,
-            "2+": 1.3333,
-            "3+": 2.0,
-            "4+": 3.5
-          },
-          "Alex Sandro": {
-            "1+": 1.125,
-            "2+": 1.4444,
-            "3+": 2.15,
-            "4+": 3.5
-          },
-          "Igor Thiago": {
-            "1+": 1.1,
-            "2+": 1.4444,
-            "3+": 2.3,
-            "4+": 4.2
-          },
-          "Bruno Guimaraes": {
-            "1+": 1.1,
-            "2+": 1.4444,
-            "3+": 2.3,
-            "4+": 4.3333
-          },
-          "George David Eric Hirst": {
-            "1+": 1.1111,
-            "2+": 1.4444,
-            "3+": 2.4,
-            "4+": 4.6
-          },
-          "Neymar": {
-            "1+": 1.1111,
-            "2+": 1.5,
-            "3+": 2.45,
-            "4+": 4.6
-          },
-          "Casemiro": {
-            "1+": 1.125,
-            "2+": 1.5333,
-            "3+": 2.625,
-            "4+": 5.0
-          },
-          "John McGinn": {
-            "1+": 1.125,
-            "2+": 1.5714,
-            "3+": 2.625,
-            "4+": 5.0
-          },
-          "Ederson": {
-            "1+": 1.0714,
-            "2+": 1.3,
-            "3+": 1.95,
-            "4+": 3.4,
-            "5+": 6.5
-          },
-          "Ryan Christie": {
-            "1+": 1.1429,
-            "2+": 1.6154,
-            "3+": 2.9,
-            "4+": 6.0
-          },
-          "Lewis Ferguson": {
-            "1+": 1.0833,
-            "2+": 1.3636,
-            "3+": 2.05,
-            "4+": 3.6,
-            "5+": 7.5
-          },
-          "Roger Ibañez": {
-            "1+": 1.1667,
-            "2+": 1.7,
-            "3+": 3.2,
-            "4+": 6.5
-          },
-          "Endrick": {
-            "1+": 1.1818,
-            "2+": 1.75,
-            "3+": 3.25,
-            "4+": 6.5
-          },
-          "Scott McTominay": {
-            "1+": 1.1818,
-            "2+": 1.8,
-            "3+": 3.3,
-            "4+": 6.5
-          },
-          "Fabinho": {
-            "1+": 1.0833,
-            "2+": 1.3636,
-            "3+": 2.15,
-            "4+": 4.0,
-            "5+": 8.0
-          },
-          "Che Adams": {
-            "1+": 1.1818,
-            "2+": 1.75,
-            "3+": 3.4,
-            "4+": 7.5
-          },
-          "Kieran Tierney": {
-            "1+": 1.1818,
-            "2+": 1.8,
-            "3+": 3.4,
-            "4+": 7.5
-          },
-          "Bremer": {
-            "1+": 1.2222,
-            "2+": 1.9091,
-            "3+": 3.75,
-            "4+": 7.5
-          },
-          "Lawrence Shankland": {
-            "1+": 1.1818,
-            "2+": 1.85,
-            "3+": 3.6,
-            "4+": 8.0
-          },
-          "Ross Stewart": {
-            "1+": 1.2,
-            "2+": 1.85,
-            "3+": 3.6,
-            "4+": 8.0
-          },
-          "Matheus Cunha": {
-            "1+": 1.2,
-            "2+": 1.9091,
-            "3+": 3.8,
-            "4+": 8.0
-          },
-          "Lyndon Dykes": {
-            "1+": 1.1,
-            "2+": 1.4444,
-            "3+": 2.375,
-            "4+": 4.6,
-            "5+": 9.5
-          },
-          "Nathan Patterson": {
-            "1+": 1.25,
-            "2+": 2.05,
-            "3+": 4.0,
-            "4+": 8.5
-          },
-          "Aaron Hickey": {
-            "1+": 1.2222,
-            "2+": 1.95,
-            "3+": 4.0,
-            "4+": 9.0
-          },
-          "Findlay Kenneth Curtis": {
-            "1+": 1.2222,
-            "2+": 1.95,
-            "3+": 4.0,
-            "4+": 9.0
-          },
-          "Vinicius Junior": {
-            "1+": 1.25,
-            "2+": 2.05,
-            "3+": 4.2,
-            "4+": 9.0
-          },
-          "Gabriel": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.3333,
-            "4+": 9.5
-          },
-          "Ben Doak": {
-            "1+": 1.2222,
-            "2+": 2.05,
-            "3+": 4.3333,
-            "4+": 10.0
-          },
-          "Danilo": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.5,
-            "4+": 10.0
-          },
-          "Kenny McLean": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.5,
-            "4+": 10.0
-          },
-          "Luiz Henrique": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.5,
-            "4+": 10.0
-          },
-          "Marquinhos": {
-            "1+": 1.3,
-            "2+": 2.25,
-            "3+": 4.5,
-            "4+": 10.0
-          },
-          "Grant Hanley": {
-            "1+": 1.2857,
-            "2+": 2.2,
-            "3+": 4.8,
-            "4+": 10.0
-          },
-          "Tyler Fletcher": {
-            "1+": 1.1538,
-            "2+": 1.6667,
-            "3+": 2.9,
-            "4+": 6.0,
-            "5+": 12.0
-          },
-          "Anthony Ralston": {
-            "1+": 1.2857,
-            "2+": 2.25,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Douglas Santos": {
-            "1+": 1.3,
-            "2+": 2.3,
-            "3+": 5.25,
-            "4+": 12.0
-          },
-          "Andrew Robertson": {
-            "1+": 1.3333,
-            "2+": 2.5,
-            "3+": 5.75,
-            "4+": 13.0
-          },
-          "Leo Pereira": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.25,
-            "4+": 13.0
-          },
-          "Gabriel Martinelli": {
-            "1+": 1.3636,
-            "2+": 2.625,
-            "3+": 6.25,
-            "4+": 13.0
-          },
-          "Rayan": {
-            "1+": 1.25,
-            "2+": 2.0,
-            "3+": 4.0,
-            "4+": 9.0,
-            "5+": 15.0
-          },
-          "Jack Hendry": {
-            "1+": 1.4,
-            "2+": 2.75,
-            "3+": 6.5,
-            "4+": 15.0
-          },
-          "Scott McKenna": {
-            "1+": 1.4,
-            "2+": 2.9,
-            "3+": 7.5,
-            "4+": 15.0
-          },
-          "Dominic Hyam": {
-            "1+": 1.5,
-            "2+": 3.25,
-            "3+": 8.5,
-            "4+": 17.0
-          },
-          "John Souttar": {
-            "1+": 1.6,
-            "2+": 3.8,
-            "3+": 10.0,
-            "4+": 19.0
-          },
-          "Craig Gordon": {
-            "1+": 23.0
-          },
-          "Angus Gunn": {
-            "1+": 23.0
-          },
-          "Alisson": {
-            "1+": 23.0
-          },
-          "Liam Kelly": {
-            "1+": 23.0
-          },
-          "Weverton": {
-            "1+": 26.0
-          }
-        },
-        "player_fouls_won": {
-          "John McGinn": {
-            "1+": 1.025,
-            "2+": 1.125,
-            "3+": 1.4,
-            "4+": 2.0,
-            "5+": 3.25
-          },
-          "Gabriel Martinelli": {
-            "1+": 1.04,
-            "2+": 1.2222,
-            "3+": 1.6154,
-            "4+": 2.625,
-            "5+": 4.8
-          },
-          "Rayan": {
-            "1+": 1.0625,
-            "2+": 1.2857,
-            "3+": 1.8333,
-            "4+": 3.1,
-            "5+": 6.0
-          },
-          "Findlay Kenneth Curtis": {
-            "1+": 1.125,
-            "2+": 1.5333,
-            "3+": 2.7,
-            "4+": 5.5
-          },
-          "Luiz Henrique": {
-            "1+": 1.0625,
-            "2+": 1.2857,
-            "3+": 1.85,
-            "4+": 3.2,
-            "5+": 6.25
-          },
-          "Bruno Guimaraes": {
-            "1+": 1.0714,
-            "2+": 1.3,
-            "3+": 1.95,
-            "4+": 3.4,
-            "5+": 6.5
-          },
-          "George David Eric Hirst": {
-            "1+": 1.1538,
-            "2+": 1.6667,
-            "3+": 3.0,
-            "4+": 6.5
-          },
-          "Lawrence Shankland": {
-            "1+": 1.1538,
-            "2+": 1.6667,
-            "3+": 3.1,
-            "4+": 6.5
-          },
-          "Vinicius Junior": {
-            "1+": 1.1667,
-            "2+": 1.7273,
-            "3+": 3.25,
-            "4+": 7.0
-          },
-          "Aaron Hickey": {
-            "1+": 1.0909,
-            "2+": 1.4,
-            "3+": 2.2,
-            "4+": 4.2,
-            "5+": 8.5
-          },
-          "Ross Stewart": {
-            "1+": 1.1818,
-            "2+": 1.8333,
-            "3+": 3.6,
-            "4+": 8.0
-          },
-          "Neymar": {
-            "1+": 1.1,
-            "2+": 1.4444,
-            "3+": 2.3,
-            "4+": 4.6,
-            "5+": 9.0
-          },
-          "Matheus Cunha": {
-            "1+": 1.2,
-            "2+": 1.85,
-            "3+": 3.75,
-            "4+": 8.0
-          },
-          "Lewis Ferguson": {
-            "1+": 1.1,
-            "2+": 1.4444,
-            "3+": 2.4,
-            "4+": 4.8,
-            "5+": 9.5
-          },
-          "Scott McTominay": {
-            "1+": 1.2,
-            "2+": 1.9091,
-            "3+": 4.0,
-            "4+": 9.0
-          },
-          "Ederson": {
-            "1+": 1.2,
-            "2+": 1.95,
-            "3+": 4.0,
-            "4+": 9.0
-          },
-          "Kenny McLean": {
-            "1+": 1.2222,
-            "2+": 1.95,
-            "3+": 4.0,
-            "4+": 9.0
-          },
-          "Lucas Paqueta": {
-            "1+": 1.1111,
-            "2+": 1.5,
-            "3+": 2.6,
-            "4+": 5.25,
-            "5+": 10.0
-          },
-          "Ryan Christie": {
-            "1+": 1.25,
-            "2+": 2.05,
-            "3+": 4.5,
-            "4+": 10.0
-          },
-          "Fabinho": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.6,
-            "4+": 10.0
-          },
-          "Che Adams": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.6,
-            "4+": 10.0
-          },
-          "Lyndon Dykes": {
-            "1+": 1.25,
-            "2+": 2.1,
-            "3+": 4.6,
-            "4+": 10.0
-          },
-          "Casemiro": {
-            "1+": 1.25,
-            "2+": 2.2,
-            "3+": 5.0,
-            "4+": 10.0
-          },
-          "Tyler Fletcher": {
-            "1+": 1.25,
-            "2+": 2.25,
-            "3+": 5.0,
-            "4+": 11.0
-          },
-          "Danilo": {
-            "1+": 1.2857,
-            "2+": 2.25,
-            "3+": 5.25,
-            "4+": 11.0
-          },
-          "Ben Doak": {
-            "1+": 1.3,
-            "2+": 2.3,
-            "3+": 5.5,
-            "4+": 11.0
-          },
-          "Igor Thiago": {
-            "1+": 1.3,
-            "2+": 2.375,
-            "3+": 5.5,
-            "4+": 11.0
-          },
-          "Endrick": {
-            "1+": 1.3,
-            "2+": 2.45,
-            "3+": 6.0,
-            "4+": 11.0
-          },
-          "Anthony Ralston": {
-            "1+": 1.4,
-            "2+": 2.8,
-            "3+": 7.0,
-            "4+": 11.0
-          },
-          "Roger Ibañez": {
-            "1+": 1.4,
-            "2+": 2.9,
-            "3+": 7.5,
-            "4+": 12.0
-          },
-          "Kieran Tierney": {
-            "1+": 1.4,
-            "2+": 3.0,
-            "3+": 7.5,
-            "4+": 13.0
-          },
-          "Gabriel": {
-            "1+": 1.4444,
-            "2+": 3.25,
-            "3+": 8.5,
-            "4+": 13.0
-          },
-          "Alex Sandro": {
-            "1+": 1.5333,
-            "2+": 3.75,
-            "3+": 9.5,
-            "4+": 17.0
-          },
-          "Nathan Patterson": {
-            "1+": 1.6667,
-            "2+": 4.3333,
-            "3+": 10.0,
-            "4+": 17.0
-          },
-          "Andrew Robertson": {
-            "1+": 1.7,
-            "2+": 4.5,
-            "3+": 11.0,
-            "4+": 17.0
-          },
-          "Bremer": {
-            "1+": 1.75,
-            "2+": 5.0,
-            "3+": 10.0,
-            "4+": 19.0
-          },
-          "Douglas Santos": {
-            "1+": 1.7,
-            "2+": 4.6,
-            "3+": 11.0,
-            "4+": 19.0
-          },
-          "Leo Pereira": {
-            "1+": 1.85,
-            "2+": 5.5,
-            "3+": 9.5,
-            "4+": 21.0
-          },
-          "Jack Hendry": {
-            "1+": 1.85,
-            "2+": 5.5,
-            "3+": 9.5,
-            "4+": 21.0
-          },
-          "John Souttar": {
-            "1+": 1.8,
-            "2+": 5.25,
-            "3+": 10.0,
-            "4+": 21.0
-          },
-          "Marquinhos": {
-            "1+": 1.9091,
-            "2+": 5.75,
-            "3+": 10.0,
-            "4+": 23.0
-          },
-          "Dominic Hyam": {
-            "1+": 2.0,
-            "2+": 6.0,
-            "3+": 11.0,
-            "4+": 23.0
-          },
-          "Grant Hanley": {
-            "1+": 2.0,
-            "2+": 6.25,
-            "3+": 11.0,
-            "4+": 26.0
-          },
-          "Scott McKenna": {
-            "1+": 2.05,
-            "2+": 6.5,
-            "3+": 12.0,
-            "4+": 26.0
-          }
-        },
-        "player_to_score": {
-          "Vinicius Junior": {
-            "to_score": 2.3,
-            "first": 4.8,
-            "last": 4.6
-          },
-          "Igor Thiago": {
-            "to_score": 2.3,
-            "first": 4.8,
-            "last": 4.6
-          },
-          "Neymar": {
-            "to_score": 2.4,
-            "first": 4.8,
-            "last": 4.6
-          },
-          "Endrick": {
-            "to_score": 2.5,
-            "first": 5.25,
-            "last": 4.8
-          },
-          "Matheus Cunha": {
-            "to_score": 2.5,
-            "first": 5.5,
-            "last": 5.0
-          },
-          "Rayan": {
-            "to_score": 2.9,
-            "first": 6.25,
-            "last": 5.75
-          },
-          "Gabriel Martinelli": {
-            "to_score": 3.3,
-            "first": 6.5,
-            "last": 6.0
-          },
-          "Luiz Henrique": {
-            "to_score": 3.1,
-            "first": 6.5,
-            "last": 6.5
-          },
-          "Lucas Paqueta": {
-            "to_score": 3.6,
-            "first": 7.5,
-            "last": 7.0
-          },
-          "Lawrence Shankland": {
-            "to_score": 4.2,
-            "first": 8.5,
-            "last": 8.0
-          },
-          "Che Adams": {
-            "to_score": 4.8,
-            "first": 10.0,
-            "last": 9.0
-          },
-          "George David Eric Hirst": {
-            "to_score": 4.8,
-            "first": 10.0,
-            "last": 9.0
-          },
-          "Ederson": {
-            "to_score": 4.8,
-            "first": 10.0,
-            "last": 9.5
-          },
-          "Ross Stewart": {
-            "to_score": 5.0,
-            "first": 10.0,
-            "last": 9.5
-          },
-          "Lyndon Dykes": {
-            "to_score": 5.0,
-            "first": 11.0,
-            "last": 10.0
-          },
-          "Danilo": {
-            "to_score": 5.25,
-            "first": 12.0,
-            "last": 9.0
-          },
-          "Scott McTominay": {
-            "to_score": 5.5,
-            "first": 11.0,
-            "last": 10.0
-          },
-          "Casemiro": {
-            "to_score": 5.25,
-            "first": 11.0,
-            "last": 11.0
-          },
-          "Bruno Guimaraes": {
-            "to_score": 5.25,
-            "first": 12.0,
-            "last": 12.0
-          },
-          "Findlay Kenneth Curtis": {
-            "to_score": 7.0,
-            "first": 13.0,
-            "last": 11.0
-          },
-          "John McGinn": {
-            "to_score": 6.5,
-            "first": 13.0,
-            "last": 12.0
-          },
-          "Fabinho": {
-            "to_score": 7.5,
-            "first": 13.0,
-            "last": 13.0
-          },
-          "Roger Ibañez": {
-            "to_score": 8.0,
-            "first": 13.0,
-            "last": 13.0
-          },
-          "Bremer": {
-            "to_score": 8.0,
-            "first": 15.0,
-            "last": 13.0
-          },
-          "Ryan Christie": {
-            "to_score": 8.5,
-            "first": 15.0,
-            "last": 13.0
-          },
-          "Ben Doak": {
-            "to_score": 7.5,
-            "first": 15.0,
-            "last": 15.0
-          },
-          "Leo Pereira": {
-            "to_score": 9.5,
-            "first": 21.0,
-            "last": 19.0
-          },
-          "Gabriel": {
-            "to_score": 10.0,
-            "first": 23.0,
-            "last": 21.0
-          },
-          "Alex Sandro": {
-            "to_score": 11.0,
-            "first": 23.0,
-            "last": 21.0
-          },
-          "Douglas Santos": {
-            "to_score": 12.0,
-            "first": 23.0,
-            "last": 21.0
-          },
-          "Kenny McLean": {
-            "to_score": 13.0,
-            "first": 26.0,
-            "last": 21.0
-          },
-          "Kieran Tierney": {
-            "to_score": 11.0,
-            "first": 26.0,
-            "last": 23.0
-          },
-          "Lewis Ferguson": {
-            "to_score": 13.0,
-            "first": 26.0,
-            "last": 26.0
-          },
-          "Tyler Fletcher": {
-            "to_score": 13.0,
-            "first": 29.0,
-            "last": 23.0
-          },
-          "Marquinhos": {
-            "to_score": 13.0,
-            "first": 29.0,
-            "last": 34.0
-          },
-          "Anthony Ralston": {
-            "to_score": 19.0,
-            "first": 41.0,
-            "last": 34.0
-          },
-          "Andrew Robertson": {
-            "to_score": 19.0,
-            "first": 41.0,
-            "last": 41.0
-          },
-          "Scott McKenna": {
-            "to_score": 21.0,
-            "first": 41.0,
-            "last": 41.0
-          },
-          "Dominic Hyam": {
-            "to_score": 21.0,
-            "first": 41.0,
-            "last": 41.0
-          },
-          "Aaron Hickey": {
-            "to_score": 21.0,
-            "first": 41.0,
-            "last": 41.0
-          },
-          "John Souttar": {
-            "to_score": 23.0,
-            "first": 51.0,
-            "last": 41.0
-          },
-          "Jack Hendry": {
-            "to_score": 23.0,
-            "first": 51.0,
-            "last": 41.0
-          },
-          "Grant Hanley": {
-            "to_score": 23.0,
-            "first": 51.0,
-            "last": 51.0
-          },
-          "Nathan Patterson": {
-            "to_score": 23.0,
-            "first": 51.0,
-            "last": 51.0
-          }
-        },
-        "player_shots": {
-          "Rayan": {
-            "1+": 1.0303,
-            "2+": 1.1667,
-            "3+": 1.5333,
-            "4+": 2.3,
-            "5+": 3.9
-          },
-          "Matheus Cunha": {
-            "1+": 1.04,
-            "2+": 1.2,
-            "3+": 1.6154,
-            "4+": 2.5,
-            "5+": 4.3333
-          },
-          "Neymar": {
-            "1+": 1.02,
-            "2+": 1.125,
-            "3+": 1.3636,
-            "4+": 1.9091,
-            "5+": 2.9,
-            "6+": 5.0
-          },
-          "Igor Thiago": {
-            "1+": 1.025,
-            "2+": 1.125,
-            "3+": 1.4,
-            "4+": 1.95,
-            "5+": 3.2,
-            "6+": 5.75
-          },
-          "Scott McTominay": {
-            "1+": 1.1111,
-            "2+": 1.5,
-            "3+": 2.45,
-            "4+": 4.8
-          },
-          "Gabriel Martinelli": {
-            "1+": 1.05,
-            "2+": 1.25,
-            "3+": 1.8,
-            "4+": 2.9,
-            "5+": 5.5
-          },
-          "Endrick": {
-            "1+": 1.0303,
-            "2+": 1.1538,
-            "3+": 1.4444,
-            "4+": 2.15,
-            "5+": 3.5,
-            "6+": 6.5
-          },
-          "Lucas Paqueta": {
-            "1+": 1.0625,
-            "2+": 1.2857,
-            "3+": 1.85,
-            "4+": 3.1,
-            "5+": 6.0
-          },
-          "Luiz Henrique": {
-            "1+": 1.0625,
-            "2+": 1.3,
-            "3+": 1.85,
-            "4+": 3.1,
-            "5+": 6.0
-          },
-          "Vinicius Junior": {
-            "1+": 1.0303,
-            "2+": 1.1818,
-            "3+": 1.5333,
-            "4+": 2.3,
-            "5+": 3.9,
-            "6+": 7.5
-          },
-          "Ederson": {
-            "1+": 1.1667,
-            "2+": 1.7273,
-            "3+": 3.2,
-            "4+": 7.0
-          },
-          "Danilo": {
-            "1+": 1.0833,
-            "2+": 1.4,
-            "3+": 2.15,
-            "4+": 4.0,
-            "5+": 8.0
-          },
-          "John McGinn": {
-            "1+": 1.2,
-            "2+": 1.9091,
-            "3+": 3.9,
-            "4+": 8.5
-          },
-          "Lyndon Dykes": {
-            "1+": 1.2222,
-            "2+": 1.95,
-            "3+": 4.0,
-            "4+": 9.0
-          },
-          "Casemiro": {
-            "1+": 1.2222,
-            "2+": 1.95,
-            "3+": 4.0,
-            "4+": 9.5
-          },
-          "Bruno Guimaraes": {
-            "1+": 1.2222,
-            "2+": 2.05,
-            "3+": 4.2,
-            "4+": 10.0
-          },
-          "Bremer": {
-            "1+": 1.25,
-            "2+": 2.15,
-            "3+": 4.6,
-            "4+": 10.0
-          },
-          "George David Eric Hirst": {
-            "1+": 1.1818,
-            "2+": 1.75,
-            "3+": 3.1,
-            "4+": 6.25,
-            "5+": 12.0
-          },
-          "Ryan Christie": {
-            "1+": 1.3,
-            "2+": 2.25,
-            "3+": 5.0,
-            "4+": 12.0
-          },
-          "Lawrence Shankland": {
-            "1+": 1.2,
-            "2+": 1.85,
-            "3+": 3.4,
-            "4+": 7.0,
-            "5+": 13.0
-          },
-          "Alex Sandro": {
-            "1+": 1.7,
-            "2+": 4.2,
-            "3+": 11.0
-          },
-          "Findlay Kenneth Curtis": {
-            "1+": 1.3636,
-            "2+": 2.5,
-            "3+": 6.0,
-            "4+": 13.0
-          },
-          "Ben Doak": {
-            "1+": 1.5,
-            "2+": 3.1,
-            "3+": 7.5,
-            "4+": 13.0
-          },
-          "Che Adams": {
-            "1+": 1.2,
-            "2+": 1.85,
-            "3+": 3.6,
-            "4+": 8.0,
-            "5+": 17.0
-          },
-          "Leo Pereira": {
-            "1+": 1.4,
-            "2+": 2.8,
-            "3+": 6.5,
-            "4+": 15.0
-          },
-          "Ross Stewart": {
-            "1+": 1.2222,
-            "2+": 2.0,
-            "3+": 4.0,
-            "4+": 9.0,
-            "5+": 17.0
-          },
-          "Fabinho": {
-            "1+": 1.4444,
-            "2+": 3.0,
-            "3+": 8.0,
-            "4+": 17.0
-          },
-          "Gabriel": {
-            "1+": 1.5333,
-            "2+": 3.5,
-            "3+": 8.5,
-            "4+": 19.0
-          },
-          "Douglas Santos": {
-            "1+": 1.5333,
-            "2+": 3.4,
-            "3+": 9.0,
-            "4+": 19.0
-          },
-          "Roger Ibañez": {
-            "1+": 1.6,
-            "2+": 3.75,
-            "3+": 9.5,
-            "4+": 21.0
-          },
-          "John Souttar": {
-            "1+": 2.9,
-            "2+": 11.0,
-            "3+": 23.0
-          },
-          "Scott McKenna": {
-            "1+": 2.9,
-            "2+": 11.0,
-            "3+": 23.0
-          },
-          "Dominic Hyam": {
-            "1+": 2.9,
-            "2+": 11.0,
-            "3+": 23.0
-          },
-          "Kieran Tierney": {
-            "1+": 2.2,
-            "2+": 6.5,
-            "3+": 13.0,
-            "4+": 29.0
-          },
-          "Marquinhos": {
-            "1+": 1.95,
-            "2+": 5.75,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "Tyler Fletcher": {
-            "1+": 2.0,
-            "2+": 5.75,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "Lewis Ferguson": {
-            "1+": 2.0,
-            "2+": 6.0,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "Kenny McLean": {
-            "1+": 2.05,
-            "2+": 6.25,
-            "3+": 15.0,
-            "4+": 29.0
-          },
-          "Anthony Ralston": {
-            "1+": 3.1,
-            "2+": 12.0,
-            "3+": 26.0
-          },
-          "Jack Hendry": {
-            "1+": 3.3,
-            "2+": 12.0,
-            "3+": 29.0
-          },
-          "Grant Hanley": {
-            "1+": 2.2,
-            "2+": 7.0,
-            "3+": 17.0,
-            "4+": 34.0
-          },
-          "Andrew Robertson": {
-            "1+": 2.5,
-            "2+": 9.0,
-            "3+": 17.0,
-            "4+": 34.0
-          },
-          "Aaron Hickey": {
-            "1+": 2.5,
-            "2+": 9.0,
-            "3+": 17.0,
-            "4+": 34.0
-          },
-          "Nathan Patterson": {
-            "1+": 2.75,
-            "2+": 10.0,
-            "3+": 21.0,
             "4+": 34.0
           }
         }

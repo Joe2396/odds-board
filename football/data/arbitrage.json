@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-06-22T19:50:26.858929+00:00",
+  "generated_at": "2026-06-23T00:20:59.849754+00:00",
   "sport": "Football",
   "competition": "FIFA World Cup",
   "bookmaker_summary": {
     "PaddyPower": {
       "file_found": true,
-      "matches_loaded": 32,
+      "matches_loaded": 31,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\paddypower_worldcup_moneylines.json"
     },
     "BoyleSports": {
       "file_found": true,
-      "matches_loaded": 32,
+      "matches_loaded": 30,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\boylesports_worldcup_moneylines.json"
     },
     "BetVictor": {
       "file_found": true,
-      "matches_loaded": 31,
+      "matches_loaded": 30,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\betvictor_worldcup_moneylines.json"
     },
     "Unibet": {
       "file_found": true,
-      "matches_loaded": 32,
+      "matches_loaded": 29,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\unibet_worldcup_moneylines.json"
     },
     "LiveScoreBet": {
@@ -30,140 +30,146 @@
     },
     "WilliamHill": {
       "file_found": true,
-      "matches_loaded": 32,
+      "matches_loaded": 79,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\williamhill_worldcup_moneylines.json"
     },
     "888Sport": {
       "file_found": true,
-      "matches_loaded": 24,
+      "matches_loaded": 30,
       "path": "C:\\Users\\joete\\odds-board\\football\\data\\888sport_worldcup_moneylines.json"
     }
   },
-  "fixture_count": 32,
-  "compared_fixtures": 32,
+  "fixture_count": 31,
+  "compared_fixtures": 31,
   "skipped_fixtures": 0,
-  "arbitrage_count": 6,
-  "near_miss_count": 109,
+  "arbitrage_count": 13,
+  "near_miss_count": 97,
   "arbitrage": [
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Norway v Senegal",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "2.5",
-      "arb_sum": 0.957143,
-      "arb_percent": 95.714,
-      "profit_margin_percent": 4.478,
-      "bookmaker_count": 2,
+      "type": "props_double_chance",
+      "match": "Portugal v Uzbekistan",
+      "market": "Double Chance",
+      "arb_sum": 0.647138,
+      "arb_percent": 64.714,
+      "profit_margin_percent": 54.527,
+      "bookmaker_count": 3,
       "selections": {
-        "over": {
+        "home_draw": {
           "bookmaker": "LiveScoreBet",
-          "odds": "4/6",
-          "decimal_odds": 1.666667,
-          "source_market": "Total Cards Over / Under"
+          "odds": "22/5",
+          "decimal": 5.4,
+          "decimal_odds": 5.4,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Double Chance",
+          "selection_label": "Portugal or Draw"
         },
-        "under": {
-          "bookmaker": "PaddyPower",
-          "odds": "9/5",
-          "decimal_odds": 2.8,
-          "source_market": "Total Cards Over/Under"
+        "away_draw": {
+          "bookmaker": "BetVictor",
+          "odds": "4/1",
+          "decimal": 5.0,
+          "decimal_odds": 5.0,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Double Chance",
+          "selection_label": "Uzbekistan or Draw"
+        },
+        "home_away": {
+          "bookmaker": "Unibet",
+          "odds": "1/10",
+          "decimal": 1.1,
+          "decimal_odds": 1.1,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Double Chance",
+          "selection_label": "Portugal or Uzbekistan"
         }
       },
       "all_prices": {
-        "over": [
+        "home_draw": [
           {
             "bookmaker": "LiveScoreBet",
-            "odds": "4/6",
-            "decimal": 1.666667,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "odds": "22/5",
+            "decimal": 5.4,
+            "decimal_odds": 5.4,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Draw"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "40/85",
-            "decimal": 1.470588,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "odds": "1/25",
+            "decimal": 1.04,
+            "decimal_odds": 1.04,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Draw"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "4/9",
-            "decimal": 1.444444,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "4/11",
-            "decimal": 1.363636,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "bookmaker": "Unibet",
+            "odds": "1/100",
+            "decimal": 1.01,
+            "decimal_odds": 1.01,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Draw"
           }
         ],
-        "under": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "9/5",
-            "decimal": 2.8,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "13/8",
-            "decimal": 2.625,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
+        "away_draw": [
           {
             "bookmaker": "BetVictor",
-            "odds": "29/20",
-            "decimal": 2.45,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "odds": "4/1",
+            "decimal": 5.0,
+            "decimal_odds": 5.0,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Uzbekistan or Draw"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "decimal_odds": 4.5,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Uzbekistan or Draw"
           },
           {
             "bookmaker": "LiveScoreBet",
-            "odds": "21/20",
-            "decimal": 2.05,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "odds": "1/16",
+            "decimal": 1.0625,
+            "decimal_odds": 1.0625,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Uzbekistan or Draw"
+          }
+        ],
+        "home_away": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "decimal_odds": 1.1,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Uzbekistan"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/11",
+            "decimal": 1.090909,
+            "decimal_odds": 1.090909,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Uzbekistan"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/40",
+            "decimal": 1.025,
+            "decimal_odds": 1.025,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Double Chance",
+            "selection_label": "Portugal or Uzbekistan"
           }
         ]
       }
@@ -172,37 +178,37 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Argentina v Austria",
+      "match": "Norway v Senegal",
       "market": "Total Corners Over Under",
       "canonical_market": "match_corners",
       "scope": "match",
       "scope_team": "",
-      "line": "6.5",
-      "arb_sum": 0.991596,
-      "arb_percent": 99.16,
-      "profit_margin_percent": 0.847,
+      "line": "9.5",
+      "arb_sum": 0.72619,
+      "arb_percent": 72.619,
+      "profit_margin_percent": 37.705,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "BetVictor",
-          "odds": "5/12",
-          "decimal_odds": 1.416667,
+          "bookmaker": "Unibet",
+          "odds": "11/10",
+          "decimal_odds": 2.1,
           "source_market": "Total Corners Over / Under"
         },
         "under": {
           "bookmaker": "WilliamHill",
-          "odds": "5/2",
-          "decimal_odds": 3.5,
+          "odds": "3/1",
+          "decimal_odds": 4.0,
           "source_market": "Total Corners"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "BetVictor",
-            "odds": "5/12",
-            "decimal": 1.416667,
-            "match": "Argentina v Austria",
+            "bookmaker": "Unibet",
+            "odds": "11/10",
+            "decimal": 2.1,
+            "match": "Norway v Senegal",
             "market": "Total Corners Over Under",
             "source_market": "Total Corners Over / Under",
             "scope": "match",
@@ -210,10 +216,32 @@
             "metric": "corners"
           },
           {
-            "bookmaker": "Unibet",
-            "odds": "3/10",
-            "decimal": 1.3,
-            "match": "Argentina v Austria",
+            "bookmaker": "LiveScoreBet",
+            "odds": "27/25",
+            "decimal": 2.08,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "match": "Norway v Senegal",
             "market": "Total Corners Over Under",
             "source_market": "Total Corners Over / Under",
             "scope": "match",
@@ -222,9 +250,9 @@
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "2/7",
-            "decimal": 1.285714,
-            "match": "Argentina v Austria",
+            "odds": "2/9",
+            "decimal": 1.222222,
+            "match": "Norway v Senegal",
             "market": "Total Corners Over Under",
             "source_market": "Total Corners",
             "scope": "match",
@@ -235,9 +263,9 @@
         "under": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "5/2",
-            "decimal": 3.5,
-            "match": "Argentina v Austria",
+            "odds": "3/1",
+            "decimal": 4.0,
+            "match": "Norway v Senegal",
             "market": "Total Corners Over Under",
             "source_market": "Total Corners",
             "scope": "match",
@@ -245,65 +273,10 @@
             "metric": "corners"
           },
           {
-            "bookmaker": "Unibet",
-            "odds": "23/10",
-            "decimal": 3.3,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "13/8",
-            "decimal": 2.625,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Argentina v Austria",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "8.5",
-      "arb_sum": 0.995086,
-      "arb_percent": 99.509,
-      "profit_margin_percent": 0.494,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "BetVictor",
-          "odds": "6/5",
-          "decimal_odds": 2.2,
-          "source_market": "Total Corners Over / Under"
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "17/20",
-          "decimal_odds": 1.85,
-          "source_market": "Total Corners Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "6/5",
-            "decimal": 2.2,
-            "match": "Argentina v Austria",
+            "bookmaker": "Ladbrokes",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "match": "Norway v Senegal",
             "market": "Total Corners Over Under",
             "source_market": "Total Corners Over / Under",
             "scope": "match",
@@ -312,9 +285,9 @@
           },
           {
             "bookmaker": "Unibet",
-            "odds": "9/10",
-            "decimal": 1.9,
-            "match": "Argentina v Austria",
+            "odds": "67/100",
+            "decimal": 1.67,
+            "match": "Norway v Senegal",
             "market": "Total Corners Over Under",
             "source_market": "Total Corners Over / Under",
             "scope": "match",
@@ -322,45 +295,21 @@
             "metric": "corners"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "17/20",
-            "decimal": 1.85,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "17/20",
-            "decimal": 1.85,
-            "match": "Argentina v Austria",
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "match": "Norway v Senegal",
             "market": "Total Corners Over Under",
             "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "4/5",
-            "decimal": 1.8,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
             "scope": "match",
             "scope_team": "",
             "metric": "corners"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "4/7",
-            "decimal": 1.571429,
-            "match": "Argentina v Austria",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "match": "Norway v Senegal",
             "market": "Total Corners Over Under",
             "source_market": "Total Corners Over / Under",
             "scope": "match",
@@ -375,319 +324,1216 @@
       "competition": "FIFA World Cup",
       "type": "props_ou",
       "match": "Norway v Senegal",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "3.5",
-      "arb_sum": 0.996399,
-      "arb_percent": 99.64,
-      "profit_margin_percent": 0.361,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "29/20",
-          "decimal_odds": 2.45,
-          "source_market": "Total Cards Over / Under"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "7/10",
-          "decimal_odds": 1.7,
-          "source_market": "Total Cards"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "29/20",
-            "decimal": 2.45,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "21/20",
-            "decimal": 2.05,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "EVS",
-            "decimal": 2.0,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "7/10",
-            "decimal": 1.7,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "4/6",
-            "decimal": 1.666667,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "3/5",
-            "decimal": 1.6,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "4/9",
-            "decimal": 1.444444,
-            "match": "Norway v Senegal",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Argentina v Austria",
       "market": "Total Corners Over Under",
       "canonical_market": "match_corners",
       "scope": "match",
       "scope_team": "",
-      "line": "9.5",
-      "arb_sum": 0.997177,
-      "arb_percent": 99.718,
-      "profit_margin_percent": 0.283,
+      "line": "8.5",
+      "arb_sum": 0.731092,
+      "arb_percent": 73.109,
+      "profit_margin_percent": 36.782,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "BetVictor",
-          "odds": "15/8",
-          "decimal_odds": 2.875,
-          "source_market": "Total Corners Over / Under"
-        },
-        "under": {
           "bookmaker": "Unibet",
-          "odds": "27/50",
-          "decimal_odds": 1.54,
+          "odds": "7/10",
+          "decimal_odds": 1.7,
           "source_market": "Total Corners Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "15/8",
-            "decimal": 2.875,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "7/5",
-            "decimal": 2.4,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "27/50",
-            "decimal": 1.54,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/3",
-            "decimal": 1.333333,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Jordan v Algeria",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "2.5",
-      "arb_sum": 1.0,
-      "arb_percent": 100.0,
-      "profit_margin_percent": 0.0,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "8/13",
-          "decimal_odds": 1.615385,
-          "source_market": "Total Cards Over / Under"
         },
         "under": {
           "bookmaker": "WilliamHill",
-          "odds": "13/8",
-          "decimal_odds": 2.625,
-          "source_market": "Total Cards"
+          "odds": "6/1",
+          "decimal_odds": 7.0,
+          "source_market": "Total Corners"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "LiveScoreBet",
-            "odds": "8/13",
-            "decimal": 1.615385,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
+            "bookmaker": "Unibet",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "3/5",
-            "decimal": 1.6,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "corners"
           },
           {
-            "bookmaker": "PaddyPower",
-            "odds": "4/9",
-            "decimal": 1.444444,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "bookmaker": "Ladbrokes",
+            "odds": "3/5",
+            "decimal": 1.6,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "corners"
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "4/9",
-            "decimal": 1.444444,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "corners"
           }
         ],
         "under": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "13/8",
-            "decimal": 2.625,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "corners"
           },
           {
-            "bookmaker": "PaddyPower",
-            "odds": "6/4",
-            "decimal": 2.5,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "bookmaker": "Ladbrokes",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "metric": "corners"
           },
           {
             "bookmaker": "LiveScoreBet",
             "odds": "11/10",
             "decimal": 2.1,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "27/25",
+            "decimal": 2.08,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_half_time_result",
+      "match": "Norway v Senegal",
+      "market": "Half Time Result",
+      "arb_sum": 0.733766,
+      "arb_percent": 73.377,
+      "profit_margin_percent": 36.283,
+      "bookmaker_count": 2,
+      "selections": {
+        "home": {
+          "bookmaker": "888Sport",
+          "odds": "9/5",
+          "decimal": 2.8,
+          "decimal_odds": 2.8,
+          "match": "Norway v Senegal",
+          "source_market": "Half Time Result",
+          "selection_label": "Norway"
+        },
+        "draw": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "10/1",
+          "decimal": 11.0,
+          "decimal_odds": 11.0,
+          "match": "Norway v Senegal",
+          "source_market": "Half Time Result",
+          "selection_label": "Draw"
+        },
+        "away": {
+          "bookmaker": "888Sport",
+          "odds": "5/2",
+          "decimal": 3.5,
+          "decimal_odds": 3.5,
+          "match": "Norway v Senegal",
+          "source_market": "Half Time Result",
+          "selection_label": "Senegal"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "9/5",
+            "decimal": 2.8,
+            "decimal_odds": 2.8,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Norway"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "22/25",
+            "decimal": 1.88,
+            "decimal_odds": 1.88,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Norway"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "decimal_odds": 1.85,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Norway"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "10/1",
+            "decimal": 11.0,
+            "decimal_odds": 11.0,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "decimal_odds": 1.727273,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "decimal_odds": 3.5,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Senegal"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Senegal"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "decimal_odds": 2.2,
+            "match": "Norway v Senegal",
+            "source_market": "Half Time Result",
+            "selection_label": "Senegal"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Norway v Senegal",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "10.5",
+      "arb_sum": 0.734007,
+      "arb_percent": 73.401,
+      "profit_margin_percent": 36.239,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "17/10",
+          "decimal_odds": 2.7,
+          "source_market": "Total Corners Over / Under"
+        },
+        "under": {
+          "bookmaker": "WilliamHill",
+          "odds": "7/4",
+          "decimal_odds": 2.75,
+          "source_market": "Total Corners"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "17/10",
+            "decimal": 2.7,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "17/10",
+            "decimal": 2.7,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "8/5",
+            "decimal": 2.6,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "7/4",
+            "decimal": 2.75,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "21/50",
+            "decimal": 1.42,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "21/50",
+            "decimal": 1.42,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "5/12",
+            "decimal": 1.416667,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_half_time_result",
+      "match": "Jordan v Algeria",
+      "market": "Half Time Result",
+      "arb_sum": 0.741428,
+      "arb_percent": 74.143,
+      "profit_margin_percent": 34.875,
+      "bookmaker_count": 3,
+      "selections": {
+        "home": {
+          "bookmaker": "PaddyPower",
+          "odds": "5/1",
+          "decimal": 6.0,
+          "decimal_odds": 6.0,
+          "match": "Jordan v Algeria",
+          "source_market": "Half Time Result",
+          "selection_label": "Jordan"
+        },
+        "draw": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "21/2",
+          "decimal": 11.5,
+          "decimal_odds": 11.5,
+          "match": "Jordan v Algeria",
+          "source_market": "Half Time Result",
+          "selection_label": "Draw"
+        },
+        "away": {
+          "bookmaker": "888Sport",
+          "odds": "21/20",
+          "decimal": 2.05,
+          "decimal_odds": 2.05,
+          "match": "Jordan v Algeria",
+          "source_market": "Half Time Result",
+          "selection_label": "Algeria"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "5/1",
+            "decimal": 6.0,
+            "decimal_odds": 6.0,
             "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Jordan"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "9/2",
+            "decimal": 5.5,
+            "decimal_odds": 5.5,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Jordan"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "16/5",
+            "decimal": 4.2,
+            "decimal_odds": 4.2,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Jordan"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "12/5",
+            "decimal": 3.4,
+            "decimal_odds": 3.4,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Jordan"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "21/2",
+            "decimal": 11.5,
+            "decimal_odds": 11.5,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "decimal_odds": 2.2,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "decimal_odds": 2.05,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Algeria"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Algeria"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "21/50",
+            "decimal": 1.42,
+            "decimal_odds": 1.42,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Algeria"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "decimal_odds": 1.363636,
+            "match": "Jordan v Algeria",
+            "source_market": "Half Time Result",
+            "selection_label": "Algeria"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Norway v Senegal",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "11.5",
+      "arb_sum": 0.790598,
+      "arb_percent": 79.06,
+      "profit_margin_percent": 26.486,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Unibet",
+          "odds": "13/5",
+          "decimal_odds": 3.6,
+          "source_market": "Total Corners Over / Under"
+        },
+        "under": {
+          "bookmaker": "WilliamHill",
+          "odds": "19/20",
+          "decimal_odds": 1.95,
+          "source_market": "Total Corners"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "13/5",
+            "decimal": 3.6,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "27/100",
+            "decimal": 1.27,
+            "match": "Norway v Senegal",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_half_time_result",
+      "match": "Portugal v Uzbekistan",
+      "market": "Half Time Result",
+      "arb_sum": 0.794331,
+      "arb_percent": 79.433,
+      "profit_margin_percent": 25.892,
+      "bookmaker_count": 2,
+      "selections": {
+        "home": {
+          "bookmaker": "888Sport",
+          "odds": "8/15",
+          "decimal": 1.533333,
+          "decimal_odds": 1.533333,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Half Time Result",
+          "selection_label": "Portugal"
+        },
+        "draw": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "16/1",
+          "decimal": 17.0,
+          "decimal_odds": 17.0,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Half Time Result",
+          "selection_label": "Draw"
+        },
+        "away": {
+          "bookmaker": "888Sport",
+          "odds": "11/1",
+          "decimal": 12.0,
+          "decimal_odds": 12.0,
+          "match": "Portugal v Uzbekistan",
+          "source_market": "Half Time Result",
+          "selection_label": "Uzbekistan"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "decimal_odds": 1.533333,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Half Time Result",
+            "selection_label": "Portugal"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "1/6",
+            "decimal": 1.166667,
+            "decimal_odds": 1.166667,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Half Time Result",
+            "selection_label": "Portugal"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "2/15",
+            "decimal": 1.133333,
+            "decimal_odds": 1.133333,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Half Time Result",
+            "selection_label": "Portugal"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "16/1",
+            "decimal": 17.0,
+            "decimal_odds": 17.0,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "7/4",
+            "decimal": 2.75,
+            "decimal_odds": 2.75,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "decimal_odds": 2.5,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "888Sport",
+            "odds": "11/1",
+            "decimal": 12.0,
+            "decimal_odds": 12.0,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Half Time Result",
+            "selection_label": "Uzbekistan"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "decimal_odds": 7.0,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Half Time Result",
+            "selection_label": "Uzbekistan"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "24/5",
+            "decimal": 5.8,
+            "decimal_odds": 5.8,
+            "match": "Portugal v Uzbekistan",
+            "source_market": "Half Time Result",
+            "selection_label": "Uzbekistan"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "France v Iraq",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "3.5",
+      "arb_sum": 0.833333,
+      "arb_percent": 83.333,
+      "profit_margin_percent": 20.0,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "2/1",
+          "decimal_odds": 3.0,
+          "source_market": "Total Goals Over / Under"
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "1/1",
+          "decimal_odds": 2.0,
+          "source_market": "Total Goals Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "2/1",
+            "decimal": 3.0,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "France v Iraq",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "2.5",
+      "arb_sum": 0.87027,
+      "arb_percent": 87.027,
+      "profit_margin_percent": 14.907,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "4/6",
+          "decimal_odds": 1.666667,
+          "source_market": "Total Goals Over / Under"
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "27/10",
+          "decimal_odds": 3.7,
+          "source_market": "Total Goals Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "27/10",
+            "decimal": 3.7,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "27/10",
+            "decimal": 3.7,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "France v Iraq",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 0.880952,
+      "arb_percent": 88.095,
+      "profit_margin_percent": 13.514,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "5/1",
+          "decimal_odds": 6.0,
+          "source_market": "Total Goals Over / Under"
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "2/5",
+          "decimal_odds": 1.4,
+          "source_market": "Total Goals Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/1",
+            "decimal": 6.0,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "7/4",
+            "decimal": 2.75,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/9",
+            "decimal": 1.111111,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "France v Iraq",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "1.5",
+      "arb_sum": 0.975,
+      "arb_percent": 97.5,
+      "profit_margin_percent": 2.564,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "1/7",
+          "decimal_odds": 1.142857,
+          "source_market": "Total Goals Over / Under"
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "9/1",
+          "decimal_odds": 10.0,
+          "source_market": "Total Goals Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/7",
+            "decimal": 1.142857,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/33",
+            "decimal": 1.030303,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/33",
+            "decimal": 1.030303,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "9/1",
+            "decimal": 10.0,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "9/1",
+            "decimal": 10.0,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/1",
+            "decimal": 5.0,
+            "match": "France v Iraq",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Panama v Croatia",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 0.991453,
+      "arb_percent": 99.145,
+      "profit_margin_percent": 0.862,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "7/2",
+          "decimal_odds": 4.5,
+          "source_market": "Total Cards Over/Under"
+        },
+        "under": {
+          "bookmaker": "WilliamHill",
+          "odds": "3/10",
+          "decimal_odds": 1.3,
+          "source_market": "Total Cards"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "match": "Panama v Croatia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "12/5",
+            "decimal": 3.4,
+            "match": "Panama v Croatia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Panama v Croatia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "Panama v Croatia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/13",
+            "decimal": 1.153846,
+            "match": "Panama v Croatia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
             "metric": "cards"
@@ -700,122 +1546,679 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
+      "type": "moneyline_1x2",
+      "match": "Algeria v Austria",
+      "home_team": "Algeria",
+      "away_team": "Austria",
+      "date_label": "",
+      "time": "03:00",
+      "market": "Match Odds",
+      "bookmaker_count": 7,
+      "arb_sum": 1.000146,
+      "arb_percent": 100.015,
+      "profit_margin_percent": -0.015,
+      "selections": {
+        "home": {
+          "bookmaker": "PaddyPower",
+          "odds": "23/10",
+          "decimal_odds": 3.3,
+          "implied_probability": 0.30303,
+          "source_url": "https://www.paddypower.com/fifa-world-cup"
+        },
+        "draw": {
+          "bookmaker": "BetVictor",
+          "odds": "11/5",
+          "decimal_odds": 3.2,
+          "implied_probability": 0.3125,
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+        },
+        "away": {
+          "bookmaker": "PaddyPower",
+          "odds": "8/5",
+          "decimal_odds": 2.6,
+          "implied_probability": 0.384615,
+          "source_url": "https://www.paddypower.com/fifa-world-cup"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "23/10",
+            "decimal_odds": 3.3,
+            "implied_probability": 0.30303,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "21/10",
+            "decimal_odds": 3.1,
+            "implied_probability": 0.322581,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "2/1",
+            "decimal_odds": 3.0,
+            "implied_probability": 0.333333,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "2/1",
+            "decimal_odds": 3.0,
+            "implied_probability": 0.333333,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "2/1",
+            "decimal_odds": 3.0,
+            "implied_probability": 0.333333,
+            "source_url": "https://www.888sport.com/football/world-cup/"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "39/20",
+            "decimal_odds": 2.95,
+            "implied_probability": 0.338983,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "15/8",
+            "decimal_odds": 2.875,
+            "implied_probability": 0.347826,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "11/5",
+            "decimal_odds": 3.2,
+            "implied_probability": 0.3125,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "19/10",
+            "decimal_odds": 2.9,
+            "implied_probability": 0.344828,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "9/5",
+            "decimal_odds": 2.8,
+            "implied_probability": 0.357143,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "9/5",
+            "decimal_odds": 2.8,
+            "implied_probability": 0.357143,
+            "source_url": "https://www.888sport.com/football/world-cup/"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "17/10",
+            "decimal_odds": 2.7,
+            "implied_probability": 0.37037,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "13/8",
+            "decimal_odds": 2.625,
+            "implied_probability": 0.380952,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "8/5",
+            "decimal_odds": 2.6,
+            "implied_probability": 0.384615,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "8/5",
+            "decimal_odds": 2.6,
+            "implied_probability": 0.384615,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "8/5",
+            "decimal_odds": 2.6,
+            "implied_probability": 0.384615,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "8/5",
+            "decimal_odds": 2.6,
+            "implied_probability": 0.384615,
+            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "6/4",
+            "decimal_odds": 2.5,
+            "implied_probability": 0.4,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "6/4",
+            "decimal_odds": 2.5,
+            "implied_probability": 0.4,
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "6/4",
+            "decimal_odds": 2.5,
+            "implied_probability": 0.4,
+            "source_url": "https://www.888sport.com/football/world-cup/"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "29/20",
+            "decimal_odds": 2.45,
+            "implied_probability": 0.408163,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "France v Iraq",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "1.5",
-      "arb_sum": 1.003604,
-      "arb_percent": 100.36,
-      "profit_margin_percent": -0.359,
+      "match": "Jordan v Algeria",
+      "market": "Jordan Total Shots On Target Over Under",
+      "canonical_market": "team_shots_on_target::jordan",
+      "scope": "team",
+      "scope_team": "jordan",
+      "line": "3.5",
+      "arb_sum": 1.003051,
+      "arb_percent": 100.305,
+      "profit_margin_percent": -0.304,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "WilliamHill",
-          "odds": "4/11",
-          "decimal_odds": 1.363636,
-          "source_market": "Total Cards"
+          "bookmaker": "LiveScoreBet",
+          "odds": "37/20",
+          "decimal_odds": 2.85,
+          "source_market": "Jordan Shots On Target Over / Under"
         },
         "under": {
-          "bookmaker": "PaddyPower",
-          "odds": "27/10",
-          "decimal_odds": 3.7,
-          "source_market": "Total Cards Over/Under"
+          "bookmaker": "Ladbrokes",
+          "odds": "8/15",
+          "decimal_odds": 1.533333,
+          "source_market": "Jordan Shots On Target Over / Under"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "WilliamHill",
-            "odds": "4/11",
-            "decimal": 1.363636,
-            "match": "France v Iraq",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/3",
-            "decimal": 1.333333,
-            "match": "France v Iraq",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
             "bookmaker": "LiveScoreBet",
-            "odds": "3/10",
-            "decimal": 1.3,
-            "match": "France v Iraq",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "odds": "37/20",
+            "decimal": 2.85,
+            "match": "Jordan v Algeria",
+            "market": "Jordan Total Shots On Target Over Under",
+            "source_market": "Jordan Shots On Target Over / Under",
+            "scope": "team",
+            "scope_team": "jordan",
+            "metric": "shots_on_target"
           },
           {
-            "bookmaker": "PaddyPower",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "match": "France v Iraq",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "bookmaker": "Ladbrokes",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "match": "Jordan v Algeria",
+            "market": "Jordan Total Shots On Target Over Under",
+            "source_market": "Jordan Shots On Target Over / Under",
+            "scope": "team",
+            "scope_team": "jordan",
+            "metric": "shots_on_target"
           }
         ],
         "under": [
           {
-            "bookmaker": "PaddyPower",
-            "odds": "27/10",
-            "decimal": 3.7,
-            "match": "France v Iraq",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "bookmaker": "Ladbrokes",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "match": "Jordan v Algeria",
+            "market": "Jordan Total Shots On Target Over Under",
+            "source_market": "Jordan Shots On Target Over / Under",
+            "scope": "team",
+            "scope_team": "jordan",
+            "metric": "shots_on_target"
           },
           {
             "bookmaker": "LiveScoreBet",
-            "odds": "21/10",
-            "decimal": 3.1,
-            "match": "France v Iraq",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
+            "odds": "8/25",
+            "decimal": 1.32,
+            "match": "Jordan v Algeria",
+            "market": "Jordan Total Shots On Target Over Under",
+            "source_market": "Jordan Shots On Target Over / Under",
+            "scope": "team",
+            "scope_team": "jordan",
+            "metric": "shots_on_target"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Switzerland v Canada",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 1.003968,
+      "arb_percent": 100.397,
+      "profit_margin_percent": -0.395,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "8/1",
+          "decimal_odds": 9.0,
+          "source_market": "Total Goals Over / Under"
+        },
+        "under": {
+          "bookmaker": "Unibet",
+          "odds": "3/25",
+          "decimal_odds": 1.12,
+          "source_market": "Total Goals Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "8/1",
+            "decimal": 9.0,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "2/1",
-            "decimal": 3.0,
-            "match": "France v Iraq",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "11/2",
+            "decimal": 6.5,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "3/25",
+            "decimal": 1.12,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "2/1",
-            "decimal": 3.0,
-            "match": "France v Iraq",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
+            "odds": "1/16",
+            "decimal": 1.0625,
+            "match": "Switzerland v Canada",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Jordan v Algeria",
+      "market": "Jordan Total Shots On Target Over Under",
+      "canonical_market": "team_shots_on_target::jordan",
+      "scope": "team",
+      "scope_team": "jordan",
+      "line": "2.5",
+      "arb_sum": 1.006211,
+      "arb_percent": 100.621,
+      "profit_margin_percent": -0.617,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "3/4",
+          "decimal_odds": 1.75,
+          "source_market": "Jordan Shots On Target Over / Under"
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "13/10",
+          "decimal_odds": 2.3,
+          "source_market": "Jordan Shots On Target Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "match": "Jordan v Algeria",
+            "market": "Jordan Total Shots On Target Over Under",
+            "source_market": "Jordan Shots On Target Over / Under",
+            "scope": "team",
+            "scope_team": "jordan",
+            "metric": "shots_on_target"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "11/20",
+            "decimal": 1.55,
+            "match": "Jordan v Algeria",
+            "market": "Jordan Total Shots On Target Over Under",
+            "source_market": "Jordan Shots On Target Over / Under",
+            "scope": "team",
+            "scope_team": "jordan",
+            "metric": "shots_on_target"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "match": "Jordan v Algeria",
+            "market": "Jordan Total Shots On Target Over Under",
+            "source_market": "Jordan Shots On Target Over / Under",
+            "scope": "team",
+            "scope_team": "jordan",
+            "metric": "shots_on_target"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "match": "Jordan v Algeria",
+            "market": "Jordan Total Shots On Target Over Under",
+            "source_market": "Jordan Shots On Target Over / Under",
+            "scope": "team",
+            "scope_team": "jordan",
+            "metric": "shots_on_target"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Jordan v Algeria",
+      "market": "Total Shots On Target Over Under",
+      "canonical_market": "match_shots_on_target",
+      "scope": "match",
+      "scope_team": "",
+      "line": "8.5",
+      "arb_sum": 1.006734,
+      "arb_percent": 100.673,
+      "profit_margin_percent": -0.669,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "LiveScoreBet",
+          "odds": "17/10",
+          "decimal_odds": 2.7,
+          "source_market": "Total Shots On Target Over / Under"
+        },
+        "under": {
+          "bookmaker": "Ladbrokes",
+          "odds": "4/7",
+          "decimal_odds": 1.571429,
+          "source_market": "Total Shots On Target Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "17/10",
+            "decimal": 2.7,
+            "match": "Jordan v Algeria",
+            "market": "Total Shots On Target Over Under",
+            "source_market": "Total Shots On Target Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "shots_on_target"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "5/4",
+            "decimal": 2.25,
+            "match": "Jordan v Algeria",
+            "market": "Total Shots On Target Over Under",
+            "source_market": "Total Shots On Target Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "shots_on_target"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/7",
+            "decimal": 1.571429,
+            "match": "Jordan v Algeria",
+            "market": "Total Shots On Target Over Under",
+            "source_market": "Total Shots On Target Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "shots_on_target"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "7/20",
+            "decimal": 1.35,
+            "match": "Jordan v Algeria",
+            "market": "Total Shots On Target Over Under",
+            "source_market": "Total Shots On Target Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "shots_on_target"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Curacao v Ivory Coast",
+      "market": "Both Teams To Score",
+      "arb_sum": 1.008798,
+      "arb_percent": 100.88,
+      "profit_margin_percent": -0.872,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "7/4",
+          "decimal": 2.75,
+          "decimal_odds": 2.75,
+          "match": "Curacao v Ivory Coast",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "11/20",
+          "decimal": 1.55,
+          "decimal_odds": 1.55,
+          "match": "Curacao v Ivory Coast",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/4",
+            "decimal": 2.75,
+            "decimal_odds": 2.75,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "decimal_odds": 2.5,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "3/2",
+            "decimal": 2.5,
+            "decimal_odds": 2.5,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "decimal_odds": 2.45,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "11/20",
+            "decimal": 1.55,
+            "decimal_odds": 1.55,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/21",
+            "decimal": 1.47619,
+            "decimal_odds": 1.47619,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "decimal_odds": 1.4,
+            "match": "Curacao v Ivory Coast",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
           }
         ]
       }
@@ -830,15 +2233,15 @@
       "scope": "match",
       "scope_team": "",
       "line": "7.5",
-      "arb_sum": 1.005051,
-      "arb_percent": 100.505,
-      "profit_margin_percent": -0.503,
+      "arb_sum": 1.012821,
+      "arb_percent": 101.282,
+      "profit_margin_percent": -1.266,
       "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "LiveScoreBet",
-          "odds": "49/50",
-          "decimal_odds": 1.98,
+          "odds": "19/20",
+          "decimal_odds": 1.95,
           "source_market": "Total Shots On Target Over / Under"
         },
         "under": {
@@ -852,8 +2255,8 @@
         "over": [
           {
             "bookmaker": "LiveScoreBet",
-            "odds": "49/50",
-            "decimal": 1.98,
+            "odds": "19/20",
+            "decimal": 1.95,
             "match": "Jordan v Algeria",
             "market": "Total Shots On Target Over Under",
             "source_market": "Total Shots On Target Over / Under",
@@ -903,59 +2306,37 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Jordan v Algeria",
+      "match": "Panama v Croatia",
       "market": "Total Cards Over Under",
       "canonical_market": "match_cards",
       "scope": "match",
       "scope_team": "",
-      "line": "3.5",
-      "arb_sum": 1.008163,
-      "arb_percent": 100.816,
-      "profit_margin_percent": -0.81,
+      "line": "5.5",
+      "arb_sum": 1.013889,
+      "arb_percent": 101.389,
+      "profit_margin_percent": -1.37,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "BetVictor",
-          "odds": "29/20",
-          "decimal_odds": 2.45,
-          "source_market": "Total Cards Over / Under"
+          "bookmaker": "PaddyPower",
+          "odds": "7/1",
+          "decimal_odds": 8.0,
+          "source_market": "Total Cards Over/Under"
         },
         "under": {
           "bookmaker": "WilliamHill",
-          "odds": "4/6",
-          "decimal_odds": 1.666667,
+          "odds": "1/8",
+          "decimal_odds": 1.125,
           "source_market": "Total Cards"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "BetVictor",
-            "odds": "29/20",
-            "decimal": 2.45,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "11/8",
-            "decimal": 2.375,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
             "bookmaker": "PaddyPower",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "match": "Jordan v Algeria",
+            "odds": "7/1",
+            "decimal": 8.0,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over/Under",
             "scope": "match",
@@ -964,9 +2345,9 @@
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "EVS",
-            "decimal": 2.0,
-            "match": "Jordan v Algeria",
+            "odds": "9/2",
+            "decimal": 5.5,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards",
             "scope": "match",
@@ -977,9 +2358,9 @@
         "under": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "4/6",
-            "decimal": 1.666667,
-            "match": "Jordan v Algeria",
+            "odds": "1/8",
+            "decimal": 1.125,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards",
             "scope": "match",
@@ -988,137 +2369,14 @@
           },
           {
             "bookmaker": "PaddyPower",
-            "odds": "6/10",
-            "decimal": 1.6,
-            "match": "Jordan v Algeria",
+            "odds": "1/25",
+            "decimal": 1.04,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
             "metric": "cards"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "1/2",
-            "decimal": 1.5,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "40/85",
-            "decimal": 1.470588,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Argentina v Austria",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "7.5",
-      "arb_sum": 1.008403,
-      "arb_percent": 100.84,
-      "profit_margin_percent": -0.833,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "BetVictor",
-          "odds": "7/10",
-          "decimal_odds": 1.7,
-          "source_market": "Total Corners Over / Under"
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "69/50",
-          "decimal_odds": 2.38,
-          "source_market": "Total Corners Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "7/10",
-            "decimal": 1.7,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "27/50",
-            "decimal": 1.54,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "8/15",
-            "decimal": 1.533333,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "69/50",
-            "decimal": 2.38,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "11/8",
-            "decimal": 2.375,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "39/40",
-            "decimal": 1.975,
-            "match": "Argentina v Austria",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
           }
         ]
       }
@@ -1127,28 +2385,28 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_btts",
-      "match": "Curacao v Ivory Coast",
+      "match": "Scotland v Brazil",
       "market": "Both Teams To Score",
-      "arb_sum": 1.008798,
-      "arb_percent": 100.88,
-      "profit_margin_percent": -0.872,
+      "arb_sum": 1.015469,
+      "arb_percent": 101.547,
+      "profit_margin_percent": -1.523,
       "bookmaker_count": 2,
       "selections": {
         "yes": {
           "bookmaker": "PaddyPower",
-          "odds": "7/4",
-          "decimal": 2.75,
-          "decimal_odds": 2.75,
-          "match": "Curacao v Ivory Coast",
+          "odds": "7/5",
+          "decimal": 2.4,
+          "decimal_odds": 2.4,
+          "match": "Scotland v Brazil",
           "source_market": "Both Teams To Score",
           "selection_label": "Yes"
         },
         "no": {
-          "bookmaker": "WilliamHill",
-          "odds": "11/20",
-          "decimal": 1.55,
-          "decimal_odds": 1.55,
-          "match": "Curacao v Ivory Coast",
+          "bookmaker": "Unibet",
+          "odds": "67/100",
+          "decimal": 1.67,
+          "decimal_odds": 1.67,
+          "match": "Scotland v Brazil",
           "source_market": "Both Teams To Score",
           "selection_label": "No"
         }
@@ -1157,19 +2415,137 @@
         "yes": [
           {
             "bookmaker": "PaddyPower",
-            "odds": "7/4",
-            "decimal": 2.75,
-            "decimal_odds": 2.75,
-            "match": "Curacao v Ivory Coast",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "decimal_odds": 2.4,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "Scotland v Brazil",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
           {
             "bookmaker": "Unibet",
-            "odds": "8/5",
-            "decimal": 2.6,
-            "decimal_odds": 2.6,
-            "match": "Curacao v Ivory Coast",
+            "odds": "11/10",
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "67/100",
+            "decimal": 1.67,
+            "decimal_odds": 1.67,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "decimal_odds": 1.666667,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "13/20",
+            "decimal": 1.65,
+            "decimal_odds": 1.65,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/13",
+            "decimal": 1.615385,
+            "decimal_odds": 1.615385,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "decimal_odds": 1.5,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Morocco v Haiti",
+      "market": "Both Teams To Score",
+      "arb_sum": 1.017157,
+      "arb_percent": 101.716,
+      "profit_margin_percent": -1.687,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "31/20",
+          "decimal": 2.55,
+          "decimal_odds": 2.55,
+          "match": "Morocco v Haiti",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "WilliamHill",
+          "odds": "6/10",
+          "decimal": 1.6,
+          "decimal_odds": 1.6,
+          "match": "Morocco v Haiti",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "31/20",
+            "decimal": 2.55,
+            "decimal_odds": 2.55,
+            "match": "Morocco v Haiti",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
@@ -1178,25 +2554,34 @@
             "odds": "6/4",
             "decimal": 2.5,
             "decimal_odds": 2.5,
-            "match": "Curacao v Ivory Coast",
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "3/2",
+            "decimal": 2.5,
+            "decimal_odds": 2.5,
+            "match": "Morocco v Haiti",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "29/20",
-            "decimal": 2.45,
-            "decimal_odds": 2.45,
-            "match": "Curacao v Ivory Coast",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "decimal_odds": 2.375,
+            "match": "Morocco v Haiti",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "13/10",
-            "decimal": 2.3,
-            "decimal_odds": 2.3,
-            "match": "Curacao v Ivory Coast",
+            "odds": "5/4",
+            "decimal": 2.25,
+            "decimal_odds": 2.25,
+            "match": "Morocco v Haiti",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           }
@@ -1204,19 +2589,28 @@
         "no": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "11/20",
-            "decimal": 1.55,
-            "decimal_odds": 1.55,
-            "match": "Curacao v Ivory Coast",
+            "odds": "6/10",
+            "decimal": 1.6,
+            "decimal_odds": 1.6,
+            "match": "Morocco v Haiti",
             "source_market": "Both Teams To Score",
             "selection_label": "No"
           },
           {
             "bookmaker": "BetVictor",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "decimal_odds": 1.533333,
+            "match": "Morocco v Haiti",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
             "odds": "1/2",
             "decimal": 1.5,
             "decimal_odds": 1.5,
-            "match": "Curacao v Ivory Coast",
+            "match": "Morocco v Haiti",
             "source_market": "Both Teams To Score",
             "selection_label": "No"
           },
@@ -1225,365 +2619,18 @@
             "odds": "10/21",
             "decimal": 1.47619,
             "decimal_odds": 1.47619,
-            "match": "Curacao v Ivory Coast",
+            "match": "Morocco v Haiti",
             "source_market": "Both Teams To Score",
             "selection_label": "No"
           },
           {
-            "bookmaker": "Unibet",
+            "bookmaker": "PaddyPower",
             "odds": "9/20",
             "decimal": 1.45,
             "decimal_odds": 1.45,
-            "match": "Curacao v Ivory Coast",
+            "match": "Morocco v Haiti",
             "source_market": "Both Teams To Score",
             "selection_label": "No"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "2/5",
-            "decimal": 1.4,
-            "decimal_odds": 1.4,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Jordan v Algeria",
-      "market": "Jordan Total Shots On Target Over Under",
-      "canonical_market": "team_shots_on_target::jordan",
-      "scope": "team",
-      "scope_team": "jordan",
-      "line": "3.5",
-      "arb_sum": 1.009317,
-      "arb_percent": 100.932,
-      "profit_margin_percent": -0.923,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "9/5",
-          "decimal_odds": 2.8,
-          "source_market": "Jordan Shots On Target Over / Under"
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "8/15",
-          "decimal_odds": 1.533333,
-          "source_market": "Jordan Shots On Target Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "9/5",
-            "decimal": 2.8,
-            "match": "Jordan v Algeria",
-            "market": "Jordan Total Shots On Target Over Under",
-            "source_market": "Jordan Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "jordan",
-            "metric": "shots_on_target"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "13/10",
-            "decimal": 2.3,
-            "match": "Jordan v Algeria",
-            "market": "Jordan Total Shots On Target Over Under",
-            "source_market": "Jordan Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "jordan",
-            "metric": "shots_on_target"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "8/15",
-            "decimal": 1.533333,
-            "match": "Jordan v Algeria",
-            "market": "Jordan Total Shots On Target Over Under",
-            "source_market": "Jordan Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "jordan",
-            "metric": "shots_on_target"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "33/100",
-            "decimal": 1.33,
-            "match": "Jordan v Algeria",
-            "market": "Jordan Total Shots On Target Over Under",
-            "source_market": "Jordan Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "jordan",
-            "metric": "shots_on_target"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Jordan v Algeria",
-      "market": "Jordan Total Shots On Target Over Under",
-      "canonical_market": "team_shots_on_target::jordan",
-      "scope": "team",
-      "scope_team": "jordan",
-      "line": "2.5",
-      "arb_sum": 1.01373,
-      "arb_percent": 101.373,
-      "profit_margin_percent": -1.354,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "8/11",
-          "decimal_odds": 1.727273,
-          "source_market": "Jordan Shots On Target Over / Under"
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "13/10",
-          "decimal_odds": 2.3,
-          "source_market": "Jordan Shots On Target Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "8/11",
-            "decimal": 1.727273,
-            "match": "Jordan v Algeria",
-            "market": "Jordan Total Shots On Target Over Under",
-            "source_market": "Jordan Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "jordan",
-            "metric": "shots_on_target"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "8/15",
-            "decimal": 1.533333,
-            "match": "Jordan v Algeria",
-            "market": "Jordan Total Shots On Target Over Under",
-            "source_market": "Jordan Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "jordan",
-            "metric": "shots_on_target"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "13/10",
-            "decimal": 2.3,
-            "match": "Jordan v Algeria",
-            "market": "Jordan Total Shots On Target Over Under",
-            "source_market": "Jordan Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "jordan",
-            "metric": "shots_on_target"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "17/20",
-            "decimal": 1.85,
-            "match": "Jordan v Algeria",
-            "market": "Jordan Total Shots On Target Over Under",
-            "source_market": "Jordan Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "jordan",
-            "metric": "shots_on_target"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Jordan v Algeria",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "1.5",
-      "arb_sum": 1.015152,
-      "arb_percent": 101.515,
-      "profit_margin_percent": -1.493,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "BetVictor",
-          "odds": "1/5",
-          "decimal_odds": 1.2,
-          "source_market": "Total Cards Over / Under"
-        },
-        "under": {
-          "bookmaker": "PaddyPower",
-          "odds": "9/2",
-          "decimal_odds": 5.5,
-          "source_market": "Total Cards Over/Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/5",
-            "decimal": 1.2,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/7",
-            "decimal": 1.142857,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "1/10",
-            "decimal": 1.1,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "9/2",
-            "decimal": 5.5,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "4/1",
-            "decimal": 5.0,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "3/1",
-            "decimal": 4.0,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Jordan v Algeria",
-      "market": "Total Shots On Target Over Under",
-      "canonical_market": "match_shots_on_target",
-      "scope": "match",
-      "scope_team": "",
-      "line": "8.5",
-      "arb_sum": 1.015532,
-      "arb_percent": 101.553,
-      "profit_margin_percent": -1.529,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "17/10",
-          "decimal_odds": 2.7,
-          "source_market": "Total Shots On Target Over / Under"
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "11/20",
-          "decimal_odds": 1.55,
-          "source_market": "Total Shots On Target Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "17/10",
-            "decimal": 2.7,
-            "match": "Jordan v Algeria",
-            "market": "Total Shots On Target Over Under",
-            "source_market": "Total Shots On Target Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "shots_on_target"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "13/10",
-            "decimal": 2.3,
-            "match": "Jordan v Algeria",
-            "market": "Total Shots On Target Over Under",
-            "source_market": "Total Shots On Target Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "shots_on_target"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "11/20",
-            "decimal": 1.55,
-            "match": "Jordan v Algeria",
-            "market": "Total Shots On Target Over Under",
-            "source_market": "Total Shots On Target Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "shots_on_target"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "7/20",
-            "decimal": 1.35,
-            "match": "Jordan v Algeria",
-            "market": "Total Shots On Target Over Under",
-            "source_market": "Total Shots On Target Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "shots_on_target"
           }
         ]
       }
@@ -1597,22 +2644,22 @@
       "canonical_market": "match_goals",
       "scope": "match",
       "scope_team": "",
-      "line": "4.5",
-      "arb_sum": 1.017857,
-      "arb_percent": 101.786,
-      "profit_margin_percent": -1.754,
+      "line": "3.5",
+      "arb_sum": 1.019048,
+      "arb_percent": 101.905,
+      "profit_margin_percent": -1.869,
       "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "BetVictor",
-          "odds": "6/1",
-          "decimal_odds": 7.0,
+          "odds": "5/2",
+          "decimal_odds": 3.5,
           "source_market": "Total Goals Over / Under"
         },
         "under": {
           "bookmaker": "WilliamHill",
-          "odds": "1/7",
-          "decimal_odds": 1.142857,
+          "odds": "4/11",
+          "decimal_odds": 1.363636,
           "source_market": "Total Goals Over / Under"
         }
       },
@@ -1620,8 +2667,30 @@
         "over": [
           {
             "bookmaker": "BetVictor",
-            "odds": "6/1",
-            "decimal": 7.0,
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Norway v Senegal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "Norway v Senegal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "11/5",
+            "decimal": 3.2,
             "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
@@ -1631,8 +2700,8 @@
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "4/1",
-            "decimal": 5.0,
+            "odds": "2/1",
+            "decimal": 3.0,
             "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
@@ -1642,8 +2711,8 @@
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "4/1",
-            "decimal": 5.0,
+            "odds": "2/1",
+            "decimal": 3.0,
             "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "1st Half Goals Over / Under",
@@ -1655,8 +2724,8 @@
         "under": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "1/7",
-            "decimal": 1.142857,
+            "odds": "4/11",
+            "decimal": 1.363636,
             "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
@@ -1666,8 +2735,8 @@
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "1/7",
-            "decimal": 1.142857,
+            "odds": "4/11",
+            "decimal": 1.363636,
             "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "1st Half Goals Over / Under",
@@ -1676,157 +2745,34 @@
             "metric": "goals"
           },
           {
-            "bookmaker": "BetVictor",
-            "odds": "1/11",
-            "decimal": 1.090909,
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/10",
+            "decimal": 1.3,
             "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
             "metric": "goals"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "England v Ghana",
-      "market": "Total Goals Over Under",
-      "canonical_market": "match_goals",
-      "scope": "match",
-      "scope_team": "",
-      "line": "1.5",
-      "arb_sum": 1.018182,
-      "arb_percent": 101.818,
-      "profit_margin_percent": -1.786,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "WilliamHill",
-          "odds": "2/9",
-          "decimal_odds": 1.222222,
-          "source_market": "Total Goals Over / Under"
-        },
-        "under": {
-          "bookmaker": "BetVictor",
-          "odds": "4/1",
-          "decimal_odds": 5.0,
-          "source_market": "Total Goals Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "match": "England v Ghana",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "match": "England v Ghana",
-            "market": "Total Goals Over Under",
-            "source_market": "1st Half Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
           },
           {
             "bookmaker": "Ladbrokes",
-            "odds": "1/5",
-            "decimal": 1.2,
-            "match": "England v Ghana",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "1/5",
-            "decimal": 1.2,
-            "match": "England v Ghana",
-            "market": "Total Goals Over Under",
-            "source_market": "1st Half Goals Over / Under",
             "scope": "match",
             "scope_team": "",
             "metric": "goals"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "1/6",
-            "decimal": 1.166667,
-            "match": "England v Ghana",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "4/1",
-            "decimal": 5.0,
-            "match": "England v Ghana",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "16/5",
-            "decimal": 4.2,
-            "match": "England v Ghana",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "16/5",
-            "decimal": 4.2,
-            "match": "England v Ghana",
-            "market": "Total Goals Over Under",
-            "source_market": "1st Half Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "3/1",
-            "decimal": 4.0,
-            "match": "England v Ghana",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "3/1",
-            "decimal": 4.0,
-            "match": "England v Ghana",
-            "market": "Total Goals Over Under",
-            "source_market": "1st Half Goals Over / Under",
             "scope": "match",
             "scope_team": "",
             "metric": "goals"
@@ -1881,18 +2827,18 @@
             "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
           },
           {
+            "bookmaker": "Unibet",
+            "odds": "3/2",
+            "decimal_odds": 2.5,
+            "implied_probability": 0.4,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
             "bookmaker": "PaddyPower",
             "odds": "7/5",
             "decimal_odds": 2.4,
             "implied_probability": 0.416667,
             "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "7/5",
-            "decimal_odds": 2.4,
-            "implied_probability": 0.416667,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1932,6 +2878,13 @@
             "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
           },
           {
+            "bookmaker": "Unibet",
+            "odds": "21/10",
+            "decimal_odds": 3.1,
+            "implied_probability": 0.322581,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
             "bookmaker": "WilliamHill",
             "odds": "21/10",
             "decimal_odds": 3.1,
@@ -1951,13 +2904,6 @@
             "decimal_odds": 3.0,
             "implied_probability": 0.333333,
             "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "2/1",
-            "decimal_odds": 3.0,
-            "implied_probability": 0.333333,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
             "bookmaker": "888Sport",
@@ -1984,9 +2930,9 @@
           },
           {
             "bookmaker": "Unibet",
-            "odds": "21/10",
-            "decimal_odds": 3.1,
-            "implied_probability": 0.322581,
+            "odds": "11/5",
+            "decimal_odds": 3.2,
+            "implied_probability": 0.3125,
             "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
@@ -2030,445 +2976,6 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "type": "moneyline_1x2",
-      "match": "Czechia v Mexico",
-      "home_team": "Czechia",
-      "away_team": "Mexico",
-      "date_label": "",
-      "time": "02:00",
-      "market": "Match Odds",
-      "bookmaker_count": 7,
-      "arb_sum": 1.019881,
-      "arb_percent": 101.988,
-      "profit_margin_percent": -1.949,
-      "selections": {
-        "home": {
-          "bookmaker": "BetVictor",
-          "odds": "31/10",
-          "decimal_odds": 4.1,
-          "implied_probability": 0.243902,
-          "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-        },
-        "draw": {
-          "bookmaker": "PaddyPower",
-          "odds": "14/5",
-          "decimal_odds": 3.8,
-          "implied_probability": 0.263158,
-          "source_url": "https://www.paddypower.com/fifa-world-cup"
-        },
-        "away": {
-          "bookmaker": "Unibet",
-          "odds": "19/20",
-          "decimal_odds": 1.95,
-          "implied_probability": 0.512821,
-          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "31/10",
-            "decimal_odds": 4.1,
-            "implied_probability": 0.243902,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "14/5",
-            "decimal_odds": 3.8,
-            "implied_probability": 0.263158,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "11/4",
-            "decimal_odds": 3.75,
-            "implied_probability": 0.266667,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "13/5",
-            "decimal_odds": 3.6,
-            "implied_probability": 0.277778,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "5/2",
-            "decimal_odds": 3.5,
-            "implied_probability": 0.285714,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "5/2",
-            "decimal_odds": 3.5,
-            "implied_probability": 0.285714,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "5/2",
-            "decimal_odds": 3.5,
-            "implied_probability": 0.285714,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "14/5",
-            "decimal_odds": 3.8,
-            "implied_probability": 0.263158,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "11/4",
-            "decimal_odds": 3.75,
-            "implied_probability": 0.266667,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "13/5",
-            "decimal_odds": 3.6,
-            "implied_probability": 0.277778,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "13/5",
-            "decimal_odds": 3.6,
-            "implied_probability": 0.277778,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "13/5",
-            "decimal_odds": 3.6,
-            "implied_probability": 0.277778,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "12/5",
-            "decimal_odds": 3.4,
-            "implied_probability": 0.294118,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "12/5",
-            "decimal_odds": 3.4,
-            "implied_probability": 0.294118,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "19/20",
-            "decimal_odds": 1.95,
-            "implied_probability": 0.512821,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "10/11",
-            "decimal_odds": 1.909091,
-            "implied_probability": 0.523809,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "10/11",
-            "decimal_odds": 1.909091,
-            "implied_probability": 0.523809,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "10/11",
-            "decimal_odds": 1.909091,
-            "implied_probability": 0.523809,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "9/10",
-            "decimal_odds": 1.9,
-            "implied_probability": 0.526316,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "20/23",
-            "decimal_odds": 1.869565,
-            "implied_probability": 0.534884,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "41/50",
-            "decimal_odds": 1.82,
-            "implied_probability": 0.549451,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "France v Iraq",
-      "market": "Total Goals Over Under",
-      "canonical_market": "match_goals",
-      "scope": "match",
-      "scope_team": "",
-      "line": "1.5",
-      "arb_sum": 1.020202,
-      "arb_percent": 102.02,
-      "profit_margin_percent": -1.98,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "WilliamHill",
-          "odds": "1/10",
-          "decimal_odds": 1.1,
-          "source_market": "Total Goals Over / Under"
-        },
-        "under": {
-          "bookmaker": "BetVictor",
-          "odds": "8/1",
-          "decimal_odds": 9.0,
-          "source_market": "Total Goals Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/10",
-            "decimal": 1.1,
-            "match": "France v Iraq",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/10",
-            "decimal": 1.1,
-            "match": "France v Iraq",
-            "market": "Total Goals Over Under",
-            "source_market": "1st Half Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/16",
-            "decimal": 1.0625,
-            "match": "France v Iraq",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "1/18",
-            "decimal": 1.055556,
-            "match": "France v Iraq",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "8/1",
-            "decimal": 9.0,
-            "match": "France v Iraq",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "7/1",
-            "decimal": 8.0,
-            "match": "France v Iraq",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "11/2",
-            "decimal": 6.5,
-            "match": "France v Iraq",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "11/2",
-            "decimal": 6.5,
-            "match": "France v Iraq",
-            "market": "Total Goals Over Under",
-            "source_market": "1st Half Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Switzerland v Canada",
-      "market": "Total Goals Over Under",
-      "canonical_market": "match_goals",
-      "scope": "match",
-      "scope_team": "",
-      "line": "4.5",
-      "arb_sum": 1.020202,
-      "arb_percent": 102.02,
-      "profit_margin_percent": -1.98,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "BetVictor",
-          "odds": "8/1",
-          "decimal_odds": 9.0,
-          "source_market": "Total Goals Over / Under"
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "1/10",
-          "decimal_odds": 1.1,
-          "source_market": "Total Goals Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "8/1",
-            "decimal": 9.0,
-            "match": "Switzerland v Canada",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "6/1",
-            "decimal": 7.0,
-            "match": "Switzerland v Canada",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "6/1",
-            "decimal": 7.0,
-            "match": "Switzerland v Canada",
-            "market": "Total Goals Over Under",
-            "source_market": "1st Half Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "11/2",
-            "decimal": 6.5,
-            "match": "Switzerland v Canada",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "1/10",
-            "decimal": 1.1,
-            "match": "Switzerland v Canada",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/12",
-            "decimal": 1.083333,
-            "match": "Switzerland v Canada",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/12",
-            "decimal": 1.083333,
-            "match": "Switzerland v Canada",
-            "market": "Total Goals Over Under",
-            "source_market": "1st Half Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/16",
-            "decimal": 1.0625,
-            "match": "Switzerland v Canada",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
       "type": "props_ou",
       "match": "Czechia v Mexico",
       "market": "Total Goals Over Under",
@@ -2509,8 +3016,8 @@
           },
           {
             "bookmaker": "Unibet",
-            "odds": "13/2",
-            "decimal": 7.5,
+            "odds": "6/1",
+            "decimal": 7.0,
             "match": "Czechia v Mexico",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
@@ -2566,8 +3073,8 @@
           },
           {
             "bookmaker": "Unibet",
-            "odds": "2/25",
-            "decimal": 1.08,
+            "odds": "1/10",
+            "decimal": 1.1,
             "match": "Czechia v Mexico",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
@@ -2755,8 +3262,8 @@
           },
           {
             "bookmaker": "Unibet",
-            "odds": "13/2",
-            "decimal": 7.5,
+            "odds": "6/1",
+            "decimal": 7.0,
             "match": "Curacao v Ivory Coast",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
@@ -2839,27 +3346,27 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Argentina v Austria",
+      "match": "Panama v Croatia",
       "market": "Total Cards Over Under",
       "canonical_market": "match_cards",
       "scope": "match",
       "scope_team": "",
-      "line": "4.5",
-      "arb_sum": 1.02027,
-      "arb_percent": 102.027,
-      "profit_margin_percent": -1.987,
+      "line": "3.5",
+      "arb_sum": 1.021053,
+      "arb_percent": 102.105,
+      "profit_margin_percent": -2.062,
       "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "PaddyPower",
-          "odds": "27/10",
-          "decimal_odds": 3.7,
+          "odds": "11/8",
+          "decimal_odds": 2.375,
           "source_market": "Total Cards Over/Under"
         },
         "under": {
           "bookmaker": "WilliamHill",
-          "odds": "1/3",
-          "decimal_odds": 1.333333,
+          "odds": "4/6",
+          "decimal_odds": 1.666667,
           "source_market": "Total Cards"
         }
       },
@@ -2867,9 +3374,9 @@
         "over": [
           {
             "bookmaker": "PaddyPower",
-            "odds": "27/10",
-            "decimal": 3.7,
-            "match": "Argentina v Austria",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over/Under",
             "scope": "match",
@@ -2878,9 +3385,9 @@
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "13/5",
-            "decimal": 3.6,
-            "match": "Argentina v Austria",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over / Under",
             "scope": "match",
@@ -2889,9 +3396,9 @@
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "9/4",
-            "decimal": 3.25,
-            "match": "Argentina v Austria",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards",
             "scope": "match",
@@ -2902,9 +3409,9 @@
         "under": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "1/3",
-            "decimal": 1.333333,
-            "match": "Argentina v Austria",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards",
             "scope": "match",
@@ -2913,9 +3420,9 @@
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "1/4",
-            "decimal": 1.25,
-            "match": "Argentina v Austria",
+            "odds": "3/5",
+            "decimal": 1.6,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over / Under",
             "scope": "match",
@@ -2924,9 +3431,9 @@
           },
           {
             "bookmaker": "PaddyPower",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "match": "Argentina v Austria",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "match": "Panama v Croatia",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over/Under",
             "scope": "match",
@@ -2940,77 +3447,121 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Jordan v Algeria",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
+      "match": "Bosnia v Qatar",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
       "scope": "match",
       "scope_team": "",
-      "line": "4.5",
-      "arb_sum": 1.02027,
-      "arb_percent": 102.027,
-      "profit_margin_percent": -1.987,
+      "line": "5.5",
+      "arb_sum": 1.021536,
+      "arb_percent": 102.154,
+      "profit_margin_percent": -2.108,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "27/10",
-          "decimal_odds": 3.7,
-          "source_market": "Total Cards Over/Under"
+          "bookmaker": "BetVictor",
+          "odds": "21/2",
+          "decimal_odds": 11.5,
+          "source_market": "Total Goals Over / Under"
         },
         "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "1/3",
-          "decimal_odds": 1.333333,
-          "source_market": "Total Cards"
+          "bookmaker": "Unibet",
+          "odds": "7/100",
+          "decimal_odds": 1.07,
+          "source_market": "Total Goals Over / Under"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "PaddyPower",
-            "odds": "27/10",
-            "decimal": 3.7,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "bookmaker": "BetVictor",
+            "odds": "21/2",
+            "decimal": 11.5,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "8/1",
+            "decimal": 9.0,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "9/4",
-            "decimal": 3.25,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
+            "odds": "7/1",
+            "decimal": 8.0,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "7/1",
+            "decimal": 8.0,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
           }
         ],
         "under": [
           {
-            "bookmaker": "WilliamHill",
-            "odds": "1/3",
-            "decimal": 1.333333,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
+            "bookmaker": "Unibet",
+            "odds": "7/100",
+            "decimal": 1.07,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
           },
           {
-            "bookmaker": "PaddyPower",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "match": "Jordan v Algeria",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "bookmaker": "WilliamHill",
+            "odds": "1/16",
+            "decimal": 1.0625,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/16",
+            "decimal": 1.0625,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/28",
+            "decimal": 1.035714,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
           }
         ]
       }
@@ -3019,36 +3570,36 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "moneyline_1x2",
-      "match": "France v Iraq",
-      "home_team": "France",
-      "away_team": "Iraq",
+      "match": "Jordan v Algeria",
+      "home_team": "Jordan",
+      "away_team": "Algeria",
       "date_label": "",
-      "time": "22:00",
+      "time": "04:00",
       "market": "Match Odds",
-      "bookmaker_count": 5,
-      "arb_sum": 1.021836,
-      "arb_percent": 102.184,
-      "profit_margin_percent": -2.137,
+      "bookmaker_count": 6,
+      "arb_sum": 1.022093,
+      "arb_percent": 102.209,
+      "profit_margin_percent": -2.162,
       "selections": {
         "home": {
           "bookmaker": "WilliamHill",
-          "odds": "1/10",
-          "decimal_odds": 1.1,
-          "implied_probability": 0.909091,
+          "odds": "6/1",
+          "decimal_odds": 7.0,
+          "implied_probability": 0.142857,
           "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
         },
         "draw": {
-          "bookmaker": "PaddyPower",
-          "odds": "11/1",
-          "decimal_odds": 12.0,
-          "implied_probability": 0.083333,
-          "source_url": "https://www.paddypower.com/fifa-world-cup"
+          "bookmaker": "Unibet",
+          "odds": "67/20",
+          "decimal_odds": 4.35,
+          "implied_probability": 0.229885,
+          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
         },
         "away": {
           "bookmaker": "Unibet",
-          "odds": "33/1",
-          "decimal_odds": 34.0,
-          "implied_probability": 0.029412,
+          "odds": "27/50",
+          "decimal_odds": 1.54,
+          "implied_probability": 0.649351,
           "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
         }
       },
@@ -3056,112 +3607,133 @@
         "home": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "1/10",
-            "decimal_odds": 1.1,
-            "implied_probability": 0.909091,
+            "odds": "6/1",
+            "decimal_odds": 7.0,
+            "implied_probability": 0.142857,
             "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
           },
           {
-            "bookmaker": "Unibet",
-            "odds": "2/25",
-            "decimal_odds": 1.08,
-            "implied_probability": 0.925926,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "1/14",
-            "decimal_odds": 1.071429,
-            "implied_probability": 0.933333,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "1/16",
-            "decimal_odds": 1.0625,
-            "implied_probability": 0.941176,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
+            "bookmaker": "888Sport",
+            "odds": "6/1",
+            "decimal_odds": 7.0,
+            "implied_probability": 0.142857,
+            "source_url": "https://www.888sport.com/football/world-cup/"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "1/18",
-            "decimal_odds": 1.055556,
-            "implied_probability": 0.947368,
+            "odds": "11/2",
+            "decimal_odds": 6.5,
+            "implied_probability": 0.153846,
             "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "11/2",
+            "decimal_odds": 6.5,
+            "implied_probability": 0.153846,
+            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "5/1",
+            "decimal_odds": 6.0,
+            "implied_probability": 0.166667,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "5/1",
+            "decimal_odds": 6.0,
+            "implied_probability": 0.166667,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
           }
         ],
         "draw": [
           {
-            "bookmaker": "PaddyPower",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "10/1",
-            "decimal_odds": 11.0,
-            "implied_probability": 0.090909,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
             "bookmaker": "Unibet",
-            "odds": "10/1",
-            "decimal_odds": 11.0,
-            "implied_probability": 0.090909,
+            "odds": "67/20",
+            "decimal_odds": 4.35,
+            "implied_probability": 0.229885,
             "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
+            "bookmaker": "BetVictor",
+            "odds": "31/10",
+            "decimal_odds": 4.1,
+            "implied_probability": 0.243902,
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "3/1",
+            "decimal_odds": 4.0,
+            "implied_probability": 0.25,
+            "source_url": "https://www.paddypower.com/fifa-world-cup"
+          },
+          {
+            "bookmaker": "BoyleSports",
+            "odds": "3/1",
+            "decimal_odds": 4.0,
+            "implied_probability": 0.25,
+            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
+          },
+          {
             "bookmaker": "WilliamHill",
-            "odds": "9/1",
-            "decimal_odds": 10.0,
-            "implied_probability": 0.1,
+            "odds": "3/1",
+            "decimal_odds": 4.0,
+            "implied_probability": 0.25,
             "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "29/10",
+            "decimal_odds": 3.9,
+            "implied_probability": 0.25641,
+            "source_url": "https://www.888sport.com/football/world-cup/"
           }
         ],
         "away": [
           {
             "bookmaker": "Unibet",
-            "odds": "33/1",
-            "decimal_odds": 34.0,
-            "implied_probability": 0.029412,
+            "odds": "27/50",
+            "decimal_odds": 1.54,
+            "implied_probability": 0.649351,
             "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
           },
           {
             "bookmaker": "PaddyPower",
-            "odds": "30/1",
-            "decimal_odds": 31.0,
-            "implied_probability": 0.032258,
+            "odds": "1/2",
+            "decimal_odds": 1.5,
+            "implied_probability": 0.666667,
             "source_url": "https://www.paddypower.com/fifa-world-cup"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "28/1",
-            "decimal_odds": 29.0,
-            "implied_probability": 0.034483,
+            "odds": "1/2",
+            "decimal_odds": 1.5,
+            "implied_probability": 0.666667,
             "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
           },
           {
             "bookmaker": "BoyleSports",
-            "odds": "25/1",
-            "decimal_odds": 26.0,
-            "implied_probability": 0.038462,
+            "odds": "4/9",
+            "decimal_odds": 1.444444,
+            "implied_probability": 0.692308,
             "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "22/1",
-            "decimal_odds": 23.0,
-            "implied_probability": 0.043478,
+            "odds": "4/9",
+            "decimal_odds": 1.444444,
+            "implied_probability": 0.692308,
             "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
+          },
+          {
+            "bookmaker": "888Sport",
+            "odds": "4/9",
+            "decimal_odds": 1.444444,
+            "implied_probability": 0.692308,
+            "source_url": "https://www.888sport.com/football/world-cup/"
           }
         ]
       }
@@ -3171,107 +3743,6 @@
       "competition": "FIFA World Cup",
       "type": "props_ou",
       "match": "Norway v Senegal",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "7.5",
-      "arb_sum": 1.021978,
-      "arb_percent": 102.198,
-      "profit_margin_percent": -2.151,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "BetVictor",
-          "odds": "2/5",
-          "decimal_odds": 1.4,
-          "source_market": "Total Corners Over / Under"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "9/4",
-          "decimal_odds": 3.25,
-          "source_market": "Total Corners"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "2/5",
-            "decimal": 1.4,
-            "match": "Norway v Senegal",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "7/20",
-            "decimal": 1.35,
-            "match": "Norway v Senegal",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/3",
-            "decimal": 1.333333,
-            "match": "Norway v Senegal",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "9/4",
-            "decimal": 3.25,
-            "match": "Norway v Senegal",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "39/20",
-            "decimal": 2.95,
-            "match": "Norway v Senegal",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "13/8",
-            "decimal": 2.625,
-            "match": "Norway v Senegal",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Argentina v Austria",
       "market": "Total Goals Over Under",
       "canonical_market": "match_goals",
       "scope": "match",
@@ -3301,29 +3772,7 @@
             "bookmaker": "BetVictor",
             "odds": "13/2",
             "decimal": 7.5,
-            "match": "Argentina v Austria",
-            "market": "Total Goals Over Under",
-            "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "6/1",
-            "decimal": 7.0,
-            "match": "Argentina v Austria",
-            "market": "Total Goals Over Under",
-            "source_market": "Over/Under Goals",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "9/2",
-            "decimal": 5.5,
-            "match": "Argentina v Austria",
+            "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
             "scope": "match",
@@ -3334,7 +3783,18 @@
             "bookmaker": "WilliamHill",
             "odds": "9/2",
             "decimal": 5.5,
-            "match": "Argentina v Austria",
+            "match": "Norway v Senegal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "9/2",
+            "decimal": 5.5,
+            "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "1st Half Goals Over / Under",
             "scope": "match",
@@ -3347,7 +3807,7 @@
             "bookmaker": "WilliamHill",
             "odds": "1/8",
             "decimal": 1.125,
-            "match": "Argentina v Austria",
+            "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
             "scope": "match",
@@ -3358,7 +3818,7 @@
             "bookmaker": "WilliamHill",
             "odds": "1/8",
             "decimal": 1.125,
-            "match": "Argentina v Austria",
+            "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "1st Half Goals Over / Under",
             "scope": "match",
@@ -3369,20 +3829,9 @@
             "bookmaker": "BetVictor",
             "odds": "1/12",
             "decimal": 1.083333,
-            "match": "Argentina v Austria",
+            "match": "Norway v Senegal",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "goals"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "1/14",
-            "decimal": 1.071429,
-            "match": "Argentina v Austria",
-            "market": "Total Goals Over Under",
-            "source_market": "Over/Under Goals",
             "scope": "match",
             "scope_team": "",
             "metric": "goals"
@@ -3395,8 +3844,8 @@
       "competition": "FIFA World Cup",
       "type": "props_ou",
       "match": "Jordan v Algeria",
-      "market": "Total Goals Over Under",
-      "canonical_market": "match_goals",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
       "scope": "match",
       "scope_team": "",
       "line": "4.5",
@@ -3406,15 +3855,173 @@
       "bookmaker_count": 2,
       "selections": {
         "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "7/2",
+          "decimal_odds": 4.5,
+          "source_market": "Total Cards Over/Under"
+        },
+        "under": {
+          "bookmaker": "WilliamHill",
+          "odds": "1/4",
+          "decimal_odds": 1.25,
+          "source_market": "Total Cards"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "match": "Jordan v Algeria",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "11/4",
+            "decimal": 3.75,
+            "match": "Jordan v Algeria",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "Jordan v Algeria",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/13",
+            "decimal": 1.153846,
+            "match": "Jordan v Algeria",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Czechia v Mexico",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 1.022222,
+      "arb_percent": 102.222,
+      "profit_margin_percent": -2.174,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "7/2",
+          "decimal_odds": 4.5,
+          "source_market": "Total Cards Over/Under"
+        },
+        "under": {
           "bookmaker": "BetVictor",
-          "odds": "13/2",
-          "decimal_odds": 7.5,
+          "odds": "1/4",
+          "decimal_odds": 1.25,
+          "source_market": "Total Cards Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "match": "Czechia v Mexico",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Czechia v Mexico",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "Czechia v Mexico",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/13",
+            "decimal": 1.153846,
+            "match": "Czechia v Mexico",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Portugal v Uzbekistan",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "5.5",
+      "arb_sum": 1.023077,
+      "arb_percent": 102.308,
+      "profit_margin_percent": -2.256,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "9/1",
+          "decimal_odds": 10.0,
           "source_market": "Total Goals Over / Under"
         },
         "under": {
           "bookmaker": "WilliamHill",
-          "odds": "1/8",
-          "decimal_odds": 1.125,
+          "odds": "1/12",
+          "decimal_odds": 1.083333,
           "source_market": "Total Goals Over / Under"
         }
       },
@@ -3422,9 +4029,9 @@
         "over": [
           {
             "bookmaker": "BetVictor",
-            "odds": "13/2",
-            "decimal": 7.5,
-            "match": "Jordan v Algeria",
+            "odds": "9/1",
+            "decimal": 10.0,
+            "match": "Portugal v Uzbekistan",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
             "scope": "match",
@@ -3433,9 +4040,9 @@
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "9/2",
-            "decimal": 5.5,
-            "match": "Jordan v Algeria",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "match": "Portugal v Uzbekistan",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
             "scope": "match",
@@ -3444,9 +4051,9 @@
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "9/2",
-            "decimal": 5.5,
-            "match": "Jordan v Algeria",
+            "odds": "6/1",
+            "decimal": 7.0,
+            "match": "Portugal v Uzbekistan",
             "market": "Total Goals Over Under",
             "source_market": "1st Half Goals Over / Under",
             "scope": "match",
@@ -3457,9 +4064,9 @@
         "under": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "1/8",
-            "decimal": 1.125,
-            "match": "Jordan v Algeria",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "match": "Portugal v Uzbekistan",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
             "scope": "match",
@@ -3468,9 +4075,9 @@
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "1/8",
-            "decimal": 1.125,
-            "match": "Jordan v Algeria",
+            "odds": "1/12",
+            "decimal": 1.083333,
+            "match": "Portugal v Uzbekistan",
             "market": "Total Goals Over Under",
             "source_market": "1st Half Goals Over / Under",
             "scope": "match",
@@ -3479,9 +4086,9 @@
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "1/12",
-            "decimal": 1.083333,
-            "match": "Jordan v Algeria",
+            "odds": "1/22",
+            "decimal": 1.045455,
+            "match": "Portugal v Uzbekistan",
             "market": "Total Goals Over Under",
             "source_market": "Total Goals Over / Under",
             "scope": "match",
@@ -3495,83 +4102,329 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Panama v Croatia",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
+      "match": "Bosnia v Qatar",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
       "scope": "match",
       "scope_team": "",
-      "line": "5.5",
-      "arb_sum": 1.023809,
+      "line": "4.5",
+      "arb_sum": 1.02381,
       "arb_percent": 102.381,
       "profit_margin_percent": -2.326,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "5/1",
-          "decimal_odds": 6.0,
-          "source_market": "Total Cards Over/Under"
+          "bookmaker": "BetVictor",
+          "odds": "17/4",
+          "decimal_odds": 5.25,
+          "source_market": "Total Goals Over / Under"
         },
         "under": {
           "bookmaker": "WilliamHill",
-          "odds": "1/6",
-          "decimal_odds": 1.166667,
-          "source_market": "Total Cards"
+          "odds": "1/5",
+          "decimal_odds": 1.2,
+          "source_market": "Total Goals Over / Under"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "PaddyPower",
-            "odds": "5/1",
-            "decimal": 6.0,
-            "match": "Panama v Croatia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "bookmaker": "BetVictor",
+            "odds": "17/4",
+            "decimal": 5.25,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "18/5",
+            "decimal": 4.6,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
           },
           {
             "bookmaker": "WilliamHill",
-            "odds": "7/2",
-            "decimal": 4.5,
-            "match": "Panama v Croatia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
+            "odds": "10/3",
+            "decimal": 4.333333,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "10/3",
+            "decimal": 4.333333,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
           }
         ],
         "under": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "1/6",
-            "decimal": 1.166667,
-            "match": "Panama v Croatia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
           },
           {
-            "bookmaker": "PaddyPower",
-            "odds": "1/12",
-            "decimal": 1.083333,
-            "match": "Panama v Croatia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "bookmaker": "WilliamHill",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "2/13",
+            "decimal": 1.153846,
+            "match": "Bosnia v Qatar",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "England v Ghana",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "5.5",
+      "arb_sum": 1.024242,
+      "arb_percent": 102.424,
+      "profit_margin_percent": -2.367,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "10/1",
+          "decimal_odds": 11.0,
+          "source_market": "Total Goals Over / Under"
+        },
+        "under": {
+          "bookmaker": "WilliamHill",
+          "odds": "1/14",
+          "decimal_odds": 1.071429,
+          "source_market": "Total Goals Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "10/1",
+            "decimal": 11.0,
+            "match": "England v Ghana",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/2",
+            "decimal": 7.5,
+            "match": "England v Ghana",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/2",
+            "decimal": 7.5,
+            "match": "England v Ghana",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/14",
+            "decimal": 1.071429,
+            "match": "England v Ghana",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/14",
+            "decimal": 1.071429,
+            "match": "England v Ghana",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/28",
+            "decimal": 1.035714,
+            "match": "England v Ghana",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Colombia v DR Congo",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 1.024242,
+      "arb_percent": 102.424,
+      "profit_margin_percent": -2.367,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "10/1",
+          "decimal_odds": 11.0,
+          "source_market": "Total Goals Over / Under"
+        },
+        "under": {
+          "bookmaker": "WilliamHill",
+          "odds": "1/14",
+          "decimal_odds": 1.071429,
+          "source_market": "Total Goals Over / Under"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "10/1",
+            "decimal": 11.0,
+            "match": "Colombia v DR Congo",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/2",
+            "decimal": 7.5,
+            "match": "Colombia v DR Congo",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/2",
+            "decimal": 7.5,
+            "match": "Colombia v DR Congo",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/14",
+            "decimal": 1.071429,
+            "match": "Colombia v DR Congo",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/14",
+            "decimal": 1.071429,
+            "match": "Colombia v DR Congo",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/28",
+            "decimal": 1.035714,
+            "match": "Colombia v DR Congo",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals"
           }
         ]
       }
     }
   ],
-  "props_arb_count": 6,
-  "props_ou_arb_count": 6,
-  "props_named_arb_count": 0
+  "props_arb_count": 13,
+  "props_ou_arb_count": 9,
+  "props_named_arb_count": 4
 }
