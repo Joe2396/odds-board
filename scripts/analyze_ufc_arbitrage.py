@@ -14,6 +14,7 @@ PROP_FILES = [
     ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props.json"),
     ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
     ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
+    ("Bwin", ROOT / "ufc" / "data" / "bwin_props.json"),
 ]
 
 def load_json(path, default):

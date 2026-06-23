@@ -27,6 +27,9 @@ PROP_FILES = [
         ROOT / "ufc" / "data" / "betmgm_props_filtered.json",
         ROOT / "ufc" / "data" / "betmgm_props.json",
     ]),
+    ("Bwin", [
+        ROOT / "ufc" / "data" / "bwin_props.json",
+    ]),
 ]
 
 EVENTS_PATH = ROOT / "ufc" / "data" / "events.json"
