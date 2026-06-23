@@ -2,7 +2,7 @@
 """
 fetch_bwin_worldcup_props.py
 
-Bwin World Cup 2026 props scraper — deep tabs, scroll, and exact cards.
+Bwin World Cup 2026 props scraper — nested scrolling and exact cards.
 
 It reads event URLs from bwin_worldcup_moneylines.json, opens the next three
 fixtures, expands visible market groups, visits useful market tabs, and extracts
@@ -28,13 +28,13 @@ than guesswork.
 
 from __future__ import annotations
 
-# BWIN_V5_SCROLL_ALL_MARKETS
+# BWIN_PROPS_PROD15_VALIDATION
 
 import json
 import re
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from fractions import Fraction
 from pathlib import Path
 from typing import Iterable
@@ -47,8 +47,10 @@ MONEYLINES_PATH = (
 OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props"
 
-MAX_MATCHES = 3
+MAX_MATCHES = 15
 HEADLESS = False
+SKIP_STARTED_MATCHES = True
+KICKOFF_BUFFER_MINUTES = 60
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -91,17 +93,35 @@ TARGET_HEADINGS = [
 
 TARGET_TABS = [
     "All",
-    "Main",
     "Goals",
     "Players",
     "Cards",
     "Corners",
-    "Build A Bet",
 ]
 
 # Bwin changes the wording of the same player market between fixtures and
 # tabs. Each group is searched using every known exact alias.
 ACCORDION_GROUPS = [
+    (
+        "BTTS",
+        [
+            "Both teams to score",
+            "Both Teams To Score",
+        ],
+    ),
+    (
+        "Double Chance",
+        [
+            "Double Chance",
+        ],
+    ),
+    (
+        "Goalscorers",
+        [
+            "Goalscorers",
+            "Anytime Goalscorer",
+        ],
+    ),
     (
         "Player Cards",
         [
@@ -141,16 +161,106 @@ ACCORDION_GROUPS = [
     ),
 ]
 
-# Try player accordions on every tab where Bwin has previously placed them.
+# Search only tabs where the debug heading scan proves these rows exist.
 TAB_ACCORDION_LABELS = {
-    "All": {"Player Cards", "Player Tackles", "Player Assists", "Player Fouls"},
-    "Players": {"Player Cards", "Player Tackles", "Player Assists", "Player Fouls"},
-    "Cards": {"Player Cards", "Player Fouls"},
-    "Build A Bet": {"Player Cards", "Player Tackles", "Player Assists", "Player Fouls"},
+    "All": {
+        "BTTS",
+        "Double Chance",
+        "Goalscorers",
+        "Player Cards",
+        "Player Assists",
+        "Player Fouls",
+    },
+    "Main": {
+        "BTTS",
+        "Double Chance",
+        "Goalscorers",
+    },
+    "Goals": {
+        "BTTS",
+        "Double Chance",
+        "Goalscorers",
+    },
+    "Players": {
+        "Goalscorers",
+        "Player Cards",
+        "Player Tackles",
+        "Player Assists",
+        "Player Fouls",
+    },
+    "Cards": {
+        "Player Cards",
+    },
+    "Build A Bet": {
+        "BTTS",
+        "Double Chance",
+        "Goalscorers",
+        "Player Cards",
+        "Player Tackles",
+        "Player Assists",
+        "Player Fouls",
+    },
 }
 
 # User-required output limits. The source can show larger ladders, but they are
 # intentionally discarded from the JSON.
+MARKET_VIEWS_BY_TAB = {
+    "All": [
+        (
+            "BTTS",
+            [
+                "Both teams to score",
+                "Both Teams To Score",
+            ],
+        ),
+        (
+            "Double Chance",
+            [
+                "Double Chance",
+            ],
+        ),
+    ],
+    "Players": [
+        (
+            "Player Tackles",
+            [
+                "Player Total Tackles",
+                "Player Tackles",
+                "Total Tackles",
+            ],
+        ),
+        (
+            "Player Assists",
+            [
+                "Player Total Assists",
+                "Player Assists",
+                "Player To Assist",
+            ],
+        ),
+        (
+            "Player Fouls",
+            [
+                "Player Total Fouls",
+                "Player Fouls",
+                "Player Total Fouls Committed",
+                "Player Fouls Committed",
+                "Total Fouls Committed",
+                "Player Total Fouls Won",
+                "Player Fouls Won",
+                "Total Fouls Won",
+            ],
+        ),
+        (
+            "Player Cards",
+            [
+                "To be shown a Card",
+                "Player to be shown a Card",
+                "Player Cards",
+            ],
+        ),
+    ],
+}
+
 MAX_PLAYER_THRESHOLD = {
     "shots": 4,            # keep 1+, 2+, 3+, 4+
     "shots_on_target": 3,  # keep 1+, 2+, 3+
@@ -301,6 +411,84 @@ def canonical_market_name(heading: str) -> tuple[str, str] | None:
 
     return mapping.get(key)
 
+
+def parse_local_kickoff(match: dict) -> datetime | None:
+    """
+    Parse Bwin's local fixture labels such as:
+        Today / 6:00 PM
+        Tomorrow / 12:00 AM
+        6/25/26 / 2:00 AM
+
+    The browser and Windows task run in the user's local timezone, so use the
+    machine's local timezone rather than assuming UTC.
+    """
+    now = datetime.now().astimezone()
+    date_label = clean(match.get("date_label"))
+    time_label = clean(match.get("time"))
+    combined = clean(f"{date_label} {time_label}").replace("/", " ")
+
+    time_match = re.search(
+        r"\b(\d{1,2}:\d{2}\s*(?:AM|PM))\b",
+        combined,
+        re.I,
+    )
+    if not time_match:
+        return None
+
+    try:
+        clock = datetime.strptime(
+            clean(time_match.group(1)).upper(),
+            "%I:%M %p",
+        ).time()
+    except ValueError:
+        return None
+
+    lowered = combined.lower()
+    if "today" in lowered:
+        event_date = now.date()
+    elif "tomorrow" in lowered:
+        event_date = (now + timedelta(days=1)).date()
+    else:
+        date_match = re.search(
+            r"\b(\d{1,2}/\d{1,2}/\d{2,4})\b",
+            clean(f"{date_label} {time_label}"),
+        )
+        if not date_match:
+            return None
+
+        parsed_date = None
+        for date_format in ("%m/%d/%y", "%m/%d/%Y"):
+            try:
+                parsed_date = datetime.strptime(
+                    date_match.group(1),
+                    date_format,
+                ).date()
+                break
+            except ValueError:
+                continue
+
+        if parsed_date is None:
+            return None
+        event_date = parsed_date
+
+    return datetime.combine(
+        event_date,
+        clock,
+        tzinfo=now.tzinfo,
+    )
+
+
+def match_has_started(match: dict) -> bool:
+    kickoff = parse_local_kickoff(match)
+    if kickoff is None:
+        return False
+
+    now = datetime.now().astimezone()
+    return kickoff <= now + timedelta(
+        minutes=KICKOFF_BUFFER_MINUTES
+    )
+
+
 def load_matches() -> list[dict]:
     if not MONEYLINES_PATH.exists():
         raise RuntimeError(
@@ -332,6 +520,15 @@ def load_matches() -> list[dict]:
                 "url": url,
             }
         )
+
+    if SKIP_STARTED_MATCHES:
+        upcoming = []
+        for match in output:
+            if match_has_started(match):
+                print(f"Skipping live/near-kickoff fixture: {match['match']}")
+                continue
+            upcoming.append(match)
+        output = upcoming
 
     return output[:MAX_MATCHES] if MAX_MATCHES else output
 
@@ -523,354 +720,695 @@ def discover_market_headings(page) -> list[str]:
         return []
 
 
-def open_market_accordion(page, aliases: list[str]) -> str:
-    """
-    Search the full tab vertically, click a plain DIV/SPAN market row using a
-    real mouse event, and only report success after an exact card has odds.
-    """
-    already = market_card_visible(page, aliases)
-    if already:
-        return already
 
-    # Some accordion rows only mount after an inner Show More is clicked.
-    expand_visible_markets(page, max_clicks=18)
+RELAXED_MARKET_VIEW_EXTRACTOR = r"""
+(aliases) => {
+    const clean = value =>
+        (value || "").replace(/\s+/g, " ").trim();
+
+    const norm = value =>
+        clean(value).toLowerCase()
+            .replace(/[^a-z0-9]+/g, " ").trim();
+
+    const wanted = new Set(aliases.map(norm));
+    const oddRe = /^\d{1,3}[.,]\d{1,3}$/;
+
+    const rendered = element => {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        return (
+            rect.width > 0
+            && rect.height > 0
+            && style.display !== "none"
+            && style.visibility !== "hidden"
+        );
+    };
+
+    const output = [];
+    const seen = new Set();
+
+    for (const headingElement of document.querySelectorAll("body *")) {
+        if (!rendered(headingElement)) {
+            continue;
+        }
+
+        const own = Array.from(headingElement.childNodes)
+            .filter(node => node.nodeType === Node.TEXT_NODE)
+            .map(node => clean(node.textContent))
+            .filter(Boolean)
+            .join(" ");
+
+        const full = clean(headingElement.innerText);
+        const heading = wanted.has(norm(own)) ? own : full;
+
+        if (!wanted.has(norm(heading))) {
+            continue;
+        }
+
+        let node = headingElement;
+        let best = null;
+
+        for (
+            let depth = 0;
+            depth < 11 && node;
+            depth += 1, node = node.parentElement
+        ) {
+            const raw = node.innerText || "";
+            const lines = raw
+                .split(/\n+/)
+                .map(clean)
+                .filter(Boolean);
+
+            if (
+                !lines.length
+                || raw.length > 14000
+                || lines.length > 700
+            ) {
+                continue;
+            }
+
+            const headingIndex = lines.findIndex(
+                line => wanted.has(norm(line))
+            );
+
+            if (headingIndex < 0 || headingIndex > 8) {
+                continue;
+            }
+
+            const odds = lines.filter(line => oddRe.test(line));
+            if (!odds.length) {
+                continue;
+            }
+
+            const rect = node.getBoundingClientRect();
+            if (
+                rect.width < 180
+                || rect.width > 1150
+                || rect.height < 60
+                || rect.height > 6000
+            ) {
+                continue;
+            }
+
+            const score = (
+                raw.length
+                + headingIndex * 500
+                + depth * 20
+            );
+
+            if (!best || score < best.score) {
+                best = {
+                    node,
+                    lines,
+                    score,
+                };
+            }
+        }
+
+        if (!best) {
+            continue;
+        }
+
+        const signature = norm(heading) + "|" + best.lines.join("|");
+        if (seen.has(signature)) {
+            continue;
+        }
+        seen.add(signature);
+
+        const cardBox = best.node.getBoundingClientRect();
+        const leaves = Array.from(
+            best.node.querySelectorAll("*")
+        ).filter(element => (
+            rendered(element)
+            && element.childElementCount === 0
+            && clean(element.innerText)
+        )).map(element => {
+            const box = element.getBoundingClientRect();
+            return {
+                text: clean(element.innerText),
+                x: Math.round(box.left),
+                y: Math.round(box.top + window.scrollY),
+                width: Math.round(box.width),
+                height: Math.round(box.height),
+                tag: element.tagName,
+            };
+        });
+
+        output.push({
+            heading,
+            lines: best.lines,
+            leaves,
+            signature,
+            card_top: Math.round(cardBox.top + window.scrollY),
+        });
+    }
+
+    return output;
+}
+"""
+
+
+def collect_market_view_cards(
+    page,
+    aliases: list[str],
+) -> list[dict]:
+    """
+    Capture a clicked market view even when Bwin wraps the market title above
+    the actual odds grid instead of leaving it as the card's first line.
+    """
+    cards = []
 
     try:
-        page.evaluate("window.scrollTo(0, 0)")
-        page.wait_for_timeout(150)
+        cards.extend(
+            page.evaluate(
+                RELAXED_MARKET_VIEW_EXTRACTOR,
+                aliases,
+            ) or []
+        )
     except Exception:
         pass
 
+    return cards
+
+
+def click_market_view_once(
+    page,
+    aliases: list[str],
+) -> str:
+    """
+    Scroll through Bwin's nested market pane until an exact collapsed market
+    row is mounted, centre that row, and click it once.
+
+    This keeps the successful probe behaviour but avoids V7's repeated click
+    verification loops. Each market gets at most one short top-to-bottom sweep.
+    """
     try:
-        document_height = int(
-            page.evaluate(
-                """
-                Math.max(
-                    document.body.scrollHeight,
-                    document.documentElement.scrollHeight
-                )
-                """
-            ) or 8000
+        page.evaluate(
+            r"""
+            () => {
+                window.scrollTo(0, 0);
+
+                for (const element of document.querySelectorAll("body *")) {
+                    const style = getComputedStyle(element);
+
+                    if (
+                        /(auto|scroll)/.test(style.overflowY || "")
+                        && element.scrollHeight
+                            > element.clientHeight + 80
+                    ) {
+                        element.scrollTop = 0;
+                    }
+                }
+            }
+            """
         )
+        page.wait_for_timeout(180)
     except Exception:
-        document_height = 8000
+        pass
 
-    for scroll_y in range(0, max(document_height + 1600, 9000), 500):
+    target_id = (
+        "btb-market-view-"
+        + str(int(time.time() * 1000))
+    )
+
+    for sweep in range(18):
         try:
-            page.evaluate("(y) => window.scrollTo(0, y)", scroll_y)
-            page.wait_for_timeout(180)
-
             candidate = page.evaluate(
                 r"""
-                (aliases) => {
+                ({aliases, targetId, sweep}) => {
                     const clean = value =>
                         (value || "").replace(/\s+/g, " ").trim();
+
                     const norm = value =>
                         clean(value).toLowerCase()
                             .replace(/[^a-z0-9]+/g, " ").trim();
-                    const wanted = new Set(aliases.map(norm));
 
-                    const visible = element => {
+                    const canonical = value =>
+                        norm(value).replace(/\s+bb$/, "").trim();
+
+                    const wanted = new Set(
+                        aliases.map(canonical)
+                    );
+
+                    const matchesWanted = value =>
+                        wanted.has(canonical(value));
+
+                    const rendered = element => {
                         const rect = element.getBoundingClientRect();
                         const style = getComputedStyle(element);
+
                         return (
-                            rect.width > 0 && rect.height > 0
-                            && rect.bottom > 0 && rect.top < innerHeight
+                            rect.width > 0
+                            && rect.height > 0
                             && style.display !== "none"
                             && style.visibility !== "hidden"
+                            && style.opacity !== "0"
                         );
                     };
 
                     const directText = element =>
                         Array.from(element.childNodes)
-                            .filter(node => node.nodeType === Node.TEXT_NODE)
+                            .filter(
+                                node => node.nodeType === Node.TEXT_NODE
+                            )
                             .map(node => clean(node.textContent))
-                            .filter(Boolean).join(" ");
+                            .filter(Boolean)
+                            .join(" ");
 
-                    const matches = Array.from(
-                        document.querySelectorAll("div, span, button, [role='button']")
-                    ).filter(element => {
-                        if (!visible(element)) {
-                            return false;
+                    const rows = [];
+
+                    for (const leaf of document.querySelectorAll(
+                        "div, span, button, [role='button']"
+                    )) {
+                        if (!rendered(leaf)) {
+                            continue;
                         }
-                        return (
-                            wanted.has(norm(directText(element)))
-                            || wanted.has(norm(element.innerText))
-                        );
-                    });
 
-                    const candidates = [];
-                    for (const match of matches) {
-                        let node = match;
+                        const own = norm(directText(leaf));
+                        const full = norm(leaf.innerText);
+
+                        if (
+                            !matchesWanted(own)
+                            && !matchesWanted(full)
+                        ) {
+                            continue;
+                        }
+
+                        let node = leaf;
+
                         for (
                             let depth = 0;
                             depth < 8 && node;
                             depth += 1, node = node.parentElement
                         ) {
+                            if (!rendered(node)) {
+                                continue;
+                            }
+
                             const rect = node.getBoundingClientRect();
-                            const style = getComputedStyle(node);
-                            const text = clean(node.innerText);
-                            const first = text.split(/\n+/)[0] || "";
+                            const lines = clean(node.innerText)
+                                .split(/\n+/)
+                                .map(clean)
+                                .filter(Boolean);
 
                             if (
-                                rect.width < 180 || rect.width > 1150
-                                || rect.height < 25 || rect.height > 105
-                                || !wanted.has(norm(first))
+                                !lines.length
+                                || !matchesWanted(lines[0])
+                                || rect.width < 180
+                                || rect.width > 1050
+                                || rect.height < 28
+                                || rect.height > 115
                             ) {
                                 continue;
                             }
 
-                            const role = (node.getAttribute("role") || "").toLowerCase();
-                            const cls = String(node.className || "");
-                            const clickable = (
-                                node.tagName === "BUTTON"
-                                || role === "button"
-                                || node.getAttribute("aria-expanded") !== null
-                                || style.cursor === "pointer"
-                                || typeof node.onclick === "function"
-                                || /accordion|header|market|title|expand|collapse|click|item/i.test(cls)
-                                || (rect.width >= 280 && rect.height >= 36)
-                            );
+                            const centreX =
+                                rect.left + rect.width / 2;
 
-                            if (!clickable) {
+                            // Ignore the fixture sidebar and right bet slip.
+                            if (centreX < 250 || centreX > 1235) {
                                 continue;
                             }
 
-                            candidates.push({
-                                heading: first,
-                                xRight: Math.max(
-                                    10,
-                                    Math.min(innerWidth - 10, rect.right - 28)
-                                ),
-                                xLeft: Math.max(
-                                    10,
-                                    Math.min(innerWidth - 10, rect.left + 120)
-                                ),
-                                y: Math.max(
-                                    10,
-                                    Math.min(innerHeight - 10, rect.top + rect.height / 2)
-                                ),
+                            const inViewport = (
+                                rect.bottom > 110
+                                && rect.top < innerHeight - 30
+                            );
+
+                            rows.push({
+                                node,
+                                heading: lines[0],
+                                inViewport,
                                 area: rect.width * rect.height,
                                 depth,
                             });
+
                             break;
                         }
                     }
 
-                    candidates.sort((a, b) => {
+                    rows.sort((a, b) => {
+                        if (a.inViewport !== b.inViewport) {
+                            return a.inViewport ? -1 : 1;
+                        }
+
                         if (a.area !== b.area) {
                             return a.area - b.area;
                         }
+
                         return a.depth - b.depth;
                     });
-                    return candidates[0] || null;
+
+                    const best = rows[0];
+
+                    if (best) {
+                        for (const old of document.querySelectorAll(
+                            "[data-btb-market-view]"
+                        )) {
+                            old.removeAttribute(
+                                "data-btb-market-view"
+                            );
+                        }
+
+                        best.node.setAttribute(
+                            "data-btb-market-view",
+                            targetId
+                        );
+
+                        best.node.scrollIntoView({
+                            block: "center",
+                            inline: "nearest",
+                            behavior: "instant",
+                        });
+
+                        return {
+                            found: true,
+                            heading: best.heading,
+                            alreadyVisible: best.inViewport,
+                        };
+                    }
+
+                    // The required row may be virtualised. Advance every
+                    // vertical scroll container a single step so it mounts.
+                    let moved = false;
+
+                    for (const element of document.querySelectorAll(
+                        "body *"
+                    )) {
+                        const style = getComputedStyle(element);
+
+                        if (
+                            !/(auto|scroll)/.test(
+                                style.overflowY || ""
+                            )
+                            || element.scrollHeight
+                                <= element.clientHeight + 80
+                        ) {
+                            continue;
+                        }
+
+                        const before = element.scrollTop;
+                        element.scrollTop = Math.min(
+                            element.scrollHeight,
+                            before + 520
+                        );
+
+                        if (element.scrollTop !== before) {
+                            moved = true;
+                        }
+                    }
+
+                    const beforeWindow = window.scrollY;
+                    window.scrollTo(
+                        0,
+                        Math.min(
+                            document.documentElement.scrollHeight,
+                            beforeWindow + 520
+                        )
+                    );
+
+                    if (window.scrollY !== beforeWindow) {
+                        moved = true;
+                    }
+
+                    return {
+                        found: false,
+                        moved,
+                        sweep,
+                    };
                 }
                 """,
-                aliases,
+                {
+                    "aliases": aliases,
+                    "targetId": target_id,
+                    "sweep": sweep,
+                },
             )
+        except Exception:
+            candidate = None
 
-            if not candidate:
+        page.wait_for_timeout(180)
+
+        if not candidate:
+            continue
+
+        if not candidate.get("found"):
+            if not candidate.get("moved"):
+                break
+            continue
+
+        selector = (
+            f'[data-btb-market-view="{target_id}"]'
+        )
+        row = page.locator(selector).first
+
+        try:
+            row.scroll_into_view_if_needed(timeout=1800)
+            page.wait_for_timeout(160)
+
+            box = row.bounding_box(timeout=1400)
+            if not box:
                 continue
 
-            for x_key in ("xRight", "xLeft"):
-                page.mouse.move(
-                    float(candidate[x_key]),
-                    float(candidate["y"]),
-                )
-                page.wait_for_timeout(80)
-                page.mouse.click(
-                    float(candidate[x_key]),
-                    float(candidate["y"]),
-                )
-                page.wait_for_timeout(1000)
+            print(
+                "      scrolled to "
+                f"{candidate.get('heading')} "
+                f"(sweep {sweep + 1})"
+            )
 
-                opened = market_card_visible(page, aliases)
-                if opened:
-                    expand_visible_markets(page, max_clicks=20)
-                    return opened
+            # Click the row once. The diagnostic probe already established
+            # that this action opens the market view.
+            row.click(
+                timeout=1800,
+                force=True,
+            )
+            page.wait_for_timeout(700)
 
+            return clean(candidate.get("heading"))
         except Exception:
             continue
 
     return ""
 
 
-def expand_visible_markets(page, max_clicks: int = 50) -> int:
+def open_market_accordion(page, aliases: list[str]) -> str:
     """
-    Sweep the entire active tab and click every exact Show More/View More
-    control, including controls inside player tables and Build A Bet sections.
+    Open a Bwin market row inside any nested scroll container.
+
+    The sportsbook market list is not reliably controlled by window.scrollTo().
+    Playwright's scroll_into_view_if_needed() scrolls every overflow ancestor,
+    which is required for lower rows such as tackles, assists, fouls and cards.
+    Success is reported only after an exact card contains decimal odds.
     """
-    labels = [
-        "show more",
-        "view more",
-        "see more",
-        "more markets",
-        "all markets",
-    ]
-    clicked = 0
-    seen = set()
+    already = market_card_visible(page, aliases)
+    if already:
+        return already
 
-    for _sweep in range(5):
-        sweep_clicks = 0
-        try:
-            page.evaluate("window.scrollTo(0, 0)")
-            page.wait_for_timeout(120)
-        except Exception:
-            pass
+    expand_visible_markets(page, max_clicks=30)
 
-        try:
-            height = int(
-                page.evaluate(
-                    """
-                    Math.max(
-                        document.body.scrollHeight,
-                        document.documentElement.scrollHeight
-                    )
-                    """
-                ) or 7000
-            )
-        except Exception:
-            height = 7000
+    for alias in aliases:
+        exact = re.compile(rf"^{re.escape(alias)}$", re.I)
+        locators = [
+            page.get_by_text(exact, exact=True),
+            page.locator("div, span, button").filter(
+                has_text=exact
+            ),
+        ]
 
-        scroll_y = 0
-        while scroll_y <= height + 900 and clicked < max_clicks:
+        for locator in locators:
             try:
-                page.evaluate("(y) => window.scrollTo(0, y)", scroll_y)
-                page.wait_for_timeout(150)
+                count = min(locator.count(), 30)
             except Exception:
-                break
+                continue
 
-            while clicked < max_clicks:
-                try:
-                    candidates = page.evaluate(
-                        r"""
-                        (labels) => {
-                            const clean = value =>
-                                (value || "").replace(/\s+/g, " ").trim();
-                            const norm = value => clean(value).toLowerCase();
-                            const wanted = new Set(labels);
-                            const output = [];
-
-                            for (const element of document.querySelectorAll(
-                                "button, span, div, [role='button']"
-                            )) {
-                                const rect = element.getBoundingClientRect();
-                                const style = getComputedStyle(element);
-                                const text = norm(element.innerText);
-
-                                if (
-                                    !wanted.has(text)
-                                    || rect.width <= 0 || rect.height <= 0
-                                    || rect.bottom <= 0 || rect.top >= innerHeight
-                                    || style.display === "none"
-                                    || style.visibility === "hidden"
-                                ) {
-                                    continue;
-                                }
-
-                                let node = element;
-                                for (
-                                    let depth = 0;
-                                    depth < 5 && node;
-                                    depth += 1, node = node.parentElement
-                                ) {
-                                    const box = node.getBoundingClientRect();
-                                    const nodeStyle = getComputedStyle(node);
-                                    const role = (node.getAttribute("role") || "").toLowerCase();
-                                    const cls = String(node.className || "");
-
-                                    if (
-                                        box.width < 35 || box.width > 1100
-                                        || box.height < 18 || box.height > 85
-                                    ) {
-                                        continue;
-                                    }
-
-                                    if (
-                                        node.tagName === "BUTTON"
-                                        || role === "button"
-                                        || nodeStyle.cursor === "pointer"
-                                        || typeof node.onclick === "function"
-                                        || /show|more|expand|button|click/i.test(cls)
-                                        || (box.width >= 80 && box.height >= 24)
-                                    ) {
-                                        output.push({
-                                            text: clean(node.innerText),
-                                            x: Math.max(
-                                                8,
-                                                Math.min(innerWidth - 8, box.left + box.width / 2)
-                                            ),
-                                            y: Math.max(
-                                                8,
-                                                Math.min(innerHeight - 8, box.top + box.height / 2)
-                                            ),
-                                            absoluteY: Math.round(box.top + window.scrollY),
-                                            absoluteX: Math.round(box.left),
-                                            width: Math.round(box.width),
-                                        });
-                                        break;
-                                    }
-                                }
-                            }
-
-                            output.sort((a, b) => b.absoluteY - a.absoluteY);
-                            return output;
-                        }
-                        """,
-                        labels,
-                    ) or []
-                except Exception:
-                    candidates = []
-
-                fresh = None
-                for candidate in candidates:
-                    key = (
-                        normalize_key(candidate.get("text")),
-                        round(float(candidate.get("absoluteY") or 0) / 8),
-                        round(float(candidate.get("absoluteX") or 0) / 8),
-                        round(float(candidate.get("width") or 0) / 8),
-                    )
-                    if key not in seen:
-                        seen.add(key)
-                        fresh = candidate
-                        break
-
-                if not fresh:
-                    break
+            for index in range(count):
+                item = locator.nth(index)
 
                 try:
-                    page.mouse.click(
-                        float(fresh["x"]),
-                        float(fresh["y"]),
-                    )
-                    page.wait_for_timeout(420)
-                    clicked += 1
-                    sweep_clicks += 1
-                    height = int(
-                        page.evaluate(
-                            """
-                            Math.max(
-                                document.body.scrollHeight,
-                                document.documentElement.scrollHeight
-                            )
-                            """
-                        ) or height
-                    )
+                    item.scroll_into_view_if_needed(timeout=5000)
+                    page.wait_for_timeout(180)
                 except Exception:
                     continue
 
-            scroll_y += 520
+                try:
+                    if not item.is_visible():
+                        continue
+                except Exception:
+                    continue
 
-        if sweep_clicks == 0:
+                # Try the exact text node first.
+                try:
+                    item.click(timeout=2500)
+                    page.wait_for_timeout(900)
+                    opened = market_card_visible(page, aliases)
+                    if opened:
+                        expand_visible_markets(page, max_clicks=30)
+                        return opened
+                except Exception:
+                    pass
+
+                # Bwin often attaches the React click handler to a plain
+                # ancestor DIV, not the text SPAN itself.
+                ancestor = item
+                for _depth in range(7):
+                    try:
+                        ancestor = ancestor.locator("xpath=..")
+                        lines = [
+                            clean(line)
+                            for line in ancestor.inner_text(
+                                timeout=1800
+                            ).splitlines()
+                            if clean(line)
+                        ]
+                        if not lines:
+                            continue
+
+                        first = normalize_key(lines[0])
+                        if first not in {
+                            normalize_key(value)
+                            for value in aliases
+                        }:
+                            continue
+
+                        box = ancestor.bounding_box(timeout=1800)
+                        if not box:
+                            continue
+
+                        if not (
+                            160 <= float(box["width"]) <= 1200
+                            and 24 <= float(box["height"]) <= 125
+                        ):
+                            continue
+
+                        y = float(box["y"]) + float(box["height"]) / 2
+                        click_xs = [
+                            float(box["x"]) + float(box["width"]) - 28,
+                            float(box["x"]) + min(
+                                150,
+                                float(box["width"]) / 3,
+                            ),
+                        ]
+
+                        for x in click_xs:
+                            page.mouse.move(x, y)
+                            page.wait_for_timeout(70)
+                            page.mouse.click(x, y)
+                            page.wait_for_timeout(950)
+
+                            opened = market_card_visible(page, aliases)
+                            if opened:
+                                expand_visible_markets(
+                                    page,
+                                    max_clicks=30,
+                                )
+                                return opened
+                    except Exception:
+                        continue
+
+    return ""
+
+
+def expand_visible_markets(page, max_clicks: int = 50) -> int:
+    """
+    Click every exact Show More/View More control using locator scrolling.
+
+    This works inside Bwin's nested sportsbook panel as well as the page body.
+    Each clicked node is marked in the DOM to prevent loops when it remains
+    labelled Show More after a partial expansion.
+    """
+    labels = [
+        "Show More",
+        "View More",
+        "See More",
+        "More Markets",
+        "All Markets",
+    ]
+    clicked = 0
+
+    for _round in range(8):
+        round_clicks = 0
+
+        for label in labels:
+            exact = re.compile(rf"^{re.escape(label)}$", re.I)
+            locator = page.get_by_text(exact, exact=True)
+
+            try:
+                count = min(locator.count(), 120)
+            except Exception:
+                continue
+
+            for index in range(count):
+                if clicked >= max_clicks:
+                    return clicked
+
+                item = locator.nth(index)
+
+                try:
+                    was_clicked = item.evaluate(
+                        "el => el.dataset.btbExpanded === '1'"
+                    )
+                    if was_clicked:
+                        continue
+                except Exception:
+                    pass
+
+                try:
+                    item.scroll_into_view_if_needed(timeout=4500)
+                    page.wait_for_timeout(120)
+                    if not item.is_visible():
+                        continue
+                except Exception:
+                    continue
+
+                success = False
+
+                try:
+                    item.click(timeout=2500)
+                    success = True
+                except Exception:
+                    ancestor = item
+                    for _depth in range(5):
+                        try:
+                            ancestor = ancestor.locator("xpath=..")
+                            box = ancestor.bounding_box(timeout=1200)
+                            if not box:
+                                continue
+                            if not (
+                                30 <= float(box["width"]) <= 1100
+                                and 18 <= float(box["height"]) <= 100
+                            ):
+                                continue
+
+                            page.mouse.click(
+                                float(box["x"])
+                                + float(box["width"]) / 2,
+                                float(box["y"])
+                                + float(box["height"]) / 2,
+                            )
+                            success = True
+                            break
+                        except Exception:
+                            continue
+
+                if not success:
+                    continue
+
+                try:
+                    item.evaluate(
+                        "el => { el.dataset.btbExpanded = '1'; }"
+                    )
+                except Exception:
+                    pass
+
+                clicked += 1
+                round_clicks += 1
+                page.wait_for_timeout(420)
+
+        if round_clicks == 0:
             break
 
-    try:
-        page.evaluate("window.scrollTo(0, 0)")
-        page.wait_for_timeout(150)
-    except Exception:
-        pass
-
     return clicked
+
 
 CARD_EXTRACTOR = r"""
 (headings) => {
@@ -1126,7 +1664,7 @@ def nearest_column_header(
 
         if not (
             PLUS_RE.fullmatch(text)
-            or text in {"1", "X", "2", "Yes", "No", "Over", "Under"}
+            or text in {"1", "X", "2", "Yes", "No", "Over", "Under", "Anytime", "First", "Last"}
             or NUMBER_RE.fullmatch(text)
         ):
             continue
@@ -1642,6 +2180,52 @@ def parse_player_threshold_matrix(
         selections,
     )
 
+
+def parse_anytime_goalscorers(
+    card: dict,
+    market_name: str,
+    market_key: str,
+) -> dict | None:
+    """
+    Keep only the Anytime column from:
+        Player | Anytime | First | Last
+    """
+    heading = clean(card.get("heading"))
+    selections = []
+
+    for row, header, odds in geometry_pairs(card):
+        player = clean(row)
+        if clean(header).lower() != "anytime":
+            continue
+
+        if not player or normalize_key(player) in {
+            normalize_key(heading),
+            "bb",
+            "no_goalscorer",
+            "show_more",
+            "show_less",
+        }:
+            continue
+
+        selections.append(
+            _selection(
+                player,
+                odds,
+                {
+                    "player": player,
+                    "prop_type": market_key,
+                },
+            )
+        )
+
+    return _market(
+        market_name,
+        market_key,
+        heading,
+        selections,
+    )
+
+
 def parse_geometry_player_market(
     card: dict,
     market_name: str,
@@ -1808,11 +2392,10 @@ def parse_card(
         )
 
     if market_key == "anytime_scorer":
-        return parse_geometry_player_market(
+        return parse_anytime_goalscorers(
             card,
             market_name,
             market_key,
-            required_header="Anytime",
         )
 
     if market_key in {
@@ -1937,6 +2520,55 @@ def validate_market_shape(market: dict) -> bool:
 
     return bool(selections)
 
+def restore_parent_market_view(
+    page,
+    parent_url: str,
+    parent_tab: str,
+) -> bool:
+    """
+    Return from a clicked Bwin market view to the parent tab.
+
+    Clicking the active tab again often does nothing. Prefer browser history
+    when the URL changed, then fall back to the saved parent URL.
+    """
+    current_url = clean(page.url)
+
+    if current_url and current_url != parent_url:
+        try:
+            response = page.go_back(
+                wait_until="domcontentloaded",
+                timeout=12000,
+            )
+            page.wait_for_timeout(650)
+
+            if clean(page.url) == parent_url:
+                return True
+
+            # Some SPA history transitions return None but still restore.
+            if click_visible_text(page, parent_tab):
+                page.wait_for_timeout(450)
+                return True
+        except Exception:
+            pass
+
+    try:
+        if clean(page.url) != parent_url:
+            page.goto(
+                parent_url,
+                wait_until="domcontentloaded",
+                timeout=30000,
+            )
+            page.wait_for_timeout(900)
+            dismiss_cookies(page)
+
+        if click_visible_text(page, parent_tab):
+            page.wait_for_timeout(450)
+
+        return True
+    except Exception:
+        return False
+
+
 def scrape_one(page, match: dict) -> dict:
     url = match["url"]
     name = match["match"]
@@ -1951,19 +2583,17 @@ def scrape_one(page, match: dict) -> dict:
         wait_until="domcontentloaded",
         timeout=90000,
     )
-    page.wait_for_timeout(5500)
+    page.wait_for_timeout(5000)
     dismiss_cookies(page)
 
-    clicked = expand_visible_markets(page, max_clicks=60)
+    clicked = expand_visible_markets(page, max_clicks=35)
     print(f"Expanded market controls: {clicked}")
 
     cards_by_key: dict[str, dict] = {}
     discovered_by_tab: dict[str, list[str]] = {}
 
-    def capture(label: str) -> None:
-        page.evaluate("window.scrollTo(0, 0)")
-        page.wait_for_timeout(250)
-        cards = collect_cards(page)
+    def add_cards(cards: list[dict]) -> int:
+        added = 0
 
         for card in cards:
             key = clean(card.get("signature")) or (
@@ -1971,11 +2601,50 @@ def scrape_one(page, match: dict) -> dict:
                 + "|"
                 + "|".join(card.get("lines") or [])
             )
+            if key not in cards_by_key:
+                added += 1
             cards_by_key[key] = card
+
+        return added
+
+    def capture(label: str) -> None:
+        try:
+            page.evaluate("window.scrollTo(0, 0)")
+            page.wait_for_timeout(180)
+        except Exception:
+            pass
+
+        cards = collect_cards(page)
+        add_cards(cards)
 
         print(
             f"  {label}: {len(cards)} visible target card(s), "
             f"{len(cards_by_key)} accumulated"
+        )
+
+    def capture_market_view(
+        label: str,
+        aliases: list[str],
+    ) -> None:
+        inner_expanded = expand_visible_markets(
+            page,
+            max_clicks=15,
+        )
+        if inner_expanded:
+            print(
+                f"      expanded {inner_expanded} row control(s)"
+            )
+
+        regular = collect_cards(page)
+        relaxed = collect_market_view_cards(page, aliases)
+
+        add_cards(regular)
+        added_relaxed = add_cards(relaxed)
+
+        print(
+            f"    {label}: captured "
+            f"{len(regular)} normal + {len(relaxed)} market-view "
+            f"card(s), {added_relaxed} new relaxed"
         )
 
     capture("default")
@@ -1985,33 +2654,70 @@ def scrape_one(page, match: dict) -> dict:
             print(f"  {tab}: tab not found")
             continue
 
-        tab_expanded = expand_visible_markets(page, max_clicks=70)
-        print(f"  {tab}: expanded {tab_expanded} inner control(s)")
+        tab_expanded = expand_visible_markets(
+            page,
+            max_clicks=30,
+        )
+        print(
+            f"  {tab}: expanded "
+            f"{tab_expanded} inner control(s)"
+        )
+
         discovered_by_tab[tab] = discover_market_headings(page)
         capture(tab)
 
-        wanted_groups = TAB_ACCORDION_LABELS.get(tab, set())
-        for group_name, aliases in ACCORDION_GROUPS:
-            if group_name not in wanted_groups:
+        parent_tab_url = clean(page.url)
+
+        for group_name, aliases in MARKET_VIEWS_BY_TAB.get(
+            tab,
+            [],
+        ):
+            if not restore_parent_market_view(
+                page,
+                parent_tab_url,
+                tab,
+            ):
+                print(
+                    f"    market view {group_name}: "
+                    f"could not restore {tab}"
+                )
                 continue
 
-            opened_heading = open_market_accordion(page, aliases)
-            if opened_heading:
+            expand_visible_markets(page, max_clicks=20)
+
+            before_click_url = clean(page.url)
+            clicked_alias = click_market_view_once(
+                page,
+                aliases,
+            )
+
+            if not clicked_alias:
                 print(
-                    f"    accordion {group_name}: opened as "
-                    f"{opened_heading}"
+                    f"    market view {group_name}: not found"
                 )
-                inner_expanded = expand_visible_markets(
-                    page,
-                    max_clicks=45,
+                continue
+
+            print(
+                f"    market view {group_name}: "
+                f"clicked {clicked_alias}"
+            )
+
+            capture_market_view(
+                group_name,
+                aliases,
+            )
+
+            after_click_url = clean(page.url)
+            if after_click_url != before_click_url:
+                print(
+                    f"      market URL changed; returning to {tab}"
                 )
-                if inner_expanded:
-                    print(
-                        f"      expanded {inner_expanded} row control(s)"
-                    )
-                capture(f"{tab} / {opened_heading}")
-            else:
-                print(f"    accordion {group_name}: not found")
+
+            restore_parent_market_view(
+                page,
+                parent_tab_url,
+                tab,
+            )
 
     raw_cards = list(cards_by_key.values())
     markets_by_key: dict[str, dict] = {}
@@ -2032,6 +2738,7 @@ def scrape_one(page, match: dict) -> dict:
             merge_market(markets_by_key[key], parsed)
 
     markets = []
+
     for market in markets_by_key.values():
         if validate_market_shape(market):
             markets.append(market)
@@ -2042,12 +2749,27 @@ def scrape_one(page, match: dict) -> dict:
             )
 
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+
+    try:
+        body_text = page.locator("body").inner_text(
+            timeout=8000
+        )
+    except Exception as error:
+        body_text = (
+            "DEBUG BODY CAPTURE FAILED: "
+            + str(error)
+        )
+
     (DEBUG_DIR / f"{slug}.txt").write_text(
-        page.locator("body").inner_text(timeout=30000),
+        body_text,
         encoding="utf-8",
     )
     (DEBUG_DIR / f"{slug}_cards.json").write_text(
-        json.dumps(raw_cards, indent=2, ensure_ascii=False),
+        json.dumps(
+            raw_cards,
+            indent=2,
+            ensure_ascii=False,
+        ),
         encoding="utf-8",
     )
     (DEBUG_DIR / f"{slug}_headings.json").write_text(
@@ -2068,18 +2790,27 @@ def scrape_one(page, match: dict) -> dict:
         pass
 
     print(f"Parsed markets: {len(markets)}")
+
     for market in markets:
         thresholds = sorted(
             {
                 selection.get("source_threshold")
                 for selection in market.get("selections") or []
                 if selection.get("source_threshold")
-            }
+            },
+            key=lambda value: int(value.rstrip("+")),
         )
-        suffix = f" [{', '.join(thresholds)}]" if thresholds else ""
+
+        suffix = (
+            f" [{', '.join(thresholds)}]"
+            if thresholds
+            else ""
+        )
+
         print(
             f"  - {market['market']}: "
-            f"{market['selection_count']} selections{suffix}"
+            f"{market['selection_count']} selections"
+            f"{suffix}"
         )
 
     return {
@@ -2172,13 +2903,15 @@ def main() -> int:
     }
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(
+    temp_path = OUT_PATH.with_suffix(".json.tmp")
+    temp_path.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
+    temp_path.replace(OUT_PATH)
 
     print("")
-    print("Bwin World Cup props test completed")
+    print("Bwin World Cup props 15-match validation completed")
     print(f"Matches saved: {len(results)}")
     print(f"Errors: {len(errors)}")
     print(f"Output: {OUT_PATH}")
