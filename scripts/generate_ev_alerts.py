@@ -15,6 +15,9 @@ PROP_FILES = [
         ROOT / "ufc" / "data" / "boylesports_props_filtered.json",
         ROOT / "ufc" / "data" / "boylesports_props.json",
     ]),
+    ("BoyleSports", [
+        ROOT / "ufc" / "data" / "boylesports_moneylines.json",
+    ]),
     ("BetVictor", [
         ROOT / "ufc" / "data" / "betvictor_props_filtered.json",
         ROOT / "ufc" / "data" / "betvictor_props.json",

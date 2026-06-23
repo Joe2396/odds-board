@@ -10,7 +10,8 @@ OUT_PATH = ROOT / "ufc" / "data" / "arbitrage.json"
 
 PROP_FILES = [
     ("PaddyPower", ROOT / "ufc" / "data" / "props.json"),
-    ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props.json"),
+    ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_props_filtered.json"),
+    ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_moneylines.json"),
     ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props.json"),
     ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
     ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
