@@ -15,7 +15,8 @@ BOOK_FILES = {
     "LiveScoreBet": os.path.join(ROOT, "football", "data", "livescorebet_worldcup_moneylines.json"),
     "WilliamHill": os.path.join(ROOT, "football", "data", "williamhill_worldcup_moneylines.json"),
     "888Sport": os.path.join(ROOT, "football", "data", "888sport_worldcup_moneylines.json"),
-}
+
+    "Bwin": os.path.join(ROOT, "football", "data", "bwin_worldcup_moneylines.json"),}
 
 OUT_PATH = os.path.join(ROOT, "football", "data", "arbitrage.json")
 

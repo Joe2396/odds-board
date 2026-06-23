@@ -1,0 +1,4825 @@
+{
+  "sport": "football",
+  "competition": "FIFA World Cup",
+  "bookmaker": "Bwin",
+  "odds_format": "fractional",
+  "generated_at": "2026-06-23T13:15:54.415254+00:00",
+  "match_count": 3,
+  "error_count": 0,
+  "matches": [
+    {
+      "bookmaker": "Bwin",
+      "match": "Portugal v Uzbekistan",
+      "home_team": "Portugal",
+      "away_team": "Uzbekistan",
+      "date_label": "Today",
+      "time": "6:00 PM",
+      "source_url": "https://www.bwin.com/en/sports/events/portugal-uzbekistan-2:7812226",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "raw_heading": "Match result",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Portugal",
+              "normalized_selection": "portugal",
+              "odds": "7/50",
+              "decimal_odds": 1.14,
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "8/1",
+              "decimal_odds": 9.0,
+              "side": "draw"
+            },
+            {
+              "selection": "Uzbekistan",
+              "normalized_selection": "uzbekistan",
+              "odds": "33/2",
+              "decimal_odds": 17.5,
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over/Under",
+          "normalized_market": "total_goals",
+          "raw_heading": "Total Goals",
+          "selection_count": 14,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/100",
+              "decimal_odds": 1.01,
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "35/2",
+              "decimal_odds": 18.5,
+              "side": "under",
+              "line": "0.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "7/50",
+              "decimal_odds": 1.14,
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "17/4",
+              "decimal_odds": 5.25,
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "47/100",
+              "decimal_odds": 1.47,
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "3/2",
+              "decimal_odds": 2.5,
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "6/5",
+              "decimal_odds": 2.2,
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "3/5",
+              "decimal_odds": 1.6,
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "13/5",
+              "decimal_odds": 3.6,
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "13/50",
+              "decimal_odds": 1.26,
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "11/2",
+              "decimal_odds": 6.5,
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "1/10",
+              "decimal_odds": 1.1,
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "11/1",
+              "decimal_odds": 12.0,
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "2/57",
+              "decimal_odds": 1.035,
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "goals"
+            }
+          ]
+        },
+        {
+          "market": "Player Shots",
+          "normalized_market": "shots",
+          "raw_heading": "Player Total Shots",
+          "selection_count": 18,
+          "selections": [
+            {
+              "selection": "Bruno Fernandes Over 1.5",
+              "normalized_selection": "bruno_fernandes_over_1_5",
+              "odds": "3/50",
+              "decimal_odds": 1.06,
+              "player": "Bruno Fernandes",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Bruno Fernandes Over 2.5",
+              "normalized_selection": "bruno_fernandes_over_2_5",
+              "odds": "27/100",
+              "decimal_odds": 1.27,
+              "player": "Bruno Fernandes",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Bruno Fernandes Over 3.5",
+              "normalized_selection": "bruno_fernandes_over_3_5",
+              "odds": "71/100",
+              "decimal_odds": 1.71,
+              "player": "Bruno Fernandes",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Goncalo Ramos Over 1.5",
+              "normalized_selection": "goncalo_ramos_over_1_5",
+              "odds": "3/50",
+              "decimal_odds": 1.06,
+              "player": "Goncalo Ramos",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Goncalo Ramos Over 2.5",
+              "normalized_selection": "goncalo_ramos_over_2_5",
+              "odds": "1/4",
+              "decimal_odds": 1.25,
+              "player": "Goncalo Ramos",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Goncalo Ramos Over 3.5",
+              "normalized_selection": "goncalo_ramos_over_3_5",
+              "odds": "33/50",
+              "decimal_odds": 1.66,
+              "player": "Goncalo Ramos",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Joao Felix Over 1.5",
+              "normalized_selection": "joao_felix_over_1_5",
+              "odds": "7/100",
+              "decimal_odds": 1.07,
+              "player": "Joao Felix",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Joao Felix Over 2.5",
+              "normalized_selection": "joao_felix_over_2_5",
+              "odds": "31/100",
+              "decimal_odds": 1.31,
+              "player": "Joao Felix",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Joao Felix Over 3.5",
+              "normalized_selection": "joao_felix_over_3_5",
+              "odds": "39/50",
+              "decimal_odds": 1.78,
+              "player": "Joao Felix",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Francisco Conceicao Over 1.5",
+              "normalized_selection": "francisco_conceicao_over_1_5",
+              "odds": "9/100",
+              "decimal_odds": 1.09,
+              "player": "Francisco Conceicao",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Francisco Conceicao Over 2.5",
+              "normalized_selection": "francisco_conceicao_over_2_5",
+              "odds": "7/20",
+              "decimal_odds": 1.35,
+              "player": "Francisco Conceicao",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Francisco Conceicao Over 3.5",
+              "normalized_selection": "francisco_conceicao_over_3_5",
+              "odds": "9/10",
+              "decimal_odds": 1.9,
+              "player": "Francisco Conceicao",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Goncalo Guedes Over 1.5",
+              "normalized_selection": "goncalo_guedes_over_1_5",
+              "odds": "13/100",
+              "decimal_odds": 1.13,
+              "player": "Goncalo Guedes",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Goncalo Guedes Over 2.5",
+              "normalized_selection": "goncalo_guedes_over_2_5",
+              "odds": "23/50",
+              "decimal_odds": 1.46,
+              "player": "Goncalo Guedes",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Goncalo Guedes Over 3.5",
+              "normalized_selection": "goncalo_guedes_over_3_5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "player": "Goncalo Guedes",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Rafael Leao Over 1.5",
+              "normalized_selection": "rafael_leao_over_1_5",
+              "odds": "7/50",
+              "decimal_odds": 1.14,
+              "player": "Rafael Leao",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Rafael Leao Over 2.5",
+              "normalized_selection": "rafael_leao_over_2_5",
+              "odds": "49/100",
+              "decimal_odds": 1.49,
+              "player": "Rafael Leao",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Rafael Leao Over 3.5",
+              "normalized_selection": "rafael_leao_over_3_5",
+              "odds": "6/5",
+              "decimal_odds": 2.2,
+              "player": "Rafael Leao",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            }
+          ]
+        },
+        {
+          "market": "Player Shots On Target",
+          "normalized_market": "shots_on_target",
+          "raw_heading": "Player Total Shots on Target",
+          "selection_count": 92,
+          "selections": [
+            {
+              "selection": "Cristiano Ronaldo Over 0.5",
+              "normalized_selection": "cristiano_ronaldo_over_0_5",
+              "odds": "7/100",
+              "decimal_odds": 1.07,
+              "player": "Cristiano Ronaldo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Cristiano Ronaldo Over 1.5",
+              "normalized_selection": "cristiano_ronaldo_over_1_5",
+              "odds": "11/25",
+              "decimal_odds": 1.44,
+              "player": "Cristiano Ronaldo",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Cristiano Ronaldo Over 2.5",
+              "normalized_selection": "cristiano_ronaldo_over_2_5",
+              "odds": "27/20",
+              "decimal_odds": 2.35,
+              "player": "Cristiano Ronaldo",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Goncalo Ramos Over 0.5",
+              "normalized_selection": "goncalo_ramos_over_0_5",
+              "odds": "4/25",
+              "decimal_odds": 1.16,
+              "player": "Goncalo Ramos",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Goncalo Ramos Over 1.5",
+              "normalized_selection": "goncalo_ramos_over_1_5",
+              "odds": "4/5",
+              "decimal_odds": 1.8,
+              "player": "Goncalo Ramos",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Goncalo Ramos Over 2.5",
+              "normalized_selection": "goncalo_ramos_over_2_5",
+              "odds": "12/5",
+              "decimal_odds": 3.4,
+              "player": "Goncalo Ramos",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Bruno Fernandes Over 0.5",
+              "normalized_selection": "bruno_fernandes_over_0_5",
+              "odds": "21/100",
+              "decimal_odds": 1.21,
+              "player": "Bruno Fernandes",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Bruno Fernandes Over 1.5",
+              "normalized_selection": "bruno_fernandes_over_1_5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "player": "Bruno Fernandes",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Bruno Fernandes Over 2.5",
+              "normalized_selection": "bruno_fernandes_over_2_5",
+              "odds": "16/5",
+              "decimal_odds": 4.2,
+              "player": "Bruno Fernandes",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Joao Felix Over 0.5",
+              "normalized_selection": "joao_felix_over_0_5",
+              "odds": "21/100",
+              "decimal_odds": 1.21,
+              "player": "Joao Felix",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Joao Felix Over 1.5",
+              "normalized_selection": "joao_felix_over_1_5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "player": "Joao Felix",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Joao Felix Over 2.5",
+              "normalized_selection": "joao_felix_over_2_5",
+              "odds": "16/5",
+              "decimal_odds": 4.2,
+              "player": "Joao Felix",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Goncalo Guedes Over 0.5",
+              "normalized_selection": "goncalo_guedes_over_0_5",
+              "odds": "21/100",
+              "decimal_odds": 1.21,
+              "player": "Goncalo Guedes",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Goncalo Guedes Over 1.5",
+              "normalized_selection": "goncalo_guedes_over_1_5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "player": "Goncalo Guedes",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Goncalo Guedes Over 2.5",
+              "normalized_selection": "goncalo_guedes_over_2_5",
+              "odds": "16/5",
+              "decimal_odds": 4.2,
+              "player": "Goncalo Guedes",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Francisco Conceicao Over 0.5",
+              "normalized_selection": "francisco_conceicao_over_0_5",
+              "odds": "23/100",
+              "decimal_odds": 1.23,
+              "player": "Francisco Conceicao",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Francisco Conceicao Over 1.5",
+              "normalized_selection": "francisco_conceicao_over_1_5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "player": "Francisco Conceicao",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Francisco Conceicao Over 2.5",
+              "normalized_selection": "francisco_conceicao_over_2_5",
+              "odds": "7/2",
+              "decimal_odds": 4.5,
+              "player": "Francisco Conceicao",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Rafael Leao Over 0.5",
+              "normalized_selection": "rafael_leao_over_0_5",
+              "odds": "31/100",
+              "decimal_odds": 1.31,
+              "player": "Rafael Leao",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Rafael Leao Over 1.5",
+              "normalized_selection": "rafael_leao_over_1_5",
+              "odds": "3/2",
+              "decimal_odds": 2.5,
+              "player": "Rafael Leao",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Rafael Leao Over 2.5",
+              "normalized_selection": "rafael_leao_over_2_5",
+              "odds": "19/4",
+              "decimal_odds": 5.75,
+              "player": "Rafael Leao",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Francisco Trincao Over 0.5",
+              "normalized_selection": "francisco_trincao_over_0_5",
+              "odds": "17/50",
+              "decimal_odds": 1.34,
+              "player": "Francisco Trincao",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Francisco Trincao Over 1.5",
+              "normalized_selection": "francisco_trincao_over_1_5",
+              "odds": "8/5",
+              "decimal_odds": 2.6,
+              "player": "Francisco Trincao",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Francisco Trincao Over 2.5",
+              "normalized_selection": "francisco_trincao_over_2_5",
+              "odds": "21/4",
+              "decimal_odds": 6.25,
+              "player": "Francisco Trincao",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Pedro Neto Over 0.5",
+              "normalized_selection": "pedro_neto_over_0_5",
+              "odds": "43/100",
+              "decimal_odds": 1.43,
+              "player": "Pedro Neto",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Pedro Neto Over 1.5",
+              "normalized_selection": "pedro_neto_over_1_5",
+              "odds": "2/1",
+              "decimal_odds": 3.0,
+              "player": "Pedro Neto",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Pedro Neto Over 2.5",
+              "normalized_selection": "pedro_neto_over_2_5",
+              "odds": "27/4",
+              "decimal_odds": 7.75,
+              "player": "Pedro Neto",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Samuel Costa Over 0.5",
+              "normalized_selection": "samuel_costa_over_0_5",
+              "odds": "13/20",
+              "decimal_odds": 1.65,
+              "player": "Samuel Costa",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Samuel Costa Over 1.5",
+              "normalized_selection": "samuel_costa_over_1_5",
+              "odds": "31/10",
+              "decimal_odds": 4.1,
+              "player": "Samuel Costa",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Samuel Costa Over 2.5",
+              "normalized_selection": "samuel_costa_over_2_5",
+              "odds": "21/2",
+              "decimal_odds": 11.5,
+              "player": "Samuel Costa",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Bernardo Silva Over 0.5",
+              "normalized_selection": "bernardo_silva_over_0_5",
+              "odds": "3/4",
+              "decimal_odds": 1.75,
+              "player": "Bernardo Silva",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Bernardo Silva Over 1.5",
+              "normalized_selection": "bernardo_silva_over_1_5",
+              "odds": "15/4",
+              "decimal_odds": 4.75,
+              "player": "Bernardo Silva",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Bernardo Silva Over 2.5",
+              "normalized_selection": "bernardo_silva_over_2_5",
+              "odds": "25/2",
+              "decimal_odds": 13.5,
+              "player": "Bernardo Silva",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Igor Sergeev Over 0.5",
+              "normalized_selection": "igor_sergeev_over_0_5",
+              "odds": "39/50",
+              "decimal_odds": 1.78,
+              "player": "Igor Sergeev",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Igor Sergeev Over 1.5",
+              "normalized_selection": "igor_sergeev_over_1_5",
+              "odds": "4/1",
+              "decimal_odds": 5.0,
+              "player": "Igor Sergeev",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Igor Sergeev Over 2.5",
+              "normalized_selection": "igor_sergeev_over_2_5",
+              "odds": "13/1",
+              "decimal_odds": 14.0,
+              "player": "Igor Sergeev",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Eldor Shomurodov Over 0.5",
+              "normalized_selection": "eldor_shomurodov_over_0_5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "player": "Eldor Shomurodov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Eldor Shomurodov Over 1.5",
+              "normalized_selection": "eldor_shomurodov_over_1_5",
+              "odds": "21/4",
+              "decimal_odds": 6.25,
+              "player": "Eldor Shomurodov",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Eldor Shomurodov Over 2.5",
+              "normalized_selection": "eldor_shomurodov_over_2_5",
+              "odds": "17/1",
+              "decimal_odds": 18.0,
+              "player": "Eldor Shomurodov",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Vitinha Over 0.5",
+              "normalized_selection": "vitinha_over_0_5",
+              "odds": "11/10",
+              "decimal_odds": 2.1,
+              "player": "Vitinha",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Vitinha Over 1.5",
+              "normalized_selection": "vitinha_over_1_5",
+              "odds": "11/2",
+              "decimal_odds": 6.5,
+              "player": "Vitinha",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Vitinha Over 2.5",
+              "normalized_selection": "vitinha_over_2_5",
+              "odds": "19/1",
+              "decimal_odds": 20.0,
+              "player": "Vitinha",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Ruben Neves Over 0.5",
+              "normalized_selection": "ruben_neves_over_0_5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "player": "Ruben Neves",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ruben Neves Over 1.5",
+              "normalized_selection": "ruben_neves_over_1_5",
+              "odds": "6/1",
+              "decimal_odds": 7.0,
+              "player": "Ruben Neves",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Joao Neves Over 0.5",
+              "normalized_selection": "joao_neves_over_0_5",
+              "odds": "6/5",
+              "decimal_odds": 2.2,
+              "player": "Joao Neves",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Joao Neves Over 1.5",
+              "normalized_selection": "joao_neves_over_1_5",
+              "odds": "25/4",
+              "decimal_odds": 7.25,
+              "player": "Joao Neves",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Joao Cancelo Over 0.5",
+              "normalized_selection": "joao_cancelo_over_0_5",
+              "odds": "31/20",
+              "decimal_odds": 2.55,
+              "player": "Joao Cancelo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Joao Cancelo Over 1.5",
+              "normalized_selection": "joao_cancelo_over_1_5",
+              "odds": "17/2",
+              "decimal_odds": 9.5,
+              "player": "Joao Cancelo",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Abbosbek Fayzullaev Over 0.5",
+              "normalized_selection": "abbosbek_fayzullaev_over_0_5",
+              "odds": "17/10",
+              "decimal_odds": 2.7,
+              "player": "Abbosbek Fayzullaev",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Abbosbek Fayzullaev Over 1.5",
+              "normalized_selection": "abbosbek_fayzullaev_over_1_5",
+              "odds": "19/2",
+              "decimal_odds": 10.5,
+              "player": "Abbosbek Fayzullaev",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Diogo Dalot Over 0.5",
+              "normalized_selection": "diogo_dalot_over_0_5",
+              "odds": "17/10",
+              "decimal_odds": 2.7,
+              "player": "Diogo Dalot",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Diogo Dalot Over 1.5",
+              "normalized_selection": "diogo_dalot_over_1_5",
+              "odds": "19/2",
+              "decimal_odds": 10.5,
+              "player": "Diogo Dalot",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Oston Urunov Over 0.5",
+              "normalized_selection": "oston_urunov_over_0_5",
+              "odds": "7/4",
+              "decimal_odds": 2.75,
+              "player": "Oston Urunov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Oston Urunov Over 1.5",
+              "normalized_selection": "oston_urunov_over_1_5",
+              "odds": "10/1",
+              "decimal_odds": 11.0,
+              "player": "Oston Urunov",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Matheus Nunes Over 0.5",
+              "normalized_selection": "matheus_nunes_over_0_5",
+              "odds": "9/5",
+              "decimal_odds": 2.8,
+              "player": "Matheus Nunes",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Matheus Nunes Over 1.5",
+              "normalized_selection": "matheus_nunes_over_1_5",
+              "odds": "21/2",
+              "decimal_odds": 11.5,
+              "player": "Matheus Nunes",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Nelson Semedo Over 0.5",
+              "normalized_selection": "nelson_semedo_over_0_5",
+              "odds": "37/20",
+              "decimal_odds": 2.85,
+              "player": "Nelson Semedo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Nelson Semedo Over 1.5",
+              "normalized_selection": "nelson_semedo_over_1_5",
+              "odds": "10/1",
+              "decimal_odds": 11.0,
+              "player": "Nelson Semedo",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Azizbek Amanov Over 0.5",
+              "normalized_selection": "azizbek_amanov_over_0_5",
+              "odds": "39/20",
+              "decimal_odds": 2.95,
+              "player": "Azizbek Amanov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Azizbek Amanov Over 1.5",
+              "normalized_selection": "azizbek_amanov_over_1_5",
+              "odds": "11/1",
+              "decimal_odds": 12.0,
+              "player": "Azizbek Amanov",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Nuno Mendes Over 0.5",
+              "normalized_selection": "nuno_mendes_over_0_5",
+              "odds": "2/1",
+              "decimal_odds": 3.0,
+              "player": "Nuno Mendes",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Nuno Mendes Over 1.5",
+              "normalized_selection": "nuno_mendes_over_1_5",
+              "odds": "23/2",
+              "decimal_odds": 12.5,
+              "player": "Nuno Mendes",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ruslanbek Jiyanov Over 0.5",
+              "normalized_selection": "ruslanbek_jiyanov_over_0_5",
+              "odds": "2/1",
+              "decimal_odds": 3.0,
+              "player": "Ruslanbek Jiyanov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ruslanbek Jiyanov Over 1.5",
+              "normalized_selection": "ruslanbek_jiyanov_over_1_5",
+              "odds": "23/2",
+              "decimal_odds": 12.5,
+              "player": "Ruslanbek Jiyanov",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Dostonbek Khamdamov Over 0.5",
+              "normalized_selection": "dostonbek_khamdamov_over_0_5",
+              "odds": "9/4",
+              "decimal_odds": 3.25,
+              "player": "Dostonbek Khamdamov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Dostonbek Khamdamov Over 1.5",
+              "normalized_selection": "dostonbek_khamdamov_over_1_5",
+              "odds": "13/1",
+              "decimal_odds": 14.0,
+              "player": "Dostonbek Khamdamov",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Renato Veiga Over 0.5",
+              "normalized_selection": "renato_veiga_over_0_5",
+              "odds": "5/2",
+              "decimal_odds": 3.5,
+              "player": "Renato Veiga",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Renato Veiga Over 1.5",
+              "normalized_selection": "renato_veiga_over_1_5",
+              "odds": "29/2",
+              "decimal_odds": 15.5,
+              "player": "Renato Veiga",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Tomas Araujo Over 0.5",
+              "normalized_selection": "tomas_araujo_over_0_5",
+              "odds": "5/2",
+              "decimal_odds": 3.5,
+              "player": "Tomas Araujo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Tomas Araujo Over 1.5",
+              "normalized_selection": "tomas_araujo_over_1_5",
+              "odds": "14/1",
+              "decimal_odds": 15.0,
+              "player": "Tomas Araujo",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Goncalo Inacio Over 0.5",
+              "normalized_selection": "goncalo_inacio_over_0_5",
+              "odds": "13/5",
+              "decimal_odds": 3.6,
+              "player": "Goncalo Inacio",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Goncalo Inacio Over 1.5",
+              "normalized_selection": "goncalo_inacio_over_1_5",
+              "odds": "15/1",
+              "decimal_odds": 16.0,
+              "player": "Goncalo Inacio",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Jamshid Iskanderov Over 0.5",
+              "normalized_selection": "jamshid_iskanderov_over_0_5",
+              "odds": "11/4",
+              "decimal_odds": 3.75,
+              "player": "Jamshid Iskanderov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jamshid Iskanderov Over 1.5",
+              "normalized_selection": "jamshid_iskanderov_over_1_5",
+              "odds": "16/1",
+              "decimal_odds": 17.0,
+              "player": "Jamshid Iskanderov",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ruben Dias Over 0.5",
+              "normalized_selection": "ruben_dias_over_0_5",
+              "odds": "11/4",
+              "decimal_odds": 3.75,
+              "player": "Ruben Dias",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ruben Dias Over 1.5",
+              "normalized_selection": "ruben_dias_over_1_5",
+              "odds": "16/1",
+              "decimal_odds": 17.0,
+              "player": "Ruben Dias",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Aziz Ganiev Over 0.5",
+              "normalized_selection": "aziz_ganiev_over_0_5",
+              "odds": "29/10",
+              "decimal_odds": 3.9,
+              "player": "Aziz Ganiev",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Aziz Ganiev Over 1.5",
+              "normalized_selection": "aziz_ganiev_over_1_5",
+              "odds": "35/2",
+              "decimal_odds": 18.5,
+              "player": "Aziz Ganiev",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Otabek Shukurov Over 0.5",
+              "normalized_selection": "otabek_shukurov_over_0_5",
+              "odds": "7/2",
+              "decimal_odds": 4.5,
+              "player": "Otabek Shukurov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Sherzod Esanov Over 0.5",
+              "normalized_selection": "sherzod_esanov_over_0_5",
+              "odds": "18/5",
+              "decimal_odds": 4.6,
+              "player": "Sherzod Esanov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Abdulla Abdullaev Over 0.5",
+              "normalized_selection": "abdulla_abdullaev_over_0_5",
+              "odds": "4/1",
+              "decimal_odds": 5.0,
+              "player": "Abdulla Abdullaev",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Khojiakbar Alijonov Over 0.5",
+              "normalized_selection": "khojiakbar_alijonov_over_0_5",
+              "odds": "5/1",
+              "decimal_odds": 6.0,
+              "player": "Khojiakbar Alijonov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Odiljon Hamrobekov Over 0.5",
+              "normalized_selection": "odiljon_hamrobekov_over_0_5",
+              "odds": "21/4",
+              "decimal_odds": 6.25,
+              "player": "Odiljon Hamrobekov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Bekhruz Karimov Over 0.5",
+              "normalized_selection": "bekhruz_karimov_over_0_5",
+              "odds": "11/2",
+              "decimal_odds": 6.5,
+              "player": "Bekhruz Karimov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Akmal Mozgovoy Over 0.5",
+              "normalized_selection": "akmal_mozgovoy_over_0_5",
+              "odds": "11/2",
+              "decimal_odds": 6.5,
+              "player": "Akmal Mozgovoy",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Farrukh Sayfiev Over 0.5",
+              "normalized_selection": "farrukh_sayfiev_over_0_5",
+              "odds": "25/4",
+              "decimal_odds": 7.25,
+              "player": "Farrukh Sayfiev",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Sherzod Nasrullaev Over 0.5",
+              "normalized_selection": "sherzod_nasrullaev_over_0_5",
+              "odds": "27/4",
+              "decimal_odds": 7.75,
+              "player": "Sherzod Nasrullaev",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Avazbek Ulmasaliev Over 0.5",
+              "normalized_selection": "avazbek_ulmasaliev_over_0_5",
+              "odds": "7/1",
+              "decimal_odds": 8.0,
+              "player": "Avazbek Ulmasaliev",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Rustam Ashurmatov Over 0.5",
+              "normalized_selection": "rustam_ashurmatov_over_0_5",
+              "odds": "17/2",
+              "decimal_odds": 9.5,
+              "player": "Rustam Ashurmatov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jakhongir Urozov Over 0.5",
+              "normalized_selection": "jakhongir_urozov_over_0_5",
+              "odds": "35/4",
+              "decimal_odds": 9.75,
+              "player": "Jakhongir Urozov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Abdukodir Khusanov Over 0.5",
+              "normalized_selection": "abdukodir_khusanov_over_0_5",
+              "odds": "10/1",
+              "decimal_odds": 11.0,
+              "player": "Abdukodir Khusanov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Umar Eshmurodov Over 0.5",
+              "normalized_selection": "umar_eshmurodov_over_0_5",
+              "odds": "25/2",
+              "decimal_odds": 13.5,
+              "player": "Umar Eshmurodov",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards Over/Under",
+          "normalized_market": "total_match_cards",
+          "raw_heading": "Total Cards",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "21/100",
+              "decimal_odds": 1.21,
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "3/1",
+              "decimal_odds": 4.0,
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "31/50",
+              "decimal_odds": 1.62,
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "29/20",
+              "decimal_odds": 2.45,
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "47/100",
+              "decimal_odds": 1.47,
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "cards"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners Over/Under",
+          "normalized_market": "total_corners",
+          "raw_heading": "Total Corners",
+          "selection_count": 14,
+          "selections": [
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "3/20",
+              "decimal_odds": 1.15,
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "4/1",
+              "decimal_odds": 5.0,
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "29/100",
+              "decimal_odds": 1.29,
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "9/4",
+              "decimal_odds": 3.25,
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "13/25",
+              "decimal_odds": 1.52,
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "27/20",
+              "decimal_odds": 2.35,
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "17/20",
+              "decimal_odds": 1.85,
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "odds": "41/50",
+              "decimal_odds": 1.82,
+              "side": "under",
+              "line": "9.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "odds": "137/100",
+              "decimal_odds": 2.37,
+              "side": "over",
+              "line": "10.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 10.5",
+              "normalized_selection": "under_10_5",
+              "odds": "1/2",
+              "decimal_odds": 1.5,
+              "side": "under",
+              "line": "10.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 11.5",
+              "normalized_selection": "over_11_5",
+              "odds": "11/5",
+              "decimal_odds": 3.2,
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 11.5",
+              "normalized_selection": "under_11_5",
+              "odds": "3/10",
+              "decimal_odds": 1.3,
+              "side": "under",
+              "line": "11.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 12.5",
+              "normalized_selection": "over_12_5",
+              "odds": "7/2",
+              "decimal_odds": 4.5,
+              "side": "over",
+              "line": "12.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 12.5",
+              "normalized_selection": "under_12_5",
+              "odds": "9/50",
+              "decimal_odds": 1.18,
+              "side": "under",
+              "line": "12.5",
+              "prop_type": "corners"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bookmaker": "Bwin",
+      "match": "England v Ghana",
+      "home_team": "England",
+      "away_team": "Ghana",
+      "date_label": "Today",
+      "time": "9:00 PM",
+      "source_url": "https://www.bwin.com/en/sports/events/england-ghana-2:7812228",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "raw_heading": "Match result",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "England",
+              "normalized_selection": "england",
+              "odds": "9/50",
+              "decimal_odds": 1.18,
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "25/4",
+              "decimal_odds": 7.25,
+              "side": "draw"
+            },
+            {
+              "selection": "Ghana",
+              "normalized_selection": "ghana",
+              "odds": "29/2",
+              "decimal_odds": 15.5,
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over/Under",
+          "normalized_market": "total_goals",
+          "raw_heading": "Total Goals",
+          "selection_count": 14,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/50",
+              "decimal_odds": 1.02,
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "29/2",
+              "decimal_odds": 15.5,
+              "side": "under",
+              "line": "0.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "17/100",
+              "decimal_odds": 1.17,
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "18/5",
+              "decimal_odds": 4.6,
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "11/20",
+              "decimal_odds": 1.55,
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "13/10",
+              "decimal_odds": 2.3,
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "7/5",
+              "decimal_odds": 2.4,
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "51/100",
+              "decimal_odds": 1.51,
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "31/10",
+              "decimal_odds": 4.1,
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "21/100",
+              "decimal_odds": 1.21,
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "13/2",
+              "decimal_odds": 7.5,
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "2/25",
+              "decimal_odds": 1.08,
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "13/1",
+              "decimal_odds": 14.0,
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "1/40",
+              "decimal_odds": 1.025,
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "goals"
+            }
+          ]
+        },
+        {
+          "market": "Player Shots",
+          "normalized_market": "shots",
+          "raw_heading": "Player Total Shots",
+          "selection_count": 20,
+          "selections": [
+            {
+              "selection": "Harry Kane Over 1.5",
+              "normalized_selection": "harry_kane_over_1_5",
+              "odds": "1/50",
+              "decimal_odds": 1.02,
+              "player": "Harry Kane",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Harry Kane Over 2.5",
+              "normalized_selection": "harry_kane_over_2_5",
+              "odds": "7/50",
+              "decimal_odds": 1.14,
+              "player": "Harry Kane",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Harry Kane Over 3.5",
+              "normalized_selection": "harry_kane_over_3_5",
+              "odds": "39/100",
+              "decimal_odds": 1.39,
+              "player": "Harry Kane",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Ivan Toney Over 1.5",
+              "normalized_selection": "ivan_toney_over_1_5",
+              "odds": "9/100",
+              "decimal_odds": 1.09,
+              "player": "Ivan Toney",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ivan Toney Over 2.5",
+              "normalized_selection": "ivan_toney_over_2_5",
+              "odds": "7/20",
+              "decimal_odds": 1.35,
+              "player": "Ivan Toney",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Ivan Toney Over 3.5",
+              "normalized_selection": "ivan_toney_over_3_5",
+              "odds": "9/10",
+              "decimal_odds": 1.9,
+              "player": "Ivan Toney",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Ollie Watkins Over 1.5",
+              "normalized_selection": "ollie_watkins_over_1_5",
+              "odds": "9/100",
+              "decimal_odds": 1.09,
+              "player": "Ollie Watkins",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ollie Watkins Over 2.5",
+              "normalized_selection": "ollie_watkins_over_2_5",
+              "odds": "7/20",
+              "decimal_odds": 1.35,
+              "player": "Ollie Watkins",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Ollie Watkins Over 3.5",
+              "normalized_selection": "ollie_watkins_over_3_5",
+              "odds": "9/10",
+              "decimal_odds": 1.9,
+              "player": "Ollie Watkins",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Marcus Rashford Over 1.5",
+              "normalized_selection": "marcus_rashford_over_1_5",
+              "odds": "13/100",
+              "decimal_odds": 1.13,
+              "player": "Marcus Rashford",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Marcus Rashford Over 2.5",
+              "normalized_selection": "marcus_rashford_over_2_5",
+              "odds": "47/100",
+              "decimal_odds": 1.47,
+              "player": "Marcus Rashford",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Marcus Rashford Over 3.5",
+              "normalized_selection": "marcus_rashford_over_3_5",
+              "odds": "6/5",
+              "decimal_odds": 2.2,
+              "player": "Marcus Rashford",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Bukayo Saka Over 0.5",
+              "normalized_selection": "bukayo_saka_over_0_5",
+              "odds": "1/83",
+              "decimal_odds": 1.012,
+              "player": "Bukayo Saka",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Bukayo Saka Over 1.5",
+              "normalized_selection": "bukayo_saka_over_1_5",
+              "odds": "19/100",
+              "decimal_odds": 1.19,
+              "player": "Bukayo Saka",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Bukayo Saka Over 2.5",
+              "normalized_selection": "bukayo_saka_over_2_5",
+              "odds": "13/20",
+              "decimal_odds": 1.65,
+              "player": "Bukayo Saka",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Bukayo Saka Over 3.5",
+              "normalized_selection": "bukayo_saka_over_3_5",
+              "odds": "8/5",
+              "decimal_odds": 2.6,
+              "player": "Bukayo Saka",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Eberechi Eze Over 0.5",
+              "normalized_selection": "eberechi_eze_over_0_5",
+              "odds": "1/67",
+              "decimal_odds": 1.015,
+              "player": "Eberechi Eze",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Eberechi Eze Over 1.5",
+              "normalized_selection": "eberechi_eze_over_1_5",
+              "odds": "21/100",
+              "decimal_odds": 1.21,
+              "player": "Eberechi Eze",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Eberechi Eze Over 2.5",
+              "normalized_selection": "eberechi_eze_over_2_5",
+              "odds": "7/10",
+              "decimal_odds": 1.7,
+              "player": "Eberechi Eze",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Eberechi Eze Over 3.5",
+              "normalized_selection": "eberechi_eze_over_3_5",
+              "odds": "7/4",
+              "decimal_odds": 2.75,
+              "player": "Eberechi Eze",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            }
+          ]
+        },
+        {
+          "market": "Player Shots On Target",
+          "normalized_market": "shots_on_target",
+          "raw_heading": "Player Total Shots on Target",
+          "selection_count": 89,
+          "selections": [
+            {
+              "selection": "Harry Kane Over 0.5",
+              "normalized_selection": "harry_kane_over_0_5",
+              "odds": "2/25",
+              "decimal_odds": 1.08,
+              "player": "Harry Kane",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Harry Kane Over 1.5",
+              "normalized_selection": "harry_kane_over_1_5",
+              "odds": "49/100",
+              "decimal_odds": 1.49,
+              "player": "Harry Kane",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Harry Kane Over 2.5",
+              "normalized_selection": "harry_kane_over_2_5",
+              "odds": "3/2",
+              "decimal_odds": 2.5,
+              "player": "Harry Kane",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Ollie Watkins Over 0.5",
+              "normalized_selection": "ollie_watkins_over_0_5",
+              "odds": "17/100",
+              "decimal_odds": 1.17,
+              "player": "Ollie Watkins",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ollie Watkins Over 1.5",
+              "normalized_selection": "ollie_watkins_over_1_5",
+              "odds": "9/10",
+              "decimal_odds": 1.9,
+              "player": "Ollie Watkins",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ollie Watkins Over 2.5",
+              "normalized_selection": "ollie_watkins_over_2_5",
+              "odds": "14/5",
+              "decimal_odds": 3.8,
+              "player": "Ollie Watkins",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Ivan Toney Over 0.5",
+              "normalized_selection": "ivan_toney_over_0_5",
+              "odds": "1/5",
+              "decimal_odds": 1.2,
+              "player": "Ivan Toney",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ivan Toney Over 1.5",
+              "normalized_selection": "ivan_toney_over_1_5",
+              "odds": "EVS",
+              "decimal_odds": 2.0,
+              "player": "Ivan Toney",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ivan Toney Over 2.5",
+              "normalized_selection": "ivan_toney_over_2_5",
+              "odds": "31/10",
+              "decimal_odds": 4.1,
+              "player": "Ivan Toney",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Marcus Rashford Over 0.5",
+              "normalized_selection": "marcus_rashford_over_0_5",
+              "odds": "29/100",
+              "decimal_odds": 1.29,
+              "player": "Marcus Rashford",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Marcus Rashford Over 1.5",
+              "normalized_selection": "marcus_rashford_over_1_5",
+              "odds": "7/5",
+              "decimal_odds": 2.4,
+              "player": "Marcus Rashford",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Marcus Rashford Over 2.5",
+              "normalized_selection": "marcus_rashford_over_2_5",
+              "odds": "9/2",
+              "decimal_odds": 5.5,
+              "player": "Marcus Rashford",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Eberechi Eze Over 0.5",
+              "normalized_selection": "eberechi_eze_over_0_5",
+              "odds": "17/50",
+              "decimal_odds": 1.34,
+              "player": "Eberechi Eze",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Eberechi Eze Over 1.5",
+              "normalized_selection": "eberechi_eze_over_1_5",
+              "odds": "33/20",
+              "decimal_odds": 2.65,
+              "player": "Eberechi Eze",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Eberechi Eze Over 2.5",
+              "normalized_selection": "eberechi_eze_over_2_5",
+              "odds": "21/4",
+              "decimal_odds": 6.25,
+              "player": "Eberechi Eze",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Anthony Gordon Over 0.5",
+              "normalized_selection": "anthony_gordon_over_0_5",
+              "odds": "7/20",
+              "decimal_odds": 1.35,
+              "player": "Anthony Gordon",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Anthony Gordon Over 1.5",
+              "normalized_selection": "anthony_gordon_over_1_5",
+              "odds": "17/10",
+              "decimal_odds": 2.7,
+              "player": "Anthony Gordon",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Anthony Gordon Over 2.5",
+              "normalized_selection": "anthony_gordon_over_2_5",
+              "odds": "11/2",
+              "decimal_odds": 6.5,
+              "player": "Anthony Gordon",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Jude Bellingham Over 0.5",
+              "normalized_selection": "jude_bellingham_over_0_5",
+              "odds": "39/100",
+              "decimal_odds": 1.39,
+              "player": "Jude Bellingham",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jude Bellingham Over 1.5",
+              "normalized_selection": "jude_bellingham_over_1_5",
+              "odds": "187/100",
+              "decimal_odds": 2.87,
+              "player": "Jude Bellingham",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Jude Bellingham Over 2.5",
+              "normalized_selection": "jude_bellingham_over_2_5",
+              "odds": "6/1",
+              "decimal_odds": 7.0,
+              "player": "Jude Bellingham",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Bukayo Saka Over 0.5",
+              "normalized_selection": "bukayo_saka_over_0_5",
+              "odds": "41/100",
+              "decimal_odds": 1.41,
+              "player": "Bukayo Saka",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Bukayo Saka Over 1.5",
+              "normalized_selection": "bukayo_saka_over_1_5",
+              "odds": "39/20",
+              "decimal_odds": 2.95,
+              "player": "Bukayo Saka",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Bukayo Saka Over 2.5",
+              "normalized_selection": "bukayo_saka_over_2_5",
+              "odds": "13/2",
+              "decimal_odds": 7.5,
+              "player": "Bukayo Saka",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Morgan Rogers Over 0.5",
+              "normalized_selection": "morgan_rogers_over_0_5",
+              "odds": "21/50",
+              "decimal_odds": 1.42,
+              "player": "Morgan Rogers",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Morgan Rogers Over 1.5",
+              "normalized_selection": "morgan_rogers_over_1_5",
+              "odds": "2/1",
+              "decimal_odds": 3.0,
+              "player": "Morgan Rogers",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Morgan Rogers Over 2.5",
+              "normalized_selection": "morgan_rogers_over_2_5",
+              "odds": "13/2",
+              "decimal_odds": 7.5,
+              "player": "Morgan Rogers",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Noni Madueke Over 0.5",
+              "normalized_selection": "noni_madueke_over_0_5",
+              "odds": "47/100",
+              "decimal_odds": 1.47,
+              "player": "Noni Madueke",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Noni Madueke Over 1.5",
+              "normalized_selection": "noni_madueke_over_1_5",
+              "odds": "23/10",
+              "decimal_odds": 3.3,
+              "player": "Noni Madueke",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Noni Madueke Over 2.5",
+              "normalized_selection": "noni_madueke_over_2_5",
+              "odds": "31/4",
+              "decimal_odds": 8.75,
+              "player": "Noni Madueke",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Declan Rice Over 0.5",
+              "normalized_selection": "declan_rice_over_0_5",
+              "odds": "19/20",
+              "decimal_odds": 1.95,
+              "player": "Declan Rice",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Declan Rice Over 1.5",
+              "normalized_selection": "declan_rice_over_1_5",
+              "odds": "5/1",
+              "decimal_odds": 6.0,
+              "player": "Declan Rice",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Declan Rice Over 2.5",
+              "normalized_selection": "declan_rice_over_2_5",
+              "odds": "35/2",
+              "decimal_odds": 18.5,
+              "player": "Declan Rice",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Nico O'Reilly Over 0.5",
+              "normalized_selection": "nico_o_reilly_over_0_5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "player": "Nico O'Reilly",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Nico O'Reilly Over 1.5",
+              "normalized_selection": "nico_o_reilly_over_1_5",
+              "odds": "25/4",
+              "decimal_odds": 7.25,
+              "player": "Nico O'Reilly",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Inaki Williams Over 0.5",
+              "normalized_selection": "inaki_williams_over_0_5",
+              "odds": "13/10",
+              "decimal_odds": 2.3,
+              "player": "Inaki Williams",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Inaki Williams Over 1.5",
+              "normalized_selection": "inaki_williams_over_1_5",
+              "odds": "29/4",
+              "decimal_odds": 8.25,
+              "player": "Inaki Williams",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Augustine Boakye Over 0.5",
+              "normalized_selection": "augustine_boakye_over_0_5",
+              "odds": "27/20",
+              "decimal_odds": 2.35,
+              "player": "Augustine Boakye",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Augustine Boakye Over 1.5",
+              "normalized_selection": "augustine_boakye_over_1_5",
+              "odds": "29/4",
+              "decimal_odds": 8.25,
+              "player": "Augustine Boakye",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Antoine Semenyo Over 0.5",
+              "normalized_selection": "antoine_semenyo_over_0_5",
+              "odds": "7/5",
+              "decimal_odds": 2.4,
+              "player": "Antoine Semenyo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Antoine Semenyo Over 1.5",
+              "normalized_selection": "antoine_semenyo_over_1_5",
+              "odds": "15/2",
+              "decimal_odds": 8.5,
+              "player": "Antoine Semenyo",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Jordan Ayew Over 0.5",
+              "normalized_selection": "jordan_ayew_over_0_5",
+              "odds": "29/20",
+              "decimal_odds": 2.45,
+              "player": "Jordan Ayew",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jordan Ayew Over 1.5",
+              "normalized_selection": "jordan_ayew_over_1_5",
+              "odds": "31/4",
+              "decimal_odds": 8.75,
+              "player": "Jordan Ayew",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Elliot Anderson Over 0.5",
+              "normalized_selection": "elliot_anderson_over_0_5",
+              "odds": "33/20",
+              "decimal_odds": 2.65,
+              "player": "Elliot Anderson",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Elliot Anderson Over 1.5",
+              "normalized_selection": "elliot_anderson_over_1_5",
+              "odds": "19/2",
+              "decimal_odds": 10.5,
+              "player": "Elliot Anderson",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Prince Kwabena Adu Over 0.5",
+              "normalized_selection": "prince_kwabena_adu_over_0_5",
+              "odds": "17/10",
+              "decimal_odds": 2.7,
+              "player": "Prince Kwabena Adu",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Prince Kwabena Adu Over 1.5",
+              "normalized_selection": "prince_kwabena_adu_over_1_5",
+              "odds": "19/2",
+              "decimal_odds": 10.5,
+              "player": "Prince Kwabena Adu",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Issahaku Fatawu Over 0.5",
+              "normalized_selection": "issahaku_fatawu_over_0_5",
+              "odds": "17/10",
+              "decimal_odds": 2.7,
+              "player": "Issahaku Fatawu",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Issahaku Fatawu Over 1.5",
+              "normalized_selection": "issahaku_fatawu_over_1_5",
+              "odds": "19/2",
+              "decimal_odds": 10.5,
+              "player": "Issahaku Fatawu",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Kamal-Deen Sulemana Over 0.5",
+              "normalized_selection": "kamal_deen_sulemana_over_0_5",
+              "odds": "7/4",
+              "decimal_odds": 2.75,
+              "player": "Kamal-Deen Sulemana",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Kamal-Deen Sulemana Over 1.5",
+              "normalized_selection": "kamal_deen_sulemana_over_1_5",
+              "odds": "10/1",
+              "decimal_odds": 11.0,
+              "player": "Kamal-Deen Sulemana",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ernest Nuamah Over 0.5",
+              "normalized_selection": "ernest_nuamah_over_0_5",
+              "odds": "7/4",
+              "decimal_odds": 2.75,
+              "player": "Ernest Nuamah",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ernest Nuamah Over 1.5",
+              "normalized_selection": "ernest_nuamah_over_1_5",
+              "odds": "10/1",
+              "decimal_odds": 11.0,
+              "player": "Ernest Nuamah",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Brandon Thomas-Asante Over 0.5",
+              "normalized_selection": "brandon_thomas_asante_over_0_5",
+              "odds": "37/20",
+              "decimal_odds": 2.85,
+              "player": "Brandon Thomas-Asante",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Brandon Thomas-Asante Over 1.5",
+              "normalized_selection": "brandon_thomas_asante_over_1_5",
+              "odds": "10/1",
+              "decimal_odds": 11.0,
+              "player": "Brandon Thomas-Asante",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Dan Burn Over 0.5",
+              "normalized_selection": "dan_burn_over_0_5",
+              "odds": "21/10",
+              "decimal_odds": 3.1,
+              "player": "Dan Burn",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Dan Burn Over 1.5",
+              "normalized_selection": "dan_burn_over_1_5",
+              "odds": "12/1",
+              "decimal_odds": 13.0,
+              "player": "Dan Burn",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Jarell Quansah Over 0.5",
+              "normalized_selection": "jarell_quansah_over_0_5",
+              "odds": "11/5",
+              "decimal_odds": 3.2,
+              "player": "Jarell Quansah",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jarell Quansah Over 1.5",
+              "normalized_selection": "jarell_quansah_over_1_5",
+              "odds": "25/2",
+              "decimal_odds": 13.5,
+              "player": "Jarell Quansah",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Reece James Over 0.5",
+              "normalized_selection": "reece_james_over_0_5",
+              "odds": "11/5",
+              "decimal_odds": 3.2,
+              "player": "Reece James",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Reece James Over 1.5",
+              "normalized_selection": "reece_james_over_1_5",
+              "odds": "25/2",
+              "decimal_odds": 13.5,
+              "player": "Reece James",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Djed Spence Over 0.5",
+              "normalized_selection": "djed_spence_over_0_5",
+              "odds": "11/5",
+              "decimal_odds": 3.2,
+              "player": "Djed Spence",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Djed Spence Over 1.5",
+              "normalized_selection": "djed_spence_over_1_5",
+              "odds": "25/2",
+              "decimal_odds": 13.5,
+              "player": "Djed Spence",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Kobbie Mainoo Over 0.5",
+              "normalized_selection": "kobbie_mainoo_over_0_5",
+              "odds": "23/10",
+              "decimal_odds": 3.3,
+              "player": "Kobbie Mainoo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Kobbie Mainoo Over 1.5",
+              "normalized_selection": "kobbie_mainoo_over_1_5",
+              "odds": "27/2",
+              "decimal_odds": 14.5,
+              "player": "Kobbie Mainoo",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Jordan Henderson Over 0.5",
+              "normalized_selection": "jordan_henderson_over_0_5",
+              "odds": "12/5",
+              "decimal_odds": 3.4,
+              "player": "Jordan Henderson",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jordan Henderson Over 1.5",
+              "normalized_selection": "jordan_henderson_over_1_5",
+              "odds": "29/2",
+              "decimal_odds": 15.5,
+              "player": "Jordan Henderson",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Marc Guehi Over 0.5",
+              "normalized_selection": "marc_guehi_over_0_5",
+              "odds": "12/5",
+              "decimal_odds": 3.4,
+              "player": "Marc Guehi",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Marc Guehi Over 1.5",
+              "normalized_selection": "marc_guehi_over_1_5",
+              "odds": "14/1",
+              "decimal_odds": 15.0,
+              "player": "Marc Guehi",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ezri Konsa Over 0.5",
+              "normalized_selection": "ezri_konsa_over_0_5",
+              "odds": "12/5",
+              "decimal_odds": 3.4,
+              "player": "Ezri Konsa",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ezri Konsa Over 1.5",
+              "normalized_selection": "ezri_konsa_over_1_5",
+              "odds": "14/1",
+              "decimal_odds": 15.0,
+              "player": "Ezri Konsa",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Trevoh Chalobah Over 0.5",
+              "normalized_selection": "trevoh_chalobah_over_0_5",
+              "odds": "12/5",
+              "decimal_odds": 3.4,
+              "player": "Trevoh Chalobah",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Trevoh Chalobah Over 1.5",
+              "normalized_selection": "trevoh_chalobah_over_1_5",
+              "odds": "27/2",
+              "decimal_odds": 14.5,
+              "player": "Trevoh Chalobah",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Thomas Partey Over 0.5",
+              "normalized_selection": "thomas_partey_over_0_5",
+              "odds": "13/5",
+              "decimal_odds": 3.6,
+              "player": "Thomas Partey",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Thomas Partey Over 1.5",
+              "normalized_selection": "thomas_partey_over_1_5",
+              "odds": "31/2",
+              "decimal_odds": 16.5,
+              "player": "Thomas Partey",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Christopher Bonsu Baah Over 0.5",
+              "normalized_selection": "christopher_bonsu_baah_over_0_5",
+              "odds": "17/5",
+              "decimal_odds": 4.4,
+              "player": "Christopher Bonsu Baah",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Caleb Yirenkyi Over 0.5",
+              "normalized_selection": "caleb_yirenkyi_over_0_5",
+              "odds": "18/5",
+              "decimal_odds": 4.6,
+              "player": "Caleb Yirenkyi",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "John Stones Over 0.5",
+              "normalized_selection": "john_stones_over_0_5",
+              "odds": "17/4",
+              "decimal_odds": 5.25,
+              "player": "John Stones",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Abdul Rahman Baba Over 0.5",
+              "normalized_selection": "abdul_rahman_baba_over_0_5",
+              "odds": "19/4",
+              "decimal_odds": 5.75,
+              "player": "Abdul Rahman Baba",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Kwasi Sibo Over 0.5",
+              "normalized_selection": "kwasi_sibo_over_0_5",
+              "odds": "5/1",
+              "decimal_odds": 6.0,
+              "player": "Kwasi Sibo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Derrick Luckassen Over 0.5",
+              "normalized_selection": "derrick_luckassen_over_0_5",
+              "odds": "23/4",
+              "decimal_odds": 6.75,
+              "player": "Derrick Luckassen",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jonas Adjetey Over 0.5",
+              "normalized_selection": "jonas_adjetey_over_0_5",
+              "odds": "6/1",
+              "decimal_odds": 7.0,
+              "player": "Jonas Adjetey",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Marvin Senaya Over 0.5",
+              "normalized_selection": "marvin_senaya_over_0_5",
+              "odds": "13/2",
+              "decimal_odds": 7.5,
+              "player": "Marvin Senaya",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Opoku, Jerome Over 0.5",
+              "normalized_selection": "opoku_jerome_over_0_5",
+              "odds": "13/2",
+              "decimal_odds": 7.5,
+              "player": "Opoku, Jerome",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Elisha Owusu Over 0.5",
+              "normalized_selection": "elisha_owusu_over_0_5",
+              "odds": "29/4",
+              "decimal_odds": 8.25,
+              "player": "Elisha Owusu",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Kojo Peprah Oppong Over 0.5",
+              "normalized_selection": "kojo_peprah_oppong_over_0_5",
+              "odds": "15/2",
+              "decimal_odds": 8.5,
+              "player": "Kojo Peprah Oppong",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Khalid Abdul Mumin Over 0.5",
+              "normalized_selection": "khalid_abdul_mumin_over_0_5",
+              "odds": "8/1",
+              "decimal_odds": 9.0,
+              "player": "Khalid Abdul Mumin",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Alidu Seidu Over 0.5",
+              "normalized_selection": "alidu_seidu_over_0_5",
+              "odds": "35/4",
+              "decimal_odds": 9.75,
+              "player": "Alidu Seidu",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Gideon Mensah Over 0.5",
+              "normalized_selection": "gideon_mensah_over_0_5",
+              "odds": "11/1",
+              "decimal_odds": 12.0,
+              "player": "Gideon Mensah",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards Over/Under",
+          "normalized_market": "total_match_cards",
+          "raw_heading": "Total Cards",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "6/25",
+              "decimal_odds": 1.24,
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "27/10",
+              "decimal_odds": 3.7,
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "7/10",
+              "decimal_odds": 1.7,
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "EVS",
+              "decimal_odds": 2.0,
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "17/10",
+              "decimal_odds": 2.7,
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "41/100",
+              "decimal_odds": 1.41,
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "cards"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners Over/Under",
+          "normalized_market": "total_corners",
+          "raw_heading": "Total Corners",
+          "selection_count": 14,
+          "selections": [
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "19/100",
+              "decimal_odds": 1.19,
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "16/5",
+              "decimal_odds": 4.2,
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "9/25",
+              "decimal_odds": 1.36,
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "187/100",
+              "decimal_odds": 2.87,
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "63/100",
+              "decimal_odds": 1.63,
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "11/10",
+              "decimal_odds": 2.1,
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "odds": "33/50",
+              "decimal_odds": 1.66,
+              "side": "under",
+              "line": "9.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "odds": "17/10",
+              "decimal_odds": 2.7,
+              "side": "over",
+              "line": "10.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 10.5",
+              "normalized_selection": "under_10_5",
+              "odds": "2/5",
+              "decimal_odds": 1.4,
+              "side": "under",
+              "line": "10.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 11.5",
+              "normalized_selection": "over_11_5",
+              "odds": "11/4",
+              "decimal_odds": 3.75,
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 11.5",
+              "normalized_selection": "under_11_5",
+              "odds": "23/100",
+              "decimal_odds": 1.23,
+              "side": "under",
+              "line": "11.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 12.5",
+              "normalized_selection": "over_12_5",
+              "odds": "17/4",
+              "decimal_odds": 5.25,
+              "side": "over",
+              "line": "12.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 12.5",
+              "normalized_selection": "under_12_5",
+              "odds": "13/100",
+              "decimal_odds": 1.13,
+              "side": "under",
+              "line": "12.5",
+              "prop_type": "corners"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bookmaker": "Bwin",
+      "match": "Panama v Croatia",
+      "home_team": "Panama",
+      "away_team": "Croatia",
+      "date_label": "Tomorrow",
+      "time": "12:00 AM",
+      "source_url": "https://www.bwin.com/en/sports/events/panama-croatia-2:7812229",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "raw_heading": "Match result",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Panama",
+              "normalized_selection": "panama",
+              "odds": "11/2",
+              "decimal_odds": 6.5,
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "333/100",
+              "decimal_odds": 4.33,
+              "side": "draw"
+            },
+            {
+              "selection": "Croatia",
+              "normalized_selection": "croatia",
+              "odds": "1/2",
+              "decimal_odds": 1.5,
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over/Under",
+          "normalized_market": "total_goals",
+          "raw_heading": "Total Goals",
+          "selection_count": 14,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "3/100",
+              "decimal_odds": 1.03,
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "23/2",
+              "decimal_odds": 12.5,
+              "side": "under",
+              "line": "0.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/5",
+              "decimal_odds": 1.2,
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "16/5",
+              "decimal_odds": 4.2,
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "13/20",
+              "decimal_odds": 1.65,
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "11/10",
+              "decimal_odds": 2.1,
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "8/5",
+              "decimal_odds": 2.6,
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "11/25",
+              "decimal_odds": 1.44,
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "15/4",
+              "decimal_odds": 4.75,
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "17/100",
+              "decimal_odds": 1.17,
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "8/1",
+              "decimal_odds": 9.0,
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "3/50",
+              "decimal_odds": 1.06,
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "16/1",
+              "decimal_odds": 17.0,
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "goals"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "1/67",
+              "decimal_odds": 1.015,
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "goals"
+            }
+          ]
+        },
+        {
+          "market": "Player Shots",
+          "normalized_market": "shots",
+          "raw_heading": "Player Total Shots",
+          "selection_count": 19,
+          "selections": [
+            {
+              "selection": "Mario Pasalic Over 1.5",
+              "normalized_selection": "mario_pasalic_over_1_5",
+              "odds": "1/10",
+              "decimal_odds": 1.1,
+              "player": "Mario Pasalic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Mario Pasalic Over 2.5",
+              "normalized_selection": "mario_pasalic_over_2_5",
+              "odds": "19/50",
+              "decimal_odds": 1.38,
+              "player": "Mario Pasalic",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Mario Pasalic Over 3.5",
+              "normalized_selection": "mario_pasalic_over_3_5",
+              "odds": "49/50",
+              "decimal_odds": 1.98,
+              "player": "Mario Pasalic",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Ivan Perisic Over 1.5",
+              "normalized_selection": "ivan_perisic_over_1_5",
+              "odds": "3/25",
+              "decimal_odds": 1.12,
+              "player": "Ivan Perisic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ivan Perisic Over 2.5",
+              "normalized_selection": "ivan_perisic_over_2_5",
+              "odds": "43/100",
+              "decimal_odds": 1.43,
+              "player": "Ivan Perisic",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Ivan Perisic Over 3.5",
+              "normalized_selection": "ivan_perisic_over_3_5",
+              "odds": "11/10",
+              "decimal_odds": 2.1,
+              "player": "Ivan Perisic",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Petar Musa Over 1.5",
+              "normalized_selection": "petar_musa_over_1_5",
+              "odds": "13/100",
+              "decimal_odds": 1.13,
+              "player": "Petar Musa",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Petar Musa Over 2.5",
+              "normalized_selection": "petar_musa_over_2_5",
+              "odds": "23/50",
+              "decimal_odds": 1.46,
+              "player": "Petar Musa",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Petar Musa Over 3.5",
+              "normalized_selection": "petar_musa_over_3_5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "player": "Petar Musa",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Andrej Kramaric Over 1.5",
+              "normalized_selection": "andrej_kramaric_over_1_5",
+              "odds": "3/20",
+              "decimal_odds": 1.15,
+              "player": "Andrej Kramaric",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Andrej Kramaric Over 2.5",
+              "normalized_selection": "andrej_kramaric_over_2_5",
+              "odds": "53/100",
+              "decimal_odds": 1.53,
+              "player": "Andrej Kramaric",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Andrej Kramaric Over 3.5",
+              "normalized_selection": "andrej_kramaric_over_3_5",
+              "odds": "27/20",
+              "decimal_odds": 2.35,
+              "player": "Andrej Kramaric",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Igor Matanovic Over 1.5",
+              "normalized_selection": "igor_matanovic_over_1_5",
+              "odds": "9/50",
+              "decimal_odds": 1.18,
+              "player": "Igor Matanovic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Igor Matanovic Over 2.5",
+              "normalized_selection": "igor_matanovic_over_2_5",
+              "odds": "61/100",
+              "decimal_odds": 1.61,
+              "player": "Igor Matanovic",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Igor Matanovic Over 3.5",
+              "normalized_selection": "igor_matanovic_over_3_5",
+              "odds": "31/20",
+              "decimal_odds": 2.55,
+              "player": "Igor Matanovic",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            },
+            {
+              "selection": "Ante Budimir Over 0.5",
+              "normalized_selection": "ante_budimir_over_0_5",
+              "odds": "1/50",
+              "decimal_odds": 1.02,
+              "player": "Ante Budimir",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ante Budimir Over 1.5",
+              "normalized_selection": "ante_budimir_over_1_5",
+              "odds": "11/50",
+              "decimal_odds": 1.22,
+              "player": "Ante Budimir",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ante Budimir Over 2.5",
+              "normalized_selection": "ante_budimir_over_2_5",
+              "odds": "18/25",
+              "decimal_odds": 1.72,
+              "player": "Ante Budimir",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Ante Budimir Over 3.5",
+              "normalized_selection": "ante_budimir_over_3_5",
+              "odds": "187/100",
+              "decimal_odds": 2.87,
+              "player": "Ante Budimir",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "shots",
+              "source_threshold": "4+"
+            }
+          ]
+        },
+        {
+          "market": "Player Shots On Target",
+          "normalized_market": "shots_on_target",
+          "raw_heading": "Player Total Shots on Target",
+          "selection_count": 94,
+          "selections": [
+            {
+              "selection": "Ivan Perisic Over 0.5",
+              "normalized_selection": "ivan_perisic_over_0_5",
+              "odds": "23/100",
+              "decimal_odds": 1.23,
+              "player": "Ivan Perisic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ivan Perisic Over 1.5",
+              "normalized_selection": "ivan_perisic_over_1_5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "player": "Ivan Perisic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ivan Perisic Over 2.5",
+              "normalized_selection": "ivan_perisic_over_2_5",
+              "odds": "18/5",
+              "decimal_odds": 4.6,
+              "player": "Ivan Perisic",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Ante Budimir Over 0.5",
+              "normalized_selection": "ante_budimir_over_0_5",
+              "odds": "7/25",
+              "decimal_odds": 1.28,
+              "player": "Ante Budimir",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ante Budimir Over 1.5",
+              "normalized_selection": "ante_budimir_over_1_5",
+              "odds": "27/20",
+              "decimal_odds": 2.35,
+              "player": "Ante Budimir",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ante Budimir Over 2.5",
+              "normalized_selection": "ante_budimir_over_2_5",
+              "odds": "17/4",
+              "decimal_odds": 5.25,
+              "player": "Ante Budimir",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Mario Pasalic Over 0.5",
+              "normalized_selection": "mario_pasalic_over_0_5",
+              "odds": "7/25",
+              "decimal_odds": 1.28,
+              "player": "Mario Pasalic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Mario Pasalic Over 1.5",
+              "normalized_selection": "mario_pasalic_over_1_5",
+              "odds": "137/100",
+              "decimal_odds": 2.37,
+              "player": "Mario Pasalic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Mario Pasalic Over 2.5",
+              "normalized_selection": "mario_pasalic_over_2_5",
+              "odds": "9/2",
+              "decimal_odds": 5.5,
+              "player": "Mario Pasalic",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Petar Musa Over 0.5",
+              "normalized_selection": "petar_musa_over_0_5",
+              "odds": "7/25",
+              "decimal_odds": 1.28,
+              "player": "Petar Musa",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Petar Musa Over 1.5",
+              "normalized_selection": "petar_musa_over_1_5",
+              "odds": "27/20",
+              "decimal_odds": 2.35,
+              "player": "Petar Musa",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Petar Musa Over 2.5",
+              "normalized_selection": "petar_musa_over_2_5",
+              "odds": "17/4",
+              "decimal_odds": 5.25,
+              "player": "Petar Musa",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Andrej Kramaric Over 0.5",
+              "normalized_selection": "andrej_kramaric_over_0_5",
+              "odds": "7/25",
+              "decimal_odds": 1.28,
+              "player": "Andrej Kramaric",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Andrej Kramaric Over 1.5",
+              "normalized_selection": "andrej_kramaric_over_1_5",
+              "odds": "137/100",
+              "decimal_odds": 2.37,
+              "player": "Andrej Kramaric",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Andrej Kramaric Over 2.5",
+              "normalized_selection": "andrej_kramaric_over_2_5",
+              "odds": "17/4",
+              "decimal_odds": 5.25,
+              "player": "Andrej Kramaric",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Igor Matanovic Over 0.5",
+              "normalized_selection": "igor_matanovic_over_0_5",
+              "odds": "29/100",
+              "decimal_odds": 1.29,
+              "player": "Igor Matanovic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Igor Matanovic Over 1.5",
+              "normalized_selection": "igor_matanovic_over_1_5",
+              "odds": "7/5",
+              "decimal_odds": 2.4,
+              "player": "Igor Matanovic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Igor Matanovic Over 2.5",
+              "normalized_selection": "igor_matanovic_over_2_5",
+              "odds": "9/2",
+              "decimal_odds": 5.5,
+              "player": "Igor Matanovic",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Nikola Vlasic Over 0.5",
+              "normalized_selection": "nikola_vlasic_over_0_5",
+              "odds": "43/100",
+              "decimal_odds": 1.43,
+              "player": "Nikola Vlasic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Nikola Vlasic Over 1.5",
+              "normalized_selection": "nikola_vlasic_over_1_5",
+              "odds": "21/10",
+              "decimal_odds": 3.1,
+              "player": "Nikola Vlasic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Nikola Vlasic Over 2.5",
+              "normalized_selection": "nikola_vlasic_over_2_5",
+              "odds": "27/4",
+              "decimal_odds": 7.75,
+              "player": "Nikola Vlasic",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Cecilio Waterman Over 0.5",
+              "normalized_selection": "cecilio_waterman_over_0_5",
+              "odds": "23/50",
+              "decimal_odds": 1.46,
+              "player": "Cecilio Waterman",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Cecilio Waterman Over 1.5",
+              "normalized_selection": "cecilio_waterman_over_1_5",
+              "odds": "11/5",
+              "decimal_odds": 3.2,
+              "player": "Cecilio Waterman",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Cecilio Waterman Over 2.5",
+              "normalized_selection": "cecilio_waterman_over_2_5",
+              "odds": "29/4",
+              "decimal_odds": 8.25,
+              "player": "Cecilio Waterman",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Toni Fruk Over 0.5",
+              "normalized_selection": "toni_fruk_over_0_5",
+              "odds": "47/100",
+              "decimal_odds": 1.47,
+              "player": "Toni Fruk",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Toni Fruk Over 1.5",
+              "normalized_selection": "toni_fruk_over_1_5",
+              "odds": "23/10",
+              "decimal_odds": 3.3,
+              "player": "Toni Fruk",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Toni Fruk Over 2.5",
+              "normalized_selection": "toni_fruk_over_2_5",
+              "odds": "15/2",
+              "decimal_odds": 8.5,
+              "player": "Toni Fruk",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Marco Pasalic Over 0.5",
+              "normalized_selection": "marco_pasalic_over_0_5",
+              "odds": "49/100",
+              "decimal_odds": 1.49,
+              "player": "Marco Pasalic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Marco Pasalic Over 1.5",
+              "normalized_selection": "marco_pasalic_over_1_5",
+              "odds": "12/5",
+              "decimal_odds": 3.4,
+              "player": "Marco Pasalic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Marco Pasalic Over 2.5",
+              "normalized_selection": "marco_pasalic_over_2_5",
+              "odds": "31/4",
+              "decimal_odds": 8.75,
+              "player": "Marco Pasalic",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Ismael Diaz Over 0.5",
+              "normalized_selection": "ismael_diaz_over_0_5",
+              "odds": "33/50",
+              "decimal_odds": 1.66,
+              "player": "Ismael Diaz",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Ismael Diaz Over 1.5",
+              "normalized_selection": "ismael_diaz_over_1_5",
+              "odds": "16/5",
+              "decimal_odds": 4.2,
+              "player": "Ismael Diaz",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Ismael Diaz Over 2.5",
+              "normalized_selection": "ismael_diaz_over_2_5",
+              "odds": "11/1",
+              "decimal_odds": 12.0,
+              "player": "Ismael Diaz",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Martin Baturina Over 0.5",
+              "normalized_selection": "martin_baturina_over_0_5",
+              "odds": "17/25",
+              "decimal_odds": 1.68,
+              "player": "Martin Baturina",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Martin Baturina Over 1.5",
+              "normalized_selection": "martin_baturina_over_1_5",
+              "odds": "17/5",
+              "decimal_odds": 4.4,
+              "player": "Martin Baturina",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Martin Baturina Over 2.5",
+              "normalized_selection": "martin_baturina_over_2_5",
+              "odds": "23/2",
+              "decimal_odds": 12.5,
+              "player": "Martin Baturina",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Luka Sucic Over 0.5",
+              "normalized_selection": "luka_sucic_over_0_5",
+              "odds": "7/10",
+              "decimal_odds": 1.7,
+              "player": "Luka Sucic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Luka Sucic Over 1.5",
+              "normalized_selection": "luka_sucic_over_1_5",
+              "odds": "17/5",
+              "decimal_odds": 4.4,
+              "player": "Luka Sucic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Luka Sucic Over 2.5",
+              "normalized_selection": "luka_sucic_over_2_5",
+              "odds": "23/2",
+              "decimal_odds": 12.5,
+              "player": "Luka Sucic",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Jose Fajardo Over 0.5",
+              "normalized_selection": "jose_fajardo_over_0_5",
+              "odds": "71/100",
+              "decimal_odds": 1.71,
+              "player": "Jose Fajardo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jose Fajardo Over 1.5",
+              "normalized_selection": "jose_fajardo_over_1_5",
+              "odds": "7/2",
+              "decimal_odds": 4.5,
+              "player": "Jose Fajardo",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Jose Fajardo Over 2.5",
+              "normalized_selection": "jose_fajardo_over_2_5",
+              "odds": "25/2",
+              "decimal_odds": 13.5,
+              "player": "Jose Fajardo",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Luka Modric Over 0.5",
+              "normalized_selection": "luka_modric_over_0_5",
+              "odds": "73/100",
+              "decimal_odds": 1.73,
+              "player": "Luka Modric",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Luka Modric Over 1.5",
+              "normalized_selection": "luka_modric_over_1_5",
+              "odds": "18/5",
+              "decimal_odds": 4.6,
+              "player": "Luka Modric",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Luka Modric Over 2.5",
+              "normalized_selection": "luka_modric_over_2_5",
+              "odds": "25/2",
+              "decimal_odds": 13.5,
+              "player": "Luka Modric",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Tomas Rodriguez Over 0.5",
+              "normalized_selection": "tomas_rodriguez_over_0_5",
+              "odds": "41/50",
+              "decimal_odds": 1.82,
+              "player": "Tomas Rodriguez",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Tomas Rodriguez Over 1.5",
+              "normalized_selection": "tomas_rodriguez_over_1_5",
+              "odds": "4/1",
+              "decimal_odds": 5.0,
+              "player": "Tomas Rodriguez",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Tomas Rodriguez Over 2.5",
+              "normalized_selection": "tomas_rodriguez_over_2_5",
+              "odds": "29/2",
+              "decimal_odds": 15.5,
+              "player": "Tomas Rodriguez",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "3+"
+            },
+            {
+              "selection": "Jose Luis Rodriguez Over 0.5",
+              "normalized_selection": "jose_luis_rodriguez_over_0_5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "player": "Jose Luis Rodriguez",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jose Luis Rodriguez Over 1.5",
+              "normalized_selection": "jose_luis_rodriguez_over_1_5",
+              "odds": "25/4",
+              "decimal_odds": 7.25,
+              "player": "Jose Luis Rodriguez",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Mateo Kovacic Over 0.5",
+              "normalized_selection": "mateo_kovacic_over_0_5",
+              "odds": "13/10",
+              "decimal_odds": 2.3,
+              "player": "Mateo Kovacic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Mateo Kovacic Over 1.5",
+              "normalized_selection": "mateo_kovacic_over_1_5",
+              "odds": "7/1",
+              "decimal_odds": 8.0,
+              "player": "Mateo Kovacic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Yoel Barcenas Over 0.5",
+              "normalized_selection": "yoel_barcenas_over_0_5",
+              "odds": "7/5",
+              "decimal_odds": 2.4,
+              "player": "Yoel Barcenas",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Yoel Barcenas Over 1.5",
+              "normalized_selection": "yoel_barcenas_over_1_5",
+              "odds": "15/2",
+              "decimal_odds": 8.5,
+              "player": "Yoel Barcenas",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Azarias Londono Over 0.5",
+              "normalized_selection": "azarias_londono_over_0_5",
+              "odds": "8/5",
+              "decimal_odds": 2.6,
+              "player": "Azarias Londono",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Azarias Londono Over 1.5",
+              "normalized_selection": "azarias_londono_over_1_5",
+              "odds": "9/1",
+              "decimal_odds": 10.0,
+              "player": "Azarias Londono",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Cesar Yanis Over 0.5",
+              "normalized_selection": "cesar_yanis_over_0_5",
+              "odds": "7/4",
+              "decimal_odds": 2.75,
+              "player": "Cesar Yanis",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Cesar Yanis Over 1.5",
+              "normalized_selection": "cesar_yanis_over_1_5",
+              "odds": "10/1",
+              "decimal_odds": 11.0,
+              "player": "Cesar Yanis",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Nikola Moro Over 0.5",
+              "normalized_selection": "nikola_moro_over_0_5",
+              "odds": "9/5",
+              "decimal_odds": 2.8,
+              "player": "Nikola Moro",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Nikola Moro Over 1.5",
+              "normalized_selection": "nikola_moro_over_1_5",
+              "odds": "10/1",
+              "decimal_odds": 11.0,
+              "player": "Nikola Moro",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Kristijan Jakic Over 0.5",
+              "normalized_selection": "kristijan_jakic_over_0_5",
+              "odds": "9/5",
+              "decimal_odds": 2.8,
+              "player": "Kristijan Jakic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Kristijan Jakic Over 1.5",
+              "normalized_selection": "kristijan_jakic_over_1_5",
+              "odds": "21/2",
+              "decimal_odds": 11.5,
+              "player": "Kristijan Jakic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Petar Sucic Over 0.5",
+              "normalized_selection": "petar_sucic_over_0_5",
+              "odds": "9/5",
+              "decimal_odds": 2.8,
+              "player": "Petar Sucic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Petar Sucic Over 1.5",
+              "normalized_selection": "petar_sucic_over_1_5",
+              "odds": "10/1",
+              "decimal_odds": 11.0,
+              "player": "Petar Sucic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Luka Vuskovic Over 0.5",
+              "normalized_selection": "luka_vuskovic_over_0_5",
+              "odds": "19/10",
+              "decimal_odds": 2.9,
+              "player": "Luka Vuskovic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Luka Vuskovic Over 1.5",
+              "normalized_selection": "luka_vuskovic_over_1_5",
+              "odds": "11/1",
+              "decimal_odds": 12.0,
+              "player": "Luka Vuskovic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Josko Gvardiol Over 0.5",
+              "normalized_selection": "josko_gvardiol_over_0_5",
+              "odds": "39/20",
+              "decimal_odds": 2.95,
+              "player": "Josko Gvardiol",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Josko Gvardiol Over 1.5",
+              "normalized_selection": "josko_gvardiol_over_1_5",
+              "odds": "11/1",
+              "decimal_odds": 12.0,
+              "player": "Josko Gvardiol",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Cristian Martinez Borja Over 0.5",
+              "normalized_selection": "cristian_martinez_borja_over_0_5",
+              "odds": "21/10",
+              "decimal_odds": 3.1,
+              "player": "Cristian Martinez Borja",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Cristian Martinez Borja Over 1.5",
+              "normalized_selection": "cristian_martinez_borja_over_1_5",
+              "odds": "25/2",
+              "decimal_odds": 13.5,
+              "player": "Cristian Martinez Borja",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Carlos Harvey Over 0.5",
+              "normalized_selection": "carlos_harvey_over_0_5",
+              "odds": "11/5",
+              "decimal_odds": 3.2,
+              "player": "Carlos Harvey",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Carlos Harvey Over 1.5",
+              "normalized_selection": "carlos_harvey_over_1_5",
+              "odds": "13/1",
+              "decimal_odds": 14.0,
+              "player": "Carlos Harvey",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Alberto Quintero Over 0.5",
+              "normalized_selection": "alberto_quintero_over_0_5",
+              "odds": "9/4",
+              "decimal_odds": 3.25,
+              "player": "Alberto Quintero",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Alberto Quintero Over 1.5",
+              "normalized_selection": "alberto_quintero_over_1_5",
+              "odds": "27/2",
+              "decimal_odds": 14.5,
+              "player": "Alberto Quintero",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Martin Erlic Over 0.5",
+              "normalized_selection": "martin_erlic_over_0_5",
+              "odds": "13/5",
+              "decimal_odds": 3.6,
+              "player": "Martin Erlic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Martin Erlic Over 1.5",
+              "normalized_selection": "martin_erlic_over_1_5",
+              "odds": "31/2",
+              "decimal_odds": 16.5,
+              "player": "Martin Erlic",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Eric Davis Over 0.5",
+              "normalized_selection": "eric_davis_over_0_5",
+              "odds": "29/10",
+              "decimal_odds": 3.9,
+              "player": "Eric Davis",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Eric Davis Over 1.5",
+              "normalized_selection": "eric_davis_over_1_5",
+              "odds": "37/2",
+              "decimal_odds": 19.5,
+              "player": "Eric Davis",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Michael Murillo Over 0.5",
+              "normalized_selection": "michael_murillo_over_0_5",
+              "odds": "16/5",
+              "decimal_odds": 4.2,
+              "player": "Michael Murillo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Michael Murillo Over 1.5",
+              "normalized_selection": "michael_murillo_over_1_5",
+              "odds": "20/1",
+              "decimal_odds": 21.0,
+              "player": "Michael Murillo",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Josip Sutalo Over 0.5",
+              "normalized_selection": "josip_sutalo_over_0_5",
+              "odds": "17/5",
+              "decimal_odds": 4.4,
+              "player": "Josip Sutalo",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Josip Sutalo Over 1.5",
+              "normalized_selection": "josip_sutalo_over_1_5",
+              "odds": "20/1",
+              "decimal_odds": 21.0,
+              "player": "Josip Sutalo",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "2+"
+            },
+            {
+              "selection": "Cesar Blackman Over 0.5",
+              "normalized_selection": "cesar_blackman_over_0_5",
+              "odds": "17/5",
+              "decimal_odds": 4.4,
+              "player": "Cesar Blackman",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Duje Caleta-Car Over 0.5",
+              "normalized_selection": "duje_caleta_car_over_0_5",
+              "odds": "7/2",
+              "decimal_odds": 4.5,
+              "player": "Duje Caleta-Car",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Josip Stanisic Over 0.5",
+              "normalized_selection": "josip_stanisic_over_0_5",
+              "odds": "19/5",
+              "decimal_odds": 4.8,
+              "player": "Josip Stanisic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jorge Gutierrez Over 0.5",
+              "normalized_selection": "jorge_gutierrez_over_0_5",
+              "odds": "19/5",
+              "decimal_odds": 4.8,
+              "player": "Jorge Gutierrez",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Marin Pongracic Over 0.5",
+              "normalized_selection": "marin_pongracic_over_0_5",
+              "odds": "9/2",
+              "decimal_odds": 5.5,
+              "player": "Marin Pongracic",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Anibal Godoy Over 0.5",
+              "normalized_selection": "anibal_godoy_over_0_5",
+              "odds": "9/2",
+              "decimal_odds": 5.5,
+              "player": "Anibal Godoy",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jiovany Ramos Over 0.5",
+              "normalized_selection": "jiovany_ramos_over_0_5",
+              "odds": "9/2",
+              "decimal_odds": 5.5,
+              "player": "Jiovany Ramos",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Roderick Miller Over 0.5",
+              "normalized_selection": "roderick_miller_over_0_5",
+              "odds": "11/2",
+              "decimal_odds": 6.5,
+              "player": "Roderick Miller",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Andres Andrade Over 0.5",
+              "normalized_selection": "andres_andrade_over_0_5",
+              "odds": "11/2",
+              "decimal_odds": 6.5,
+              "player": "Andres Andrade",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Fidel Escobar Over 0.5",
+              "normalized_selection": "fidel_escobar_over_0_5",
+              "odds": "11/2",
+              "decimal_odds": 6.5,
+              "player": "Fidel Escobar",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Edgardo Farina Over 0.5",
+              "normalized_selection": "edgardo_farina_over_0_5",
+              "odds": "23/4",
+              "decimal_odds": 6.75,
+              "player": "Edgardo Farina",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            },
+            {
+              "selection": "Jose Cordoba Over 0.5",
+              "normalized_selection": "jose_cordoba_over_0_5",
+              "odds": "13/2",
+              "decimal_odds": 7.5,
+              "player": "Jose Cordoba",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "shots_on_target",
+              "source_threshold": "1+"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards Over/Under",
+          "normalized_market": "total_match_cards",
+          "raw_heading": "Total Cards",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "19/100",
+              "decimal_odds": 1.19,
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "333/100",
+              "decimal_odds": 4.33,
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "57/100",
+              "decimal_odds": 1.57,
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "5/4",
+              "decimal_odds": 2.25,
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "7/5",
+              "decimal_odds": 2.4,
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "1/2",
+              "decimal_odds": 1.5,
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "cards"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners Over/Under",
+          "normalized_market": "total_corners",
+          "raw_heading": "Total Corners",
+          "selection_count": 14,
+          "selections": [
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "19/100",
+              "decimal_odds": 1.19,
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "333/100",
+              "decimal_odds": 4.33,
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "9/25",
+              "decimal_odds": 1.36,
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "187/100",
+              "decimal_odds": 2.87,
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "13/20",
+              "decimal_odds": 1.65,
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "11/10",
+              "decimal_odds": 2.1,
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "odds": "33/50",
+              "decimal_odds": 1.66,
+              "side": "under",
+              "line": "9.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "odds": "7/4",
+              "decimal_odds": 2.75,
+              "side": "over",
+              "line": "10.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 10.5",
+              "normalized_selection": "under_10_5",
+              "odds": "39/100",
+              "decimal_odds": 1.39,
+              "side": "under",
+              "line": "10.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 11.5",
+              "normalized_selection": "over_11_5",
+              "odds": "14/5",
+              "decimal_odds": 3.8,
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 11.5",
+              "normalized_selection": "under_11_5",
+              "odds": "11/50",
+              "decimal_odds": 1.22,
+              "side": "under",
+              "line": "11.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 12.5",
+              "normalized_selection": "over_12_5",
+              "odds": "9/2",
+              "decimal_odds": 5.5,
+              "side": "over",
+              "line": "12.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 12.5",
+              "normalized_selection": "under_12_5",
+              "odds": "3/25",
+              "decimal_odds": 1.12,
+              "side": "under",
+              "line": "12.5",
+              "prop_type": "corners"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

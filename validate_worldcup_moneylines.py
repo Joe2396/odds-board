@@ -31,7 +31,8 @@ FILES = {
     "888Sport":    ROOT / "football" / "data" / "888sport_worldcup_moneylines.json",
     "Ladbrokes":   ROOT / "football" / "data" / "ladbrokes_worldcup_moneylines.json",
     "Midnite":     ROOT / "football" / "data" / "midnite_worldcup_moneylines.json",
-}
+
+    "Bwin":  ROOT / "football" / "data" / "bwin_worldcup_moneylines.json",}
 
 MIN_GOOD_BOOKS = 5
 MIN_TOTAL_UNIQUE_MATCHES = 30

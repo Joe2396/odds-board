@@ -15,6 +15,7 @@ WILLIAMHILL_PATH    = ROOT / "football" / "data" / "williamhill_worldcup_moneyli
 EIGHTEIGHTEIGHT_PATH= ROOT / "football" / "data" / "888sport_worldcup_moneylines.json"
 LADBROKES_PATH      = ROOT / "football" / "data" / "ladbrokes_worldcup_moneylines.json"
 MIDNITE_PATH        = ROOT / "football" / "data" / "midnite_worldcup_moneylines.json"
+BWIN_PATH           = ROOT / "football" / "data" / "bwin_worldcup_moneylines.json"
 
 PADDY_PROPS_PATH    = ROOT / "football" / "data" / "paddypower_worldcup_props.json"
 BOYLE_PROPS_PATH    = ROOT / "football" / "data" / "boylesports_worldcup_props_complete.json"
@@ -372,6 +373,47 @@ def load_midnite_moneylines():
             "loose_key": loose_fixture_key(home,away),
         })
     return rows
+
+def load_bwin_moneylines():
+    data = load_json(BWIN_PATH)
+    rows = []
+    generated = data.get("generated_at", "") if isinstance(data, dict) else ""
+
+    for m in data.get("matches") or []:
+        home = display_team(m.get("home_team"))
+        away = display_team(m.get("away_team"))
+        if not home or not away:
+            continue
+
+        odds = {}
+        for side, value in (m.get("odds") or {}).items():
+            try:
+                decimal = float(str(value).replace(",", "."))
+            except (TypeError, ValueError):
+                continue
+
+            if decimal <= 1:
+                continue
+
+            odds[side] = decimal_to_fractional(f"{decimal:.8g}")
+
+        if not all(odds.get(side) for side in ("home", "draw", "away")):
+            continue
+
+        rows.append({
+            "bookmaker": "Bwin",
+            "date_label": m.get("date_label", ""),
+            "time": m.get("time", ""),
+            "match": f"{home} v {away}",
+            "home_team": home,
+            "away_team": away,
+            "odds": odds,
+            "source_url": m.get("source_url", ""),
+            "strict_key": fixture_key(home, away),
+            "loose_key": loose_fixture_key(home, away),
+        })
+
+    return rows, generated
 
 def _dec_to_str(v):
     """Convert Midnite decimal odds to fractional string for consistent display."""
@@ -740,6 +782,7 @@ def load_all():
     ladb_rows,    ladb_gen     = load_book("Ladbrokes",    LADBROKES_PATH)
     midnite_rows               = load_midnite_moneylines()
 
+    bwin_rows,    bwin_gen      = load_bwin_moneylines()
     paddy_props,  paddy_p_gen  = load_props_file("PaddyPower",   PADDY_PROPS_PATH)
     boyle_props,  boyle_p_gen  = load_props_file("BoyleSports",  BOYLE_PROPS_PATH)
     unibet_props, unibet_p_gen = load_props_file("Unibet",       UNIBET_PROPS_PATH)
@@ -767,7 +810,7 @@ def load_all():
 
     for rows,bk in [(boyle_rows,"BoyleSports"),(betv_rows,"BetVictor"),(unibet_rows,"Unibet"),
                     (lsb_rows,"LiveScoreBet"),(wh_rows,"WilliamHill"),(eee_rows,"888Sport"),
-                    (ladb_rows,"Ladbrokes"),(midnite_rows,"Midnite")]:
+                    (ladb_rows,"Ladbrokes"),(midnite_rows,"Midnite"),(bwin_rows,"Bwin")]:
         add_book_rows(fixtures,si,li,rows,bk)
 
     for bk,bk_props in [("PaddyPower",paddy_props),("BoyleSports",boyle_props),
@@ -783,7 +826,7 @@ def load_all():
                 fixtures[tk]["props"][bk] = pd
 
     fl = sorted(fixtures.values(), key=lambda x:(date_sort_key(x.get("date_label")),x.get("time",""),x.get("match","")))
-    generated = paddy_p_gen or boyle_p_gen or unibet_p_gen or lsb_p_gen or eee_p_gen or wh_p_gen or betv_p_gen or ladb_p_gen or eee_gen or wh_gen or lsb_gen or unibet_gen or betv_gen or boyle_gen or paddy_gen or ladb_gen
+    generated = paddy_p_gen or boyle_p_gen or unibet_p_gen or lsb_p_gen or eee_p_gen or wh_p_gen or betv_p_gen or ladb_p_gen or eee_gen or wh_gen or lsb_gen or unibet_gen or betv_gen or boyle_gen or paddy_gen or ladb_gen or bwin_gen
     bk_count  = len({b for f in fl for b in f.get("bookmakers",{})})
     return fl, bk_count, generated
 

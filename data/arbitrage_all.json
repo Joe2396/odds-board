@@ -1,49 +1,12 @@
 {
-  "generated_at": "2026-06-23T00:31:42.155437+00:00",
-  "total_arbitrage": 15,
+  "generated_at": "2026-06-23T13:11:25.656266+00:00",
+  "total_arbitrage": 14,
   "sports": {
-    "All": 15,
-    "Football": 13,
+    "All": 14,
+    "Football": 12,
     "UFC": 2
   },
   "arbitrage": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Portugal v Uzbekistan",
-      "market": "Double Chance",
-      "type": "props_double_chance",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 54.527,
-      "arb_percent": 64.714,
-      "arb_sum": 0.647138,
-      "bookmaker_count": 3,
-      "bookmakers": [
-        {
-          "selection": "Portugal or Draw",
-          "bookmaker": "LiveScoreBet",
-          "odds": "22/5",
-          "decimal_odds": 5.4,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Uzbekistan or Draw",
-          "bookmaker": "BetVictor",
-          "odds": "4/1",
-          "decimal_odds": 5.0,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Portugal or Uzbekistan",
-          "bookmaker": "Unibet",
-          "odds": "1/10",
-          "decimal_odds": 1.1,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
@@ -492,7 +455,7 @@
     "darts": "C:\\Users\\joete\\odds-board\\darts\\data\\arbitrage.json"
   },
   "source_counts": {
-    "football": 13,
+    "football": 12,
     "ufc": 2,
     "darts": 0
   }

@@ -521,9 +521,11 @@ def scrape_fight(page, fight, index):
     accept_cookies(page)
     time.sleep(2)
 
-    for _ in range(4):
-        page.mouse.wheel(0, 1200)
-        time.sleep(0.8)
+    for _ in range(12):
+        page.mouse.wheel(0, 800)
+        time.sleep(0.5)
+
+    time.sleep(2)
 
     page.evaluate("window.scrollTo(0, 0)")
     time.sleep(1)
