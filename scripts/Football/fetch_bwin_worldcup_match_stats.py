@@ -33,7 +33,7 @@ Debug:
 
 from __future__ import annotations
 
-# BWIN_MATCH_STATS_V4_CAPTURE_FIX
+# BWIN_MATCH_STATS_PROD15_AUDIT
 
 import json
 import re
@@ -51,13 +51,15 @@ MONEYLINES_PATH = (
 OUT_PATH = (
     ROOT / "football" / "data" / "bwin_worldcup_match_stats.json"
 )
+AUDIT_PATH = (
+    ROOT / "football" / "data" / "bwin_worldcup_match_stats_audit.json"
+)
 DEBUG_DIR = (
     ROOT / "football" / "debug" / "bwin_worldcup_match_stats"
 )
 
-MAX_MATCHES = 3
+MAX_MATCHES = 15
 HEADLESS = False
-
 # Do not start scraping a fixture that is likely to move in-play before the
 # three-match test completes.
 KICKOFF_BUFFER_MINUTES = 60
@@ -2147,7 +2149,8 @@ def main() -> int:
         )
         return 1
 
-    results = []
+    complete_results = []
+    incomplete_results = []
     errors = []
 
     DEBUG_DIR.mkdir(
@@ -2203,9 +2206,16 @@ def main() -> int:
                         context,
                         match,
                     )
-                    results.append(
-                        scrape_one(page, match)
-                    )
+                    result = scrape_one(page, match)
+
+                    if result.get("market_count") == 6:
+                        complete_results.append(result)
+                    else:
+                        incomplete_results.append(result)
+                        print(
+                            "AUDIT ONLY: incomplete match-stat coverage "
+                            f"({result.get('market_count', 0)}/6)"
+                        )
                 except Exception as error:
                     errors.append(
                         {
@@ -2226,41 +2236,89 @@ def main() -> int:
             if browser is not None:
                 browser.close()
 
-    payload = {
+    audit_payload = {
         "sport": "football",
         "competition": "FIFA World Cup",
         "bookmaker": "Bwin",
-        "dataset": "match_team_shots_stats",
+        "dataset": "match_team_shots_stats_audit",
         "odds_format": "fractional",
         "generated_at": datetime.now(
             timezone.utc
         ).isoformat(),
-        "match_count": len(results),
+        "complete_match_count": len(complete_results),
+        "incomplete_match_count": len(incomplete_results),
         "error_count": len(errors),
-        "matches": results,
+        "complete_matches": complete_results,
+        "incomplete_matches": incomplete_results,
         "errors": errors,
     }
 
-    OUT_PATH.parent.mkdir(
+    AUDIT_PATH.parent.mkdir(
         parents=True,
         exist_ok=True,
     )
-    OUT_PATH.write_text(
+    audit_temp = AUDIT_PATH.with_suffix(".json.tmp")
+    audit_temp.write_text(
         json.dumps(
-            payload,
+            audit_payload,
             indent=2,
             ensure_ascii=False,
         ),
         encoding="utf-8",
     )
+    audit_temp.replace(AUDIT_PATH)
+
+    if complete_results:
+        production_payload = {
+            "sport": "football",
+            "competition": "FIFA World Cup",
+            "bookmaker": "Bwin",
+            "dataset": "match_team_shots_stats",
+            "odds_format": "fractional",
+            "generated_at": datetime.now(
+                timezone.utc
+            ).isoformat(),
+            "match_count": len(complete_results),
+            "error_count": 0,
+            "matches": complete_results,
+            "errors": [],
+        }
+
+        OUT_PATH.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+        production_temp = OUT_PATH.with_suffix(".json.tmp")
+        production_temp.write_text(
+            json.dumps(
+                production_payload,
+                indent=2,
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        production_temp.replace(OUT_PATH)
+    else:
+        print(
+            "WARNING: no complete 6/6 fixtures; "
+            "existing production match-stats JSON was left untouched."
+        )
 
     print("")
-    print("Bwin World Cup match-stats test completed")
-    print(f"Matches saved: {len(results)}")
+    print("Bwin World Cup match-stats 15-match audit completed")
+    print(
+        f"Complete 6/6 matches promoted: "
+        f"{len(complete_results)}"
+    )
+    print(
+        f"Incomplete matches kept in audit only: "
+        f"{len(incomplete_results)}"
+    )
     print(f"Errors: {len(errors)}")
-    print(f"Output: {OUT_PATH}")
+    print(f"Production output: {OUT_PATH}")
+    print(f"Audit output: {AUDIT_PATH}")
 
-    return 0 if results else 1
+    return 0 if complete_results else 1
 
 
 if __name__ == "__main__":

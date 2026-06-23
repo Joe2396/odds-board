@@ -2,12 +2,13 @@
   "sport": "football",
   "competition": "FIFA World Cup",
   "bookmaker": "Bwin",
-  "dataset": "match_team_shots_stats",
+  "dataset": "match_team_shots_stats_audit",
   "odds_format": "fractional",
-  "generated_at": "2026-06-23T23:47:29.776653+00:00",
-  "match_count": 1,
-  "error_count": 0,
-  "matches": [
+  "generated_at": "2026-06-23T23:47:29.768403+00:00",
+  "complete_match_count": 1,
+  "incomplete_match_count": 1,
+  "error_count": 13,
+  "complete_matches": [
     {
       "bookmaker": "Bwin",
       "match": "Czechia v Mexico",
@@ -351,5 +352,127 @@
       ]
     }
   ],
-  "errors": []
+  "incomplete_matches": [
+    {
+      "bookmaker": "Bwin",
+      "match": "South Africa v South Korea",
+      "home_team": "South Africa",
+      "away_team": "South Korea",
+      "date_label": "6/25/26",
+      "time": "2:00 AM",
+      "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545",
+      "market_count": 1,
+      "markets": [
+        {
+          "market": "Match Total Shots",
+          "normalized_market": "match_total_shots",
+          "raw_heading": "Total Shots",
+          "scope": "match",
+          "stat": "shots",
+          "team": "",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 21.5",
+              "normalized_selection": "over_21_5",
+              "side": "over",
+              "line": "21.5",
+              "odds": "4/5",
+              "decimal_odds": 1.8,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Under 21.5",
+              "normalized_selection": "under_21_5",
+              "side": "under",
+              "line": "21.5",
+              "odds": "83/100",
+              "decimal_odds": 1.83,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Over 22.5",
+              "normalized_selection": "over_22_5",
+              "side": "over",
+              "line": "22.5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Under 22.5",
+              "normalized_selection": "under_22_5",
+              "side": "under",
+              "line": "22.5",
+              "odds": "63/100",
+              "decimal_odds": 1.63,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "match": "Portugal v Uzbekistan",
+      "error": "Event page did not become usable"
+    },
+    {
+      "match": "England v Ghana",
+      "error": "Event page did not become usable"
+    },
+    {
+      "match": "Panama v Croatia",
+      "error": "Fixture is already in-play; skipped."
+    },
+    {
+      "match": "Colombia v DR Congo",
+      "error": "Fixture is already in-play; skipped."
+    },
+    {
+      "match": "Bosnia v Qatar",
+      "error": "Fixture is already in-play; skipped."
+    },
+    {
+      "match": "Switzerland v Canada",
+      "error": "Fixture is already in-play; skipped."
+    },
+    {
+      "match": "Morocco v Haiti",
+      "error": "Fixture is already in-play; skipped."
+    },
+    {
+      "match": "Scotland v Brazil",
+      "error": "Fixture is already in-play; skipped."
+    },
+    {
+      "match": "Curacao v Ivory Coast",
+      "error": "Shots tab could not be opened after retry."
+    },
+    {
+      "match": "Ecuador v Germany",
+      "error": "Shots tab could not be opened after retry."
+    },
+    {
+      "match": "Japan v Sweden",
+      "error": "Fixture is already in-play; skipped."
+    },
+    {
+      "match": "Tunisia v Netherlands",
+      "error": "Fixture is already in-play; skipped."
+    },
+    {
+      "match": "Paraguay v Australia",
+      "error": "Fixture is already in-play; skipped."
+    }
+  ]
 }
