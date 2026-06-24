@@ -31,7 +31,13 @@ echo. | python scripts\generate_ufc_fights.py
 echo. | python scripts\generate_ufc_hub.py
 echo. | python scripts\generate_ufc_tracker.py
 echo. | python scripts\generate_ev_alerts.py
+echo. | python scripts\analyze_ufc_arbitrage.py
 echo. | python scripts\build_ev_alerts_all.py
 echo. | python scripts\build_arbitrage_all.py
+
+git add -A
+git commit -m "UFC odds update %date% %time%"
+git pull origin main --rebase
+git push origin main
 
 pause

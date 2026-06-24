@@ -1,0 +1,631 @@
+{
+  "bookmaker": "BetVictor",
+  "generated_at": "2026-06-24T16:37:40.852614+00:00",
+  "test_mode": true,
+  "max_matches": 3,
+  "production_files_modified": false,
+  "elapsed_seconds": 234.84,
+  "match_count": 3,
+  "core_complete_matches": 0,
+  "matches": [
+    {
+      "match": "Bosnia v Qatar",
+      "core_complete": false,
+      "market_count": 7,
+      "missing_or_not_offered": [
+        "match_betting",
+        "double_chance",
+        "player_assists",
+        "player_shots_on_target",
+        "player_shots",
+        "player_fouls_committed",
+        "player_tackles",
+        "match_shots_on_target_over_under",
+        "match_shots_over_under",
+        "bosnia_shots_on_target_over_under",
+        "bosnia_shots_over_under",
+        "qatar_shots_on_target_over_under",
+        "qatar_shots_over_under"
+      ],
+      "requirements": [
+        {
+          "section": "core",
+          "normalized_market": "match_betting",
+          "minimum_selections": 3,
+          "market": "match_betting",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "core",
+          "normalized_market": "total_goals_over_under",
+          "minimum_selections": 2,
+          "market": "Total Goals Over / Under",
+          "selection_count": 8,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "both_teams_to_score",
+          "minimum_selections": 2,
+          "market": "Both Teams To Score",
+          "selection_count": 2,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "double_chance",
+          "minimum_selections": 3,
+          "market": "double_chance",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "core",
+          "normalized_market": "total_corners_over_under",
+          "minimum_selections": 2,
+          "market": "Total Corners Over / Under",
+          "selection_count": 10,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "total_cards_over_under",
+          "minimum_selections": 2,
+          "market": "Total Cards Over / Under",
+          "selection_count": 6,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "anytime_goalscorer",
+          "minimum_selections": 1,
+          "market": "Anytime Goalscorer",
+          "selection_count": 5,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "player_cards",
+          "minimum_selections": 1,
+          "market": "Player Cards",
+          "selection_count": 59,
+          "status": "FOUND"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_assists",
+          "minimum_selections": 1,
+          "market": "player_assists",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_shots_on_target",
+          "minimum_selections": 1,
+          "market": "player_shots_on_target",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_shots",
+          "minimum_selections": 1,
+          "market": "player_shots",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_fouls_committed",
+          "minimum_selections": 1,
+          "market": "player_fouls_committed",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_tackles",
+          "minimum_selections": 1,
+          "market": "player_tackles",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "match_shots_on_target_over_under",
+          "label": "Match Shots On Target Over / Under",
+          "minimum_selections": 1,
+          "market": "Match Shots On Target Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "match_shots_over_under",
+          "label": "Match Shots Over / Under",
+          "minimum_selections": 1,
+          "market": "Match Shots Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "bosnia_shots_on_target_over_under",
+          "label": "Bosnia Shots On Target Over / Under",
+          "minimum_selections": 1,
+          "market": "Bosnia Shots On Target Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "bosnia_shots_over_under",
+          "label": "Bosnia Shots Over / Under",
+          "minimum_selections": 1,
+          "market": "Bosnia Shots Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "qatar_shots_on_target_over_under",
+          "label": "Qatar Shots On Target Over / Under",
+          "minimum_selections": 1,
+          "market": "Qatar Shots On Target Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "qatar_shots_over_under",
+          "label": "Qatar Shots Over / Under",
+          "minimum_selections": 1,
+          "market": "Qatar Shots Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        }
+      ],
+      "exact_player_diagnostics": {
+        "player_shots_on_target": {
+          "market": "Player Shots On Target",
+          "heading_clicked": "Player Shots on Target",
+          "raw_rows": 0,
+          "selection_count": 0
+        },
+        "player_shots": {
+          "market": "Player Shots",
+          "heading_clicked": "Player Shots",
+          "raw_rows": 0,
+          "selection_count": 0
+        },
+        "player_fouls_committed": {
+          "market": "Player Fouls Committed",
+          "heading_clicked": "Player Fouls",
+          "raw_rows": 0,
+          "selection_count": 0
+        },
+        "player_tackles": {
+          "market": "Player Tackles",
+          "heading_clicked": "Player Tackles",
+          "raw_rows": 0,
+          "selection_count": 0
+        }
+      },
+      "elapsed_seconds": 72.19
+    },
+    {
+      "match": "Switzerland v Canada",
+      "core_complete": false,
+      "market_count": 8,
+      "missing_or_not_offered": [
+        "double_chance",
+        "player_assists",
+        "player_shots_on_target",
+        "player_shots",
+        "player_fouls_committed",
+        "player_tackles",
+        "match_shots_on_target_over_under",
+        "match_shots_over_under",
+        "switzerland_shots_on_target_over_under",
+        "switzerland_shots_over_under",
+        "canada_shots_on_target_over_under",
+        "canada_shots_over_under"
+      ],
+      "requirements": [
+        {
+          "section": "core",
+          "normalized_market": "match_betting",
+          "minimum_selections": 3,
+          "market": "Match Betting",
+          "selection_count": 3,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "total_goals_over_under",
+          "minimum_selections": 2,
+          "market": "Total Goals Over / Under",
+          "selection_count": 10,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "both_teams_to_score",
+          "minimum_selections": 2,
+          "market": "Both Teams To Score",
+          "selection_count": 2,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "double_chance",
+          "minimum_selections": 3,
+          "market": "double_chance",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "core",
+          "normalized_market": "total_corners_over_under",
+          "minimum_selections": 2,
+          "market": "Total Corners Over / Under",
+          "selection_count": 8,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "total_cards_over_under",
+          "minimum_selections": 2,
+          "market": "Total Cards Over / Under",
+          "selection_count": 6,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "anytime_goalscorer",
+          "minimum_selections": 1,
+          "market": "Anytime Goalscorer",
+          "selection_count": 5,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "player_cards",
+          "minimum_selections": 1,
+          "market": "Player Cards",
+          "selection_count": 13,
+          "status": "FOUND"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_assists",
+          "minimum_selections": 1,
+          "market": "player_assists",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_shots_on_target",
+          "minimum_selections": 1,
+          "market": "player_shots_on_target",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_shots",
+          "minimum_selections": 1,
+          "market": "player_shots",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_fouls_committed",
+          "minimum_selections": 1,
+          "market": "player_fouls_committed",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_tackles",
+          "minimum_selections": 1,
+          "market": "player_tackles",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "match_shots_on_target_over_under",
+          "label": "Match Shots On Target Over / Under",
+          "minimum_selections": 1,
+          "market": "Match Shots On Target Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "match_shots_over_under",
+          "label": "Match Shots Over / Under",
+          "minimum_selections": 1,
+          "market": "Match Shots Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "switzerland_shots_on_target_over_under",
+          "label": "Switzerland Shots On Target Over / Under",
+          "minimum_selections": 1,
+          "market": "Switzerland Shots On Target Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "switzerland_shots_over_under",
+          "label": "Switzerland Shots Over / Under",
+          "minimum_selections": 1,
+          "market": "Switzerland Shots Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "canada_shots_on_target_over_under",
+          "label": "Canada Shots On Target Over / Under",
+          "minimum_selections": 1,
+          "market": "Canada Shots On Target Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "canada_shots_over_under",
+          "label": "Canada Shots Over / Under",
+          "minimum_selections": 1,
+          "market": "Canada Shots Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        }
+      ],
+      "exact_player_diagnostics": {
+        "player_shots_on_target": {
+          "market": "Player Shots On Target",
+          "heading_clicked": "Player Shots on Target",
+          "raw_rows": 0,
+          "selection_count": 0
+        },
+        "player_shots": {
+          "market": "Player Shots",
+          "heading_clicked": "Player Shots",
+          "raw_rows": 0,
+          "selection_count": 0
+        },
+        "player_fouls_committed": {
+          "market": "Player Fouls Committed",
+          "heading_clicked": "Player Fouls",
+          "raw_rows": 0,
+          "selection_count": 0
+        },
+        "player_tackles": {
+          "market": "Player Tackles",
+          "heading_clicked": "Player Tackles",
+          "raw_rows": 0,
+          "selection_count": 0
+        }
+      },
+      "elapsed_seconds": 81.25
+    },
+    {
+      "match": "Morocco v Haiti",
+      "core_complete": false,
+      "market_count": 8,
+      "missing_or_not_offered": [
+        "double_chance",
+        "player_assists",
+        "player_shots_on_target",
+        "player_shots",
+        "player_fouls_committed",
+        "player_tackles",
+        "match_shots_on_target_over_under",
+        "match_shots_over_under",
+        "morocco_shots_on_target_over_under",
+        "morocco_shots_over_under",
+        "haiti_shots_on_target_over_under",
+        "haiti_shots_over_under"
+      ],
+      "requirements": [
+        {
+          "section": "core",
+          "normalized_market": "match_betting",
+          "minimum_selections": 3,
+          "market": "Match Betting",
+          "selection_count": 3,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "total_goals_over_under",
+          "minimum_selections": 2,
+          "market": "Total Goals Over / Under",
+          "selection_count": 8,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "both_teams_to_score",
+          "minimum_selections": 2,
+          "market": "Both Teams To Score",
+          "selection_count": 2,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "double_chance",
+          "minimum_selections": 3,
+          "market": "double_chance",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "core",
+          "normalized_market": "total_corners_over_under",
+          "minimum_selections": 2,
+          "market": "Total Corners Over / Under",
+          "selection_count": 8,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "total_cards_over_under",
+          "minimum_selections": 2,
+          "market": "Total Cards Over / Under",
+          "selection_count": 6,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "anytime_goalscorer",
+          "minimum_selections": 1,
+          "market": "Anytime Goalscorer",
+          "selection_count": 5,
+          "status": "FOUND"
+        },
+        {
+          "section": "core",
+          "normalized_market": "player_cards",
+          "minimum_selections": 1,
+          "market": "Player Cards",
+          "selection_count": 57,
+          "status": "FOUND"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_assists",
+          "minimum_selections": 1,
+          "market": "player_assists",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_shots_on_target",
+          "minimum_selections": 1,
+          "market": "player_shots_on_target",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_shots",
+          "minimum_selections": 1,
+          "market": "player_shots",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_fouls_committed",
+          "minimum_selections": 1,
+          "market": "player_fouls_committed",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "player",
+          "normalized_market": "player_tackles",
+          "minimum_selections": 1,
+          "market": "player_tackles",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "match_shots_on_target_over_under",
+          "label": "Match Shots On Target Over / Under",
+          "minimum_selections": 1,
+          "market": "Match Shots On Target Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "match_shots_over_under",
+          "label": "Match Shots Over / Under",
+          "minimum_selections": 1,
+          "market": "Match Shots Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "morocco_shots_on_target_over_under",
+          "label": "Morocco Shots On Target Over / Under",
+          "minimum_selections": 1,
+          "market": "Morocco Shots On Target Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "morocco_shots_over_under",
+          "label": "Morocco Shots Over / Under",
+          "minimum_selections": 1,
+          "market": "Morocco Shots Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "haiti_shots_on_target_over_under",
+          "label": "Haiti Shots On Target Over / Under",
+          "minimum_selections": 1,
+          "market": "Haiti Shots On Target Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        },
+        {
+          "section": "match_team_stats",
+          "normalized_market": "haiti_shots_over_under",
+          "label": "Haiti Shots Over / Under",
+          "minimum_selections": 1,
+          "market": "Haiti Shots Over / Under",
+          "selection_count": 0,
+          "status": "MISSING_OR_NOT_OFFERED"
+        }
+      ],
+      "exact_player_diagnostics": {
+        "player_shots_on_target": {
+          "market": "Player Shots On Target",
+          "heading_clicked": "Player Shots on Target",
+          "raw_rows": 0,
+          "selection_count": 0
+        },
+        "player_shots": {
+          "market": "Player Shots",
+          "heading_clicked": "Player Shots",
+          "raw_rows": 0,
+          "selection_count": 0
+        },
+        "player_fouls_committed": {
+          "market": "Player Fouls Committed",
+          "heading_clicked": "Player Fouls",
+          "raw_rows": 0,
+          "selection_count": 0
+        },
+        "player_tackles": {
+          "market": "Player Tackles",
+          "heading_clicked": "Player Tackles",
+          "raw_rows": 0,
+          "selection_count": 0
+        }
+      },
+      "elapsed_seconds": 77.9
+    }
+  ]
+}
