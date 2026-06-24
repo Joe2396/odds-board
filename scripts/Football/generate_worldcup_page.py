@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# BWIN_PROPS_AND_STATS_GENERATOR_V1
 import json
 import re
 from datetime import datetime
@@ -26,6 +27,8 @@ WILLIAMHILL_PROPS_PATH= ROOT / "football" / "data" / "williamhill_worldcup_props
 BETVICTOR_PROPS_PATH  = ROOT / "football" / "data" / "betvictor_worldcup_props.json"
 LADBROKES_PROPS_PATH  = ROOT / "football" / "data" / "ladbrokes_worldcup_props.json"
 MIDNITE_PROPS_PATH    = ROOT / "football" / "data" / "midnite_worldcup_props.json"
+BWIN_PROPS_PATH       = ROOT / "football" / "data" / "bwin_worldcup_props.json"
+BWIN_MATCH_STATS_PATH = ROOT / "football" / "data" / "bwin_worldcup_match_stats.json"
 
 OUT_DIR  = ROOT / "football" / "world-cup"
 OUT_PATH = OUT_DIR / "index.html"
@@ -102,6 +105,23 @@ def normalize_text_key(value):
 def normalize_prop_market_key(name):
     k = normalize_text_key(name)
     if k.startswith("total_goals_by_") or k.startswith("team_total_goals"): return k
+
+    # Bwin match/team stats use explicit scope in the market title.
+    if k == "match_total_shots":
+        return "match_shots"
+    if k == "match_total_shots_on_target":
+        return "match_shots_on_target"
+    if (
+        k.endswith("_total_shots_on_target")
+        and not k.startswith("player_")
+    ):
+        return "team_shots_on_target"
+    if (
+        k.endswith("_total_shots")
+        and not k.startswith("player_")
+    ):
+        return "team_shots"
+
     return {
         "match_odds":"match_betting","match_betting":"match_betting",
         "over_under_goals_markets":"total_goals","over_under_goals":"total_goals",
@@ -130,6 +150,7 @@ def normalize_prop_market_key(name):
         "player_assists_over":"player_to_assist",
         "player_to_get_a_card":"player_to_get_a_card","to_get_a_card":"player_to_get_a_card",
         "player_fouls_committed":"player_fouls_committed","fouls_committed":"player_fouls_committed",
+        "player_fouls":"player_fouls_committed",
         "player_to_commit_a_foul":"player_fouls_committed",
         "player_fouls_won":"player_fouls_won","fouls_won":"player_fouls_won",
         "player_to_be_fouled":"player_fouls_won",
@@ -600,34 +621,95 @@ def split_match_name(s):
 
 def convert_market(raw, internal_name=""):
     if not isinstance(raw,dict): return None
-    name = raw.get("market") or raw.get("label") or raw.get("name") or pretty_market_name(internal_name) or ""
-    name = pretty_market_name(name)
-    mk   = normalize_prop_market_key(name)
+
+    raw_name = (
+        raw.get("market")
+        or raw.get("label")
+        or raw.get("name")
+        or pretty_market_name(internal_name)
+        or ""
+    )
+    mk = normalize_prop_market_key(raw_name)
+    name = pretty_market_name(raw_name)
+
+    # Keep the team visible on the match-props page. Without this, both Bwin
+    # team cards would be rendered simply as "Team Shots".
+    raw_team = display_team(raw.get("team") or "")
+    if mk == "team_shots" and raw_team:
+        name = f"{raw_team} Total Shots"
+    elif mk == "team_shots_on_target" and raw_team:
+        name = f"{raw_team} Total Shots On Target"
+
     sels = []
     for rs in raw.get("selections") or []:
         if not isinstance(rs,dict): continue
-        sel  = clean(rs.get("selection") or rs.get("name") or rs.get("label") or "")
-        odds = clean(rs.get("odds") or rs.get("price") or rs.get("fractional") or "").upper()
+        sel  = clean(
+            rs.get("selection")
+            or rs.get("name")
+            or rs.get("label")
+            or ""
+        )
+        odds = clean(
+            rs.get("odds")
+            or rs.get("price")
+            or rs.get("fractional")
+            or ""
+        ).upper()
         if not sel or not odds: continue
+
         sel_lower = sel.lower()
-        if mk == "player_to_get_a_card" and ("shots" in sel_lower): continue
-        if mk == "shots_on_target" and "card" in sel_lower: continue
-        entry = {"selection":sel,"normalized_selection":normalize_text_key(sel),"odds":odds}
-        # Preserve player/line/prop_type fields if present
-        for field in ("player","line","side","prop_type","threshold"):
-            if rs.get(field):
+        if mk == "player_to_get_a_card" and ("shots" in sel_lower):
+            continue
+        if mk == "shots_on_target" and "card" in sel_lower:
+            continue
+
+        entry = {
+            "selection": sel,
+            "normalized_selection": normalize_text_key(sel),
+            "odds": odds,
+        }
+
+        # Preserve all structured Bwin fields used by player and match-stat
+        # rendering/comparison.
+        for field in (
+            "player",
+            "line",
+            "side",
+            "prop_type",
+            "threshold",
+            "source_threshold",
+            "scope",
+            "stat",
+            "team",
+        ):
+            if rs.get(field) not in (None, ""):
                 entry[field] = rs[field]
-        # Extract line from threshold field (BoyleSports stats format: "Over 0.5" -> "0.5")
+
         if not entry.get("line") and rs.get("threshold"):
             m2 = re.search(r"([\d.]+)", str(rs["threshold"]))
             if m2:
                 entry["line"] = m2.group(1)
-        # Extract player name from selection field (BoyleSports stats: selection = player name)
-        if not entry.get("player") and rs.get("selection") and rs.get("threshold"):
+
+        if (
+            not entry.get("player")
+            and rs.get("selection")
+            and rs.get("threshold")
+        ):
             entry["player"] = clean(rs["selection"])
+
         sels.append(entry)
+
     if not name or not sels: return None
-    return {"market":name,"normalized_market":mk,"selection_count":len(sels),"selections":sels}
+
+    return {
+        "market": name,
+        "normalized_market": mk,
+        "selection_count": len(sels),
+        "scope": clean(raw.get("scope")),
+        "stat": clean(raw.get("stat")),
+        "team": raw_team,
+        "selections": sels,
+    }
 
 def convert_markets(raw_markets):
     markets = []
@@ -692,6 +774,74 @@ def load_props_file(bookmaker, path):
             "markets": markets,
         }
     return out, generated
+
+
+def merge_props_maps(primary, extra):
+    """
+    Merge separate ordinary-props and match-stats files for one bookmaker.
+
+    A fixture keeps one bookmaker entry, while market signatures retain both
+    home/away team-stat cards independently.
+    """
+    merged = {
+        fixture: {
+            **payload,
+            "markets": list(payload.get("markets") or []),
+        }
+        for fixture, payload in (primary or {}).items()
+    }
+
+    for fixture, incoming in (extra or {}).items():
+        if fixture not in merged:
+            merged[fixture] = {
+                **incoming,
+                "markets": list(incoming.get("markets") or []),
+            }
+            continue
+
+        current = merged[fixture]
+        markets = current.setdefault("markets", [])
+
+        signatures = {
+            (
+                normalize_prop_market_key(market.get("market", "")),
+                normalize_text_key(market.get("market", "")),
+                normalize_text_key(market.get("team", "")),
+            ): index
+            for index, market in enumerate(markets)
+            if isinstance(market, dict)
+        }
+
+        for market in incoming.get("markets") or []:
+            if not isinstance(market, dict):
+                continue
+
+            signature = (
+                normalize_prop_market_key(market.get("market", "")),
+                normalize_text_key(market.get("market", "")),
+                normalize_text_key(market.get("team", "")),
+            )
+
+            existing_index = signatures.get(signature)
+
+            if existing_index is None:
+                signatures[signature] = len(markets)
+                markets.append(market)
+                continue
+
+            existing = markets[existing_index]
+            if (
+                len(market.get("selections") or [])
+                > len(existing.get("selections") or [])
+            ):
+                markets[existing_index] = market
+
+        current["market_count"] = len(markets)
+
+        if not current.get("source_url"):
+            current["source_url"] = incoming.get("source_url", "")
+
+    return merged
 
 def add_book_rows(fixtures, si, li, rows, bookmaker):
     for row in rows:
@@ -792,6 +942,9 @@ def load_all():
     betv_props,   betv_p_gen   = load_props_file("BetVictor",    BETVICTOR_PROPS_PATH)
     ladb_props,   ladb_p_gen   = load_props_file("Ladbrokes",    LADBROKES_PROPS_PATH)
     midnite_props              = load_midnite_props()
+    bwin_props,   bwin_p_gen   = load_props_file("Bwin",         BWIN_PROPS_PATH)
+    bwin_stats,   bwin_s_gen   = load_props_file("Bwin",         BWIN_MATCH_STATS_PATH)
+    bwin_props                 = merge_props_maps(bwin_props, bwin_stats)
 
     fixtures = {}
     for row in paddy_rows:
@@ -817,7 +970,7 @@ def load_all():
                          ("Unibet",unibet_props),("LiveScoreBet",lsb_props),
                          ("888Sport",eee_props),("WilliamHill",wh_props),
                          ("BetVictor",betv_props),("Ladbrokes",ladb_props),
-                         ("Midnite",midnite_props)]:
+                         ("Midnite",midnite_props),("Bwin",bwin_props)]:
         for pk,pd in bk_props.items():
             lk = loose_fixture_key(pd.get("home_team",""),pd.get("away_team",""))
             tk = si.get(pk) or li.get(lk)
@@ -826,7 +979,7 @@ def load_all():
                 fixtures[tk]["props"][bk] = pd
 
     fl = sorted(fixtures.values(), key=lambda x:(date_sort_key(x.get("date_label")),x.get("time",""),x.get("match","")))
-    generated = paddy_p_gen or boyle_p_gen or unibet_p_gen or lsb_p_gen or eee_p_gen or wh_p_gen or betv_p_gen or ladb_p_gen or eee_gen or wh_gen or lsb_gen or unibet_gen or betv_gen or boyle_gen or paddy_gen or ladb_gen or bwin_gen
+    generated = paddy_p_gen or boyle_p_gen or unibet_p_gen or lsb_p_gen or eee_p_gen or wh_p_gen or betv_p_gen or ladb_p_gen or bwin_p_gen or bwin_s_gen or eee_gen or wh_gen or lsb_gen or unibet_gen or betv_gen or boyle_gen or paddy_gen or ladb_gen or bwin_gen
     bk_count  = len({b for f in fl for b in f.get("bookmakers",{})})
     return fl, bk_count, generated
 

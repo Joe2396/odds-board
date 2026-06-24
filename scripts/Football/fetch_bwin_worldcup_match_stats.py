@@ -19,6 +19,7 @@ Test settings:
     MAX_MATCHES = 3
     HEADLESS = False
 
+
 Input:
     football/data/bwin_worldcup_moneylines.json
 
@@ -33,7 +34,7 @@ Debug:
 
 from __future__ import annotations
 
-# BWIN_MATCH_STATS_PROD15_AUDIT
+# BWIN_MATCH_STATS_PROD15_AUDIT_V3_FIXED
 
 import json
 import re
@@ -58,8 +59,9 @@ DEBUG_DIR = (
     ROOT / "football" / "debug" / "bwin_worldcup_match_stats"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 30
 HEADLESS = False
+TARGET_USABLE_EVENTS = 15
 # Do not start scraping a fixture that is likely to move in-play before the
 # three-match test completes.
 KICKOFF_BUFFER_MINUTES = 60
@@ -828,12 +830,16 @@ def team_aliases_from_event(
         ),
     )
 
-def page_event_looks_live(page, home: str, away: str) -> bool:
+def page_event_looks_live(
+    page,
+    home: str,
+    away: str,
+) -> bool:
     """
-    Detect an event that has moved in-play after loading.
+    Detect only an explicit live clock or period marker inside the compact
+    central event header.
 
-    The left coupon can contain unrelated live fixtures, so inspect compact
-    containers that contain both teams from the current event.
+    Generic Bwin navigation text such as "In-Play" is deliberately ignored.
     """
     try:
         return bool(
@@ -847,43 +853,63 @@ def page_event_looks_live(page, home: str, away: str) -> bool:
                         clean(value).toLowerCase()
                             .replace(/[^a-z0-9]+/g, " ").trim();
 
-                    const h = norm(home);
-                    const a = norm(away);
-                    const liveClock = /\b(?:1H|2H|HT|ET)\b|\b\d{1,3}:\d{2}\b/i;
+                    const homeKey = norm(home);
+                    const awayKey = norm(away);
+
+                    const isLiveClock = value => {
+                        const text = clean(value);
+
+                        return (
+                            /^\d{1,3}:\d{2}$/.test(text)
+                            || /^\d{1,3}\s*['’]$/.test(text)
+                            || /^(1H|2H|HT|ET|PEN)$/i.test(text)
+                            || /^(First Half|Second Half|Half Time|Extra Time)$/i.test(
+                                text
+                            )
+                        );
+                    };
 
                     for (const node of document.querySelectorAll("body *")) {
                         const rect = node.getBoundingClientRect();
+                        const centreX =
+                            rect.left + rect.width / 2;
 
                         if (
-                            rect.width < 300
-                            || rect.width > 1300
-                            || rect.height < 80
-                            || rect.height > 420
+                            rect.width < 260
+                            || rect.width > 1050
+                            || rect.height < 60
+                            || rect.height > 330
+                            || centreX < 250
+                            || centreX > 1380
+                            || rect.top < -100
+                            || rect.top > 550
                         ) {
                             continue;
                         }
 
-                        const text = clean(node.innerText);
-                        const key = norm(text);
+                        const text = norm(node.innerText);
 
                         if (
-                            !key.includes(h)
-                            || !key.includes(a)
+                            !text.includes(homeKey)
+                            || !text.includes(awayKey)
                         ) {
                             continue;
                         }
 
-                        if (
-                            /\bstarting in\b/i.test(text)
-                            || /\btomorrow\b/i.test(text)
-                        ) {
-                            continue;
-                        }
+                        const leaves = Array.from(
+                            node.querySelectorAll("*")
+                        )
+                            .filter(
+                                element =>
+                                    element.childElementCount === 0
+                            )
+                            .map(
+                                element =>
+                                    clean(element.innerText)
+                            )
+                            .filter(Boolean);
 
-                        if (
-                            /\bin[- ]?play\b/i.test(text)
-                            || liveClock.test(text)
-                        ) {
+                        if (leaves.some(isLiveClock)) {
                             return true;
                         }
                     }
@@ -899,7 +925,6 @@ def page_event_looks_live(page, home: str, away: str) -> bool:
         )
     except Exception:
         return False
-
 
 def expand_show_more(page, max_clicks: int = 12) -> int:
     clicked = 0
@@ -1935,11 +1960,6 @@ def scrape_one(page, match: dict) -> dict:
     print(f"Opening {name}")
     print(event_url)
 
-    if page_event_looks_live(page, home, away):
-        raise RuntimeError(
-            "Fixture is already in-play; skipped."
-        )
-
     if not open_shots_tab(page, event_url):
         raise RuntimeError(
             "Shots tab could not be opened after retry."
@@ -2151,7 +2171,9 @@ def main() -> int:
 
     complete_results = []
     incomplete_results = []
+    skipped_live = []
     errors = []
+    usable_events = 0
 
     DEBUG_DIR.mkdir(
         parents=True,
@@ -2190,12 +2212,16 @@ def main() -> int:
                 block_heavy_resources,
             )
 
-            for index, match in enumerate(
+            for candidate_index, match in enumerate(
                 matches,
                 start=1,
             ):
+                if usable_events >= TARGET_USABLE_EVENTS:
+                    break
+
                 print(
-                    f"\n[{index}/{len(matches)}] "
+                    f"\n[candidate {candidate_index}/{len(matches)} | "
+                    f"usable {usable_events + 1}/{TARGET_USABLE_EVENTS}] "
                     f"{match['match']}"
                 )
 
@@ -2206,6 +2232,25 @@ def main() -> int:
                         context,
                         match,
                     )
+
+                    if page_event_looks_live(
+                        page,
+                        match["home_team"],
+                        match["away_team"],
+                    ):
+                        skipped_live.append(
+                            {
+                                "match": match["match"],
+                                "source_url": match["url"],
+                            }
+                        )
+                        print(
+                            "Skipping confirmed in-play fixture: "
+                            f"{match['match']}"
+                        )
+                        continue
+
+                    usable_events += 1
                     result = scrape_one(page, match)
 
                     if result.get("market_count") == 6:
@@ -2245,11 +2290,15 @@ def main() -> int:
         "generated_at": datetime.now(
             timezone.utc
         ).isoformat(),
+        "target_usable_events": TARGET_USABLE_EVENTS,
+        "usable_event_count": usable_events,
         "complete_match_count": len(complete_results),
         "incomplete_match_count": len(incomplete_results),
+        "skipped_live_count": len(skipped_live),
         "error_count": len(errors),
         "complete_matches": complete_results,
         "incomplete_matches": incomplete_results,
+        "skipped_live": skipped_live,
         "errors": errors,
     }
 
@@ -2306,6 +2355,14 @@ def main() -> int:
 
     print("")
     print("Bwin World Cup match-stats 15-match audit completed")
+    print(
+        f"Usable non-live events examined: "
+        f"{usable_events}/{TARGET_USABLE_EVENTS}"
+    )
+    print(
+        f"Confirmed live fixtures skipped: "
+        f"{len(skipped_live)}"
+    )
     print(
         f"Complete 6/6 matches promoted: "
         f"{len(complete_results)}"
