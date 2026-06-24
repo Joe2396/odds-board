@@ -1,0 +1,3939 @@
+{
+  "staging_source": "C:\\Users\\joete\\odds-board\\football\\data\\betvictor_player_tackles.json",
+  "merged_source": "C:\\Users\\joete\\odds-board\\football\\data\\betvictor_worldcup_props.json",
+  "fixture_count": 11,
+  "structure_verdict": "PASS",
+  "merge_verdict": "FAIL",
+  "fixtures_structure_passed": 11,
+  "fixtures_merge_passed": 7,
+  "critical_issue_count": 0,
+  "warning_count": 368,
+  "manual_spot_check_count": 55,
+  "fixtures": [
+    {
+      "match": "Czechia v Mexico",
+      "market": "Player Tackles",
+      "reported_selection_count": 132,
+      "actual_selection_count": 132,
+      "unique_player_threshold_count": 132,
+      "player_count": 45,
+      "threshold_counts": {
+        "1+": 13,
+        "2+": 44,
+        "3+": 39,
+        "4+": 29,
+        "5+": 6,
+        "6+": 1
+      },
+      "maximum_threshold": "6+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 32,
+      "merge_status": "PASS",
+      "merge_missing_count": 0,
+      "merge_extra_count": 0,
+      "merge_price_mismatch_count": 0,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 32,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Alexandr Sojka",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Alexis Vega",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Alvaro Fidalgo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Brian Gutierrez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Cesar Huerta",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "David Doudera",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "David Zima",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Edson Alvarez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Erik Lira",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gilberto Mora",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Hugo Sochurek",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jaroslav Zeleny",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jesus Gallardo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Johan Vasquez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jorge Sanchez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ladislav Krejci",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Luis Chavez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Luis Romo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lukas Cerv",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lukas Provod",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mateo Chavez Garcia",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Michal Sadilek",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Obed Vaargas",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Orbelin Pineda",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pavel Sulc",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Raul Jimenez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Roberto Alvarado",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Stepan Chaloupek",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Tomas Holes",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Tomas Soucek",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Vladimir Coufal",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Vladimir Darida",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [],
+        "merge_extra": [],
+        "merge_price_mismatches": []
+      }
+    },
+    {
+      "match": "South Africa v South Korea",
+      "market": "Player Tackles",
+      "reported_selection_count": 132,
+      "actual_selection_count": 132,
+      "unique_player_threshold_count": 132,
+      "player_count": 44,
+      "threshold_counts": {
+        "1+": 9,
+        "2+": 42,
+        "3+": 40,
+        "4+": 32,
+        "5+": 8,
+        "6+": 1
+      },
+      "maximum_threshold": "6+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 35,
+      "merge_status": "FAIL",
+      "merge_missing_count": 1,
+      "merge_extra_count": 1,
+      "merge_price_mismatch_count": 14,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 35,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Aubrey Modiba",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Bae Jun-ho",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Bradley Cross",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Evidence Makgopa",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gi-Hyuk Lee",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Han-beom Lee",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Hwang Inbeom",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Hyun-Jun Yang",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jayden Adams",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jens Castrop",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ji-sung Eom",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jin-gyu Kim",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jin-seob Park",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kamogelo Sebelebele",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Khuliso Mudau",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Khulumani Ndamane",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kim Minjae",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kim Moonhwan",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lee Dong-gyeong",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lee Jae-Sung",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mbekezile Mbokazi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Nkosinathi Sibisi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Olwethu Makhanya",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Oswin Appollis",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Relebohile Mofokeng",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Samukelo Kabini",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Seol Young-woo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Seung-Ho Paik",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Tae-Seok Lee",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Thalente Mbatha",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Thapelo Maseko",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Tholo Matuludi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Tshepang Moremi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Wi-Je Cho",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Yaya Sithole",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [
+          {
+            "player_key": "han_beom_lee",
+            "threshold": "4+"
+          }
+        ],
+        "merge_extra": [
+          {
+            "player_key": "han_beom_lee",
+            "threshold": "1+"
+          }
+        ],
+        "merge_price_mismatches": [
+          {
+            "player_key": "bradley_cross",
+            "threshold": "3+",
+            "staging_odds": "11/10",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "bradley_cross",
+            "threshold": "4+",
+            "staging_odds": "5/2",
+            "merged_odds": "27/10"
+          },
+          {
+            "player_key": "bradley_cross",
+            "threshold": "5+",
+            "staging_odds": "11/2",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "han_beom_lee",
+            "threshold": "2+",
+            "staging_odds": "1/1",
+            "merged_odds": "29/20"
+          },
+          {
+            "player_key": "han_beom_lee",
+            "threshold": "3+",
+            "staging_odds": "14/5",
+            "merged_odds": "17/4"
+          },
+          {
+            "player_key": "jayden_adams",
+            "threshold": "2+",
+            "staging_odds": "9/20",
+            "merged_odds": "1/2"
+          },
+          {
+            "player_key": "jayden_adams",
+            "threshold": "3+",
+            "staging_odds": "5/4",
+            "merged_odds": "11/8"
+          },
+          {
+            "player_key": "jayden_adams",
+            "threshold": "4+",
+            "staging_odds": "29/10",
+            "merged_odds": "16/5"
+          },
+          {
+            "player_key": "jayden_adams",
+            "threshold": "5+",
+            "staging_odds": "13/2",
+            "merged_odds": "15/2"
+          },
+          {
+            "player_key": "khuliso_mudau",
+            "threshold": "3+",
+            "staging_odds": "19/20",
+            "merged_odds": "37/40"
+          },
+          {
+            "player_key": "mbekezile_mbokazi",
+            "threshold": "2+",
+            "staging_odds": "1/2",
+            "merged_odds": "8/15"
+          },
+          {
+            "player_key": "mbekezile_mbokazi",
+            "threshold": "3+",
+            "staging_odds": "7/5",
+            "merged_odds": "6/4"
+          },
+          {
+            "player_key": "mbekezile_mbokazi",
+            "threshold": "4+",
+            "staging_odds": "10/3",
+            "merged_odds": "7/2"
+          },
+          {
+            "player_key": "mbekezile_mbokazi",
+            "threshold": "5+",
+            "staging_odds": "15/2",
+            "merged_odds": "8/1"
+          }
+        ]
+      }
+    },
+    {
+      "match": "Curacao v Ivory Coast",
+      "market": "Player Tackles",
+      "reported_selection_count": 144,
+      "actual_selection_count": 144,
+      "unique_player_threshold_count": 144,
+      "player_count": 45,
+      "threshold_counts": {
+        "1+": 7,
+        "2+": 42,
+        "3+": 44,
+        "4+": 35,
+        "5+": 14,
+        "6+": 2
+      },
+      "maximum_threshold": "6+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 38,
+      "merge_status": "PASS",
+      "merge_missing_count": 0,
+      "merge_extra_count": 0,
+      "merge_price_mismatch_count": 0,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 38,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Amad Diallo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ange Yoan Bonny",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Angelo Martha",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Armando Obispo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Bazoumana Toure",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Christ Inao Oulai",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Christopher Operi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Deveron Fonville",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Emmanuel Agbadou",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Evann Guessand",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Franck Kessie",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gervane Kastaneer",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ghislain Konan",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Godfried Roemeratoe",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Guela Doue",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ibrahim Sangare",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Jean Michel Seri",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jearl Margaritha",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jeremy Antonisse",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Joshua Brenet",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Juninho Bacuna",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jurien Gaari",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kenji Gorre",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kevin Felida",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Leandro Bacuna",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Livano Comenencia",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Nicolas Pepe",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Odilon Kossounou",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Oumar Diakite",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Parfait Guiagon",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Riechedly Bazoer",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Roshon Van Eijma",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Sherel Floranus",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Shurandy Sambo",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Simon Adingra",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Tahith Chong",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Tyrese Noslin",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Yan Diomande",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [],
+        "merge_extra": [],
+        "merge_price_mismatches": []
+      }
+    },
+    {
+      "match": "Ecuador v Germany",
+      "market": "Player Tackles",
+      "reported_selection_count": 138,
+      "actual_selection_count": 138,
+      "unique_player_threshold_count": 138,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 8,
+        "2+": 41,
+        "3+": 41,
+        "4+": 32,
+        "5+": 14,
+        "6+": 2
+      },
+      "maximum_threshold": "6+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 35,
+      "merge_status": "PASS",
+      "merge_missing_count": 0,
+      "merge_extra_count": 0,
+      "merge_price_mismatch_count": 0,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 35,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Alan Franco",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Aleksandar Pavlovic",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Angelo Preciado",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Angelo Stiller",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Anthony Valencia",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Antonio Rudiger",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "David Raum",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Denil Castillo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Felix Nmecha",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Felix Torres",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Florian Wirtz",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gonzalo Plata",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jackson Porozo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jamal Musiala",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jonathan Tah",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jordy Alcivar",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jordy Caicedo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Joshua Kimmich",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kendry Paez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Leon Goretzka",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Leroy Sane",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Malick Thiaw",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Maximilian Beier",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Moises Caicedo",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Nadiem Amiri",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Nat Brown",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Nick Woltemade",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Nilson Angulo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pascal Gross",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pedro Vite",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pervis Estupinan",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Piero Hincapie",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Waldemar Anton",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Willian Pacho",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Yaimar Medina",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [],
+        "merge_extra": [],
+        "merge_price_mismatches": []
+      }
+    },
+    {
+      "match": "Japan v Sweden",
+      "market": "Player Tackles",
+      "reported_selection_count": 127,
+      "actual_selection_count": 127,
+      "unique_player_threshold_count": 127,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 13,
+        "2+": 43,
+        "3+": 38,
+        "4+": 28,
+        "5+": 5
+      },
+      "maximum_threshold": "5+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 30,
+      "merge_status": "PASS",
+      "merge_missing_count": 0,
+      "merge_extra_count": 0,
+      "merge_price_mismatch_count": 0,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 30,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Alexander Bernhardsson",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ao Tanaka",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ayumu Seko",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Benjamin Nygren",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Besfort Zeneli",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Daichi Kamada",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Daizen Maeda",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Daniel Svensson",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Elliot Stroud",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gabriel Gudmundsson",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gustaf Lagerbielke",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Hjalmar Ekdal",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Isak Hien",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jesper Karlstrom",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Junnosuke Suzuki",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Junya Ito",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kaishu Sano",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Keisuke Goto",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ken Sema",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kento Shiogai",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ko Itakura",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lucas Bergvall",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mattias Svanberg",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ritsu Doan",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Shogo Taniguchi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Takehiro Tomiyasu",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Tsuyoshi Watanabe",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Yasin Ayari",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Yukinari Sugawara",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Yuto Nagatomo",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [],
+        "merge_extra": [],
+        "merge_price_mismatches": []
+      }
+    },
+    {
+      "match": "Tunisia v Netherlands",
+      "market": "Player Tackles",
+      "reported_selection_count": 138,
+      "actual_selection_count": 138,
+      "unique_player_threshold_count": 138,
+      "player_count": 44,
+      "threshold_counts": {
+        "1+": 14,
+        "2+": 43,
+        "3+": 40,
+        "4+": 27,
+        "5+": 13,
+        "6+": 1
+      },
+      "maximum_threshold": "6+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 30,
+      "merge_status": "FAIL",
+      "merge_missing_count": 0,
+      "merge_extra_count": 0,
+      "merge_price_mismatch_count": 16,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 30,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Adem Arous",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ali Abdi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Anis Ben Slimane",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Denzel Dumfries",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Dylan Bronn",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Elias Achouri",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Elias Saad",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ellyes Skhiri",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Frenkie De Jong",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Hannibal Mejbri",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ismael Gharbi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jan Paul Van Hecke",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jorrel Hato",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Khalil Ayari",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lutsharel Geertruida",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Marten De Roon",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mats Wieffer",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Mickey van de Ven",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mohamed Amine Ben Hamida",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mohamed Belhadj Mahmoud",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Montassar Talbi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Moutaz Neffati",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Nathan Ake",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Omar Rekik",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Rani Khedira",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Rayan Elloumi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ryan Gravenberch",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Sebastian Tounekti",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Teun Koopmeiners",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Yan Valery",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [],
+        "merge_extra": [],
+        "merge_price_mismatches": [
+          {
+            "player_key": "ali_abdi",
+            "threshold": "2+",
+            "staging_odds": "4/9",
+            "merged_odds": "2/5"
+          },
+          {
+            "player_key": "ali_abdi",
+            "threshold": "3+",
+            "staging_odds": "6/5",
+            "merged_odds": "11/10"
+          },
+          {
+            "player_key": "ali_abdi",
+            "threshold": "4+",
+            "staging_odds": "14/5",
+            "merged_odds": "13/5"
+          },
+          {
+            "player_key": "ali_abdi",
+            "threshold": "5+",
+            "staging_odds": "13/2",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "hannibal_mejbri",
+            "threshold": "2+",
+            "staging_odds": "4/9",
+            "merged_odds": "2/5"
+          },
+          {
+            "player_key": "hannibal_mejbri",
+            "threshold": "3+",
+            "staging_odds": "6/5",
+            "merged_odds": "11/10"
+          },
+          {
+            "player_key": "hannibal_mejbri",
+            "threshold": "4+",
+            "staging_odds": "14/5",
+            "merged_odds": "13/5"
+          },
+          {
+            "player_key": "hannibal_mejbri",
+            "threshold": "5+",
+            "staging_odds": "13/2",
+            "merged_odds": "11/2"
+          },
+          {
+            "player_key": "mohamed_amine_ben_hamida",
+            "threshold": "2+",
+            "staging_odds": "9/20",
+            "merged_odds": "4/9"
+          },
+          {
+            "player_key": "mohamed_amine_ben_hamida",
+            "threshold": "3+",
+            "staging_odds": "5/4",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "mohamed_amine_ben_hamida",
+            "threshold": "4+",
+            "staging_odds": "3/1",
+            "merged_odds": "11/4"
+          },
+          {
+            "player_key": "mohamed_amine_ben_hamida",
+            "threshold": "5+",
+            "staging_odds": "13/2",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "rani_khedira",
+            "threshold": "2+",
+            "staging_odds": "40/85",
+            "merged_odds": "4/9"
+          },
+          {
+            "player_key": "rani_khedira",
+            "threshold": "3+",
+            "staging_odds": "5/4",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "rani_khedira",
+            "threshold": "4+",
+            "staging_odds": "3/1",
+            "merged_odds": "14/5"
+          },
+          {
+            "player_key": "rani_khedira",
+            "threshold": "5+",
+            "staging_odds": "7/1",
+            "merged_odds": "13/2"
+          }
+        ]
+      }
+    },
+    {
+      "match": "Paraguay v Australia",
+      "market": "Player Tackles",
+      "reported_selection_count": 144,
+      "actual_selection_count": 144,
+      "unique_player_threshold_count": 144,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 13,
+        "2+": 35,
+        "3+": 40,
+        "4+": 30,
+        "5+": 15,
+        "6+": 8,
+        "7+": 3
+      },
+      "maximum_threshold": "7+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 30,
+      "merge_status": "FAIL",
+      "merge_missing_count": 21,
+      "merge_extra_count": 17,
+      "merge_price_mismatch_count": 118,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 30,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Aiden ONeill",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ajdin Hrustic",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Alejandro Romero",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Alessandro Circati",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Alexandro Maidana",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Andres Cubas",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Awer Mabil",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Aziz Behich",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Cameron Devlin",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Connor Metcalfe",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Cristian Volpato",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Damian Bobadilla",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Diego Gomez",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Fabian Balbuena",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gustavo Caballero",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gustavo Gomez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gustavo Velazquez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jackson Irvine",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jacob Italiano",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Jason Geria",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jefferson Caceres",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Jordan Bos",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Jose Canale",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Junior Alonso",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kai Trewin",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lucas Herrington",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Matias Galarza",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Milos Degenek",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Nishan Velupillay",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Paul Okon-Engstler",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [
+          {
+            "player_key": "ajdin_hrustic",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "alexandro_maidana",
+            "threshold": "2+"
+          },
+          {
+            "player_key": "andres_cubas",
+            "threshold": "3+"
+          },
+          {
+            "player_key": "andres_cubas",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "awer_mabil",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "braian_ojeda",
+            "threshold": "1+"
+          },
+          {
+            "player_key": "cameron_devlin",
+            "threshold": "3+"
+          },
+          {
+            "player_key": "cristian_volpato",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "gabriel_avalos",
+            "threshold": "3+"
+          },
+          {
+            "player_key": "gustavo_caballero",
+            "threshold": "2+"
+          },
+          {
+            "player_key": "gustavo_velazquez",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "jacob_italiano",
+            "threshold": "6+"
+          },
+          {
+            "player_key": "jefferson_caceres",
+            "threshold": "3+"
+          },
+          {
+            "player_key": "julio_enciso",
+            "threshold": "1+"
+          },
+          {
+            "player_key": "lucas_herrington",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "mauricio",
+            "threshold": "1+"
+          },
+          {
+            "player_key": "milos_degenek",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "nestory_irankunda",
+            "threshold": "1+"
+          },
+          {
+            "player_key": "nishan_velupillay",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "omar_alderete",
+            "threshold": "1+"
+          },
+          {
+            "player_key": "paul_okon_engstler",
+            "threshold": "2+"
+          }
+        ],
+        "merge_extra": [
+          {
+            "player_key": "alexandro_maidana",
+            "threshold": "6+"
+          },
+          {
+            "player_key": "andres_cubas",
+            "threshold": "8+"
+          },
+          {
+            "player_key": "andres_cubas",
+            "threshold": "9+"
+          },
+          {
+            "player_key": "braian_ojeda",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "braian_ojeda",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "cameron_devlin",
+            "threshold": "8+"
+          },
+          {
+            "player_key": "diego_gomez",
+            "threshold": "7+"
+          },
+          {
+            "player_key": "gustavo_caballero",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "gustavo_caballero",
+            "threshold": "6+"
+          },
+          {
+            "player_key": "jackson_irvine",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "jacob_italiano",
+            "threshold": "2+"
+          },
+          {
+            "player_key": "julio_enciso",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "mauricio",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "mohamed_toure",
+            "threshold": "3+"
+          },
+          {
+            "player_key": "nestory_irankunda",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "omar_alderete",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "paul_okon_engstler",
+            "threshold": "6+"
+          }
+        ],
+        "merge_price_mismatches": [
+          {
+            "player_key": "aiden_oneill",
+            "threshold": "2+",
+            "staging_odds": "2/5",
+            "merged_odds": "1/3"
+          },
+          {
+            "player_key": "aiden_oneill",
+            "threshold": "3+",
+            "staging_odds": "11/10",
+            "merged_odds": "20/21"
+          },
+          {
+            "player_key": "aiden_oneill",
+            "threshold": "4+",
+            "staging_odds": "13/5",
+            "merged_odds": "9/4"
+          },
+          {
+            "player_key": "aiden_oneill",
+            "threshold": "5+",
+            "staging_odds": "11/2",
+            "merged_odds": "5/1"
+          },
+          {
+            "player_key": "ajdin_hrustic",
+            "threshold": "2+",
+            "staging_odds": "21/20",
+            "merged_odds": "5/4"
+          },
+          {
+            "player_key": "ajdin_hrustic",
+            "threshold": "3+",
+            "staging_odds": "29/10",
+            "merged_odds": "18/5"
+          },
+          {
+            "player_key": "alejandro_romero",
+            "threshold": "2+",
+            "staging_odds": "17/20",
+            "merged_odds": "8/13"
+          },
+          {
+            "player_key": "alejandro_romero",
+            "threshold": "3+",
+            "staging_odds": "12/5",
+            "merged_odds": "17/10"
+          },
+          {
+            "player_key": "alejandro_romero",
+            "threshold": "4+",
+            "staging_odds": "6/1",
+            "merged_odds": "4/1"
+          },
+          {
+            "player_key": "alex_arce",
+            "threshold": "1+",
+            "staging_odds": "8/13",
+            "merged_odds": "4/7"
+          },
+          {
+            "player_key": "alex_arce",
+            "threshold": "2+",
+            "staging_odds": "13/5",
+            "merged_odds": "12/5"
+          },
+          {
+            "player_key": "alex_arce",
+            "threshold": "3+",
+            "staging_odds": "8/1",
+            "merged_odds": "15/2"
+          },
+          {
+            "player_key": "alexandro_maidana",
+            "threshold": "3+",
+            "staging_odds": "1/1",
+            "merged_odds": "13/20"
+          },
+          {
+            "player_key": "alexandro_maidana",
+            "threshold": "4+",
+            "staging_odds": "23/10",
+            "merged_odds": "6/4"
+          },
+          {
+            "player_key": "alexandro_maidana",
+            "threshold": "5+",
+            "staging_odds": "5/1",
+            "merged_odds": "16/5"
+          },
+          {
+            "player_key": "andres_cubas",
+            "threshold": "5+",
+            "staging_odds": "19/10",
+            "merged_odds": "4/6"
+          },
+          {
+            "player_key": "andres_cubas",
+            "threshold": "6+",
+            "staging_odds": "19/5",
+            "merged_odds": "13/10"
+          },
+          {
+            "player_key": "andres_cubas",
+            "threshold": "7+",
+            "staging_odds": "15/2",
+            "merged_odds": "12/5"
+          },
+          {
+            "player_key": "antonio_sanabria",
+            "threshold": "1+",
+            "staging_odds": "19/20",
+            "merged_odds": "11/10"
+          },
+          {
+            "player_key": "antonio_sanabria",
+            "threshold": "2+",
+            "staging_odds": "4/1",
+            "merged_odds": "5/1"
+          },
+          {
+            "player_key": "awer_mabil",
+            "threshold": "2+",
+            "staging_odds": "1/2",
+            "merged_odds": "1/1"
+          },
+          {
+            "player_key": "awer_mabil",
+            "threshold": "3+",
+            "staging_odds": "11/8",
+            "merged_odds": "11/4"
+          },
+          {
+            "player_key": "awer_mabil",
+            "threshold": "4+",
+            "staging_odds": "16/5",
+            "merged_odds": "7/1"
+          },
+          {
+            "player_key": "aziz_behich",
+            "threshold": "2+",
+            "staging_odds": "21/20",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "aziz_behich",
+            "threshold": "3+",
+            "staging_odds": "29/10",
+            "merged_odds": "17/5"
+          },
+          {
+            "player_key": "aziz_behich",
+            "threshold": "4+",
+            "staging_odds": "15/2",
+            "merged_odds": "9/1"
+          },
+          {
+            "player_key": "braian_ojeda",
+            "threshold": "2+",
+            "staging_odds": "17/10",
+            "merged_odds": "2/5"
+          },
+          {
+            "player_key": "braian_ojeda",
+            "threshold": "3+",
+            "staging_odds": "5/1",
+            "merged_odds": "21/20"
+          },
+          {
+            "player_key": "cameron_burgess",
+            "threshold": "1+",
+            "staging_odds": "40/85",
+            "merged_odds": "8/13"
+          },
+          {
+            "player_key": "cameron_burgess",
+            "threshold": "2+",
+            "staging_odds": "15/8",
+            "merged_odds": "5/2"
+          },
+          {
+            "player_key": "cameron_burgess",
+            "threshold": "3+",
+            "staging_odds": "11/2",
+            "merged_odds": "8/1"
+          },
+          {
+            "player_key": "cameron_devlin",
+            "threshold": "4+",
+            "staging_odds": "20/21",
+            "merged_odds": "8/13"
+          },
+          {
+            "player_key": "cameron_devlin",
+            "threshold": "5+",
+            "staging_odds": "2/1",
+            "merged_odds": "13/10"
+          },
+          {
+            "player_key": "cameron_devlin",
+            "threshold": "6+",
+            "staging_odds": "4/1",
+            "merged_odds": "5/2"
+          },
+          {
+            "player_key": "cameron_devlin",
+            "threshold": "7+",
+            "staging_odds": "8/1",
+            "merged_odds": "19/4"
+          },
+          {
+            "player_key": "connor_metcalfe",
+            "threshold": "3+",
+            "staging_odds": "19/10",
+            "merged_odds": "2/1"
+          },
+          {
+            "player_key": "cristian_volpato",
+            "threshold": "2+",
+            "staging_odds": "40/85",
+            "merged_odds": "17/20"
+          },
+          {
+            "player_key": "cristian_volpato",
+            "threshold": "3+",
+            "staging_odds": "13/10",
+            "merged_odds": "12/5"
+          },
+          {
+            "player_key": "cristian_volpato",
+            "threshold": "4+",
+            "staging_odds": "3/1",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "damian_bobadilla",
+            "threshold": "3+",
+            "staging_odds": "4/6",
+            "merged_odds": "8/13"
+          },
+          {
+            "player_key": "damian_bobadilla",
+            "threshold": "4+",
+            "staging_odds": "31/20",
+            "merged_odds": "7/5"
+          },
+          {
+            "player_key": "damian_bobadilla",
+            "threshold": "5+",
+            "staging_odds": "16/5",
+            "merged_odds": "3/1"
+          },
+          {
+            "player_key": "damian_bobadilla",
+            "threshold": "6+",
+            "staging_odds": "7/1",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "diego_gomez",
+            "threshold": "3+",
+            "staging_odds": "3/4",
+            "merged_odds": "4/11"
+          },
+          {
+            "player_key": "diego_gomez",
+            "threshold": "4+",
+            "staging_odds": "7/4",
+            "merged_odds": "5/6"
+          },
+          {
+            "player_key": "diego_gomez",
+            "threshold": "5+",
+            "staging_odds": "15/4",
+            "merged_odds": "17/10"
+          },
+          {
+            "player_key": "diego_gomez",
+            "threshold": "6+",
+            "staging_odds": "8/1",
+            "merged_odds": "10/3"
+          },
+          {
+            "player_key": "fabian_balbuena",
+            "threshold": "2+",
+            "staging_odds": "31/40",
+            "merged_odds": "3/4"
+          },
+          {
+            "player_key": "fabian_balbuena",
+            "threshold": "3+",
+            "staging_odds": "85/40",
+            "merged_odds": "21/10"
+          },
+          {
+            "player_key": "fabian_balbuena",
+            "threshold": "4+",
+            "staging_odds": "11/2",
+            "merged_odds": "5/1"
+          },
+          {
+            "player_key": "gabriel_avalos",
+            "threshold": "1+",
+            "staging_odds": "3/5",
+            "merged_odds": "9/10"
+          },
+          {
+            "player_key": "gabriel_avalos",
+            "threshold": "2+",
+            "staging_odds": "5/2",
+            "merged_odds": "19/5"
+          },
+          {
+            "player_key": "gustavo_caballero",
+            "threshold": "3+",
+            "staging_odds": "2/1",
+            "merged_odds": "31/40"
+          },
+          {
+            "player_key": "gustavo_caballero",
+            "threshold": "4+",
+            "staging_odds": "19/4",
+            "merged_odds": "9/5"
+          },
+          {
+            "player_key": "gustavo_gomez",
+            "threshold": "2+",
+            "staging_odds": "7/10",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "gustavo_gomez",
+            "threshold": "3+",
+            "staging_odds": "19/10",
+            "merged_odds": "16/5"
+          },
+          {
+            "player_key": "gustavo_gomez",
+            "threshold": "4+",
+            "staging_odds": "19/4",
+            "merged_odds": "17/2"
+          },
+          {
+            "player_key": "gustavo_velazquez",
+            "threshold": "2+",
+            "staging_odds": "8/15",
+            "merged_odds": "17/20"
+          },
+          {
+            "player_key": "gustavo_velazquez",
+            "threshold": "3+",
+            "staging_odds": "6/4",
+            "merged_odds": "12/5"
+          },
+          {
+            "player_key": "gustavo_velazquez",
+            "threshold": "4+",
+            "staging_odds": "7/2",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "harry_souttar",
+            "threshold": "1+",
+            "staging_odds": "4/9",
+            "merged_odds": "2/5"
+          },
+          {
+            "player_key": "harry_souttar",
+            "threshold": "2+",
+            "staging_odds": "7/4",
+            "merged_odds": "8/5"
+          },
+          {
+            "player_key": "harry_souttar",
+            "threshold": "3+",
+            "staging_odds": "5/1",
+            "merged_odds": "19/4"
+          },
+          {
+            "player_key": "isidro_pitta",
+            "threshold": "1+",
+            "staging_odds": "4/5",
+            "merged_odds": "7/4"
+          },
+          {
+            "player_key": "isidro_pitta",
+            "threshold": "2+",
+            "staging_odds": "17/5",
+            "merged_odds": "17/2"
+          },
+          {
+            "player_key": "jackson_irvine",
+            "threshold": "2+",
+            "staging_odds": "1/1",
+            "merged_odds": "1/2"
+          },
+          {
+            "player_key": "jackson_irvine",
+            "threshold": "3+",
+            "staging_odds": "29/10",
+            "merged_odds": "11/8"
+          },
+          {
+            "player_key": "jackson_irvine",
+            "threshold": "4+",
+            "staging_odds": "15/2",
+            "merged_odds": "16/5"
+          },
+          {
+            "player_key": "jacob_italiano",
+            "threshold": "3+",
+            "staging_odds": "13/20",
+            "merged_odds": "1/1"
+          },
+          {
+            "player_key": "jacob_italiano",
+            "threshold": "4+",
+            "staging_odds": "6/4",
+            "merged_odds": "23/10"
+          },
+          {
+            "player_key": "jacob_italiano",
+            "threshold": "5+",
+            "staging_odds": "31/10",
+            "merged_odds": "5/1"
+          },
+          {
+            "player_key": "jason_geria",
+            "threshold": "2+",
+            "staging_odds": "20/21",
+            "merged_odds": "31/40"
+          },
+          {
+            "player_key": "jason_geria",
+            "threshold": "3+",
+            "staging_odds": "27/10",
+            "merged_odds": "85/40"
+          },
+          {
+            "player_key": "jason_geria",
+            "threshold": "4+",
+            "staging_odds": "7/1",
+            "merged_odds": "11/2"
+          },
+          {
+            "player_key": "jefferson_caceres",
+            "threshold": "4+",
+            "staging_odds": "5/6",
+            "merged_odds": "8/11"
+          },
+          {
+            "player_key": "jefferson_caceres",
+            "threshold": "5+",
+            "staging_odds": "17/10",
+            "merged_odds": "6/4"
+          },
+          {
+            "player_key": "jefferson_caceres",
+            "threshold": "6+",
+            "staging_odds": "10/3",
+            "merged_odds": "29/10"
+          },
+          {
+            "player_key": "jefferson_caceres",
+            "threshold": "7+",
+            "staging_odds": "13/2",
+            "merged_odds": "11/2"
+          },
+          {
+            "player_key": "jordan_bos",
+            "threshold": "3+",
+            "staging_odds": "3/4",
+            "merged_odds": "8/13"
+          },
+          {
+            "player_key": "jordan_bos",
+            "threshold": "4+",
+            "staging_odds": "17/10",
+            "merged_odds": "29/20"
+          },
+          {
+            "player_key": "jordan_bos",
+            "threshold": "5+",
+            "staging_odds": "18/5",
+            "merged_odds": "3/1"
+          },
+          {
+            "player_key": "jordan_bos",
+            "threshold": "6+",
+            "staging_odds": "15/2",
+            "merged_odds": "13/2"
+          },
+          {
+            "player_key": "jose_canale",
+            "threshold": "2+",
+            "staging_odds": "23/20",
+            "merged_odds": "17/20"
+          },
+          {
+            "player_key": "jose_canale",
+            "threshold": "3+",
+            "staging_odds": "10/3",
+            "merged_odds": "12/5"
+          },
+          {
+            "player_key": "jose_canale",
+            "threshold": "4+",
+            "staging_odds": "17/2",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "julio_enciso",
+            "threshold": "2+",
+            "staging_odds": "11/8",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "julio_enciso",
+            "threshold": "3+",
+            "staging_odds": "4/1",
+            "merged_odds": "17/5"
+          },
+          {
+            "player_key": "junior_alonso",
+            "threshold": "2+",
+            "staging_odds": "1/1",
+            "merged_odds": "4/6"
+          },
+          {
+            "player_key": "junior_alonso",
+            "threshold": "3+",
+            "staging_odds": "29/10",
+            "merged_odds": "15/8"
+          },
+          {
+            "player_key": "junior_alonso",
+            "threshold": "4+",
+            "staging_odds": "15/2",
+            "merged_odds": "9/2"
+          },
+          {
+            "player_key": "kai_trewin",
+            "threshold": "2+",
+            "staging_odds": "4/6",
+            "merged_odds": "8/13"
+          },
+          {
+            "player_key": "kai_trewin",
+            "threshold": "3+",
+            "staging_odds": "15/8",
+            "merged_odds": "7/4"
+          },
+          {
+            "player_key": "kai_trewin",
+            "threshold": "4+",
+            "staging_odds": "9/2",
+            "merged_odds": "17/4"
+          },
+          {
+            "player_key": "lucas_herrington",
+            "threshold": "2+",
+            "staging_odds": "31/40",
+            "merged_odds": "5/4"
+          },
+          {
+            "player_key": "lucas_herrington",
+            "threshold": "3+",
+            "staging_odds": "85/40",
+            "merged_odds": "18/5"
+          },
+          {
+            "player_key": "matias_galarza",
+            "threshold": "3+",
+            "staging_odds": "13/20",
+            "merged_odds": "8/15"
+          },
+          {
+            "player_key": "matias_galarza",
+            "threshold": "4+",
+            "staging_odds": "6/4",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "matias_galarza",
+            "threshold": "5+",
+            "staging_odds": "31/10",
+            "merged_odds": "5/2"
+          },
+          {
+            "player_key": "matias_galarza",
+            "threshold": "6+",
+            "staging_odds": "13/2",
+            "merged_odds": "5/1"
+          },
+          {
+            "player_key": "mauricio",
+            "threshold": "2+",
+            "staging_odds": "31/20",
+            "merged_odds": "1/1"
+          },
+          {
+            "player_key": "mauricio",
+            "threshold": "3+",
+            "staging_odds": "9/2",
+            "merged_odds": "14/5"
+          },
+          {
+            "player_key": "milos_degenek",
+            "threshold": "2+",
+            "staging_odds": "1/2",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "milos_degenek",
+            "threshold": "3+",
+            "staging_odds": "11/8",
+            "merged_odds": "10/3"
+          },
+          {
+            "player_key": "milos_degenek",
+            "threshold": "4+",
+            "staging_odds": "16/5",
+            "merged_odds": "17/2"
+          },
+          {
+            "player_key": "mohamed_toure",
+            "threshold": "1+",
+            "staging_odds": "7/10",
+            "merged_odds": "4/7"
+          },
+          {
+            "player_key": "mohamed_toure",
+            "threshold": "2+",
+            "staging_odds": "29/10",
+            "merged_odds": "23/10"
+          },
+          {
+            "player_key": "nestory_irankunda",
+            "threshold": "2+",
+            "staging_odds": "13/8",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "nestory_irankunda",
+            "threshold": "3+",
+            "staging_odds": "19/4",
+            "merged_odds": "10/3"
+          },
+          {
+            "player_key": "nishan_velupillay",
+            "threshold": "2+",
+            "staging_odds": "21/20",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "nishan_velupillay",
+            "threshold": "3+",
+            "staging_odds": "29/10",
+            "merged_odds": "7/2"
+          },
+          {
+            "player_key": "omar_alderete",
+            "threshold": "2+",
+            "staging_odds": "13/8",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "omar_alderete",
+            "threshold": "3+",
+            "staging_odds": "19/4",
+            "merged_odds": "16/5"
+          },
+          {
+            "player_key": "paul_okon_engstler",
+            "threshold": "3+",
+            "staging_odds": "1/1",
+            "merged_odds": "8/13"
+          },
+          {
+            "player_key": "paul_okon_engstler",
+            "threshold": "4+",
+            "staging_odds": "23/10",
+            "merged_odds": "7/5"
+          },
+          {
+            "player_key": "paul_okon_engstler",
+            "threshold": "5+",
+            "staging_odds": "5/1",
+            "merged_odds": "29/10"
+          },
+          {
+            "player_key": "tete_yengi",
+            "threshold": "1+",
+            "staging_odds": "4/9",
+            "merged_odds": "40/85"
+          },
+          {
+            "player_key": "tete_yengi",
+            "threshold": "2+",
+            "staging_odds": "9/5",
+            "merged_odds": "2/1"
+          },
+          {
+            "player_key": "tete_yengi",
+            "threshold": "3+",
+            "staging_odds": "11/2",
+            "merged_odds": "6/1"
+          }
+        ]
+      }
+    },
+    {
+      "match": "Türkiye v USA",
+      "market": "Player Tackles",
+      "reported_selection_count": 142,
+      "actual_selection_count": 142,
+      "unique_player_threshold_count": 142,
+      "player_count": 44,
+      "threshold_counts": {
+        "1+": 6,
+        "2+": 41,
+        "3+": 41,
+        "4+": 37,
+        "5+": 15,
+        "6+": 2
+      },
+      "maximum_threshold": "6+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 38,
+      "merge_status": "PASS",
+      "merge_missing_count": 0,
+      "merge_extra_count": 0,
+      "merge_price_mismatch_count": 0,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 38,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Abdulkerim Bardakci",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Alex Freeman",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Alex Zendejas",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Antonee Robinson",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Arda Guler",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Auston Trusty",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Baris Yilmaz",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Brendan Aaronson",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Caglar Soyuncu",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Can Uzun",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Chris Richards",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Christian Pulisic",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Eren Elmali",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ferdi Kadioglu",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Giovanni Reyna",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Hakan Calhanoglu",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Irfan Can Kahveci",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ismail Yuksek",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Joe Scally",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kenan Yildiz",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Malik Tillman",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mark McKenzie",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Max Arfsten",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Merih Demiral",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mert Muldur",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Miles Robinson",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Olcan Adin",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Orkun Kokcu",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ozan Kabak",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Salih Ozcan",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Samet Akaydin",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Sebastian Berhalter",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Sergino Dest",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Timothy Weah",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Tyler Adams",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Weston McKennie",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Yunus Akgun",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Zeki Celik",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [],
+        "merge_extra": [],
+        "merge_price_mismatches": []
+      }
+    },
+    {
+      "match": "Norway v France",
+      "market": "Player Tackles",
+      "reported_selection_count": 138,
+      "actual_selection_count": 138,
+      "unique_player_threshold_count": 138,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 9,
+        "2+": 43,
+        "3+": 40,
+        "4+": 33,
+        "5+": 13
+      },
+      "maximum_threshold": "5+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 34,
+      "merge_status": "FAIL",
+      "merge_missing_count": 13,
+      "merge_extra_count": 18,
+      "merge_price_mismatch_count": 122,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 34,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Adrien Rabiot",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Andreas Schjelderup",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Bradley Barcola",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "David Moller Wolfe",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Dayot Upamecano",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Desire Doue",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Fredrik Andre Bjorkan",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Fredrik Aursnes",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Henrik Falchener",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jens Hauge",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jules Kounde",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kristian Thorstvedt",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kristoffer Ajer",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Leo Ostigard",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lucas Digne",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lucas Hernandez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Maghnes Akliouche",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Malo Gusto",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Manu Kone",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Marcus Holmgren Pedersen",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Martin Odegaard",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Maxence Lacroix",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Michael Olise",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Morten Thorsby",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "N'golo Kante",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Oscar Bobb",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Patrick Berg",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Sander Berge",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Sondre Langas",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Thelo Aasgaard",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Theo Hernandez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Torbjorn Heggem",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Warren Zaire Emery",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "William Saliba",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [
+          {
+            "player_key": "alexander_sorloth",
+            "threshold": "3+"
+          },
+          {
+            "player_key": "antonio_nusa",
+            "threshold": "1+"
+          },
+          {
+            "player_key": "dayot_upamecano",
+            "threshold": "2+"
+          },
+          {
+            "player_key": "jorgen_strand_larsen",
+            "threshold": "3+"
+          },
+          {
+            "player_key": "kylian_mbappe",
+            "threshold": "2+"
+          },
+          {
+            "player_key": "lucas_hernandez",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "maghnes_akliouche",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "malo_gusto",
+            "threshold": "2+"
+          },
+          {
+            "player_key": "marcus_thuram_ulien",
+            "threshold": "1+"
+          },
+          {
+            "player_key": "mathis_rayan_cherki",
+            "threshold": "1+"
+          },
+          {
+            "player_key": "n_golo_kante",
+            "threshold": "2+"
+          },
+          {
+            "player_key": "ousmane_dembele",
+            "threshold": "3+"
+          },
+          {
+            "player_key": "patrick_berg",
+            "threshold": "2+"
+          }
+        ],
+        "merge_extra": [
+          {
+            "player_key": "antonio_nusa",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "dayot_upamecano",
+            "threshold": "6+"
+          },
+          {
+            "player_key": "desire_doue",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "henrik_falchener",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "jens_hauge",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "kristian_thorstvedt",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "kristoffer_ajer",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "manu_kone",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "marcus_thuram_ulien",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "mathis_rayan_cherki",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "n_golo_kante",
+            "threshold": "6+"
+          },
+          {
+            "player_key": "oscar_bobb",
+            "threshold": "4+"
+          },
+          {
+            "player_key": "oscar_bobb",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "patrick_berg",
+            "threshold": "6+"
+          },
+          {
+            "player_key": "patrick_berg",
+            "threshold": "7+"
+          },
+          {
+            "player_key": "sander_berge",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "thelo_aasgaard",
+            "threshold": "5+"
+          },
+          {
+            "player_key": "torbjorn_heggem",
+            "threshold": "5+"
+          }
+        ],
+        "merge_price_mismatches": [
+          {
+            "player_key": "adrien_rabiot",
+            "threshold": "2+",
+            "staging_odds": "4/7",
+            "merged_odds": "4/11"
+          },
+          {
+            "player_key": "adrien_rabiot",
+            "threshold": "3+",
+            "staging_odds": "31/20",
+            "merged_odds": "1/1"
+          },
+          {
+            "player_key": "adrien_rabiot",
+            "threshold": "4+",
+            "staging_odds": "15/4",
+            "merged_odds": "23/10"
+          },
+          {
+            "player_key": "adrien_rabiot",
+            "threshold": "5+",
+            "staging_odds": "17/2",
+            "merged_odds": "5/1"
+          },
+          {
+            "player_key": "alexander_sorloth",
+            "threshold": "1+",
+            "staging_odds": "8/15",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "alexander_sorloth",
+            "threshold": "2+",
+            "staging_odds": "85/40",
+            "merged_odds": "11/2"
+          },
+          {
+            "player_key": "andreas_schjelderup",
+            "threshold": "2+",
+            "staging_odds": "21/20",
+            "merged_odds": "20/23"
+          },
+          {
+            "player_key": "andreas_schjelderup",
+            "threshold": "3+",
+            "staging_odds": "29/10",
+            "merged_odds": "12/5"
+          },
+          {
+            "player_key": "andreas_schjelderup",
+            "threshold": "4+",
+            "staging_odds": "15/2",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "antonio_nusa",
+            "threshold": "2+",
+            "staging_odds": "13/8",
+            "merged_odds": "17/20"
+          },
+          {
+            "player_key": "antonio_nusa",
+            "threshold": "3+",
+            "staging_odds": "5/1",
+            "merged_odds": "23/10"
+          },
+          {
+            "player_key": "bradley_barcola",
+            "threshold": "2+",
+            "staging_odds": "6/5",
+            "merged_odds": "20/21"
+          },
+          {
+            "player_key": "bradley_barcola",
+            "threshold": "3+",
+            "staging_odds": "17/5",
+            "merged_odds": "27/10"
+          },
+          {
+            "player_key": "bradley_barcola",
+            "threshold": "4+",
+            "staging_odds": "9/1",
+            "merged_odds": "7/1"
+          },
+          {
+            "player_key": "david_moller_wolfe",
+            "threshold": "2+",
+            "staging_odds": "7/10",
+            "merged_odds": "11/10"
+          },
+          {
+            "player_key": "david_moller_wolfe",
+            "threshold": "3+",
+            "staging_odds": "19/10",
+            "merged_odds": "31/10"
+          },
+          {
+            "player_key": "david_moller_wolfe",
+            "threshold": "4+",
+            "staging_odds": "19/4",
+            "merged_odds": "8/1"
+          },
+          {
+            "player_key": "dayot_upamecano",
+            "threshold": "3+",
+            "staging_odds": "8/5",
+            "merged_odds": "3/5"
+          },
+          {
+            "player_key": "dayot_upamecano",
+            "threshold": "4+",
+            "staging_odds": "19/5",
+            "merged_odds": "11/8"
+          },
+          {
+            "player_key": "dayot_upamecano",
+            "threshold": "5+",
+            "staging_odds": "9/1",
+            "merged_odds": "29/10"
+          },
+          {
+            "player_key": "desire_doue",
+            "threshold": "2+",
+            "staging_odds": "8/13",
+            "merged_odds": "2/5"
+          },
+          {
+            "player_key": "desire_doue",
+            "threshold": "3+",
+            "staging_odds": "17/10",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "desire_doue",
+            "threshold": "4+",
+            "staging_odds": "17/4",
+            "merged_odds": "27/10"
+          },
+          {
+            "player_key": "erling_haaland",
+            "threshold": "1+",
+            "staging_odds": "31/40",
+            "merged_odds": "31/20"
+          },
+          {
+            "player_key": "erling_haaland",
+            "threshold": "2+",
+            "staging_odds": "10/3",
+            "merged_odds": "15/2"
+          },
+          {
+            "player_key": "fredrik_andre_bjorkan",
+            "threshold": "2+",
+            "staging_odds": "8/15",
+            "merged_odds": "4/9"
+          },
+          {
+            "player_key": "fredrik_andre_bjorkan",
+            "threshold": "3+",
+            "staging_odds": "29/20",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "fredrik_andre_bjorkan",
+            "threshold": "4+",
+            "staging_odds": "17/5",
+            "merged_odds": "14/5"
+          },
+          {
+            "player_key": "fredrik_andre_bjorkan",
+            "threshold": "5+",
+            "staging_odds": "8/1",
+            "merged_odds": "13/2"
+          },
+          {
+            "player_key": "fredrik_aursnes",
+            "threshold": "2+",
+            "staging_odds": "4/7",
+            "merged_odds": "4/9"
+          },
+          {
+            "player_key": "fredrik_aursnes",
+            "threshold": "3+",
+            "staging_odds": "8/5",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "fredrik_aursnes",
+            "threshold": "4+",
+            "staging_odds": "19/5",
+            "merged_odds": "14/5"
+          },
+          {
+            "player_key": "fredrik_aursnes",
+            "threshold": "5+",
+            "staging_odds": "9/1",
+            "merged_odds": "13/2"
+          },
+          {
+            "player_key": "henrik_falchener",
+            "threshold": "2+",
+            "staging_odds": "3/4",
+            "merged_odds": "9/20"
+          },
+          {
+            "player_key": "henrik_falchener",
+            "threshold": "3+",
+            "staging_odds": "2/1",
+            "merged_odds": "5/4"
+          },
+          {
+            "player_key": "henrik_falchener",
+            "threshold": "4+",
+            "staging_odds": "5/1",
+            "merged_odds": "3/1"
+          },
+          {
+            "player_key": "jean_philippe_mateta",
+            "threshold": "1+",
+            "staging_odds": "31/40",
+            "merged_odds": "29/20"
+          },
+          {
+            "player_key": "jean_philippe_mateta",
+            "threshold": "2+",
+            "staging_odds": "16/5",
+            "merged_odds": "13/2"
+          },
+          {
+            "player_key": "jens_hauge",
+            "threshold": "2+",
+            "staging_odds": "11/10",
+            "merged_odds": "8/15"
+          },
+          {
+            "player_key": "jens_hauge",
+            "threshold": "3+",
+            "staging_odds": "31/10",
+            "merged_odds": "7/5"
+          },
+          {
+            "player_key": "jens_hauge",
+            "threshold": "4+",
+            "staging_odds": "8/1",
+            "merged_odds": "17/5"
+          },
+          {
+            "player_key": "jorgen_strand_larsen",
+            "threshold": "1+",
+            "staging_odds": "4/7",
+            "merged_odds": "21/20"
+          },
+          {
+            "player_key": "jorgen_strand_larsen",
+            "threshold": "2+",
+            "staging_odds": "23/10",
+            "merged_odds": "9/2"
+          },
+          {
+            "player_key": "jules_kounde",
+            "threshold": "4+",
+            "staging_odds": "29/10",
+            "merged_odds": "3/1"
+          },
+          {
+            "player_key": "kristian_thorstvedt",
+            "threshold": "2+",
+            "staging_odds": "8/13",
+            "merged_odds": "2/5"
+          },
+          {
+            "player_key": "kristian_thorstvedt",
+            "threshold": "3+",
+            "staging_odds": "17/10",
+            "merged_odds": "11/10"
+          },
+          {
+            "player_key": "kristian_thorstvedt",
+            "threshold": "4+",
+            "staging_odds": "4/1",
+            "merged_odds": "5/2"
+          },
+          {
+            "player_key": "kristoffer_ajer",
+            "threshold": "2+",
+            "staging_odds": "19/20",
+            "merged_odds": "4/7"
+          },
+          {
+            "player_key": "kristoffer_ajer",
+            "threshold": "3+",
+            "staging_odds": "13/5",
+            "merged_odds": "31/20"
+          },
+          {
+            "player_key": "kristoffer_ajer",
+            "threshold": "4+",
+            "staging_odds": "7/1",
+            "merged_odds": "15/4"
+          },
+          {
+            "player_key": "kylian_mbappe",
+            "threshold": "1+",
+            "staging_odds": "8/5",
+            "merged_odds": "14/5"
+          },
+          {
+            "player_key": "leo_ostigard",
+            "threshold": "2+",
+            "staging_odds": "9/10",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "leo_ostigard",
+            "threshold": "3+",
+            "staging_odds": "5/2",
+            "merged_odds": "10/3"
+          },
+          {
+            "player_key": "leo_ostigard",
+            "threshold": "4+",
+            "staging_odds": "13/2",
+            "merged_odds": "17/2"
+          },
+          {
+            "player_key": "lucas_digne",
+            "threshold": "2+",
+            "staging_odds": "8/15",
+            "merged_odds": "11/20"
+          },
+          {
+            "player_key": "lucas_digne",
+            "threshold": "3+",
+            "staging_odds": "29/20",
+            "merged_odds": "6/4"
+          },
+          {
+            "player_key": "lucas_digne",
+            "threshold": "4+",
+            "staging_odds": "17/5",
+            "merged_odds": "18/5"
+          },
+          {
+            "player_key": "lucas_digne",
+            "threshold": "5+",
+            "staging_odds": "8/1",
+            "merged_odds": "17/2"
+          },
+          {
+            "player_key": "lucas_hernandez",
+            "threshold": "2+",
+            "staging_odds": "2/5",
+            "merged_odds": "8/13"
+          },
+          {
+            "player_key": "lucas_hernandez",
+            "threshold": "3+",
+            "staging_odds": "11/10",
+            "merged_odds": "17/10"
+          },
+          {
+            "player_key": "lucas_hernandez",
+            "threshold": "4+",
+            "staging_odds": "13/5",
+            "merged_odds": "4/1"
+          },
+          {
+            "player_key": "maghnes_akliouche",
+            "threshold": "2+",
+            "staging_odds": "1/2",
+            "merged_odds": "31/40"
+          },
+          {
+            "player_key": "maghnes_akliouche",
+            "threshold": "3+",
+            "staging_odds": "7/5",
+            "merged_odds": "11/5"
+          },
+          {
+            "player_key": "maghnes_akliouche",
+            "threshold": "4+",
+            "staging_odds": "10/3",
+            "merged_odds": "11/2"
+          },
+          {
+            "player_key": "malo_gusto",
+            "threshold": "3+",
+            "staging_odds": "5/4",
+            "merged_odds": "17/20"
+          },
+          {
+            "player_key": "malo_gusto",
+            "threshold": "4+",
+            "staging_odds": "3/1",
+            "merged_odds": "2/1"
+          },
+          {
+            "player_key": "malo_gusto",
+            "threshold": "5+",
+            "staging_odds": "13/2",
+            "merged_odds": "17/4"
+          },
+          {
+            "player_key": "manu_kone",
+            "threshold": "2+",
+            "staging_odds": "8/13",
+            "merged_odds": "4/9"
+          },
+          {
+            "player_key": "manu_kone",
+            "threshold": "3+",
+            "staging_odds": "7/4",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "manu_kone",
+            "threshold": "4+",
+            "staging_odds": "17/4",
+            "merged_odds": "29/10"
+          },
+          {
+            "player_key": "marcus_holmgren_pedersen",
+            "threshold": "2+",
+            "staging_odds": "20/23",
+            "merged_odds": "37/40"
+          },
+          {
+            "player_key": "marcus_holmgren_pedersen",
+            "threshold": "3+",
+            "staging_odds": "12/5",
+            "merged_odds": "13/5"
+          },
+          {
+            "player_key": "marcus_holmgren_pedersen",
+            "threshold": "4+",
+            "staging_odds": "6/1",
+            "merged_odds": "13/2"
+          },
+          {
+            "player_key": "marcus_thuram_ulien",
+            "threshold": "2+",
+            "staging_odds": "21/10",
+            "merged_odds": "6/5"
+          },
+          {
+            "player_key": "marcus_thuram_ulien",
+            "threshold": "3+",
+            "staging_odds": "13/2",
+            "merged_odds": "17/5"
+          },
+          {
+            "player_key": "martin_odegaard",
+            "threshold": "2+",
+            "staging_odds": "11/10",
+            "merged_odds": "21/20"
+          },
+          {
+            "player_key": "martin_odegaard",
+            "threshold": "3+",
+            "staging_odds": "31/10",
+            "merged_odds": "29/10"
+          },
+          {
+            "player_key": "martin_odegaard",
+            "threshold": "4+",
+            "staging_odds": "8/1",
+            "merged_odds": "15/2"
+          },
+          {
+            "player_key": "mathis_rayan_cherki",
+            "threshold": "2+",
+            "staging_odds": "21/10",
+            "merged_odds": "11/10"
+          },
+          {
+            "player_key": "mathis_rayan_cherki",
+            "threshold": "3+",
+            "staging_odds": "13/2",
+            "merged_odds": "16/5"
+          },
+          {
+            "player_key": "maxence_lacroix",
+            "threshold": "2+",
+            "staging_odds": "20/21",
+            "merged_odds": "20/23"
+          },
+          {
+            "player_key": "maxence_lacroix",
+            "threshold": "3+",
+            "staging_odds": "27/10",
+            "merged_odds": "12/5"
+          },
+          {
+            "player_key": "maxence_lacroix",
+            "threshold": "4+",
+            "staging_odds": "7/1",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "michael_olise",
+            "threshold": "2+",
+            "staging_odds": "17/20",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "michael_olise",
+            "threshold": "3+",
+            "staging_odds": "23/10",
+            "merged_odds": "10/3"
+          },
+          {
+            "player_key": "michael_olise",
+            "threshold": "4+",
+            "staging_odds": "6/1",
+            "merged_odds": "9/1"
+          },
+          {
+            "player_key": "morten_thorsby",
+            "threshold": "2+",
+            "staging_odds": "4/7",
+            "merged_odds": "2/5"
+          },
+          {
+            "player_key": "morten_thorsby",
+            "threshold": "3+",
+            "staging_odds": "8/5",
+            "merged_odds": "11/10"
+          },
+          {
+            "player_key": "morten_thorsby",
+            "threshold": "4+",
+            "staging_odds": "19/5",
+            "merged_odds": "13/5"
+          },
+          {
+            "player_key": "morten_thorsby",
+            "threshold": "5+",
+            "staging_odds": "9/1",
+            "merged_odds": "6/1"
+          },
+          {
+            "player_key": "n_golo_kante",
+            "threshold": "3+",
+            "staging_odds": "21/20",
+            "merged_odds": "11/20"
+          },
+          {
+            "player_key": "n_golo_kante",
+            "threshold": "4+",
+            "staging_odds": "12/5",
+            "merged_odds": "5/4"
+          },
+          {
+            "player_key": "n_golo_kante",
+            "threshold": "5+",
+            "staging_odds": "11/2",
+            "merged_odds": "27/10"
+          },
+          {
+            "player_key": "oscar_bobb",
+            "threshold": "2+",
+            "staging_odds": "13/10",
+            "merged_odds": "8/15"
+          },
+          {
+            "player_key": "oscar_bobb",
+            "threshold": "3+",
+            "staging_odds": "15/4",
+            "merged_odds": "29/20"
+          },
+          {
+            "player_key": "ousmane_dembele",
+            "threshold": "1+",
+            "staging_odds": "11/20",
+            "merged_odds": "1/1"
+          },
+          {
+            "player_key": "ousmane_dembele",
+            "threshold": "2+",
+            "staging_odds": "9/4",
+            "merged_odds": "17/4"
+          },
+          {
+            "player_key": "patrick_berg",
+            "threshold": "3+",
+            "staging_odds": "1/1",
+            "merged_odds": "4/9"
+          },
+          {
+            "player_key": "patrick_berg",
+            "threshold": "4+",
+            "staging_odds": "23/10",
+            "merged_odds": "1/1"
+          },
+          {
+            "player_key": "patrick_berg",
+            "threshold": "5+",
+            "staging_odds": "5/1",
+            "merged_odds": "21/10"
+          },
+          {
+            "player_key": "sander_berge",
+            "threshold": "2+",
+            "staging_odds": "4/6",
+            "merged_odds": "4/9"
+          },
+          {
+            "player_key": "sander_berge",
+            "threshold": "3+",
+            "staging_odds": "9/5",
+            "merged_odds": "23/20"
+          },
+          {
+            "player_key": "sander_berge",
+            "threshold": "4+",
+            "staging_odds": "9/2",
+            "merged_odds": "11/4"
+          },
+          {
+            "player_key": "sondre_langas",
+            "threshold": "2+",
+            "staging_odds": "6/5",
+            "merged_odds": "8/13"
+          },
+          {
+            "player_key": "sondre_langas",
+            "threshold": "3+",
+            "staging_odds": "17/5",
+            "merged_odds": "17/10"
+          },
+          {
+            "player_key": "sondre_langas",
+            "threshold": "4+",
+            "staging_odds": "9/1",
+            "merged_odds": "4/1"
+          },
+          {
+            "player_key": "thelo_aasgaard",
+            "threshold": "2+",
+            "staging_odds": "31/40",
+            "merged_odds": "11/20"
+          },
+          {
+            "player_key": "thelo_aasgaard",
+            "threshold": "3+",
+            "staging_odds": "85/40",
+            "merged_odds": "6/4"
+          },
+          {
+            "player_key": "thelo_aasgaard",
+            "threshold": "4+",
+            "staging_odds": "11/2",
+            "merged_odds": "18/5"
+          },
+          {
+            "player_key": "theo_hernandez",
+            "threshold": "2+",
+            "staging_odds": "4/5",
+            "merged_odds": "20/21"
+          },
+          {
+            "player_key": "theo_hernandez",
+            "threshold": "3+",
+            "staging_odds": "9/4",
+            "merged_odds": "27/10"
+          },
+          {
+            "player_key": "theo_hernandez",
+            "threshold": "4+",
+            "staging_odds": "11/2",
+            "merged_odds": "7/1"
+          },
+          {
+            "player_key": "torbjorn_heggem",
+            "threshold": "2+",
+            "staging_odds": "20/23",
+            "merged_odds": "1/2"
+          },
+          {
+            "player_key": "torbjorn_heggem",
+            "threshold": "3+",
+            "staging_odds": "12/5",
+            "merged_odds": "11/8"
+          },
+          {
+            "player_key": "torbjorn_heggem",
+            "threshold": "4+",
+            "staging_odds": "6/1",
+            "merged_odds": "16/5"
+          },
+          {
+            "player_key": "warren_zaire_emery",
+            "threshold": "2+",
+            "staging_odds": "1/2",
+            "merged_odds": "9/20"
+          },
+          {
+            "player_key": "warren_zaire_emery",
+            "threshold": "3+",
+            "staging_odds": "7/5",
+            "merged_odds": "5/4"
+          },
+          {
+            "player_key": "warren_zaire_emery",
+            "threshold": "4+",
+            "staging_odds": "10/3",
+            "merged_odds": "29/10"
+          },
+          {
+            "player_key": "warren_zaire_emery",
+            "threshold": "5+",
+            "staging_odds": "15/2",
+            "merged_odds": "13/2"
+          },
+          {
+            "player_key": "william_saliba",
+            "threshold": "2+",
+            "staging_odds": "4/5",
+            "merged_odds": "1/1"
+          },
+          {
+            "player_key": "william_saliba",
+            "threshold": "3+",
+            "staging_odds": "9/4",
+            "merged_odds": "11/4"
+          },
+          {
+            "player_key": "william_saliba",
+            "threshold": "4+",
+            "staging_odds": "11/2",
+            "merged_odds": "7/1"
+          }
+        ]
+      }
+    },
+    {
+      "match": "Senegal v Iraq",
+      "market": "Player Tackles",
+      "reported_selection_count": 141,
+      "actual_selection_count": 141,
+      "unique_player_threshold_count": 141,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 12,
+        "2+": 39,
+        "3+": 40,
+        "4+": 28,
+        "5+": 17,
+        "6+": 4,
+        "7+": 1
+      },
+      "maximum_threshold": "7+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 31,
+      "merge_status": "PASS",
+      "merge_missing_count": 0,
+      "merge_extra_count": 0,
+      "merge_price_mismatch_count": 0,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 31,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Abdoulaye Seck",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ahmed Maknzi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ahmed Qasem",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Aimar Sher",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Akam Hashim",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ali Al-Hamadi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Amir Al-Ammari",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Antoine Mendy",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Assane Diao",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Bara Ndiaye",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "El Hadji Malick Diouf",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ibrahim Bayesh",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Idrissa Gueye",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Iliman Ndiaye",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ismail Jakobs",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kalidou Koulibaly",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Kevin Yakob",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Krepin Diatta",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lamine Camara",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Mamadou Sarr",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Manaf Younis",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Merchas Doski",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Moussa Niakhate",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mustafa Saadoon",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pape Gueye",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pape Sarr",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pathe Ciss",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Rebin Ghareeb Solaka",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Zaid Ismaeel",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Zaid Tahseen",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Zidane Iqbal",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [],
+        "merge_extra": [],
+        "merge_price_mismatches": []
+      }
+    },
+    {
+      "match": "Uruguay v Spain",
+      "market": "Player Tackles",
+      "reported_selection_count": 147,
+      "actual_selection_count": 147,
+      "unique_player_threshold_count": 147,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 8,
+        "2+": 36,
+        "3+": 41,
+        "4+": 34,
+        "5+": 22,
+        "6+": 6
+      },
+      "maximum_threshold": "6+",
+      "structure_verdict": "PASS",
+      "critical_issue_count": 0,
+      "warning_count": 35,
+      "merge_status": "PASS",
+      "merge_missing_count": 0,
+      "merge_extra_count": 0,
+      "merge_price_mismatch_count": 0,
+      "checks": {
+        "malformed_count": 0,
+        "invalid_odds_count": 0,
+        "duplicate_count": 0,
+        "ladder_gap_count": 0,
+        "missing_lower_threshold_count": 35,
+        "odds_order_violation_count": 0,
+        "equal_adjacent_price_count": 0,
+        "reported_count_mismatch": false,
+        "scraper_count_mismatch": false,
+        "scraper_conflict_count": 0
+      },
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Agustin Canobbio",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Alejandro Grimaldo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Brian Rodriguez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Darwin Nunez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Emiliano Martinez",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Eric Garcia",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Fabian Ruiz",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Facundo Pellistri",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Federico Valverde",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gavi",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Guillermo Varela",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Joaquin Piquerez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Jose Gimenez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Juan Manuel Sanabria",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lamine Yamal",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Manuel Ugarte",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Marc Cucurella",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Marc Pubill",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Marcos Llorente",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Martin Zubimendi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mathias Olivera",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Matias Vina",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Maximiliano Araujo",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Mikel Merino",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Nicolas De La Cruz",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pau Cubarsi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pedri",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Pedro Porro",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Rodri Hernandez",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Rodrigo Aguirre",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Rodrigo Bentancur",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Rodrigo Zalazar",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Santiago Bueno",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Sebastian Caceres",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Yeremi Pino",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "equal_adjacent_prices": [],
+        "merge_missing": [],
+        "merge_extra": [],
+        "merge_price_mismatches": []
+      }
+    }
+  ]
+}
