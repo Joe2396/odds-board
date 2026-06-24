@@ -424,7 +424,7 @@ def find_value_spots(rows):
     for row in rows:
         key = (
             row["fight_key"],
-            row["market"],
+            row["market"].lower().strip().replace(" ", "_"),
             row["selection_key"],
         )
         grouped.setdefault(key, []).append(row)
@@ -762,10 +762,10 @@ def generate_page(spots):
       gap: 14px;
     }}
 
-    .spot-actions {
+    .spot-actions {{
       padding: 0 1rem 1rem;
-    }
-    .btn-tracker {
+    }}
+    .btn-tracker {{
       display: inline-block;
       width: 100%;
       text-align: center;
@@ -779,10 +779,10 @@ def generate_page(spots):
       text-decoration: none;
       box-sizing: border-box;
       transition: background 0.15s;
-    }
-    .btn-tracker:hover {
+    }}
+    .btn-tracker:hover {{
       background: rgba(74, 222, 128, 0.1);
-    }
+    }}
     .spot-card {{
       border: 1px solid var(--border);
       border-radius: 18px;

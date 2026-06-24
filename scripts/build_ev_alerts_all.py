@@ -2,6 +2,10 @@
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import quote
+
+def url_param(s):
+    return quote(str(s or ""), safe="")
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -225,6 +229,11 @@ def render_alert_card(alert, index):
         </div>
       </div>
       {f'<a class="player-link" href="{player_props_url(alert)}">View all bookmaker prices →</a>' if player_props_url(alert) else ""}
+      <a class="btn-tracker"
+         href="/pages/betting-tracker?sport={url_param(sport)}&event={url_param(alert.get('event',''))}&market={url_param(alert.get('market',''))}&selection={url_param(alert.get('selection',''))}&bookmaker={url_param(alert.get('bookmaker',''))}&odds={url_param(alert.get('odds',''))}"
+         target="_blank">
+        Add to Bet Tracker →
+      </a>
     </article>
     """
 
@@ -556,6 +565,22 @@ def render_page(alerts, football_data):
     .player-link:hover {{
       background: var(--accent, #00e676);
       color: #000;
+    }}
+    .btn-tracker {{
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid #4ade80;
+      color: #4ade80;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+    }}
+    .btn-tracker:hover {{
+      background: rgba(74, 222, 128, 0.1);
     }}
     .market {{
       color: var(--muted);
