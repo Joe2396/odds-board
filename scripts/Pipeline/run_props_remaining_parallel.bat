@@ -51,7 +51,7 @@ call :REPORT 6 "William Hill"
 
 echo.
 if not "%FAILED_COUNT%"=="0" (
-    echo %FAILED_COUNT% remaining props part(s) failed.
+    echo %FAILED_COUNT% remaining props parts failed.
     rmdir /s /q "%STATE_DIR%" >nul 2>&1
     popd
     exit /b 1
