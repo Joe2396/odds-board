@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# FOOTBALL_EV_BALANCED_PROPS_V4
 import json
 import os
 import re
@@ -184,169 +185,548 @@ def remove_bookmaker_vig(selection_prices):
 # ── Props EV alerts ────────────────────────────────────────────────────────────
 
 MIN_EV_PROPS = 10.0
-MIN_BOOKS_PROPS = 4
 
+# Props EV is deliberately stricter than moneyline EV. One malformed sparse
+# player row can otherwise create hundreds of false alerts.
+MIN_BOOKS_PROPS = 4
+MIN_COMPARISON_BOOKS_PROPS = 3
+MAX_EV_PROPS = 40.0
+MAX_BEST_TO_SECOND_PRICE_RATIO = 1.35
+MAX_CONSENSUS_PRICE_RATIO = 1.35
+TOP_CONSENSUS_BOOKS = 3
+MAX_PROPS_ALERTS_PER_FIXTURE = 12
+
+# A second tier can retain genuine, very large standout prices, but only when
+# the source and comparison ladders provide enough structural evidence.
+MAX_VERIFIED_HIGH_EV_PROPS = 250.0
+HIGH_EDGE_MAX_BEST_SECOND_RATIO = 2.50
+HIGH_EDGE_MAX_CONSENSUS_RATIO = 2.50
+MIN_FULL_COMPARISON_LADDERS = 2
+
+# Unibet player grids can contain blank early columns. It is no longer
+# quarantined wholesale; Shots/SOT are admitted only when the full 1+/2+/3+
+# ladder exists and is monotonic for that player.
+STRICT_FULL_LADDER_BOOK_MARKETS = {
+    ("Unibet", "shots"),
+    ("Unibet", "shots_on_target"),
+}
+
+# Keep the first safety release to structured threshold markets. Assists,
+# goalscorers and cards are one-sided markets and need a separate fair-price
+# model before being published as EV alerts.
+SAFE_THRESHOLD_EV_MARKETS = {
+    "shots",
+    "shots_on_target",
+    "player_tackles_completed",
+    "player_fouls_committed",
+    "player_fouls_won",
+    "player_fouls_conceded",
+}
+
+
+def _median(values):
+    values = sorted(float(value) for value in values)
+
+    if not values:
+        return None
+
+    middle = len(values) // 2
+
+    if len(values) % 2:
+        return values[middle]
+
+    return (values[middle - 1] + values[middle]) / 2
+
+
+def _line_number(value):
+    try:
+        return float(str(value).strip())
+    except Exception:
+        return None
+
+
+def _book_ladder_prices(
+    market_data,
+    bookmaker,
+    lines,
+):
+    prices = []
+
+    for line in lines:
+        offer = (market_data.get(line) or {}).get(bookmaker)
+
+        if not isinstance(offer, dict):
+            return None
+
+        try:
+            decimal = float(offer.get("decimal"))
+        except Exception:
+            return None
+
+        if decimal <= 1:
+            return None
+
+        prices.append(decimal)
+
+    return prices
+
+
+def _prices_are_monotonic(prices):
+    if not prices:
+        return False
+
+    # Higher thresholds must never be shorter than lower thresholds.
+    return all(
+        higher + 1e-9 >= lower
+        for lower, higher in zip(prices, prices[1:])
+    )
+
+
+def _book_full_core_ladder_is_safe(
+    market_data,
+    bookmaker,
+):
+    """
+    Require an explicit, monotonic 1+/2+/3+ ladder.
+
+    This is the key defence against sparse Unibet rows being shifted left:
+    a player with only later threshold prices cannot enter EV.
+    """
+    prices = _book_ladder_prices(
+        market_data,
+        bookmaker,
+        ("0.5", "1.5", "2.5"),
+    )
+
+    return bool(
+        prices
+        and _prices_are_monotonic(prices)
+    )
+
+
+def _book_ladder_is_safe(
+    market_data,
+    bookmaker,
+    current_line,
+):
+    """
+    Require every lower threshold through the candidate line.
+
+    Example:
+      2+ needs valid 1+ and 2+ prices.
+      3+ needs valid 1+, 2+ and 3+ prices.
+    """
+    current = _line_number(current_line)
+
+    if current is None:
+        return False
+
+    required_lines = [
+        line
+        for line in ("0.5", "1.5", "2.5")
+        if float(line) <= current
+    ]
+
+    prices = _book_ladder_prices(
+        market_data,
+        bookmaker,
+        required_lines,
+    )
+
+    return bool(
+        prices
+        and _prices_are_monotonic(prices)
+    )
+
+
+def _safe_props_offer(
+    market_key,
+    market_data,
+    line,
+    bookmaker,
+    offer,
+):
+    if market_key not in SAFE_THRESHOLD_EV_MARKETS:
+        return False
+
+    if (
+        bookmaker,
+        market_key,
+    ) in STRICT_FULL_LADDER_BOOK_MARKETS:
+        if not _book_full_core_ladder_is_safe(
+            market_data,
+            bookmaker,
+        ):
+            return False
+    elif not _book_ladder_is_safe(
+        market_data,
+        bookmaker,
+        line,
+    ):
+        return False
+
+    try:
+        decimal = float(offer.get("decimal"))
+    except Exception:
+        return False
+
+    return 1.01 <= decimal <= 51.0
+
+
+def _verified_high_edge_structure(
+    market_data,
+    candidate_bookmaker,
+    comparison_bookmakers,
+):
+    """
+    Extreme alerts need stronger structural evidence than ordinary alerts.
+
+    The standout bookmaker must have a complete 1+/2+/3+ ladder, and at least
+    two other bookmakers must independently have complete monotonic ladders.
+    """
+    if not _book_full_core_ladder_is_safe(
+        market_data,
+        candidate_bookmaker,
+    ):
+        return False
+
+    full_comparison_count = sum(
+        1
+        for bookmaker in comparison_bookmakers
+        if _book_full_core_ladder_is_safe(
+            market_data,
+            bookmaker,
+        )
+    )
+
+    return (
+        full_comparison_count
+        >= MIN_FULL_COMPARISON_LADDERS
+    )
+
+
+def _build_safe_threshold_alert(
+    gen,
+    fixture,
+    player_name,
+    market_key,
+    market_data,
+    line,
+):
+    """
+    Build one exact player/market/line candidate.
+
+    Normal prices use the conservative V3 consensus rules. Very large standout
+    prices enter only through the verified full-ladder route.
+    """
+    raw_line_data = market_data.get(line) or {}
+
+    safe_offers = {
+        bookmaker: offer
+        for bookmaker, offer in raw_line_data.items()
+        if _safe_props_offer(
+            market_key,
+            market_data,
+            line,
+            bookmaker,
+            offer,
+        )
+    }
+
+    if len(safe_offers) < MIN_BOOKS_PROPS:
+        return None, "not_enough_safe_books"
+
+    ranked = sorted(
+        safe_offers.items(),
+        key=lambda item: item[1]["decimal"],
+        reverse=True,
+    )
+
+    best_bookmaker, best_offer = ranked[0]
+    second_decimal = ranked[1][1]["decimal"]
+
+    if second_decimal <= 1:
+        return None, "invalid_second_price"
+
+    best_second_ratio = (
+        best_offer["decimal"] / second_decimal
+    )
+
+    comparison = {
+        bookmaker: offer
+        for bookmaker, offer in safe_offers.items()
+        if bookmaker != best_bookmaker
+    }
+
+    if len(comparison) < MIN_COMPARISON_BOOKS_PROPS:
+        return None, "not_enough_comparison_books"
+
+    comparison_decimals = sorted(
+        (
+            offer["decimal"]
+            for offer in comparison.values()
+        ),
+        reverse=True,
+    )
+
+    top_consensus = comparison_decimals[
+        :TOP_CONSENSUS_BOOKS
+    ]
+
+    if len(top_consensus) < TOP_CONSENSUS_BOOKS:
+        return None, "not_enough_top_consensus_books"
+
+    top_consensus_ratio = (
+        top_consensus[0] / top_consensus[-1]
+    )
+
+    verified_high_edge = _verified_high_edge_structure(
+        market_data,
+        best_bookmaker,
+        comparison.keys(),
+    )
+
+    normal_structure = (
+        best_second_ratio
+            <= MAX_BEST_TO_SECOND_PRICE_RATIO
+        and top_consensus_ratio
+            <= MAX_CONSENSUS_PRICE_RATIO
+    )
+
+    high_edge_structure = (
+        verified_high_edge
+        and best_second_ratio
+            <= HIGH_EDGE_MAX_BEST_SECOND_RATIO
+        and top_consensus_ratio
+            <= HIGH_EDGE_MAX_CONSENSUS_RATIO
+    )
+
+    if not normal_structure and not high_edge_structure:
+        if best_second_ratio > HIGH_EDGE_MAX_BEST_SECOND_RATIO:
+            return None, "isolated_best_price"
+        return None, "consensus_disagreement"
+
+    fair_decimal = _median(top_consensus)
+
+    if not fair_decimal or fair_decimal <= 1:
+        return None, "invalid_fair_decimal"
+
+    if fair_decimal > 27:
+        return None, "fair_price_too_large"
+
+    fair_probability = 1.0 / fair_decimal
+    ev_percent = (
+        best_offer["decimal"] * fair_probability - 1
+    ) * 100
+
+    if ev_percent < MIN_EV_PROPS:
+        return None, "below_minimum_ev"
+
+    if normal_structure:
+        if ev_percent > MAX_EV_PROPS:
+            # A result too large for the normal route must satisfy the stronger
+            # verified ladder checks.
+            if not high_edge_structure:
+                return None, "implausible_ev"
+    elif ev_percent > MAX_VERIFIED_HIGH_EV_PROPS:
+        return None, "implausible_verified_high_ev"
+
+    threshold = gen.LINE_LABELS.get(
+        line,
+        f"{line}+",
+    )
+
+    props_payload = (
+        fixture.get("props", {})
+        .get(best_bookmaker, {})
+    )
+
+    safety_model = (
+        "verified_full_ladder_high_edge_v4"
+        if (
+            high_edge_structure
+            and ev_percent > MAX_EV_PROPS
+        )
+        else "top_three_consensus_v4"
+    )
+
+    return {
+        "sport": "Football",
+        "competition": "FIFA World Cup",
+        "market": gen.pretty_market_name(market_key),
+        "type": "props_player",
+        "match": fixture.get("match", ""),
+        "date_label": fixture.get("date_label", ""),
+        "time": fixture.get("time", ""),
+        "selection": f"{player_name} {threshold}",
+        "bookmaker": best_bookmaker,
+        "bookmaker_odds": best_offer["odds"],
+        "bookmaker_decimal_odds": round(
+            best_offer["decimal"],
+            6,
+        ),
+        "fair_decimal_odds": round(
+            fair_decimal,
+            6,
+        ),
+        "fair_fractional_odds": decimal_to_fractional(
+            fair_decimal
+        ),
+        "fair_probability": round(
+            fair_probability,
+            6,
+        ),
+        "ev_percent": round(ev_percent, 3),
+        "bookmaker_count": len(safe_offers),
+        "comparison_bookmaker_count": len(
+            comparison
+        ),
+        "source_url": props_payload.get(
+            "source_url",
+            "",
+        ),
+        "safety_model": safety_model,
+        "verified_high_edge": (
+            safety_model
+            == "verified_full_ladder_high_edge_v4"
+        ),
+    }, ""
 
 def scan_props_ev_from_index(root):
     """
-    Use generate_worldcup_page.py's load_all() and build_player_index() to get
-    cleanly normalised player props data, then find EV across bookmakers.
+    Build a small, fail-closed player-props EV list.
+
+    Safety rules:
+      - sparse Unibet Shots/SOT rows require complete full ladders;
+      - five safe books are required;
+      - the candidate is excluded from its own fair price;
+      - fair price uses the median of the top three comparison prices;
+      - only the best offer for each exact prop is evaluated;
+      - isolated best prices and extreme EV are rejected;
+      - only one threshold alert per player/market is published;
+      - each fixture is capped at its strongest alerts.
     """
     import sys
-    scripts_path = os.path.join(root, "scripts", "Football")
+
+    scripts_path = os.path.join(
+        root,
+        "scripts",
+        "Football",
+    )
     if scripts_path not in sys.path:
         sys.path.insert(0, scripts_path)
 
     try:
         import generate_worldcup_page as gen
-    except ImportError as e:
-        print(f"Could not import generate_worldcup_page: {e}")
+    except ImportError as error:
+        print(
+            "Could not import generate_worldcup_page: "
+            f"{error}"
+        )
         return []
 
     try:
         fixtures, _, _ = gen.load_all()
-    except Exception as e:
-        print(f"load_all() failed: {e}")
+    except Exception as error:
+        print(f"load_all() failed: {error}")
         return []
 
     alerts = []
+    rejected = {}
+
+    def reject(reason):
+        rejected[reason] = rejected.get(reason, 0) + 1
 
     for fixture in fixtures:
         props = fixture.get("props") or {}
+
         if not props:
             continue
 
-        home = fixture.get("home_team", "")
-        away = fixture.get("away_team", "")
-        match_label = fixture.get("match", "")
-        date_label = fixture.get("date_label", "")
-        time_label = fixture.get("time", "")
-
         try:
-            player_index = gen.build_player_index(props)
+            player_index = gen.build_player_index(
+                props,
+                fixture.get("home_team", ""),
+                fixture.get("away_team", ""),
+            )
         except Exception:
+            reject("player_index_failed")
             continue
 
-        # Bookmakers excluded from props EV (scraper not ready)
-        # Excluded bookmakers - props scraper not verified accurate yet
-        EXCLUDED_BK = {}
+        fixture_candidates = []
 
-        # Markets excluded from props EV (inconsistent structure across books)
-        EXCLUDED_MARKETS = {
-            # Goalscorer markets - structured differently per book
-            "anytime_scorer", "first_goalscorer", "last_goalscorer",
-            "player_to_score", "goalscorer", "to_score",
-            "anytime_goalscorer", "player_scored",
-            # Card markets - single odds, inconsistent across books
-            "player_to_get_a_card", "player_cards", "player_carded",
-            "player_booked", "to_be_carded", "player_card",
-        }
+        for player_data in player_index.values():
+            player_name = player_data.get("name", "")
 
-        # For each player × market × threshold, collect prices across books
-        for pk, pdata in player_index.items():
-            player_name = pdata["name"]
-            for mk, mk_data in pdata["markets"].items():
-                if mk in EXCLUDED_MARKETS:
+            if not player_name:
+                continue
+
+            for market_key, market_data in (
+                player_data.get("markets", {}).items()
+            ):
+                if market_key not in SAFE_THRESHOLD_EV_MARKETS:
                     continue
-                if mk in gen.THRESHOLD_MARKETS:
-                    # mk_data = {line: {bk: {odds, decimal}}}
-                    # Only compare line=0.5 - ensures same baseline across all books
-                    # (BoyleSports starts shots at 2.5+ which causes false EV vs books starting at 0.5)
-                    for line, line_data in mk_data.items():
-                        if line not in {"0.5", "1.5", "2.5"}:
-                            continue
-                        if len(line_data) < MIN_BOOKS_PROPS:
-                            continue
 
-                        # Remove outliers: drop any price more than 5x from the minimum
-                        # Also exclude bookmakers not ready for props EV
-                        pre_filtered = {b: o for b, o in line_data.items() if b not in EXCLUDED_BK}
-                        if not pre_filtered:
-                            continue
-                        min_dec = min(o["decimal"] for o in pre_filtered.values())
-                        filtered = {b: o for b, o in pre_filtered.items()
-                                   if o["decimal"] / min_dec <= 5}
-                        if len(filtered) < MIN_BOOKS_PROPS:
-                            continue
-                        decimals = [o["decimal"] for o in filtered.values()]
-                        avg_prob = sum(1/d for d in decimals) / len(decimals)
-                        if avg_prob <= 0:
-                            continue
-                        fair_decimal = 1 / avg_prob
-                        # Skip if fair price is longer than 25/1 (decimal 27)
-                        if fair_decimal > 27:
-                            continue
-                        line_data = filtered  # use filtered for EV calculation
-                        for bk, o in line_data.items():
-                            ev = ((o["decimal"] * avg_prob) - 1) * 100
-                            if ev >= MIN_EV_PROPS:
-                                threshold = gen.LINE_LABELS.get(line, line + "+")
-                                alerts.append({
-                                    "sport": "Football",
-                                    "competition": "FIFA World Cup",
-                                    "market": gen.pretty_market_name(mk),
-                                    "type": "props_player",
-                                    "match": match_label,
-                                    "date_label": date_label,
-                                    "time": time_label,
-                                    "selection": f"{player_name} {threshold}",
-                                    "bookmaker": bk,
-                                    "bookmaker_odds": o["odds"],
-                                    "bookmaker_decimal_odds": round(o["decimal"], 6),
-                                    "fair_decimal_odds": round(fair_decimal, 6),
-                                    "fair_fractional_odds": decimal_to_fractional(fair_decimal),
-                                    "fair_probability": round(avg_prob, 6),
-                                    "ev_percent": round(ev, 3),
-                                    "bookmaker_count": len(line_data),
-                                    "source_url": "",
-                                })
-                else:
-                    # mk_data = {bk: {odds, decimal}}
-                    filtered_mk = {bk: o for bk, o in mk_data.items() if bk not in EXCLUDED_BK}
-                    if len(filtered_mk) < MIN_BOOKS_PROPS:
-                        continue
-                    mk_data = filtered_mk
-                    decimals_raw = [o["decimal"] for o in mk_data.values()]
-                    sorted_dec2 = sorted(decimals_raw)
-                    median_dec2 = sorted_dec2[len(sorted_dec2)//2]
-                    filtered2 = {bk: o for bk, o in mk_data.items()
-                                if o["decimal"] / median_dec2 <= 8 and median_dec2 / o["decimal"] <= 8}
-                    if len(filtered2) < MIN_BOOKS_PROPS:
-                        continue
-                    decimals = [o["decimal"] for o in filtered2.values()]
-                    avg_prob = sum(1/d for d in decimals) / len(decimals)
-                    if avg_prob <= 0:
-                        continue
-                    fair_decimal = 1 / avg_prob
-                    if fair_decimal > 27:
-                        continue
-                    for bk, o in mk_data.items():
-                        ev = ((o["decimal"] * avg_prob) - 1) * 100
-                        if ev >= MIN_EV_PROPS:
-                            alerts.append({
-                                "sport": "Football",
-                                "competition": "FIFA World Cup",
-                                "market": gen.pretty_market_name(mk),
-                                "type": "props_player",
-                                "match": match_label,
-                                "date_label": date_label,
-                                "time": time_label,
-                                "selection": player_name,
-                                "bookmaker": bk,
-                                "bookmaker_odds": o["odds"],
-                                "bookmaker_decimal_odds": round(o["decimal"], 6),
-                                "fair_decimal_odds": round(fair_decimal, 6),
-                                "fair_fractional_odds": decimal_to_fractional(fair_decimal),
-                                "fair_probability": round(avg_prob, 6),
-                                "ev_percent": round(ev, 3),
-                                "bookmaker_count": len(mk_data),
-                                "source_url": "",
-                            })
+                player_market_candidates = []
 
-    alerts.sort(key=lambda x: x["ev_percent"], reverse=True)
-    print(f"Props EV alerts >= {MIN_EV_PROPS}%: {len(alerts)}")
+                for line in ("0.5", "1.5", "2.5"):
+                    if line not in market_data:
+                        continue
+
+                    alert, reason = (
+                        _build_safe_threshold_alert(
+                            gen,
+                            fixture,
+                            player_name,
+                            market_key,
+                            market_data,
+                            line,
+                        )
+                    )
+
+                    if alert:
+                        player_market_candidates.append(alert)
+                    elif reason:
+                        reject(reason)
+
+                # Do not flood the board with the same player at 1+, 2+, 3+.
+                # Keep only their strongest verified edge for this market.
+                if player_market_candidates:
+                    fixture_candidates.append(
+                        max(
+                            player_market_candidates,
+                            key=lambda row: row["ev_percent"],
+                        )
+                    )
+
+        fixture_candidates.sort(
+            key=lambda row: row["ev_percent"],
+            reverse=True,
+        )
+
+        alerts.extend(
+            fixture_candidates[
+                :MAX_PROPS_ALERTS_PER_FIXTURE
+            ]
+        )
+
+    alerts.sort(
+        key=lambda row: row["ev_percent"],
+        reverse=True,
+    )
+
+    print(
+        "Safe props EV alerts "
+        f"{MIN_EV_PROPS:.1f}%–{MAX_EV_PROPS:.1f}%: "
+        f"{len(alerts)}"
+    )
+
+    if rejected:
+        print("Props EV safety filters:")
+        for reason, count in sorted(rejected.items()):
+            print(f"  - {reason}: {count}")
+
     return alerts
-
 
 def main():
     fixtures = {}
@@ -496,7 +876,7 @@ def main():
 
     # Props EV alerts
     props_alerts = scan_props_ev_from_index(ROOT)
-    print(f"Props EV alerts >= {MIN_EV_PROPS}%: {len(props_alerts)}")
+    print(f"Safe props EV alerts: {len(props_alerts)}")
 
     all_alerts = alerts + props_alerts
     all_alerts.sort(key=lambda x: x["ev_percent"], reverse=True)
@@ -519,13 +899,29 @@ def main():
         "alert_count": len(all_alerts),
         "moneyline_alert_count": len(alerts),
         "props_alert_count": len(props_alerts),
+        "props_ev_safety": {
+            "minimum_books": MIN_BOOKS_PROPS,
+            "minimum_comparison_books": MIN_COMPARISON_BOOKS_PROPS,
+            "top_consensus_books": TOP_CONSENSUS_BOOKS,
+            "minimum_ev_percent": MIN_EV_PROPS,
+            "maximum_ev_percent": MAX_EV_PROPS,
+            "maximum_verified_high_ev_percent": MAX_VERIFIED_HIGH_EV_PROPS,
+            "maximum_alerts_per_fixture": MAX_PROPS_ALERTS_PER_FIXTURE,
+            "unibet_shots_sot_quarantined": False,
+            "unibet_full_ladder_required": True,
+            "model": "balanced_full_ladder_v4",
+        },
         "alerts": all_alerts,
     }
 
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
 
-    with open(OUT_PATH, "w", encoding="utf-8") as f:
+    temp_out_path = OUT_PATH + ".tmp"
+
+    with open(temp_out_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
+
+    os.replace(temp_out_path, OUT_PATH)
 
     print("")
     print("Football EV scan complete")
