@@ -56,6 +56,11 @@ def esc(s):
     )
 
 
+def url_param(s):
+    from urllib.parse import quote
+    return quote(str(s or ""), safe="")
+
+
 def load_json(path):
     try:
         if not Path(path).exists():
@@ -497,6 +502,12 @@ def render_spot_card(spot, index):
         badge_class = "badge-value"
         badge_icon = "⚡"
 
+    tracker_event  = url_param(spot["fight"])
+    tracker_market = url_param(spot["market"])
+    tracker_selection = url_param(spot["selection"])
+    tracker_bookmaker = url_param(spot["bookmaker"])
+    tracker_odds   = url_param(spot["odds"])
+
     return f"""
     <article class="spot-card">
       <div class="spot-header">
@@ -534,6 +545,14 @@ def render_spot_card(spot, index):
         <div class="prices-grid">
           {prices_html}
         </div>
+      </div>
+
+      <div class="spot-actions">
+        <a class="btn-tracker"
+           href="/pages/betting-tracker?sport=UFC&event={tracker_event}&market={tracker_market}&selection={tracker_selection}&bookmaker={tracker_bookmaker}&odds={tracker_odds}"
+           target="_blank">
+          Add to Bet Tracker →
+        </a>
       </div>
     </article>
     """
@@ -743,6 +762,27 @@ def generate_page(spots):
       gap: 14px;
     }}
 
+    .spot-actions {
+      padding: 0 1rem 1rem;
+    }
+    .btn-tracker {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 1px solid #4ade80;
+      color: #4ade80;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: background 0.15s;
+    }
+    .btn-tracker:hover {
+      background: rgba(74, 222, 128, 0.1);
+    }
     .spot-card {{
       border: 1px solid var(--border);
       border-radius: 18px;
