@@ -1,153 +1,12 @@
 {
-  "generated_at": "2026-06-24T13:45:03.149302+00:00",
-  "total_arbitrage": 11,
+  "generated_at": "2026-06-24T15:49:09.117036+00:00",
+  "total_arbitrage": 8,
   "sports": {
-    "All": 11,
-    "Football": 9,
+    "All": 8,
+    "Football": 6,
     "UFC": 2
   },
   "arbitrage": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Paraguay v Australia",
-      "market": "Total Cards Over Under",
-      "type": "props_ou",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 181.25,
-      "arb_percent": 35.556,
-      "arb_sum": 0.355556,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Over 4.5",
-          "bookmaker": "PaddyPower",
-          "odds": "7/2",
-          "decimal_odds": 4.5,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Under 4.5",
-          "bookmaker": "Ladbrokes",
-          "odds": "13/2",
-          "decimal_odds": 7.5,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Switzerland v Canada",
-      "market": "Half Time Result",
-      "type": "props_half_time_result",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 38.936,
-      "arb_percent": 71.976,
-      "arb_sum": 0.719756,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Switzerland",
-          "bookmaker": "PaddyPower",
-          "odds": "15/8",
-          "decimal_odds": 2.875,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Draw",
-          "bookmaker": "LiveScoreBet",
-          "odds": "17/2",
-          "decimal_odds": 9.5,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Canada",
-          "bookmaker": "PaddyPower",
-          "odds": "11/4",
-          "decimal_odds": 3.75,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Scotland v Brazil",
-      "market": "Half Time Result",
-      "type": "props_half_time_result",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 30.204,
-      "arb_percent": 76.802,
-      "arb_sum": 0.768023,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Scotland",
-          "bookmaker": "PaddyPower",
-          "odds": "15/2",
-          "decimal_odds": 8.5,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Draw",
-          "bookmaker": "LiveScoreBet",
-          "odds": "13/1",
-          "decimal_odds": 14.0,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Brazil",
-          "bookmaker": "PaddyPower",
-          "odds": "8/11",
-          "decimal_odds": 1.727273,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Bosnia v Qatar",
-      "market": "Half Time Result",
-      "type": "props_half_time_result",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 30.17,
-      "arb_percent": 76.823,
-      "arb_sum": 0.768225,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Bosnia",
-          "bookmaker": "PaddyPower",
-          "odds": "4/5",
-          "decimal_odds": 1.8,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Draw",
-          "bookmaker": "LiveScoreBet",
-          "odds": "16/1",
-          "decimal_odds": 17.0,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Qatar",
-          "bookmaker": "PaddyPower",
-          "odds": "11/2",
-          "decimal_odds": 6.5,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
@@ -181,6 +40,36 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
+      "event": "Morocco v Haiti",
+      "market": "Total Cards Over Under",
+      "type": "props_ou",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 2.632,
+      "arb_percent": 97.436,
+      "arb_sum": 0.974359,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Over 3.5",
+          "bookmaker": "WilliamHill",
+          "odds": "9/4",
+          "decimal_odds": 3.25,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Under 3.5",
+          "bookmaker": "Bwin",
+          "odds": "1/2",
+          "decimal_odds": 1.5,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
       "event": "South Africa v South Korea",
       "market": "Total Cards Over Under",
       "type": "props_ou",
@@ -203,6 +92,36 @@
           "bookmaker": "BetVictor",
           "odds": "4/5",
           "decimal_odds": 1.8,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Scotland v Brazil",
+      "market": "Total Cards Over Under",
+      "type": "props_ou",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 2.246,
+      "arb_percent": 97.803,
+      "arb_sum": 0.978035,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Over 3.5",
+          "bookmaker": "WilliamHill",
+          "odds": "6/4",
+          "decimal_odds": 2.5,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Under 3.5",
+          "bookmaker": "Bwin",
+          "odds": "73/100",
+          "decimal_odds": 1.73,
           "implied_probability": ""
         }
       ],
@@ -241,28 +160,28 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "event": "Ecuador v Germany",
+      "event": "Morocco v Haiti",
       "market": "Total Cards Over Under",
       "type": "props_ou",
       "date_label": "",
       "time": "",
-      "profit_margin_percent": 1.961,
-      "arb_percent": 98.077,
-      "arb_sum": 0.980769,
+      "profit_margin_percent": 2.212,
+      "arb_percent": 97.835,
+      "arb_sum": 0.978355,
       "bookmaker_count": 2,
       "bookmakers": [
         {
-          "selection": "Over 4.5",
-          "bookmaker": "PaddyPower",
-          "odds": "10/3",
-          "decimal_odds": 4.333333,
+          "selection": "Over 2.5",
+          "bookmaker": "WilliamHill",
+          "odds": "10/11",
+          "decimal_odds": 1.909091,
           "implied_probability": ""
         },
         {
-          "selection": "Under 4.5",
-          "bookmaker": "WilliamHill",
-          "odds": "1/3",
-          "decimal_odds": 1.333333,
+          "selection": "Under 2.5",
+          "bookmaker": "Bwin",
+          "odds": "6/5",
+          "decimal_odds": 2.2,
           "implied_probability": ""
         }
       ],
@@ -271,28 +190,28 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "event": "Paraguay v Australia",
-      "market": "Total Cards Over Under",
+      "event": "Czechia v Mexico",
+      "market": "Mexico Total Shots Over Under",
       "type": "props_ou",
       "date_label": "",
       "time": "",
-      "profit_margin_percent": 0.976,
-      "arb_percent": 99.034,
-      "arb_sum": 0.990338,
+      "profit_margin_percent": 2.212,
+      "arb_percent": 97.835,
+      "arb_sum": 0.978355,
       "bookmaker_count": 2,
       "bookmakers": [
         {
-          "selection": "Over 2.5",
-          "bookmaker": "BetVictor",
-          "odds": "4/5",
-          "decimal_odds": 1.8,
+          "selection": "Over 11.5",
+          "bookmaker": "Ladbrokes",
+          "odds": "10/11",
+          "decimal_odds": 1.909091,
           "implied_probability": ""
         },
         {
-          "selection": "Under 2.5",
-          "bookmaker": "PaddyPower",
-          "odds": "13/10",
-          "decimal_odds": 2.3,
+          "selection": "Under 11.5",
+          "bookmaker": "Bwin",
+          "odds": "6/5",
+          "decimal_odds": 2.2,
           "implied_probability": ""
         }
       ],
@@ -327,36 +246,6 @@
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Scotland v Brazil",
-      "market": "Total Cards Over Under",
-      "type": "props_ou",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 0.0,
-      "arb_percent": 100.0,
-      "arb_sum": 1.0,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Over 3.5",
-          "bookmaker": "WilliamHill",
-          "odds": "6/4",
-          "decimal_odds": 2.5,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Under 3.5",
-          "bookmaker": "LiveScoreBet",
-          "odds": "4/6",
-          "decimal_odds": 1.666667,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
     }
   ],
   "sources": {
@@ -365,7 +254,7 @@
     "darts": "C:\\Users\\joete\\odds-board\\darts\\data\\arbitrage.json"
   },
   "source_counts": {
-    "football": 9,
+    "football": 6,
     "ufc": 2,
     "darts": 0
   }

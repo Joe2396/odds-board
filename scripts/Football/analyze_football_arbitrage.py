@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# FOOTBALL_ARB_SAFE_V4_OVER_ONLY_STATS
 import json
 import os
 import re
@@ -19,6 +20,46 @@ BOOK_FILES = {
     "Bwin": os.path.join(ROOT, "football", "data", "bwin_worldcup_moneylines.json"),}
 
 OUT_PATH = os.path.join(ROOT, "football", "data", "arbitrage.json")
+
+# Cross-book arbitrage is only trusted after each source bookmaker's own
+# market is internally coherent.
+MIN_SOURCE_TWO_WAY_SUM = 0.94
+MAX_SOURCE_TWO_WAY_SUM = 1.30
+MIN_SOURCE_THREE_WAY_SUM = 0.94
+MAX_SOURCE_THREE_WAY_SUM = 1.40
+
+# Only publish arbs inside a realistic and useful band:
+#   - at least 2% guaranteed profit
+#   - at most 15% guaranteed profit
+# Larger values are usually parser/line issues; smaller values are too thin.
+MIN_PUBLISHED_ARB_PROFIT_PERCENT = 2.0
+MAX_PUBLISHED_ARB_PROFIT_PERCENT = 15.0
+
+MAX_PUBLISHED_ARB_SUM = 1.0 / (
+    1.0 + MIN_PUBLISHED_ARB_PROFIT_PERCENT / 100.0
+)
+MIN_PUBLISHED_ARB_SUM = 1.0 / (
+    1.0 + MAX_PUBLISHED_ARB_PROFIT_PERCENT / 100.0
+)
+
+NAMED_MARKET_QUARANTINE = {
+    ("LiveScoreBet", "half_time_result"),
+}
+
+# These books publish trustworthy threshold Overs for aggregate match/team
+# statistics, but often no matching Under. They may contribute only the Over
+# side, and only for Shots / Shots On Target.
+TRUSTED_OVER_ONLY_STATS_BOOKS = {
+    "PaddyPower",
+    "Midnite",
+}
+
+OVER_ONLY_STATS_CANONICAL_PREFIXES = {
+    "match_shots",
+    "match_shots_on_target",
+    "team_shots::",
+    "team_shots_on_target::",
+}
 
 
 def fractional_to_decimal(value):
@@ -108,16 +149,23 @@ def add_offer(fixtures, key, side, bookmaker, raw_odds, row):
 
 # ── Props arbitrage ────────────────────────────────────────────────────────────
 
-PROPS_FILES = {
-    "PaddyPower":   ("paddypower_worldcup_props.json",   "fractional"),
-    "BoyleSports":  ("boylesports_worldcup_props_complete.json", "fractional"),
-    "LiveScoreBet": ("livescorebet_worldcup_props.json", "fractional"),
-    "Ladbrokes":    ("ladbrokes_worldcup_props.json",    "fractional"),
-    "WilliamHill":  ("williamhill_worldcup_props.json",  "fractional"),
-    "BetVictor":    ("betvictor_worldcup_props.json",    "fractional"),
-    # "Midnite":    ("midnite_worldcup_props.json",      "fractional"),  # dict format, not list
-    "Unibet":      ("unibet_worldcup_props.json", "fractional"),
-}
+PROPS_SOURCES = [
+    ("PaddyPower",  "paddypower_worldcup_props.json", "fractional"),
+    ("BoyleSports", "boylesports_worldcup_props_complete.json", "fractional"),
+    ("LiveScoreBet", "livescorebet_worldcup_props.json", "fractional"),
+    ("Ladbrokes",    "ladbrokes_worldcup_props.json", "fractional"),
+    ("WilliamHill",  "williamhill_worldcup_props.json", "fractional"),
+    ("BetVictor",    "betvictor_worldcup_props.json", "fractional"),
+    ("Unibet",       "unibet_worldcup_props.json", "fractional"),
+    ("Midnite",      "midnite_worldcup_props.json", "fractional"),
+
+    # Bwin ordinary match props and the separately verified complete 6/6
+    # match/team shots dataset use the same bookmaker identity. Keeping the
+    # bookmaker name identical prevents a false Bwin-v-Bwin arbitrage pair.
+    ("Bwin",         "bwin_worldcup_props.json", "fractional"),
+    ("Bwin",         "bwin_worldcup_match_stats.json", "fractional"),
+]
+
 
 
 NAMED_PROPS_FILES = {
@@ -134,6 +182,7 @@ NAMED_PROPS_FILES = {
     "Unibet":       "unibet_worldcup_props.json",
     "888Sport":     "888sport_worldcup_props.json",
     "Midnite":       "midnite_worldcup_props.json",
+    "Bwin":          "bwin_worldcup_props.json",
 }
 
 OU_MARKET_KEYS = {
@@ -467,6 +516,267 @@ def unibet_ou_market_is_safe(market_name, market_data, home, away):
     return False
 
 
+def _arb_sum_is_publishable(arb_sum):
+    try:
+        arb_sum = float(arb_sum)
+    except Exception:
+        return False
+
+    return MIN_PUBLISHED_ARB_SUM <= arb_sum <= MAX_PUBLISHED_ARB_SUM
+
+
+def _best_offer_for_book(offers, bookmaker):
+    candidates = [
+        offer
+        for offer in offers or []
+        if offer.get("bookmaker") == bookmaker
+    ]
+
+    if not candidates:
+        return None
+
+    return max(
+        candidates,
+        key=lambda offer: offer.get("decimal", 0),
+    )
+
+
+def _canonical_allows_trusted_over_only(canonical_market):
+    canonical_market = str(canonical_market or "")
+
+    return any(
+        canonical_market == prefix
+        or canonical_market.startswith(prefix)
+        for prefix in OVER_ONLY_STATS_CANONICAL_PREFIXES
+    )
+
+
+def validate_ou_source_books(data, rejected):
+    """
+    Validate each bookmaker before cross-book O/U pairing.
+
+    Standard sources:
+      - must supply both Over and Under at the exact line;
+      - their own two-way book must be internally plausible.
+
+    Trusted over-only aggregate-stat sources:
+      - PaddyPower and Midnite may supply an Over without an Under;
+      - only for match/team Shots and Shots On Target;
+      - the eventual arb must still use a validated Under from another book.
+
+    Under-only rows are never admitted.
+    """
+    for fixture_markets in data.values():
+        for canonical_market, lines in fixture_markets.items():
+            allow_trusted_over_only = (
+                _canonical_allows_trusted_over_only(
+                    canonical_market
+                )
+            )
+
+            for line, sides in lines.items():
+                overs = sides.get("over") or []
+                unders = sides.get("under") or []
+
+                bookmakers = {
+                    offer.get("bookmaker")
+                    for offer in overs + unders
+                    if offer.get("bookmaker")
+                }
+
+                valid_over_books = set()
+                valid_under_books = set()
+
+                for bookmaker in bookmakers:
+                    over = _best_offer_for_book(
+                        overs,
+                        bookmaker,
+                    )
+                    under = _best_offer_for_book(
+                        unders,
+                        bookmaker,
+                    )
+
+                    # Normal two-sided source validation.
+                    if over and under:
+                        source_sum = (
+                            1.0 / over["decimal"]
+                            + 1.0 / under["decimal"]
+                        )
+
+                        if (
+                            MIN_SOURCE_TWO_WAY_SUM
+                            <= source_sum
+                            <= MAX_SOURCE_TWO_WAY_SUM
+                        ):
+                            valid_over_books.add(bookmaker)
+                            valid_under_books.add(bookmaker)
+
+                        continue
+
+                    # Trusted one-sided Overs for aggregate shots/SOT only.
+                    if (
+                        over
+                        and not under
+                        and allow_trusted_over_only
+                        and bookmaker
+                            in TRUSTED_OVER_ONLY_STATS_BOOKS
+                    ):
+                        valid_over_books.add(bookmaker)
+                        continue
+
+                    # Under-only rows are deliberately never accepted.
+
+                before_over = len(overs)
+                sides["over"] = [
+                    offer
+                    for offer in overs
+                    if offer.get("bookmaker")
+                    in valid_over_books
+                ]
+                removed_over = (
+                    before_over - len(sides["over"])
+                )
+
+                before_under = len(unders)
+                sides["under"] = [
+                    offer
+                    for offer in unders
+                    if offer.get("bookmaker")
+                    in valid_under_books
+                ]
+                removed_under = (
+                    before_under - len(sides["under"])
+                )
+
+                if removed_over:
+                    reason = (
+                        "invalid source Over or untrusted "
+                        "one-sided source"
+                    )
+                    rejected[reason] = (
+                        rejected.get(reason, 0)
+                        + removed_over
+                    )
+
+                if removed_under:
+                    reason = (
+                        "incomplete or implausible "
+                        "source Under book"
+                    )
+                    rejected[reason] = (
+                        rejected.get(reason, 0)
+                        + removed_under
+                    )
+
+def _validate_named_source_market(
+    fixture,
+    market_key,
+    outcomes,
+    audit,
+    minimum_sum,
+    maximum_sum,
+):
+    market = fixture.get(market_key) or {}
+
+    bookmakers = {
+        offer.get("bookmaker")
+        for outcome in outcomes
+        for offer in market.get(outcome) or []
+        if offer.get("bookmaker")
+    }
+
+    for bookmaker in sorted(bookmakers):
+        if (
+            bookmaker,
+            market_key,
+        ) in NAMED_MARKET_QUARANTINE:
+            valid = False
+            source_sum = None
+            reason = "quarantined"
+        else:
+            offers = {}
+
+            for outcome in outcomes:
+                offer = _best_offer_for_book(
+                    market.get(outcome) or [],
+                    bookmaker,
+                )
+                if offer:
+                    offers[outcome] = offer
+
+            valid = len(offers) == len(outcomes)
+            source_sum = None
+            reason = "incomplete"
+
+            if valid:
+                source_sum = sum(
+                    1.0 / offers[outcome]["decimal"]
+                    for outcome in outcomes
+                )
+                valid = minimum_sum <= source_sum <= maximum_sum
+                reason = (
+                    "plausible"
+                    if valid
+                    else "implausible"
+                )
+
+        if valid:
+            continue
+
+        removed = 0
+
+        for outcome in outcomes:
+            before = len(market.get(outcome) or [])
+            market[outcome] = [
+                offer
+                for offer in market.get(outcome) or []
+                if offer.get("bookmaker") != bookmaker
+            ]
+            removed += before - len(market[outcome])
+
+        if removed:
+            counts = audit.setdefault(
+                bookmaker,
+                {"matches": 0, "offers": 0},
+            )
+            key = f"{market_key}_rejected"
+            counts[key] = counts.get(key, 0) + removed
+
+            detail = (
+                f"{source_sum:.3f}"
+                if source_sum is not None
+                else reason
+            )
+            print(
+                f"  {market_key} safety: removed {removed} "
+                f"{bookmaker} offer(s) for "
+                f"{fixture.get('match')} "
+                f"(source sum {detail})"
+            )
+
+
+def validate_named_source_books(data, audit):
+    for fixture in data.values():
+        _validate_named_source_market(
+            fixture,
+            "btts",
+            ("yes", "no"),
+            audit,
+            MIN_SOURCE_TWO_WAY_SUM,
+            MAX_SOURCE_TWO_WAY_SUM,
+        )
+
+        _validate_named_source_market(
+            fixture,
+            "half_time_result",
+            ("home", "draw", "away"),
+            audit,
+            MIN_SOURCE_THREE_WAY_SUM,
+            MAX_SOURCE_THREE_WAY_SUM,
+        )
+
+
 def scan_props_arbitrage(root):
     """Scan strictly matched O/U prop markets across bookmakers."""
     data = {}
@@ -475,7 +785,7 @@ def scan_props_arbitrage(root):
     def reject(reason):
         rejected[reason] = rejected.get(reason, 0) + 1
 
-    for bk, (fname, fmt) in PROPS_FILES.items():
+    for bk, fname, fmt in PROPS_SOURCES:
         path = os.path.join(root, "football", "data", fname)
         raw = load_json(path)
         if not raw:
@@ -579,12 +889,18 @@ def scan_props_arbitrage(root):
                         "scope": scope,
                         "scope_team": scope_team,
                         "metric": metric,
+                        "source_url": (
+                            m.get("source_url")
+                            or m.get("url")
+                            or ""
+                        ),
                     }
 
                     data.setdefault(fk, {}).setdefault(
                         canonical_mk, {}
                     ).setdefault(line, {}).setdefault(side, []).append(offer)
 
+    validate_ou_source_books(data, rejected)
     remove_duplicate_match_team_ladders(data, rejected)
 
     arbs = []
@@ -643,12 +959,14 @@ def scan_props_arbitrage(root):
                             "odds": best_over["odds"],
                             "decimal_odds": best_over["decimal"],
                             "source_market": best_over["source_market"],
+                            "source_url": best_over.get("source_url", ""),
                         },
                         "under": {
                             "bookmaker": best_under["bookmaker"],
                             "odds": best_under["odds"],
                             "decimal_odds": best_under["decimal"],
                             "source_market": best_under["source_market"],
+                            "source_url": best_under.get("source_url", ""),
                         },
                     },
                     "all_prices": {
@@ -665,8 +983,12 @@ def scan_props_arbitrage(root):
                     },
                 }
 
-                if arb_sum < 1:
+                if _arb_sum_is_publishable(arb_sum):
                     arbs.append(row)
+                elif arb_sum < MIN_PUBLISHED_ARB_SUM:
+                    reject(
+                        "arb above maximum safe profit margin"
+                    )
                 elif arb_sum < 1.04:
                     near_misses.append(row)
 
@@ -1443,6 +1765,7 @@ def scan_named_prop_arbitrage(root):
         }
 
     validate_double_chance_source_triplets(data, audit)
+    validate_named_source_books(data, audit)
 
     arbs = []
     near_misses = []
@@ -1487,8 +1810,14 @@ def scan_named_prop_arbitrage(root):
                     ),
                 },
             )
-            if arb_sum < 1:
+            if _arb_sum_is_publishable(arb_sum):
                 arbs.append(row)
+            elif arb_sum < MIN_PUBLISHED_ARB_SUM:
+                print(
+                    "  Named arb safety: rejected "
+                    f"{match_name} | {row['market']} | "
+                    f"profit {row['profit_margin_percent']}%"
+                )
             elif arb_sum < 1.04:
                 near_misses.append(row)
 
@@ -1529,8 +1858,14 @@ def scan_named_prop_arbitrage(root):
                     for key in ["home", "draw", "away"]
                 },
             )
-            if arb_sum < 1:
+            if _arb_sum_is_publishable(arb_sum):
                 arbs.append(row)
+            elif arb_sum < MIN_PUBLISHED_ARB_SUM:
+                print(
+                    "  Named arb safety: rejected "
+                    f"{match_name} | {row['market']} | "
+                    f"profit {row['profit_margin_percent']}%"
+                )
             elif arb_sum < 1.04:
                 near_misses.append(row)
 
@@ -1578,8 +1913,14 @@ def scan_named_prop_arbitrage(root):
                     ]
                 },
             )
-            if arb_sum < 1:
+            if _arb_sum_is_publishable(arb_sum):
                 arbs.append(row)
+            elif arb_sum < MIN_PUBLISHED_ARB_SUM:
+                print(
+                    "  Named arb safety: rejected "
+                    f"{match_name} | {row['market']} | "
+                    f"profit {row['profit_margin_percent']}%"
+                )
             elif arb_sum < 1.04:
                 near_misses.append(row)
 
@@ -1729,8 +2070,14 @@ def main():
             },
         }
 
-        if arb_sum < 1:
+        if _arb_sum_is_publishable(arb_sum):
             arbitrage.append(row)
+        elif arb_sum < MIN_PUBLISHED_ARB_SUM:
+            print(
+                "Moneyline arb safety: rejected "
+                f"{fixture['match']} | "
+                f"profit {profit_margin_percent:.3f}%"
+            )
         else:
             near_misses.append(row)
 
@@ -1753,6 +2100,25 @@ def main():
         "near_miss_count": len(near_misses),
         "arbitrage": arbitrage,
         "near_misses": near_misses[:25],
+        "arb_safety": {
+            "source_two_way_sum_min": MIN_SOURCE_TWO_WAY_SUM,
+            "source_two_way_sum_max": MAX_SOURCE_TWO_WAY_SUM,
+            "source_three_way_sum_min": MIN_SOURCE_THREE_WAY_SUM,
+            "source_three_way_sum_max": MAX_SOURCE_THREE_WAY_SUM,
+            "minimum_profit_percent": MIN_PUBLISHED_ARB_PROFIT_PERCENT,
+            "maximum_profit_percent": MAX_PUBLISHED_ARB_PROFIT_PERCENT,
+            "livescorebet_half_time_quarantined": True,
+            "trusted_over_only_stats_books": sorted(
+                TRUSTED_OVER_ONLY_STATS_BOOKS
+            ),
+            "trusted_over_only_stats": [
+                "match_shots",
+                "team_shots",
+                "match_shots_on_target",
+                "team_shots_on_target",
+            ],
+            "model": "source_book_validation_v4_over_only_stats",
+        },
     }
 
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
@@ -1789,8 +2155,12 @@ def main():
     output["props_ou_arb_count"] = len(ou_props_arbs)
     output["props_named_arb_count"] = len(named_props_arbs)
 
-    with open(OUT_PATH, "w", encoding="utf-8") as f:
+    temp_out_path = OUT_PATH + ".tmp"
+
+    with open(temp_out_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
+
+    os.replace(temp_out_path, OUT_PATH)
 
     print("")
     print("Football arbitrage scan complete")

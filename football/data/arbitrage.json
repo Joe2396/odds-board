@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T13:44:58.136830+00:00",
+  "generated_at": "2026-06-24T15:48:55.146782+00:00",
   "sport": "Football",
   "competition": "FIFA World Cup",
   "bookmaker_summary": {
@@ -47,551 +47,9 @@
   "fixture_count": 24,
   "compared_fixtures": 24,
   "skipped_fixtures": 0,
-  "arbitrage_count": 9,
-  "near_miss_count": 80,
+  "arbitrage_count": 6,
+  "near_miss_count": 112,
   "arbitrage": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Paraguay v Australia",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "4.5",
-      "arb_sum": 0.355556,
-      "arb_percent": 35.556,
-      "profit_margin_percent": 181.25,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "7/2",
-          "decimal_odds": 4.5,
-          "source_market": "Total Cards Over/Under"
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "13/2",
-          "decimal_odds": 7.5,
-          "source_market": "Total Cards Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "7/2",
-            "decimal": 4.5,
-            "match": "Paraguay v Australia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "3/1",
-            "decimal": 4.0,
-            "match": "Paraguay v Australia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "1/14",
-            "decimal": 1.071429,
-            "match": "Paraguay v Australia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "13/2",
-            "decimal": 7.5,
-            "match": "Paraguay v Australia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "match": "Paraguay v Australia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "2/13",
-            "decimal": 1.153846,
-            "match": "Paraguay v Australia",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_half_time_result",
-      "match": "Switzerland v Canada",
-      "market": "Half Time Result",
-      "arb_sum": 0.719756,
-      "arb_percent": 71.976,
-      "profit_margin_percent": 38.936,
-      "bookmaker_count": 2,
-      "selections": {
-        "home": {
-          "bookmaker": "PaddyPower",
-          "odds": "15/8",
-          "decimal": 2.875,
-          "decimal_odds": 2.875,
-          "match": "Switzerland v Canada",
-          "source_market": "Half Time Result",
-          "selection_label": "Switzerland"
-        },
-        "draw": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "17/2",
-          "decimal": 9.5,
-          "decimal_odds": 9.5,
-          "match": "Switzerland v Canada",
-          "source_market": "Half Time Result",
-          "selection_label": "Draw"
-        },
-        "away": {
-          "bookmaker": "PaddyPower",
-          "odds": "11/4",
-          "decimal": 3.75,
-          "decimal_odds": 3.75,
-          "match": "Switzerland v Canada",
-          "source_market": "Half Time Result",
-          "selection_label": "Canada"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "15/8",
-            "decimal": 2.875,
-            "decimal_odds": 2.875,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Switzerland"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "7/4",
-            "decimal": 2.75,
-            "decimal_odds": 2.75,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Switzerland"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "10/11",
-            "decimal": 1.909091,
-            "decimal_odds": 1.909091,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Switzerland"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "22/25",
-            "decimal": 1.88,
-            "decimal_odds": 1.88,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Switzerland"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "17/2",
-            "decimal": 9.5,
-            "decimal_odds": 9.5,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "11/10",
-            "decimal": 2.1,
-            "decimal_odds": 2.1,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "11/10",
-            "decimal": 2.1,
-            "decimal_odds": 2.1,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "13/20",
-            "decimal": 1.65,
-            "decimal_odds": 1.65,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "11/4",
-            "decimal": 3.75,
-            "decimal_odds": 3.75,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Canada"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "13/5",
-            "decimal": 3.6,
-            "decimal_odds": 3.6,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Canada"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "29/20",
-            "decimal": 2.45,
-            "decimal_odds": 2.45,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Canada"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "5/4",
-            "decimal": 2.25,
-            "decimal_odds": 2.25,
-            "match": "Switzerland v Canada",
-            "source_market": "Half Time Result",
-            "selection_label": "Canada"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_half_time_result",
-      "match": "Scotland v Brazil",
-      "market": "Half Time Result",
-      "arb_sum": 0.768023,
-      "arb_percent": 76.802,
-      "profit_margin_percent": 30.204,
-      "bookmaker_count": 2,
-      "selections": {
-        "home": {
-          "bookmaker": "PaddyPower",
-          "odds": "15/2",
-          "decimal": 8.5,
-          "decimal_odds": 8.5,
-          "match": "Scotland v Brazil",
-          "source_market": "Half Time Result",
-          "selection_label": "Scotland"
-        },
-        "draw": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "13/1",
-          "decimal": 14.0,
-          "decimal_odds": 14.0,
-          "match": "Scotland v Brazil",
-          "source_market": "Half Time Result",
-          "selection_label": "Draw"
-        },
-        "away": {
-          "bookmaker": "PaddyPower",
-          "odds": "8/11",
-          "decimal": 1.727273,
-          "decimal_odds": 1.727273,
-          "match": "Scotland v Brazil",
-          "source_market": "Half Time Result",
-          "selection_label": "Brazil"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "15/2",
-            "decimal": 8.5,
-            "decimal_odds": 8.5,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Scotland"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "15/2",
-            "decimal": 8.5,
-            "decimal_odds": 8.5,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Scotland"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "9/2",
-            "decimal": 5.5,
-            "decimal_odds": 5.5,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Scotland"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "3/1",
-            "decimal": 4.0,
-            "decimal_odds": 4.0,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Scotland"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "13/1",
-            "decimal": 14.0,
-            "decimal_odds": 14.0,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "8/5",
-            "decimal": 2.6,
-            "decimal_odds": 2.6,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "29/20",
-            "decimal": 2.45,
-            "decimal_odds": 2.45,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "5/4",
-            "decimal": 2.25,
-            "decimal_odds": 2.25,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "8/11",
-            "decimal": 1.727273,
-            "decimal_odds": 1.727273,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Brazil"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "8/11",
-            "decimal": 1.727273,
-            "decimal_odds": 1.727273,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Brazil"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "3/10",
-            "decimal": 1.3,
-            "decimal_odds": 1.3,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Brazil"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "decimal_odds": 1.222222,
-            "match": "Scotland v Brazil",
-            "source_market": "Half Time Result",
-            "selection_label": "Brazil"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_half_time_result",
-      "match": "Bosnia v Qatar",
-      "market": "Half Time Result",
-      "arb_sum": 0.768225,
-      "arb_percent": 76.823,
-      "profit_margin_percent": 30.17,
-      "bookmaker_count": 2,
-      "selections": {
-        "home": {
-          "bookmaker": "PaddyPower",
-          "odds": "4/5",
-          "decimal": 1.8,
-          "decimal_odds": 1.8,
-          "match": "Bosnia v Qatar",
-          "source_market": "Half Time Result",
-          "selection_label": "Bosnia"
-        },
-        "draw": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "16/1",
-          "decimal": 17.0,
-          "decimal_odds": 17.0,
-          "match": "Bosnia & Herzegovina v Qatar",
-          "source_market": "Half Time Result",
-          "selection_label": "Draw"
-        },
-        "away": {
-          "bookmaker": "PaddyPower",
-          "odds": "11/2",
-          "decimal": 6.5,
-          "decimal_odds": 6.5,
-          "match": "Bosnia v Qatar",
-          "source_market": "Half Time Result",
-          "selection_label": "Qatar"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "4/5",
-            "decimal": 1.8,
-            "decimal_odds": 1.8,
-            "match": "Bosnia v Qatar",
-            "source_market": "Half Time Result",
-            "selection_label": "Bosnia"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "4/5",
-            "decimal": 1.8,
-            "decimal_odds": 1.8,
-            "match": "Bosnia v Qatar",
-            "source_market": "Half Time Result",
-            "selection_label": "Bosnia"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "7/20",
-            "decimal": 1.35,
-            "decimal_odds": 1.35,
-            "match": "Bosnia & Herzegovina v Qatar",
-            "source_market": "Half Time Result",
-            "selection_label": "Bosnia & Herzegovina"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "16/1",
-            "decimal": 17.0,
-            "decimal_odds": 17.0,
-            "match": "Bosnia & Herzegovina v Qatar",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "13/8",
-            "decimal": 2.625,
-            "decimal_odds": 2.625,
-            "match": "Bosnia v Qatar",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "6/4",
-            "decimal": 2.5,
-            "decimal_odds": 2.5,
-            "match": "Bosnia v Qatar",
-            "source_market": "Half Time Result",
-            "selection_label": "Draw"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "11/2",
-            "decimal": 6.5,
-            "decimal_odds": 6.5,
-            "match": "Bosnia v Qatar",
-            "source_market": "Half Time Result",
-            "selection_label": "Qatar"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "5/1",
-            "decimal": 6.0,
-            "decimal_odds": 6.0,
-            "match": "Bosnia v Qatar",
-            "source_market": "Half Time Result",
-            "selection_label": "Qatar"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "5/2",
-            "decimal": 3.5,
-            "decimal_odds": 3.5,
-            "match": "Bosnia & Herzegovina v Qatar",
-            "source_market": "Half Time Result",
-            "selection_label": "Qatar"
-          }
-        ]
-      }
-    },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
@@ -611,13 +69,15 @@
           "bookmaker": "PaddyPower",
           "odds": "10/3",
           "decimal_odds": 4.333333,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
         },
         "under": {
           "bookmaker": "BetVictor",
           "odds": "4/11",
           "decimal_odds": 1.363636,
-          "source_market": "Total Cards Over / Under"
+          "source_market": "Total Cards Over / Under",
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
         }
       },
       "all_prices": {
@@ -631,7 +91,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
           },
           {
             "bookmaker": "WilliamHill",
@@ -642,7 +103,20 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "11/5",
+            "decimal": 3.2,
+            "match": "South Africa v South Korea",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
           },
           {
             "bookmaker": "BetVictor",
@@ -653,7 +127,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
           }
         ],
         "under": [
@@ -666,7 +141,20 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "31/100",
+            "decimal": 1.31,
+            "match": "South Africa v South Korea",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
           },
           {
             "bookmaker": "WilliamHill",
@@ -677,7 +165,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
           },
           {
             "bookmaker": "PaddyPower",
@@ -688,7 +177,141 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Morocco v Haiti",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "3.5",
+      "arb_sum": 0.974359,
+      "arb_percent": 97.436,
+      "profit_margin_percent": 2.632,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "9/4",
+          "decimal_odds": 3.25,
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908954/morocco-vs-haiti"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "1/2",
+          "decimal_odds": 1.5,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/morocco-haiti-2:7812548"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908954/morocco-vs-haiti"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "11/5",
+            "decimal": 3.2,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/morocco-v-haiti-35631962"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "17/10",
+            "decimal": 2.7,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107500"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "137/100",
+            "decimal": 2.37,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/morocco-haiti-2:7812548"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/morocco-haiti-2:7812548"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107500"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908954/morocco-vs-haiti"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/7",
+            "decimal": 1.285714,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/morocco-v-haiti-35631962"
           }
         ]
       }
@@ -712,13 +335,15 @@
           "bookmaker": "PaddyPower",
           "odds": "11/8",
           "decimal_odds": 2.375,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
         },
         "under": {
           "bookmaker": "BetVictor",
           "odds": "4/5",
           "decimal_odds": 1.8,
-          "source_market": "Total Cards Over / Under"
+          "source_market": "Total Cards Over / Under",
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
         }
       },
       "all_prices": {
@@ -732,7 +357,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
           },
           {
             "bookmaker": "WilliamHill",
@@ -743,7 +369,20 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "49/50",
+            "decimal": 1.98,
+            "match": "South Africa v South Korea",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
           },
           {
             "bookmaker": "BetVictor",
@@ -754,7 +393,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
           }
         ],
         "under": [
@@ -767,7 +407,20 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "73/100",
+            "decimal": 1.73,
+            "match": "South Africa v South Korea",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
           },
           {
             "bookmaker": "WilliamHill",
@@ -778,7 +431,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
           },
           {
             "bookmaker": "PaddyPower",
@@ -789,11 +443,389 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
           }
         ]
       }
     },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Scotland v Brazil",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "3.5",
+      "arb_sum": 0.978035,
+      "arb_percent": 97.803,
+      "profit_margin_percent": 2.246,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "6/4",
+          "decimal_odds": 2.5,
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "73/100",
+          "decimal_odds": 1.73,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789106700"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/scotland-v-brazil-35625834"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/scotland-brazil/SBTE_2_1025862024/"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "73/100",
+            "decimal": 1.73,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/6",
+            "decimal": 1.666667,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/scotland-brazil/SBTE_2_1025862024/"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/10",
+            "decimal": 1.6,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/scotland-v-brazil-35625834"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789106700"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Morocco v Haiti",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "2.5",
+      "arb_sum": 0.978355,
+      "arb_percent": 97.835,
+      "profit_margin_percent": 2.212,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "10/11",
+          "decimal_odds": 1.909091,
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908954/morocco-vs-haiti"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "6/5",
+          "decimal_odds": 2.2,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/morocco-haiti-2:7812548"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908954/morocco-vs-haiti"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "20/23",
+            "decimal": 1.869565,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/morocco-v-haiti-35631962"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107500"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "57/100",
+            "decimal": 1.57,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/morocco-haiti-2:7812548"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/morocco-haiti-2:7812548"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107500"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/morocco-v-haiti-35631962"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908954/morocco-vs-haiti"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Czechia v Mexico",
+      "market": "Mexico Total Shots Over Under",
+      "canonical_market": "team_shots::mexico",
+      "scope": "team",
+      "scope_team": "mexico",
+      "line": "11.5",
+      "arb_sum": 0.978355,
+      "arb_percent": 97.835,
+      "profit_margin_percent": 2.212,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Ladbrokes",
+          "odds": "10/11",
+          "decimal_odds": 1.909091,
+          "source_market": "Mexico Shots Over / Under",
+          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/czechia-v-mexico/256213420/main-markets"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "6/5",
+          "decimal_odds": 2.2,
+          "source_market": "Mexico Total Shots",
+          "source_url": "https://www.bwin.com/en/sports/events/czechia-mexico-2:7812544"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "match": "Czechia v Mexico",
+            "market": "Mexico Total Shots Over Under",
+            "source_market": "Mexico Shots Over / Under",
+            "scope": "team",
+            "scope_team": "mexico",
+            "metric": "shots",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/czechia-v-mexico/256213420/main-markets"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "57/100",
+            "decimal": 1.57,
+            "match": "Czechia v Mexico",
+            "market": "Mexico Total Shots Over Under",
+            "source_market": "Mexico Total Shots",
+            "scope": "team",
+            "scope_team": "mexico",
+            "metric": "shots",
+            "source_url": "https://www.bwin.com/en/sports/events/czechia-mexico-2:7812544"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "match": "Czechia v Mexico",
+            "market": "Mexico Total Shots Over Under",
+            "source_market": "Mexico Total Shots",
+            "scope": "team",
+            "scope_team": "mexico",
+            "metric": "shots",
+            "source_url": "https://www.bwin.com/en/sports/events/czechia-mexico-2:7812544"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "match": "Czechia v Mexico",
+            "market": "Mexico Total Shots Over Under",
+            "source_market": "Mexico Shots Over / Under",
+            "scope": "team",
+            "scope_team": "mexico",
+            "metric": "shots",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/czechia-v-mexico/256213420/main-markets"
+          }
+        ]
+      }
+    }
+  ],
+  "near_misses": [
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
@@ -813,13 +845,15 @@
           "bookmaker": "PaddyPower",
           "odds": "10/3",
           "decimal_odds": 4.333333,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/ecuador-v-germany-35631939"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "1/3",
           "decimal_odds": 1.333333,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917251/ecuador-vs-germany"
         }
       },
       "all_prices": {
@@ -833,7 +867,20 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/ecuador-v-germany-35631939"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "27/10",
+            "decimal": 3.7,
+            "match": "Ecuador v Germany",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/ecuador-germany-2:7812553"
           },
           {
             "bookmaker": "WilliamHill",
@@ -844,7 +891,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917251/ecuador-vs-germany"
           },
           {
             "bookmaker": "BetVictor",
@@ -855,7 +903,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108500"
           }
         ],
         "under": [
@@ -868,7 +917,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917251/ecuador-vs-germany"
           },
           {
             "bookmaker": "BetVictor",
@@ -879,7 +929,20 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108500"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "6/25",
+            "decimal": 1.24,
+            "match": "Ecuador v Germany",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/ecuador-germany-2:7812553"
           },
           {
             "bookmaker": "PaddyPower",
@@ -890,7 +953,431 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/ecuador-v-germany-35631939"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Morocco v Haiti",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "1.5",
+      "arb_sum": 0.988095,
+      "arb_percent": 98.81,
+      "profit_margin_percent": 1.205,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "1/3",
+          "decimal_odds": 1.333333,
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908954/morocco-vs-haiti"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "16/5",
+          "decimal_odds": 4.2,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/morocco-haiti-2:7812548"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908954/morocco-vs-haiti"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/morocco-v-haiti-35631962"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107500"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "19/100",
+            "decimal": 1.19,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/morocco-haiti-2:7812548"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "16/5",
+            "decimal": 4.2,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/morocco-haiti-2:7812548"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/morocco-v-haiti-35631962"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107500"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "Morocco v Haiti",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908954/morocco-vs-haiti"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Bosnia v Qatar",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "5.5",
+      "arb_sum": 0.988345,
+      "arb_percent": 98.835,
+      "profit_margin_percent": 1.179,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "10/3",
+          "decimal_odds": 4.333333,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/bosnia-v-qatar-35625791"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "8/25",
+          "decimal_odds": 1.32,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/bosnia-herzegovina-qatar-2:7812546"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "10/3",
+            "decimal": 4.333333,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/bosnia-v-qatar-35625791"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "11/4",
+            "decimal": 3.75,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908944/bosnia-vs-qatar"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "Bosnia & Herzegovina v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/bosnia-herzegovina-qatar/SBTE_2_1027164907/"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "21/10",
+            "decimal": 3.1,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/bosnia-herzegovina-qatar-2:7812546"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "8/25",
+            "decimal": 1.32,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/bosnia-herzegovina-qatar-2:7812546"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "7/25",
+            "decimal": 1.28,
+            "match": "Bosnia & Herzegovina v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/bosnia-herzegovina-qatar/SBTE_2_1027164907/"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908944/bosnia-vs-qatar"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/6",
+            "decimal": 1.166667,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/bosnia-v-qatar-35625791"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Scotland v Brazil",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "2.5",
+      "arb_sum": 0.988636,
+      "arb_percent": 98.864,
+      "profit_margin_percent": 1.149,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "6/10",
+          "decimal_odds": 1.6,
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "7/4",
+          "decimal_odds": 2.75,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "6/10",
+            "decimal": 1.6,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "4/7",
+            "decimal": 1.571429,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789106700"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/scotland-v-brazil-35625834"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/scotland-brazil/SBTE_2_1025862024/"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "19/50",
+            "decimal": 1.38,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "7/4",
+            "decimal": 2.75,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/scotland-v-brazil-35625834"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/scotland-brazil/SBTE_2_1025862024/"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "5/4",
+            "decimal": 2.25,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789106700"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
           }
         ]
       }
@@ -914,13 +1401,15 @@
           "bookmaker": "BetVictor",
           "odds": "4/5",
           "decimal_odds": 1.8,
-          "source_market": "Total Cards Over / Under"
+          "source_market": "Total Cards Over / Under",
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107100"
         },
         "under": {
           "bookmaker": "PaddyPower",
           "odds": "13/10",
           "decimal_odds": 2.3,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/paraguay-v-australia-35626230"
         }
       },
       "all_prices": {
@@ -934,7 +1423,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107100"
           },
           {
             "bookmaker": "WilliamHill",
@@ -945,7 +1435,20 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39922196/paraguay-vs-australia"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "11/20",
+            "decimal": 1.55,
+            "match": "Paraguay v Australia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/paraguay-australia-2:7812550"
           },
           {
             "bookmaker": "PaddyPower",
@@ -956,7 +1459,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/paraguay-v-australia-35626230"
           }
         ],
         "under": [
@@ -969,7 +1473,20 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/paraguay-v-australia-35626230"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "5/4",
+            "decimal": 2.25,
+            "match": "Paraguay v Australia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/paraguay-australia-2:7812550"
           },
           {
             "bookmaker": "WilliamHill",
@@ -980,7 +1497,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39922196/paraguay-vs-australia"
           },
           {
             "bookmaker": "BetVictor",
@@ -991,7 +1509,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107100"
           }
         ]
       }
@@ -1000,127 +1519,135 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Scotland v Brazil",
+      "match": "Bosnia v Qatar",
       "market": "Total Cards Over Under",
       "canonical_market": "match_cards",
       "scope": "match",
       "scope_team": "",
-      "line": "3.5",
-      "arb_sum": 1.0,
-      "arb_percent": 100.0,
-      "profit_margin_percent": 0.0,
+      "line": "4.5",
+      "arb_sum": 0.995238,
+      "arb_percent": 99.524,
+      "profit_margin_percent": 0.478,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "WilliamHill",
+          "bookmaker": "PaddyPower",
           "odds": "6/4",
           "decimal_odds": 2.5,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/bosnia-v-qatar-35625791"
         },
         "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "4/6",
-          "decimal_odds": 1.666667,
-          "source_market": "Total Cards Over / Under"
+          "bookmaker": "Bwin",
+          "odds": "17/25",
+          "decimal_odds": 1.68,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/bosnia-herzegovina-qatar-2:7812546"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "WilliamHill",
+            "bookmaker": "PaddyPower",
             "odds": "6/4",
             "decimal": 2.5,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "11/8",
-            "decimal": 2.375,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "match": "Scotland v Brazil",
+            "match": "Bosnia v Qatar",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/bosnia-v-qatar-35625791"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "11/8",
+            "decimal": 2.375,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908944/bosnia-vs-qatar"
           },
           {
             "bookmaker": "LiveScoreBet",
-            "odds": "21/20",
-            "decimal": 2.05,
-            "match": "Scotland v Brazil",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "match": "Bosnia & Herzegovina v Qatar",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/bosnia-herzegovina-qatar/SBTE_2_1027164907/"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/bosnia-herzegovina-qatar-2:7812546"
           }
         ],
         "under": [
           {
-            "bookmaker": "LiveScoreBet",
-            "odds": "4/6",
-            "decimal": 1.666667,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "6/10",
-            "decimal": 1.6,
-            "match": "Scotland v Brazil",
+            "bookmaker": "Bwin",
+            "odds": "17/25",
+            "decimal": 1.68,
+            "match": "Bosnia v Qatar",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/bosnia-herzegovina-qatar-2:7812546"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "1/2",
-            "decimal": 1.5,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/2",
-            "decimal": 1.5,
-            "match": "Scotland v Brazil",
+            "bookmaker": "LiveScoreBet",
+            "odds": "11/20",
+            "decimal": 1.55,
+            "match": "Bosnia & Herzegovina v Qatar",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/bosnia-herzegovina-qatar/SBTE_2_1027164907/"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "8/15",
+            "decimal": 1.533333,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908944/bosnia-vs-qatar"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "Bosnia v Qatar",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/bosnia-v-qatar-35625791"
           }
         ]
       }
-    }
-  ],
-  "near_misses": [
+    },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
@@ -1140,13 +1667,15 @@
           "bookmaker": "PaddyPower",
           "odds": "4/1",
           "decimal_odds": 5.0,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/switzerland-v-canada-35625792"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "1/4",
           "decimal_odds": 1.25,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908946/switzerland-vs-canada"
         }
       },
       "all_prices": {
@@ -1160,7 +1689,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/switzerland-v-canada-35625792"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1171,7 +1701,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908946/switzerland-vs-canada"
           }
         ],
         "under": [
@@ -1184,7 +1715,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908946/switzerland-vs-canada"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1195,7 +1727,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/switzerland-v-canada-35625792"
           }
         ]
       }
@@ -1219,13 +1752,15 @@
           "bookmaker": "WilliamHill",
           "odds": "2/9",
           "decimal_odds": 1.222222,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
         },
         "under": {
           "bookmaker": "PaddyPower",
           "odds": "9/2",
           "decimal_odds": 5.5,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/scotland-v-brazil-35625834"
         }
       },
       "all_prices": {
@@ -1239,7 +1774,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
           },
           {
             "bookmaker": "BetVictor",
@@ -1250,7 +1786,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789106700"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1261,7 +1798,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/scotland-v-brazil-35625834"
           }
         ],
         "under": [
@@ -1274,7 +1812,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/scotland-v-brazil-35625834"
           },
           {
             "bookmaker": "BetVictor",
@@ -1285,7 +1824,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789106700"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1296,7 +1836,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
           }
         ]
       }
@@ -1320,13 +1861,15 @@
           "bookmaker": "PaddyPower",
           "odds": "8/15",
           "decimal_odds": 1.533333,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
         },
         "under": {
           "bookmaker": "BetVictor",
           "odds": "15/8",
           "decimal_odds": 2.875,
-          "source_market": "Total Cards Over / Under"
+          "source_market": "Total Cards Over / Under",
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
         }
       },
       "all_prices": {
@@ -1340,7 +1883,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1351,7 +1895,20 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "39/100",
+            "decimal": 1.39,
+            "match": "South Africa v South Korea",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
           },
           {
             "bookmaker": "BetVictor",
@@ -1362,7 +1919,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
           }
         ],
         "under": [
@@ -1375,7 +1933,20 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "7/4",
+            "decimal": 2.75,
+            "match": "South Africa v South Korea",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1386,7 +1957,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1397,7 +1969,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
           }
         ]
       }
@@ -1421,13 +1994,15 @@
           "bookmaker": "BetVictor",
           "odds": "1/4",
           "decimal_odds": 1.25,
-          "source_market": "Total Cards Over / Under"
+          "source_market": "Total Cards Over / Under",
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107100"
         },
         "under": {
           "bookmaker": "PaddyPower",
           "odds": "4/1",
           "decimal_odds": 5.0,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/paraguay-v-australia-35626230"
         }
       },
       "all_prices": {
@@ -1441,7 +2016,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107100"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1452,7 +2028,20 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39922196/paraguay-vs-australia"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "9/50",
+            "decimal": 1.18,
+            "match": "Paraguay v Australia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/paraguay-australia-2:7812550"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1463,7 +2052,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/paraguay-v-australia-35626230"
           }
         ],
         "under": [
@@ -1476,7 +2066,20 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/paraguay-v-australia-35626230"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "17/5",
+            "decimal": 4.4,
+            "match": "Paraguay v Australia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/paraguay-australia-2:7812550"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1487,7 +2090,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39922196/paraguay-vs-australia"
           },
           {
             "bookmaker": "BetVictor",
@@ -1498,7 +2102,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107100"
           }
         ]
       }
@@ -1522,13 +2127,15 @@
           "bookmaker": "BetVictor",
           "odds": "15/8",
           "decimal_odds": 2.875,
-          "source_market": "Total Cards Over / Under"
+          "source_market": "Total Cards Over / Under",
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107100"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "8/15",
           "decimal_odds": 1.533333,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39922196/paraguay-vs-australia"
         }
       },
       "all_prices": {
@@ -1542,7 +2149,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107100"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1553,7 +2161,20 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/paraguay-v-australia-35626230"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "match": "Paraguay v Australia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/paraguay-australia-2:7812550"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1564,7 +2185,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39922196/paraguay-vs-australia"
           }
         ],
         "under": [
@@ -1577,7 +2199,20 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39922196/paraguay-vs-australia"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "match": "Paraguay v Australia",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/paraguay-australia-2:7812550"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1588,7 +2223,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/paraguay-v-australia-35626230"
           },
           {
             "bookmaker": "BetVictor",
@@ -1599,7 +2235,141 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107100"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "South Africa v South Korea",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "7.5",
+      "arb_sum": 1.002304,
+      "arb_percent": 100.23,
+      "profit_margin_percent": -0.23,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "11/20",
+          "decimal_odds": 1.55,
+          "source_market": "Total Corners Over / Under",
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "9/5",
+          "decimal_odds": 2.8,
+          "source_market": "Total Corners Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "11/20",
+            "decimal": 1.55,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/21",
+            "decimal": 1.47619,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/south-africa-v-south-korea/256213421/main-markets"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "19/50",
+            "decimal": 1.38,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "9/5",
+            "decimal": 2.8,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/8",
+            "decimal": 2.625,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/south-africa-v-south-korea/256213421/main-markets"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "5/4",
+            "decimal": 2.25,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
           }
         ]
       }
@@ -1623,13 +2393,15 @@
           "bookmaker": "PaddyPower",
           "odds": "29/10",
           "decimal_odds": 3.9,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/japan-v-sweden-35632064"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "1/3",
           "decimal_odds": 1.333333,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917248/japan-vs-sweden"
         }
       },
       "all_prices": {
@@ -1643,7 +2415,20 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/japan-v-sweden-35632064"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "27/10",
+            "decimal": 3.7,
+            "match": "Japan v Sweden",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/japan-sweden-2:7812554"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1654,7 +2439,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917248/japan-vs-sweden"
           },
           {
             "bookmaker": "BetVictor",
@@ -1665,7 +2451,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789109700"
           }
         ],
         "under": [
@@ -1678,7 +2465,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917248/japan-vs-sweden"
           },
           {
             "bookmaker": "BetVictor",
@@ -1689,7 +2477,20 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789109700"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "23/100",
+            "decimal": 1.23,
+            "match": "Japan v Sweden",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/japan-sweden-2:7812554"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1700,7 +2501,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/japan-v-sweden-35632064"
           }
         ]
       }
@@ -1724,13 +2526,15 @@
           "bookmaker": "PaddyPower",
           "odds": "17/10",
           "decimal_odds": 2.7,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/switzerland-v-canada-35625792"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "4/7",
           "decimal_odds": 1.571429,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908946/switzerland-vs-canada"
         }
       },
       "all_prices": {
@@ -1744,7 +2548,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/switzerland-v-canada-35625792"
           },
           {
             "bookmaker": "BetVictor",
@@ -1755,7 +2560,20 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789106900"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "3/2",
+            "decimal": 2.5,
+            "match": "Switzerland v Canada",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/switzerland-canada-2:7812547"
           },
           {
             "bookmaker": "LiveScoreBet",
@@ -1766,7 +2584,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/switzerland-canada/SBTE_2_1025862011/"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1777,7 +2596,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908946/switzerland-vs-canada"
           }
         ],
         "under": [
@@ -1790,7 +2610,20 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908946/switzerland-vs-canada"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "23/50",
+            "decimal": 1.46,
+            "match": "Switzerland v Canada",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/switzerland-canada-2:7812547"
           },
           {
             "bookmaker": "LiveScoreBet",
@@ -1801,7 +2634,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/switzerland-canada/SBTE_2_1025862011/"
           },
           {
             "bookmaker": "BetVictor",
@@ -1812,7 +2646,8 @@
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789106900"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1823,7 +2658,141 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/switzerland-v-canada-35625792"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Scotland v Brazil",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 1.007576,
+      "arb_percent": 100.758,
+      "profit_margin_percent": -0.752,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "3/1",
+          "decimal_odds": 4.0,
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "8/25",
+          "decimal_odds": 1.32,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "3/1",
+            "decimal": 4.0,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "27/10",
+            "decimal": 3.7,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/scotland-v-brazil-35625834"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "21/10",
+            "decimal": 3.1,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/scotland-brazil/SBTE_2_1025862024/"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "21/10",
+            "decimal": 3.1,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "8/25",
+            "decimal": 1.32,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
+          },
+          {
+            "bookmaker": "LiveScoreBet",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/scotland-brazil/SBTE_2_1025862024/"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/9",
+            "decimal": 1.222222,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/scotland-v-brazil-35625834"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "2/9",
+            "decimal": 1.222222,
+            "match": "Scotland v Brazil",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908945/scotland-vs-brazil"
           }
         ]
       }
@@ -1847,13 +2816,15 @@
           "bookmaker": "PaddyPower",
           "odds": "13/2",
           "decimal_odds": 7.5,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/ecuador-v-germany-35631939"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "1/7",
           "decimal_odds": 1.142857,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917251/ecuador-vs-germany"
         }
       },
       "all_prices": {
@@ -1867,7 +2838,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/ecuador-v-germany-35631939"
           },
           {
             "bookmaker": "WilliamHill",
@@ -1878,7 +2850,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917251/ecuador-vs-germany"
           }
         ],
         "under": [
@@ -1891,7 +2864,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917251/ecuador-vs-germany"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1902,7 +2876,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/ecuador-v-germany-35631939"
           }
         ]
       }
@@ -1959,6 +2934,15 @@
           },
           {
             "bookmaker": "Ladbrokes",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Bwin",
             "odds": "13/10",
             "decimal": 2.3,
             "decimal_odds": 2.3,
@@ -2041,6 +3025,15 @@
             "selection_label": "No"
           },
           {
+            "bookmaker": "Bwin",
+            "odds": "11/20",
+            "decimal": 1.55,
+            "decimal_odds": 1.55,
+            "match": "Scotland v Brazil",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
             "bookmaker": "Midnite",
             "odds": 1.5,
             "decimal": 1.5,
@@ -2048,6 +3041,139 @@
             "match": "Scotland v Brazil",
             "source_market": "Both Teams To Score",
             "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Tunisia v Netherlands",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "3.5",
+      "arb_sum": 1.011011,
+      "arb_percent": 101.101,
+      "profit_margin_percent": -1.089,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "27/10",
+          "decimal_odds": 3.7,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/tunisia-v-netherlands-35631950"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "7/20",
+          "decimal_odds": 1.35,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/tunisia-netherlands-2:7812555"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "27/10",
+            "decimal": 3.7,
+            "match": "Tunisia v Netherlands",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/tunisia-v-netherlands-35631950"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Tunisia v Netherlands",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917249/tunisia-vs-netherlands"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "2/1",
+            "decimal": 3.0,
+            "match": "Tunisia v Netherlands",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108900"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "19/10",
+            "decimal": 2.9,
+            "match": "Tunisia v Netherlands",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/tunisia-netherlands-2:7812555"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "7/20",
+            "decimal": 1.35,
+            "match": "Tunisia v Netherlands",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/tunisia-netherlands-2:7812555"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "match": "Tunisia v Netherlands",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108900"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "2/7",
+            "decimal": 1.285714,
+            "match": "Tunisia v Netherlands",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917249/tunisia-vs-netherlands"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/9",
+            "decimal": 1.222222,
+            "match": "Tunisia v Netherlands",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/tunisia-v-netherlands-35631950"
           }
         ]
       }
@@ -2071,13 +3197,15 @@
           "bookmaker": "PaddyPower",
           "odds": "8/1",
           "decimal_odds": 9.0,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/switzerland-v-canada-35625792"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "1/9",
           "decimal_odds": 1.111111,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908946/switzerland-vs-canada"
         }
       },
       "all_prices": {
@@ -2091,7 +3219,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/switzerland-v-canada-35625792"
           },
           {
             "bookmaker": "WilliamHill",
@@ -2102,7 +3231,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908946/switzerland-vs-canada"
           }
         ],
         "under": [
@@ -2115,7 +3245,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908946/switzerland-vs-canada"
           },
           {
             "bookmaker": "PaddyPower",
@@ -2126,7 +3257,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/switzerland-v-canada-35625792"
           }
         ]
       }
@@ -2135,99 +3267,240 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Bosnia v Qatar",
+      "match": "Türkiye v USA",
       "market": "Total Cards Over Under",
       "canonical_market": "match_cards",
       "scope": "match",
       "scope_team": "",
-      "line": "5.5",
-      "arb_sum": 1.012019,
-      "arb_percent": 101.202,
-      "profit_margin_percent": -1.188,
+      "line": "3.5",
+      "arb_sum": 1.011801,
+      "arb_percent": 101.18,
+      "profit_margin_percent": -1.166,
       "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "PaddyPower",
-          "odds": "10/3",
-          "decimal_odds": 4.333333,
-          "source_market": "Total Cards Over/Under"
+          "odds": "11/5",
+          "decimal_odds": 3.2,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/t%C3%BCrkiye-v-usa-35631688"
         },
         "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "7/25",
-          "decimal_odds": 1.28,
-          "source_market": "Total Cards Over / Under"
+          "bookmaker": "Bwin",
+          "odds": "43/100",
+          "decimal_odds": 1.43,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
         }
       },
       "all_prices": {
         "over": [
           {
             "bookmaker": "PaddyPower",
-            "odds": "10/3",
-            "decimal": 4.333333,
-            "match": "Bosnia v Qatar",
+            "odds": "11/5",
+            "decimal": 3.2,
+            "match": "Türkiye v USA",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/t%C3%BCrkiye-v-usa-35631688"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "11/4",
-            "decimal": 3.75,
-            "match": "Bosnia v Qatar",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "9/4",
-            "decimal": 3.25,
-            "match": "Bosnia & Herzegovina v Qatar",
+            "bookmaker": "BetVictor",
+            "odds": "15/8",
+            "decimal": 2.875,
+            "match": "Türkiye v USA",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107200"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "8/5",
+            "decimal": 2.6,
+            "match": "Türkiye v USA",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
           }
         ],
         "under": [
           {
-            "bookmaker": "LiveScoreBet",
-            "odds": "7/25",
-            "decimal": 1.28,
-            "match": "Bosnia & Herzegovina v Qatar",
+            "bookmaker": "Bwin",
+            "odds": "43/100",
+            "decimal": 1.43,
+            "match": "Türkiye v USA",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "4/11",
+            "decimal": 1.363636,
+            "match": "Türkiye v USA",
             "market": "Total Cards Over Under",
             "source_market": "Total Cards Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107200"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "2/7",
+            "decimal": 1.285714,
+            "match": "Türkiye v USA",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/t%C3%BCrkiye-v-usa-35631688"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "South Africa v South Korea",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "6.5",
+      "arb_sum": 1.013133,
+      "arb_percent": 101.313,
+      "profit_margin_percent": -1.296,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "3/10",
+          "decimal_odds": 1.3,
+          "source_market": "Total Corners Over / Under",
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "31/10",
+          "decimal_odds": 4.1,
+          "source_market": "Total Corners Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/south-africa-v-south-korea/256213421/main-markets"
           },
           {
             "bookmaker": "WilliamHill",
             "odds": "1/4",
             "decimal": 1.25,
-            "match": "Bosnia v Qatar",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
           },
           {
-            "bookmaker": "PaddyPower",
-            "odds": "1/6",
-            "decimal": 1.166667,
-            "match": "Bosnia v Qatar",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "bookmaker": "Bwin",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "31/10",
+            "decimal": 4.1,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "11/4",
+            "decimal": 3.75,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/south-africa-v-south-korea/256213421/main-markets"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "21/10",
+            "decimal": 3.1,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
           }
         ]
       }
@@ -2251,13 +3524,15 @@
           "bookmaker": "PaddyPower",
           "odds": "7/1",
           "decimal_odds": 8.0,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "1/8",
           "decimal_odds": 1.125,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
         }
       },
       "all_prices": {
@@ -2271,7 +3546,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
           },
           {
             "bookmaker": "WilliamHill",
@@ -2282,7 +3558,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
           }
         ],
         "under": [
@@ -2295,7 +3572,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
           },
           {
             "bookmaker": "PaddyPower",
@@ -2306,7 +3584,141 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/south-africa-v-south-korea-35631961"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "South Africa v South Korea",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "8.5",
+      "arb_sum": 1.014121,
+      "arb_percent": 101.412,
+      "profit_margin_percent": -1.392,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "BetVictor",
+          "odds": "9/10",
+          "decimal_odds": 1.9,
+          "source_market": "Total Corners Over / Under",
+          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "21/20",
+          "decimal_odds": 2.05,
+          "source_market": "Total Corners Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "9/10",
+            "decimal": 1.9,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/south-africa-v-south-korea/256213421/main-markets"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "17/25",
+            "decimal": 1.68,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/south-africa-south-korea-2:7812545"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908959/south-africa-vs-south-korea"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/south-africa-v-south-korea/256213421/main-markets"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "31/40",
+            "decimal": 1.775,
+            "match": "South Africa v South Korea",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300"
           }
         ]
       }
@@ -2330,13 +3742,15 @@
           "bookmaker": "PaddyPower",
           "odds": "15/2",
           "decimal_odds": 8.5,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/czechia-v-mexico-35632062"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "1/9",
           "decimal_odds": 1.111111,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908667/czech-republic-vs-mexico"
         }
       },
       "all_prices": {
@@ -2350,7 +3764,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/czechia-v-mexico-35632062"
           },
           {
             "bookmaker": "WilliamHill",
@@ -2361,7 +3776,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908667/czech-republic-vs-mexico"
           }
         ],
         "under": [
@@ -2374,7 +3790,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39908667/czech-republic-vs-mexico"
           },
           {
             "bookmaker": "PaddyPower",
@@ -2385,7 +3802,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/czechia-v-mexico-35632062"
           }
         ]
       }
@@ -2409,13 +3827,15 @@
           "bookmaker": "PaddyPower",
           "odds": "6/1",
           "decimal_odds": 7.0,
-          "source_market": "Total Cards Over/Under"
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/japan-v-sweden-35632064"
         },
         "under": {
           "bookmaker": "WilliamHill",
           "odds": "1/7",
           "decimal_odds": 1.142857,
-          "source_market": "Total Cards"
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917248/japan-vs-sweden"
         }
       },
       "all_prices": {
@@ -2429,7 +3849,8 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/japan-v-sweden-35632064"
           },
           {
             "bookmaker": "WilliamHill",
@@ -2440,7 +3861,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917248/japan-vs-sweden"
           }
         ],
         "under": [
@@ -2453,7 +3875,8 @@
             "source_market": "Total Cards",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917248/japan-vs-sweden"
           },
           {
             "bookmaker": "PaddyPower",
@@ -2464,1352 +3887,34 @@
             "source_market": "Total Cards Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Scotland v Brazil",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "4.5",
-      "arb_sum": 1.019231,
-      "arb_percent": 101.923,
-      "profit_margin_percent": -1.887,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "WilliamHill",
-          "odds": "3/1",
-          "decimal_odds": 4.0,
-          "source_market": "Total Cards"
-        },
-        "under": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "3/10",
-          "decimal_odds": 1.3,
-          "source_market": "Total Cards Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "3/1",
-            "decimal": 4.0,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "27/10",
-            "decimal": 3.7,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "21/10",
-            "decimal": 3.1,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "3/10",
-            "decimal": 1.3,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "moneyline_1x2",
-      "match": "Senegal v Iraq",
-      "home_team": "Senegal",
-      "away_team": "Iraq",
-      "date_label": "",
-      "time": "20:00",
-      "market": "Match Odds",
-      "bookmaker_count": 8,
-      "arb_sum": 1.01978,
-      "arb_percent": 101.978,
-      "profit_margin_percent": -1.94,
-      "selections": {
-        "home": {
-          "bookmaker": "Bwin",
-          "odds": "1.25",
-          "decimal_odds": 1.25,
-          "implied_probability": 0.8,
-          "source_url": "https://www.bwin.com/en/sports/events/senegal-iraq-2:7812561"
-        },
-        "draw": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "6/1",
-          "decimal_odds": 7.0,
-          "implied_probability": 0.142857,
-          "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-        },
-        "away": {
-          "bookmaker": "BetVictor",
-          "odds": "12/1",
-          "decimal_odds": 13.0,
-          "implied_probability": 0.076923,
-          "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "Bwin",
-            "odds": "1.25",
-            "decimal_odds": 1.25,
-            "implied_probability": 0.8,
-            "source_url": "https://www.bwin.com/en/sports/events/senegal-iraq-2:7812561"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "2/9",
-            "decimal_odds": 1.222222,
-            "implied_probability": 0.818182,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "11/50",
-            "decimal_odds": 1.22,
-            "implied_probability": 0.819672,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "1/5",
-            "decimal_odds": 1.2,
-            "implied_probability": 0.833333,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "1/5",
-            "decimal_odds": 1.2,
-            "implied_probability": 0.833333,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/5",
-            "decimal_odds": 1.2,
-            "implied_probability": 0.833333,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "1/5",
-            "decimal_odds": 1.2,
-            "implied_probability": 0.833333,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "1/6",
-            "decimal_odds": 1.166667,
-            "implied_probability": 0.857143,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "6/1",
-            "decimal_odds": 7.0,
-            "implied_probability": 0.142857,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "11/2",
-            "decimal_odds": 6.5,
-            "implied_probability": 0.153846,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "11/2",
-            "decimal_odds": 6.5,
-            "implied_probability": 0.153846,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "6.50",
-            "decimal_odds": 6.5,
-            "implied_probability": 0.153846,
-            "source_url": "https://www.bwin.com/en/sports/events/senegal-iraq-2:7812561"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "5/1",
-            "decimal_odds": 6.0,
-            "implied_probability": 0.166667,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "5/1",
-            "decimal_odds": 6.0,
-            "implied_probability": 0.166667,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "5/1",
-            "decimal_odds": 6.0,
-            "implied_probability": 0.166667,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "5/1",
-            "decimal_odds": 6.0,
-            "implied_probability": 0.166667,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "12/1",
-            "decimal_odds": 13.0,
-            "implied_probability": 0.076923,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "888Sport",
-            "odds": "11/1",
-            "decimal_odds": 12.0,
-            "implied_probability": 0.083333,
-            "source_url": "https://www.888sport.com/football/world-cup/"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "21/2",
-            "decimal_odds": 11.5,
-            "implied_probability": 0.086957,
-            "source_url": "https://www.livescorebet.com/ie/coupon/21127/"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "10.50",
-            "decimal_odds": 10.5,
-            "implied_probability": 0.095238,
-            "source_url": "https://www.bwin.com/en/sports/events/senegal-iraq-2:7812561"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Tunisia v Netherlands",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "3.5",
-      "arb_sum": 1.02027,
-      "arb_percent": 102.027,
-      "profit_margin_percent": -1.987,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "27/10",
-          "decimal_odds": 3.7,
-          "source_market": "Total Cards Over/Under"
-        },
-        "under": {
-          "bookmaker": "BetVictor",
-          "odds": "1/3",
-          "decimal_odds": 1.333333,
-          "source_market": "Total Cards Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "27/10",
-            "decimal": 3.7,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "5/2",
-            "decimal": 3.5,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "2/1",
-            "decimal": 3.0,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/3",
-            "decimal": 1.333333,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "2/7",
-            "decimal": 1.285714,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "2/9",
-            "decimal": 1.222222,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Switzerland v Canada",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "8.5",
-      "arb_sum": 1.021053,
-      "arb_percent": 102.105,
-      "profit_margin_percent": -2.062,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "4/6",
-          "decimal_odds": 1.666667,
-          "source_market": "Total Corners Over / Under"
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "11/8",
-          "decimal_odds": 2.375,
-          "source_market": "Total Corners Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "4/6",
-            "decimal": 1.666667,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "8/13",
-            "decimal": 1.615385,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "8/13",
-            "decimal": 1.615385,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "1/2",
-            "decimal": 1.5,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "11/8",
-            "decimal": 2.375,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "6/5",
-            "decimal": 2.2,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "11/10",
-            "decimal": 2.1,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "11/10",
-            "decimal": 2.1,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Morocco v Haiti",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "3.5",
-      "arb_sum": 1.021978,
-      "arb_percent": 102.198,
-      "profit_margin_percent": -2.151,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "WilliamHill",
-          "odds": "9/4",
-          "decimal_odds": 3.25,
-          "source_market": "Total Cards"
-        },
-        "under": {
-          "bookmaker": "BetVictor",
-          "odds": "2/5",
-          "decimal_odds": 1.4,
-          "source_market": "Total Cards Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "9/4",
-            "decimal": 3.25,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "11/5",
-            "decimal": 3.2,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "17/10",
-            "decimal": 2.7,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "2/5",
-            "decimal": 1.4,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/3",
-            "decimal": 1.333333,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "2/7",
-            "decimal": 1.285714,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Czechia v Mexico",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "4.5",
-      "arb_sum": 1.022222,
-      "arb_percent": 102.222,
-      "profit_margin_percent": -2.174,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "7/2",
-          "decimal_odds": 4.5,
-          "source_market": "Total Cards Over/Under"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "1/4",
-          "decimal_odds": 1.25,
-          "source_market": "Total Cards"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "7/2",
-            "decimal": 4.5,
-            "match": "Czechia v Mexico",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "11/4",
-            "decimal": 3.75,
-            "match": "Czechia v Mexico",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "5/2",
-            "decimal": 3.5,
-            "match": "Czechia v Mexico",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/4",
-            "decimal": 1.25,
-            "match": "Czechia v Mexico",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/4",
-            "decimal": 1.25,
-            "match": "Czechia v Mexico",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "2/13",
-            "decimal": 1.153846,
-            "match": "Czechia v Mexico",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Ecuador v Germany",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "3.5",
-      "arb_sum": 1.023018,
-      "arb_percent": 102.302,
-      "profit_margin_percent": -2.25,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "13/10",
-          "decimal_odds": 2.3,
-          "source_market": "Total Cards Over/Under"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "7/10",
-          "decimal_odds": 1.7,
-          "source_market": "Total Cards"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "13/10",
-            "decimal": 2.3,
-            "match": "Ecuador v Germany",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "11/10",
-            "decimal": 2.1,
-            "match": "Ecuador v Germany",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "EVS",
-            "decimal": 2.0,
-            "match": "Ecuador v Germany",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "7/10",
-            "decimal": 1.7,
-            "match": "Ecuador v Germany",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "13/20",
-            "decimal": 1.65,
-            "match": "Ecuador v Germany",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "8/15",
-            "decimal": 1.533333,
-            "match": "Ecuador v Germany",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Morocco v Haiti",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "2.5",
-      "arb_sum": 1.023809,
-      "arb_percent": 102.381,
-      "profit_margin_percent": -2.326,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "WilliamHill",
-          "odds": "10/11",
-          "decimal_odds": 1.909091,
-          "source_market": "Total Cards"
-        },
-        "under": {
-          "bookmaker": "BetVictor",
-          "odds": "1/1",
-          "decimal_odds": 2.0,
-          "source_market": "Total Cards Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "10/11",
-            "decimal": 1.909091,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "20/23",
-            "decimal": 1.869565,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "8/11",
-            "decimal": 1.727273,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "1/1",
-            "decimal": 2.0,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "4/5",
-            "decimal": 1.8,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "3/4",
-            "decimal": 1.75,
-            "match": "Morocco v Haiti",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Switzerland v Canada",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "6.5",
-      "arb_sum": 1.02381,
-      "arb_percent": 102.381,
-      "profit_margin_percent": -2.326,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "1/5",
-          "decimal_odds": 1.2,
-          "source_market": "Total Corners Over / Under"
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "17/4",
-          "decimal_odds": 5.25,
-          "source_market": "Total Corners Over / Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "1/5",
-            "decimal": 1.2,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/5",
-            "decimal": 1.2,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "2/15",
-            "decimal": 1.133333,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "17/4",
-            "decimal": 5.25,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "10/3",
-            "decimal": 4.333333,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "3/1",
-            "decimal": 4.0,
-            "match": "Switzerland v Canada",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "moneyline_1x2",
-      "match": "Scotland v Brazil",
-      "home_team": "Scotland",
-      "away_team": "Brazil",
-      "date_label": "",
-      "time": "23:00",
-      "market": "Match Odds",
-      "bookmaker_count": 6,
-      "arb_sum": 1.024607,
-      "arb_percent": 102.461,
-      "profit_margin_percent": -2.402,
-      "selections": {
-        "home": {
-          "bookmaker": "BoyleSports",
-          "odds": "10/1",
-          "decimal_odds": 11.0,
-          "implied_probability": 0.090909,
-          "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-        },
-        "draw": {
-          "bookmaker": "PaddyPower",
-          "odds": "9/2",
-          "decimal_odds": 5.5,
-          "implied_probability": 0.181818,
-          "source_url": "https://www.paddypower.com/fifa-world-cup"
-        },
-        "away": {
-          "bookmaker": "Unibet",
-          "odds": "33/100",
-          "decimal_odds": 1.33,
-          "implied_probability": 0.75188,
-          "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-        }
-      },
-      "all_prices": {
-        "home": [
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "10/1",
-            "decimal_odds": 11.0,
-            "implied_probability": 0.090909,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "19/2",
-            "decimal_odds": 10.5,
-            "implied_probability": 0.095238,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "9/1",
-            "decimal_odds": 10.0,
-            "implied_probability": 0.1,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "9.75",
-            "decimal_odds": 9.75,
-            "implied_probability": 0.102564,
-            "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "17/2",
-            "decimal_odds": 9.5,
-            "implied_probability": 0.105263,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "8/1",
-            "decimal_odds": 9.0,
-            "implied_probability": 0.111111,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          }
-        ],
-        "draw": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "9/2",
-            "decimal_odds": 5.5,
-            "implied_probability": 0.181818,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "9/2",
-            "decimal_odds": 5.5,
-            "implied_probability": 0.181818,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "17/4",
-            "decimal_odds": 5.25,
-            "implied_probability": 0.190476,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "5.25",
-            "decimal_odds": 5.25,
-            "implied_probability": 0.190476,
-            "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "4/1",
-            "decimal_odds": 5.0,
-            "implied_probability": 0.2,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "15/4",
-            "decimal_odds": 4.75,
-            "implied_probability": 0.210526,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          }
-        ],
-        "away": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "33/100",
-            "decimal_odds": 1.33,
-            "implied_probability": 0.75188,
-            "source_url": "https://www.unibet.ie/betting/odds/football/international/worldcup/matches"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "1.31",
-            "decimal_odds": 1.31,
-            "implied_probability": 0.763359,
-            "source_url": "https://www.bwin.com/en/sports/events/scotland-brazil-2:7812549"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "3/10",
-            "decimal_odds": 1.3,
-            "implied_probability": 0.769231,
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "2/7",
-            "decimal_odds": 1.285714,
-            "implied_probability": 0.777778,
-            "source_url": "https://www.paddypower.com/fifa-world-cup"
-          },
-          {
-            "bookmaker": "BoyleSports",
-            "odds": "2/7",
-            "decimal_odds": 1.285714,
-            "implied_probability": 0.777778,
-            "source_url": "https://www.boylesports.com/sports/football/competition/international-world-cup"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "2/7",
-            "decimal_odds": 1.285714,
-            "implied_probability": 0.777778,
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Scotland v Brazil",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "2.5",
-      "arb_sum": 1.025,
-      "arb_percent": 102.5,
-      "profit_margin_percent": -2.439,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "WilliamHill",
-          "odds": "6/10",
-          "decimal_odds": 1.6,
-          "source_market": "Total Cards"
-        },
-        "under": {
-          "bookmaker": "PaddyPower",
-          "odds": "6/4",
-          "decimal_odds": 2.5,
-          "source_market": "Total Cards Over/Under"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "6/10",
-            "decimal": 1.6,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "4/7",
-            "decimal": 1.571429,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "4/9",
-            "decimal": 1.444444,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "4/9",
-            "decimal": 1.444444,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "6/4",
-            "decimal": 2.5,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "29/20",
-            "decimal": 2.45,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "5/4",
-            "decimal": 2.25,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "match": "Scotland v Brazil",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards"
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/japan-v-sweden-35632064"
           }
         ]
       }
     }
   ],
-  "props_arb_count": 9,
+  "arb_safety": {
+    "source_two_way_sum_min": 0.94,
+    "source_two_way_sum_max": 1.3,
+    "source_three_way_sum_min": 0.94,
+    "source_three_way_sum_max": 1.4,
+    "minimum_profit_percent": 2.0,
+    "maximum_profit_percent": 15.0,
+    "livescorebet_half_time_quarantined": true,
+    "trusted_over_only_stats_books": [
+      "Midnite",
+      "PaddyPower"
+    ],
+    "trusted_over_only_stats": [
+      "match_shots",
+      "team_shots",
+      "match_shots_on_target",
+      "team_shots_on_target"
+    ],
+    "model": "source_book_validation_v4_over_only_stats"
+  },
+  "props_arb_count": 6,
   "props_ou_arb_count": 6,
-  "props_named_arb_count": 3
+  "props_named_arb_count": 0
 }
