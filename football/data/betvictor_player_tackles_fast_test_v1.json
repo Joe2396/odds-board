@@ -1,0 +1,3694 @@
+{
+  "sport": "football",
+  "competition": "FIFA World Cup",
+  "bookmaker": "BetVictor",
+  "market_type": "player_tackles_fast_test_v1",
+  "test_mode": true,
+  "production_files_modified": false,
+  "generated_at": "2026-06-24T21:55:53.100600+00:00",
+  "source_props_generated_at": "2026-06-24T21:49:21.415966+00:00",
+  "max_matches": 3,
+  "match_count": 3,
+  "matches_with_player_tackles": 3,
+  "elapsed_seconds": 47.67,
+  "matches": [
+    {
+      "match": "Czechia v Mexico",
+      "home_team": "Czechia",
+      "away_team": "Mexico",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108300",
+      "kickoff": "2026-06-25T01:00:00+00:00",
+      "market_count": 1,
+      "markets": [
+        {
+          "market": "Player Tackles",
+          "normalized_market": "player_tackles",
+          "heading_clicked": "Player Tackles",
+          "expansion_controls_clicked": 1,
+          "scroll_containers_found": 0,
+          "scoped_show_more_clicked": 1,
+          "fallback_used": false,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 178,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 1,
+            "show_more_passes": [
+              {
+                "pass": 1,
+                "rows_before": 5,
+                "rows_after": 132,
+                "rows_added": 127,
+                "button": {
+                  "found": true,
+                  "distance_px": 402,
+                  "matching_rows_between": 5,
+                  "heading_y": 1008,
+                  "button_y": 1454,
+                  "button_tag": "DIV",
+                  "button_text": "Show More",
+                  "visible_headings": 3,
+                  "visible_rows": 5,
+                  "visible_show_more": 4
+                },
+                "click_preparation": {
+                  "dismiss_actions": [
+                    "escape"
+                  ],
+                  "before": {
+                    "blocked": false,
+                    "blocker_tag": "BUTTON",
+                    "blocker_text": "Show More",
+                    "blocker_class": "market-view__show-more-button bvs-button is-primary",
+                    "blocker_position": "static",
+                    "blocker_rect": {
+                      "left": 792,
+                      "top": 895,
+                      "width": 107,
+                      "height": 44
+                    }
+                  },
+                  "neutralised": {
+                    "changed": false,
+                    "reason": "not_needed"
+                  },
+                  "after": {
+                    "blocked": false,
+                    "blocker_tag": "BUTTON",
+                    "blocker_text": "Show More",
+                    "blocker_class": "market-view__show-more-button bvs-button is-primary",
+                    "blocker_position": "static",
+                    "blocker_rect": {
+                      "left": 792,
+                      "top": 895,
+                      "width": 107,
+                      "height": 44
+                    }
+                  }
+                },
+                "clicked": true,
+                "market_scroll": {
+                  "used": true,
+                  "steps": 20,
+                  "rows_before": 132,
+                  "rows_after": 132,
+                  "scope_height": 8111
+                }
+              },
+              {
+                "pass": 2,
+                "rows_before": 132,
+                "rows_after": 132,
+                "rows_added": 0,
+                "button": {
+                  "found": false,
+                  "visible_headings": 3,
+                  "visible_rows": 132,
+                  "visible_show_more": 2
+                },
+                "clicked": false
+              }
+            ],
+            "final_scope": {
+              "row_count": 132,
+              "show_more_count": 0,
+              "text_length": 3978,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 132,
+            "fallback_used": false,
+            "final_rows": 132
+          },
+          "selection_audit": {
+            "raw_row_count": 132,
+            "unique_player_threshold_count": 132,
+            "selection_count": 132,
+            "player_count": 45,
+            "threshold_counts": {
+              "1+": 13,
+              "2+": 44,
+              "3+": 39,
+              "4+": 29,
+              "5+": 6,
+              "6+": 1
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 132,
+          "elapsed_seconds": 15.78,
+          "selections": [
+            {
+              "selection": "Adam Hlozek 1+ Tackles",
+              "normalized_selection": "adam_hlozek_1_tackles",
+              "odds": "8/13",
+              "player": "Adam Hlozek",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Adam Hlozek 2+ Tackles",
+              "normalized_selection": "adam_hlozek_2_tackles",
+              "odds": "5/2",
+              "player": "Adam Hlozek",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Adam Hlozek 3+ Tackles",
+              "normalized_selection": "adam_hlozek_3_tackles",
+              "odds": "8/1",
+              "player": "Adam Hlozek",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Alexandr Sojka 2+ Tackles",
+              "normalized_selection": "alexandr_sojka_2_tackles",
+              "odds": "3/5",
+              "player": "Alexandr Sojka",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Alexandr Sojka 3+ Tackles",
+              "normalized_selection": "alexandr_sojka_3_tackles",
+              "odds": "13/8",
+              "player": "Alexandr Sojka",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Alexandr Sojka 4+ Tackles",
+              "normalized_selection": "alexandr_sojka_4_tackles",
+              "odds": "4/1",
+              "player": "Alexandr Sojka",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Alexis Vega 2+ Tackles",
+              "normalized_selection": "alexis_vega_2_tackles",
+              "odds": "3/5",
+              "player": "Alexis Vega",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Alexis Vega 3+ Tackles",
+              "normalized_selection": "alexis_vega_3_tackles",
+              "odds": "13/8",
+              "player": "Alexis Vega",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Alexis Vega 4+ Tackles",
+              "normalized_selection": "alexis_vega_4_tackles",
+              "odds": "4/1",
+              "player": "Alexis Vega",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Alvaro Fidalgo 2+ Tackles",
+              "normalized_selection": "alvaro_fidalgo_2_tackles",
+              "odds": "19/20",
+              "player": "Alvaro Fidalgo",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Alvaro Fidalgo 3+ Tackles",
+              "normalized_selection": "alvaro_fidalgo_3_tackles",
+              "odds": "13/5",
+              "player": "Alvaro Fidalgo",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Alvaro Fidalgo 4+ Tackles",
+              "normalized_selection": "alvaro_fidalgo_4_tackles",
+              "odds": "7/1",
+              "player": "Alvaro Fidalgo",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Armando Gonzalez 1+ Tackles",
+              "normalized_selection": "armando_gonzalez_1_tackles",
+              "odds": "8/11",
+              "player": "Armando Gonzalez",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Armando Gonzalez 2+ Tackles",
+              "normalized_selection": "armando_gonzalez_2_tackles",
+              "odds": "3/1",
+              "player": "Armando Gonzalez",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Brian Gutierrez 2+ Tackles",
+              "normalized_selection": "brian_gutierrez_2_tackles",
+              "odds": "7/10",
+              "player": "Brian Gutierrez",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Brian Gutierrez 3+ Tackles",
+              "normalized_selection": "brian_gutierrez_3_tackles",
+              "odds": "19/10",
+              "player": "Brian Gutierrez",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Brian Gutierrez 4+ Tackles",
+              "normalized_selection": "brian_gutierrez_4_tackles",
+              "odds": "19/4",
+              "player": "Brian Gutierrez",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Cesar Huerta 2+ Tackles",
+              "normalized_selection": "cesar_huerta_2_tackles",
+              "odds": "11/10",
+              "player": "Cesar Huerta",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Cesar Huerta 3+ Tackles",
+              "normalized_selection": "cesar_huerta_3_tackles",
+              "odds": "31/10",
+              "player": "Cesar Huerta",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Cesar Huerta 4+ Tackles",
+              "normalized_selection": "cesar_huerta_4_tackles",
+              "odds": "8/1",
+              "player": "Cesar Huerta",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Cesar Montes 1+ Tackles",
+              "normalized_selection": "cesar_montes_1_tackles",
+              "odds": "8/13",
+              "player": "Cesar Montes",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Cesar Montes 2+ Tackles",
+              "normalized_selection": "cesar_montes_2_tackles",
+              "odds": "5/2",
+              "player": "Cesar Montes",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Cesar Montes 3+ Tackles",
+              "normalized_selection": "cesar_montes_3_tackles",
+              "odds": "8/1",
+              "player": "Cesar Montes",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "David Doudera 2+ Tackles",
+              "normalized_selection": "david_doudera_2_tackles",
+              "odds": "13/10",
+              "player": "David Doudera",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "David Doudera 3+ Tackles",
+              "normalized_selection": "david_doudera_3_tackles",
+              "odds": "19/5",
+              "player": "David Doudera",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "David Zima 2+ Tackles",
+              "normalized_selection": "david_zima_2_tackles",
+              "odds": "21/20",
+              "player": "David Zima",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "David Zima 3+ Tackles",
+              "normalized_selection": "david_zima_3_tackles",
+              "odds": "29/10",
+              "player": "David Zima",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "David Zima 4+ Tackles",
+              "normalized_selection": "david_zima_4_tackles",
+              "odds": "15/2",
+              "player": "David Zima",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Denis Visinsky 1+ Tackles",
+              "normalized_selection": "denis_visinsky_1_tackles",
+              "odds": "2/5",
+              "player": "Denis Visinsky",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Denis Visinsky 2+ Tackles",
+              "normalized_selection": "denis_visinsky_2_tackles",
+              "odds": "13/8",
+              "player": "Denis Visinsky",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Denis Visinsky 3+ Tackles",
+              "normalized_selection": "denis_visinsky_3_tackles",
+              "odds": "5/1",
+              "player": "Denis Visinsky",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Edson Alvarez 2+ Tackles",
+              "normalized_selection": "edson_alvarez_2_tackles",
+              "odds": "9/20",
+              "player": "Edson Alvarez",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Edson Alvarez 3+ Tackles",
+              "normalized_selection": "edson_alvarez_3_tackles",
+              "odds": "5/4",
+              "player": "Edson Alvarez",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Edson Alvarez 4+ Tackles",
+              "normalized_selection": "edson_alvarez_4_tackles",
+              "odds": "3/1",
+              "player": "Edson Alvarez",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Edson Alvarez 5+ Tackles",
+              "normalized_selection": "edson_alvarez_5_tackles",
+              "odds": "13/2",
+              "player": "Edson Alvarez",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Erik Lira 2+ Tackles",
+              "normalized_selection": "erik_lira_2_tackles",
+              "odds": "7/10",
+              "player": "Erik Lira",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Erik Lira 3+ Tackles",
+              "normalized_selection": "erik_lira_3_tackles",
+              "odds": "19/10",
+              "player": "Erik Lira",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Erik Lira 4+ Tackles",
+              "normalized_selection": "erik_lira_4_tackles",
+              "odds": "19/4",
+              "player": "Erik Lira",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Gilberto Mora 2+ Tackles",
+              "normalized_selection": "gilberto_mora_2_tackles",
+              "odds": "10/11",
+              "player": "Gilberto Mora",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Gilberto Mora 3+ Tackles",
+              "normalized_selection": "gilberto_mora_3_tackles",
+              "odds": "5/2",
+              "player": "Gilberto Mora",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Gilberto Mora 4+ Tackles",
+              "normalized_selection": "gilberto_mora_4_tackles",
+              "odds": "13/2",
+              "player": "Gilberto Mora",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Guillermo Martinez 1+ Tackles",
+              "normalized_selection": "guillermo_martinez_1_tackles",
+              "odds": "20/23",
+              "player": "Guillermo Martinez",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Guillermo Martinez 2+ Tackles",
+              "normalized_selection": "guillermo_martinez_2_tackles",
+              "odds": "15/4",
+              "player": "Guillermo Martinez",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hugo Sochurek 2+ Tackles",
+              "normalized_selection": "hugo_sochurek_2_tackles",
+              "odds": "8/15",
+              "player": "Hugo Sochurek",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hugo Sochurek 3+ Tackles",
+              "normalized_selection": "hugo_sochurek_3_tackles",
+              "odds": "29/20",
+              "player": "Hugo Sochurek",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hugo Sochurek 4+ Tackles",
+              "normalized_selection": "hugo_sochurek_4_tackles",
+              "odds": "17/5",
+              "player": "Hugo Sochurek",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hugo Sochurek 5+ Tackles",
+              "normalized_selection": "hugo_sochurek_5_tackles",
+              "odds": "8/1",
+              "player": "Hugo Sochurek",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Israel Reyes 1+ Tackles",
+              "normalized_selection": "israel_reyes_1_tackles",
+              "odds": "40/85",
+              "player": "Israel Reyes",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Israel Reyes 2+ Tackles",
+              "normalized_selection": "israel_reyes_2_tackles",
+              "odds": "15/8",
+              "player": "Israel Reyes",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Israel Reyes 3+ Tackles",
+              "normalized_selection": "israel_reyes_3_tackles",
+              "odds": "11/2",
+              "player": "Israel Reyes",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jan Kuchta 1+ Tackles",
+              "normalized_selection": "jan_kuchta_1_tackles",
+              "odds": "1/2",
+              "player": "Jan Kuchta",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jan Kuchta 2+ Tackles",
+              "normalized_selection": "jan_kuchta_2_tackles",
+              "odds": "21/10",
+              "player": "Jan Kuchta",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jan Kuchta 3+ Tackles",
+              "normalized_selection": "jan_kuchta_3_tackles",
+              "odds": "13/2",
+              "player": "Jan Kuchta",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jaroslav Zeleny 2+ Tackles",
+              "normalized_selection": "jaroslav_zeleny_2_tackles",
+              "odds": "21/20",
+              "player": "Jaroslav Zeleny",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jaroslav Zeleny 3+ Tackles",
+              "normalized_selection": "jaroslav_zeleny_3_tackles",
+              "odds": "29/10",
+              "player": "Jaroslav Zeleny",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jaroslav Zeleny 4+ Tackles",
+              "normalized_selection": "jaroslav_zeleny_4_tackles",
+              "odds": "15/2",
+              "player": "Jaroslav Zeleny",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jesus Gallardo 2+ Tackles",
+              "normalized_selection": "jesus_gallardo_2_tackles",
+              "odds": "8/11",
+              "player": "Jesus Gallardo",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jesus Gallardo 3+ Tackles",
+              "normalized_selection": "jesus_gallardo_3_tackles",
+              "odds": "2/1",
+              "player": "Jesus Gallardo",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jesus Gallardo 4+ Tackles",
+              "normalized_selection": "jesus_gallardo_4_tackles",
+              "odds": "5/1",
+              "player": "Jesus Gallardo",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Johan Vasquez 2+ Tackles",
+              "normalized_selection": "johan_vasquez_2_tackles",
+              "odds": "1/1",
+              "player": "Johan Vasquez",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Johan Vasquez 3+ Tackles",
+              "normalized_selection": "johan_vasquez_3_tackles",
+              "odds": "14/5",
+              "player": "Johan Vasquez",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Johan Vasquez 4+ Tackles",
+              "normalized_selection": "johan_vasquez_4_tackles",
+              "odds": "15/2",
+              "player": "Johan Vasquez",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jorge Sanchez 2+ Tackles",
+              "normalized_selection": "jorge_sanchez_2_tackles",
+              "odds": "3/5",
+              "player": "Jorge Sanchez",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jorge Sanchez 3+ Tackles",
+              "normalized_selection": "jorge_sanchez_3_tackles",
+              "odds": "13/8",
+              "player": "Jorge Sanchez",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jorge Sanchez 4+ Tackles",
+              "normalized_selection": "jorge_sanchez_4_tackles",
+              "odds": "4/1",
+              "player": "Jorge Sanchez",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Julian Quinones 1+ Tackles",
+              "normalized_selection": "julian_quinones_1_tackles",
+              "odds": "8/11",
+              "player": "Julian Quinones",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Julian Quinones 2+ Tackles",
+              "normalized_selection": "julian_quinones_2_tackles",
+              "odds": "3/1",
+              "player": "Julian Quinones",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ladislav Krejci 2+ Tackles",
+              "normalized_selection": "ladislav_krejci_2_tackles",
+              "odds": "11/20",
+              "player": "Ladislav Krejci",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ladislav Krejci 3+ Tackles",
+              "normalized_selection": "ladislav_krejci_3_tackles",
+              "odds": "6/4",
+              "player": "Ladislav Krejci",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ladislav Krejci 4+ Tackles",
+              "normalized_selection": "ladislav_krejci_4_tackles",
+              "odds": "18/5",
+              "player": "Ladislav Krejci",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ladislav Krejci 5+ Tackles",
+              "normalized_selection": "ladislav_krejci_5_tackles",
+              "odds": "17/2",
+              "player": "Ladislav Krejci",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Luis Chavez 2+ Tackles",
+              "normalized_selection": "luis_chavez_2_tackles",
+              "odds": "13/20",
+              "player": "Luis Chavez",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Luis Chavez 3+ Tackles",
+              "normalized_selection": "luis_chavez_3_tackles",
+              "odds": "9/5",
+              "player": "Luis Chavez",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Luis Chavez 4+ Tackles",
+              "normalized_selection": "luis_chavez_4_tackles",
+              "odds": "22/5",
+              "player": "Luis Chavez",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Luis Romo 2+ Tackles",
+              "normalized_selection": "luis_romo_2_tackles",
+              "odds": "4/7",
+              "player": "Luis Romo",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Luis Romo 3+ Tackles",
+              "normalized_selection": "luis_romo_3_tackles",
+              "odds": "31/20",
+              "player": "Luis Romo",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Luis Romo 4+ Tackles",
+              "normalized_selection": "luis_romo_4_tackles",
+              "odds": "15/4",
+              "player": "Luis Romo",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Luis Romo 5+ Tackles",
+              "normalized_selection": "luis_romo_5_tackles",
+              "odds": "17/2",
+              "player": "Luis Romo",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lukas Cerv 2+ Tackles",
+              "normalized_selection": "lukas_cerv_2_tackles",
+              "odds": "20/21",
+              "player": "Lukas Cerv",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lukas Cerv 3+ Tackles",
+              "normalized_selection": "lukas_cerv_3_tackles",
+              "odds": "27/10",
+              "player": "Lukas Cerv",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lukas Cerv 4+ Tackles",
+              "normalized_selection": "lukas_cerv_4_tackles",
+              "odds": "7/1",
+              "player": "Lukas Cerv",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lukas Provod 2+ Tackles",
+              "normalized_selection": "lukas_provod_2_tackles",
+              "odds": "13/10",
+              "player": "Lukas Provod",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lukas Provod 3+ Tackles",
+              "normalized_selection": "lukas_provod_3_tackles",
+              "odds": "15/4",
+              "player": "Lukas Provod",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mateo Chavez Garcia 3+ Tackles",
+              "normalized_selection": "mateo_chavez_garcia_3_tackles",
+              "odds": "5/6",
+              "player": "Mateo Chavez Garcia",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mateo Chavez Garcia 4+ Tackles",
+              "normalized_selection": "mateo_chavez_garcia_4_tackles",
+              "odds": "19/10",
+              "player": "Mateo Chavez Garcia",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mateo Chavez Garcia 5+ Tackles",
+              "normalized_selection": "mateo_chavez_garcia_5_tackles",
+              "odds": "17/4",
+              "player": "Mateo Chavez Garcia",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mateo Chavez Garcia 6+ Tackles",
+              "normalized_selection": "mateo_chavez_garcia_6_tackles",
+              "odds": "9/1",
+              "player": "Mateo Chavez Garcia",
+              "threshold": "6+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Michal Sadilek 2+ Tackles",
+              "normalized_selection": "michal_sadilek_2_tackles",
+              "odds": "3/4",
+              "player": "Michal Sadilek",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Michal Sadilek 3+ Tackles",
+              "normalized_selection": "michal_sadilek_3_tackles",
+              "odds": "2/1",
+              "player": "Michal Sadilek",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Michal Sadilek 4+ Tackles",
+              "normalized_selection": "michal_sadilek_4_tackles",
+              "odds": "5/1",
+              "player": "Michal Sadilek",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mojmir Chytil 1+ Tackles",
+              "normalized_selection": "mojmir_chytil_1_tackles",
+              "odds": "3/5",
+              "player": "Mojmir Chytil",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mojmir Chytil 2+ Tackles",
+              "normalized_selection": "mojmir_chytil_2_tackles",
+              "odds": "5/2",
+              "player": "Mojmir Chytil",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mojmir Chytil 3+ Tackles",
+              "normalized_selection": "mojmir_chytil_3_tackles",
+              "odds": "8/1",
+              "player": "Mojmir Chytil",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Obed Vaargas 2+ Tackles",
+              "normalized_selection": "obed_vaargas_2_tackles",
+              "odds": "3/4",
+              "player": "Obed Vaargas",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Obed Vaargas 3+ Tackles",
+              "normalized_selection": "obed_vaargas_3_tackles",
+              "odds": "21/10",
+              "player": "Obed Vaargas",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Obed Vaargas 4+ Tackles",
+              "normalized_selection": "obed_vaargas_4_tackles",
+              "odds": "5/1",
+              "player": "Obed Vaargas",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Orbelin Pineda 2+ Tackles",
+              "normalized_selection": "orbelin_pineda_2_tackles",
+              "odds": "21/20",
+              "player": "Orbelin Pineda",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Orbelin Pineda 3+ Tackles",
+              "normalized_selection": "orbelin_pineda_3_tackles",
+              "odds": "29/10",
+              "player": "Orbelin Pineda",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Orbelin Pineda 4+ Tackles",
+              "normalized_selection": "orbelin_pineda_4_tackles",
+              "odds": "15/2",
+              "player": "Orbelin Pineda",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Patrik Schick 1+ Tackles",
+              "normalized_selection": "patrik_schick_1_tackles",
+              "odds": "23/20",
+              "player": "Patrik Schick",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Patrik Schick 2+ Tackles",
+              "normalized_selection": "patrik_schick_2_tackles",
+              "odds": "5/1",
+              "player": "Patrik Schick",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Pavel Sulc 2+ Tackles",
+              "normalized_selection": "pavel_sulc_2_tackles",
+              "odds": "13/20",
+              "player": "Pavel Sulc",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Pavel Sulc 3+ Tackles",
+              "normalized_selection": "pavel_sulc_3_tackles",
+              "odds": "9/5",
+              "player": "Pavel Sulc",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Pavel Sulc 4+ Tackles",
+              "normalized_selection": "pavel_sulc_4_tackles",
+              "odds": "22/5",
+              "player": "Pavel Sulc",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Raul Jimenez 2+ Tackles",
+              "normalized_selection": "raul_jimenez_2_tackles",
+              "odds": "11/10",
+              "player": "Raul Jimenez",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Raul Jimenez 3+ Tackles",
+              "normalized_selection": "raul_jimenez_3_tackles",
+              "odds": "16/5",
+              "player": "Raul Jimenez",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Raul Jimenez 4+ Tackles",
+              "normalized_selection": "raul_jimenez_4_tackles",
+              "odds": "17/2",
+              "player": "Raul Jimenez",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Roberto Alvarado 2+ Tackles",
+              "normalized_selection": "roberto_alvarado_2_tackles",
+              "odds": "11/10",
+              "player": "Roberto Alvarado",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Roberto Alvarado 3+ Tackles",
+              "normalized_selection": "roberto_alvarado_3_tackles",
+              "odds": "31/10",
+              "player": "Roberto Alvarado",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Roberto Alvarado 4+ Tackles",
+              "normalized_selection": "roberto_alvarado_4_tackles",
+              "odds": "8/1",
+              "player": "Roberto Alvarado",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Robin Hranac 1+ Tackles",
+              "normalized_selection": "robin_hranac_1_tackles",
+              "odds": "11/20",
+              "player": "Robin Hranac",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Robin Hranac 2+ Tackles",
+              "normalized_selection": "robin_hranac_2_tackles",
+              "odds": "9/4",
+              "player": "Robin Hranac",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Robin Hranac 3+ Tackles",
+              "normalized_selection": "robin_hranac_3_tackles",
+              "odds": "7/1",
+              "player": "Robin Hranac",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Santiago Gimenez 1+ Tackles",
+              "normalized_selection": "santiago_gimenez_1_tackles",
+              "odds": "17/20",
+              "player": "Santiago Gimenez",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Santiago Gimenez 2+ Tackles",
+              "normalized_selection": "santiago_gimenez_2_tackles",
+              "odds": "15/4",
+              "player": "Santiago Gimenez",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Stepan Chaloupek 2+ Tackles",
+              "normalized_selection": "stepan_chaloupek_2_tackles",
+              "odds": "13/20",
+              "player": "Stepan Chaloupek",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Stepan Chaloupek 3+ Tackles",
+              "normalized_selection": "stepan_chaloupek_3_tackles",
+              "odds": "9/5",
+              "player": "Stepan Chaloupek",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Stepan Chaloupek 4+ Tackles",
+              "normalized_selection": "stepan_chaloupek_4_tackles",
+              "odds": "22/5",
+              "player": "Stepan Chaloupek",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tomas Chory 1+ Tackles",
+              "normalized_selection": "tomas_chory_1_tackles",
+              "odds": "17/20",
+              "player": "Tomas Chory",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tomas Chory 2+ Tackles",
+              "normalized_selection": "tomas_chory_2_tackles",
+              "odds": "18/5",
+              "player": "Tomas Chory",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tomas Holes 2+ Tackles",
+              "normalized_selection": "tomas_holes_2_tackles",
+              "odds": "3/4",
+              "player": "Tomas Holes",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tomas Holes 3+ Tackles",
+              "normalized_selection": "tomas_holes_3_tackles",
+              "odds": "2/1",
+              "player": "Tomas Holes",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tomas Holes 4+ Tackles",
+              "normalized_selection": "tomas_holes_4_tackles",
+              "odds": "5/1",
+              "player": "Tomas Holes",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tomas Soucek 2+ Tackles",
+              "normalized_selection": "tomas_soucek_2_tackles",
+              "odds": "6/5",
+              "player": "Tomas Soucek",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tomas Soucek 3+ Tackles",
+              "normalized_selection": "tomas_soucek_3_tackles",
+              "odds": "7/2",
+              "player": "Tomas Soucek",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Vladimir Coufal 2+ Tackles",
+              "normalized_selection": "vladimir_coufal_2_tackles",
+              "odds": "9/10",
+              "player": "Vladimir Coufal",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Vladimir Coufal 3+ Tackles",
+              "normalized_selection": "vladimir_coufal_3_tackles",
+              "odds": "5/2",
+              "player": "Vladimir Coufal",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Vladimir Coufal 4+ Tackles",
+              "normalized_selection": "vladimir_coufal_4_tackles",
+              "odds": "13/2",
+              "player": "Vladimir Coufal",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Vladimir Darida 2+ Tackles",
+              "normalized_selection": "vladimir_darida_2_tackles",
+              "odds": "9/20",
+              "player": "Vladimir Darida",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Vladimir Darida 3+ Tackles",
+              "normalized_selection": "vladimir_darida_3_tackles",
+              "odds": "5/4",
+              "player": "Vladimir Darida",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Vladimir Darida 4+ Tackles",
+              "normalized_selection": "vladimir_darida_4_tackles",
+              "odds": "3/1",
+              "player": "Vladimir Darida",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Vladimir Darida 5+ Tackles",
+              "normalized_selection": "vladimir_darida_5_tackles",
+              "odds": "13/2",
+              "player": "Vladimir Darida",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "South Africa v South Korea",
+      "home_team": "South Africa",
+      "away_team": "South Korea",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300",
+      "kickoff": "2026-06-25T01:00:00+00:00",
+      "market_count": 1,
+      "markets": [
+        {
+          "market": "Player Tackles",
+          "normalized_market": "player_tackles",
+          "heading_clicked": "Player Tackles",
+          "expansion_controls_clicked": 1,
+          "scroll_containers_found": 0,
+          "scoped_show_more_clicked": 1,
+          "fallback_used": false,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 170,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 1,
+            "show_more_passes": [
+              {
+                "pass": 1,
+                "rows_before": 5,
+                "rows_after": 132,
+                "rows_added": 127,
+                "button": {
+                  "found": true,
+                  "distance_px": 402,
+                  "matching_rows_between": 5,
+                  "heading_y": 1008,
+                  "button_y": 1454,
+                  "button_tag": "DIV",
+                  "button_text": "Show More",
+                  "visible_headings": 3,
+                  "visible_rows": 5,
+                  "visible_show_more": 4
+                },
+                "click_preparation": {
+                  "dismiss_actions": [
+                    "escape"
+                  ],
+                  "before": {
+                    "blocked": false,
+                    "blocker_tag": "BUTTON",
+                    "blocker_text": "Show More",
+                    "blocker_class": "market-view__show-more-button bvs-button is-primary",
+                    "blocker_position": "static",
+                    "blocker_rect": {
+                      "left": 792,
+                      "top": 895,
+                      "width": 107,
+                      "height": 44
+                    }
+                  },
+                  "neutralised": {
+                    "changed": false,
+                    "reason": "not_needed"
+                  },
+                  "after": {
+                    "blocked": false,
+                    "blocker_tag": "BUTTON",
+                    "blocker_text": "Show More",
+                    "blocker_class": "market-view__show-more-button bvs-button is-primary",
+                    "blocker_position": "static",
+                    "blocker_rect": {
+                      "left": 792,
+                      "top": 895,
+                      "width": 107,
+                      "height": 44
+                    }
+                  }
+                },
+                "clicked": true,
+                "market_scroll": {
+                  "used": true,
+                  "steps": 20,
+                  "rows_before": 132,
+                  "rows_after": 132,
+                  "scope_height": 8111
+                }
+              },
+              {
+                "pass": 2,
+                "rows_before": 132,
+                "rows_after": 132,
+                "rows_added": 0,
+                "button": {
+                  "found": false,
+                  "visible_headings": 3,
+                  "visible_rows": 132,
+                  "visible_show_more": 2
+                },
+                "clicked": false
+              }
+            ],
+            "final_scope": {
+              "row_count": 132,
+              "show_more_count": 0,
+              "text_length": 4001,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 132,
+            "fallback_used": false,
+            "final_rows": 132
+          },
+          "selection_audit": {
+            "raw_row_count": 132,
+            "unique_player_threshold_count": 132,
+            "selection_count": 132,
+            "player_count": 44,
+            "threshold_counts": {
+              "1+": 9,
+              "2+": 42,
+              "3+": 40,
+              "4+": 32,
+              "5+": 8,
+              "6+": 1
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 132,
+          "elapsed_seconds": 13.58,
+          "selections": [
+            {
+              "selection": "Aubrey Modiba 3+ Tackles",
+              "normalized_selection": "aubrey_modiba_3_tackles",
+              "odds": "10/11",
+              "player": "Aubrey Modiba",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Aubrey Modiba 4+ Tackles",
+              "normalized_selection": "aubrey_modiba_4_tackles",
+              "odds": "21/10",
+              "player": "Aubrey Modiba",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Aubrey Modiba 5+ Tackles",
+              "normalized_selection": "aubrey_modiba_5_tackles",
+              "odds": "9/2",
+              "player": "Aubrey Modiba",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bae Jun-ho 2+ Tackles",
+              "normalized_selection": "bae_jun_ho_2_tackles",
+              "odds": "8/11",
+              "player": "Bae Jun-ho",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bae Jun-ho 3+ Tackles",
+              "normalized_selection": "bae_jun_ho_3_tackles",
+              "odds": "2/1",
+              "player": "Bae Jun-ho",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bae Jun-ho 4+ Tackles",
+              "normalized_selection": "bae_jun_ho_4_tackles",
+              "odds": "5/1",
+              "player": "Bae Jun-ho",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bradley Cross 2+ Tackles",
+              "normalized_selection": "bradley_cross_2_tackles",
+              "odds": "2/5",
+              "player": "Bradley Cross",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bradley Cross 3+ Tackles",
+              "normalized_selection": "bradley_cross_3_tackles",
+              "odds": "11/10",
+              "player": "Bradley Cross",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bradley Cross 4+ Tackles",
+              "normalized_selection": "bradley_cross_4_tackles",
+              "odds": "5/2",
+              "player": "Bradley Cross",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bradley Cross 5+ Tackles",
+              "normalized_selection": "bradley_cross_5_tackles",
+              "odds": "11/2",
+              "player": "Bradley Cross",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Cho Gue-sung 1+ Tackles",
+              "normalized_selection": "cho_gue_sung_1_tackles",
+              "odds": "3/4",
+              "player": "Cho Gue-sung",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Cho Gue-sung 2+ Tackles",
+              "normalized_selection": "cho_gue_sung_2_tackles",
+              "odds": "16/5",
+              "player": "Cho Gue-sung",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Evidence Makgopa 2+ Tackles",
+              "normalized_selection": "evidence_makgopa_2_tackles",
+              "odds": "13/10",
+              "player": "Evidence Makgopa",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Evidence Makgopa 3+ Tackles",
+              "normalized_selection": "evidence_makgopa_3_tackles",
+              "odds": "15/4",
+              "player": "Evidence Makgopa",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Gi-Hyuk Lee 2+ Tackles",
+              "normalized_selection": "gi_hyuk_lee_2_tackles",
+              "odds": "4/6",
+              "player": "Gi-Hyuk Lee",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Gi-Hyuk Lee 3+ Tackles",
+              "normalized_selection": "gi_hyuk_lee_3_tackles",
+              "odds": "9/5",
+              "player": "Gi-Hyuk Lee",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Gi-Hyuk Lee 4+ Tackles",
+              "normalized_selection": "gi_hyuk_lee_4_tackles",
+              "odds": "9/2",
+              "player": "Gi-Hyuk Lee",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Han-beom Lee 2+ Tackles",
+              "normalized_selection": "han_beom_lee_2_tackles",
+              "odds": "1/1",
+              "player": "Han-beom Lee",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Han-beom Lee 3+ Tackles",
+              "normalized_selection": "han_beom_lee_3_tackles",
+              "odds": "14/5",
+              "player": "Han-beom Lee",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Han-beom Lee 4+ Tackles",
+              "normalized_selection": "han_beom_lee_4_tackles",
+              "odds": "15/2",
+              "player": "Han-beom Lee",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hwang Hee-Chan 1+ Tackles",
+              "normalized_selection": "hwang_hee_chan_1_tackles",
+              "odds": "31/40",
+              "player": "Hwang Hee-Chan",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hwang Hee-Chan 2+ Tackles",
+              "normalized_selection": "hwang_hee_chan_2_tackles",
+              "odds": "10/3",
+              "player": "Hwang Hee-Chan",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hwang Inbeom 2+ Tackles",
+              "normalized_selection": "hwang_inbeom_2_tackles",
+              "odds": "8/13",
+              "player": "Hwang Inbeom",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hwang Inbeom 3+ Tackles",
+              "normalized_selection": "hwang_inbeom_3_tackles",
+              "odds": "17/10",
+              "player": "Hwang Inbeom",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hwang Inbeom 4+ Tackles",
+              "normalized_selection": "hwang_inbeom_4_tackles",
+              "odds": "17/4",
+              "player": "Hwang Inbeom",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hyun-Jun Yang 2+ Tackles",
+              "normalized_selection": "hyun_jun_yang_2_tackles",
+              "odds": "10/11",
+              "player": "Hyun-Jun Yang",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hyun-Jun Yang 3+ Tackles",
+              "normalized_selection": "hyun_jun_yang_3_tackles",
+              "odds": "5/2",
+              "player": "Hyun-Jun Yang",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Hyun-Jun Yang 4+ Tackles",
+              "normalized_selection": "hyun_jun_yang_4_tackles",
+              "odds": "13/2",
+              "player": "Hyun-Jun Yang",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ime Okon 1+ Tackles",
+              "normalized_selection": "ime_okon_1_tackles",
+              "odds": "4/11",
+              "player": "Ime Okon",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ime Okon 2+ Tackles",
+              "normalized_selection": "ime_okon_2_tackles",
+              "odds": "29/20",
+              "player": "Ime Okon",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ime Okon 3+ Tackles",
+              "normalized_selection": "ime_okon_3_tackles",
+              "odds": "17/4",
+              "player": "Ime Okon",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Iqraam Rayners 1+ Tackles",
+              "normalized_selection": "iqraam_rayners_1_tackles",
+              "odds": "3/5",
+              "player": "Iqraam Rayners",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Iqraam Rayners 2+ Tackles",
+              "normalized_selection": "iqraam_rayners_2_tackles",
+              "odds": "12/5",
+              "player": "Iqraam Rayners",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Iqraam Rayners 3+ Tackles",
+              "normalized_selection": "iqraam_rayners_3_tackles",
+              "odds": "15/2",
+              "player": "Iqraam Rayners",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jayden Adams 2+ Tackles",
+              "normalized_selection": "jayden_adams_2_tackles",
+              "odds": "9/20",
+              "player": "Jayden Adams",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jayden Adams 3+ Tackles",
+              "normalized_selection": "jayden_adams_3_tackles",
+              "odds": "5/4",
+              "player": "Jayden Adams",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jayden Adams 4+ Tackles",
+              "normalized_selection": "jayden_adams_4_tackles",
+              "odds": "29/10",
+              "player": "Jayden Adams",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jayden Adams 5+ Tackles",
+              "normalized_selection": "jayden_adams_5_tackles",
+              "odds": "13/2",
+              "player": "Jayden Adams",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jens Castrop 2+ Tackles",
+              "normalized_selection": "jens_castrop_2_tackles",
+              "odds": "4/11",
+              "player": "Jens Castrop",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jens Castrop 3+ Tackles",
+              "normalized_selection": "jens_castrop_3_tackles",
+              "odds": "20/21",
+              "player": "Jens Castrop",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jens Castrop 4+ Tackles",
+              "normalized_selection": "jens_castrop_4_tackles",
+              "odds": "9/4",
+              "player": "Jens Castrop",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jens Castrop 5+ Tackles",
+              "normalized_selection": "jens_castrop_5_tackles",
+              "odds": "5/1",
+              "player": "Jens Castrop",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ji-sung Eom 2+ Tackles",
+              "normalized_selection": "ji_sung_eom_2_tackles",
+              "odds": "10/11",
+              "player": "Ji-sung Eom",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ji-sung Eom 3+ Tackles",
+              "normalized_selection": "ji_sung_eom_3_tackles",
+              "odds": "5/2",
+              "player": "Ji-sung Eom",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ji-sung Eom 4+ Tackles",
+              "normalized_selection": "ji_sung_eom_4_tackles",
+              "odds": "13/2",
+              "player": "Ji-sung Eom",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jin-gyu Kim 2+ Tackles",
+              "normalized_selection": "jin_gyu_kim_2_tackles",
+              "odds": "19/20",
+              "player": "Jin-gyu Kim",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jin-gyu Kim 3+ Tackles",
+              "normalized_selection": "jin_gyu_kim_3_tackles",
+              "odds": "13/5",
+              "player": "Jin-gyu Kim",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jin-gyu Kim 4+ Tackles",
+              "normalized_selection": "jin_gyu_kim_4_tackles",
+              "odds": "7/1",
+              "player": "Jin-gyu Kim",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jin-seob Park 2+ Tackles",
+              "normalized_selection": "jin_seob_park_2_tackles",
+              "odds": "13/10",
+              "player": "Jin-seob Park",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jin-seob Park 3+ Tackles",
+              "normalized_selection": "jin_seob_park_3_tackles",
+              "odds": "15/4",
+              "player": "Jin-seob Park",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kamogelo Sebelebele 2+ Tackles",
+              "normalized_selection": "kamogelo_sebelebele_2_tackles",
+              "odds": "1/1",
+              "player": "Kamogelo Sebelebele",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kamogelo Sebelebele 3+ Tackles",
+              "normalized_selection": "kamogelo_sebelebele_3_tackles",
+              "odds": "14/5",
+              "player": "Kamogelo Sebelebele",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kamogelo Sebelebele 4+ Tackles",
+              "normalized_selection": "kamogelo_sebelebele_4_tackles",
+              "odds": "7/1",
+              "player": "Kamogelo Sebelebele",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kang-in Lee 1+ Tackles",
+              "normalized_selection": "kang_in_lee_1_tackles",
+              "odds": "4/11",
+              "player": "Kang-in Lee",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kang-in Lee 2+ Tackles",
+              "normalized_selection": "kang_in_lee_2_tackles",
+              "odds": "29/20",
+              "player": "Kang-in Lee",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kang-in Lee 3+ Tackles",
+              "normalized_selection": "kang_in_lee_3_tackles",
+              "odds": "22/5",
+              "player": "Kang-in Lee",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Khuliso Mudau 2+ Tackles",
+              "normalized_selection": "khuliso_mudau_2_tackles",
+              "odds": "1/3",
+              "player": "Khuliso Mudau",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Khuliso Mudau 3+ Tackles",
+              "normalized_selection": "khuliso_mudau_3_tackles",
+              "odds": "19/20",
+              "player": "Khuliso Mudau",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Khuliso Mudau 4+ Tackles",
+              "normalized_selection": "khuliso_mudau_4_tackles",
+              "odds": "11/5",
+              "player": "Khuliso Mudau",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Khuliso Mudau 5+ Tackles",
+              "normalized_selection": "khuliso_mudau_5_tackles",
+              "odds": "19/4",
+              "player": "Khuliso Mudau",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Khulumani Ndamane 2+ Tackles",
+              "normalized_selection": "khulumani_ndamane_2_tackles",
+              "odds": "1/1",
+              "player": "Khulumani Ndamane",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Khulumani Ndamane 3+ Tackles",
+              "normalized_selection": "khulumani_ndamane_3_tackles",
+              "odds": "11/4",
+              "player": "Khulumani Ndamane",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Khulumani Ndamane 4+ Tackles",
+              "normalized_selection": "khulumani_ndamane_4_tackles",
+              "odds": "7/1",
+              "player": "Khulumani Ndamane",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kim Minjae 2+ Tackles",
+              "normalized_selection": "kim_minjae_2_tackles",
+              "odds": "21/20",
+              "player": "Kim Minjae",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kim Minjae 3+ Tackles",
+              "normalized_selection": "kim_minjae_3_tackles",
+              "odds": "3/1",
+              "player": "Kim Minjae",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kim Minjae 4+ Tackles",
+              "normalized_selection": "kim_minjae_4_tackles",
+              "odds": "8/1",
+              "player": "Kim Minjae",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kim Moonhwan 2+ Tackles",
+              "normalized_selection": "kim_moonhwan_2_tackles",
+              "odds": "5/4",
+              "player": "Kim Moonhwan",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kim Moonhwan 3+ Tackles",
+              "normalized_selection": "kim_moonhwan_3_tackles",
+              "odds": "18/5",
+              "player": "Kim Moonhwan",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lee Dong-gyeong 2+ Tackles",
+              "normalized_selection": "lee_dong_gyeong_2_tackles",
+              "odds": "23/20",
+              "player": "Lee Dong-gyeong",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lee Dong-gyeong 3+ Tackles",
+              "normalized_selection": "lee_dong_gyeong_3_tackles",
+              "odds": "16/5",
+              "player": "Lee Dong-gyeong",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lee Dong-gyeong 4+ Tackles",
+              "normalized_selection": "lee_dong_gyeong_4_tackles",
+              "odds": "17/2",
+              "player": "Lee Dong-gyeong",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lee Jae-Sung 2+ Tackles",
+              "normalized_selection": "lee_jae_sung_2_tackles",
+              "odds": "21/20",
+              "player": "Lee Jae-Sung",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lee Jae-Sung 3+ Tackles",
+              "normalized_selection": "lee_jae_sung_3_tackles",
+              "odds": "3/1",
+              "player": "Lee Jae-Sung",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lee Jae-Sung 4+ Tackles",
+              "normalized_selection": "lee_jae_sung_4_tackles",
+              "odds": "15/2",
+              "player": "Lee Jae-Sung",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lyle Foster 1+ Tackles",
+              "normalized_selection": "lyle_foster_1_tackles",
+              "odds": "11/20",
+              "player": "Lyle Foster",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lyle Foster 2+ Tackles",
+              "normalized_selection": "lyle_foster_2_tackles",
+              "odds": "9/4",
+              "player": "Lyle Foster",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Lyle Foster 3+ Tackles",
+              "normalized_selection": "lyle_foster_3_tackles",
+              "odds": "7/1",
+              "player": "Lyle Foster",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mbekezile Mbokazi 2+ Tackles",
+              "normalized_selection": "mbekezile_mbokazi_2_tackles",
+              "odds": "1/2",
+              "player": "Mbekezile Mbokazi",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mbekezile Mbokazi 3+ Tackles",
+              "normalized_selection": "mbekezile_mbokazi_3_tackles",
+              "odds": "7/5",
+              "player": "Mbekezile Mbokazi",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mbekezile Mbokazi 4+ Tackles",
+              "normalized_selection": "mbekezile_mbokazi_4_tackles",
+              "odds": "10/3",
+              "player": "Mbekezile Mbokazi",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Mbekezile Mbokazi 5+ Tackles",
+              "normalized_selection": "mbekezile_mbokazi_5_tackles",
+              "odds": "15/2",
+              "player": "Mbekezile Mbokazi",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Nkosinathi Sibisi 2+ Tackles",
+              "normalized_selection": "nkosinathi_sibisi_2_tackles",
+              "odds": "31/40",
+              "player": "Nkosinathi Sibisi",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Nkosinathi Sibisi 3+ Tackles",
+              "normalized_selection": "nkosinathi_sibisi_3_tackles",
+              "odds": "11/5",
+              "player": "Nkosinathi Sibisi",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Nkosinathi Sibisi 4+ Tackles",
+              "normalized_selection": "nkosinathi_sibisi_4_tackles",
+              "odds": "11/2",
+              "player": "Nkosinathi Sibisi",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Oh Hyeon-gyu 1+ Tackles",
+              "normalized_selection": "oh_hyeon_gyu_1_tackles",
+              "odds": "10/11",
+              "player": "Oh Hyeon-gyu",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Oh Hyeon-gyu 2+ Tackles",
+              "normalized_selection": "oh_hyeon_gyu_2_tackles",
+              "odds": "4/1",
+              "player": "Oh Hyeon-gyu",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Olwethu Makhanya 2+ Tackles",
+              "normalized_selection": "olwethu_makhanya_2_tackles",
+              "odds": "8/13",
+              "player": "Olwethu Makhanya",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Olwethu Makhanya 3+ Tackles",
+              "normalized_selection": "olwethu_makhanya_3_tackles",
+              "odds": "17/10",
+              "player": "Olwethu Makhanya",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Olwethu Makhanya 4+ Tackles",
+              "normalized_selection": "olwethu_makhanya_4_tackles",
+              "odds": "4/1",
+              "player": "Olwethu Makhanya",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Oswin Appollis 2+ Tackles",
+              "normalized_selection": "oswin_appollis_2_tackles",
+              "odds": "6/5",
+              "player": "Oswin Appollis",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Oswin Appollis 3+ Tackles",
+              "normalized_selection": "oswin_appollis_3_tackles",
+              "odds": "17/5",
+              "player": "Oswin Appollis",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Oswin Appollis 4+ Tackles",
+              "normalized_selection": "oswin_appollis_4_tackles",
+              "odds": "9/1",
+              "player": "Oswin Appollis",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Relebohile Mofokeng 2+ Tackles",
+              "normalized_selection": "relebohile_mofokeng_2_tackles",
+              "odds": "1/1",
+              "player": "Relebohile Mofokeng",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Relebohile Mofokeng 3+ Tackles",
+              "normalized_selection": "relebohile_mofokeng_3_tackles",
+              "odds": "14/5",
+              "player": "Relebohile Mofokeng",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Relebohile Mofokeng 4+ Tackles",
+              "normalized_selection": "relebohile_mofokeng_4_tackles",
+              "odds": "7/1",
+              "player": "Relebohile Mofokeng",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Samukelo Kabini 3+ Tackles",
+              "normalized_selection": "samukelo_kabini_3_tackles",
+              "odds": "5/6",
+              "player": "Samukelo Kabini",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Samukelo Kabini 4+ Tackles",
+              "normalized_selection": "samukelo_kabini_4_tackles",
+              "odds": "19/10",
+              "player": "Samukelo Kabini",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Samukelo Kabini 5+ Tackles",
+              "normalized_selection": "samukelo_kabini_5_tackles",
+              "odds": "17/4",
+              "player": "Samukelo Kabini",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Samukelo Kabini 6+ Tackles",
+              "normalized_selection": "samukelo_kabini_6_tackles",
+              "odds": "9/1",
+              "player": "Samukelo Kabini",
+              "threshold": "6+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Seol Young-woo 2+ Tackles",
+              "normalized_selection": "seol_young_woo_2_tackles",
+              "odds": "21/20",
+              "player": "Seol Young-woo",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Seol Young-woo 3+ Tackles",
+              "normalized_selection": "seol_young_woo_3_tackles",
+              "odds": "3/1",
+              "player": "Seol Young-woo",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Seol Young-woo 4+ Tackles",
+              "normalized_selection": "seol_young_woo_4_tackles",
+              "odds": "15/2",
+              "player": "Seol Young-woo",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Seung-Ho Paik 2+ Tackles",
+              "normalized_selection": "seung_ho_paik_2_tackles",
+              "odds": "3/4",
+              "player": "Seung-Ho Paik",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Seung-Ho Paik 3+ Tackles",
+              "normalized_selection": "seung_ho_paik_3_tackles",
+              "odds": "21/10",
+              "player": "Seung-Ho Paik",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Seung-Ho Paik 4+ Tackles",
+              "normalized_selection": "seung_ho_paik_4_tackles",
+              "odds": "5/1",
+              "player": "Seung-Ho Paik",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Son Heung-Min 1+ Tackles",
+              "normalized_selection": "son_heung_min_1_tackles",
+              "odds": "23/20",
+              "player": "Son Heung-Min",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Son Heung-Min 2+ Tackles",
+              "normalized_selection": "son_heung_min_2_tackles",
+              "odds": "5/1",
+              "player": "Son Heung-Min",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tae-Hyeon Kim 1+ Tackles",
+              "normalized_selection": "tae_hyeon_kim_1_tackles",
+              "odds": "11/20",
+              "player": "Tae-Hyeon Kim",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tae-Hyeon Kim 2+ Tackles",
+              "normalized_selection": "tae_hyeon_kim_2_tackles",
+              "odds": "9/4",
+              "player": "Tae-Hyeon Kim",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tae-Hyeon Kim 3+ Tackles",
+              "normalized_selection": "tae_hyeon_kim_3_tackles",
+              "odds": "7/1",
+              "player": "Tae-Hyeon Kim",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tae-Seok Lee 2+ Tackles",
+              "normalized_selection": "tae_seok_lee_2_tackles",
+              "odds": "4/7",
+              "player": "Tae-Seok Lee",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tae-Seok Lee 3+ Tackles",
+              "normalized_selection": "tae_seok_lee_3_tackles",
+              "odds": "31/20",
+              "player": "Tae-Seok Lee",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tae-Seok Lee 4+ Tackles",
+              "normalized_selection": "tae_seok_lee_4_tackles",
+              "odds": "15/4",
+              "player": "Tae-Seok Lee",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tae-Seok Lee 5+ Tackles",
+              "normalized_selection": "tae_seok_lee_5_tackles",
+              "odds": "17/2",
+              "player": "Tae-Seok Lee",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Thalente Mbatha 2+ Tackles",
+              "normalized_selection": "thalente_mbatha_2_tackles",
+              "odds": "3/5",
+              "player": "Thalente Mbatha",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Thalente Mbatha 3+ Tackles",
+              "normalized_selection": "thalente_mbatha_3_tackles",
+              "odds": "13/8",
+              "player": "Thalente Mbatha",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Thalente Mbatha 4+ Tackles",
+              "normalized_selection": "thalente_mbatha_4_tackles",
+              "odds": "4/1",
+              "player": "Thalente Mbatha",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Thapelo Maseko 2+ Tackles",
+              "normalized_selection": "thapelo_maseko_2_tackles",
+              "odds": "20/21",
+              "player": "Thapelo Maseko",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Thapelo Maseko 3+ Tackles",
+              "normalized_selection": "thapelo_maseko_3_tackles",
+              "odds": "27/10",
+              "player": "Thapelo Maseko",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Thapelo Maseko 4+ Tackles",
+              "normalized_selection": "thapelo_maseko_4_tackles",
+              "odds": "7/1",
+              "player": "Thapelo Maseko",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tholo Matuludi 2+ Tackles",
+              "normalized_selection": "tholo_matuludi_2_tackles",
+              "odds": "8/13",
+              "player": "Tholo Matuludi",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tholo Matuludi 3+ Tackles",
+              "normalized_selection": "tholo_matuludi_3_tackles",
+              "odds": "17/10",
+              "player": "Tholo Matuludi",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tholo Matuludi 4+ Tackles",
+              "normalized_selection": "tholo_matuludi_4_tackles",
+              "odds": "17/4",
+              "player": "Tholo Matuludi",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tshepang Moremi 2+ Tackles",
+              "normalized_selection": "tshepang_moremi_2_tackles",
+              "odds": "23/20",
+              "player": "Tshepang Moremi",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tshepang Moremi 3+ Tackles",
+              "normalized_selection": "tshepang_moremi_3_tackles",
+              "odds": "10/3",
+              "player": "Tshepang Moremi",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tshepang Moremi 4+ Tackles",
+              "normalized_selection": "tshepang_moremi_4_tackles",
+              "odds": "9/1",
+              "player": "Tshepang Moremi",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Wi-Je Cho 2+ Tackles",
+              "normalized_selection": "wi_je_cho_2_tackles",
+              "odds": "37/40",
+              "player": "Wi-Je Cho",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Wi-Je Cho 3+ Tackles",
+              "normalized_selection": "wi_je_cho_3_tackles",
+              "odds": "13/5",
+              "player": "Wi-Je Cho",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Wi-Je Cho 4+ Tackles",
+              "normalized_selection": "wi_je_cho_4_tackles",
+              "odds": "13/2",
+              "player": "Wi-Je Cho",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Yaya Sithole 2+ Tackles",
+              "normalized_selection": "yaya_sithole_2_tackles",
+              "odds": "3/5",
+              "player": "Yaya Sithole",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Yaya Sithole 3+ Tackles",
+              "normalized_selection": "yaya_sithole_3_tackles",
+              "odds": "13/8",
+              "player": "Yaya Sithole",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Yaya Sithole 4+ Tackles",
+              "normalized_selection": "yaya_sithole_4_tackles",
+              "odds": "4/1",
+              "player": "Yaya Sithole",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Curacao v Ivory Coast",
+      "home_team": "Curacao",
+      "away_team": "Ivory Coast",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108200",
+      "kickoff": "2026-06-25T20:00:00+00:00",
+      "market_count": 1,
+      "markets": [
+        {
+          "market": "Player Tackles",
+          "normalized_market": "player_tackles",
+          "heading_clicked": "Player Tackles",
+          "expansion_controls_clicked": 1,
+          "scroll_containers_found": 0,
+          "scoped_show_more_clicked": 1,
+          "fallback_used": false,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 187,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 1,
+            "show_more_passes": [
+              {
+                "pass": 1,
+                "rows_before": 5,
+                "rows_after": 144,
+                "rows_added": 139,
+                "button": {
+                  "found": true,
+                  "distance_px": 402,
+                  "matching_rows_between": 5,
+                  "heading_y": 1008,
+                  "button_y": 1454,
+                  "button_tag": "DIV",
+                  "button_text": "Show More",
+                  "visible_headings": 3,
+                  "visible_rows": 5,
+                  "visible_show_more": 4
+                },
+                "click_preparation": {
+                  "dismiss_actions": [
+                    "escape"
+                  ],
+                  "before": {
+                    "blocked": false,
+                    "blocker_tag": "BUTTON",
+                    "blocker_text": "Show More",
+                    "blocker_class": "market-view__show-more-button bvs-button is-primary",
+                    "blocker_position": "static",
+                    "blocker_rect": {
+                      "left": 792,
+                      "top": 895,
+                      "width": 107,
+                      "height": 44
+                    }
+                  },
+                  "neutralised": {
+                    "changed": false,
+                    "reason": "not_needed"
+                  },
+                  "after": {
+                    "blocked": false,
+                    "blocker_tag": "BUTTON",
+                    "blocker_text": "Show More",
+                    "blocker_class": "market-view__show-more-button bvs-button is-primary",
+                    "blocker_position": "static",
+                    "blocker_rect": {
+                      "left": 792,
+                      "top": 895,
+                      "width": 107,
+                      "height": 44
+                    }
+                  }
+                },
+                "clicked": true,
+                "market_scroll": {
+                  "used": true,
+                  "steps": 22,
+                  "rows_before": 144,
+                  "rows_after": 144,
+                  "scope_height": 8831
+                }
+              },
+              {
+                "pass": 2,
+                "rows_before": 144,
+                "rows_after": 144,
+                "rows_added": 0,
+                "button": {
+                  "found": false,
+                  "visible_headings": 3,
+                  "visible_rows": 144,
+                  "visible_show_more": 2
+                },
+                "clicked": false
+              }
+            ],
+            "final_scope": {
+              "row_count": 144,
+              "show_more_count": 0,
+              "text_length": 4489,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 144,
+            "fallback_used": false,
+            "final_rows": 144
+          },
+          "selection_audit": {
+            "raw_row_count": 144,
+            "unique_player_threshold_count": 144,
+            "selection_count": 144,
+            "player_count": 45,
+            "threshold_counts": {
+              "1+": 7,
+              "2+": 42,
+              "3+": 44,
+              "4+": 35,
+              "5+": 14,
+              "6+": 2
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 144,
+          "elapsed_seconds": 14.7,
+          "selections": [
+            {
+              "selection": "Amad Diallo 2+ Tackles",
+              "normalized_selection": "amad_diallo_2_tackles",
+              "odds": "9/10",
+              "player": "Amad Diallo",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Amad Diallo 3+ Tackles",
+              "normalized_selection": "amad_diallo_3_tackles",
+              "odds": "5/2",
+              "player": "Amad Diallo",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Amad Diallo 4+ Tackles",
+              "normalized_selection": "amad_diallo_4_tackles",
+              "odds": "13/2",
+              "player": "Amad Diallo",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ange Yoan Bonny 2+ Tackles",
+              "normalized_selection": "ange_yoan_bonny_2_tackles",
+              "odds": "13/10",
+              "player": "Ange Yoan Bonny",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ange Yoan Bonny 3+ Tackles",
+              "normalized_selection": "ange_yoan_bonny_3_tackles",
+              "odds": "15/4",
+              "player": "Ange Yoan Bonny",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Angelo Martha 2+ Tackles",
+              "normalized_selection": "angelo_martha_2_tackles",
+              "odds": "1/2",
+              "player": "Angelo Martha",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Angelo Martha 3+ Tackles",
+              "normalized_selection": "angelo_martha_3_tackles",
+              "odds": "11/8",
+              "player": "Angelo Martha",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Angelo Martha 4+ Tackles",
+              "normalized_selection": "angelo_martha_4_tackles",
+              "odds": "16/5",
+              "player": "Angelo Martha",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Angelo Martha 5+ Tackles",
+              "normalized_selection": "angelo_martha_5_tackles",
+              "odds": "15/2",
+              "player": "Angelo Martha",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Armando Obispo 2+ Tackles",
+              "normalized_selection": "armando_obispo_2_tackles",
+              "odds": "17/20",
+              "player": "Armando Obispo",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Armando Obispo 3+ Tackles",
+              "normalized_selection": "armando_obispo_3_tackles",
+              "odds": "23/10",
+              "player": "Armando Obispo",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Armando Obispo 4+ Tackles",
+              "normalized_selection": "armando_obispo_4_tackles",
+              "odds": "6/1",
+              "player": "Armando Obispo",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bazoumana Toure 2+ Tackles",
+              "normalized_selection": "bazoumana_toure_2_tackles",
+              "odds": "1/1",
+              "player": "Bazoumana Toure",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bazoumana Toure 3+ Tackles",
+              "normalized_selection": "bazoumana_toure_3_tackles",
+              "odds": "14/5",
+              "player": "Bazoumana Toure",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Bazoumana Toure 4+ Tackles",
+              "normalized_selection": "bazoumana_toure_4_tackles",
+              "odds": "7/1",
+              "player": "Bazoumana Toure",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Brandley Kuwas 1+ Tackles",
+              "normalized_selection": "brandley_kuwas_1_tackles",
+              "odds": "11/20",
+              "player": "Brandley Kuwas",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Brandley Kuwas 2+ Tackles",
+              "normalized_selection": "brandley_kuwas_2_tackles",
+              "odds": "9/4",
+              "player": "Brandley Kuwas",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Brandley Kuwas 3+ Tackles",
+              "normalized_selection": "brandley_kuwas_3_tackles",
+              "odds": "7/1",
+              "player": "Brandley Kuwas",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Christ Inao Oulai 2+ Tackles",
+              "normalized_selection": "christ_inao_oulai_2_tackles",
+              "odds": "4/11",
+              "player": "Christ Inao Oulai",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Christ Inao Oulai 3+ Tackles",
+              "normalized_selection": "christ_inao_oulai_3_tackles",
+              "odds": "1/1",
+              "player": "Christ Inao Oulai",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Christ Inao Oulai 4+ Tackles",
+              "normalized_selection": "christ_inao_oulai_4_tackles",
+              "odds": "23/10",
+              "player": "Christ Inao Oulai",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Christ Inao Oulai 5+ Tackles",
+              "normalized_selection": "christ_inao_oulai_5_tackles",
+              "odds": "5/1",
+              "player": "Christ Inao Oulai",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Christopher Operi 2+ Tackles",
+              "normalized_selection": "christopher_operi_2_tackles",
+              "odds": "7/10",
+              "player": "Christopher Operi",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Christopher Operi 3+ Tackles",
+              "normalized_selection": "christopher_operi_3_tackles",
+              "odds": "19/10",
+              "player": "Christopher Operi",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Christopher Operi 4+ Tackles",
+              "normalized_selection": "christopher_operi_4_tackles",
+              "odds": "19/4",
+              "player": "Christopher Operi",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Deveron Fonville 3+ Tackles",
+              "normalized_selection": "deveron_fonville_3_tackles",
+              "odds": "9/10",
+              "player": "Deveron Fonville",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Deveron Fonville 4+ Tackles",
+              "normalized_selection": "deveron_fonville_4_tackles",
+              "odds": "2/1",
+              "player": "Deveron Fonville",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Deveron Fonville 5+ Tackles",
+              "normalized_selection": "deveron_fonville_5_tackles",
+              "odds": "9/2",
+              "player": "Deveron Fonville",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Elye Wahi 1+ Tackles",
+              "normalized_selection": "elye_wahi_1_tackles",
+              "odds": "1/1",
+              "player": "Elye Wahi",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Elye Wahi 2+ Tackles",
+              "normalized_selection": "elye_wahi_2_tackles",
+              "odds": "22/5",
+              "player": "Elye Wahi",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Emmanuel Agbadou 2+ Tackles",
+              "normalized_selection": "emmanuel_agbadou_2_tackles",
+              "odds": "4/9",
+              "player": "Emmanuel Agbadou",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Emmanuel Agbadou 3+ Tackles",
+              "normalized_selection": "emmanuel_agbadou_3_tackles",
+              "odds": "6/5",
+              "player": "Emmanuel Agbadou",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Emmanuel Agbadou 4+ Tackles",
+              "normalized_selection": "emmanuel_agbadou_4_tackles",
+              "odds": "14/5",
+              "player": "Emmanuel Agbadou",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Emmanuel Agbadou 5+ Tackles",
+              "normalized_selection": "emmanuel_agbadou_5_tackles",
+              "odds": "13/2",
+              "player": "Emmanuel Agbadou",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Evan Ndicka 1+ Tackles",
+              "normalized_selection": "evan_ndicka_1_tackles",
+              "odds": "2/5",
+              "player": "Evan Ndicka",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Evan Ndicka 2+ Tackles",
+              "normalized_selection": "evan_ndicka_2_tackles",
+              "odds": "13/8",
+              "player": "Evan Ndicka",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Evan Ndicka 3+ Tackles",
+              "normalized_selection": "evan_ndicka_3_tackles",
+              "odds": "19/4",
+              "player": "Evan Ndicka",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Evann Guessand 2+ Tackles",
+              "normalized_selection": "evann_guessand_2_tackles",
+              "odds": "4/6",
+              "player": "Evann Guessand",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Evann Guessand 3+ Tackles",
+              "normalized_selection": "evann_guessand_3_tackles",
+              "odds": "15/8",
+              "player": "Evann Guessand",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Evann Guessand 4+ Tackles",
+              "normalized_selection": "evann_guessand_4_tackles",
+              "odds": "9/2",
+              "player": "Evann Guessand",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Franck Kessie 2+ Tackles",
+              "normalized_selection": "franck_kessie_2_tackles",
+              "odds": "20/21",
+              "player": "Franck Kessie",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Franck Kessie 3+ Tackles",
+              "normalized_selection": "franck_kessie_3_tackles",
+              "odds": "27/10",
+              "player": "Franck Kessie",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Franck Kessie 4+ Tackles",
+              "normalized_selection": "franck_kessie_4_tackles",
+              "odds": "7/1",
+              "player": "Franck Kessie",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Gervane Kastaneer 2+ Tackles",
+              "normalized_selection": "gervane_kastaneer_2_tackles",
+              "odds": "9/10",
+              "player": "Gervane Kastaneer",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Gervane Kastaneer 3+ Tackles",
+              "normalized_selection": "gervane_kastaneer_3_tackles",
+              "odds": "5/2",
+              "player": "Gervane Kastaneer",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Gervane Kastaneer 4+ Tackles",
+              "normalized_selection": "gervane_kastaneer_4_tackles",
+              "odds": "13/2",
+              "player": "Gervane Kastaneer",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ghislain Konan 2+ Tackles",
+              "normalized_selection": "ghislain_konan_2_tackles",
+              "odds": "8/11",
+              "player": "Ghislain Konan",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ghislain Konan 3+ Tackles",
+              "normalized_selection": "ghislain_konan_3_tackles",
+              "odds": "2/1",
+              "player": "Ghislain Konan",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ghislain Konan 4+ Tackles",
+              "normalized_selection": "ghislain_konan_4_tackles",
+              "odds": "5/1",
+              "player": "Ghislain Konan",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Godfried Roemeratoe 2+ Tackles",
+              "normalized_selection": "godfried_roemeratoe_2_tackles",
+              "odds": "4/7",
+              "player": "Godfried Roemeratoe",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Godfried Roemeratoe 3+ Tackles",
+              "normalized_selection": "godfried_roemeratoe_3_tackles",
+              "odds": "31/20",
+              "player": "Godfried Roemeratoe",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Godfried Roemeratoe 4+ Tackles",
+              "normalized_selection": "godfried_roemeratoe_4_tackles",
+              "odds": "19/5",
+              "player": "Godfried Roemeratoe",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Godfried Roemeratoe 5+ Tackles",
+              "normalized_selection": "godfried_roemeratoe_5_tackles",
+              "odds": "9/1",
+              "player": "Godfried Roemeratoe",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Guela Doue 2+ Tackles",
+              "normalized_selection": "guela_doue_2_tackles",
+              "odds": "2/5",
+              "player": "Guela Doue",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Guela Doue 3+ Tackles",
+              "normalized_selection": "guela_doue_3_tackles",
+              "odds": "11/10",
+              "player": "Guela Doue",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Guela Doue 4+ Tackles",
+              "normalized_selection": "guela_doue_4_tackles",
+              "odds": "13/5",
+              "player": "Guela Doue",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Guela Doue 5+ Tackles",
+              "normalized_selection": "guela_doue_5_tackles",
+              "odds": "11/2",
+              "player": "Guela Doue",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ibrahim Sangare 3+ Tackles",
+              "normalized_selection": "ibrahim_sangare_3_tackles",
+              "odds": "1/2",
+              "player": "Ibrahim Sangare",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ibrahim Sangare 4+ Tackles",
+              "normalized_selection": "ibrahim_sangare_4_tackles",
+              "odds": "23/20",
+              "player": "Ibrahim Sangare",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ibrahim Sangare 5+ Tackles",
+              "normalized_selection": "ibrahim_sangare_5_tackles",
+              "odds": "12/5",
+              "player": "Ibrahim Sangare",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ibrahim Sangare 6+ Tackles",
+              "normalized_selection": "ibrahim_sangare_6_tackles",
+              "odds": "5/1",
+              "player": "Ibrahim Sangare",
+              "threshold": "6+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jean Michel Seri 2+ Tackles",
+              "normalized_selection": "jean_michel_seri_2_tackles",
+              "odds": "19/20",
+              "player": "Jean Michel Seri",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jean Michel Seri 3+ Tackles",
+              "normalized_selection": "jean_michel_seri_3_tackles",
+              "odds": "13/5",
+              "player": "Jean Michel Seri",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jean Michel Seri 4+ Tackles",
+              "normalized_selection": "jean_michel_seri_4_tackles",
+              "odds": "7/1",
+              "player": "Jean Michel Seri",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jearl Margaritha 2+ Tackles",
+              "normalized_selection": "jearl_margaritha_2_tackles",
+              "odds": "5/4",
+              "player": "Jearl Margaritha",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jearl Margaritha 3+ Tackles",
+              "normalized_selection": "jearl_margaritha_3_tackles",
+              "odds": "18/5",
+              "player": "Jearl Margaritha",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jeremy Antonisse 2+ Tackles",
+              "normalized_selection": "jeremy_antonisse_2_tackles",
+              "odds": "11/10",
+              "player": "Jeremy Antonisse",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jeremy Antonisse 3+ Tackles",
+              "normalized_selection": "jeremy_antonisse_3_tackles",
+              "odds": "31/10",
+              "player": "Jeremy Antonisse",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jeremy Antonisse 4+ Tackles",
+              "normalized_selection": "jeremy_antonisse_4_tackles",
+              "odds": "8/1",
+              "player": "Jeremy Antonisse",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Joshua Brenet 2+ Tackles",
+              "normalized_selection": "joshua_brenet_2_tackles",
+              "odds": "1/3",
+              "player": "Joshua Brenet",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Joshua Brenet 3+ Tackles",
+              "normalized_selection": "joshua_brenet_3_tackles",
+              "odds": "37/40",
+              "player": "Joshua Brenet",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Joshua Brenet 4+ Tackles",
+              "normalized_selection": "joshua_brenet_4_tackles",
+              "odds": "85/40",
+              "player": "Joshua Brenet",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Joshua Brenet 5+ Tackles",
+              "normalized_selection": "joshua_brenet_5_tackles",
+              "odds": "19/4",
+              "player": "Joshua Brenet",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Juninho Bacuna 2+ Tackles",
+              "normalized_selection": "juninho_bacuna_2_tackles",
+              "odds": "3/5",
+              "player": "Juninho Bacuna",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Juninho Bacuna 3+ Tackles",
+              "normalized_selection": "juninho_bacuna_3_tackles",
+              "odds": "13/8",
+              "player": "Juninho Bacuna",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Juninho Bacuna 4+ Tackles",
+              "normalized_selection": "juninho_bacuna_4_tackles",
+              "odds": "4/1",
+              "player": "Juninho Bacuna",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jurgen Locadia 1+ Tackles",
+              "normalized_selection": "jurgen_locadia_1_tackles",
+              "odds": "2/5",
+              "player": "Jurgen Locadia",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jurgen Locadia 2+ Tackles",
+              "normalized_selection": "jurgen_locadia_2_tackles",
+              "odds": "13/8",
+              "player": "Jurgen Locadia",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jurgen Locadia 3+ Tackles",
+              "normalized_selection": "jurgen_locadia_3_tackles",
+              "odds": "5/1",
+              "player": "Jurgen Locadia",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jurien Gaari 2+ Tackles",
+              "normalized_selection": "jurien_gaari_2_tackles",
+              "odds": "2/5",
+              "player": "Jurien Gaari",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jurien Gaari 3+ Tackles",
+              "normalized_selection": "jurien_gaari_3_tackles",
+              "odds": "23/20",
+              "player": "Jurien Gaari",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jurien Gaari 4+ Tackles",
+              "normalized_selection": "jurien_gaari_4_tackles",
+              "odds": "27/10",
+              "player": "Jurien Gaari",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Jurien Gaari 5+ Tackles",
+              "normalized_selection": "jurien_gaari_5_tackles",
+              "odds": "6/1",
+              "player": "Jurien Gaari",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kenji Gorre 2+ Tackles",
+              "normalized_selection": "kenji_gorre_2_tackles",
+              "odds": "23/20",
+              "player": "Kenji Gorre",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kenji Gorre 3+ Tackles",
+              "normalized_selection": "kenji_gorre_3_tackles",
+              "odds": "16/5",
+              "player": "Kenji Gorre",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kenji Gorre 4+ Tackles",
+              "normalized_selection": "kenji_gorre_4_tackles",
+              "odds": "17/2",
+              "player": "Kenji Gorre",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kevin Felida 2+ Tackles",
+              "normalized_selection": "kevin_felida_2_tackles",
+              "odds": "4/7",
+              "player": "Kevin Felida",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kevin Felida 3+ Tackles",
+              "normalized_selection": "kevin_felida_3_tackles",
+              "odds": "31/20",
+              "player": "Kevin Felida",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kevin Felida 4+ Tackles",
+              "normalized_selection": "kevin_felida_4_tackles",
+              "odds": "15/4",
+              "player": "Kevin Felida",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Kevin Felida 5+ Tackles",
+              "normalized_selection": "kevin_felida_5_tackles",
+              "odds": "17/2",
+              "player": "Kevin Felida",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Leandro Bacuna 2+ Tackles",
+              "normalized_selection": "leandro_bacuna_2_tackles",
+              "odds": "8/11",
+              "player": "Leandro Bacuna",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Leandro Bacuna 3+ Tackles",
+              "normalized_selection": "leandro_bacuna_3_tackles",
+              "odds": "2/1",
+              "player": "Leandro Bacuna",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Leandro Bacuna 4+ Tackles",
+              "normalized_selection": "leandro_bacuna_4_tackles",
+              "odds": "5/1",
+              "player": "Leandro Bacuna",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Livano Comenencia 2+ Tackles",
+              "normalized_selection": "livano_comenencia_2_tackles",
+              "odds": "8/15",
+              "player": "Livano Comenencia",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Livano Comenencia 3+ Tackles",
+              "normalized_selection": "livano_comenencia_3_tackles",
+              "odds": "29/20",
+              "player": "Livano Comenencia",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Livano Comenencia 4+ Tackles",
+              "normalized_selection": "livano_comenencia_4_tackles",
+              "odds": "7/2",
+              "player": "Livano Comenencia",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Livano Comenencia 5+ Tackles",
+              "normalized_selection": "livano_comenencia_5_tackles",
+              "odds": "8/1",
+              "player": "Livano Comenencia",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Nicolas Pepe 2+ Tackles",
+              "normalized_selection": "nicolas_pepe_2_tackles",
+              "odds": "6/5",
+              "player": "Nicolas Pepe",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Nicolas Pepe 3+ Tackles",
+              "normalized_selection": "nicolas_pepe_3_tackles",
+              "odds": "17/5",
+              "player": "Nicolas Pepe",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Nicolas Pepe 4+ Tackles",
+              "normalized_selection": "nicolas_pepe_4_tackles",
+              "odds": "9/1",
+              "player": "Nicolas Pepe",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Odilon Kossounou 2+ Tackles",
+              "normalized_selection": "odilon_kossounou_2_tackles",
+              "odds": "6/5",
+              "player": "Odilon Kossounou",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Odilon Kossounou 3+ Tackles",
+              "normalized_selection": "odilon_kossounou_3_tackles",
+              "odds": "17/5",
+              "player": "Odilon Kossounou",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Odilon Kossounou 4+ Tackles",
+              "normalized_selection": "odilon_kossounou_4_tackles",
+              "odds": "9/1",
+              "player": "Odilon Kossounou",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Oumar Diakite 2+ Tackles",
+              "normalized_selection": "oumar_diakite_2_tackles",
+              "odds": "1/1",
+              "player": "Oumar Diakite",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Oumar Diakite 3+ Tackles",
+              "normalized_selection": "oumar_diakite_3_tackles",
+              "odds": "14/5",
+              "player": "Oumar Diakite",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Oumar Diakite 4+ Tackles",
+              "normalized_selection": "oumar_diakite_4_tackles",
+              "odds": "7/1",
+              "player": "Oumar Diakite",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ousmane Diomande 1+ Tackles",
+              "normalized_selection": "ousmane_diomande_1_tackles",
+              "odds": "4/11",
+              "player": "Ousmane Diomande",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ousmane Diomande 2+ Tackles",
+              "normalized_selection": "ousmane_diomande_2_tackles",
+              "odds": "29/20",
+              "player": "Ousmane Diomande",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Ousmane Diomande 3+ Tackles",
+              "normalized_selection": "ousmane_diomande_3_tackles",
+              "odds": "22/5",
+              "player": "Ousmane Diomande",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Parfait Guiagon 2+ Tackles",
+              "normalized_selection": "parfait_guiagon_2_tackles",
+              "odds": "1/1",
+              "player": "Parfait Guiagon",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Parfait Guiagon 3+ Tackles",
+              "normalized_selection": "parfait_guiagon_3_tackles",
+              "odds": "29/10",
+              "player": "Parfait Guiagon",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Parfait Guiagon 4+ Tackles",
+              "normalized_selection": "parfait_guiagon_4_tackles",
+              "odds": "15/2",
+              "player": "Parfait Guiagon",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Riechedly Bazoer 2+ Tackles",
+              "normalized_selection": "riechedly_bazoer_2_tackles",
+              "odds": "17/20",
+              "player": "Riechedly Bazoer",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Riechedly Bazoer 3+ Tackles",
+              "normalized_selection": "riechedly_bazoer_3_tackles",
+              "odds": "23/10",
+              "player": "Riechedly Bazoer",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Riechedly Bazoer 4+ Tackles",
+              "normalized_selection": "riechedly_bazoer_4_tackles",
+              "odds": "6/1",
+              "player": "Riechedly Bazoer",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Roshon Van Eijma 2+ Tackles",
+              "normalized_selection": "roshon_van_eijma_2_tackles",
+              "odds": "21/20",
+              "player": "Roshon Van Eijma",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Roshon Van Eijma 3+ Tackles",
+              "normalized_selection": "roshon_van_eijma_3_tackles",
+              "odds": "29/10",
+              "player": "Roshon Van Eijma",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Roshon Van Eijma 4+ Tackles",
+              "normalized_selection": "roshon_van_eijma_4_tackles",
+              "odds": "15/2",
+              "player": "Roshon Van Eijma",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Sebastian Hansen 1+ Tackles",
+              "normalized_selection": "sebastian_hansen_1_tackles",
+              "odds": "4/9",
+              "player": "Sebastian Hansen",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Sebastian Hansen 2+ Tackles",
+              "normalized_selection": "sebastian_hansen_2_tackles",
+              "odds": "7/4",
+              "player": "Sebastian Hansen",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Sebastian Hansen 3+ Tackles",
+              "normalized_selection": "sebastian_hansen_3_tackles",
+              "odds": "11/2",
+              "player": "Sebastian Hansen",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Seko Fofana 1+ Tackles",
+              "normalized_selection": "seko_fofana_1_tackles",
+              "odds": "40/85",
+              "player": "Seko Fofana",
+              "threshold": "1+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Seko Fofana 2+ Tackles",
+              "normalized_selection": "seko_fofana_2_tackles",
+              "odds": "19/10",
+              "player": "Seko Fofana",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Seko Fofana 3+ Tackles",
+              "normalized_selection": "seko_fofana_3_tackles",
+              "odds": "6/1",
+              "player": "Seko Fofana",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Sherel Floranus 2+ Tackles",
+              "normalized_selection": "sherel_floranus_2_tackles",
+              "odds": "1/3",
+              "player": "Sherel Floranus",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Sherel Floranus 3+ Tackles",
+              "normalized_selection": "sherel_floranus_3_tackles",
+              "odds": "19/20",
+              "player": "Sherel Floranus",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Sherel Floranus 4+ Tackles",
+              "normalized_selection": "sherel_floranus_4_tackles",
+              "odds": "11/5",
+              "player": "Sherel Floranus",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Sherel Floranus 5+ Tackles",
+              "normalized_selection": "sherel_floranus_5_tackles",
+              "odds": "19/4",
+              "player": "Sherel Floranus",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Shurandy Sambo 3+ Tackles",
+              "normalized_selection": "shurandy_sambo_3_tackles",
+              "odds": "11/20",
+              "player": "Shurandy Sambo",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Shurandy Sambo 4+ Tackles",
+              "normalized_selection": "shurandy_sambo_4_tackles",
+              "odds": "5/4",
+              "player": "Shurandy Sambo",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Shurandy Sambo 5+ Tackles",
+              "normalized_selection": "shurandy_sambo_5_tackles",
+              "odds": "13/5",
+              "player": "Shurandy Sambo",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Shurandy Sambo 6+ Tackles",
+              "normalized_selection": "shurandy_sambo_6_tackles",
+              "odds": "11/2",
+              "player": "Shurandy Sambo",
+              "threshold": "6+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Simon Adingra 2+ Tackles",
+              "normalized_selection": "simon_adingra_2_tackles",
+              "odds": "5/4",
+              "player": "Simon Adingra",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Simon Adingra 3+ Tackles",
+              "normalized_selection": "simon_adingra_3_tackles",
+              "odds": "18/5",
+              "player": "Simon Adingra",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tahith Chong 2+ Tackles",
+              "normalized_selection": "tahith_chong_2_tackles",
+              "odds": "1/1",
+              "player": "Tahith Chong",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tahith Chong 3+ Tackles",
+              "normalized_selection": "tahith_chong_3_tackles",
+              "odds": "29/10",
+              "player": "Tahith Chong",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tahith Chong 4+ Tackles",
+              "normalized_selection": "tahith_chong_4_tackles",
+              "odds": "15/2",
+              "player": "Tahith Chong",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tyrese Noslin 2+ Tackles",
+              "normalized_selection": "tyrese_noslin_2_tackles",
+              "odds": "4/11",
+              "player": "Tyrese Noslin",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tyrese Noslin 3+ Tackles",
+              "normalized_selection": "tyrese_noslin_3_tackles",
+              "odds": "1/1",
+              "player": "Tyrese Noslin",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tyrese Noslin 4+ Tackles",
+              "normalized_selection": "tyrese_noslin_4_tackles",
+              "odds": "23/10",
+              "player": "Tyrese Noslin",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Tyrese Noslin 5+ Tackles",
+              "normalized_selection": "tyrese_noslin_5_tackles",
+              "odds": "5/1",
+              "player": "Tyrese Noslin",
+              "threshold": "5+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Yan Diomande 2+ Tackles",
+              "normalized_selection": "yan_diomande_2_tackles",
+              "odds": "4/6",
+              "player": "Yan Diomande",
+              "threshold": "2+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Yan Diomande 3+ Tackles",
+              "normalized_selection": "yan_diomande_3_tackles",
+              "odds": "15/8",
+              "player": "Yan Diomande",
+              "threshold": "3+",
+              "prop_type": "tackles"
+            },
+            {
+              "selection": "Yan Diomande 4+ Tackles",
+              "normalized_selection": "yan_diomande_4_tackles",
+              "odds": "9/2",
+              "player": "Yan Diomande",
+              "threshold": "4+",
+              "prop_type": "tackles"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
