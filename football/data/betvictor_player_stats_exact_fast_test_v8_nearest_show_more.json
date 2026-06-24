@@ -1,0 +1,840 @@
+{
+  "sport": "football",
+  "competition": "FIFA World Cup",
+  "bookmaker": "BetVictor",
+  "market_type": "exact_player_stats_fast_test_v4_safe",
+  "test_mode": true,
+  "production_files_modified": false,
+  "generated_at": "2026-06-24T20:18:26.624295+00:00",
+  "source_props_generated_at": "2026-06-24T12:08:18.389083+00:00",
+  "max_matches": 3,
+  "match_count": 3,
+  "matches_with_all_three_markets": 3,
+  "elapsed_seconds": 169.38,
+  "matches": [
+    {
+      "match": "Morocco v Haiti",
+      "home_team": "Morocco",
+      "away_team": "Haiti",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107500",
+      "kickoff": "2026-06-24T22:00:00+00:00",
+      "market_count": 3,
+      "markets": [
+        {
+          "market": "Player Shots On Target",
+          "normalized_market": "player_shots_on_target",
+          "heading_clicked": "Player Shots on Target",
+          "expansion_controls_clicked": 0,
+          "scroll_containers_found": 2,
+          "scoped_show_more_clicked": 0,
+          "fallback_used": true,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 230,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 0,
+            "show_more_passes": [],
+            "final_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 230,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 5,
+            "fallback_used": true,
+            "final_rows": 5
+          },
+          "selection_audit": {
+            "raw_row_count": 5,
+            "unique_player_threshold_count": 5,
+            "selection_count": 5,
+            "player_count": 5,
+            "threshold_counts": {
+              "1+": 5
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 5,
+          "elapsed_seconds": 18.1,
+          "selections": [
+            {
+              "selection": "Ayoub El Kaabi 1+ Shots On Target",
+              "normalized_selection": "ayoub_el_kaabi_1_shots_on_target",
+              "odds": "2/13",
+              "player": "Ayoub El Kaabi",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Ayoube Amaimouni 1+ Shots On Target",
+              "normalized_selection": "ayoube_amaimouni_1_shots_on_target",
+              "odds": "1/6",
+              "player": "Ayoube Amaimouni",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Brahim Diaz 1+ Shots On Target",
+              "normalized_selection": "brahim_diaz_1_shots_on_target",
+              "odds": "2/7",
+              "player": "Brahim Diaz",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Ismael Saibari 1+ Shots On Target",
+              "normalized_selection": "ismael_saibari_1_shots_on_target",
+              "odds": "1/6",
+              "player": "Ismael Saibari",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Soufiane Rahimi 1+ Shots On Target",
+              "normalized_selection": "soufiane_rahimi_1_shots_on_target",
+              "odds": "2/15",
+              "player": "Soufiane Rahimi",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "Player Shots",
+          "normalized_market": "player_shots",
+          "heading_clicked": "Player Shots",
+          "expansion_controls_clicked": 0,
+          "scroll_containers_found": 2,
+          "scoped_show_more_clicked": 0,
+          "fallback_used": true,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 181,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 0,
+            "show_more_passes": [],
+            "final_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 181,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 5,
+            "fallback_used": true,
+            "final_rows": 5
+          },
+          "selection_audit": {
+            "raw_row_count": 5,
+            "unique_player_threshold_count": 5,
+            "selection_count": 5,
+            "player_count": 5,
+            "threshold_counts": {
+              "1+": 3,
+              "2+": 2
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 5,
+          "elapsed_seconds": 18.6,
+          "selections": [
+            {
+              "selection": "Achraf Hakimi 1+ Shots",
+              "normalized_selection": "achraf_hakimi_1_shots",
+              "odds": "2/15",
+              "player": "Achraf Hakimi",
+              "threshold": "1+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Ayoub El Kaabi 2+ Shots",
+              "normalized_selection": "ayoub_el_kaabi_2_shots",
+              "odds": "1/11",
+              "player": "Ayoub El Kaabi",
+              "threshold": "2+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Ayoube Amaimouni 2+ Shots",
+              "normalized_selection": "ayoube_amaimouni_2_shots",
+              "odds": "1/11",
+              "player": "Ayoube Amaimouni",
+              "threshold": "2+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Bilal El Khannouss 1+ Shots",
+              "normalized_selection": "bilal_el_khannouss_1_shots",
+              "odds": "1/14",
+              "player": "Bilal El Khannouss",
+              "threshold": "1+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Zakaria El Ouahdi 1+ Shots",
+              "normalized_selection": "zakaria_el_ouahdi_1_shots",
+              "odds": "1/14",
+              "player": "Zakaria El Ouahdi",
+              "threshold": "1+",
+              "prop_type": "shots"
+            }
+          ]
+        },
+        {
+          "market": "Player Fouls Committed",
+          "normalized_market": "player_fouls_committed",
+          "heading_clicked": "Player Fouls",
+          "expansion_controls_clicked": 0,
+          "scroll_containers_found": 2,
+          "scoped_show_more_clicked": 0,
+          "fallback_used": true,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 181,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 0,
+            "show_more_passes": [],
+            "final_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 181,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 5,
+            "fallback_used": true,
+            "final_rows": 5
+          },
+          "selection_audit": {
+            "raw_row_count": 5,
+            "unique_player_threshold_count": 5,
+            "selection_count": 5,
+            "player_count": 5,
+            "threshold_counts": {
+              "1+": 5
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 5,
+          "elapsed_seconds": 17.7,
+          "selections": [
+            {
+              "selection": "Frantzdy Pierrot 1+ Fouls Committed",
+              "normalized_selection": "frantzdy_pierrot_1_fouls_committed",
+              "odds": "1/14",
+              "player": "Frantzdy Pierrot",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Josue Casimir 1+ Fouls Committed",
+              "normalized_selection": "josue_casimir_1_fouls_committed",
+              "odds": "1/9",
+              "player": "Josue Casimir",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Louicius Don Deedson 1+ Fouls Committed",
+              "normalized_selection": "louicius_don_deedson_1_fouls_committed",
+              "odds": "1/10",
+              "player": "Louicius Don Deedson",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Martin Experience 1+ Fouls Committed",
+              "normalized_selection": "martin_experience_1_fouls_committed",
+              "odds": "1/8",
+              "player": "Martin Experience",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Yassin Fortune 1+ Fouls Committed",
+              "normalized_selection": "yassin_fortune_1_fouls_committed",
+              "odds": "1/14",
+              "player": "Yassin Fortune",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Scotland v Brazil",
+      "home_team": "Scotland",
+      "away_team": "Brazil",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789106700",
+      "kickoff": "2026-06-24T22:00:00+00:00",
+      "market_count": 3,
+      "markets": [
+        {
+          "market": "Player Shots On Target",
+          "normalized_market": "player_shots_on_target",
+          "heading_clicked": "Player Shots on Target",
+          "expansion_controls_clicked": 0,
+          "scroll_containers_found": 2,
+          "scoped_show_more_clicked": 0,
+          "fallback_used": true,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 211,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 0,
+            "show_more_passes": [],
+            "final_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 211,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 5,
+            "fallback_used": true,
+            "final_rows": 5
+          },
+          "selection_audit": {
+            "raw_row_count": 5,
+            "unique_player_threshold_count": 5,
+            "selection_count": 5,
+            "player_count": 5,
+            "threshold_counts": {
+              "1+": 5
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 5,
+          "elapsed_seconds": 18.33,
+          "selections": [
+            {
+              "selection": "Endrick 1+ Shots On Target",
+              "normalized_selection": "endrick_1_shots_on_target",
+              "odds": "2/7",
+              "player": "Endrick",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Igor Thiago 1+ Shots On Target",
+              "normalized_selection": "igor_thiago_1_shots_on_target",
+              "odds": "2/9",
+              "player": "Igor Thiago",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Matheus Cunha 1+ Shots On Target",
+              "normalized_selection": "matheus_cunha_1_shots_on_target",
+              "odds": "3/10",
+              "player": "Matheus Cunha",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Neymar 1+ Shots On Target",
+              "normalized_selection": "neymar_1_shots_on_target",
+              "odds": "2/7",
+              "player": "Neymar",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Vinicius Junior 1+ Shots On Target",
+              "normalized_selection": "vinicius_junior_1_shots_on_target",
+              "odds": "2/9",
+              "player": "Vinicius Junior",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "Player Shots",
+          "normalized_market": "player_shots",
+          "heading_clicked": "Player Shots",
+          "expansion_controls_clicked": 0,
+          "scroll_containers_found": 2,
+          "scoped_show_more_clicked": 0,
+          "fallback_used": true,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 165,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 0,
+            "show_more_passes": [],
+            "final_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 165,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 5,
+            "fallback_used": true,
+            "final_rows": 5
+          },
+          "selection_audit": {
+            "raw_row_count": 5,
+            "unique_player_threshold_count": 5,
+            "selection_count": 5,
+            "player_count": 5,
+            "threshold_counts": {
+              "1+": 2,
+              "2+": 3
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 5,
+          "elapsed_seconds": 18.7,
+          "selections": [
+            {
+              "selection": "Danilo Dos Santos 1+ Shots",
+              "normalized_selection": "danilo_dos_santos_1_shots",
+              "odds": "1/9",
+              "player": "Danilo Dos Santos",
+              "threshold": "1+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Lucas Paqueta 1+ Shots",
+              "normalized_selection": "lucas_paqueta_1_shots",
+              "odds": "1/14",
+              "player": "Lucas Paqueta",
+              "threshold": "1+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Matheus Cunha 2+ Shots",
+              "normalized_selection": "matheus_cunha_2_shots",
+              "odds": "2/15",
+              "player": "Matheus Cunha",
+              "threshold": "2+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Neymar 2+ Shots",
+              "normalized_selection": "neymar_2_shots",
+              "odds": "1/9",
+              "player": "Neymar",
+              "threshold": "2+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Vinicius Junior 2+ Shots",
+              "normalized_selection": "vinicius_junior_2_shots",
+              "odds": "2/13",
+              "player": "Vinicius Junior",
+              "threshold": "2+",
+              "prop_type": "shots"
+            }
+          ]
+        },
+        {
+          "market": "Player Fouls Committed",
+          "normalized_market": "player_fouls_committed",
+          "heading_clicked": "Player Fouls",
+          "expansion_controls_clicked": 0,
+          "scroll_containers_found": 2,
+          "scoped_show_more_clicked": 0,
+          "fallback_used": true,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 161,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 0,
+            "show_more_passes": [],
+            "final_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 161,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 5,
+            "fallback_used": true,
+            "final_rows": 5
+          },
+          "selection_audit": {
+            "raw_row_count": 5,
+            "unique_player_threshold_count": 5,
+            "selection_count": 5,
+            "player_count": 5,
+            "threshold_counts": {
+              "1+": 5
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 5,
+          "elapsed_seconds": 18.61,
+          "selections": [
+            {
+              "selection": "Alex Sandro 1+ Fouls Committed",
+              "normalized_selection": "alex_sandro_1_fouls_committed",
+              "odds": "1/12",
+              "player": "Alex Sandro",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Bruno Guimaraes 1+ Fouls Committed",
+              "normalized_selection": "bruno_guimaraes_1_fouls_committed",
+              "odds": "1/10",
+              "player": "Bruno Guimaraes",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Ederson Lourenco 1+ Fouls Committed",
+              "normalized_selection": "ederson_lourenco_1_fouls_committed",
+              "odds": "1/9",
+              "player": "Ederson Lourenco",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Fabinho 1+ Fouls Committed",
+              "normalized_selection": "fabinho_1_fouls_committed",
+              "odds": "1/9",
+              "player": "Fabinho",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "George Hirst 1+ Fouls Committed",
+              "normalized_selection": "george_hirst_1_fouls_committed",
+              "odds": "1/9",
+              "player": "George Hirst",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Czechia v Mexico",
+      "home_team": "Czechia",
+      "away_team": "Mexico",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108300",
+      "kickoff": "2026-06-25T01:00:00+00:00",
+      "market_count": 3,
+      "markets": [
+        {
+          "market": "Player Shots On Target",
+          "normalized_market": "player_shots_on_target",
+          "heading_clicked": "Player Shots on Target",
+          "expansion_controls_clicked": 0,
+          "scroll_containers_found": 2,
+          "scoped_show_more_clicked": 0,
+          "fallback_used": true,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 239,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 0,
+            "show_more_passes": [],
+            "final_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 239,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 5,
+            "fallback_used": true,
+            "final_rows": 5
+          },
+          "selection_audit": {
+            "raw_row_count": 5,
+            "unique_player_threshold_count": 5,
+            "selection_count": 5,
+            "player_count": 5,
+            "threshold_counts": {
+              "1+": 5
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 5,
+          "elapsed_seconds": 18.56,
+          "selections": [
+            {
+              "selection": "Armando Gonzalez 1+ Shots On Target",
+              "normalized_selection": "armando_gonzalez_1_shots_on_target",
+              "odds": "40/85",
+              "player": "Armando Gonzalez",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Guillermo Martinez 1+ Shots On Target",
+              "normalized_selection": "guillermo_martinez_1_shots_on_target",
+              "odds": "40/85",
+              "player": "Guillermo Martinez",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Julian Quinones 1+ Shots On Target",
+              "normalized_selection": "julian_quinones_1_shots_on_target",
+              "odds": "4/9",
+              "player": "Julian Quinones",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Raul Jimenez 1+ Shots On Target",
+              "normalized_selection": "raul_jimenez_1_shots_on_target",
+              "odds": "2/5",
+              "player": "Raul Jimenez",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            },
+            {
+              "selection": "Santiago Gimenez 1+ Shots On Target",
+              "normalized_selection": "santiago_gimenez_1_shots_on_target",
+              "odds": "4/9",
+              "player": "Santiago Gimenez",
+              "threshold": "1+",
+              "prop_type": "shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "Player Shots",
+          "normalized_market": "player_shots",
+          "heading_clicked": "Player Shots",
+          "expansion_controls_clicked": 0,
+          "scroll_containers_found": 2,
+          "scoped_show_more_clicked": 0,
+          "fallback_used": true,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 163,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 0,
+            "show_more_passes": [],
+            "final_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 163,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 5,
+            "fallback_used": true,
+            "final_rows": 5
+          },
+          "selection_audit": {
+            "raw_row_count": 5,
+            "unique_player_threshold_count": 5,
+            "selection_count": 5,
+            "player_count": 5,
+            "threshold_counts": {
+              "1+": 5
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 5,
+          "elapsed_seconds": 18.39,
+          "selections": [
+            {
+              "selection": "Alexis Vega 1+ Shots",
+              "normalized_selection": "alexis_vega_1_shots",
+              "odds": "1/11",
+              "player": "Alexis Vega",
+              "threshold": "1+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Brian Gutierrez 1+ Shots",
+              "normalized_selection": "brian_gutierrez_1_shots",
+              "odds": "1/8",
+              "player": "Brian Gutierrez",
+              "threshold": "1+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Cesar Huerta 1+ Shots",
+              "normalized_selection": "cesar_huerta_1_shots",
+              "odds": "1/8",
+              "player": "Cesar Huerta",
+              "threshold": "1+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Patrik Schick 1+ Shots",
+              "normalized_selection": "patrik_schick_1_shots",
+              "odds": "1/14",
+              "player": "Patrik Schick",
+              "threshold": "1+",
+              "prop_type": "shots"
+            },
+            {
+              "selection": "Tomas Chory 1+ Shots",
+              "normalized_selection": "tomas_chory_1_shots",
+              "odds": "2/15",
+              "player": "Tomas Chory",
+              "threshold": "1+",
+              "prop_type": "shots"
+            }
+          ]
+        },
+        {
+          "market": "Player Fouls Committed",
+          "normalized_market": "player_fouls_committed",
+          "heading_clicked": "Player Fouls",
+          "expansion_controls_clicked": 0,
+          "scroll_containers_found": 2,
+          "scoped_show_more_clicked": 0,
+          "fallback_used": true,
+          "harvest_phases": {
+            "initial_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 172,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "initial_rows": 5,
+            "show_more_clicked": 0,
+            "show_more_passes": [],
+            "final_scope": {
+              "row_count": 5,
+              "show_more_count": 1,
+              "text_length": 172,
+              "depth": 1,
+              "tag": "DIV",
+              "class_name": "expandable goalscorer event-level-coupon with-see-more with-search open"
+            },
+            "rows_after_scoped": 5,
+            "fallback_used": true,
+            "final_rows": 5
+          },
+          "selection_audit": {
+            "raw_row_count": 5,
+            "unique_player_threshold_count": 5,
+            "selection_count": 5,
+            "player_count": 5,
+            "threshold_counts": {
+              "1+": 5
+            },
+            "conflict_count": 0,
+            "conflicts": []
+          },
+          "selection_count": 5,
+          "elapsed_seconds": 17.57,
+          "selections": [
+            {
+              "selection": "Denis Visinsky 1+ Fouls Committed",
+              "normalized_selection": "denis_visinsky_1_fouls_committed",
+              "odds": "1/7",
+              "player": "Denis Visinsky",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Edson Alvarez 1+ Fouls Committed",
+              "normalized_selection": "edson_alvarez_1_fouls_committed",
+              "odds": "1/7",
+              "player": "Edson Alvarez",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Guillermo Martinez 1+ Fouls Committed",
+              "normalized_selection": "guillermo_martinez_1_fouls_committed",
+              "odds": "1/10",
+              "player": "Guillermo Martinez",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Ladislav Krejci 1+ Fouls Committed",
+              "normalized_selection": "ladislav_krejci_1_fouls_committed",
+              "odds": "1/11",
+              "player": "Ladislav Krejci",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            },
+            {
+              "selection": "Tomas Soucek 1+ Fouls Committed",
+              "normalized_selection": "tomas_soucek_1_fouls_committed",
+              "odds": "1/8",
+              "player": "Tomas Soucek",
+              "threshold": "1+",
+              "prop_type": "fouls_committed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

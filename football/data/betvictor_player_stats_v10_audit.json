@@ -1,0 +1,4462 @@
+{
+  "source": "C:\\Users\\joete\\odds-board\\football\\data\\betvictor_player_stats_exact_fast_test_v10_overlay_fix.json",
+  "production_comparison_source": "C:\\Users\\joete\\odds-board\\football\\data\\betvictor_player_stats_exact.json",
+  "market_count": 9,
+  "markets_passed": 9,
+  "critical_issue_count": 0,
+  "warning_count": 26,
+  "overall_verdict": "PASS",
+  "markets": [
+    {
+      "match": "Morocco v Haiti",
+      "market": "Player Shots On Target",
+      "normalized_market": "player_shots_on_target",
+      "reported_selection_count": 87,
+      "actual_selection_count": 87,
+      "unique_player_threshold_count": 87,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 43,
+        "2+": 28,
+        "3+": 11,
+        "4+": 5
+      },
+      "maximum_threshold": "4+",
+      "selection_audit_from_scraper": {
+        "raw_row_count": 87,
+        "unique_player_threshold_count": 87,
+        "selection_count": 87,
+        "player_count": 43,
+        "threshold_counts": {
+          "1+": 43,
+          "2+": 28,
+          "3+": 11,
+          "4+": 5
+        },
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "malformed_count": 0,
+      "invalid_odds_count": 0,
+      "duplicate_player_threshold_count": 0,
+      "ladder_gap_count": 0,
+      "missing_lower_threshold_count": 0,
+      "odds_order_violation_count": 0,
+      "same_price_adjacent_threshold_count": 0,
+      "production_overlap_count": 87,
+      "production_matching_price_count": 43,
+      "production_price_mismatch_count": 44,
+      "critical_issue_count": 0,
+      "warning_count": 0,
+      "verdict": "PASS",
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [],
+        "odds_order_violations": [],
+        "same_price_across_thresholds": [],
+        "production_price_mismatches": [
+          {
+            "player": "Achraf Hakimi",
+            "threshold": "1+",
+            "test_odds": "31/40",
+            "production_odds": "7/10"
+          },
+          {
+            "player": "Achraf Hakimi",
+            "threshold": "2+",
+            "test_odds": "4/1",
+            "production_odds": "7/2"
+          },
+          {
+            "player": "Ayoub El Kaabi",
+            "threshold": "1+",
+            "test_odds": "2/13",
+            "production_odds": "1/7"
+          },
+          {
+            "player": "Ayoub El Kaabi",
+            "threshold": "2+",
+            "test_odds": "8/11",
+            "production_odds": "7/10"
+          },
+          {
+            "player": "Ayoub El Kaabi",
+            "threshold": "3+",
+            "test_odds": "23/10",
+            "production_odds": "85/40"
+          },
+          {
+            "player": "Ayoub El Kaabi",
+            "threshold": "4+",
+            "test_odds": "13/2",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "1+",
+            "test_odds": "1/6",
+            "production_odds": "2/9"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "2+",
+            "test_odds": "5/6",
+            "production_odds": "1/1"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "3+",
+            "test_odds": "13/5",
+            "production_odds": "16/5"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "4+",
+            "test_odds": "15/2",
+            "production_odds": "10/1"
+          },
+          {
+            "player": "Ayyoub Bouaddi",
+            "threshold": "1+",
+            "test_odds": "15/8",
+            "production_odds": "31/20"
+          },
+          {
+            "player": "Ayyoub Bouaddi",
+            "threshold": "2+",
+            "test_odds": "13/1",
+            "production_odds": "10/1"
+          },
+          {
+            "player": "Brahim Diaz",
+            "threshold": "2+",
+            "test_odds": "5/4",
+            "production_odds": "13/10"
+          },
+          {
+            "player": "Brahim Diaz",
+            "threshold": "3+",
+            "test_odds": "17/4",
+            "production_odds": "9/2"
+          },
+          {
+            "player": "Brahim Diaz",
+            "threshold": "4+",
+            "test_odds": "14/1",
+            "production_odds": "15/1"
+          },
+          {
+            "player": "Carl Fred Sainte",
+            "threshold": "1+",
+            "test_odds": "19/4",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Carlens Arcus",
+            "threshold": "1+",
+            "test_odds": "17/2",
+            "production_odds": "15/2"
+          },
+          {
+            "player": "Frantzdy Pierrot",
+            "threshold": "1+",
+            "test_odds": "11/8",
+            "production_odds": "23/20"
+          },
+          {
+            "player": "Frantzdy Pierrot",
+            "threshold": "2+",
+            "test_odds": "17/2",
+            "production_odds": "13/2"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "1+",
+            "test_odds": "1/6",
+            "production_odds": "1/5"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "2+",
+            "test_odds": "5/6",
+            "production_odds": "19/20"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "3+",
+            "test_odds": "13/5",
+            "production_odds": "3/1"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "4+",
+            "test_odds": "15/2",
+            "production_odds": "9/1"
+          },
+          {
+            "player": "Issa Diop",
+            "threshold": "1+",
+            "test_odds": "5/2",
+            "production_odds": "23/10"
+          },
+          {
+            "player": "Jean-Ricner Bellegarde",
+            "threshold": "1+",
+            "test_odds": "16/5",
+            "production_odds": "12/5"
+          },
+          {
+            "player": "Josue Casimir",
+            "threshold": "1+",
+            "test_odds": "11/5",
+            "production_odds": "21/10"
+          },
+          {
+            "player": "Josue Casimir",
+            "threshold": "2+",
+            "test_odds": "17/1",
+            "production_odds": "16/1"
+          },
+          {
+            "player": "Lenny Joseph",
+            "threshold": "1+",
+            "test_odds": "15/8",
+            "production_odds": "7/4"
+          },
+          {
+            "player": "Lenny Joseph",
+            "threshold": "2+",
+            "test_odds": "13/1",
+            "production_odds": "12/1"
+          },
+          {
+            "player": "Martin Experience",
+            "threshold": "1+",
+            "test_odds": "15/2",
+            "production_odds": "7/1"
+          },
+          {
+            "player": "Neil El Aynaoui",
+            "threshold": "1+",
+            "test_odds": "5/6",
+            "production_odds": "8/11"
+          },
+          {
+            "player": "Neil El Aynaoui",
+            "threshold": "2+",
+            "test_odds": "22/5",
+            "production_odds": "19/5"
+          },
+          {
+            "player": "Noussair Mazraoui",
+            "threshold": "1+",
+            "test_odds": "27/10",
+            "production_odds": "5/2"
+          },
+          {
+            "player": "Olivier Pierre Woodensky",
+            "threshold": "1+",
+            "test_odds": "22/5",
+            "production_odds": "4/1"
+          },
+          {
+            "player": "Ricardo Ade",
+            "threshold": "1+",
+            "test_odds": "17/2",
+            "production_odds": "15/2"
+          },
+          {
+            "player": "Ruben Providence",
+            "threshold": "1+",
+            "test_odds": "9/4",
+            "production_odds": "2/1"
+          },
+          {
+            "player": "Samir El Mourabet",
+            "threshold": "1+",
+            "test_odds": "20/21",
+            "production_odds": "20/23"
+          },
+          {
+            "player": "Samir El Mourabet",
+            "threshold": "2+",
+            "test_odds": "11/2",
+            "production_odds": "9/2"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "1+",
+            "test_odds": "2/15",
+            "production_odds": "1/6"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "2+",
+            "test_odds": "4/6",
+            "production_odds": "5/6"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "3+",
+            "test_odds": "21/10",
+            "production_odds": "13/5"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "4+",
+            "test_odds": "6/1",
+            "production_odds": "15/2"
+          },
+          {
+            "player": "Youssef Belammari",
+            "threshold": "1+",
+            "test_odds": "29/20",
+            "production_odds": "5/4"
+          },
+          {
+            "player": "Youssef Belammari",
+            "threshold": "2+",
+            "test_odds": "19/2",
+            "production_odds": "15/2"
+          }
+        ],
+        "sample_longest_ladders": [
+          {
+            "player": "Ayoub El Kaabi",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/13",
+              "8/11",
+              "23/10",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/6",
+              "5/6",
+              "13/5",
+              "15/2"
+            ]
+          },
+          {
+            "player": "Brahim Diaz",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/7",
+              "5/4",
+              "17/4",
+              "14/1"
+            ]
+          },
+          {
+            "player": "Ismael Saibari",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/6",
+              "5/6",
+              "13/5",
+              "15/2"
+            ]
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/15",
+              "4/6",
+              "21/10",
+              "6/1"
+            ]
+          },
+          {
+            "player": "Amine Sbai",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "1/3",
+              "31/20",
+              "11/2"
+            ]
+          },
+          {
+            "player": "Azzedine Ounahi",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "4/11",
+              "13/8",
+              "6/1"
+            ]
+          },
+          {
+            "player": "Bilal El Khannouss",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "3/5",
+              "29/10",
+              "12/1"
+            ]
+          },
+          {
+            "player": "Chemsdine Talbi",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "11/20",
+              "27/10",
+              "11/1"
+            ]
+          },
+          {
+            "player": "Gessime Yassine",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "11/20",
+              "13/5",
+              "21/2"
+            ]
+          },
+          {
+            "player": "Zakaria El Ouahdi",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "3/5",
+              "29/10",
+              "12/1"
+            ]
+          },
+          {
+            "player": "Achraf Hakimi",
+            "thresholds": [
+              "1+",
+              "2+"
+            ],
+            "odds": [
+              "31/40",
+              "4/1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "match": "Morocco v Haiti",
+      "market": "Player Shots",
+      "normalized_market": "player_shots",
+      "reported_selection_count": 167,
+      "actual_selection_count": 167,
+      "unique_player_threshold_count": 167,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 34,
+        "2+": 39,
+        "3+": 33,
+        "4+": 22,
+        "5+": 15,
+        "6+": 11,
+        "7+": 7,
+        "8+": 4,
+        "9+": 2
+      },
+      "maximum_threshold": "9+",
+      "selection_audit_from_scraper": {
+        "raw_row_count": 167,
+        "unique_player_threshold_count": 167,
+        "selection_count": 167,
+        "player_count": 43,
+        "threshold_counts": {
+          "1+": 34,
+          "2+": 39,
+          "3+": 33,
+          "4+": 22,
+          "5+": 15,
+          "6+": 11,
+          "7+": 7,
+          "8+": 4,
+          "9+": 2
+        },
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "malformed_count": 0,
+      "invalid_odds_count": 0,
+      "duplicate_player_threshold_count": 0,
+      "ladder_gap_count": 0,
+      "missing_lower_threshold_count": 9,
+      "odds_order_violation_count": 0,
+      "same_price_adjacent_threshold_count": 0,
+      "production_overlap_count": 164,
+      "production_matching_price_count": 94,
+      "production_price_mismatch_count": 70,
+      "critical_issue_count": 0,
+      "warning_count": 9,
+      "verdict": "PASS",
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Amine Sbai",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ayoub El Kaabi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Azzedine Ounahi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Brahim Diaz",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Chemsdine Talbi",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gessime Yassine",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Ismael Saibari",
+            "lowest_available": "3+"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "lowest_available": "3+"
+          }
+        ],
+        "odds_order_violations": [],
+        "same_price_across_thresholds": [],
+        "production_price_mismatches": [
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "2+",
+            "test_odds": "1/11",
+            "production_odds": "2/15"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "3+",
+            "test_odds": "3/10",
+            "production_odds": "4/9"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "4+",
+            "test_odds": "7/10",
+            "production_odds": "1/1"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "5+",
+            "test_odds": "29/20",
+            "production_odds": "2/1"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "6+",
+            "test_odds": "14/5",
+            "production_odds": "4/1"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "7+",
+            "test_odds": "11/2",
+            "production_odds": "8/1"
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "threshold": "8+",
+            "test_odds": "21/2",
+            "production_odds": "15/1"
+          },
+          {
+            "player": "Ayyoub Bouaddi",
+            "threshold": "1+",
+            "test_odds": "1/2",
+            "production_odds": "4/9"
+          },
+          {
+            "player": "Ayyoub Bouaddi",
+            "threshold": "2+",
+            "test_odds": "21/10",
+            "production_odds": "7/4"
+          },
+          {
+            "player": "Ayyoub Bouaddi",
+            "threshold": "3+",
+            "test_odds": "13/2",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Carl Fred Sainte",
+            "threshold": "1+",
+            "test_odds": "29/20",
+            "production_odds": "6/5"
+          },
+          {
+            "player": "Carl Fred Sainte",
+            "threshold": "2+",
+            "test_odds": "13/2",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Carlens Arcus",
+            "threshold": "1+",
+            "test_odds": "13/5",
+            "production_odds": "9/4"
+          },
+          {
+            "player": "Carlens Arcus",
+            "threshold": "2+",
+            "test_odds": "14/1",
+            "production_odds": "12/1"
+          },
+          {
+            "player": "Derrick Etienne",
+            "threshold": "1+",
+            "test_odds": "8/15",
+            "production_odds": "9/20"
+          },
+          {
+            "player": "Derrick Etienne",
+            "threshold": "2+",
+            "test_odds": "85/40",
+            "production_odds": "15/8"
+          },
+          {
+            "player": "Derrick Etienne",
+            "threshold": "3+",
+            "test_odds": "13/2",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Frantzdy Pierrot",
+            "threshold": "1+",
+            "test_odds": "1/3",
+            "production_odds": "3/10"
+          },
+          {
+            "player": "Frantzdy Pierrot",
+            "threshold": "2+",
+            "test_odds": "7/5",
+            "production_odds": "5/4"
+          },
+          {
+            "player": "Frantzdy Pierrot",
+            "threshold": "3+",
+            "test_odds": "17/4",
+            "production_odds": "18/5"
+          },
+          {
+            "player": "Frantzdy Pierrot",
+            "threshold": "4+",
+            "test_odds": "11/1",
+            "production_odds": "19/2"
+          },
+          {
+            "player": "Hannes Delcroix",
+            "threshold": "1+",
+            "test_odds": "5/2",
+            "production_odds": "85/40"
+          },
+          {
+            "player": "Hannes Delcroix",
+            "threshold": "2+",
+            "test_odds": "13/1",
+            "production_odds": "11/1"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "3+",
+            "test_odds": "1/6",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "4+",
+            "test_odds": "2/5",
+            "production_odds": "3/4"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "5+",
+            "test_odds": "17/20",
+            "production_odds": "31/20"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "6+",
+            "test_odds": "13/8",
+            "production_odds": "3/1"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "7+",
+            "test_odds": "3/1",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "Ismael Saibari",
+            "threshold": "8+",
+            "test_odds": "11/2",
+            "production_odds": "12/1"
+          },
+          {
+            "player": "Issa Diop",
+            "threshold": "1+",
+            "test_odds": "37/40",
+            "production_odds": "5/6"
+          },
+          {
+            "player": "Issa Diop",
+            "threshold": "2+",
+            "test_odds": "4/1",
+            "production_odds": "18/5"
+          },
+          {
+            "player": "Issa Diop",
+            "threshold": "3+",
+            "test_odds": "14/1",
+            "production_odds": "12/1"
+          },
+          {
+            "player": "Josue Casimir",
+            "threshold": "1+",
+            "test_odds": "13/20",
+            "production_odds": "4/7"
+          },
+          {
+            "player": "Josue Casimir",
+            "threshold": "2+",
+            "test_odds": "27/10",
+            "production_odds": "12/5"
+          },
+          {
+            "player": "Josue Casimir",
+            "threshold": "3+",
+            "test_odds": "9/1",
+            "production_odds": "15/2"
+          },
+          {
+            "player": "Lenny Joseph",
+            "threshold": "1+",
+            "test_odds": "40/85",
+            "production_odds": "4/9"
+          },
+          {
+            "player": "Lenny Joseph",
+            "threshold": "2+",
+            "test_odds": "19/10",
+            "production_odds": "17/10"
+          },
+          {
+            "player": "Lenny Joseph",
+            "threshold": "3+",
+            "test_odds": "6/1",
+            "production_odds": "5/1"
+          },
+          {
+            "player": "Louicius Don Deedson",
+            "threshold": "1+",
+            "test_odds": "2/5",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Louicius Don Deedson",
+            "threshold": "2+",
+            "test_odds": "8/5",
+            "production_odds": "7/5"
+          },
+          {
+            "player": "Louicius Don Deedson",
+            "threshold": "3+",
+            "test_odds": "19/4",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Louicius Don Deedson",
+            "threshold": "4+",
+            "test_odds": "13/1",
+            "production_odds": "11/1"
+          },
+          {
+            "player": "Martin Experience",
+            "threshold": "1+",
+            "test_odds": "21/10",
+            "production_odds": "15/8"
+          },
+          {
+            "player": "Martin Experience",
+            "threshold": "2+",
+            "test_odds": "11/1",
+            "production_odds": "19/2"
+          },
+          {
+            "player": "Noussair Mazraoui",
+            "threshold": "1+",
+            "test_odds": "20/23",
+            "production_odds": "31/40"
+          },
+          {
+            "player": "Noussair Mazraoui",
+            "threshold": "2+",
+            "test_odds": "19/5",
+            "production_odds": "10/3"
+          },
+          {
+            "player": "Noussair Mazraoui",
+            "threshold": "3+",
+            "test_odds": "13/1",
+            "production_odds": "11/1"
+          },
+          {
+            "player": "Olivier Pierre Woodensky",
+            "threshold": "1+",
+            "test_odds": "29/20",
+            "production_odds": "6/5"
+          },
+          {
+            "player": "Olivier Pierre Woodensky",
+            "threshold": "2+",
+            "test_odds": "13/2",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Ricardo Ade",
+            "threshold": "1+",
+            "test_odds": "16/5",
+            "production_odds": "11/4"
+          },
+          {
+            "player": "Ruben Providence",
+            "threshold": "1+",
+            "test_odds": "4/9",
+            "production_odds": "8/15"
+          },
+          {
+            "player": "Ruben Providence",
+            "threshold": "2+",
+            "test_odds": "17/10",
+            "production_odds": "85/40"
+          },
+          {
+            "player": "Ruben Providence",
+            "threshold": "3+",
+            "test_odds": "5/1",
+            "production_odds": "13/2"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "3+",
+            "test_odds": "1/4",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "4+",
+            "test_odds": "4/7",
+            "production_odds": "4/5"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "5+",
+            "test_odds": "6/5",
+            "production_odds": "17/10"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "6+",
+            "test_odds": "23/10",
+            "production_odds": "10/3"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "7+",
+            "test_odds": "22/5",
+            "production_odds": "13/2"
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "threshold": "8+",
+            "test_odds": "17/2",
+            "production_odds": "13/1"
+          },
+          {
+            "player": "Wilson Isidor",
+            "threshold": "1+",
+            "test_odds": "2/9",
+            "production_odds": "1/4"
+          },
+          {
+            "player": "Wilson Isidor",
+            "threshold": "3+",
+            "test_odds": "11/4",
+            "production_odds": "29/10"
+          },
+          {
+            "player": "Wilson Isidor",
+            "threshold": "4+",
+            "test_odds": "7/1",
+            "production_odds": "15/2"
+          },
+          {
+            "player": "Yassin Fortune",
+            "threshold": "1+",
+            "test_odds": "9/20",
+            "production_odds": "2/5"
+          },
+          {
+            "player": "Yassin Fortune",
+            "threshold": "2+",
+            "test_odds": "9/5",
+            "production_odds": "8/5"
+          },
+          {
+            "player": "Yassin Fortune",
+            "threshold": "3+",
+            "test_odds": "11/2",
+            "production_odds": "19/4"
+          },
+          {
+            "player": "Yassin Fortune",
+            "threshold": "4+",
+            "test_odds": "16/1",
+            "production_odds": "14/1"
+          },
+          {
+            "player": "Youssef Belammari",
+            "threshold": "1+",
+            "test_odds": "1/4",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Youssef Belammari",
+            "threshold": "2+",
+            "test_odds": "21/20",
+            "production_odds": "7/5"
+          },
+          {
+            "player": "Youssef Belammari",
+            "threshold": "3+",
+            "test_odds": "3/1",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Youssef Belammari",
+            "threshold": "4+",
+            "test_odds": "8/1",
+            "production_odds": "11/1"
+          }
+        ],
+        "sample_longest_ladders": [
+          {
+            "player": "Ayoub El Kaabi",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+",
+              "8+"
+            ],
+            "odds": [
+              "1/11",
+              "3/10",
+              "8/11",
+              "6/4",
+              "29/10",
+              "11/2",
+              "11/1"
+            ]
+          },
+          {
+            "player": "Ayoube Amaimouni",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+",
+              "8+"
+            ],
+            "odds": [
+              "1/11",
+              "3/10",
+              "7/10",
+              "29/20",
+              "14/5",
+              "11/2",
+              "21/2"
+            ]
+          },
+          {
+            "player": "Ismael Saibari",
+            "thresholds": [
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+",
+              "8+",
+              "9+"
+            ],
+            "odds": [
+              "1/6",
+              "2/5",
+              "17/20",
+              "13/8",
+              "3/1",
+              "11/2",
+              "21/2"
+            ]
+          },
+          {
+            "player": "Soufiane Rahimi",
+            "thresholds": [
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+",
+              "8+",
+              "9+"
+            ],
+            "odds": [
+              "1/4",
+              "4/7",
+              "6/5",
+              "23/10",
+              "22/5",
+              "17/2",
+              "16/1"
+            ]
+          },
+          {
+            "player": "Amine Sbai",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "odds": [
+              "2/9",
+              "4/6",
+              "6/4",
+              "16/5",
+              "7/1",
+              "14/1"
+            ]
+          },
+          {
+            "player": "Azzedine Ounahi",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "odds": [
+              "1/6",
+              "1/2",
+              "6/5",
+              "5/2",
+              "5/1",
+              "21/2"
+            ]
+          },
+          {
+            "player": "Bilal El Khannouss",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "1/14",
+              "4/11",
+              "1/1",
+              "12/5",
+              "5/1",
+              "12/1"
+            ]
+          },
+          {
+            "player": "Brahim Diaz",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "odds": [
+              "2/13",
+              "40/85",
+              "11/10",
+              "23/10",
+              "19/4",
+              "19/2"
+            ]
+          },
+          {
+            "player": "Zakaria El Ouahdi",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "1/14",
+              "2/5",
+              "11/10",
+              "5/2",
+              "11/2",
+              "13/1"
+            ]
+          },
+          {
+            "player": "Achraf Hakimi",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "2/15",
+              "3/5",
+              "13/8",
+              "4/1",
+              "19/2"
+            ]
+          },
+          {
+            "player": "Chemsdine Talbi",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "4/11",
+              "1/1",
+              "23/10",
+              "5/1",
+              "11/1"
+            ]
+          },
+          {
+            "player": "Gessime Yassine",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "1/3",
+              "37/40",
+              "85/40",
+              "19/4",
+              "21/2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "match": "Morocco v Haiti",
+      "market": "Player Fouls Committed",
+      "normalized_market": "player_fouls_committed",
+      "reported_selection_count": 129,
+      "actual_selection_count": 129,
+      "unique_player_threshold_count": 129,
+      "player_count": 42,
+      "threshold_counts": {
+        "1+": 42,
+        "2+": 42,
+        "3+": 34,
+        "4+": 11
+      },
+      "maximum_threshold": "4+",
+      "selection_audit_from_scraper": {
+        "raw_row_count": 129,
+        "unique_player_threshold_count": 129,
+        "selection_count": 129,
+        "player_count": 42,
+        "threshold_counts": {
+          "1+": 42,
+          "2+": 42,
+          "3+": 34,
+          "4+": 11
+        },
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "malformed_count": 0,
+      "invalid_odds_count": 0,
+      "duplicate_player_threshold_count": 0,
+      "ladder_gap_count": 0,
+      "missing_lower_threshold_count": 0,
+      "odds_order_violation_count": 0,
+      "same_price_adjacent_threshold_count": 0,
+      "production_overlap_count": 127,
+      "production_matching_price_count": 117,
+      "production_price_mismatch_count": 10,
+      "critical_issue_count": 0,
+      "warning_count": 0,
+      "verdict": "PASS",
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [],
+        "odds_order_violations": [],
+        "same_price_across_thresholds": [],
+        "production_price_mismatches": [
+          {
+            "player": "Jean-Ricner Bellegarde",
+            "threshold": "1+",
+            "test_odds": "1/7",
+            "production_odds": "2/11"
+          },
+          {
+            "player": "Jean-Ricner Bellegarde",
+            "threshold": "2+",
+            "test_odds": "8/11",
+            "production_odds": "5/6"
+          },
+          {
+            "player": "Jean-Ricner Bellegarde",
+            "threshold": "3+",
+            "test_odds": "11/5",
+            "production_odds": "13/5"
+          },
+          {
+            "player": "Louicius Don Deedson",
+            "threshold": "1+",
+            "test_odds": "1/10",
+            "production_odds": "2/15"
+          },
+          {
+            "player": "Louicius Don Deedson",
+            "threshold": "2+",
+            "test_odds": "8/15",
+            "production_odds": "4/6"
+          },
+          {
+            "player": "Louicius Don Deedson",
+            "threshold": "3+",
+            "test_odds": "13/8",
+            "production_odds": "21/10"
+          },
+          {
+            "player": "Louicius Don Deedson",
+            "threshold": "4+",
+            "test_odds": "9/2",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "Martin Experience",
+            "threshold": "1+",
+            "test_odds": "1/8",
+            "production_odds": "2/13"
+          },
+          {
+            "player": "Martin Experience",
+            "threshold": "2+",
+            "test_odds": "13/20",
+            "production_odds": "3/4"
+          },
+          {
+            "player": "Martin Experience",
+            "threshold": "3+",
+            "test_odds": "2/1",
+            "production_odds": "12/5"
+          }
+        ],
+        "sample_longest_ladders": [
+          {
+            "player": "Ayyoub Bouaddi",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/15",
+              "4/6",
+              "21/10",
+              "6/1"
+            ]
+          },
+          {
+            "player": "Carlens Arcus",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/8",
+              "13/20",
+              "2/1",
+              "11/2"
+            ]
+          },
+          {
+            "player": "Dominique Simon",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/13",
+              "3/4",
+              "23/10",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Frantzdy Pierrot",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/14",
+              "4/9",
+              "13/10",
+              "17/5"
+            ]
+          },
+          {
+            "player": "Jean-Ricner Bellegarde",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/7",
+              "8/11",
+              "11/5",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Josue Casimir",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/9",
+              "4/7",
+              "7/4",
+              "19/4"
+            ]
+          },
+          {
+            "player": "Lenny Joseph",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/15",
+              "13/20",
+              "2/1",
+              "11/2"
+            ]
+          },
+          {
+            "player": "Louicius Don Deedson",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/10",
+              "8/15",
+              "13/8",
+              "9/2"
+            ]
+          },
+          {
+            "player": "Martin Experience",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/8",
+              "13/20",
+              "2/1",
+              "11/2"
+            ]
+          },
+          {
+            "player": "Redouane Halhal",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/7",
+              "8/11",
+              "9/4",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Yassin Fortune",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/14",
+              "2/5",
+              "6/5",
+              "16/5"
+            ]
+          },
+          {
+            "player": "Achraf Hakimi",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "1/3",
+              "6/4",
+              "5/1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "match": "Scotland v Brazil",
+      "market": "Player Shots On Target",
+      "normalized_market": "player_shots_on_target",
+      "reported_selection_count": 83,
+      "actual_selection_count": 83,
+      "unique_player_threshold_count": 83,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 43,
+        "2+": 26,
+        "3+": 10,
+        "4+": 4
+      },
+      "maximum_threshold": "4+",
+      "selection_audit_from_scraper": {
+        "raw_row_count": 83,
+        "unique_player_threshold_count": 83,
+        "selection_count": 83,
+        "player_count": 43,
+        "threshold_counts": {
+          "1+": 43,
+          "2+": 26,
+          "3+": 10,
+          "4+": 4
+        },
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "malformed_count": 0,
+      "invalid_odds_count": 0,
+      "duplicate_player_threshold_count": 0,
+      "ladder_gap_count": 0,
+      "missing_lower_threshold_count": 0,
+      "odds_order_violation_count": 0,
+      "same_price_adjacent_threshold_count": 0,
+      "production_overlap_count": 83,
+      "production_matching_price_count": 58,
+      "production_price_mismatch_count": 25,
+      "critical_issue_count": 0,
+      "warning_count": 0,
+      "verdict": "PASS",
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [],
+        "odds_order_violations": [],
+        "same_price_across_thresholds": [],
+        "production_price_mismatches": [
+          {
+            "player": "Ben Gannon-Doak",
+            "threshold": "1+",
+            "test_odds": "7/2",
+            "production_odds": "23/10"
+          },
+          {
+            "player": "Bruno Guimaraes",
+            "threshold": "1+",
+            "test_odds": "5/4",
+            "production_odds": "13/10"
+          },
+          {
+            "player": "Bruno Guimaraes",
+            "threshold": "2+",
+            "test_odds": "15/2",
+            "production_odds": "8/1"
+          },
+          {
+            "player": "George Hirst",
+            "threshold": "1+",
+            "test_odds": "31/20",
+            "production_odds": "13/10"
+          },
+          {
+            "player": "George Hirst",
+            "threshold": "2+",
+            "test_odds": "10/1",
+            "production_odds": "8/1"
+          },
+          {
+            "player": "Lawrence Shankland",
+            "threshold": "1+",
+            "test_odds": "29/20",
+            "production_odds": "5/4"
+          },
+          {
+            "player": "Lawrence Shankland",
+            "threshold": "2+",
+            "test_odds": "19/2",
+            "production_odds": "15/2"
+          },
+          {
+            "player": "Lewis Ferguson",
+            "threshold": "1+",
+            "test_odds": "13/5",
+            "production_odds": "4/1"
+          },
+          {
+            "player": "Lyndon Dykes",
+            "threshold": "1+",
+            "test_odds": "13/8",
+            "production_odds": "7/5"
+          },
+          {
+            "player": "Lyndon Dykes",
+            "threshold": "2+",
+            "test_odds": "11/1",
+            "production_odds": "17/2"
+          },
+          {
+            "player": "Marquinhos Correa",
+            "threshold": "1+",
+            "test_odds": "27/10",
+            "production_odds": "22/5"
+          },
+          {
+            "player": "Matheus Cunha",
+            "threshold": "1+",
+            "test_odds": "3/10",
+            "production_odds": "2/7"
+          },
+          {
+            "player": "Matheus Cunha",
+            "threshold": "2+",
+            "test_odds": "29/20",
+            "production_odds": "13/10"
+          },
+          {
+            "player": "Matheus Cunha",
+            "threshold": "3+",
+            "test_odds": "5/1",
+            "production_odds": "9/2"
+          },
+          {
+            "player": "Rayan Vitor",
+            "threshold": "2+",
+            "test_odds": "6/4",
+            "production_odds": "8/5"
+          },
+          {
+            "player": "Rayan Vitor",
+            "threshold": "3+",
+            "test_odds": "5/1",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Roger Ibanez",
+            "threshold": "1+",
+            "test_odds": "21/10",
+            "production_odds": "19/10"
+          },
+          {
+            "player": "Roger Ibanez",
+            "threshold": "2+",
+            "test_odds": "16/1",
+            "production_odds": "14/1"
+          },
+          {
+            "player": "Ross Stewart",
+            "threshold": "1+",
+            "test_odds": "6/4",
+            "production_odds": "13/10"
+          },
+          {
+            "player": "Ross Stewart",
+            "threshold": "2+",
+            "test_odds": "10/1",
+            "production_odds": "8/1"
+          },
+          {
+            "player": "Ryan Christie",
+            "threshold": "1+",
+            "test_odds": "11/5",
+            "production_odds": "15/8"
+          },
+          {
+            "player": "Ryan Christie",
+            "threshold": "2+",
+            "test_odds": "17/1",
+            "production_odds": "13/1"
+          },
+          {
+            "player": "Scott McTominay",
+            "threshold": "1+",
+            "test_odds": "20/23",
+            "production_odds": "1/1"
+          },
+          {
+            "player": "Scott McTominay",
+            "threshold": "2+",
+            "test_odds": "19/4",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Tyler Fletcher",
+            "threshold": "1+",
+            "test_odds": "19/4",
+            "production_odds": "4/1"
+          }
+        ],
+        "sample_longest_ladders": [
+          {
+            "player": "Endrick",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/7",
+              "5/4",
+              "17/4",
+              "14/1"
+            ]
+          },
+          {
+            "player": "Igor Thiago",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/9",
+              "1/1",
+              "16/5",
+              "10/1"
+            ]
+          },
+          {
+            "player": "Neymar",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/7",
+              "13/10",
+              "9/2",
+              "15/1"
+            ]
+          },
+          {
+            "player": "Vinicius Junior",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/9",
+              "21/20",
+              "7/2",
+              "11/1"
+            ]
+          },
+          {
+            "player": "Danilo Dos Santos",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "7/10",
+              "7/2",
+              "15/1"
+            ]
+          },
+          {
+            "player": "Gabriel Martinelli",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "40/85",
+              "23/10",
+              "9/1"
+            ]
+          },
+          {
+            "player": "Lucas Paqueta",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "7/10",
+              "18/5",
+              "16/1"
+            ]
+          },
+          {
+            "player": "Luiz Henrique Da Silva Alves",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "1/2",
+              "12/5",
+              "19/2"
+            ]
+          },
+          {
+            "player": "Matheus Cunha",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "3/10",
+              "29/20",
+              "5/1"
+            ]
+          },
+          {
+            "player": "Rayan Vitor",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "1/3",
+              "6/4",
+              "5/1"
+            ]
+          },
+          {
+            "player": "Bremer",
+            "thresholds": [
+              "1+",
+              "2+"
+            ],
+            "odds": [
+              "21/10",
+              "16/1"
+            ]
+          },
+          {
+            "player": "Bruno Guimaraes",
+            "thresholds": [
+              "1+",
+              "2+"
+            ],
+            "odds": [
+              "5/4",
+              "15/2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "match": "Scotland v Brazil",
+      "market": "Player Shots",
+      "normalized_market": "player_shots",
+      "reported_selection_count": 156,
+      "actual_selection_count": 156,
+      "unique_player_threshold_count": 156,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 35,
+        "2+": 39,
+        "3+": 31,
+        "4+": 22,
+        "5+": 13,
+        "6+": 9,
+        "7+": 5,
+        "8+": 2
+      },
+      "maximum_threshold": "8+",
+      "selection_audit_from_scraper": {
+        "raw_row_count": 156,
+        "unique_player_threshold_count": 156,
+        "selection_count": 156,
+        "player_count": 43,
+        "threshold_counts": {
+          "1+": 35,
+          "2+": 39,
+          "3+": 31,
+          "4+": 22,
+          "5+": 13,
+          "6+": 9,
+          "7+": 5,
+          "8+": 2
+        },
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "malformed_count": 0,
+      "invalid_odds_count": 0,
+      "duplicate_player_threshold_count": 0,
+      "ladder_gap_count": 0,
+      "missing_lower_threshold_count": 8,
+      "odds_order_violation_count": 0,
+      "same_price_adjacent_threshold_count": 0,
+      "production_overlap_count": 155,
+      "production_matching_price_count": 108,
+      "production_price_mismatch_count": 47,
+      "critical_issue_count": 0,
+      "warning_count": 8,
+      "verdict": "PASS",
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Endrick",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Gabriel Martinelli",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Igor Thiago",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Luiz Henrique Da Silva Alves",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Matheus Cunha",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Neymar",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Rayan Vitor",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Vinicius Junior",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "same_price_across_thresholds": [],
+        "production_price_mismatches": [
+          {
+            "player": "Casemiro",
+            "threshold": "2+",
+            "test_odds": "13/10",
+            "production_odds": "5/4"
+          },
+          {
+            "player": "Ederson Lourenco",
+            "threshold": "3+",
+            "test_odds": "5/2",
+            "production_odds": "12/5"
+          },
+          {
+            "player": "Ederson Lourenco",
+            "threshold": "4+",
+            "test_odds": "13/2",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "Findlay Curtis",
+            "threshold": "1+",
+            "test_odds": "1/2",
+            "production_odds": "9/20"
+          },
+          {
+            "player": "Findlay Curtis",
+            "threshold": "2+",
+            "test_odds": "2/1",
+            "production_odds": "9/5"
+          },
+          {
+            "player": "Findlay Curtis",
+            "threshold": "3+",
+            "test_odds": "13/2",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Gabriel Magalhaes",
+            "threshold": "1+",
+            "test_odds": "7/10",
+            "production_odds": "4/7"
+          },
+          {
+            "player": "Gabriel Magalhaes",
+            "threshold": "2+",
+            "test_odds": "29/10",
+            "production_odds": "12/5"
+          },
+          {
+            "player": "Gabriel Magalhaes",
+            "threshold": "3+",
+            "test_odds": "19/2",
+            "production_odds": "15/2"
+          },
+          {
+            "player": "Gabriel Martinelli",
+            "threshold": "2+",
+            "test_odds": "1/3",
+            "production_odds": "3/10"
+          },
+          {
+            "player": "Gabriel Martinelli",
+            "threshold": "3+",
+            "test_odds": "37/40",
+            "production_odds": "17/20"
+          },
+          {
+            "player": "Gabriel Martinelli",
+            "threshold": "4+",
+            "test_odds": "85/40",
+            "production_odds": "2/1"
+          },
+          {
+            "player": "Gabriel Martinelli",
+            "threshold": "5+",
+            "test_odds": "19/4",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Gabriel Martinelli",
+            "threshold": "6+",
+            "test_odds": "21/2",
+            "production_odds": "19/2"
+          },
+          {
+            "player": "George Hirst",
+            "threshold": "1+",
+            "test_odds": "4/11",
+            "production_odds": "3/10"
+          },
+          {
+            "player": "George Hirst",
+            "threshold": "2+",
+            "test_odds": "29/20",
+            "production_odds": "5/4"
+          },
+          {
+            "player": "George Hirst",
+            "threshold": "3+",
+            "test_odds": "22/5",
+            "production_odds": "18/5"
+          },
+          {
+            "player": "George Hirst",
+            "threshold": "4+",
+            "test_odds": "12/1",
+            "production_odds": "10/1"
+          },
+          {
+            "player": "John McGinn",
+            "threshold": "2+",
+            "test_odds": "31/20",
+            "production_odds": "17/10"
+          },
+          {
+            "player": "John McGinn",
+            "threshold": "3+",
+            "test_odds": "19/4",
+            "production_odds": "5/1"
+          },
+          {
+            "player": "John McGinn",
+            "threshold": "4+",
+            "test_odds": "13/1",
+            "production_odds": "14/1"
+          },
+          {
+            "player": "Lawrence Shankland",
+            "threshold": "1+",
+            "test_odds": "1/5",
+            "production_odds": "2/9"
+          },
+          {
+            "player": "Lawrence Shankland",
+            "threshold": "2+",
+            "test_odds": "5/6",
+            "production_odds": "9/10"
+          },
+          {
+            "player": "Lawrence Shankland",
+            "threshold": "3+",
+            "test_odds": "23/10",
+            "production_odds": "5/2"
+          },
+          {
+            "player": "Lawrence Shankland",
+            "threshold": "4+",
+            "test_odds": "6/1",
+            "production_odds": "13/2"
+          },
+          {
+            "player": "Lawrence Shankland",
+            "threshold": "5+",
+            "test_odds": "15/1",
+            "production_odds": "16/1"
+          },
+          {
+            "player": "Lewis Ferguson",
+            "threshold": "1+",
+            "test_odds": "5/4",
+            "production_odds": "23/20"
+          },
+          {
+            "player": "Luiz Henrique Da Silva Alves",
+            "threshold": "2+",
+            "test_odds": "4/11",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Luiz Henrique Da Silva Alves",
+            "threshold": "3+",
+            "test_odds": "1/1",
+            "production_odds": "9/10"
+          },
+          {
+            "player": "Luiz Henrique Da Silva Alves",
+            "threshold": "4+",
+            "test_odds": "23/10",
+            "production_odds": "21/10"
+          },
+          {
+            "player": "Luiz Henrique Da Silva Alves",
+            "threshold": "5+",
+            "test_odds": "5/1",
+            "production_odds": "9/2"
+          },
+          {
+            "player": "Luiz Henrique Da Silva Alves",
+            "threshold": "6+",
+            "test_odds": "11/1",
+            "production_odds": "10/1"
+          },
+          {
+            "player": "Lyndon Dykes",
+            "threshold": "1+",
+            "test_odds": "2/5",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Lyndon Dykes",
+            "threshold": "2+",
+            "test_odds": "13/8",
+            "production_odds": "11/8"
+          },
+          {
+            "player": "Lyndon Dykes",
+            "threshold": "3+",
+            "test_odds": "5/1",
+            "production_odds": "4/1"
+          },
+          {
+            "player": "Lyndon Dykes",
+            "threshold": "4+",
+            "test_odds": "14/1",
+            "production_odds": "11/1"
+          },
+          {
+            "player": "Matheus Cunha",
+            "threshold": "2+",
+            "test_odds": "2/15",
+            "production_odds": "1/4"
+          },
+          {
+            "player": "Matheus Cunha",
+            "threshold": "3+",
+            "test_odds": "2/5",
+            "production_odds": "8/11"
+          },
+          {
+            "player": "Matheus Cunha",
+            "threshold": "4+",
+            "test_odds": "19/20",
+            "production_odds": "17/10"
+          },
+          {
+            "player": "Matheus Cunha",
+            "threshold": "5+",
+            "test_odds": "19/10",
+            "production_odds": "18/5"
+          },
+          {
+            "player": "Matheus Cunha",
+            "threshold": "6+",
+            "test_odds": "19/5",
+            "production_odds": "15/2"
+          },
+          {
+            "player": "Matheus Cunha",
+            "threshold": "7+",
+            "test_odds": "8/1",
+            "production_odds": "16/1"
+          },
+          {
+            "player": "Roger Ibanez",
+            "threshold": "1+",
+            "test_odds": "4/7",
+            "production_odds": "40/85"
+          },
+          {
+            "player": "Roger Ibanez",
+            "threshold": "2+",
+            "test_odds": "12/5",
+            "production_odds": "2/1"
+          },
+          {
+            "player": "Roger Ibanez",
+            "threshold": "3+",
+            "test_odds": "15/2",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "Tyler Fletcher",
+            "threshold": "1+",
+            "test_odds": "7/5",
+            "production_odds": "6/5"
+          },
+          {
+            "player": "Tyler Fletcher",
+            "threshold": "2+",
+            "test_odds": "13/2",
+            "production_odds": "11/2"
+          }
+        ],
+        "sample_longest_ladders": [
+          {
+            "player": "Matheus Cunha",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+",
+              "8+"
+            ],
+            "odds": [
+              "2/15",
+              "2/5",
+              "19/20",
+              "19/10",
+              "19/5",
+              "8/1",
+              "16/1"
+            ]
+          },
+          {
+            "player": "Neymar",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+",
+              "8+"
+            ],
+            "odds": [
+              "1/9",
+              "4/11",
+              "20/23",
+              "9/5",
+              "7/2",
+              "7/1",
+              "14/1"
+            ]
+          },
+          {
+            "player": "Endrick",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "odds": [
+              "2/13",
+              "9/20",
+              "21/20",
+              "11/5",
+              "22/5",
+              "9/1"
+            ]
+          },
+          {
+            "player": "Lucas Paqueta",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "1/14",
+              "4/11",
+              "21/20",
+              "5/2",
+              "11/2",
+              "12/1"
+            ]
+          },
+          {
+            "player": "Rayan Vitor",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "odds": [
+              "1/6",
+              "1/2",
+              "23/20",
+              "12/5",
+              "5/1",
+              "10/1"
+            ]
+          },
+          {
+            "player": "Vinicius Junior",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "odds": [
+              "2/13",
+              "9/20",
+              "21/20",
+              "11/5",
+              "22/5",
+              "9/1"
+            ]
+          },
+          {
+            "player": "Danilo Dos Santos",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "1/9",
+              "8/15",
+              "29/20",
+              "17/5",
+              "8/1"
+            ]
+          },
+          {
+            "player": "Ederson Lourenco",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "1/5",
+              "20/23",
+              "5/2",
+              "13/2",
+              "16/1"
+            ]
+          },
+          {
+            "player": "Gabriel Martinelli",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "1/3",
+              "37/40",
+              "85/40",
+              "19/4",
+              "21/2"
+            ]
+          },
+          {
+            "player": "Igor Thiago",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "3/10",
+              "17/20",
+              "2/1",
+              "17/4",
+              "19/2"
+            ]
+          },
+          {
+            "player": "Lawrence Shankland",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "1/5",
+              "5/6",
+              "23/10",
+              "6/1",
+              "15/1"
+            ]
+          },
+          {
+            "player": "Luiz Henrique Da Silva Alves",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "4/11",
+              "1/1",
+              "23/10",
+              "5/1",
+              "11/1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "match": "Scotland v Brazil",
+      "market": "Player Fouls Committed",
+      "normalized_market": "player_fouls_committed",
+      "reported_selection_count": 135,
+      "actual_selection_count": 135,
+      "unique_player_threshold_count": 135,
+      "player_count": 43,
+      "threshold_counts": {
+        "1+": 40,
+        "2+": 43,
+        "3+": 37,
+        "4+": 15
+      },
+      "maximum_threshold": "4+",
+      "selection_audit_from_scraper": {
+        "raw_row_count": 135,
+        "unique_player_threshold_count": 135,
+        "selection_count": 135,
+        "player_count": 43,
+        "threshold_counts": {
+          "1+": 40,
+          "2+": 43,
+          "3+": 37,
+          "4+": 15
+        },
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "malformed_count": 0,
+      "invalid_odds_count": 0,
+      "duplicate_player_threshold_count": 0,
+      "ladder_gap_count": 0,
+      "missing_lower_threshold_count": 3,
+      "odds_order_violation_count": 0,
+      "same_price_adjacent_threshold_count": 0,
+      "production_overlap_count": 134,
+      "production_matching_price_count": 126,
+      "production_price_mismatch_count": 8,
+      "critical_issue_count": 0,
+      "warning_count": 3,
+      "verdict": "PASS",
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Igor Thiago",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lewis Ferguson",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Lucas Paqueta",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "same_price_across_thresholds": [],
+        "production_price_mismatches": [
+          {
+            "player": "Andy Robertson",
+            "threshold": "1+",
+            "test_odds": "1/3",
+            "production_odds": "1/2"
+          },
+          {
+            "player": "Andy Robertson",
+            "threshold": "2+",
+            "test_odds": "6/4",
+            "production_odds": "23/10"
+          },
+          {
+            "player": "Douglas Santos",
+            "threshold": "1+",
+            "test_odds": "1/4",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Douglas Santos",
+            "threshold": "2+",
+            "test_odds": "23/20",
+            "production_odds": "6/4"
+          },
+          {
+            "player": "Douglas Santos",
+            "threshold": "3+",
+            "test_odds": "19/5",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Lewis Ferguson",
+            "threshold": "2+",
+            "test_odds": "2/5",
+            "production_odds": "8/15"
+          },
+          {
+            "player": "Lewis Ferguson",
+            "threshold": "3+",
+            "test_odds": "23/20",
+            "production_odds": "13/8"
+          },
+          {
+            "player": "Lewis Ferguson",
+            "threshold": "4+",
+            "test_odds": "3/1",
+            "production_odds": "22/5"
+          }
+        ],
+        "sample_longest_ladders": [
+          {
+            "player": "Alex Sandro",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/12",
+              "4/9",
+              "13/10",
+              "7/2"
+            ]
+          },
+          {
+            "player": "Bruno Guimaraes",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/10",
+              "8/15",
+              "8/5",
+              "17/4"
+            ]
+          },
+          {
+            "player": "Casemiro",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/8",
+              "8/13",
+              "19/10",
+              "11/2"
+            ]
+          },
+          {
+            "player": "Danilo",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/7",
+              "8/11",
+              "11/5",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Ederson Lourenco",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/9",
+              "11/20",
+              "17/10",
+              "19/4"
+            ]
+          },
+          {
+            "player": "Endrick",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/7",
+              "8/11",
+              "9/4",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Fabinho",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/9",
+              "11/20",
+              "17/10",
+              "19/4"
+            ]
+          },
+          {
+            "player": "George Hirst",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/9",
+              "4/7",
+              "7/4",
+              "19/4"
+            ]
+          },
+          {
+            "player": "John McGinn",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/7",
+              "7/10",
+              "11/5",
+              "6/1"
+            ]
+          },
+          {
+            "player": "Lyndon Dykes",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/9",
+              "3/5",
+              "9/5",
+              "5/1"
+            ]
+          },
+          {
+            "player": "Neymar",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/8",
+              "8/13",
+              "19/10",
+              "11/2"
+            ]
+          },
+          {
+            "player": "Ryan Christie",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/7",
+              "8/11",
+              "11/5",
+              "13/2"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "match": "Czechia v Mexico",
+      "market": "Player Shots On Target",
+      "normalized_market": "player_shots_on_target",
+      "reported_selection_count": 80,
+      "actual_selection_count": 80,
+      "unique_player_threshold_count": 80,
+      "player_count": 45,
+      "threshold_counts": {
+        "1+": 45,
+        "2+": 28,
+        "3+": 7
+      },
+      "maximum_threshold": "3+",
+      "selection_audit_from_scraper": {
+        "raw_row_count": 80,
+        "unique_player_threshold_count": 80,
+        "selection_count": 80,
+        "player_count": 45,
+        "threshold_counts": {
+          "1+": 45,
+          "2+": 28,
+          "3+": 7
+        },
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "malformed_count": 0,
+      "invalid_odds_count": 0,
+      "duplicate_player_threshold_count": 0,
+      "ladder_gap_count": 0,
+      "missing_lower_threshold_count": 0,
+      "odds_order_violation_count": 0,
+      "same_price_adjacent_threshold_count": 0,
+      "production_overlap_count": 80,
+      "production_matching_price_count": 32,
+      "production_price_mismatch_count": 48,
+      "critical_issue_count": 0,
+      "warning_count": 0,
+      "verdict": "PASS",
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [],
+        "odds_order_violations": [],
+        "same_price_across_thresholds": [],
+        "production_price_mismatches": [
+          {
+            "player": "Adam Hlozek",
+            "threshold": "1+",
+            "test_odds": "21/20",
+            "production_odds": "4/5"
+          },
+          {
+            "player": "Adam Hlozek",
+            "threshold": "2+",
+            "test_odds": "6/1",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Alexandr Sojka",
+            "threshold": "1+",
+            "test_odds": "4/1",
+            "production_odds": "12/5"
+          },
+          {
+            "player": "Alvaro Fidalgo",
+            "threshold": "1+",
+            "test_odds": "7/4",
+            "production_odds": "7/5"
+          },
+          {
+            "player": "Alvaro Fidalgo",
+            "threshold": "2+",
+            "test_odds": "12/1",
+            "production_odds": "17/2"
+          },
+          {
+            "player": "Armando Gonzalez",
+            "threshold": "1+",
+            "test_odds": "40/85",
+            "production_odds": "4/9"
+          },
+          {
+            "player": "Armando Gonzalez",
+            "threshold": "2+",
+            "test_odds": "9/4",
+            "production_odds": "21/10"
+          },
+          {
+            "player": "Armando Gonzalez",
+            "threshold": "3+",
+            "test_odds": "17/2",
+            "production_odds": "8/1"
+          },
+          {
+            "player": "Cesar Huerta",
+            "threshold": "1+",
+            "test_odds": "8/11",
+            "production_odds": "3/5"
+          },
+          {
+            "player": "Cesar Huerta",
+            "threshold": "2+",
+            "test_odds": "19/5",
+            "production_odds": "29/10"
+          },
+          {
+            "player": "David Zima",
+            "threshold": "1+",
+            "test_odds": "22/5",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Edson Alvarez",
+            "threshold": "1+",
+            "test_odds": "12/5",
+            "production_odds": "23/10"
+          },
+          {
+            "player": "Gilberto Mora",
+            "threshold": "1+",
+            "test_odds": "20/21",
+            "production_odds": "6/5"
+          },
+          {
+            "player": "Gilberto Mora",
+            "threshold": "2+",
+            "test_odds": "5/1",
+            "production_odds": "7/1"
+          },
+          {
+            "player": "Guillermo Martinez",
+            "threshold": "1+",
+            "test_odds": "40/85",
+            "production_odds": "4/9"
+          },
+          {
+            "player": "Guillermo Martinez",
+            "threshold": "2+",
+            "test_odds": "9/4",
+            "production_odds": "21/10"
+          },
+          {
+            "player": "Guillermo Martinez",
+            "threshold": "3+",
+            "test_odds": "17/2",
+            "production_odds": "8/1"
+          },
+          {
+            "player": "Hugo Sochurek",
+            "threshold": "1+",
+            "test_odds": "11/5",
+            "production_odds": "21/10"
+          },
+          {
+            "player": "Hugo Sochurek",
+            "threshold": "2+",
+            "test_odds": "17/1",
+            "production_odds": "16/1"
+          },
+          {
+            "player": "Israel Reyes",
+            "threshold": "1+",
+            "test_odds": "17/4",
+            "production_odds": "5/2"
+          },
+          {
+            "player": "Jan Kuchta",
+            "threshold": "1+",
+            "test_odds": "17/20",
+            "production_odds": "7/10"
+          },
+          {
+            "player": "Jan Kuchta",
+            "threshold": "2+",
+            "test_odds": "9/2",
+            "production_odds": "7/2"
+          },
+          {
+            "player": "Jaroslav Zeleny",
+            "threshold": "1+",
+            "test_odds": "19/4",
+            "production_odds": "22/5"
+          },
+          {
+            "player": "Jesus Gallardo",
+            "threshold": "1+",
+            "test_odds": "2/1",
+            "production_odds": "15/8"
+          },
+          {
+            "player": "Jesus Gallardo",
+            "threshold": "2+",
+            "test_odds": "15/1",
+            "production_odds": "13/1"
+          },
+          {
+            "player": "Julian Quinones",
+            "threshold": "1+",
+            "test_odds": "4/9",
+            "production_odds": "2/5"
+          },
+          {
+            "player": "Julian Quinones",
+            "threshold": "2+",
+            "test_odds": "2/1",
+            "production_odds": "19/10"
+          },
+          {
+            "player": "Julian Quinones",
+            "threshold": "3+",
+            "test_odds": "15/2",
+            "production_odds": "7/1"
+          },
+          {
+            "player": "Ladislav Krejci",
+            "threshold": "1+",
+            "test_odds": "13/5",
+            "production_odds": "11/5"
+          },
+          {
+            "player": "Luis Romo",
+            "threshold": "1+",
+            "test_odds": "21/10",
+            "production_odds": "9/5"
+          },
+          {
+            "player": "Luis Romo",
+            "threshold": "2+",
+            "test_odds": "16/1",
+            "production_odds": "12/1"
+          },
+          {
+            "player": "Lukas Provod",
+            "threshold": "1+",
+            "test_odds": "7/5",
+            "production_odds": "8/5"
+          },
+          {
+            "player": "Lukas Provod",
+            "threshold": "2+",
+            "test_odds": "17/2",
+            "production_odds": "21/2"
+          },
+          {
+            "player": "Mojmir Chytil",
+            "threshold": "1+",
+            "test_odds": "17/20",
+            "production_odds": "7/10"
+          },
+          {
+            "player": "Mojmir Chytil",
+            "threshold": "2+",
+            "test_odds": "9/2",
+            "production_odds": "7/2"
+          },
+          {
+            "player": "Patrik Schick",
+            "threshold": "1+",
+            "test_odds": "11/20",
+            "production_odds": "1/2"
+          },
+          {
+            "player": "Patrik Schick",
+            "threshold": "2+",
+            "test_odds": "27/10",
+            "production_odds": "12/5"
+          },
+          {
+            "player": "Patrik Schick",
+            "threshold": "3+",
+            "test_odds": "21/2",
+            "production_odds": "19/2"
+          },
+          {
+            "player": "Raul Jimenez",
+            "threshold": "1+",
+            "test_odds": "2/5",
+            "production_odds": "4/11"
+          },
+          {
+            "player": "Raul Jimenez",
+            "threshold": "2+",
+            "test_odds": "19/10",
+            "production_odds": "13/8"
+          },
+          {
+            "player": "Raul Jimenez",
+            "threshold": "3+",
+            "test_odds": "7/1",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "Roberto Alvarado",
+            "threshold": "1+",
+            "test_odds": "5/4",
+            "production_odds": "5/6"
+          },
+          {
+            "player": "Roberto Alvarado",
+            "threshold": "2+",
+            "test_odds": "15/2",
+            "production_odds": "22/5"
+          },
+          {
+            "player": "Robin Hranac",
+            "threshold": "1+",
+            "test_odds": "7/1",
+            "production_odds": "5/1"
+          },
+          {
+            "player": "Tomas Holes",
+            "threshold": "1+",
+            "test_odds": "17/4",
+            "production_odds": "4/1"
+          },
+          {
+            "player": "Vladimir Coufal",
+            "threshold": "1+",
+            "test_odds": "6/1",
+            "production_odds": "19/4"
+          },
+          {
+            "player": "Vladimir Darida",
+            "threshold": "1+",
+            "test_odds": "11/8",
+            "production_odds": "8/5"
+          },
+          {
+            "player": "Vladimir Darida",
+            "threshold": "2+",
+            "test_odds": "17/2",
+            "production_odds": "21/2"
+          }
+        ],
+        "sample_longest_ladders": [
+          {
+            "player": "Alexis Vega",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "13/20",
+              "16/5",
+              "14/1"
+            ]
+          },
+          {
+            "player": "Armando Gonzalez",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "40/85",
+              "9/4",
+              "17/2"
+            ]
+          },
+          {
+            "player": "Guillermo Martinez",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "40/85",
+              "9/4",
+              "17/2"
+            ]
+          },
+          {
+            "player": "Julian Quinones",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "4/9",
+              "2/1",
+              "15/2"
+            ]
+          },
+          {
+            "player": "Patrik Schick",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "11/20",
+              "27/10",
+              "21/2"
+            ]
+          },
+          {
+            "player": "Raul Jimenez",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "2/5",
+              "19/10",
+              "7/1"
+            ]
+          },
+          {
+            "player": "Santiago Gimenez",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "4/9",
+              "21/10",
+              "15/2"
+            ]
+          },
+          {
+            "player": "Adam Hlozek",
+            "thresholds": [
+              "1+",
+              "2+"
+            ],
+            "odds": [
+              "21/20",
+              "6/1"
+            ]
+          },
+          {
+            "player": "Alvaro Fidalgo",
+            "thresholds": [
+              "1+",
+              "2+"
+            ],
+            "odds": [
+              "7/4",
+              "12/1"
+            ]
+          },
+          {
+            "player": "Brian Gutierrez",
+            "thresholds": [
+              "1+",
+              "2+"
+            ],
+            "odds": [
+              "23/20",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Cesar Huerta",
+            "thresholds": [
+              "1+",
+              "2+"
+            ],
+            "odds": [
+              "8/11",
+              "19/5"
+            ]
+          },
+          {
+            "player": "Denis Visinsky",
+            "thresholds": [
+              "1+",
+              "2+"
+            ],
+            "odds": [
+              "6/4",
+              "10/1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "match": "Czechia v Mexico",
+      "market": "Player Shots",
+      "normalized_market": "player_shots",
+      "reported_selection_count": 170,
+      "actual_selection_count": 170,
+      "unique_player_threshold_count": 170,
+      "player_count": 45,
+      "threshold_counts": {
+        "1+": 40,
+        "2+": 45,
+        "3+": 36,
+        "4+": 25,
+        "5+": 15,
+        "6+": 7,
+        "7+": 2
+      },
+      "maximum_threshold": "7+",
+      "selection_audit_from_scraper": {
+        "raw_row_count": 170,
+        "unique_player_threshold_count": 170,
+        "selection_count": 170,
+        "player_count": 45,
+        "threshold_counts": {
+          "1+": 40,
+          "2+": 45,
+          "3+": 36,
+          "4+": 25,
+          "5+": 15,
+          "6+": 7,
+          "7+": 2
+        },
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "malformed_count": 0,
+      "invalid_odds_count": 0,
+      "duplicate_player_threshold_count": 0,
+      "ladder_gap_count": 0,
+      "missing_lower_threshold_count": 5,
+      "odds_order_violation_count": 0,
+      "same_price_adjacent_threshold_count": 0,
+      "production_overlap_count": 168,
+      "production_matching_price_count": 74,
+      "production_price_mismatch_count": 94,
+      "critical_issue_count": 0,
+      "warning_count": 5,
+      "verdict": "PASS",
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Armando Gonzalez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Guillermo Martinez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Julian Quinones",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Raul Jimenez",
+            "lowest_available": "2+"
+          },
+          {
+            "player": "Santiago Gimenez",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "same_price_across_thresholds": [],
+        "production_price_mismatches": [
+          {
+            "player": "Alexandr Sojka",
+            "threshold": "1+",
+            "test_odds": "9/10",
+            "production_odds": "8/13"
+          },
+          {
+            "player": "Alexandr Sojka",
+            "threshold": "2+",
+            "test_odds": "19/5",
+            "production_odds": "13/5"
+          },
+          {
+            "player": "Alexandr Sojka",
+            "threshold": "3+",
+            "test_odds": "14/1",
+            "production_odds": "17/2"
+          },
+          {
+            "player": "Alvaro Fidalgo",
+            "threshold": "1+",
+            "test_odds": "40/85",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Alvaro Fidalgo",
+            "threshold": "2+",
+            "test_odds": "19/10",
+            "production_odds": "7/5"
+          },
+          {
+            "player": "Alvaro Fidalgo",
+            "threshold": "3+",
+            "test_odds": "6/1",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Armando Gonzalez",
+            "threshold": "2+",
+            "test_odds": "1/3",
+            "production_odds": "3/10"
+          },
+          {
+            "player": "Armando Gonzalez",
+            "threshold": "3+",
+            "test_odds": "37/40",
+            "production_odds": "20/23"
+          },
+          {
+            "player": "Armando Gonzalez",
+            "threshold": "4+",
+            "test_odds": "11/5",
+            "production_odds": "2/1"
+          },
+          {
+            "player": "Armando Gonzalez",
+            "threshold": "5+",
+            "test_odds": "19/4",
+            "production_odds": "9/2"
+          },
+          {
+            "player": "Armando Gonzalez",
+            "threshold": "6+",
+            "test_odds": "21/2",
+            "production_odds": "19/2"
+          },
+          {
+            "player": "Brian Gutierrez",
+            "threshold": "1+",
+            "test_odds": "1/8",
+            "production_odds": "1/6"
+          },
+          {
+            "player": "Brian Gutierrez",
+            "threshold": "2+",
+            "test_odds": "11/20",
+            "production_odds": "8/11"
+          },
+          {
+            "player": "Brian Gutierrez",
+            "threshold": "3+",
+            "test_odds": "6/4",
+            "production_odds": "2/1"
+          },
+          {
+            "player": "Brian Gutierrez",
+            "threshold": "4+",
+            "test_odds": "18/5",
+            "production_odds": "5/1"
+          },
+          {
+            "player": "Brian Gutierrez",
+            "threshold": "5+",
+            "test_odds": "17/2",
+            "production_odds": "13/1"
+          },
+          {
+            "player": "Cesar Huerta",
+            "threshold": "1+",
+            "test_odds": "1/8",
+            "production_odds": "1/12"
+          },
+          {
+            "player": "Cesar Huerta",
+            "threshold": "2+",
+            "test_odds": "11/20",
+            "production_odds": "2/5"
+          },
+          {
+            "player": "Cesar Huerta",
+            "threshold": "3+",
+            "test_odds": "31/20",
+            "production_odds": "11/10"
+          },
+          {
+            "player": "Cesar Huerta",
+            "threshold": "4+",
+            "test_odds": "15/4",
+            "production_odds": "13/5"
+          },
+          {
+            "player": "Cesar Huerta",
+            "threshold": "5+",
+            "test_odds": "17/2",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "Cesar Montes",
+            "threshold": "1+",
+            "test_odds": "3/4",
+            "production_odds": "4/6"
+          },
+          {
+            "player": "Cesar Montes",
+            "threshold": "2+",
+            "test_odds": "16/5",
+            "production_odds": "11/4"
+          },
+          {
+            "player": "Cesar Montes",
+            "threshold": "3+",
+            "test_odds": "21/2",
+            "production_odds": "9/1"
+          },
+          {
+            "player": "David Doudera",
+            "threshold": "1+",
+            "test_odds": "7/10",
+            "production_odds": "40/85"
+          },
+          {
+            "player": "David Doudera",
+            "threshold": "2+",
+            "test_odds": "29/10",
+            "production_odds": "19/10"
+          },
+          {
+            "player": "David Doudera",
+            "threshold": "3+",
+            "test_odds": "19/2",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "David Zima",
+            "threshold": "1+",
+            "test_odds": "11/10",
+            "production_odds": "13/10"
+          },
+          {
+            "player": "David Zima",
+            "threshold": "2+",
+            "test_odds": "5/1",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "Edson Alvarez",
+            "threshold": "1+",
+            "test_odds": "7/10",
+            "production_odds": "4/6"
+          },
+          {
+            "player": "Edson Alvarez",
+            "threshold": "2+",
+            "test_odds": "3/1",
+            "production_odds": "11/4"
+          },
+          {
+            "player": "Edson Alvarez",
+            "threshold": "3+",
+            "test_odds": "10/1",
+            "production_odds": "9/1"
+          },
+          {
+            "player": "Erik Lira",
+            "threshold": "1+",
+            "test_odds": "23/20",
+            "production_odds": "11/8"
+          },
+          {
+            "player": "Erik Lira",
+            "threshold": "2+",
+            "test_odds": "5/1",
+            "production_odds": "13/2"
+          },
+          {
+            "player": "Guillermo Martinez",
+            "threshold": "2+",
+            "test_odds": "1/3",
+            "production_odds": "3/10"
+          },
+          {
+            "player": "Guillermo Martinez",
+            "threshold": "3+",
+            "test_odds": "10/11",
+            "production_odds": "17/20"
+          },
+          {
+            "player": "Guillermo Martinez",
+            "threshold": "4+",
+            "test_odds": "85/40",
+            "production_odds": "2/1"
+          },
+          {
+            "player": "Guillermo Martinez",
+            "threshold": "5+",
+            "test_odds": "19/4",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Guillermo Martinez",
+            "threshold": "6+",
+            "test_odds": "10/1",
+            "production_odds": "19/2"
+          },
+          {
+            "player": "Hugo Sochurek",
+            "threshold": "1+",
+            "test_odds": "7/10",
+            "production_odds": "13/20"
+          },
+          {
+            "player": "Hugo Sochurek",
+            "threshold": "2+",
+            "test_odds": "29/10",
+            "production_odds": "27/10"
+          },
+          {
+            "player": "Hugo Sochurek",
+            "threshold": "3+",
+            "test_odds": "19/2",
+            "production_odds": "9/1"
+          },
+          {
+            "player": "Israel Reyes",
+            "threshold": "1+",
+            "test_odds": "11/10",
+            "production_odds": "3/4"
+          },
+          {
+            "player": "Israel Reyes",
+            "threshold": "2+",
+            "test_odds": "5/1",
+            "production_odds": "16/5"
+          },
+          {
+            "player": "Jan Kuchta",
+            "threshold": "1+",
+            "test_odds": "1/7",
+            "production_odds": "1/9"
+          },
+          {
+            "player": "Jan Kuchta",
+            "threshold": "2+",
+            "test_odds": "8/13",
+            "production_odds": "8/15"
+          },
+          {
+            "player": "Jan Kuchta",
+            "threshold": "3+",
+            "test_odds": "7/4",
+            "production_odds": "6/4"
+          },
+          {
+            "player": "Jan Kuchta",
+            "threshold": "4+",
+            "test_odds": "17/4",
+            "production_odds": "18/5"
+          },
+          {
+            "player": "Jan Kuchta",
+            "threshold": "5+",
+            "test_odds": "10/1",
+            "production_odds": "17/2"
+          },
+          {
+            "player": "Jaroslav Zeleny",
+            "threshold": "1+",
+            "test_odds": "11/10",
+            "production_odds": "11/8"
+          },
+          {
+            "player": "Jaroslav Zeleny",
+            "threshold": "2+",
+            "test_odds": "5/1",
+            "production_odds": "13/2"
+          },
+          {
+            "player": "Jesus Gallardo",
+            "threshold": "1+",
+            "test_odds": "8/15",
+            "production_odds": "9/20"
+          },
+          {
+            "player": "Jesus Gallardo",
+            "threshold": "2+",
+            "test_odds": "11/5",
+            "production_odds": "9/5"
+          },
+          {
+            "player": "Jesus Gallardo",
+            "threshold": "3+",
+            "test_odds": "7/1",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Jorge Sanchez",
+            "threshold": "1+",
+            "test_odds": "20/21",
+            "production_odds": "23/20"
+          },
+          {
+            "player": "Jorge Sanchez",
+            "threshold": "2+",
+            "test_odds": "17/4",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Luis Romo",
+            "threshold": "1+",
+            "test_odds": "13/20",
+            "production_odds": "9/20"
+          },
+          {
+            "player": "Luis Romo",
+            "threshold": "2+",
+            "test_odds": "27/10",
+            "production_odds": "15/8"
+          },
+          {
+            "player": "Luis Romo",
+            "threshold": "3+",
+            "test_odds": "9/1",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Mateo Chavez Garcia",
+            "threshold": "1+",
+            "test_odds": "3/4",
+            "production_odds": "19/20"
+          },
+          {
+            "player": "Mateo Chavez Garcia",
+            "threshold": "2+",
+            "test_odds": "16/5",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Mateo Chavez Garcia",
+            "threshold": "3+",
+            "test_odds": "11/1",
+            "production_odds": "15/1"
+          },
+          {
+            "player": "Mojmir Chytil",
+            "threshold": "1+",
+            "test_odds": "1/7",
+            "production_odds": "1/8"
+          },
+          {
+            "player": "Mojmir Chytil",
+            "threshold": "2+",
+            "test_odds": "13/20",
+            "production_odds": "11/20"
+          },
+          {
+            "player": "Mojmir Chytil",
+            "threshold": "3+",
+            "test_odds": "9/5",
+            "production_odds": "6/4"
+          },
+          {
+            "player": "Mojmir Chytil",
+            "threshold": "4+",
+            "test_odds": "22/5",
+            "production_odds": "18/5"
+          },
+          {
+            "player": "Mojmir Chytil",
+            "threshold": "5+",
+            "test_odds": "21/2",
+            "production_odds": "17/2"
+          },
+          {
+            "player": "Patrik Schick",
+            "threshold": "2+",
+            "test_odds": "4/11",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Patrik Schick",
+            "threshold": "3+",
+            "test_odds": "21/20",
+            "production_odds": "20/21"
+          },
+          {
+            "player": "Patrik Schick",
+            "threshold": "4+",
+            "test_odds": "12/5",
+            "production_odds": "9/4"
+          },
+          {
+            "player": "Patrik Schick",
+            "threshold": "5+",
+            "test_odds": "11/2",
+            "production_odds": "5/1"
+          },
+          {
+            "player": "Patrik Schick",
+            "threshold": "6+",
+            "test_odds": "12/1",
+            "production_odds": "11/1"
+          },
+          {
+            "player": "Pavel Sulc",
+            "threshold": "1+",
+            "test_odds": "2/7",
+            "production_odds": "1/4"
+          },
+          {
+            "player": "Pavel Sulc",
+            "threshold": "2+",
+            "test_odds": "23/20",
+            "production_odds": "21/20"
+          },
+          {
+            "player": "Pavel Sulc",
+            "threshold": "3+",
+            "test_odds": "16/5",
+            "production_odds": "29/10"
+          },
+          {
+            "player": "Pavel Sulc",
+            "threshold": "4+",
+            "test_odds": "17/2",
+            "production_odds": "15/2"
+          },
+          {
+            "player": "Raul Jimenez",
+            "threshold": "3+",
+            "test_odds": "13/20",
+            "production_odds": "8/13"
+          },
+          {
+            "player": "Raul Jimenez",
+            "threshold": "4+",
+            "test_odds": "6/4",
+            "production_odds": "7/5"
+          },
+          {
+            "player": "Raul Jimenez",
+            "threshold": "5+",
+            "test_odds": "16/5",
+            "production_odds": "3/1"
+          },
+          {
+            "player": "Raul Jimenez",
+            "threshold": "7+",
+            "test_odds": "14/1",
+            "production_odds": "13/1"
+          },
+          {
+            "player": "Roberto Alvarado",
+            "threshold": "1+",
+            "test_odds": "2/7",
+            "production_odds": "1/6"
+          },
+          {
+            "player": "Roberto Alvarado",
+            "threshold": "2+",
+            "test_odds": "6/5",
+            "production_odds": "7/10"
+          },
+          {
+            "player": "Roberto Alvarado",
+            "threshold": "3+",
+            "test_odds": "17/5",
+            "production_odds": "19/10"
+          },
+          {
+            "player": "Roberto Alvarado",
+            "threshold": "4+",
+            "test_odds": "9/1",
+            "production_odds": "19/4"
+          },
+          {
+            "player": "Robin Hranac",
+            "threshold": "1+",
+            "test_odds": "23/10",
+            "production_odds": "7/4"
+          },
+          {
+            "player": "Robin Hranac",
+            "threshold": "2+",
+            "test_odds": "12/1",
+            "production_odds": "17/2"
+          },
+          {
+            "player": "Tomas Holes",
+            "threshold": "1+",
+            "test_odds": "21/20",
+            "production_odds": "13/10"
+          },
+          {
+            "player": "Tomas Holes",
+            "threshold": "2+",
+            "test_odds": "19/4",
+            "production_odds": "6/1"
+          },
+          {
+            "player": "Vladimir Coufal",
+            "threshold": "1+",
+            "test_odds": "13/8",
+            "production_odds": "6/4"
+          },
+          {
+            "player": "Vladimir Coufal",
+            "threshold": "2+",
+            "test_odds": "8/1",
+            "production_odds": "7/1"
+          },
+          {
+            "player": "Vladimir Darida",
+            "threshold": "1+",
+            "test_odds": "3/10",
+            "production_odds": "4/11"
+          },
+          {
+            "player": "Vladimir Darida",
+            "threshold": "2+",
+            "test_odds": "6/5",
+            "production_odds": "29/20"
+          },
+          {
+            "player": "Vladimir Darida",
+            "threshold": "3+",
+            "test_odds": "7/2",
+            "production_odds": "17/4"
+          },
+          {
+            "player": "Vladimir Darida",
+            "threshold": "4+",
+            "test_odds": "19/2",
+            "production_odds": "12/1"
+          }
+        ],
+        "sample_longest_ladders": [
+          {
+            "player": "Alexis Vega",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "1/11",
+              "4/9",
+              "6/5",
+              "14/5",
+              "13/2",
+              "15/1"
+            ]
+          },
+          {
+            "player": "Julian Quinones",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "odds": [
+              "2/9",
+              "13/20",
+              "6/4",
+              "16/5",
+              "13/2",
+              "14/1"
+            ]
+          },
+          {
+            "player": "Patrik Schick",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "1/14",
+              "4/11",
+              "21/20",
+              "12/5",
+              "11/2",
+              "12/1"
+            ]
+          },
+          {
+            "player": "Raul Jimenez",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "odds": [
+              "2/9",
+              "13/20",
+              "6/4",
+              "16/5",
+              "13/2",
+              "14/1"
+            ]
+          },
+          {
+            "player": "Adam Hlozek",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "1/7",
+              "13/20",
+              "9/5",
+              "22/5",
+              "21/2"
+            ]
+          },
+          {
+            "player": "Armando Gonzalez",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "1/3",
+              "37/40",
+              "11/5",
+              "19/4",
+              "21/2"
+            ]
+          },
+          {
+            "player": "Brian Gutierrez",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "1/8",
+              "11/20",
+              "6/4",
+              "18/5",
+              "17/2"
+            ]
+          },
+          {
+            "player": "Cesar Huerta",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "1/8",
+              "11/20",
+              "31/20",
+              "15/4",
+              "17/2"
+            ]
+          },
+          {
+            "player": "Gilberto Mora",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "2/15",
+              "3/5",
+              "13/8",
+              "4/1",
+              "19/2"
+            ]
+          },
+          {
+            "player": "Guillermo Martinez",
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "odds": [
+              "1/3",
+              "10/11",
+              "85/40",
+              "19/4",
+              "10/1"
+            ]
+          },
+          {
+            "player": "Jan Kuchta",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "1/7",
+              "8/13",
+              "7/4",
+              "17/4",
+              "10/1"
+            ]
+          },
+          {
+            "player": "Michal Sadilek",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "odds": [
+              "2/13",
+              "4/6",
+              "15/8",
+              "9/2",
+              "11/1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "match": "Czechia v Mexico",
+      "market": "Player Fouls Committed",
+      "normalized_market": "player_fouls_committed",
+      "reported_selection_count": 128,
+      "actual_selection_count": 128,
+      "unique_player_threshold_count": 128,
+      "player_count": 45,
+      "threshold_counts": {
+        "1+": 44,
+        "2+": 45,
+        "3+": 30,
+        "4+": 9
+      },
+      "maximum_threshold": "4+",
+      "selection_audit_from_scraper": {
+        "raw_row_count": 128,
+        "unique_player_threshold_count": 128,
+        "selection_count": 128,
+        "player_count": 45,
+        "threshold_counts": {
+          "1+": 44,
+          "2+": 45,
+          "3+": 30,
+          "4+": 9
+        },
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "malformed_count": 0,
+      "invalid_odds_count": 0,
+      "duplicate_player_threshold_count": 0,
+      "ladder_gap_count": 0,
+      "missing_lower_threshold_count": 1,
+      "odds_order_violation_count": 0,
+      "same_price_adjacent_threshold_count": 0,
+      "production_overlap_count": 126,
+      "production_matching_price_count": 113,
+      "production_price_mismatch_count": 13,
+      "critical_issue_count": 0,
+      "warning_count": 1,
+      "verdict": "PASS",
+      "details": {
+        "malformed": [],
+        "invalid_odds": [],
+        "duplicates": [],
+        "ladder_gaps": [],
+        "missing_lower_threshold": [
+          {
+            "player": "Mateo Chavez Garcia",
+            "lowest_available": "2+"
+          }
+        ],
+        "odds_order_violations": [],
+        "same_price_across_thresholds": [],
+        "production_price_mismatches": [
+          {
+            "player": "Adam Hlozek",
+            "threshold": "1+",
+            "test_odds": "4/9",
+            "production_odds": "1/2"
+          },
+          {
+            "player": "Adam Hlozek",
+            "threshold": "2+",
+            "test_odds": "2/1",
+            "production_odds": "12/5"
+          },
+          {
+            "player": "Erik Lira",
+            "threshold": "1+",
+            "test_odds": "2/7",
+            "production_odds": "40/85"
+          },
+          {
+            "player": "Erik Lira",
+            "threshold": "2+",
+            "test_odds": "13/10",
+            "production_odds": "9/4"
+          },
+          {
+            "player": "Jesus Gallardo",
+            "threshold": "1+",
+            "test_odds": "2/7",
+            "production_odds": "1/3"
+          },
+          {
+            "player": "Jesus Gallardo",
+            "threshold": "2+",
+            "test_odds": "13/10",
+            "production_odds": "8/5"
+          },
+          {
+            "player": "Jesus Gallardo",
+            "threshold": "3+",
+            "test_odds": "22/5",
+            "production_odds": "11/2"
+          },
+          {
+            "player": "Ladislav Krejci",
+            "threshold": "1+",
+            "test_odds": "1/11",
+            "production_odds": "2/13"
+          },
+          {
+            "player": "Ladislav Krejci",
+            "threshold": "2+",
+            "test_odds": "1/2",
+            "production_odds": "3/4"
+          },
+          {
+            "player": "Ladislav Krejci",
+            "threshold": "3+",
+            "test_odds": "31/20",
+            "production_odds": "12/5"
+          },
+          {
+            "player": "Robin Hranac",
+            "threshold": "1+",
+            "test_odds": "2/9",
+            "production_odds": "2/7"
+          },
+          {
+            "player": "Robin Hranac",
+            "threshold": "2+",
+            "test_odds": "1/1",
+            "production_odds": "11/8"
+          },
+          {
+            "player": "Robin Hranac",
+            "threshold": "3+",
+            "test_odds": "16/5",
+            "production_odds": "9/2"
+          }
+        ],
+        "sample_longest_ladders": [
+          {
+            "player": "Cesar Huerta",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/13",
+              "8/11",
+              "23/10",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Denis Visinsky",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/7",
+              "7/10",
+              "85/40",
+              "6/1"
+            ]
+          },
+          {
+            "player": "Edson Alvarez",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/7",
+              "8/11",
+              "11/5",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Guillermo Martinez",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/10",
+              "1/2",
+              "31/20",
+              "17/4"
+            ]
+          },
+          {
+            "player": "Hugo Sochurek",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/7",
+              "7/10",
+              "85/40",
+              "6/1"
+            ]
+          },
+          {
+            "player": "Ladislav Krejci",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/11",
+              "1/2",
+              "31/20",
+              "17/4"
+            ]
+          },
+          {
+            "player": "Tomas Chory",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "2/13",
+              "3/4",
+              "23/10",
+              "13/2"
+            ]
+          },
+          {
+            "player": "Tomas Soucek",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "odds": [
+              "1/8",
+              "3/5",
+              "15/8",
+              "5/1"
+            ]
+          },
+          {
+            "player": "Alexandr Sojka",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "1/5",
+              "19/20",
+              "3/1"
+            ]
+          },
+          {
+            "player": "Brian Gutierrez",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "1/6",
+              "4/5",
+              "5/2"
+            ]
+          },
+          {
+            "player": "David Doudera",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "1/3",
+              "31/20",
+              "11/2"
+            ]
+          },
+          {
+            "player": "David Zima",
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "odds": [
+              "2/7",
+              "11/8",
+              "9/2"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

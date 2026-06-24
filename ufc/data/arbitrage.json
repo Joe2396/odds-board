@@ -1,8 +1,8 @@
 {
   "source": "odds_json_plus_bookmaker_props",
   "total_moneyline_fights_checked": 32,
-  "total_prop_markets_checked": 3,
-  "total_prop_rows_loaded": 9,
+  "total_prop_markets_checked": 13,
+  "total_prop_rows_loaded": 33,
   "arbitrage_count": 2,
   "moneyline_arbitrage_count": 2,
   "prop_arbitrage_count": 0,
@@ -715,12 +715,242 @@
   "prop_markets": [
     {
       "type": "prop",
-      "fight": "Conor Mcgregor Vs Max Holloway",
+      "fight": "Kaan Ofli vs Javier Reyes",
+      "fight_key": "javier reyes v kaan ofli",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "11/10",
+          "decimal_odds": 2.1,
+          "implied_probability": 47.62
+        },
+        "No": {
+          "bookmaker": "PaddyPower",
+          "odds": "4/6",
+          "decimal_odds": 1.666667,
+          "implied_probability": 60.0
+        }
+      },
+      "arb_sum": 1.07619,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.62
+    },
+    {
+      "type": "prop",
+      "fight": "Nursulton Ruziboev vs Andrey Pulyaev",
+      "fight_key": "andrey pulyaev v nursulton ruziboev",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "5/4",
+          "decimal_odds": 2.25,
+          "implied_probability": 44.44
+        },
+        "No": {
+          "bookmaker": "PaddyPower",
+          "odds": "4/7",
+          "decimal_odds": 1.571429,
+          "implied_probability": 63.64
+        }
+      },
+      "arb_sum": 1.080808,
+      "is_arbitrage": false,
+      "profit_margin_percent": -8.08
+    },
+    {
+      "type": "prop",
+      "fight": "Abdul-Rakhman Yakhyaev vs Julius Walker",
+      "fight_key": "abdul rakhman yakhyaev v julius walker",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "4/1",
+          "decimal_odds": 5.0,
+          "implied_probability": 20.0
+        },
+        "No": {
+          "bookmaker": "PaddyPower",
+          "odds": "1/7",
+          "decimal_odds": 1.142857,
+          "implied_probability": 87.5
+        }
+      },
+      "arb_sum": 1.075,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.5
+    },
+    {
+      "type": "prop",
+      "fight": "Farman Hasanov vs Eric Nolan",
+      "fight_key": "eric nolan v farman hasanov",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "15/8",
+          "decimal_odds": 2.875,
+          "implied_probability": 34.78
+        },
+        "No": {
+          "bookmaker": "PaddyPower",
+          "odds": "4/11",
+          "decimal_odds": 1.363636,
+          "implied_probability": 73.33
+        }
+      },
+      "arb_sum": 1.08116,
+      "is_arbitrage": false,
+      "profit_margin_percent": -8.12
+    },
+    {
+      "type": "prop",
+      "fight": "Abus Magomedov vs Michal Oleksiejczuk",
+      "fight_key": "abus magomedov v michal oleksiejczuk",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "5/2",
+          "decimal_odds": 3.5,
+          "implied_probability": 28.57
+        },
+        "No": {
+          "bookmaker": "PaddyPower",
+          "odds": "1/4",
+          "decimal_odds": 1.25,
+          "implied_probability": 80.0
+        }
+      },
+      "arb_sum": 1.085714,
+      "is_arbitrage": false,
+      "profit_margin_percent": -8.57
+    },
+    {
+      "type": "prop",
+      "fight": "Ikram Aliskerov vs Brunno Ferreira",
+      "fight_key": "brunno ferreira v ikram aliskerov",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "11/4",
+          "decimal_odds": 3.75,
+          "implied_probability": 26.67
+        },
+        "No": {
+          "bookmaker": "PaddyPower",
+          "odds": "2/9",
+          "decimal_odds": 1.222222,
+          "implied_probability": 81.82
+        }
+      },
+      "arb_sum": 1.084849,
+      "is_arbitrage": false,
+      "profit_margin_percent": -8.48
+    },
+    {
+      "type": "prop",
+      "fight": "Asu Almabayev vs Charles Johnson",
+      "fight_key": "asu almabayev v charles johnson",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "1/2",
+          "decimal_odds": 1.5,
+          "implied_probability": 66.67
+        },
+        "No": {
+          "bookmaker": "PaddyPower",
+          "odds": "6/4",
+          "decimal_odds": 2.5,
+          "implied_probability": 40.0
+        }
+      },
+      "arb_sum": 1.066667,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.67
+    },
+    {
+      "type": "prop",
+      "fight": "Nazim Sadykhov vs Matheus Camilo",
+      "fight_key": "matheus camilo v nazim sadykhov",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "7/4",
+          "decimal_odds": 2.75,
+          "implied_probability": 36.36
+        },
+        "No": {
+          "bookmaker": "PaddyPower",
+          "odds": "2/5",
+          "decimal_odds": 1.4,
+          "implied_probability": 71.43
+        }
+      },
+      "arb_sum": 1.077922,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.79
+    },
+    {
+      "type": "prop",
+      "fight": "Shara Magomedov vs Michel Pereira",
+      "fight_key": "michel pereira v shara magomedov",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "EVS",
+          "decimal_odds": 2.0,
+          "implied_probability": 50.0
+        },
+        "No": {
+          "bookmaker": "PaddyPower",
+          "odds": "8/11",
+          "decimal_odds": 1.727273,
+          "implied_probability": 57.89
+        }
+      },
+      "arb_sum": 1.078947,
+      "is_arbitrage": false,
+      "profit_margin_percent": -7.89
+    },
+    {
+      "type": "prop",
+      "fight": "Rafael Fiziev vs Manuel Torres",
+      "fight_key": "manuel torres v rafael fiziev",
+      "market": "Goes The Distance",
+      "selections": {
+        "Yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "7/2",
+          "decimal_odds": 4.5,
+          "implied_probability": 22.22
+        },
+        "No": {
+          "bookmaker": "Coral",
+          "odds": "4/21",
+          "decimal_odds": 1.190476,
+          "implied_probability": 84.0
+        }
+      },
+      "arb_sum": 1.062222,
+      "is_arbitrage": false,
+      "profit_margin_percent": -6.22
+    },
+    {
+      "type": "prop",
+      "fight": "Conor McGregor vs Max Holloway",
       "fight_key": "conor mcgregor v max holloway",
       "market": "Goes The Distance",
       "selections": {
         "Yes": {
-          "bookmaker": "BoyleSports",
+          "bookmaker": "PaddyPower",
           "odds": "3/1",
           "decimal_odds": 4.0,
           "implied_probability": 25.0
