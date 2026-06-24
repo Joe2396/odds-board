@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BetVictor Bet Builder Stats Test</title>
+<style>
+:root {
+  color-scheme: dark;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0e141a;
+  color: #edf2f7;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #0e141a; }
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 18px 22px;
+  background: rgba(14, 20, 26, 0.97);
+  border-bottom: 1px solid #2d3748;
+}
+h1 { margin: 0 0 7px; font-size: 24px; }
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  color: #a0aec0;
+  font-size: 14px;
+}
+input {
+  margin-top: 13px;
+  width: min(620px, 100%);
+  padding: 11px 13px;
+  border: 1px solid #4a5568;
+  border-radius: 8px;
+  background: #1a202c;
+  color: #fff;
+  font-size: 15px;
+}
+main { max-width: 1500px; margin: 0 auto; padding: 18px; }
+.fixture-card {
+  margin-bottom: 16px;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  background: #161d24;
+  overflow: hidden;
+}
+.fixture-card summary {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 15px 18px;
+  background: #1d2731;
+}
+.fixture-card summary strong { font-size: 18px; }
+.kickoff {
+  margin-left: 12px;
+  color: #a0aec0;
+  font-size: 13px;
+}
+.fixture-meta {
+  color: #a0aec0;
+  font-size: 13px;
+}
+.fixture-actions { padding: 12px 18px 0; }
+.source-link {
+  display: inline-block;
+  padding: 8px 11px;
+  border-radius: 7px;
+  background: #08783e;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+.source-link:hover { background: #0a9450; }
+.markets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 13px;
+  padding: 14px 18px 18px;
+}
+.market-card {
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  background: #111820;
+  overflow: hidden;
+}
+.market-header {
+  padding: 12px;
+  border-bottom: 1px solid #2d3748;
+}
+.market-header h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+.status {
+  display: inline-block;
+  padding: 4px 7px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+.status.good { background: #164e32; color: #b7f7d0; }
+.status.warn { background: #634d13; color: #ffe59a; }
+.status.bad { background: #642121; color: #ffb8b8; }
+.gap-note {
+  padding: 8px 12px;
+  background: #342b13;
+  color: #ffe59a;
+  font-size: 12px;
+}
+table { width: 100%; border-collapse: collapse; }
+th, td {
+  padding: 8px 11px;
+  text-align: left;
+  border-bottom: 1px solid #26313d;
+}
+th { color: #a0aec0; font-size: 12px; }
+tr:last-child td { border-bottom: none; }
+.fixture-card.hidden { display: none; }
+.missing { color: #f6ad55; }
+</style>
+</head>
+<body>
+<header>
+  <h1>BetVictor Bet Builder Stats</h1>
+  <div class="meta">
+    <span>Generated: 2026-06-24T23:45:42.058036+00:00</span>
+    <span>3 fixtures</span>
+    <span>18 markets</span>
+  </div>
+  <input id="search" type="search"
+    placeholder="Search fixture..." autocomplete="off">
+</header>
+<main>
+<details class="fixture-card" open data-search="czechia v mexico">
+  <summary>
+    <div>
+      <strong>Czechia v Mexico</strong>
+      <span class="kickoff">2026-06-25T01:00:00+00:00</span>
+    </div>
+    <div class="fixture-meta">
+      6 markets
+    </div>
+  </summary>
+  <div class="fixture-actions"><a class="source-link" href="https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108300" target="_blank" rel="noopener noreferrer">Open BetVictor event</a></div>
+  <div class="markets-grid">
+<section class="market-card">
+  <div class="market-header">
+    <h3>Match Shots On Target</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>4+</td><td>1/25</td></tr><tr><td>5+</td><td>1/25</td></tr><tr><td>6+</td><td>1/25</td></tr><tr><td>7+</td><td>1/25</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Match Shots</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>20+</td><td>7/20</td></tr><tr><td>21+</td><td>7/20</td></tr><tr><td>22+</td><td>7/20</td></tr><tr><td>23+</td><td>7/20</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Czechia Shots On Target</h3>
+    <span class="status good">
+      3 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>4+</td><td>39/40</td></tr><tr><td>5+</td><td>39/40</td></tr><tr><td>6+</td><td>39/40</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Czechia Shots</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>8+</td><td>1/5</td></tr><tr><td>9+</td><td>1/5</td></tr><tr><td>10+</td><td>1/5</td></tr><tr><td>11+</td><td>1/5</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Mexico Shots On Target</h3>
+    <span class="status good">
+      3 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>2+</td><td>2/25</td></tr><tr><td>3+</td><td>2/25</td></tr><tr><td>4+</td><td>2/25</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Mexico Shots</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>9+</td><td>11/40</td></tr><tr><td>10+</td><td>11/40</td></tr><tr><td>11+</td><td>11/40</td></tr><tr><td>12+</td><td>11/40</td></tr></tbody>
+  </table>
+</section>
+</div>
+</details>
+
+<details class="fixture-card" open data-search="south africa v south korea">
+  <summary>
+    <div>
+      <strong>South Africa v South Korea</strong>
+      <span class="kickoff">2026-06-25T01:00:00+00:00</span>
+    </div>
+    <div class="fixture-meta">
+      6 markets
+    </div>
+  </summary>
+  <div class="fixture-actions"><a class="source-link" href="https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300" target="_blank" rel="noopener noreferrer">Open BetVictor event</a></div>
+  <div class="markets-grid">
+<section class="market-card">
+  <div class="market-header">
+    <h3>Match Shots On Target</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>5+</td><td>1/11</td></tr><tr><td>6+</td><td>1/11</td></tr><tr><td>7+</td><td>1/11</td></tr><tr><td>8+</td><td>1/11</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Match Shots</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>20+</td><td>13/40</td></tr><tr><td>21+</td><td>13/40</td></tr><tr><td>22+</td><td>13/40</td></tr><tr><td>23+</td><td>13/40</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>South Africa Shots On Target</h3>
+    <span class="status good">
+      3 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>1+</td><td>1/60</td></tr><tr><td>2+</td><td>1/60</td></tr><tr><td>3+</td><td>1/60</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>South Africa Shots</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>7+</td><td>7/40</td></tr><tr><td>8+</td><td>7/40</td></tr><tr><td>9+</td><td>7/40</td></tr><tr><td>10+</td><td>7/40</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>South Korea Shots On Target</h3>
+    <span class="status good">
+      3 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>3+</td><td>2/15</td></tr><tr><td>4+</td><td>2/15</td></tr><tr><td>5+</td><td>2/15</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>South Korea Shots</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>10+</td><td>27/100</td></tr><tr><td>11+</td><td>27/100</td></tr><tr><td>12+</td><td>27/100</td></tr><tr><td>13+</td><td>27/100</td></tr></tbody>
+  </table>
+</section>
+</div>
+</details>
+
+<details class="fixture-card" open data-search="curacao v ivory coast">
+  <summary>
+    <div>
+      <strong>Curacao v Ivory Coast</strong>
+      <span class="kickoff">2026-06-25T20:00:00+00:00</span>
+    </div>
+    <div class="fixture-meta">
+      6 markets
+    </div>
+  </summary>
+  <div class="fixture-actions"><a class="source-link" href="https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108200" target="_blank" rel="noopener noreferrer">Open BetVictor event</a></div>
+  <div class="markets-grid">
+<section class="market-card">
+  <div class="market-header">
+    <h3>Match Shots On Target</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>6+</td><td>2/21</td></tr><tr><td>7+</td><td>2/21</td></tr><tr><td>8+</td><td>2/21</td></tr><tr><td>9+</td><td>2/21</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Match Shots</h3>
+    <span class="status warn">
+      4 prices | 0 conflicts |
+      0 order errors | 3 gaps
+    </span>
+  </div>
+  <div class="gap-note">Missing integer thresholds: 22+, 24+, 26+</div>
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>21+</td><td>2/17</td></tr><tr><td>23+</td><td>2/17</td></tr><tr><td>25+</td><td>2/17</td></tr><tr><td>27+</td><td>2/17</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Curacao Shots On Target</h3>
+    <span class="status good">
+      3 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>1+</td><td>1/8</td></tr><tr><td>2+</td><td>1/8</td></tr><tr><td>3+</td><td>1/8</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Curacao Shots</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>5+</td><td>9/50</td></tr><tr><td>6+</td><td>9/50</td></tr><tr><td>7+</td><td>9/50</td></tr><tr><td>8+</td><td>9/50</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Ivory Coast Shots On Target</h3>
+    <span class="status good">
+      3 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>5+</td><td>4/25</td></tr><tr><td>6+</td><td>4/25</td></tr><tr><td>7+</td><td>4/25</td></tr></tbody>
+  </table>
+</section>
+
+<section class="market-card">
+  <div class="market-header">
+    <h3>Ivory Coast Shots</h3>
+    <span class="status good">
+      4 prices | 0 conflicts |
+      0 order errors | 0 gaps
+    </span>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Threshold</th><th>BetVictor odds</th></tr>
+    </thead>
+    <tbody><tr><td>17+</td><td>31/100</td></tr><tr><td>18+</td><td>31/100</td></tr><tr><td>19+</td><td>31/100</td></tr><tr><td>20+</td><td>31/100</td></tr></tbody>
+  </table>
+</section>
+</div>
+</details>
+</main>
+<script>
+const input = document.getElementById("search");
+
+input.addEventListener("input", () => {
+  const query = input.value.trim().toLowerCase();
+
+  document.querySelectorAll(".fixture-card").forEach(card => {
+    const visible = !query || card.dataset.search.includes(query);
+    card.classList.toggle("hidden", !visible);
+
+    if (visible && query) {
+      card.open = true;
+    }
+  });
+});
+</script>
+</body>
+</html>
