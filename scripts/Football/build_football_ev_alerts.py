@@ -20,7 +20,7 @@ BOOK_FILES = {
 
 OUT_PATH = os.path.join(ROOT, "football", "data", "ev_alerts.json")
 
-MIN_EV_PERCENT = 10.0
+MIN_EV_PERCENT = 20.0
 MIN_BOOKMAKERS_FOR_FAIR_PRICE = 3
 
 
@@ -184,7 +184,7 @@ def remove_bookmaker_vig(selection_prices):
 
 # ── Props EV alerts ────────────────────────────────────────────────────────────
 
-MIN_EV_PROPS = 10.0
+MIN_EV_PROPS = 20.0
 
 # Props EV is deliberately stricter than moneyline EV. One malformed sparse
 # player row can otherwise create hundreds of false alerts.
