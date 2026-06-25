@@ -689,15 +689,10 @@ def scan_props_ev_from_index(root):
                     elif reason:
                         reject(reason)
 
-                # Do not flood the board with the same player at 1+, 2+, 3+.
-                # Keep only their strongest verified edge for this market.
+                # Keep all thresholds that have EV so users can filter by odds range.
+                # e.g. Maeda 2+ shots and 3+ shots both show if both have edge.
                 if player_market_candidates:
-                    fixture_candidates.append(
-                        max(
-                            player_market_candidates,
-                            key=lambda row: row["ev_percent"],
-                        )
-                    )
+                    fixture_candidates.extend(player_market_candidates)
 
         fixture_candidates.sort(
             key=lambda row: row["ev_percent"],
