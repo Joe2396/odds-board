@@ -34,7 +34,7 @@ Debug:
 
 from __future__ import annotations
 
-# BWIN_MATCH_STATS_PROD15_FAST_V1
+# BWIN_MATCH_STATS_FAST_TEST3_V2_EVENT_READY_FIX
 
 import json
 import re
@@ -54,18 +54,18 @@ REFERENCE_MONEYLINES_PATH = (
     ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 )
 OUT_PATH = (
-    ROOT / "football" / "data" / "bwin_worldcup_match_stats.json"
+    ROOT / "football" / "data" / "bwin_worldcup_match_stats_fast_test_v2_event_ready_fix.json"
 )
 AUDIT_PATH = (
-    ROOT / "football" / "data" / "bwin_worldcup_match_stats_audit.json"
+    ROOT / "football" / "data" / "bwin_worldcup_match_stats_fast_test_v2_event_ready_fix_audit.json"
 )
 DEBUG_DIR = (
-    ROOT / "football" / "debug" / "bwin_worldcup_match_stats"
+    ROOT / "football" / "debug" / "bwin_worldcup_match_stats_fast_test_v2_event_ready_fix"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 3
 HEADLESS = False
-TARGET_USABLE_EVENTS = 15
+TARGET_USABLE_EVENTS = 3
 # Do not start scraping a fixture that is likely to move in-play before the
 # three-match test completes.
 KICKOFF_BUFFER_MINUTES = 15
@@ -2196,50 +2196,56 @@ def safe_open_event_page(
             )
             normalised_body = normalise(body_text)
 
+            navigation_labels = [
+                label
+                for label in (
+                    "all",
+                    "main",
+                    "goals",
+                    "players",
+                    "shots",
+                    "cards",
+                    "corners",
+                    "build a bet",
+                    "price boosts",
+                )
+                if re.search(
+                    rf"\\b{re.escape(label)}\\b",
+                    normalised_body,
+                )
+            ]
+
             has_event_url = (
                 "/sports/events/"
                 in clean(page.url)
             )
-
-            blocking_phrases = (
-                "access denied",
-                "temporarily unavailable",
-                "technical error",
-                "something went wrong",
-                "page not found",
-                "verify you are human",
-                "unusual traffic",
-            )
-
-            blocking_reason = next(
-                (
-                    phrase
-                    for phrase in blocking_phrases
-                    if phrase in normalised_body
-                ),
-                "",
+            has_event_navigation = (
+                len(navigation_labels) >= 2
             )
 
             if (
                 len(body_text) >= 500
                 and has_event_url
-                and not blocking_reason
+                and has_event_navigation
             ):
                 print(
-                    "  event page accepted: "
+                    "  event page ready: "
                     f"{len(body_text)} chars | "
-                    "Bwin event URL confirmed"
+                    "navigation="
+                    + ", ".join(
+                        navigation_labels
+                    )
                 )
                 return page
 
             last_error = (
-                "event load rejected "
+                "readiness rejected "
                 f"url_ok={has_event_url}, "
                 f"body_chars={len(body_text)}, "
-                "blocking_reason="
+                "navigation="
                 + (
-                    blocking_reason
-                    if blocking_reason
+                    ", ".join(navigation_labels)
+                    if navigation_labels
                     else "none"
                 )
             )
@@ -2724,7 +2730,7 @@ def main() -> int:
         )
 
     print("")
-    print("Bwin World Cup match-stats PROD15 FAST completed")
+    print("Bwin World Cup match-stats FAST TEST3 V2 EVENT READY FIX completed")
     print(
         f"Usable non-live events examined: "
         f"{usable_events}/{TARGET_USABLE_EVENTS}"
@@ -2749,7 +2755,7 @@ def main() -> int:
         f"{time.perf_counter() - script_started:.2f}s"
     )
     print(
-        "Production Bwin match-stats updated: YES"
+        "Production Bwin match-stats JSON modified: NO"
     )
 
     return 0 if complete_results else 1

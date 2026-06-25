@@ -34,7 +34,7 @@ Debug:
 
 from __future__ import annotations
 
-# BWIN_MATCH_STATS_PROD15_FAST_V1
+# BWIN_MATCH_STATS_PROD15_AUDIT_V3_FIXED
 
 import json
 import re
@@ -43,15 +43,11 @@ import time
 from datetime import datetime, timedelta, timezone
 from fractions import Fraction
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[2]
 
 MONEYLINES_PATH = (
     ROOT / "football" / "data" / "bwin_worldcup_moneylines.json"
-)
-REFERENCE_MONEYLINES_PATH = (
-    ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 )
 OUT_PATH = (
     ROOT / "football" / "data" / "bwin_worldcup_match_stats.json"
@@ -63,14 +59,12 @@ DEBUG_DIR = (
     ROOT / "football" / "debug" / "bwin_worldcup_match_stats"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 30
 HEADLESS = False
 TARGET_USABLE_EVENTS = 15
 # Do not start scraping a fixture that is likely to move in-play before the
 # three-match test completes.
-KICKOFF_BUFFER_MINUTES = 15
-LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")
-SAVE_DEBUG_ARTIFACTS = False
+KICKOFF_BUFFER_MINUTES = 60
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -141,222 +135,17 @@ def is_decimal_odds(value: object) -> bool:
     return 1.001 <= decimal <= 1000
 
 
-def norm_team(value: object) -> str:
-    value = clean(value).lower().replace("&", "and")
-
-    replacements = {
-        "bosnia and herzegovina": "bosnia",
-        "bosnia herzegovina": "bosnia",
-        "united states": "usa",
-        "u s a": "usa",
-        "south korea": "korea republic",
-        "korea republic": "korea republic",
-        "czech republic": "czechia",
-        "turkey": "turkiye",
-        "türkiye": "turkiye",
-        "curaçao": "curacao",
-        "ivory coast": "cote divoire",
-        "côte d ivoire": "cote divoire",
-        "cote d ivoire": "cote divoire",
-        "dr congo": "congo dr",
-        "d r congo": "congo dr",
-    }
-
-    for old, new in replacements.items():
-        value = value.replace(old, new)
-
-    return re.sub(
-        r"[^a-z0-9]+",
-        " ",
-        value,
-    ).strip()
-
-
-def split_match_name(value: object) -> tuple[str, str]:
-    value = clean(value)
-
-    for separator in (" v ", " vs ", " versus "):
-        parts = re.split(
-            re.escape(separator),
-            value,
-            maxsplit=1,
-            flags=re.I,
-        )
-
-        if len(parts) == 2:
-            return clean(parts[0]), clean(parts[1])
-
-    return "", ""
-
-
-def fixture_key(row: dict) -> tuple[str, str]:
-    home = clean(
-        row.get("home_team")
-        or row.get("home")
-        or row.get("home_name")
-    )
-    away = clean(
-        row.get("away_team")
-        or row.get("away")
-        or row.get("away_name")
-    )
-
-    if not home or not away:
-        fallback_home, fallback_away = split_match_name(
-            row.get("match")
-            or row.get("name")
-        )
-        home = home or fallback_home
-        away = away or fallback_away
-
-    return norm_team(home), norm_team(away)
-
-
-def parse_iso_datetime(value: object) -> datetime | None:
-    raw = clean(value)
-
-    if not raw:
-        return None
-
-    for candidate in (
-        raw,
-        raw.replace("Z", "+00:00"),
-    ):
-        try:
-            parsed = datetime.fromisoformat(candidate)
-
-            if parsed.tzinfo is None:
-                parsed = parsed.replace(
-                    tzinfo=LOCAL_TIMEZONE
-                )
-
-            return parsed.astimezone(
-                LOCAL_TIMEZONE
-            )
-        except ValueError:
-            continue
-
-    return None
-
-
-def parse_absolute_datetime(
-    date_label: object,
-    time_label: object,
-) -> datetime | None:
-    raw = clean(f"{date_label} {time_label}")
-
-    if not raw:
-        return None
-
-    formats = (
-        "%m/%d/%y %I:%M %p",
-        "%m/%d/%Y %I:%M %p",
-        "%d/%m/%y %I:%M %p",
-        "%d/%m/%Y %I:%M %p",
-        "%m/%d/%y %H:%M",
-        "%m/%d/%Y %H:%M",
-        "%d/%m/%y %H:%M",
-        "%d/%m/%Y %H:%M",
-        "%Y-%m-%d %H:%M",
-    )
-
-    for fmt in formats:
-        try:
-            return datetime.strptime(
-                raw,
-                fmt,
-            ).replace(
-                tzinfo=LOCAL_TIMEZONE
-            )
-        except ValueError:
-            continue
-
-    return None
-
-
-def parse_reference_row_kickoff(row: dict) -> datetime | None:
-    for field in (
-        "kickoff",
-        "commence_time",
-        "start_time",
-        "starts_at",
-        "datetime",
-        "date_time",
-    ):
-        parsed = parse_iso_datetime(
-            row.get(field)
-        )
-        if parsed is not None:
-            return parsed
-
-    return parse_absolute_datetime(
-        row.get("date_label")
-        or row.get("date"),
-        row.get("time")
-        or row.get("time_label"),
-    )
-
-
-def load_reference_kickoffs() -> dict:
-    if not REFERENCE_MONEYLINES_PATH.exists():
-        return {}
-
-    try:
-        payload = json.loads(
-            REFERENCE_MONEYLINES_PATH.read_text(
-                encoding="utf-8"
-            )
-        )
-    except Exception:
-        return {}
-
-    if isinstance(payload, dict):
-        rows = (
-            payload.get("matches")
-            or payload.get("results")
-            or []
-        )
-    elif isinstance(payload, list):
-        rows = payload
-    else:
-        rows = []
-
-    lookup = {}
-
-    for row in rows:
-        if not isinstance(row, dict):
-            continue
-
-        key = fixture_key(row)
-        kickoff = parse_reference_row_kickoff(row)
-
-        if all(key) and kickoff is not None:
-            lookup[key] = kickoff
-
-    return lookup
-
-
-def parse_bwin_kickoff(
-    match: dict,
-    generated_at: datetime | None,
-) -> datetime | None:
-    absolute = parse_absolute_datetime(
-        match.get("date_label"),
-        match.get("time"),
-    )
-
-    if absolute is not None:
-        return absolute
-
-    if generated_at is None:
-        return None
+def parse_local_kickoff(match: dict) -> datetime | None:
+    now = datetime.now().astimezone()
+    date_label = clean(match.get("date_label"))
+    time_label = clean(match.get("time"))
+    combined = clean(f"{date_label} {time_label}")
 
     time_match = re.search(
         r"\b(\d{1,2}:\d{2}\s*(?:AM|PM))\b",
-        clean(match.get("time")),
+        combined,
         re.I,
     )
-
     if not time_match:
         return None
 
@@ -368,24 +157,53 @@ def parse_bwin_kickoff(
     except ValueError:
         return None
 
-    lowered = clean(
-        match.get("date_label")
-    ).lower()
+    lowered = combined.lower()
 
     if "today" in lowered:
-        event_date = generated_at.date()
+        event_date = now.date()
     elif "tomorrow" in lowered:
-        event_date = (
-            generated_at
-            + timedelta(days=1)
-        ).date()
+        event_date = (now + timedelta(days=1)).date()
     else:
-        return None
+        date_match = re.search(
+            r"\b(\d{1,2}/\d{1,2}/\d{2,4})\b",
+            combined,
+        )
+        if not date_match:
+            return None
+
+        event_date = None
+
+        for date_format in ("%m/%d/%y", "%m/%d/%Y"):
+            try:
+                event_date = datetime.strptime(
+                    date_match.group(1),
+                    date_format,
+                ).date()
+                break
+            except ValueError:
+                continue
+
+        if event_date is None:
+            return None
 
     return datetime.combine(
         event_date,
         clock,
-        tzinfo=LOCAL_TIMEZONE,
+        tzinfo=now.tzinfo,
+    )
+
+
+def is_safe_upcoming_match(match: dict) -> bool:
+    kickoff = parse_local_kickoff(match)
+
+    # Keep the match when Bwin's labels cannot be parsed. A second page-level
+    # in-play check is performed after the event is opened.
+    if kickoff is None:
+        return True
+
+    now = datetime.now().astimezone()
+    return kickoff > now + timedelta(
+        minutes=KICKOFF_BUFFER_MINUTES
     )
 
 
@@ -396,30 +214,11 @@ def load_matches() -> list[dict]:
         )
 
     payload = json.loads(
-        MONEYLINES_PATH.read_text(
-            encoding="utf-8"
-        )
+        MONEYLINES_PATH.read_text(encoding="utf-8")
     )
     rows = payload.get("matches") or []
 
-    generated_at = parse_iso_datetime(
-        payload.get("generated_at")
-    )
-    reference_lookup = load_reference_kickoffs()
-
-    now_local = datetime.now(
-        LOCAL_TIMEZONE
-    )
-    cutoff = now_local + timedelta(
-        minutes=KICKOFF_BUFFER_MINUTES
-    )
-
-    upcoming = []
-    started_removed = 0
-    unknown_removed = 0
-    missing_url_removed = 0
-    reference_matches = 0
-    anchored_bwin_matches = 0
+    matches = []
 
     for row in rows:
         if not isinstance(row, dict):
@@ -429,118 +228,31 @@ def load_matches() -> list[dict]:
         away = clean(row.get("away_team"))
         url = fix_url(row.get("source_url"))
 
-        if (
-            not home
-            or not away
-            or "/sports/events/" not in url
-        ):
-            missing_url_removed += 1
+        if not home or not away or "/sports/events/" not in url:
             continue
 
         match = {
-            "match":
-                clean(row.get("match"))
-                or f"{home} v {away}",
+            "match": clean(row.get("match")) or f"{home} v {away}",
             "home_team": home,
             "away_team": away,
-            "date_label":
-                clean(row.get("date_label")),
+            "date_label": clean(row.get("date_label")),
             "time": clean(row.get("time")),
             "url": url,
         }
 
-        kickoff = reference_lookup.get(
-            fixture_key(match)
-        )
-
-        if kickoff is not None:
-            reference_matches += 1
-        else:
-            kickoff = parse_bwin_kickoff(
-                match,
-                generated_at,
+        if not is_safe_upcoming_match(match):
+            print(
+                "Skipping live/near-kickoff fixture: "
+                f"{match['match']}"
             )
-
-            if kickoff is not None:
-                anchored_bwin_matches += 1
-
-        if kickoff is None:
-            unknown_removed += 1
             continue
 
-        if kickoff <= cutoff:
-            started_removed += 1
-            continue
+        matches.append(match)
 
-        match["_kickoff"] = kickoff
-        upcoming.append(match)
+        if MAX_MATCHES and len(matches) >= MAX_MATCHES:
+            break
 
-    upcoming.sort(
-        key=lambda row: row["_kickoff"]
-    )
-
-    selected = (
-        upcoming[:MAX_MATCHES]
-        if MAX_MATCHES
-        else upcoming
-    )
-
-    print(
-        "Current Irish time:        "
-        f"{now_local:%d %b %Y %H:%M:%S %Z}"
-    )
-    print(
-        "Kickoff safety cutoff:     "
-        f"{cutoff:%d %b %Y %H:%M:%S %Z}"
-    )
-    print(
-        "Moneyline file generated:  "
-        + (
-            f"{generated_at:%d %b %Y %H:%M:%S %Z}"
-            if generated_at is not None
-            else "unknown"
-        )
-    )
-    print(
-        "Reference kickoffs matched:"
-        f" {reference_matches}"
-    )
-    print(
-        "Bwin relative dates anchored:"
-        f" {anchored_bwin_matches}"
-    )
-    print(
-        "Started/in-play removed:   "
-        f"{started_removed}"
-    )
-    print(
-        "Unknown kickoff removed:   "
-        f"{unknown_removed}"
-    )
-    print(
-        "Missing URL removed:       "
-        f"{missing_url_removed}"
-    )
-    print(
-        "Upcoming fixtures found:   "
-        f"{len(upcoming)}"
-    )
-    print(
-        "Fixtures selected:         "
-        f"{len(selected)}"
-    )
-
-    for index, match in enumerate(
-        selected,
-        start=1,
-    ):
-        print(
-            f"  {index:02d}. "
-            f"{match['_kickoff']:%a %d %B %Y %H:%M} | "
-            f"{match['match']}"
-        )
-
-    return selected
+    return matches
 
 
 def block_heavy_resources(route) -> None:
@@ -2184,65 +1896,37 @@ def safe_open_event_page(
                 "body",
                 timeout=10000,
             )
-
-            # Bwin's event shell can appear before the market/navigation
-            # content is fully mounted. The previously validated scraper
-            # used this render allowance successfully.
             page.wait_for_timeout(5000)
             dismiss_cookies(page)
 
             body_text = page.locator("body").inner_text(
                 timeout=8000,
             )
-            normalised_body = normalise(body_text)
 
-            has_event_url = (
-                "/sports/events/"
-                in clean(page.url)
+            has_fixture = (
+                normalise(match["home_team"])
+                in normalise(body_text)
+                and normalise(match["away_team"])
+                in normalise(body_text)
             )
 
-            blocking_phrases = (
-                "access denied",
-                "temporarily unavailable",
-                "technical error",
-                "something went wrong",
-                "page not found",
-                "verify you are human",
-                "unusual traffic",
-            )
-
-            blocking_reason = next(
-                (
-                    phrase
-                    for phrase in blocking_phrases
-                    if phrase in normalised_body
-                ),
-                "",
+            has_event_navigation = any(
+                token in normalise(body_text)
+                for token in (
+                    "all main",
+                    "goals players",
+                    "players shots",
+                    "shots price boosts",
+                    "corners cards",
+                )
             )
 
             if (
                 len(body_text) >= 500
-                and has_event_url
-                and not blocking_reason
+                and has_fixture
+                and has_event_navigation
             ):
-                print(
-                    "  event page accepted: "
-                    f"{len(body_text)} chars | "
-                    "Bwin event URL confirmed"
-                )
                 return page
-
-            last_error = (
-                "event load rejected "
-                f"url_ok={has_event_url}, "
-                f"body_chars={len(body_text)}, "
-                "blocking_reason="
-                + (
-                    blocking_reason
-                    if blocking_reason
-                    else "none"
-                )
-            )
         except Exception as error:
             last_error = str(error)
 
@@ -2253,11 +1937,6 @@ def safe_open_event_page(
 
         print(
             f"  event load retry {attempt}/2 failed"
-            + (
-                f": {last_error}"
-                if last_error
-                else ""
-            )
         )
 
     raise RuntimeError(
@@ -2271,7 +1950,6 @@ def safe_open_event_page(
 
 
 def scrape_one(page, match: dict) -> dict:
-    total_started = time.perf_counter()
     name = match["match"]
     home = match["home_team"]
     away = match["away_team"]
@@ -2282,19 +1960,11 @@ def scrape_one(page, match: dict) -> dict:
     print(f"Opening {name}")
     print(event_url)
 
-    shots_started = time.perf_counter()
-
     if not open_shots_tab(page, event_url):
         raise RuntimeError(
             "Shots tab could not be opened after retry."
         )
 
-    shots_open_seconds = (
-        time.perf_counter()
-        - shots_started
-    )
-
-    market_started = time.perf_counter()
     initial_more = expand_show_more(page)
     print(
         f"Shots tab Show More controls: {initial_more}"
@@ -2426,70 +2096,45 @@ def scrape_one(page, match: dict) -> dict:
                 max_clicks=4,
             )
 
-    if SAVE_DEBUG_ARTIFACTS:
-        DEBUG_DIR.mkdir(
-            parents=True,
-            exist_ok=True,
-        )
-
-        (
-            DEBUG_DIR
-            / f"{slug}_cards.json"
-        ).write_text(
-            json.dumps(
-                raw_cards,
-                indent=2,
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
-
-        try:
-            body_text = page.locator(
-                "body"
-            ).inner_text(
-                timeout=8000
-            )
-        except Exception as error:
-            body_text = (
-                "DEBUG BODY CAPTURE FAILED: "
-                + str(error)
-            )
-
-        (
-            DEBUG_DIR
-            / f"{slug}.txt"
-        ).write_text(
-            body_text,
-            encoding="utf-8",
-        )
-
-        try:
-            page.screenshot(
-                path=str(
-                    DEBUG_DIR / f"{slug}.png"
-                ),
-                full_page=False,
-            )
-        except Exception:
-            pass
-
-    market_seconds = (
-        time.perf_counter()
-        - market_started
+    DEBUG_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
     )
-    total_seconds = (
-        time.perf_counter()
-        - total_started
+
+    (DEBUG_DIR / f"{slug}_cards.json").write_text(
+        json.dumps(
+            raw_cards,
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
     )
+
+    try:
+        body_text = page.locator("body").inner_text(
+            timeout=8000
+        )
+    except Exception as error:
+        body_text = (
+            "DEBUG BODY CAPTURE FAILED: "
+            + str(error)
+        )
+
+    (DEBUG_DIR / f"{slug}.txt").write_text(
+        body_text,
+        encoding="utf-8",
+    )
+
+    try:
+        page.screenshot(
+            path=str(DEBUG_DIR / f"{slug}.png"),
+            full_page=False,
+        )
+    except Exception:
+        pass
 
     print(
         f"Parsed match-stat markets: {len(markets)}/6"
-    )
-    print(
-        f"Timing: shots_tab={shots_open_seconds:.2f}s | "
-        f"markets={market_seconds:.2f}s | "
-        f"total={total_seconds:.2f}s"
     )
 
     return {
@@ -2501,26 +2146,11 @@ def scrape_one(page, match: dict) -> dict:
         "time": match.get("time", ""),
         "source_url": event_url,
         "market_count": len(markets),
-        "timing": {
-            "shots_tab_seconds": round(
-                shots_open_seconds,
-                3,
-            ),
-            "market_seconds": round(
-                market_seconds,
-                3,
-            ),
-            "total_seconds": round(
-                total_seconds,
-                3,
-            ),
-        },
         "markets": markets,
     }
 
 
 def main() -> int:
-    script_started = time.perf_counter()
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
@@ -2724,7 +2354,7 @@ def main() -> int:
         )
 
     print("")
-    print("Bwin World Cup match-stats PROD15 FAST completed")
+    print("Bwin World Cup match-stats 15-match audit completed")
     print(
         f"Usable non-live events examined: "
         f"{usable_events}/{TARGET_USABLE_EVENTS}"
@@ -2744,13 +2374,6 @@ def main() -> int:
     print(f"Errors: {len(errors)}")
     print(f"Production output: {OUT_PATH}")
     print(f"Audit output: {AUDIT_PATH}")
-    print(
-        "Total elapsed: "
-        f"{time.perf_counter() - script_started:.2f}s"
-    )
-    print(
-        "Production Bwin match-stats updated: YES"
-    )
 
     return 0 if complete_results else 1
 

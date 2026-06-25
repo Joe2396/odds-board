@@ -1,0 +1,31 @@
+{
+  "sport": "football",
+  "competition": "FIFA World Cup",
+  "bookmaker": "Bwin",
+  "dataset": "match_team_shots_stats_audit",
+  "odds_format": "fractional",
+  "generated_at": "2026-06-25T14:42:03.910499+00:00",
+  "target_usable_events": 3,
+  "usable_event_count": 0,
+  "complete_match_count": 0,
+  "incomplete_match_count": 0,
+  "skipped_live_count": 0,
+  "error_count": 3,
+  "complete_matches": [],
+  "incomplete_matches": [],
+  "skipped_live": [],
+  "errors": [
+    {
+      "match": "Curacao v Ivory Coast",
+      "error": "Event page did not become usable: readiness rejected url_ok=True, body_chars=5499, navigation=none"
+    },
+    {
+      "match": "Ecuador v Germany",
+      "error": "Event page did not become usable: readiness rejected url_ok=True, body_chars=5407, navigation=none"
+    },
+    {
+      "match": "Japan v Sweden",
+      "error": "Event page did not become usable: readiness rejected url_ok=True, body_chars=5499, navigation=none"
+    }
+  ]
+}

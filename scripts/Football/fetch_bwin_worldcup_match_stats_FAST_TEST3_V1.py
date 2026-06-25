@@ -34,7 +34,7 @@ Debug:
 
 from __future__ import annotations
 
-# BWIN_MATCH_STATS_PROD15_FAST_V1
+# BWIN_MATCH_STATS_FAST_TEST3_V1
 
 import json
 import re
@@ -54,18 +54,18 @@ REFERENCE_MONEYLINES_PATH = (
     ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 )
 OUT_PATH = (
-    ROOT / "football" / "data" / "bwin_worldcup_match_stats.json"
+    ROOT / "football" / "data" / "bwin_worldcup_match_stats_fast_test_v1.json"
 )
 AUDIT_PATH = (
-    ROOT / "football" / "data" / "bwin_worldcup_match_stats_audit.json"
+    ROOT / "football" / "data" / "bwin_worldcup_match_stats_fast_test_v1_audit.json"
 )
 DEBUG_DIR = (
-    ROOT / "football" / "debug" / "bwin_worldcup_match_stats"
+    ROOT / "football" / "debug" / "bwin_worldcup_match_stats_fast_test_v1"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 3
 HEADLESS = False
-TARGET_USABLE_EVENTS = 15
+TARGET_USABLE_EVENTS = 3
 # Do not start scraping a fixture that is likely to move in-play before the
 # three-match test completes.
 KICKOFF_BUFFER_MINUTES = 15
@@ -2185,64 +2185,69 @@ def safe_open_event_page(
                 timeout=10000,
             )
 
-            # Bwin's event shell can appear before the market/navigation
-            # content is fully mounted. The previously validated scraper
-            # used this render allowance successfully.
-            page.wait_for_timeout(5000)
+            try:
+                page.wait_for_function(
+                    r"""
+                    ({home, away}) => {
+                        const text = (
+                            document.body?.innerText || ""
+                        )
+                            .replace(/\s+/g, " ")
+                            .toLowerCase();
+
+                        return (
+                            text.includes(
+                                home.toLowerCase()
+                            )
+                            && text.includes(
+                                away.toLowerCase()
+                            )
+                            && /\b(all|goals|players|shots|cards|corners)\b/i.test(
+                                text
+                            )
+                        );
+                    }
+                    """,
+                    {
+                        "home": match["home_team"],
+                        "away": match["away_team"],
+                    },
+                    timeout=7000,
+                )
+            except Exception:
+                pass
+
+            page.wait_for_timeout(350)
             dismiss_cookies(page)
 
             body_text = page.locator("body").inner_text(
                 timeout=8000,
             )
-            normalised_body = normalise(body_text)
 
-            has_event_url = (
-                "/sports/events/"
-                in clean(page.url)
+            has_fixture = (
+                normalise(match["home_team"])
+                in normalise(body_text)
+                and normalise(match["away_team"])
+                in normalise(body_text)
             )
 
-            blocking_phrases = (
-                "access denied",
-                "temporarily unavailable",
-                "technical error",
-                "something went wrong",
-                "page not found",
-                "verify you are human",
-                "unusual traffic",
-            )
-
-            blocking_reason = next(
-                (
-                    phrase
-                    for phrase in blocking_phrases
-                    if phrase in normalised_body
-                ),
-                "",
+            has_event_navigation = any(
+                token in normalise(body_text)
+                for token in (
+                    "all main",
+                    "goals players",
+                    "players shots",
+                    "shots price boosts",
+                    "corners cards",
+                )
             )
 
             if (
                 len(body_text) >= 500
-                and has_event_url
-                and not blocking_reason
+                and has_fixture
+                and has_event_navigation
             ):
-                print(
-                    "  event page accepted: "
-                    f"{len(body_text)} chars | "
-                    "Bwin event URL confirmed"
-                )
                 return page
-
-            last_error = (
-                "event load rejected "
-                f"url_ok={has_event_url}, "
-                f"body_chars={len(body_text)}, "
-                "blocking_reason="
-                + (
-                    blocking_reason
-                    if blocking_reason
-                    else "none"
-                )
-            )
         except Exception as error:
             last_error = str(error)
 
@@ -2253,11 +2258,6 @@ def safe_open_event_page(
 
         print(
             f"  event load retry {attempt}/2 failed"
-            + (
-                f": {last_error}"
-                if last_error
-                else ""
-            )
         )
 
     raise RuntimeError(
@@ -2724,7 +2724,7 @@ def main() -> int:
         )
 
     print("")
-    print("Bwin World Cup match-stats PROD15 FAST completed")
+    print("Bwin World Cup match-stats FAST TEST3 V1 completed")
     print(
         f"Usable non-live events examined: "
         f"{usable_events}/{TARGET_USABLE_EVENTS}"
@@ -2749,7 +2749,7 @@ def main() -> int:
         f"{time.perf_counter() - script_started:.2f}s"
     )
     print(
-        "Production Bwin match-stats updated: YES"
+        "Production Bwin match-stats JSON modified: NO"
     )
 
     return 0 if complete_results else 1

@@ -34,7 +34,7 @@ Debug:
 
 from __future__ import annotations
 
-# BWIN_MATCH_STATS_PROD15_FAST_V1
+# BWIN_MATCH_STATS_FAST_TEST3_V3_SIMPLE_EVENT_LOAD
 
 import json
 import re
@@ -54,18 +54,18 @@ REFERENCE_MONEYLINES_PATH = (
     ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 )
 OUT_PATH = (
-    ROOT / "football" / "data" / "bwin_worldcup_match_stats.json"
+    ROOT / "football" / "data" / "bwin_worldcup_match_stats_fast_test_v3_simple_event_load.json"
 )
 AUDIT_PATH = (
-    ROOT / "football" / "data" / "bwin_worldcup_match_stats_audit.json"
+    ROOT / "football" / "data" / "bwin_worldcup_match_stats_fast_test_v3_simple_event_load_audit.json"
 )
 DEBUG_DIR = (
-    ROOT / "football" / "debug" / "bwin_worldcup_match_stats"
+    ROOT / "football" / "debug" / "bwin_worldcup_match_stats_fast_test_v3_simple_event_load"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 3
 HEADLESS = False
-TARGET_USABLE_EVENTS = 15
+TARGET_USABLE_EVENTS = 3
 # Do not start scraping a fixture that is likely to move in-play before the
 # three-match test completes.
 KICKOFF_BUFFER_MINUTES = 15
@@ -2724,7 +2724,7 @@ def main() -> int:
         )
 
     print("")
-    print("Bwin World Cup match-stats PROD15 FAST completed")
+    print("Bwin World Cup match-stats FAST TEST3 V3 SIMPLE EVENT LOAD completed")
     print(
         f"Usable non-live events examined: "
         f"{usable_events}/{TARGET_USABLE_EVENTS}"
@@ -2749,7 +2749,7 @@ def main() -> int:
         f"{time.perf_counter() - script_started:.2f}s"
     )
     print(
-        "Production Bwin match-stats updated: YES"
+        "Production Bwin match-stats JSON modified: NO"
     )
 
     return 0 if complete_results else 1

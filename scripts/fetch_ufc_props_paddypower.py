@@ -276,7 +276,7 @@ def parse_method_of_victory(lines):
     )
 
     results = []
-    allowed_terms = [" by ko", " ko/tko", " tko", "submission", "points", "decision", " dec", "tech dec", "technical"]
+    allowed_terms = [" by ko", " ko/tko", " tko", "submission", "points", "decision", " by dec", "by dec", "tech dec", "technical"]
 
     for i in range(len(section) - 1):
         selection = section[i].strip()
