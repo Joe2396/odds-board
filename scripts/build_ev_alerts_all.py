@@ -198,7 +198,12 @@ def render_alert_card(alert, index):
     meta = " · ".join([str(x) for x in meta_bits if x])
 
     return f"""
-    <article class="alert-card" data-sport="{esc(sport)}">
+    <article class="alert-card"
+      data-sport="{esc(sport)}"
+      data-event="{esc((alert.get('event') or '').lower())}"
+      data-market="{esc((alert.get('market') or '').lower())}"
+      data-selection="{esc((alert.get('selection') or '').lower())}"
+      data-odds="{esc(alert.get('decimal_odds') or '')}">
       <div class="card-top">
         <span class="sport-pill {esc(sport_class)}">{esc(sport)}</span>
         <span class="rank">#{index}</span>
@@ -389,7 +394,52 @@ def render_page(alerts, football_data):
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin: 20px 0 26px;
+      margin: 20px 0 14px;
+    }}
+
+    .search-filter-row {{
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }}
+
+    #search-box {{
+      flex: 1;
+      min-width: 200px;
+      padding: 9px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+    }}
+
+    #search-box:focus {{
+      border-color: var(--green);
+    }}
+
+    #odds-filter {{
+      padding: 9px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      cursor: pointer;
+      outline: none;
+    }}
+
+    #odds-filter:focus {{
+      border-color: var(--green);
+    }}
+
+    .results-count {{
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      min-height: 18px;
     }}
 
     .filter-btn {{
@@ -654,32 +704,77 @@ def render_page(alerts, football_data):
       {render_filter_buttons(counts)}
     </div>
 
+    <div class="search-filter-row">
+      <input
+        type="text"
+        id="search-box"
+        placeholder="&#128269; Search teams, players, markets..."
+        oninput="applyFilters()"
+        autocomplete="off"
+      />
+      <select id="odds-filter" onchange="applyFilters()">
+        <option value="">All odds</option>
+        <option value="0-2">Under 2.0 (short price)</option>
+        <option value="2-4">2.0 – 4.0</option>
+        <option value="4-8">4.0 – 8.0</option>
+        <option value="8-20">8.0 – 20.0</option>
+        <option value="20-999">20.0+ (big price)</option>
+      </select>
+    </div>
+    <p id="results-count" class="results-count"></p>
+
     <section class="alerts-grid" id="alertsGrid">
       {cards}
     </section>
   </main>
 
   <script>
+    let activeSport = "All";
+
     const buttons = document.querySelectorAll(".filter-btn");
-    const cards = document.querySelectorAll(".alert-card");
+    const allCards = Array.from(document.querySelectorAll(".alert-card"));
+
+    function applyFilters() {{
+      const query = (document.getElementById("search-box").value || "").toLowerCase().trim();
+      const oddsRange = document.getElementById("odds-filter").value;
+      let [oddsMin, oddsMax] = oddsRange ? oddsRange.split("-").map(Number) : [0, 9999];
+
+      let visible = 0;
+      allCards.forEach(card => {{
+        const sport   = card.dataset.sport || "";
+        const event   = card.dataset.event || "";
+        const market  = card.dataset.market || "";
+        const sel     = card.dataset.selection || "";
+        const oddsRaw = parseFloat(card.dataset.odds || "0") || 0;
+
+        const sportMatch = activeSport === "All" || sport === activeSport;
+        const searchMatch = !query ||
+          event.includes(query) ||
+          market.includes(query) ||
+          sel.includes(query);
+        const oddsMatch = !oddsRange || (oddsRaw >= oddsMin && oddsRaw < oddsMax);
+
+        const show = sportMatch && searchMatch && oddsMatch;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      }});
+
+      const rc = document.getElementById("results-count");
+      if (rc) rc.textContent = visible === allCards.length
+        ? ""
+        : `${{visible}} of ${{allCards.length}} alerts`;
+    }}
 
     buttons.forEach(btn => {{
       btn.addEventListener("click", () => {{
-        const filter = btn.dataset.filter;
-
+        activeSport = btn.dataset.filter;
         buttons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-
-        cards.forEach(card => {{
-          const sport = card.dataset.sport;
-          if (filter === "All" || sport === filter) {{
-            card.style.display = "";
-          }} else {{
-            card.style.display = "none";
-          }}
-        }});
+        applyFilters();
       }});
     }});
+
+    applyFilters();
   </script>
 </body>
 </html>

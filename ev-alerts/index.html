@@ -122,7 +122,52 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin: 20px 0 26px;
+      margin: 20px 0 14px;
+    }
+
+    .search-filter-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    #search-box {
+      flex: 1;
+      min-width: 200px;
+      padding: 9px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+    }
+
+    #search-box:focus {
+      border-color: var(--green);
+    }
+
+    #odds-filter {
+      padding: 9px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    #odds-filter:focus {
+      border-color: var(--green);
+    }
+
+    .results-count {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      min-height: 18px;
     }
 
     .filter-btn {
@@ -361,7 +406,7 @@
         Combined value alerts across sports. Football uses a no-vig fair price
         from tracked bookmakers. UFC alerts currently link through to the UFC EV page.
       </p>
-      <p class="updated">Updated: 2026-06-25 17:00 UTC</p>
+      <p class="updated">Updated: 2026-06-25 20:34 UTC</p>
 
       <div class="summary">
         <div class="summary-card">
@@ -403,9 +448,33 @@
         
     </div>
 
+    <div class="search-filter-row">
+      <input
+        type="text"
+        id="search-box"
+        placeholder="&#128269; Search teams, players, markets..."
+        oninput="applyFilters()"
+        autocomplete="off"
+      />
+      <select id="odds-filter" onchange="applyFilters()">
+        <option value="">All odds</option>
+        <option value="0-2">Under 2.0 (short price)</option>
+        <option value="2-4">2.0 – 4.0</option>
+        <option value="4-8">4.0 – 8.0</option>
+        <option value="8-20">8.0 – 20.0</option>
+        <option value="20-999">20.0+ (big price)</option>
+      </select>
+    </div>
+    <p id="results-count" class="results-count"></p>
+
     <section class="alerts-grid" id="alertsGrid">
       
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots on target"
+      data-selection="virgil van dijk 3+"
+      data-odds="51.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#1</span>
@@ -443,7 +512,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots"
+      data-selection="pervis estupinan 3+"
+      data-odds="23.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#2</span>
@@ -481,7 +555,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots on target"
+      data-selection="giovanni reyna 3+"
+      data-odds="26.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#3</span>
@@ -519,7 +598,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots"
+      data-selection="kalidou koulibaly 3+"
+      data-odds="15.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#4</span>
@@ -557,7 +641,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots"
+      data-selection="jackson irvine 3+"
+      data-odds="12.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#5</span>
@@ -595,7 +684,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots"
+      data-selection="junnosuke suzuki 3+"
+      data-odds="19.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#6</span>
@@ -633,7 +727,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots on target"
+      data-selection="weston mckennie 3+"
+      data-odds="31.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#7</span>
@@ -671,7 +770,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots"
+      data-selection="elliot stroud 3+"
+      data-odds="11.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#8</span>
@@ -709,7 +813,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots"
+      data-selection="malick thiaw 2+"
+      data-odds="10.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#9</span>
@@ -747,7 +856,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots on target"
+      data-selection="tete yengi 3+"
+      data-odds="26.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#10</span>
@@ -785,7 +899,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots on target"
+      data-selection="julio enciso 3+"
+      data-odds="31.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#11</span>
@@ -823,7 +942,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots on target"
+      data-selection="keito nakamura 3+"
+      data-odds="11.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#12</span>
@@ -861,7 +985,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots"
+      data-selection="alexandro maidana 3+"
+      data-odds="19.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#13</span>
@@ -899,7 +1028,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="andreas schjelderup 3+"
+      data-odds="9.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#14</span>
@@ -937,7 +1071,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="n&#39;golo kante 3+"
+      data-odds="18.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#15</span>
@@ -975,7 +1114,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots on target"
+      data-selection="kevin de bruyne 3+"
+      data-odds="8.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#16</span>
@@ -1013,7 +1157,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots on target"
+      data-selection="felix nmecha 3+"
+      data-odds="31.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#17</span>
@@ -1051,7 +1200,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="egypt v iran"
+      data-market="shots on target"
+      data-selection="omar marmoush 3+"
+      data-odds="19.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#18</span>
@@ -1089,7 +1243,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots"
+      data-selection="aziz behich 2+"
+      data-odds="9.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#19</span>
@@ -1127,7 +1286,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="warren zaire-emery 3+"
+      data-odds="9.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#20</span>
@@ -1165,7 +1329,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots"
+      data-selection="gustavo gomez 3+"
+      data-odds="21.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#21</span>
@@ -1203,7 +1372,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots"
+      data-selection="krepin diatta 3+"
+      data-odds="10.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#22</span>
@@ -1241,7 +1415,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots on target"
+      data-selection="gonzalo plata 3+"
+      data-odds="26.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#23</span>
@@ -1279,7 +1458,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots"
+      data-selection="el hadji malick diouf 3+"
+      data-odds="13.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#24</span>
@@ -1317,7 +1501,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots"
+      data-selection="waldemar anton 2+"
+      data-odds="9.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#25</span>
@@ -1355,7 +1544,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots on target"
+      data-selection="franck kessie 3+"
+      data-odds="12.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#26</span>
@@ -1393,7 +1587,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots"
+      data-selection="damian bobadilla 3+"
+      data-odds="12.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#27</span>
@@ -1431,7 +1630,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="william saliba 2+"
+      data-odds="9.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#28</span>
@@ -1469,7 +1673,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots"
+      data-selection="nicolas raskin 3+"
+      data-odds="6.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#29</span>
@@ -1507,7 +1716,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots"
+      data-selection="antonio rudiger 2+"
+      data-odds="8.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#30</span>
@@ -1545,7 +1759,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots on target"
+      data-selection="alexis saelemaekers 3+"
+      data-odds="14.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#31</span>
@@ -1583,7 +1802,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots"
+      data-selection="tahith chong 3+"
+      data-odds="16.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#32</span>
@@ -1621,7 +1845,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots"
+      data-selection="john stones 3+"
+      data-odds="18.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#33</span>
@@ -1659,7 +1888,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots"
+      data-selection="ibrahim sangare 3+"
+      data-odds="4.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#34</span>
@@ -1697,7 +1931,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots on target"
+      data-selection="assan ouedraogo 3+"
+      data-odds="20.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#35</span>
@@ -1735,7 +1974,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots"
+      data-selection="cameron burgess 2+"
+      data-odds="10.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#36</span>
@@ -1773,7 +2017,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots"
+      data-selection="jeremy antonisse 3+"
+      data-odds="14.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#37</span>
@@ -1811,7 +2060,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots"
+      data-selection="daizen maeda 3+"
+      data-odds="3.7">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#38</span>
@@ -1849,7 +2103,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots"
+      data-selection="sebastian tounekti 3+"
+      data-odds="23.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#39</span>
@@ -1887,7 +2146,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots"
+      data-selection="ayumu seko 2+"
+      data-odds="9.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#40</span>
@@ -1925,7 +2189,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots on target"
+      data-selection="federico vinas 2+"
+      data-odds="7.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#41</span>
@@ -1963,7 +2232,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots"
+      data-selection="paul okon-engstler 3+"
+      data-odds="26.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#42</span>
@@ -2001,7 +2275,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="fredrik aursnes 3+"
+      data-odds="14.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#43</span>
@@ -2039,7 +2318,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots on target"
+      data-selection="sadio mane 3+"
+      data-odds="8.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#44</span>
@@ -2077,7 +2361,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots"
+      data-selection="ferdi kadioglu 3+"
+      data-odds="19.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#45</span>
@@ -2115,7 +2404,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots"
+      data-selection="amir al ammari 3+"
+      data-odds="19.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#46</span>
@@ -2153,7 +2447,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots"
+      data-selection="odilon kossounou 3+"
+      data-odds="15.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#47</span>
@@ -2191,7 +2490,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots on target"
+      data-selection="romelu lukaku 3+"
+      data-odds="4.333333">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#48</span>
@@ -2229,7 +2533,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="patrick berg 3+"
+      data-odds="7.75">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#49</span>
@@ -2267,7 +2576,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots"
+      data-selection="arthur theate 3+"
+      data-odds="7.75">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#50</span>
@@ -2305,7 +2619,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots"
+      data-selection="alexander bernhardsson 3+"
+      data-odds="10.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#51</span>
@@ -2343,7 +2662,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots"
+      data-selection="besfort zeneli 3+"
+      data-odds="10.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#52</span>
@@ -2381,7 +2705,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots"
+      data-selection="ismail yuksek 3+"
+      data-odds="10.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#53</span>
@@ -2419,7 +2748,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="antonio nusa 3+"
+      data-odds="5.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#54</span>
@@ -2457,7 +2791,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots on target"
+      data-selection="nadiem amiri 3+"
+      data-odds="26.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#55</span>
@@ -2495,7 +2834,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots on target"
+      data-selection="junya ito 3+"
+      data-odds="26.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#56</span>
@@ -2533,7 +2877,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots on target"
+      data-selection="anthony elanga 3+"
+      data-odds="26.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#57</span>
@@ -2571,7 +2920,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots on target"
+      data-selection="hakan calhanoglu 3+"
+      data-odds="26.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#58</span>
@@ -2609,7 +2963,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots on target"
+      data-selection="jorgen strand larsen 3+"
+      data-odds="13.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#59</span>
@@ -2647,7 +3006,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots"
+      data-selection="zidane iqbal 3+"
+      data-odds="26.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#60</span>
@@ -2685,7 +3049,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots"
+      data-selection="aleksandar pavlovic 3+"
+      data-odds="11.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#61</span>
@@ -2723,7 +3092,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots"
+      data-selection="ahmed qasem 3+"
+      data-odds="11.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#62</span>
@@ -2761,7 +3135,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots on target"
+      data-selection="kevin rodriguez 3+"
+      data-odds="14.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#63</span>
@@ -2799,7 +3178,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots"
+      data-selection="nathaniel brown 3+"
+      data-odds="15.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#64</span>
@@ -2837,7 +3221,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="ecuador v germany"
+      data-market="shots"
+      data-selection="piero hincapie 3+"
+      data-odds="18.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#65</span>
@@ -2875,7 +3264,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots"
+      data-selection="jordan bos 3+"
+      data-odds="12.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#66</span>
@@ -2913,7 +3307,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots"
+      data-selection="omar alderete 3+"
+      data-odds="21.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#67</span>
@@ -2951,7 +3350,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots"
+      data-selection="anis ben slimane 3+"
+      data-odds="17.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#68</span>
@@ -2989,7 +3393,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots on target"
+      data-selection="ousmane dembele 3+"
+      data-odds="8.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#69</span>
@@ -3027,7 +3436,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots on target"
+      data-selection="cecilio waterman 2+"
+      data-odds="8.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#70</span>
@@ -3065,7 +3479,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots on target"
+      data-selection="christian pulisic 3+"
+      data-odds="11.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#71</span>
@@ -3103,7 +3522,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots"
+      data-selection="jurgen locadia 3+"
+      data-odds="8.75">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#72</span>
@@ -3141,7 +3565,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots on target"
+      data-selection="gustaf nilsson 3+"
+      data-odds="16.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#73</span>
@@ -3179,7 +3608,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="kristian thorstvedt 3+"
+      data-odds="6.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#74</span>
@@ -3217,7 +3651,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots"
+      data-selection="marc cucurella 2+"
+      data-odds="5.75">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#75</span>
@@ -3255,7 +3694,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots"
+      data-selection="nathan ake 3+"
+      data-odds="15.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#76</span>
@@ -3293,7 +3737,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots on target"
+      data-selection="sebastian berhalter 2+"
+      data-odds="10.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#77</span>
@@ -3331,7 +3780,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots"
+      data-selection="pedro porro 3+"
+      data-odds="9.25">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#78</span>
@@ -3369,7 +3823,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots"
+      data-selection="ao tanaka 3+"
+      data-odds="8.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#79</span>
@@ -3407,7 +3866,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots on target"
+      data-selection="juninho bacuna 2+"
+      data-odds="12.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#80</span>
@@ -3445,7 +3909,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots on target"
+      data-selection="elias saad 2+"
+      data-odds="12.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#81</span>
@@ -3483,7 +3952,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots"
+      data-selection="ezri konsa 3+"
+      data-odds="12.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#82</span>
@@ -3521,7 +3995,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="paraguay v australia"
+      data-market="shots on target"
+      data-selection="omar alderete 1+"
+      data-odds="4.75">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#83</span>
@@ -3559,7 +4038,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="japan v sweden"
+      data-market="shots on target"
+      data-selection="ko itakura 1+"
+      data-odds="5.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#84</span>
@@ -3597,7 +4081,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="adrien rabiot 3+"
+      data-odds="7.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#85</span>
@@ -3635,7 +4124,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="norway v france"
+      data-market="shots"
+      data-selection="dayot upamecano 2+"
+      data-odds="7.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#86</span>
@@ -3673,7 +4167,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots"
+      data-selection="auston trusty 2+"
+      data-odds="9.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#87</span>
@@ -3711,7 +4210,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots"
+      data-selection="manuel ugarte 3+"
+      data-odds="18.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#88</span>
@@ -3749,7 +4253,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots on target"
+      data-selection="crysencio summerville 3+"
+      data-odds="5.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#89</span>
@@ -3787,7 +4296,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="egypt v iran"
+      data-market="shots on target"
+      data-selection="mehdi taremi 2+"
+      data-odds="5.75">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#90</span>
@@ -3825,7 +4339,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots"
+      data-selection="mert muldur 3+"
+      data-odds="13.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#91</span>
@@ -3863,7 +4382,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots on target"
+      data-selection="christ inao oulai 3+"
+      data-odds="21.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#92</span>
@@ -3901,7 +4425,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots on target"
+      data-selection="alex freeman 1+"
+      data-odds="4.333333">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#93</span>
@@ -3939,7 +4468,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots"
+      data-selection="juninho bacuna 3+"
+      data-odds="4.6">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#94</span>
@@ -3977,7 +4511,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots"
+      data-selection="emmanuel agbadou 3+"
+      data-odds="7.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#95</span>
@@ -4015,7 +4554,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="shots"
+      data-selection="ghislain konan 3+"
+      data-odds="12.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#96</span>
@@ -4053,7 +4597,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="curacao v ivory coast"
+      data-market="fouls committed"
+      data-selection="sherel floranus 3+"
+      data-odds="5.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#97</span>
@@ -4091,7 +4640,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots on target"
+      data-selection="denzel dumfries 3+"
+      data-odds="20.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#98</span>
@@ -4129,7 +4683,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots on target"
+      data-selection="ryan gravenberch 2+"
+      data-odds="8.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#99</span>
@@ -4167,7 +4726,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots on target"
+      data-selection="frenkie de jong 2+"
+      data-odds="10.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#100</span>
@@ -4205,7 +4769,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots"
+      data-selection="omar rekik 1+"
+      data-odds="4.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#101</span>
@@ -4243,7 +4812,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots on target"
+      data-selection="moutaz neffati 1+"
+      data-odds="8.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#102</span>
@@ -4281,7 +4855,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="shots"
+      data-selection="jorrel hato 3+"
+      data-odds="8.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#103</span>
@@ -4319,7 +4898,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots on target"
+      data-selection="nico williams 3+"
+      data-odds="10.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#104</span>
@@ -4357,7 +4941,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots"
+      data-selection="amadou onana 3+"
+      data-odds="7.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#105</span>
@@ -4395,7 +4984,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots"
+      data-selection="liberato cacace 2+"
+      data-odds="8.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#106</span>
@@ -4433,7 +5027,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots"
+      data-selection="marc guehi 3+"
+      data-odds="10.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#107</span>
@@ -4471,7 +5070,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="egypt v iran"
+      data-market="shots"
+      data-selection="mehdi taremi 3+"
+      data-odds="3.1">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#108</span>
@@ -4509,7 +5113,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots"
+      data-selection="youri tielemans 3+"
+      data-odds="3.1">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#109</span>
@@ -4547,7 +5156,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots on target"
+      data-selection="auston trusty 1+"
+      data-odds="5.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#110</span>
@@ -4585,7 +5199,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots on target"
+      data-selection="lamine camara 1+"
+      data-odds="2.25">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#111</span>
@@ -4623,7 +5242,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="türkiye v usa"
+      data-market="shots on target"
+      data-selection="haji wright 3+"
+      data-odds="8.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#112</span>
@@ -4661,7 +5285,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots on target"
+      data-selection="ismaila sarr 3+"
+      data-odds="7.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#113</span>
@@ -4699,7 +5328,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots"
+      data-selection="agustin canobbio 3+"
+      data-odds="6.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#114</span>
@@ -4737,7 +5371,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots on target"
+      data-selection="federico valverde 2+"
+      data-odds="7.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#115</span>
@@ -4775,7 +5414,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="egypt v iran"
+      data-market="shots"
+      data-selection="saman ghoddos 3+"
+      data-odds="9.75">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#116</span>
@@ -4813,7 +5457,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots on target"
+      data-selection="jude bellingham 3+"
+      data-odds="6.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#117</span>
@@ -4851,7 +5500,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots"
+      data-selection="pape gueye 3+"
+      data-odds="3.3">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#118</span>
@@ -4889,7 +5543,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots"
+      data-selection="federico vinas 3+"
+      data-odds="3.6">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#119</span>
@@ -4927,7 +5586,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots on target"
+      data-selection="dani olmo 3+"
+      data-odds="11.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#120</span>
@@ -4965,7 +5629,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots"
+      data-selection="marko stamenic 3+"
+      data-odds="19.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#121</span>
@@ -5003,7 +5672,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots on target"
+      data-selection="morgan rogers 3+"
+      data-odds="8.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#122</span>
@@ -5041,7 +5715,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots"
+      data-selection="ali al hamadi 3+"
+      data-odds="3.3">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#123</span>
@@ -5079,7 +5758,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots on target"
+      data-selection="harry kane 3+"
+      data-odds="2.625">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#124</span>
@@ -5117,7 +5801,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="senegal v iraq"
+      data-market="shots on target"
+      data-selection="ali al hamadi 2+"
+      data-odds="7.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#125</span>
@@ -5155,7 +5844,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots on target"
+      data-selection="youri tielemans 1+"
+      data-odds="2.1">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#126</span>
@@ -5193,7 +5887,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots"
+      data-selection="pedri 3+"
+      data-odds="5.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#127</span>
@@ -5231,7 +5930,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots on target"
+      data-selection="marcus rashford 3+"
+      data-odds="5.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#128</span>
@@ -5269,7 +5973,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots"
+      data-selection="carlos harvey 3+"
+      data-odds="15.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#129</span>
@@ -5307,7 +6016,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="uruguay v spain"
+      data-market="shots"
+      data-selection="aymeric laporte 2+"
+      data-odds="4.75">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#130</span>
@@ -5345,7 +6059,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="tunisia v netherlands"
+      data-market="match odds"
+      data-selection="tunisia"
+      data-odds="29.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#131</span>
@@ -5383,7 +6102,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="match odds"
+      data-selection="new zealand"
+      data-odds="19.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#132</span>
@@ -5421,7 +6145,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots on target"
+      data-selection="chris wood 1+"
+      data-odds="2.25">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#133</span>
@@ -5459,7 +6188,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="new zealand v belgium"
+      data-market="shots"
+      data-selection="thomas meunier 3+"
+      data-odds="5.75">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#134</span>
@@ -5497,7 +6231,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots"
+      data-selection="djed spence 3+"
+      data-odds="8.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#135</span>
@@ -5535,7 +6274,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots on target"
+      data-selection="bukayo saka 3+"
+      data-odds="6.5">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#136</span>
@@ -5573,7 +6317,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="match odds"
+      data-selection="panama"
+      data-odds="17.0">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#137</span>
@@ -5611,7 +6360,12 @@
       </a>
     </article>
     
-    <article class="alert-card" data-sport="Football">
+    <article class="alert-card"
+      data-sport="Football"
+      data-event="panama v england"
+      data-market="shots"
+      data-selection="cecilio waterman 3+"
+      data-odds="4.1">
       <div class="card-top">
         <span class="sport-pill sport-football">Football</span>
         <span class="rank">#138</span>
@@ -5665,26 +6419,52 @@
   </main>
 
   <script>
+    let activeSport = "All";
+
     const buttons = document.querySelectorAll(".filter-btn");
-    const cards = document.querySelectorAll(".alert-card");
+    const allCards = Array.from(document.querySelectorAll(".alert-card"));
+
+    function applyFilters() {
+      const query = (document.getElementById("search-box").value || "").toLowerCase().trim();
+      const oddsRange = document.getElementById("odds-filter").value;
+      let [oddsMin, oddsMax] = oddsRange ? oddsRange.split("-").map(Number) : [0, 9999];
+
+      let visible = 0;
+      allCards.forEach(card => {
+        const sport   = card.dataset.sport || "";
+        const event   = card.dataset.event || "";
+        const market  = card.dataset.market || "";
+        const sel     = card.dataset.selection || "";
+        const oddsRaw = parseFloat(card.dataset.odds || "0") || 0;
+
+        const sportMatch = activeSport === "All" || sport === activeSport;
+        const searchMatch = !query ||
+          event.includes(query) ||
+          market.includes(query) ||
+          sel.includes(query);
+        const oddsMatch = !oddsRange || (oddsRaw >= oddsMin && oddsRaw < oddsMax);
+
+        const show = sportMatch && searchMatch && oddsMatch;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+
+      const rc = document.getElementById("results-count");
+      if (rc) rc.textContent = visible === allCards.length
+        ? ""
+        : `${visible} of ${allCards.length} alerts`;
+    }
 
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
-        const filter = btn.dataset.filter;
-
+        activeSport = btn.dataset.filter;
         buttons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-
-        cards.forEach(card => {
-          const sport = card.dataset.sport;
-          if (filter === "All" || sport === filter) {
-            card.style.display = "";
-          } else {
-            card.style.display = "none";
-          }
-        });
+        applyFilters();
       });
     });
+
+    applyFilters();
   </script>
 </body>
 </html>
