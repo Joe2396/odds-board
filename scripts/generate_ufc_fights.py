@@ -272,6 +272,21 @@ def canonical_market_label(label):
     return label or "Props"
 
 
+def fighter_from_selection(selection, fighters):
+    """Extract which fighter this selection refers to, for grouping MOV props."""
+    text = clean_selection(selection).lower()
+    for fighter in fighters:
+        fname = str(fighter or "").lower().strip()
+        if not fname:
+            continue
+        # Check if fighter name appears at start of selection
+        if text.startswith(fname) or fname in text.split(" by ")[0] or fname in text.split(" - ")[0]:
+            # Return last name as stable key
+            parts = fname.split()
+            return parts[-1] if parts else fname
+    return ""
+
+
 def market_key(label):
     return canonical_market_label(label).lower().strip()
 
@@ -896,7 +911,16 @@ def get_best_prop_rows_with_value(prop_items):
     grouped = {}
 
     for row in rows:
-        key = (row["market_key"], row["selection_key"])
+        # For MOV, include a fighter indicator so McGregor KO and Holloway KO
+        # don't get merged into the same group
+        sel_lower = row["selection"].lower()
+        if row["market_key"] == "method_of_victory":
+            # Extract first word(s) before "by" or "-" as fighter indicator
+            m = re.match(r"^([a-z\s\.]+?)(?:\s+by\s+|\s+-\s+|\s+via\s+)", sel_lower)
+            fighter_indicator = m.group(1).strip().split()[-1] if m else ""
+        else:
+            fighter_indicator = ""
+        key = (row["market_key"], fighter_indicator, row["selection_key"])
         grouped.setdefault(key, []).append(row)
 
     best_rows = []
