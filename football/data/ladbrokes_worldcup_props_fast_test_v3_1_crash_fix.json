@@ -1,0 +1,1141 @@
+{
+  "sport": "football",
+  "competition": "FIFA World Cup",
+  "bookmaker": "Ladbrokes",
+  "market_type": "props",
+  "source_url": "https://www.ladbrokes.com/en/sports/competitions/football/international/world-cup-2026",
+  "generated_at": "2026-06-25T19:01:32.546756+00:00",
+  "match_count": 3,
+  "matches": [
+    {
+      "match": "Curacao v Ivory Coast",
+      "home_team": "Curacao",
+      "away_team": "Ivory Coast",
+      "url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets",
+      "market_count": 9,
+      "timing": {
+        "main": 13.885,
+        "goals": 10.693,
+        "goalscorer": 3.371,
+        "half": 4.888,
+        "corners_cards": 6.684,
+        "player_stats": 13.844
+      },
+      "total_seconds": 53.447,
+      "missing_markets": [
+        "double_chance",
+        "player_assists",
+        "player_cards",
+        "player_fouls",
+        "player_tackles",
+        "shots",
+        "shots_on_target"
+      ],
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Curacao",
+              "normalized_selection": "curacao",
+              "odds": "14/1",
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "7/1",
+              "side": "draw"
+            },
+            {
+              "selection": "Ivory Coast",
+              "normalized_selection": "ivory_coast",
+              "odds": "1/6",
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "5/4",
+              "side": "yes"
+            },
+            {
+              "selection": "Both Teams To Score - No",
+              "normalized_selection": "both_teams_to_score_no",
+              "odds": "4/7",
+              "side": "no"
+            }
+          ]
+        },
+        {
+          "market": "Player to Score",
+          "normalized_market": "player_to_score",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "90 Mins First Goalscorer",
+              "normalized_selection": "90_mins_first_goalscorer",
+              "odds": "14/1",
+              "player": "90 Mins",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "90 Mins Anytime Goalscorer",
+              "normalized_selection": "90_mins_anytime_goalscorer",
+              "odds": "7/1",
+              "player": "90 Mins",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "1st Half First Goalscorer",
+              "normalized_selection": "1st_half_first_goalscorer",
+              "odds": "15/2",
+              "player": "1st Half",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "1st Half Anytime Goalscorer",
+              "normalized_selection": "1st_half_anytime_goalscorer",
+              "odds": "11/5",
+              "player": "1st Half",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "2nd Half First Goalscorer",
+              "normalized_selection": "2nd_half_first_goalscorer",
+              "odds": "17/2",
+              "player": "2nd Half",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "2nd Half Anytime Goalscorer",
+              "normalized_selection": "2nd_half_anytime_goalscorer",
+              "odds": "11/4",
+              "player": "2nd Half",
+              "prop_type": "anytime_goalscorer"
+            }
+          ]
+        },
+        {
+          "market": "Half Time Result",
+          "normalized_market": "half_time_result",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Curacao",
+              "normalized_selection": "curacao",
+              "odds": "6/1"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "7/4"
+            },
+            {
+              "selection": "Ivory Coast",
+              "normalized_selection": "ivory_coast",
+              "odds": "1/9"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/1000",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "18/1",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/9",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "19/4",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "2/5",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "17/10",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "21/20",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "4/6",
+              "side": "under",
+              "line": "3.5"
+            }
+          ]
+        },
+        {
+          "market": "1st Half Goals Over / Under",
+          "normalized_market": "1st_half_goals_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/1000",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "18/1",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/9",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "19/4",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "2/5",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "17/10",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners Over / Under",
+          "normalized_market": "total_corners_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "1/5",
+              "side": "over",
+              "line": "6.5"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "16/5",
+              "side": "under",
+              "line": "6.5"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "7.5"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "9/5",
+              "side": "under",
+              "line": "7.5"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "8.5"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "11/10",
+              "side": "under",
+              "line": "8.5"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "21/20",
+              "side": "over",
+              "line": "9.5"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "odds": "4/6",
+              "side": "under",
+              "line": "9.5"
+            }
+          ]
+        },
+        {
+          "market": "Ivory Coast Corners Over / Under",
+          "normalized_market": "ivory_coast_corners_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Ivory Coast Over 6.5",
+              "normalized_selection": "ivory_coast_over_6_5",
+              "odds": "1/5",
+              "side": "over",
+              "line": "6.5",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Under 6.5",
+              "normalized_selection": "ivory_coast_under_6_5",
+              "odds": "16/5",
+              "side": "under",
+              "line": "6.5",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Over 7.5",
+              "normalized_selection": "ivory_coast_over_7_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "7.5",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Under 7.5",
+              "normalized_selection": "ivory_coast_under_7_5",
+              "odds": "9/5",
+              "side": "under",
+              "line": "7.5",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Over 8.5",
+              "normalized_selection": "ivory_coast_over_8_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "8.5",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Under 8.5",
+              "normalized_selection": "ivory_coast_under_8_5",
+              "odds": "11/10",
+              "side": "under",
+              "line": "8.5",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Over 9.5",
+              "normalized_selection": "ivory_coast_over_9_5",
+              "odds": "21/20",
+              "side": "over",
+              "line": "9.5",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Under 9.5",
+              "normalized_selection": "ivory_coast_under_9_5",
+              "odds": "4/6",
+              "side": "under",
+              "line": "9.5",
+              "team": "Ivory Coast"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards Over / Under",
+          "normalized_market": "total_cards_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/4",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "13/5",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "8/11",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "1/1",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "7/4",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "2/5",
+              "side": "under",
+              "line": "3.5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Ecuador v Germany",
+      "home_team": "Ecuador",
+      "away_team": "Germany",
+      "url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/ecuador-v-germany/256213445/main-markets",
+      "market_count": 6,
+      "timing": {
+        "main": 15.511,
+        "goals": 13.143,
+        "goalscorer": 3.76,
+        "half": 12.579,
+        "corners_cards": 4.728,
+        "player_stats": 26.469
+      },
+      "total_seconds": 76.227,
+      "missing_markets": [
+        "double_chance",
+        "player_assists",
+        "player_cards",
+        "player_fouls",
+        "player_tackles",
+        "shots",
+        "shots_on_target",
+        "total_cards_over_under",
+        "total_corners_over_under"
+      ],
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Ecuador",
+              "normalized_selection": "ecuador",
+              "odds": "7/2",
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "10/3",
+              "side": "draw"
+            },
+            {
+              "selection": "Germany",
+              "normalized_selection": "germany",
+              "odds": "13/20",
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "8/11",
+              "side": "yes"
+            },
+            {
+              "selection": "Both Teams To Score - No",
+              "normalized_selection": "both_teams_to_score_no",
+              "odds": "1/1",
+              "side": "no"
+            }
+          ]
+        },
+        {
+          "market": "Player to Score",
+          "normalized_market": "player_to_score",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "90 Mins First Goalscorer",
+              "normalized_selection": "90_mins_first_goalscorer",
+              "odds": "7/2",
+              "player": "90 Mins",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "90 Mins Anytime Goalscorer",
+              "normalized_selection": "90_mins_anytime_goalscorer",
+              "odds": "10/3",
+              "player": "90 Mins",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "1st Half First Goalscorer",
+              "normalized_selection": "1st_half_first_goalscorer",
+              "odds": "10/3",
+              "player": "1st Half",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "1st Half Anytime Goalscorer",
+              "normalized_selection": "1st_half_anytime_goalscorer",
+              "odds": "29/20",
+              "player": "1st Half",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "2nd Half First Goalscorer",
+              "normalized_selection": "2nd_half_first_goalscorer",
+              "odds": "3/1",
+              "player": "2nd Half",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "2nd Half Anytime Goalscorer",
+              "normalized_selection": "2nd_half_anytime_goalscorer",
+              "odds": "9/5",
+              "player": "2nd Half",
+              "prop_type": "anytime_goalscorer"
+            }
+          ]
+        },
+        {
+          "market": "Half Time Result",
+          "normalized_market": "half_time_result",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "21/20"
+            },
+            {
+              "selection": "Ecuador",
+              "normalized_selection": "ecuador",
+              "odds": "21/10"
+            },
+            {
+              "selection": "Germany",
+              "normalized_selection": "germany",
+              "odds": "4/9"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/66",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "12/1",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/5",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "16/5",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "11/10",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "17/10",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "2/5",
+              "side": "under",
+              "line": "3.5"
+            }
+          ]
+        },
+        {
+          "market": "1st Half Goals Over / Under",
+          "normalized_market": "1st_half_goals_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/66",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "12/1",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/5",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "16/5",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "11/10",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Japan v Sweden",
+      "home_team": "Japan",
+      "away_team": "Sweden",
+      "url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/japan-v-sweden/256213479/main-markets",
+      "market_count": 9,
+      "timing": {
+        "main": 13.694,
+        "goals": 10.6,
+        "goalscorer": 3.825,
+        "half": 6.125,
+        "corners_cards": 7.71,
+        "player_stats": 15.081
+      },
+      "total_seconds": 57.075,
+      "missing_markets": [
+        "double_chance",
+        "player_assists",
+        "player_cards",
+        "player_fouls",
+        "player_tackles",
+        "shots",
+        "shots_on_target"
+      ],
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Japan",
+              "normalized_selection": "japan",
+              "odds": "19/20",
+              "side": "home"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "12/5",
+              "side": "draw"
+            },
+            {
+              "selection": "Sweden",
+              "normalized_selection": "sweden",
+              "odds": "29/10",
+              "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "8/11",
+              "side": "yes"
+            },
+            {
+              "selection": "Both Teams To Score - No",
+              "normalized_selection": "both_teams_to_score_no",
+              "odds": "1/1",
+              "side": "no"
+            }
+          ]
+        },
+        {
+          "market": "Player to Score",
+          "normalized_market": "player_to_score",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "90 Mins First Goalscorer",
+              "normalized_selection": "90_mins_first_goalscorer",
+              "odds": "19/20",
+              "player": "90 Mins",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "90 Mins Anytime Goalscorer",
+              "normalized_selection": "90_mins_anytime_goalscorer",
+              "odds": "12/5",
+              "player": "90 Mins",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "1st Half First Goalscorer",
+              "normalized_selection": "1st_half_first_goalscorer",
+              "odds": "7/5",
+              "player": "1st Half",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "1st Half Anytime Goalscorer",
+              "normalized_selection": "1st_half_anytime_goalscorer",
+              "odds": "6/5",
+              "player": "1st Half",
+              "prop_type": "anytime_goalscorer"
+            },
+            {
+              "selection": "2nd Half First Goalscorer",
+              "normalized_selection": "2nd_half_first_goalscorer",
+              "odds": "5/4",
+              "player": "2nd Half",
+              "prop_type": "first_goalscorer"
+            },
+            {
+              "selection": "2nd Half Anytime Goalscorer",
+              "normalized_selection": "2nd_half_anytime_goalscorer",
+              "odds": "29/20",
+              "player": "2nd Half",
+              "prop_type": "anytime_goalscorer"
+            }
+          ]
+        },
+        {
+          "market": "Half Time Result",
+          "normalized_market": "half_time_result",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "4/5"
+            },
+            {
+              "selection": "Japan",
+              "normalized_selection": "japan",
+              "odds": "4/6"
+            },
+            {
+              "selection": "Sweden",
+              "normalized_selection": "sweden",
+              "odds": "9/5"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/25",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "17/2",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/4",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "5/2",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "17/20",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "5/6",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "21/10",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "3/10",
+              "side": "under",
+              "line": "3.5"
+            }
+          ]
+        },
+        {
+          "market": "1st Half Goals Over / Under",
+          "normalized_market": "1st_half_goals_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/25",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "17/2",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/4",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "5/2",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "17/20",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "5/6",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners Over / Under",
+          "normalized_market": "total_corners_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "1/12",
+              "side": "over",
+              "line": "5.5"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "6/1",
+              "side": "under",
+              "line": "5.5"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "2/11",
+              "side": "over",
+              "line": "6.5"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "16/5",
+              "side": "under",
+              "line": "6.5"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "7.5"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "9/5",
+              "side": "under",
+              "line": "7.5"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "8.5"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "21/20",
+              "side": "under",
+              "line": "8.5"
+            }
+          ]
+        },
+        {
+          "market": "Sweden Corners Over / Under",
+          "normalized_market": "sweden_corners_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Sweden Over 5.5",
+              "normalized_selection": "sweden_over_5_5",
+              "odds": "1/12",
+              "side": "over",
+              "line": "5.5",
+              "team": "Sweden"
+            },
+            {
+              "selection": "Sweden Under 5.5",
+              "normalized_selection": "sweden_under_5_5",
+              "odds": "6/1",
+              "side": "under",
+              "line": "5.5",
+              "team": "Sweden"
+            },
+            {
+              "selection": "Sweden Over 6.5",
+              "normalized_selection": "sweden_over_6_5",
+              "odds": "2/11",
+              "side": "over",
+              "line": "6.5",
+              "team": "Sweden"
+            },
+            {
+              "selection": "Sweden Under 6.5",
+              "normalized_selection": "sweden_under_6_5",
+              "odds": "16/5",
+              "side": "under",
+              "line": "6.5",
+              "team": "Sweden"
+            },
+            {
+              "selection": "Sweden Over 7.5",
+              "normalized_selection": "sweden_over_7_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "7.5",
+              "team": "Sweden"
+            },
+            {
+              "selection": "Sweden Under 7.5",
+              "normalized_selection": "sweden_under_7_5",
+              "odds": "9/5",
+              "side": "under",
+              "line": "7.5",
+              "team": "Sweden"
+            },
+            {
+              "selection": "Sweden Over 8.5",
+              "normalized_selection": "sweden_over_8_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "8.5",
+              "team": "Sweden"
+            },
+            {
+              "selection": "Sweden Under 8.5",
+              "normalized_selection": "sweden_under_8_5",
+              "odds": "21/20",
+              "side": "under",
+              "line": "8.5",
+              "team": "Sweden"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards Over / Under",
+          "normalized_market": "total_cards_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/4",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "5/2",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "3/4",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "19/20",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "19/10",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "4/11",
+              "side": "under",
+              "line": "3.5"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
