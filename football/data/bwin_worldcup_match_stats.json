@@ -4,8 +4,8 @@
   "bookmaker": "Bwin",
   "dataset": "match_team_shots_stats",
   "odds_format": "fractional",
-  "generated_at": "2026-06-25T14:55:14.864190+00:00",
-  "match_count": 9,
+  "generated_at": "2026-06-25T15:36:38.646633+00:00",
+  "match_count": 11,
   "error_count": 0,
   "matches": [
     {
@@ -13,14 +13,14 @@
       "match": "Curacao v Ivory Coast",
       "home_team": "Curacao",
       "away_team": "Ivory Coast",
-      "date_label": "Tomorrow",
+      "date_label": "Today",
       "time": "9:00 PM",
       "source_url": "https://www.bwin.com/en/sports/events/curacao-ivory-coast-2:7812552",
       "market_count": 6,
       "timing": {
-        "shots_tab_seconds": 0.069,
-        "market_seconds": 23.124,
-        "total_seconds": 23.194
+        "shots_tab_seconds": 0.051,
+        "market_seconds": 19.215,
+        "total_seconds": 19.266
       },
       "markets": [
         {
@@ -33,34 +33,12 @@
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Over 27.5",
-              "normalized_selection": "over_27_5",
-              "side": "over",
-              "line": "27.5",
-              "odds": "33/50",
-              "decimal_odds": 1.66,
-              "scope": "match",
-              "stat": "shots",
-              "team": ""
-            },
-            {
-              "selection": "Under 27.5",
-              "normalized_selection": "under_27_5",
-              "side": "under",
-              "line": "27.5",
-              "odds": "EVS",
-              "decimal_odds": 2.0,
-              "scope": "match",
-              "stat": "shots",
-              "team": ""
-            },
-            {
               "selection": "Over 28.5",
               "normalized_selection": "over_28_5",
               "side": "over",
               "line": "28.5",
-              "odds": "17/20",
-              "decimal_odds": 1.85,
+              "odds": "3/4",
+              "decimal_odds": 1.75,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -70,8 +48,30 @@
               "normalized_selection": "under_28_5",
               "side": "under",
               "line": "28.5",
-              "odds": "4/5",
-              "decimal_odds": 1.8,
+              "odds": "9/10",
+              "decimal_odds": 1.9,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Over 29.5",
+              "normalized_selection": "over_29_5",
+              "side": "over",
+              "line": "29.5",
+              "odds": "19/20",
+              "decimal_odds": 1.95,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Under 29.5",
+              "normalized_selection": "under_29_5",
+              "side": "under",
+              "line": "29.5",
+              "odds": "7/10",
+              "decimal_odds": 1.7,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -114,8 +114,8 @@
               "normalized_selection": "over_7_5",
               "side": "over",
               "line": "7.5",
-              "odds": "17/20",
-              "decimal_odds": 1.85,
+              "odds": "87/100",
+              "decimal_odds": 1.87,
               "scope": "home",
               "stat": "shots",
               "team": "Curacao"
@@ -147,8 +147,8 @@
               "normalized_selection": "over_20_5",
               "side": "over",
               "line": "20.5",
-              "odds": "4/5",
-              "decimal_odds": 1.8,
+              "odds": "7/10",
+              "decimal_odds": 1.7,
               "scope": "away",
               "stat": "shots",
               "team": "Ivory Coast"
@@ -158,8 +158,8 @@
               "normalized_selection": "under_20_5",
               "side": "under",
               "line": "20.5",
-              "odds": "17/20",
-              "decimal_odds": 1.85,
+              "odds": "19/20",
+              "decimal_odds": 1.95,
               "scope": "away",
               "stat": "shots",
               "team": "Ivory Coast"
@@ -169,8 +169,8 @@
               "normalized_selection": "over_21_5",
               "side": "over",
               "line": "21.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "93/100",
+              "decimal_odds": 1.93,
               "scope": "away",
               "stat": "shots",
               "team": "Ivory Coast"
@@ -180,8 +180,8 @@
               "normalized_selection": "under_21_5",
               "side": "under",
               "line": "21.5",
-              "odds": "63/100",
-              "decimal_odds": 1.63,
+              "odds": "73/100",
+              "decimal_odds": 1.73,
               "scope": "away",
               "stat": "shots",
               "team": "Ivory Coast"
@@ -198,34 +198,12 @@
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Over 8.5",
-              "normalized_selection": "over_8_5",
-              "side": "over",
-              "line": "8.5",
-              "odds": "49/100",
-              "decimal_odds": 1.49,
-              "scope": "match",
-              "stat": "shots_on_target",
-              "team": ""
-            },
-            {
-              "selection": "Under 8.5",
-              "normalized_selection": "under_8_5",
-              "side": "under",
-              "line": "8.5",
-              "odds": "137/100",
-              "decimal_odds": 2.37,
-              "scope": "match",
-              "stat": "shots_on_target",
-              "team": ""
-            },
-            {
               "selection": "Over 9.5",
               "normalized_selection": "over_9_5",
               "side": "over",
               "line": "9.5",
-              "odds": "83/100",
-              "decimal_odds": 1.83,
+              "odds": "4/5",
+              "decimal_odds": 1.8,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -235,8 +213,30 @@
               "normalized_selection": "under_9_5",
               "side": "under",
               "line": "9.5",
-              "odds": "4/5",
-              "decimal_odds": 1.8,
+              "odds": "83/100",
+              "decimal_odds": 1.83,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "side": "over",
+              "line": "10.5",
+              "odds": "27/20",
+              "decimal_odds": 2.35,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            },
+            {
+              "selection": "Under 10.5",
+              "normalized_selection": "under_10_5",
+              "side": "under",
+              "line": "10.5",
+              "odds": "1/2",
+              "decimal_odds": 1.5,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -257,8 +257,8 @@
               "normalized_selection": "over_1_5",
               "side": "over",
               "line": "1.5",
-              "odds": "17/50",
-              "decimal_odds": 1.34,
+              "odds": "39/100",
+              "decimal_odds": 1.39,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Curacao"
@@ -268,8 +268,8 @@
               "normalized_selection": "under_1_5",
               "side": "under",
               "line": "1.5",
-              "odds": "19/10",
-              "decimal_odds": 2.9,
+              "odds": "17/10",
+              "decimal_odds": 2.7,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Curacao"
@@ -279,8 +279,8 @@
               "normalized_selection": "over_2_5",
               "side": "over",
               "line": "2.5",
-              "odds": "EVS",
-              "decimal_odds": 2.0,
+              "odds": "6/5",
+              "decimal_odds": 2.2,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Curacao"
@@ -290,8 +290,8 @@
               "normalized_selection": "under_2_5",
               "side": "under",
               "line": "2.5",
-              "odds": "33/50",
-              "decimal_odds": 1.66,
+              "odds": "57/100",
+              "decimal_odds": 1.57,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Curacao"
@@ -312,8 +312,8 @@
               "normalized_selection": "over_6_5",
               "side": "over",
               "line": "6.5",
-              "odds": "61/100",
-              "decimal_odds": 1.61,
+              "odds": "53/100",
+              "decimal_odds": 1.53,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Ivory Coast"
@@ -323,8 +323,8 @@
               "normalized_selection": "under_6_5",
               "side": "under",
               "line": "6.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "5/4",
+              "decimal_odds": 2.25,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Ivory Coast"
@@ -334,8 +334,8 @@
               "normalized_selection": "over_7_5",
               "side": "over",
               "line": "7.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "EVS",
+              "decimal_odds": 2.0,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Ivory Coast"
@@ -345,8 +345,8 @@
               "normalized_selection": "under_7_5",
               "side": "under",
               "line": "7.5",
-              "odds": "61/100",
-              "decimal_odds": 1.61,
+              "odds": "17/25",
+              "decimal_odds": 1.68,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Ivory Coast"
@@ -360,14 +360,14 @@
       "match": "Ecuador v Germany",
       "home_team": "Ecuador",
       "away_team": "Germany",
-      "date_label": "Tomorrow",
+      "date_label": "Today",
       "time": "9:00 PM",
       "source_url": "https://www.bwin.com/en/sports/events/ecuador-germany-2:7812553",
       "market_count": 6,
       "timing": {
-        "shots_tab_seconds": 0.16,
-        "market_seconds": 24.273,
-        "total_seconds": 24.434
+        "shots_tab_seconds": 0.053,
+        "market_seconds": 18.813,
+        "total_seconds": 18.867
       },
       "markets": [
         {
@@ -384,8 +384,8 @@
               "normalized_selection": "over_25_5",
               "side": "over",
               "line": "25.5",
-              "odds": "17/25",
-              "decimal_odds": 1.68,
+              "odds": "13/20",
+              "decimal_odds": 1.65,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -395,8 +395,8 @@
               "normalized_selection": "under_25_5",
               "side": "under",
               "line": "25.5",
-              "odds": "49/50",
-              "decimal_odds": 1.98,
+              "odds": "21/20",
+              "decimal_odds": 2.05,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -406,8 +406,8 @@
               "normalized_selection": "over_26_5",
               "side": "over",
               "line": "26.5",
-              "odds": "22/25",
-              "decimal_odds": 1.88,
+              "odds": "17/20",
+              "decimal_odds": 1.85,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -417,8 +417,8 @@
               "normalized_selection": "under_26_5",
               "side": "under",
               "line": "26.5",
-              "odds": "77/100",
-              "decimal_odds": 1.77,
+              "odds": "39/50",
+              "decimal_odds": 1.78,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -439,8 +439,8 @@
               "normalized_selection": "over_10_5",
               "side": "over",
               "line": "10.5",
-              "odds": "33/50",
-              "decimal_odds": 1.66,
+              "odds": "63/100",
+              "decimal_odds": 1.63,
               "scope": "home",
               "stat": "shots",
               "team": "Ecuador"
@@ -450,8 +450,8 @@
               "normalized_selection": "under_10_5",
               "side": "under",
               "line": "10.5",
-              "odds": "EVS",
-              "decimal_odds": 2.0,
+              "odds": "21/20",
+              "decimal_odds": 2.05,
               "scope": "home",
               "stat": "shots",
               "team": "Ecuador"
@@ -461,8 +461,8 @@
               "normalized_selection": "over_11_5",
               "side": "over",
               "line": "11.5",
-              "odds": "EVS",
-              "decimal_odds": 2.0,
+              "odds": "19/20",
+              "decimal_odds": 1.95,
               "scope": "home",
               "stat": "shots",
               "team": "Ecuador"
@@ -472,8 +472,8 @@
               "normalized_selection": "under_11_5",
               "side": "under",
               "line": "11.5",
-              "odds": "17/25",
-              "decimal_odds": 1.68,
+              "odds": "71/100",
+              "decimal_odds": 1.71,
               "scope": "home",
               "stat": "shots",
               "team": "Ecuador"
@@ -494,8 +494,8 @@
               "normalized_selection": "over_14_5",
               "side": "over",
               "line": "14.5",
-              "odds": "73/100",
-              "decimal_odds": 1.73,
+              "odds": "3/4",
+              "decimal_odds": 1.75,
               "scope": "away",
               "stat": "shots",
               "team": "Germany"
@@ -505,8 +505,8 @@
               "normalized_selection": "under_14_5",
               "side": "under",
               "line": "14.5",
-              "odds": "93/100",
-              "decimal_odds": 1.93,
+              "odds": "9/10",
+              "decimal_odds": 1.9,
               "scope": "away",
               "stat": "shots",
               "team": "Germany"
@@ -527,8 +527,8 @@
               "normalized_selection": "under_15_5",
               "side": "under",
               "line": "15.5",
-              "odds": "13/20",
-              "decimal_odds": 1.65,
+              "odds": "63/100",
+              "decimal_odds": 1.63,
               "scope": "away",
               "stat": "shots",
               "team": "Germany"
@@ -571,8 +571,8 @@
               "normalized_selection": "over_9_5",
               "side": "over",
               "line": "9.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "EVS",
+              "decimal_odds": 2.0,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -582,8 +582,8 @@
               "normalized_selection": "under_9_5",
               "side": "under",
               "line": "9.5",
-              "odds": "13/20",
-              "decimal_odds": 1.65,
+              "odds": "33/50",
+              "decimal_odds": 1.66,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -604,8 +604,8 @@
               "normalized_selection": "over_2_5",
               "side": "over",
               "line": "2.5",
-              "odds": "7/20",
-              "decimal_odds": 1.35,
+              "odds": "17/50",
+              "decimal_odds": 1.34,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Ecuador"
@@ -615,8 +615,8 @@
               "normalized_selection": "under_2_5",
               "side": "under",
               "line": "2.5",
-              "odds": "9/5",
-              "decimal_odds": 2.8,
+              "odds": "187/100",
+              "decimal_odds": 2.87,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Ecuador"
@@ -626,8 +626,8 @@
               "normalized_selection": "over_3_5",
               "side": "over",
               "line": "3.5",
-              "odds": "9/10",
-              "decimal_odds": 1.9,
+              "odds": "17/20",
+              "decimal_odds": 1.85,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Ecuador"
@@ -637,8 +637,8 @@
               "normalized_selection": "under_3_5",
               "side": "under",
               "line": "3.5",
-              "odds": "3/4",
-              "decimal_odds": 1.75,
+              "odds": "39/50",
+              "decimal_odds": 1.78,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Ecuador"
@@ -659,8 +659,8 @@
               "normalized_selection": "over_4_5",
               "side": "over",
               "line": "4.5",
-              "odds": "41/100",
-              "decimal_odds": 1.41,
+              "odds": "2/5",
+              "decimal_odds": 1.4,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Germany"
@@ -707,14 +707,14 @@
       "match": "Japan v Sweden",
       "home_team": "Japan",
       "away_team": "Sweden",
-      "date_label": "6/26/26",
+      "date_label": "Tomorrow",
       "time": "12:00 AM",
       "source_url": "https://www.bwin.com/en/sports/events/japan-sweden-2:7812554",
       "market_count": 6,
       "timing": {
-        "shots_tab_seconds": 0.148,
-        "market_seconds": 21.684,
-        "total_seconds": 21.832
+        "shots_tab_seconds": 0.057,
+        "market_seconds": 19.017,
+        "total_seconds": 19.075
       },
       "markets": [
         {
@@ -797,8 +797,8 @@
               "normalized_selection": "under_11_5",
               "side": "under",
               "line": "11.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "23/20",
+              "decimal_odds": 2.15,
               "scope": "home",
               "stat": "shots",
               "team": "Japan"
@@ -808,8 +808,8 @@
               "normalized_selection": "over_12_5",
               "side": "over",
               "line": "12.5",
-              "odds": "9/10",
-              "decimal_odds": 1.9,
+              "odds": "87/100",
+              "decimal_odds": 1.87,
               "scope": "home",
               "stat": "shots",
               "team": "Japan"
@@ -819,8 +819,8 @@
               "normalized_selection": "under_12_5",
               "side": "under",
               "line": "12.5",
-              "odds": "3/4",
-              "decimal_odds": 1.75,
+              "odds": "77/100",
+              "decimal_odds": 1.77,
               "scope": "home",
               "stat": "shots",
               "team": "Japan"
@@ -841,8 +841,8 @@
               "normalized_selection": "over_10_5",
               "side": "over",
               "line": "10.5",
-              "odds": "29/50",
-              "decimal_odds": 1.58,
+              "odds": "3/5",
+              "decimal_odds": 1.6,
               "scope": "away",
               "stat": "shots",
               "team": "Sweden"
@@ -929,8 +929,8 @@
               "normalized_selection": "under_9_5",
               "side": "under",
               "line": "9.5",
-              "odds": "57/100",
-              "decimal_odds": 1.57,
+              "odds": "29/50",
+              "decimal_odds": 1.58,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -951,8 +951,8 @@
               "normalized_selection": "over_4_5",
               "side": "over",
               "line": "4.5",
-              "odds": "18/25",
-              "decimal_odds": 1.72,
+              "odds": "71/100",
+              "decimal_odds": 1.71,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Japan"
@@ -962,8 +962,8 @@
               "normalized_selection": "under_4_5",
               "side": "under",
               "line": "4.5",
-              "odds": "93/100",
-              "decimal_odds": 1.93,
+              "odds": "19/20",
+              "decimal_odds": 1.95,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Japan"
@@ -1028,8 +1028,8 @@
               "normalized_selection": "over_4_5",
               "side": "over",
               "line": "4.5",
-              "odds": "6/5",
-              "decimal_odds": 2.2,
+              "odds": "5/4",
+              "decimal_odds": 2.25,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Sweden"
@@ -1039,8 +1039,8 @@
               "normalized_selection": "under_4_5",
               "side": "under",
               "line": "4.5",
-              "odds": "11/20",
-              "decimal_odds": 1.55,
+              "odds": "53/100",
+              "decimal_odds": 1.53,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Sweden"
@@ -1054,14 +1054,14 @@
       "match": "Tunisia v Netherlands",
       "home_team": "Tunisia",
       "away_team": "Netherlands",
-      "date_label": "6/26/26",
+      "date_label": "Tomorrow",
       "time": "12:00 AM",
       "source_url": "https://www.bwin.com/en/sports/events/tunisia-netherlands-2:7812555",
       "market_count": 6,
       "timing": {
-        "shots_tab_seconds": 0.068,
-        "market_seconds": 20.209,
-        "total_seconds": 20.277
+        "shots_tab_seconds": 0.052,
+        "market_seconds": 19.067,
+        "total_seconds": 19.119
       },
       "markets": [
         {
@@ -1074,12 +1074,34 @@
           "selection_count": 4,
           "selections": [
             {
+              "selection": "Over 22.5",
+              "normalized_selection": "over_22_5",
+              "side": "over",
+              "line": "22.5",
+              "odds": "63/100",
+              "decimal_odds": 1.63,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Under 22.5",
+              "normalized_selection": "under_22_5",
+              "side": "under",
+              "line": "22.5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
               "selection": "Over 23.5",
               "normalized_selection": "over_23_5",
               "side": "over",
               "line": "23.5",
-              "odds": "4/5",
-              "decimal_odds": 1.8,
+              "odds": "83/100",
+              "decimal_odds": 1.83,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -1089,30 +1111,8 @@
               "normalized_selection": "under_23_5",
               "side": "under",
               "line": "23.5",
-              "odds": "17/20",
-              "decimal_odds": 1.85,
-              "scope": "match",
-              "stat": "shots",
-              "team": ""
-            },
-            {
-              "selection": "Over 24.5",
-              "normalized_selection": "over_24_5",
-              "side": "over",
-              "line": "24.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
-              "scope": "match",
-              "stat": "shots",
-              "team": ""
-            },
-            {
-              "selection": "Under 24.5",
-              "normalized_selection": "under_24_5",
-              "side": "under",
-              "line": "24.5",
-              "odds": "63/100",
-              "decimal_odds": 1.63,
+              "odds": "41/50",
+              "decimal_odds": 1.82,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -1133,8 +1133,8 @@
               "normalized_selection": "over_5_5",
               "side": "over",
               "line": "5.5",
-              "odds": "31/50",
-              "decimal_odds": 1.62,
+              "odds": "57/100",
+              "decimal_odds": 1.57,
               "scope": "home",
               "stat": "shots",
               "team": "Tunisia"
@@ -1144,8 +1144,8 @@
               "normalized_selection": "under_5_5",
               "side": "under",
               "line": "5.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "23/20",
+              "decimal_odds": 2.15,
               "scope": "home",
               "stat": "shots",
               "team": "Tunisia"
@@ -1155,8 +1155,8 @@
               "normalized_selection": "over_6_5",
               "side": "over",
               "line": "6.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "EVS",
+              "decimal_odds": 2.0,
               "scope": "home",
               "stat": "shots",
               "team": "Tunisia"
@@ -1166,8 +1166,8 @@
               "normalized_selection": "under_6_5",
               "side": "under",
               "line": "6.5",
-              "odds": "61/100",
-              "decimal_odds": 1.61,
+              "odds": "33/50",
+              "decimal_odds": 1.66,
               "scope": "home",
               "stat": "shots",
               "team": "Tunisia"
@@ -1188,8 +1188,8 @@
               "normalized_selection": "over_16_5",
               "side": "over",
               "line": "16.5",
-              "odds": "13/20",
-              "decimal_odds": 1.65,
+              "odds": "7/10",
+              "decimal_odds": 1.7,
               "scope": "away",
               "stat": "shots",
               "team": "Netherlands"
@@ -1199,8 +1199,8 @@
               "normalized_selection": "under_16_5",
               "side": "under",
               "line": "16.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "19/20",
+              "decimal_odds": 1.95,
               "scope": "away",
               "stat": "shots",
               "team": "Netherlands"
@@ -1210,8 +1210,8 @@
               "normalized_selection": "over_17_5",
               "side": "over",
               "line": "17.5",
-              "odds": "22/25",
-              "decimal_odds": 1.88,
+              "odds": "49/50",
+              "decimal_odds": 1.98,
               "scope": "away",
               "stat": "shots",
               "team": "Netherlands"
@@ -1221,8 +1221,8 @@
               "normalized_selection": "under_17_5",
               "side": "under",
               "line": "17.5",
-              "odds": "3/4",
-              "decimal_odds": 1.75,
+              "odds": "17/25",
+              "decimal_odds": 1.68,
               "scope": "away",
               "stat": "shots",
               "team": "Netherlands"
@@ -1243,8 +1243,8 @@
               "normalized_selection": "over_8_5",
               "side": "over",
               "line": "8.5",
-              "odds": "13/20",
-              "decimal_odds": 1.65,
+              "odds": "17/25",
+              "decimal_odds": 1.68,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -1254,8 +1254,8 @@
               "normalized_selection": "under_8_5",
               "side": "under",
               "line": "8.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "EVS",
+              "decimal_odds": 2.0,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -1265,8 +1265,8 @@
               "normalized_selection": "over_9_5",
               "side": "over",
               "line": "9.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "23/20",
+              "decimal_odds": 2.15,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -1276,8 +1276,8 @@
               "normalized_selection": "under_9_5",
               "side": "under",
               "line": "9.5",
-              "odds": "3/5",
-              "decimal_odds": 1.6,
+              "odds": "29/50",
+              "decimal_odds": 1.58,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -1298,8 +1298,8 @@
               "normalized_selection": "over_1_5",
               "side": "over",
               "line": "1.5",
-              "odds": "3/5",
-              "decimal_odds": 1.6,
+              "odds": "11/20",
+              "decimal_odds": 1.55,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Tunisia"
@@ -1309,8 +1309,8 @@
               "normalized_selection": "under_1_5",
               "side": "under",
               "line": "1.5",
-              "odds": "23/20",
-              "decimal_odds": 2.15,
+              "odds": "6/5",
+              "decimal_odds": 2.2,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Tunisia"
@@ -1320,8 +1320,8 @@
               "normalized_selection": "over_2_5",
               "side": "over",
               "line": "2.5",
-              "odds": "17/10",
-              "decimal_odds": 2.7,
+              "odds": "33/20",
+              "decimal_odds": 2.65,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Tunisia"
@@ -1331,8 +1331,8 @@
               "normalized_selection": "under_2_5",
               "side": "under",
               "line": "2.5",
-              "odds": "19/50",
-              "decimal_odds": 1.38,
+              "odds": "39/100",
+              "decimal_odds": 1.39,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Tunisia"
@@ -1353,8 +1353,8 @@
               "normalized_selection": "over_6_5",
               "side": "over",
               "line": "6.5",
-              "odds": "13/20",
-              "decimal_odds": 1.65,
+              "odds": "33/50",
+              "decimal_odds": 1.66,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Netherlands"
@@ -1364,8 +1364,8 @@
               "normalized_selection": "under_6_5",
               "side": "under",
               "line": "6.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "EVS",
+              "decimal_odds": 2.0,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Netherlands"
@@ -1375,8 +1375,8 @@
               "normalized_selection": "over_7_5",
               "side": "over",
               "line": "7.5",
-              "odds": "23/20",
-              "decimal_odds": 2.15,
+              "odds": "6/5",
+              "decimal_odds": 2.2,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Netherlands"
@@ -1386,8 +1386,8 @@
               "normalized_selection": "under_7_5",
               "side": "under",
               "line": "7.5",
-              "odds": "57/100",
-              "decimal_odds": 1.57,
+              "odds": "11/20",
+              "decimal_odds": 1.55,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Netherlands"
@@ -1401,14 +1401,14 @@
       "match": "Paraguay v Australia",
       "home_team": "Paraguay",
       "away_team": "Australia",
-      "date_label": "6/26/26",
+      "date_label": "Tomorrow",
       "time": "3:00 AM",
       "source_url": "https://www.bwin.com/en/sports/events/paraguay-australia-2:7812550",
       "market_count": 6,
       "timing": {
-        "shots_tab_seconds": 0.06,
-        "market_seconds": 19.798,
-        "total_seconds": 19.858
+        "shots_tab_seconds": 0.052,
+        "market_seconds": 19.107,
+        "total_seconds": 19.159
       },
       "markets": [
         {
@@ -1425,8 +1425,8 @@
               "normalized_selection": "over_20_5",
               "side": "over",
               "line": "20.5",
-              "odds": "17/25",
-              "decimal_odds": 1.68,
+              "odds": "71/100",
+              "decimal_odds": 1.71,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -1436,8 +1436,8 @@
               "normalized_selection": "under_20_5",
               "side": "under",
               "line": "20.5",
-              "odds": "49/50",
-              "decimal_odds": 1.98,
+              "odds": "93/100",
+              "decimal_odds": 1.93,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -1447,8 +1447,8 @@
               "normalized_selection": "over_21_5",
               "side": "over",
               "line": "21.5",
-              "odds": "93/100",
-              "decimal_odds": 1.93,
+              "odds": "19/20",
+              "decimal_odds": 1.95,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -1458,8 +1458,8 @@
               "normalized_selection": "under_21_5",
               "side": "under",
               "line": "21.5",
-              "odds": "73/100",
-              "decimal_odds": 1.73,
+              "odds": "7/10",
+              "decimal_odds": 1.7,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -1480,8 +1480,8 @@
               "normalized_selection": "over_11_5",
               "side": "over",
               "line": "11.5",
-              "odds": "3/4",
-              "decimal_odds": 1.75,
+              "odds": "39/50",
+              "decimal_odds": 1.78,
               "scope": "home",
               "stat": "shots",
               "team": "Paraguay"
@@ -1491,8 +1491,8 @@
               "normalized_selection": "under_11_5",
               "side": "under",
               "line": "11.5",
-              "odds": "22/25",
-              "decimal_odds": 1.88,
+              "odds": "17/20",
+              "decimal_odds": 1.85,
               "scope": "home",
               "stat": "shots",
               "team": "Paraguay"
@@ -1502,8 +1502,8 @@
               "normalized_selection": "over_12_5",
               "side": "over",
               "line": "12.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "23/20",
+              "decimal_odds": 2.15,
               "scope": "home",
               "stat": "shots",
               "team": "Paraguay"
@@ -1513,8 +1513,8 @@
               "normalized_selection": "under_12_5",
               "side": "under",
               "line": "12.5",
-              "odds": "3/5",
-              "decimal_odds": 1.6,
+              "odds": "29/50",
+              "decimal_odds": 1.58,
               "scope": "home",
               "stat": "shots",
               "team": "Paraguay"
@@ -1535,8 +1535,8 @@
               "normalized_selection": "over_8_5",
               "side": "over",
               "line": "8.5",
-              "odds": "33/50",
-              "decimal_odds": 1.66,
+              "odds": "13/20",
+              "decimal_odds": 1.65,
               "scope": "away",
               "stat": "shots",
               "team": "Australia"
@@ -1546,8 +1546,8 @@
               "normalized_selection": "under_8_5",
               "side": "under",
               "line": "8.5",
-              "odds": "EVS",
-              "decimal_odds": 2.0,
+              "odds": "21/20",
+              "decimal_odds": 2.05,
               "scope": "away",
               "stat": "shots",
               "team": "Australia"
@@ -1590,8 +1590,8 @@
               "normalized_selection": "over_6_5",
               "side": "over",
               "line": "6.5",
-              "odds": "31/50",
-              "decimal_odds": 1.62,
+              "odds": "63/100",
+              "decimal_odds": 1.63,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -1601,8 +1601,8 @@
               "normalized_selection": "under_6_5",
               "side": "under",
               "line": "6.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "21/20",
+              "decimal_odds": 2.05,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -1645,8 +1645,8 @@
               "normalized_selection": "over_3_5",
               "side": "over",
               "line": "3.5",
-              "odds": "13/20",
-              "decimal_odds": 1.65,
+              "odds": "33/50",
+              "decimal_odds": 1.66,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Paraguay"
@@ -1656,8 +1656,8 @@
               "normalized_selection": "under_3_5",
               "side": "under",
               "line": "3.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "EVS",
+              "decimal_odds": 2.0,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Paraguay"
@@ -1667,8 +1667,8 @@
               "normalized_selection": "over_4_5",
               "side": "over",
               "line": "4.5",
-              "odds": "7/5",
-              "decimal_odds": 2.4,
+              "odds": "29/20",
+              "decimal_odds": 2.45,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Paraguay"
@@ -1700,8 +1700,8 @@
               "normalized_selection": "over_2_5",
               "side": "over",
               "line": "2.5",
-              "odds": "51/100",
-              "decimal_odds": 1.51,
+              "odds": "53/100",
+              "decimal_odds": 1.53,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Australia"
@@ -1711,8 +1711,8 @@
               "normalized_selection": "under_2_5",
               "side": "under",
               "line": "2.5",
-              "odds": "13/10",
-              "decimal_odds": 2.3,
+              "odds": "5/4",
+              "decimal_odds": 2.25,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Australia"
@@ -1722,8 +1722,8 @@
               "normalized_selection": "over_3_5",
               "side": "over",
               "line": "3.5",
-              "odds": "5/4",
-              "decimal_odds": 2.25,
+              "odds": "13/10",
+              "decimal_odds": 2.3,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Australia"
@@ -1733,8 +1733,8 @@
               "normalized_selection": "under_3_5",
               "side": "under",
               "line": "3.5",
-              "odds": "13/25",
-              "decimal_odds": 1.52,
+              "odds": "1/2",
+              "decimal_odds": 1.5,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Australia"
@@ -1748,14 +1748,14 @@
       "match": "Türkiye v USA",
       "home_team": "Türkiye",
       "away_team": "USA",
-      "date_label": "6/26/26",
+      "date_label": "Tomorrow",
       "time": "3:00 AM",
       "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551",
       "market_count": 6,
       "timing": {
-        "shots_tab_seconds": 0.065,
-        "market_seconds": 19.579,
-        "total_seconds": 19.662
+        "shots_tab_seconds": 0.056,
+        "market_seconds": 18.617,
+        "total_seconds": 18.673
       },
       "markets": [
         {
@@ -1768,12 +1768,34 @@
           "selection_count": 4,
           "selections": [
             {
+              "selection": "Over 25.5",
+              "normalized_selection": "over_25_5",
+              "side": "over",
+              "line": "25.5",
+              "odds": "77/100",
+              "decimal_odds": 1.77,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Under 25.5",
+              "normalized_selection": "under_25_5",
+              "side": "under",
+              "line": "25.5",
+              "odds": "87/100",
+              "decimal_odds": 1.87,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
               "selection": "Over 26.5",
               "normalized_selection": "over_26_5",
               "side": "over",
               "line": "26.5",
-              "odds": "7/10",
-              "decimal_odds": 1.7,
+              "odds": "49/50",
+              "decimal_odds": 1.98,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -1783,30 +1805,8 @@
               "normalized_selection": "under_26_5",
               "side": "under",
               "line": "26.5",
-              "odds": "19/20",
-              "decimal_odds": 1.95,
-              "scope": "match",
-              "stat": "shots",
-              "team": ""
-            },
-            {
-              "selection": "Over 27.5",
-              "normalized_selection": "over_27_5",
-              "side": "over",
-              "line": "27.5",
-              "odds": "9/10",
-              "decimal_odds": 1.9,
-              "scope": "match",
-              "stat": "shots",
-              "team": ""
-            },
-            {
-              "selection": "Under 27.5",
-              "normalized_selection": "under_27_5",
-              "side": "under",
-              "line": "27.5",
-              "odds": "3/4",
-              "decimal_odds": 1.75,
+              "odds": "17/25",
+              "decimal_odds": 1.68,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -1827,8 +1827,8 @@
               "normalized_selection": "over_12_5",
               "side": "over",
               "line": "12.5",
-              "odds": "13/20",
-              "decimal_odds": 1.65,
+              "odds": "33/50",
+              "decimal_odds": 1.66,
               "scope": "home",
               "stat": "shots",
               "team": "Türkiye"
@@ -1838,8 +1838,8 @@
               "normalized_selection": "under_12_5",
               "side": "under",
               "line": "12.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "EVS",
+              "decimal_odds": 2.0,
               "scope": "home",
               "stat": "shots",
               "team": "Türkiye"
@@ -1860,8 +1860,8 @@
               "normalized_selection": "under_13_5",
               "side": "under",
               "line": "13.5",
-              "odds": "73/100",
-              "decimal_odds": 1.73,
+              "odds": "18/25",
+              "decimal_odds": 1.72,
               "scope": "home",
               "stat": "shots",
               "team": "Türkiye"
@@ -1878,12 +1878,34 @@
           "selection_count": 4,
           "selections": [
             {
+              "selection": "Over 11.5",
+              "normalized_selection": "over_11_5",
+              "side": "over",
+              "line": "11.5",
+              "odds": "31/50",
+              "decimal_odds": 1.62,
+              "scope": "away",
+              "stat": "shots",
+              "team": "USA"
+            },
+            {
+              "selection": "Under 11.5",
+              "normalized_selection": "under_11_5",
+              "side": "under",
+              "line": "11.5",
+              "odds": "11/10",
+              "decimal_odds": 2.1,
+              "scope": "away",
+              "stat": "shots",
+              "team": "USA"
+            },
+            {
               "selection": "Over 12.5",
               "normalized_selection": "over_12_5",
               "side": "over",
               "line": "12.5",
-              "odds": "57/100",
-              "decimal_odds": 1.57,
+              "odds": "9/10",
+              "decimal_odds": 1.9,
               "scope": "away",
               "stat": "shots",
               "team": "USA"
@@ -1893,30 +1915,8 @@
               "normalized_selection": "under_12_5",
               "side": "under",
               "line": "12.5",
-              "odds": "6/5",
-              "decimal_odds": 2.2,
-              "scope": "away",
-              "stat": "shots",
-              "team": "USA"
-            },
-            {
-              "selection": "Over 13.5",
-              "normalized_selection": "over_13_5",
-              "side": "over",
-              "line": "13.5",
-              "odds": "41/50",
-              "decimal_odds": 1.82,
-              "scope": "away",
-              "stat": "shots",
-              "team": "USA"
-            },
-            {
-              "selection": "Under 13.5",
-              "normalized_selection": "under_13_5",
-              "side": "under",
-              "line": "13.5",
-              "odds": "41/50",
-              "decimal_odds": 1.82,
+              "odds": "73/100",
+              "decimal_odds": 1.73,
               "scope": "away",
               "stat": "shots",
               "team": "USA"
@@ -1937,8 +1937,8 @@
               "normalized_selection": "over_8_5",
               "side": "over",
               "line": "8.5",
-              "odds": "63/100",
-              "decimal_odds": 1.63,
+              "odds": "3/4",
+              "decimal_odds": 1.75,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -1948,8 +1948,8 @@
               "normalized_selection": "under_8_5",
               "side": "under",
               "line": "8.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "22/25",
+              "decimal_odds": 1.88,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -1959,8 +1959,8 @@
               "normalized_selection": "over_9_5",
               "side": "over",
               "line": "9.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "13/10",
+              "decimal_odds": 2.3,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -1970,8 +1970,8 @@
               "normalized_selection": "under_9_5",
               "side": "under",
               "line": "9.5",
-              "odds": "31/50",
-              "decimal_odds": 1.62,
+              "odds": "13/25",
+              "decimal_odds": 1.52,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -2025,8 +2025,8 @@
               "normalized_selection": "under_4_5",
               "side": "under",
               "line": "4.5",
-              "odds": "53/100",
-              "decimal_odds": 1.53,
+              "odds": "13/25",
+              "decimal_odds": 1.52,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Türkiye"
@@ -2047,8 +2047,8 @@
               "normalized_selection": "over_4_5",
               "side": "over",
               "line": "4.5",
-              "odds": "63/100",
-              "decimal_odds": 1.63,
+              "odds": "41/50",
+              "decimal_odds": 1.82,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "USA"
@@ -2058,8 +2058,8 @@
               "normalized_selection": "under_4_5",
               "side": "under",
               "line": "4.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "83/100",
+              "decimal_odds": 1.83,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "USA"
@@ -2069,8 +2069,8 @@
               "normalized_selection": "over_5_5",
               "side": "over",
               "line": "5.5",
-              "odds": "13/10",
-              "decimal_odds": 2.3,
+              "odds": "17/10",
+              "decimal_odds": 2.7,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "USA"
@@ -2080,8 +2080,8 @@
               "normalized_selection": "under_5_5",
               "side": "under",
               "line": "5.5",
-              "odds": "13/25",
-              "decimal_odds": 1.52,
+              "odds": "39/100",
+              "decimal_odds": 1.39,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "USA"
@@ -2095,14 +2095,14 @@
       "match": "Norway v France",
       "home_team": "Norway",
       "away_team": "France",
-      "date_label": "6/26/26",
+      "date_label": "Tomorrow",
       "time": "8:00 PM",
       "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560",
       "market_count": 6,
       "timing": {
-        "shots_tab_seconds": 0.08,
-        "market_seconds": 19.785,
-        "total_seconds": 19.864
+        "shots_tab_seconds": 0.06,
+        "market_seconds": 18.412,
+        "total_seconds": 18.472
       },
       "markets": [
         {
@@ -2119,8 +2119,8 @@
               "normalized_selection": "over_25_5",
               "side": "over",
               "line": "25.5",
-              "odds": "71/100",
-              "decimal_odds": 1.71,
+              "odds": "18/25",
+              "decimal_odds": 1.72,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -2130,8 +2130,8 @@
               "normalized_selection": "under_25_5",
               "side": "under",
               "line": "25.5",
-              "odds": "19/20",
-              "decimal_odds": 1.95,
+              "odds": "93/100",
+              "decimal_odds": 1.93,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -2152,8 +2152,8 @@
               "normalized_selection": "under_26_5",
               "side": "under",
               "line": "26.5",
-              "odds": "73/100",
-              "decimal_odds": 1.73,
+              "odds": "18/25",
+              "decimal_odds": 1.72,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -2185,8 +2185,8 @@
               "normalized_selection": "under_8_5",
               "side": "under",
               "line": "8.5",
-              "odds": "5/4",
-              "decimal_odds": 2.25,
+              "odds": "6/5",
+              "decimal_odds": 2.2,
               "scope": "home",
               "stat": "shots",
               "team": "Norway"
@@ -2207,8 +2207,8 @@
               "normalized_selection": "under_9_5",
               "side": "under",
               "line": "9.5",
-              "odds": "4/5",
-              "decimal_odds": 1.8,
+              "odds": "39/50",
+              "decimal_odds": 1.78,
               "scope": "home",
               "stat": "shots",
               "team": "Norway"
@@ -2240,8 +2240,8 @@
               "normalized_selection": "under_15_5",
               "side": "under",
               "line": "15.5",
-              "odds": "21/20",
-              "decimal_odds": 2.05,
+              "odds": "EVS",
+              "decimal_odds": 2.0,
               "scope": "away",
               "stat": "shots",
               "team": "France"
@@ -2262,8 +2262,8 @@
               "normalized_selection": "under_16_5",
               "side": "under",
               "line": "16.5",
-              "odds": "3/4",
-              "decimal_odds": 1.75,
+              "odds": "73/100",
+              "decimal_odds": 1.73,
               "scope": "away",
               "stat": "shots",
               "team": "France"
@@ -2284,8 +2284,8 @@
               "normalized_selection": "over_9_5",
               "side": "over",
               "line": "9.5",
-              "odds": "17/25",
-              "decimal_odds": 1.68,
+              "odds": "33/50",
+              "decimal_odds": 1.66,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -2317,8 +2317,8 @@
               "normalized_selection": "under_10_5",
               "side": "under",
               "line": "10.5",
-              "odds": "3/5",
-              "decimal_odds": 1.6,
+              "odds": "61/100",
+              "decimal_odds": 1.61,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -2372,8 +2372,8 @@
               "normalized_selection": "under_4_5",
               "side": "under",
               "line": "4.5",
-              "odds": "47/100",
-              "decimal_odds": 1.47,
+              "odds": "23/50",
+              "decimal_odds": 1.46,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Norway"
@@ -2394,8 +2394,8 @@
               "normalized_selection": "over_5_5",
               "side": "over",
               "line": "5.5",
-              "odds": "31/50",
-              "decimal_odds": 1.62,
+              "odds": "63/100",
+              "decimal_odds": 1.63,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "France"
@@ -2405,8 +2405,8 @@
               "normalized_selection": "under_5_5",
               "side": "under",
               "line": "5.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "21/20",
+              "decimal_odds": 2.05,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "France"
@@ -2442,14 +2442,14 @@
       "match": "Senegal v Iraq",
       "home_team": "Senegal",
       "away_team": "Iraq",
-      "date_label": "6/26/26",
+      "date_label": "Tomorrow",
       "time": "8:00 PM",
       "source_url": "https://www.bwin.com/en/sports/events/senegal-iraq-2:7812561",
       "market_count": 6,
       "timing": {
-        "shots_tab_seconds": 0.085,
-        "market_seconds": 19.88,
-        "total_seconds": 19.965
+        "shots_tab_seconds": 0.06,
+        "market_seconds": 18.474,
+        "total_seconds": 18.534
       },
       "markets": [
         {
@@ -2521,8 +2521,8 @@
               "normalized_selection": "over_15_5",
               "side": "over",
               "line": "15.5",
-              "odds": "77/100",
-              "decimal_odds": 1.77,
+              "odds": "3/4",
+              "decimal_odds": 1.75,
               "scope": "home",
               "stat": "shots",
               "team": "Senegal"
@@ -2532,8 +2532,8 @@
               "normalized_selection": "under_15_5",
               "side": "under",
               "line": "15.5",
-              "odds": "22/25",
-              "decimal_odds": 1.88,
+              "odds": "9/10",
+              "decimal_odds": 1.9,
               "scope": "home",
               "stat": "shots",
               "team": "Senegal"
@@ -2664,8 +2664,8 @@
               "normalized_selection": "under_8_5",
               "side": "under",
               "line": "8.5",
-              "odds": "41/50",
-              "decimal_odds": 1.82,
+              "odds": "4/5",
+              "decimal_odds": 1.8,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -2741,8 +2741,8 @@
               "normalized_selection": "over_1_5",
               "side": "over",
               "line": "1.5",
-              "odds": "2/5",
-              "decimal_odds": 1.4,
+              "odds": "39/100",
+              "decimal_odds": 1.39,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Iraq"
@@ -2752,8 +2752,8 @@
               "normalized_selection": "under_1_5",
               "side": "under",
               "line": "1.5",
-              "odds": "8/5",
-              "decimal_odds": 2.6,
+              "odds": "33/20",
+              "decimal_odds": 2.65,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Iraq"
@@ -2763,8 +2763,8 @@
               "normalized_selection": "over_2_5",
               "side": "over",
               "line": "2.5",
-              "odds": "6/5",
-              "decimal_odds": 2.2,
+              "odds": "23/20",
+              "decimal_odds": 2.15,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Iraq"
@@ -2794,9 +2794,9 @@
       "source_url": "https://www.bwin.com/en/sports/events/cape-verde-saudi-arabia-2:7812558",
       "market_count": 6,
       "timing": {
-        "shots_tab_seconds": 0.135,
-        "market_seconds": 21.032,
-        "total_seconds": 21.168
+        "shots_tab_seconds": 0.068,
+        "market_seconds": 18.608,
+        "total_seconds": 18.675
       },
       "markets": [
         {
@@ -2813,8 +2813,8 @@
               "normalized_selection": "over_23_5",
               "side": "over",
               "line": "23.5",
-              "odds": "17/25",
-              "decimal_odds": 1.68,
+              "odds": "33/50",
+              "decimal_odds": 1.66,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -2835,8 +2835,8 @@
               "normalized_selection": "over_24_5",
               "side": "over",
               "line": "24.5",
-              "odds": "9/10",
-              "decimal_odds": 1.9,
+              "odds": "22/25",
+              "decimal_odds": 1.88,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -2846,8 +2846,8 @@
               "normalized_selection": "under_24_5",
               "side": "under",
               "line": "24.5",
-              "odds": "3/4",
-              "decimal_odds": 1.75,
+              "odds": "77/100",
+              "decimal_odds": 1.77,
               "scope": "match",
               "stat": "shots",
               "team": ""
@@ -2868,8 +2868,8 @@
               "normalized_selection": "over_12_5",
               "side": "over",
               "line": "12.5",
-              "odds": "4/5",
-              "decimal_odds": 1.8,
+              "odds": "41/50",
+              "decimal_odds": 1.82,
               "scope": "home",
               "stat": "shots",
               "team": "Cape Verde"
@@ -2901,8 +2901,8 @@
               "normalized_selection": "under_13_5",
               "side": "under",
               "line": "13.5",
-              "odds": "29/50",
-              "decimal_odds": 1.58,
+              "odds": "57/100",
+              "decimal_odds": 1.57,
               "scope": "home",
               "stat": "shots",
               "team": "Cape Verde"
@@ -2923,8 +2923,8 @@
               "normalized_selection": "over_10_5",
               "side": "over",
               "line": "10.5",
-              "odds": "61/100",
-              "decimal_odds": 1.61,
+              "odds": "3/5",
+              "decimal_odds": 1.6,
               "scope": "away",
               "stat": "shots",
               "team": "Saudi Arabia"
@@ -2934,8 +2934,8 @@
               "normalized_selection": "under_10_5",
               "side": "under",
               "line": "10.5",
-              "odds": "11/10",
-              "decimal_odds": 2.1,
+              "odds": "23/20",
+              "decimal_odds": 2.15,
               "scope": "away",
               "stat": "shots",
               "team": "Saudi Arabia"
@@ -2945,8 +2945,8 @@
               "normalized_selection": "over_11_5",
               "side": "over",
               "line": "11.5",
-              "odds": "9/10",
-              "decimal_odds": 1.9,
+              "odds": "22/25",
+              "decimal_odds": 1.88,
               "scope": "away",
               "stat": "shots",
               "team": "Saudi Arabia"
@@ -2956,8 +2956,8 @@
               "normalized_selection": "under_11_5",
               "side": "under",
               "line": "11.5",
-              "odds": "73/100",
-              "decimal_odds": 1.73,
+              "odds": "77/100",
+              "decimal_odds": 1.77,
               "scope": "away",
               "stat": "shots",
               "team": "Saudi Arabia"
@@ -3011,8 +3011,8 @@
               "normalized_selection": "under_8_5",
               "side": "under",
               "line": "8.5",
-              "odds": "73/100",
-              "decimal_odds": 1.73,
+              "odds": "3/4",
+              "decimal_odds": 1.75,
               "scope": "match",
               "stat": "shots_on_target",
               "team": ""
@@ -3033,8 +3033,8 @@
               "normalized_selection": "over_3_5",
               "side": "over",
               "line": "3.5",
-              "odds": "19/50",
-              "decimal_odds": 1.38,
+              "odds": "39/100",
+              "decimal_odds": 1.39,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Cape Verde"
@@ -3044,8 +3044,8 @@
               "normalized_selection": "under_3_5",
               "side": "under",
               "line": "3.5",
-              "odds": "17/10",
-              "decimal_odds": 2.7,
+              "odds": "33/20",
+              "decimal_odds": 2.65,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Cape Verde"
@@ -3066,8 +3066,8 @@
               "normalized_selection": "under_4_5",
               "side": "under",
               "line": "4.5",
-              "odds": "4/5",
-              "decimal_odds": 1.8,
+              "odds": "39/50",
+              "decimal_odds": 1.78,
               "scope": "home",
               "stat": "shots_on_target",
               "team": "Cape Verde"
@@ -3088,8 +3088,8 @@
               "normalized_selection": "over_3_5",
               "side": "over",
               "line": "3.5",
-              "odds": "73/100",
-              "decimal_odds": 1.73,
+              "odds": "71/100",
+              "decimal_odds": 1.71,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Saudi Arabia"
@@ -3099,8 +3099,8 @@
               "normalized_selection": "under_3_5",
               "side": "under",
               "line": "3.5",
-              "odds": "93/100",
-              "decimal_odds": 1.93,
+              "odds": "19/20",
+              "decimal_odds": 1.95,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Saudi Arabia"
@@ -3110,8 +3110,8 @@
               "normalized_selection": "over_4_5",
               "side": "over",
               "line": "4.5",
-              "odds": "8/5",
-              "decimal_odds": 2.6,
+              "odds": "31/20",
+              "decimal_odds": 2.55,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Saudi Arabia"
@@ -3121,11 +3121,705 @@
               "normalized_selection": "under_4_5",
               "side": "under",
               "line": "4.5",
-              "odds": "41/100",
-              "decimal_odds": 1.41,
+              "odds": "43/100",
+              "decimal_odds": 1.43,
               "scope": "away",
               "stat": "shots_on_target",
               "team": "Saudi Arabia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bookmaker": "Bwin",
+      "match": "Uruguay v Spain",
+      "home_team": "Uruguay",
+      "away_team": "Spain",
+      "date_label": "6/27/26",
+      "time": "1:00 AM",
+      "source_url": "https://www.bwin.com/en/sports/events/uruguay-spain-2:7812559",
+      "market_count": 6,
+      "timing": {
+        "shots_tab_seconds": 0.053,
+        "market_seconds": 18.556,
+        "total_seconds": 18.609
+      },
+      "markets": [
+        {
+          "market": "Match Total Shots",
+          "normalized_market": "match_total_shots",
+          "raw_heading": "Total Shots",
+          "scope": "match",
+          "stat": "shots",
+          "team": "",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 25.5",
+              "normalized_selection": "over_25_5",
+              "side": "over",
+              "line": "25.5",
+              "odds": "41/50",
+              "decimal_odds": 1.82,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Under 25.5",
+              "normalized_selection": "under_25_5",
+              "side": "under",
+              "line": "25.5",
+              "odds": "41/50",
+              "decimal_odds": 1.82,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Over 26.5",
+              "normalized_selection": "over_26_5",
+              "side": "over",
+              "line": "26.5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Under 26.5",
+              "normalized_selection": "under_26_5",
+              "side": "under",
+              "line": "26.5",
+              "odds": "13/20",
+              "decimal_odds": 1.65,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            }
+          ]
+        },
+        {
+          "market": "Uruguay Total Shots",
+          "normalized_market": "team_total_shots",
+          "raw_heading": "Uruguay - Total Shots",
+          "scope": "home",
+          "stat": "shots",
+          "team": "Uruguay",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "side": "over",
+              "line": "8.5",
+              "odds": "17/25",
+              "decimal_odds": 1.68,
+              "scope": "home",
+              "stat": "shots",
+              "team": "Uruguay"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "side": "under",
+              "line": "8.5",
+              "odds": "49/50",
+              "decimal_odds": 1.98,
+              "scope": "home",
+              "stat": "shots",
+              "team": "Uruguay"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "side": "over",
+              "line": "9.5",
+              "odds": "21/20",
+              "decimal_odds": 2.05,
+              "scope": "home",
+              "stat": "shots",
+              "team": "Uruguay"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "side": "under",
+              "line": "9.5",
+              "odds": "63/100",
+              "decimal_odds": 1.63,
+              "scope": "home",
+              "stat": "shots",
+              "team": "Uruguay"
+            }
+          ]
+        },
+        {
+          "market": "Spain Total Shots",
+          "normalized_market": "team_total_shots",
+          "raw_heading": "Spain - Total Shots",
+          "scope": "away",
+          "stat": "shots",
+          "team": "Spain",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 15.5",
+              "normalized_selection": "over_15_5",
+              "side": "over",
+              "line": "15.5",
+              "odds": "33/50",
+              "decimal_odds": 1.66,
+              "scope": "away",
+              "stat": "shots",
+              "team": "Spain"
+            },
+            {
+              "selection": "Under 15.5",
+              "normalized_selection": "under_15_5",
+              "side": "under",
+              "line": "15.5",
+              "odds": "EVS",
+              "decimal_odds": 2.0,
+              "scope": "away",
+              "stat": "shots",
+              "team": "Spain"
+            },
+            {
+              "selection": "Over 16.5",
+              "normalized_selection": "over_16_5",
+              "side": "over",
+              "line": "16.5",
+              "odds": "9/10",
+              "decimal_odds": 1.9,
+              "scope": "away",
+              "stat": "shots",
+              "team": "Spain"
+            },
+            {
+              "selection": "Under 16.5",
+              "normalized_selection": "under_16_5",
+              "side": "under",
+              "line": "16.5",
+              "odds": "3/4",
+              "decimal_odds": 1.75,
+              "scope": "away",
+              "stat": "shots",
+              "team": "Spain"
+            }
+          ]
+        },
+        {
+          "market": "Match Total Shots On Target",
+          "normalized_market": "match_total_shots_on_target",
+          "raw_heading": "Total Shots on Target",
+          "scope": "match",
+          "stat": "shots_on_target",
+          "team": "",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "side": "over",
+              "line": "8.5",
+              "odds": "17/25",
+              "decimal_odds": 1.68,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "side": "under",
+              "line": "8.5",
+              "odds": "49/50",
+              "decimal_odds": 1.98,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "side": "over",
+              "line": "9.5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "side": "under",
+              "line": "9.5",
+              "odds": "29/50",
+              "decimal_odds": 1.58,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            }
+          ]
+        },
+        {
+          "market": "Uruguay Total Shots On Target",
+          "normalized_market": "team_total_shots_on_target",
+          "raw_heading": "Uruguay - Total Shots on Target",
+          "scope": "home",
+          "stat": "shots_on_target",
+          "team": "Uruguay",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "side": "over",
+              "line": "2.5",
+              "odds": "73/100",
+              "decimal_odds": 1.73,
+              "scope": "home",
+              "stat": "shots_on_target",
+              "team": "Uruguay"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "side": "under",
+              "line": "2.5",
+              "odds": "93/100",
+              "decimal_odds": 1.93,
+              "scope": "home",
+              "stat": "shots_on_target",
+              "team": "Uruguay"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "side": "over",
+              "line": "3.5",
+              "odds": "37/20",
+              "decimal_odds": 2.85,
+              "scope": "home",
+              "stat": "shots_on_target",
+              "team": "Uruguay"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "side": "under",
+              "line": "3.5",
+              "odds": "7/20",
+              "decimal_odds": 1.35,
+              "scope": "home",
+              "stat": "shots_on_target",
+              "team": "Uruguay"
+            }
+          ]
+        },
+        {
+          "market": "Spain Total Shots On Target",
+          "normalized_market": "team_total_shots_on_target",
+          "raw_heading": "Spain - Total Shots on Target",
+          "scope": "away",
+          "stat": "shots_on_target",
+          "team": "Spain",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "side": "over",
+              "line": "5.5",
+              "odds": "57/100",
+              "decimal_odds": 1.57,
+              "scope": "away",
+              "stat": "shots_on_target",
+              "team": "Spain"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "side": "under",
+              "line": "5.5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "scope": "away",
+              "stat": "shots_on_target",
+              "team": "Spain"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "side": "over",
+              "line": "6.5",
+              "odds": "11/10",
+              "decimal_odds": 2.1,
+              "scope": "away",
+              "stat": "shots_on_target",
+              "team": "Spain"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "side": "under",
+              "line": "6.5",
+              "odds": "61/100",
+              "decimal_odds": 1.61,
+              "scope": "away",
+              "stat": "shots_on_target",
+              "team": "Spain"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bookmaker": "Bwin",
+      "match": "Egypt v Iran",
+      "home_team": "Egypt",
+      "away_team": "Iran",
+      "date_label": "6/27/26",
+      "time": "4:00 AM",
+      "source_url": "https://www.bwin.com/en/sports/events/egypt-iran-2:7812556",
+      "market_count": 6,
+      "timing": {
+        "shots_tab_seconds": 0.062,
+        "market_seconds": 18.493,
+        "total_seconds": 18.556
+      },
+      "markets": [
+        {
+          "market": "Match Total Shots",
+          "normalized_market": "match_total_shots",
+          "raw_heading": "Total Shots",
+          "scope": "match",
+          "stat": "shots",
+          "team": "",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 22.5",
+              "normalized_selection": "over_22_5",
+              "side": "over",
+              "line": "22.5",
+              "odds": "77/100",
+              "decimal_odds": 1.77,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Under 22.5",
+              "normalized_selection": "under_22_5",
+              "side": "under",
+              "line": "22.5",
+              "odds": "22/25",
+              "decimal_odds": 1.88,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Over 23.5",
+              "normalized_selection": "over_23_5",
+              "side": "over",
+              "line": "23.5",
+              "odds": "EVS",
+              "decimal_odds": 2.0,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            },
+            {
+              "selection": "Under 23.5",
+              "normalized_selection": "under_23_5",
+              "side": "under",
+              "line": "23.5",
+              "odds": "17/25",
+              "decimal_odds": 1.68,
+              "scope": "match",
+              "stat": "shots",
+              "team": ""
+            }
+          ]
+        },
+        {
+          "market": "Egypt Total Shots",
+          "normalized_market": "team_total_shots",
+          "raw_heading": "Egypt - Total Shots",
+          "scope": "home",
+          "stat": "shots",
+          "team": "Egypt",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 11.5",
+              "normalized_selection": "over_11_5",
+              "side": "over",
+              "line": "11.5",
+              "odds": "29/50",
+              "decimal_odds": 1.58,
+              "scope": "home",
+              "stat": "shots",
+              "team": "Egypt"
+            },
+            {
+              "selection": "Under 11.5",
+              "normalized_selection": "under_11_5",
+              "side": "under",
+              "line": "11.5",
+              "odds": "23/20",
+              "decimal_odds": 2.15,
+              "scope": "home",
+              "stat": "shots",
+              "team": "Egypt"
+            },
+            {
+              "selection": "Over 12.5",
+              "normalized_selection": "over_12_5",
+              "side": "over",
+              "line": "12.5",
+              "odds": "17/20",
+              "decimal_odds": 1.85,
+              "scope": "home",
+              "stat": "shots",
+              "team": "Egypt"
+            },
+            {
+              "selection": "Under 12.5",
+              "normalized_selection": "under_12_5",
+              "side": "under",
+              "line": "12.5",
+              "odds": "39/50",
+              "decimal_odds": 1.78,
+              "scope": "home",
+              "stat": "shots",
+              "team": "Egypt"
+            }
+          ]
+        },
+        {
+          "market": "Iran Total Shots",
+          "normalized_market": "team_total_shots",
+          "raw_heading": "Iran - Total Shots",
+          "scope": "away",
+          "stat": "shots",
+          "team": "Iran",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "side": "over",
+              "line": "9.5",
+              "odds": "17/25",
+              "decimal_odds": 1.68,
+              "scope": "away",
+              "stat": "shots",
+              "team": "Iran"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "side": "under",
+              "line": "9.5",
+              "odds": "EVS",
+              "decimal_odds": 2.0,
+              "scope": "away",
+              "stat": "shots",
+              "team": "Iran"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "side": "over",
+              "line": "10.5",
+              "odds": "EVS",
+              "decimal_odds": 2.0,
+              "scope": "away",
+              "stat": "shots",
+              "team": "Iran"
+            },
+            {
+              "selection": "Under 10.5",
+              "normalized_selection": "under_10_5",
+              "side": "under",
+              "line": "10.5",
+              "odds": "33/50",
+              "decimal_odds": 1.66,
+              "scope": "away",
+              "stat": "shots",
+              "team": "Iran"
+            }
+          ]
+        },
+        {
+          "market": "Match Total Shots On Target",
+          "normalized_market": "match_total_shots_on_target",
+          "raw_heading": "Total Shots on Target",
+          "scope": "match",
+          "stat": "shots_on_target",
+          "team": "",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "side": "over",
+              "line": "6.5",
+              "odds": "7/10",
+              "decimal_odds": 1.7,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "side": "under",
+              "line": "6.5",
+              "odds": "19/20",
+              "decimal_odds": 1.95,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "side": "over",
+              "line": "7.5",
+              "odds": "13/10",
+              "decimal_odds": 2.3,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "side": "under",
+              "line": "7.5",
+              "odds": "13/25",
+              "decimal_odds": 1.52,
+              "scope": "match",
+              "stat": "shots_on_target",
+              "team": ""
+            }
+          ]
+        },
+        {
+          "market": "Egypt Total Shots On Target",
+          "normalized_market": "team_total_shots_on_target",
+          "raw_heading": "Egypt - Total Shots on Target",
+          "scope": "home",
+          "stat": "shots_on_target",
+          "team": "Egypt",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "side": "over",
+              "line": "3.5",
+              "odds": "77/100",
+              "decimal_odds": 1.77,
+              "scope": "home",
+              "stat": "shots_on_target",
+              "team": "Egypt"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "side": "under",
+              "line": "3.5",
+              "odds": "87/100",
+              "decimal_odds": 1.87,
+              "scope": "home",
+              "stat": "shots_on_target",
+              "team": "Egypt"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "side": "over",
+              "line": "4.5",
+              "odds": "17/10",
+              "decimal_odds": 2.7,
+              "scope": "home",
+              "stat": "shots_on_target",
+              "team": "Egypt"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "side": "under",
+              "line": "4.5",
+              "odds": "19/50",
+              "decimal_odds": 1.38,
+              "scope": "home",
+              "stat": "shots_on_target",
+              "team": "Egypt"
+            }
+          ]
+        },
+        {
+          "market": "Iran Total Shots On Target",
+          "normalized_market": "team_total_shots_on_target",
+          "raw_heading": "Iran - Total Shots on Target",
+          "scope": "away",
+          "stat": "shots_on_target",
+          "team": "Iran",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "side": "over",
+              "line": "2.5",
+              "odds": "51/100",
+              "decimal_odds": 1.51,
+              "scope": "away",
+              "stat": "shots_on_target",
+              "team": "Iran"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "side": "under",
+              "line": "2.5",
+              "odds": "13/10",
+              "decimal_odds": 2.3,
+              "scope": "away",
+              "stat": "shots_on_target",
+              "team": "Iran"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "side": "over",
+              "line": "3.5",
+              "odds": "13/10",
+              "decimal_odds": 2.3,
+              "scope": "away",
+              "stat": "shots_on_target",
+              "team": "Iran"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "side": "under",
+              "line": "3.5",
+              "odds": "13/25",
+              "decimal_odds": 1.52,
+              "scope": "away",
+              "stat": "shots_on_target",
+              "team": "Iran"
             }
           ]
         }

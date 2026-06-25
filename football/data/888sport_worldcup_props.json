@@ -3,14 +3,14 @@
   "competition": "FIFA World Cup",
   "bookmaker": "888Sport",
   "source_url": "https://www.888sport.com/football/world-cup/",
-  "generated_at": "2026-06-24T12:55:33.000914+00:00",
+  "generated_at": "2026-06-25T16:33:03.302222+00:00",
   "match_count": 3,
   "matches": [
     {
-      "match": "Bosnia v Qatar",
-      "home_team": "Bosnia",
-      "away_team": "Qatar",
-      "url": "https://www.888sport.com/football/international/world-cup-2026/bosnia-vs-qatar-e-7685342/",
+      "match": "Curacao v Ivory Coast",
+      "home_team": "Curacao",
+      "away_team": "Ivory Coast",
+      "url": "https://www.888sport.com/football/international/world-cup-2026/curacao-vs-ivory-coast-e-7686583/",
       "markets": [
         {
           "market": "Match Betting",
@@ -18,22 +18,592 @@
           "selection_count": 3,
           "selections": [
             {
-              "selection": "Bosnia",
-              "normalized_selection": "bosnia",
-              "odds": "4/5",
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "2/1",
+              "side": "draw"
+            },
+            {
+              "selection": "Curacao",
+              "normalized_selection": "curacao",
+              "odds": "12/1",
               "side": "home"
             },
             {
-              "selection": "Qatar",
-              "normalized_selection": "qatar",
-              "odds": "5/1",
+              "selection": "Ivory Coast",
+              "normalized_selection": "ivory_coast",
+              "odds": "4/9",
               "side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/50",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "18/1",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/8",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "9/2",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "2/5",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "17/10",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "11/10",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "4/6",
+              "side": "under",
+              "line": "3.5"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "12/5",
+              "side": "over",
+              "line": "4.5"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/4",
+              "side": "under",
+              "line": "4.5"
+            }
+          ]
+        },
+        {
+          "market": "1st Half Goals Over / Under",
+          "normalized_market": "1st_half_goals_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/5",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "3/1",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "19/20",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "3/4",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "3/1",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "1/5",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "9/1",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "1/20",
+              "side": "under",
+              "line": "3.5"
+            }
+          ]
+        },
+        {
+          "market": "Half Time Result",
+          "normalized_market": "half_time_result",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "2/1"
+            },
+            {
+              "selection": "Curacao",
+              "normalized_selection": "curacao",
+              "odds": "12/1"
+            },
+            {
+              "selection": "Ivory Coast",
+              "normalized_selection": "ivory_coast",
+              "odds": "4/9"
+            }
+          ]
+        },
+        {
+          "market": "Player to Score",
+          "normalized_market": "player_to_score",
+          "selection_count": 46,
+          "selections": [
+            {
+              "selection": "Evann Guessand To Score",
+              "normalized_selection": "evann_guessand_to_score",
+              "odds": "5/6",
+              "player": "Evann Guessand",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Ange-Yoan Bonny To Score",
+              "normalized_selection": "ange_yoan_bonny_to_score",
+              "odds": "5/6",
+              "player": "Ange-Yoan Bonny",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Oumar Diakite To Score",
+              "normalized_selection": "oumar_diakite_to_score",
+              "odds": "5/6",
+              "player": "Oumar Diakite",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Elye Wahi To Score",
+              "normalized_selection": "elye_wahi_to_score",
+              "odds": "17/20",
+              "player": "Elye Wahi",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Amad Diallo To Score",
+              "normalized_selection": "amad_diallo_to_score",
+              "odds": "21/20",
+              "player": "Amad Diallo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Parfait Guiagon To Score",
+              "normalized_selection": "parfait_guiagon_to_score",
+              "odds": "6/5",
+              "player": "Parfait Guiagon",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Nicolas Pepe To Score",
+              "normalized_selection": "nicolas_pepe_to_score",
+              "odds": "6/5",
+              "player": "Nicolas Pepe",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Yan Diomande To Score",
+              "normalized_selection": "yan_diomande_to_score",
+              "odds": "13/10",
+              "player": "Yan Diomande",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Simon Adingra To Score",
+              "normalized_selection": "simon_adingra_to_score",
+              "odds": "11/8",
+              "player": "Simon Adingra",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Bazoumana Toure To Score",
+              "normalized_selection": "bazoumana_toure_to_score",
+              "odds": "2/1",
+              "player": "Bazoumana Toure",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Franck Kessie To Score",
+              "normalized_selection": "franck_kessie_to_score",
+              "odds": "9/4",
+              "player": "Franck Kessie",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Christ Inao Oulai To Score",
+              "normalized_selection": "christ_inao_oulai_to_score",
+              "odds": "11/4",
+              "player": "Christ Inao Oulai",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Seko Fofana To Score",
+              "normalized_selection": "seko_fofana_to_score",
+              "odds": "11/4",
+              "player": "Seko Fofana",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Ibrahim Sangare To Score",
+              "normalized_selection": "ibrahim_sangare_to_score",
+              "odds": "7/2",
+              "player": "Ibrahim Sangare",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Christopher Operi To Score",
+              "normalized_selection": "christopher_operi_to_score",
+              "odds": "4/1",
+              "player": "Christopher Operi",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jean Michael Seri To Score",
+              "normalized_selection": "jean_michael_seri_to_score",
+              "odds": "4/1",
+              "player": "Jean Michael Seri",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Emmanuel Agbadou To Score",
+              "normalized_selection": "emmanuel_agbadou_to_score",
+              "odds": "19/4",
+              "player": "Emmanuel Agbadou",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Guela Doue To Score",
+              "normalized_selection": "guela_doue_to_score",
+              "odds": "19/4",
+              "player": "Guela Doue",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jearl Margaritha To Score",
+              "normalized_selection": "jearl_margaritha_to_score",
+              "odds": "19/4",
+              "player": "Jearl Margaritha",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Brandley Kuwas To Score",
+              "normalized_selection": "brandley_kuwas_to_score",
+              "odds": "5/1",
+              "player": "Brandley Kuwas",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Gervane Kastaneer To Score",
+              "normalized_selection": "gervane_kastaneer_to_score",
+              "odds": "5/1",
+              "player": "Gervane Kastaneer",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jurgen Locadia To Score",
+              "normalized_selection": "jurgen_locadia_to_score",
+              "odds": "5/1",
+              "player": "Jurgen Locadia",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Sontje Hansen To Score",
+              "normalized_selection": "sontje_hansen_to_score",
+              "odds": "5/1",
+              "player": "Sontje Hansen",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Ghislain Konan To Score",
+              "normalized_selection": "ghislain_konan_to_score",
+              "odds": "11/2",
+              "player": "Ghislain Konan",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Tahith Chong To Score",
+              "normalized_selection": "tahith_chong_to_score",
+              "odds": "6/1",
+              "player": "Tahith Chong",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Evan Ndicka To Score",
+              "normalized_selection": "evan_ndicka_to_score",
+              "odds": "13/2",
+              "player": "Evan Ndicka",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Juninho Bacuna To Score",
+              "normalized_selection": "juninho_bacuna_to_score",
+              "odds": "7/1",
+              "player": "Juninho Bacuna",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jeremy Antonisse To Score",
+              "normalized_selection": "jeremy_antonisse_to_score",
+              "odds": "7/1",
+              "player": "Jeremy Antonisse",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Kenji Gorre To Score",
+              "normalized_selection": "kenji_gorre_to_score",
+              "odds": "7/1",
+              "player": "Kenji Gorre",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Ousmane Diomande To Score",
+              "normalized_selection": "ousmane_diomande_to_score",
+              "odds": "15/2",
+              "player": "Ousmane Diomande",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Odilon Kossounou To Score",
+              "normalized_selection": "odilon_kossounou_to_score",
+              "odds": "8/1",
+              "player": "Odilon Kossounou",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Leandro Bacuna To Score",
+              "normalized_selection": "leandro_bacuna_to_score",
+              "odds": "8/1",
+              "player": "Leandro Bacuna",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Wilfried Singo To Score",
+              "normalized_selection": "wilfried_singo_to_score",
+              "odds": "17/2",
+              "player": "Wilfried Singo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Livano Comenencia To Score",
+              "normalized_selection": "livano_comenencia_to_score",
+              "odds": "10/1",
+              "player": "Livano Comenencia",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Ar'jany Martha To Score",
+              "normalized_selection": "ar_jany_martha_to_score",
+              "odds": "11/1",
+              "player": "Ar'jany Martha",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Kevin Felida To Score",
+              "normalized_selection": "kevin_felida_to_score",
+              "odds": "11/1",
+              "player": "Kevin Felida",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Tyrese Noslin To Score",
+              "normalized_selection": "tyrese_noslin_to_score",
+              "odds": "12/1",
+              "player": "Tyrese Noslin",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Armando Obispo To Score",
+              "normalized_selection": "armando_obispo_to_score",
+              "odds": "16/1",
+              "player": "Armando Obispo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Deveron Fonville To Score",
+              "normalized_selection": "deveron_fonville_to_score",
+              "odds": "18/1",
+              "player": "Deveron Fonville",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Joshua Brenet To Score",
+              "normalized_selection": "joshua_brenet_to_score",
+              "odds": "20/1",
+              "player": "Joshua Brenet",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Godfried Roemeratoe To Score",
+              "normalized_selection": "godfried_roemeratoe_to_score",
+              "odds": "22/1",
+              "player": "Godfried Roemeratoe",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Sherel Floranus To Score",
+              "normalized_selection": "sherel_floranus_to_score",
+              "odds": "22/1",
+              "player": "Sherel Floranus",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Shurandy Sambo To Score",
+              "normalized_selection": "shurandy_sambo_to_score",
+              "odds": "25/1",
+              "player": "Shurandy Sambo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Roshon Van Eijma To Score",
+              "normalized_selection": "roshon_van_eijma_to_score",
+              "odds": "25/1",
+              "player": "Roshon Van Eijma",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Riechedly Bazoer To Score",
+              "normalized_selection": "riechedly_bazoer_to_score",
+              "odds": "33/1",
+              "player": "Riechedly Bazoer",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jurien Gaari To Score",
+              "normalized_selection": "jurien_gaari_to_score",
+              "odds": "33/1",
+              "player": "Jurien Gaari",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Ecuador v Germany",
+      "home_team": "Ecuador",
+      "away_team": "Germany",
+      "url": "https://www.888sport.com/football/international/world-cup-2026/ecuador-vs-germany-e-7686586/",
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Ecuador",
+              "normalized_selection": "ecuador",
+              "odds": "4/1",
+              "side": "home"
             },
             {
               "selection": "Draw",
               "normalized_selection": "draw",
-              "odds": "6/4",
+              "odds": "7/5",
               "side": "draw"
+            },
+            {
+              "selection": "Germany",
+              "normalized_selection": "germany",
+              "odds": "1/1",
+              "side": "away"
             }
           ]
         },
@@ -59,56 +629,612 @@
             {
               "selection": "Over 1.5",
               "normalized_selection": "over_1_5",
-              "odds": "1/6",
+              "odds": "2/11",
               "side": "over",
               "line": "1.5"
             },
             {
               "selection": "Under 1.5",
               "normalized_selection": "under_1_5",
-              "odds": "15/4",
+              "odds": "17/5",
               "side": "under",
               "line": "1.5"
             },
             {
               "selection": "Over 2.5",
               "normalized_selection": "over_2_5",
-              "odds": "8/15",
+              "odds": "4/7",
               "side": "over",
               "line": "2.5"
             },
             {
               "selection": "Under 2.5",
               "normalized_selection": "under_2_5",
-              "odds": "11/8",
+              "odds": "5/4",
               "side": "under",
               "line": "2.5"
             },
             {
               "selection": "Over 3.5",
               "normalized_selection": "over_3_5",
-              "odds": "11/8",
+              "odds": "6/4",
               "side": "over",
               "line": "3.5"
             },
             {
               "selection": "Under 3.5",
               "normalized_selection": "under_3_5",
-              "odds": "1/2",
+              "odds": "4/9",
               "side": "under",
               "line": "3.5"
             },
             {
               "selection": "Over 4.5",
               "normalized_selection": "over_4_5",
-              "odds": "3/1",
+              "odds": "10/3",
               "side": "over",
               "line": "4.5"
             },
             {
               "selection": "Under 4.5",
               "normalized_selection": "under_4_5",
-              "odds": "1/5",
+              "odds": "2/11",
+              "side": "under",
+              "line": "4.5"
+            }
+          ]
+        },
+        {
+          "market": "1st Half Goals Over / Under",
+          "normalized_market": "1st_half_goals_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/4",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "12/5",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "13/10",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "4/7",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "4/1",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "1/7",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Half Time Result",
+          "normalized_market": "half_time_result",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Ecuador",
+              "normalized_selection": "ecuador",
+              "odds": "4/1"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "7/5"
+            },
+            {
+              "selection": "Germany",
+              "normalized_selection": "germany",
+              "odds": "1/1"
+            }
+          ]
+        },
+        {
+          "market": "Player to Score",
+          "normalized_market": "player_to_score",
+          "selection_count": 46,
+          "selections": [
+            {
+              "selection": "Kai Havertz To Score",
+              "normalized_selection": "kai_havertz_to_score",
+              "odds": "7/5",
+              "player": "Kai Havertz",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Deniz Undav To Score",
+              "normalized_selection": "deniz_undav_to_score",
+              "odds": "7/5",
+              "player": "Deniz Undav",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Nick Woltemade To Score",
+              "normalized_selection": "nick_woltemade_to_score",
+              "odds": "8/5",
+              "player": "Nick Woltemade",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Maximilian Beier To Score",
+              "normalized_selection": "maximilian_beier_to_score",
+              "odds": "9/5",
+              "player": "Maximilian Beier",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Florian Wirtz To Score",
+              "normalized_selection": "florian_wirtz_to_score",
+              "odds": "9/5",
+              "player": "Florian Wirtz",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jamal Musiala To Score",
+              "normalized_selection": "jamal_musiala_to_score",
+              "odds": "15/8",
+              "player": "Jamal Musiala",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Leroy Sane To Score",
+              "normalized_selection": "leroy_sane_to_score",
+              "odds": "9/4",
+              "player": "Leroy Sane",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Enner Valencia To Score",
+              "normalized_selection": "enner_valencia_to_score",
+              "odds": "9/4",
+              "player": "Enner Valencia",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Kevin Rodriguez To Score",
+              "normalized_selection": "kevin_rodriguez_to_score",
+              "odds": "5/2",
+              "player": "Kevin Rodriguez",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jeremy Arevalo To Score",
+              "normalized_selection": "jeremy_arevalo_to_score",
+              "odds": "11/4",
+              "player": "Jeremy Arevalo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Assan Ouedraogo To Score",
+              "normalized_selection": "assan_ouedraogo_to_score",
+              "odds": "14/5",
+              "player": "Assan Ouedraogo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jamie Leweling To Score",
+              "normalized_selection": "jamie_leweling_to_score",
+              "odds": "14/5",
+              "player": "Jamie Leweling",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jordy Caicedo To Score",
+              "normalized_selection": "jordy_caicedo_to_score",
+              "odds": "10/3",
+              "player": "Jordy Caicedo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Gonzalo Plata To Score",
+              "normalized_selection": "gonzalo_plata_to_score",
+              "odds": "10/3",
+              "player": "Gonzalo Plata",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "John Yeboah To Score",
+              "normalized_selection": "john_yeboah_to_score",
+              "odds": "7/2",
+              "player": "John Yeboah",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Nadiem Amiri To Score",
+              "normalized_selection": "nadiem_amiri_to_score",
+              "odds": "19/5",
+              "player": "Nadiem Amiri",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Leon Goretzka To Score",
+              "normalized_selection": "leon_goretzka_to_score",
+              "odds": "19/5",
+              "player": "Leon Goretzka",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Kendry Paez To Score",
+              "normalized_selection": "kendry_paez_to_score",
+              "odds": "4/1",
+              "player": "Kendry Paez",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Nilson Angulo To Score",
+              "normalized_selection": "nilson_angulo_to_score",
+              "odds": "19/4",
+              "player": "Nilson Angulo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Anthony Valencia To Score",
+              "normalized_selection": "anthony_valencia_to_score",
+              "odds": "5/1",
+              "player": "Anthony Valencia",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Alan Minda To Score",
+              "normalized_selection": "alan_minda_to_score",
+              "odds": "5/1",
+              "player": "Alan Minda",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Felix Nmecha To Score",
+              "normalized_selection": "felix_nmecha_to_score",
+              "odds": "6/1",
+              "player": "Felix Nmecha",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Joshua Kimmich To Score",
+              "normalized_selection": "joshua_kimmich_to_score",
+              "odds": "13/2",
+              "player": "Joshua Kimmich",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Nathaniel Brown To Score",
+              "normalized_selection": "nathaniel_brown_to_score",
+              "odds": "13/2",
+              "player": "Nathaniel Brown",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Aleksandar Pavlovic To Score",
+              "normalized_selection": "aleksandar_pavlovic_to_score",
+              "odds": "13/2",
+              "player": "Aleksandar Pavlovic",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Pascal Gross To Score",
+              "normalized_selection": "pascal_gross_to_score",
+              "odds": "13/2",
+              "player": "Pascal Gross",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jordy Alcivar To Score",
+              "normalized_selection": "jordy_alcivar_to_score",
+              "odds": "15/2",
+              "player": "Jordy Alcivar",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Nico Schlotterbeck To Score",
+              "normalized_selection": "nico_schlotterbeck_to_score",
+              "odds": "8/1",
+              "player": "Nico Schlotterbeck",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "David Raum To Score",
+              "normalized_selection": "david_raum_to_score",
+              "odds": "17/2",
+              "player": "David Raum",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Pedro Vite To Score",
+              "normalized_selection": "pedro_vite_to_score",
+              "odds": "17/2",
+              "player": "Pedro Vite",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Angelo Preciado To Score",
+              "normalized_selection": "angelo_preciado_to_score",
+              "odds": "17/2",
+              "player": "Angelo Preciado",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Denil Castillo To Score",
+              "normalized_selection": "denil_castillo_to_score",
+              "odds": "9/1",
+              "player": "Denil Castillo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Moises Caicedo To Score",
+              "normalized_selection": "moises_caicedo_to_score",
+              "odds": "9/1",
+              "player": "Moises Caicedo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Angelo Stiller To Score",
+              "normalized_selection": "angelo_stiller_to_score",
+              "odds": "9/1",
+              "player": "Angelo Stiller",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jonathan Tah To Score",
+              "normalized_selection": "jonathan_tah_to_score",
+              "odds": "9/1",
+              "player": "Jonathan Tah",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Pervis Estupinan To Score",
+              "normalized_selection": "pervis_estupinan_to_score",
+              "odds": "9/1",
+              "player": "Pervis Estupinan",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Antonio Rudiger To Score",
+              "normalized_selection": "antonio_rudiger_to_score",
+              "odds": "11/1",
+              "player": "Antonio Rudiger",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Alan Franco To Score",
+              "normalized_selection": "alan_franco_to_score",
+              "odds": "11/1",
+              "player": "Alan Franco",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Malick Thiaw To Score",
+              "normalized_selection": "malick_thiaw_to_score",
+              "odds": "11/1",
+              "player": "Malick Thiaw",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Waldemar Anton To Score",
+              "normalized_selection": "waldemar_anton_to_score",
+              "odds": "12/1",
+              "player": "Waldemar Anton",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Joel Ordonez To Score",
+              "normalized_selection": "joel_ordonez_to_score",
+              "odds": "14/1",
+              "player": "Joel Ordonez",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Piero Hincapie To Score",
+              "normalized_selection": "piero_hincapie_to_score",
+              "odds": "14/1",
+              "player": "Piero Hincapie",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jackson Porozo To Score",
+              "normalized_selection": "jackson_porozo_to_score",
+              "odds": "14/1",
+              "player": "Jackson Porozo",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Yaimar Medina To Score",
+              "normalized_selection": "yaimar_medina_to_score",
+              "odds": "14/1",
+              "player": "Yaimar Medina",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Willian Pacho To Score",
+              "normalized_selection": "willian_pacho_to_score",
+              "odds": "20/1",
+              "player": "Willian Pacho",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Felix Torres To Score",
+              "normalized_selection": "felix_torres_to_score",
+              "odds": "20/1",
+              "player": "Felix Torres",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Tunisia v Netherlands",
+      "home_team": "Tunisia",
+      "away_team": "Netherlands",
+      "url": "https://www.888sport.com/football/international/world-cup-2026/tunisia-vs-netherlands-e-7686582/",
+      "markets": [
+        {
+          "market": "Match Betting",
+          "normalized_market": "match_betting",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Netherlands",
+              "normalized_selection": "netherlands",
+              "odds": "4/11",
+              "side": "away"
+            },
+            {
+              "selection": "Draw",
+              "normalized_selection": "draw",
+              "odds": "23/10",
+              "side": "draw"
+            },
+            {
+              "selection": "Tunisia",
+              "normalized_selection": "tunisia",
+              "odds": "14/1",
+              "side": "home"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/100",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "22/1",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/9",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "5/1",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "19/10",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "1/1",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "3/4",
+              "side": "under",
+              "line": "3.5"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "21/10",
+              "side": "over",
+              "line": "4.5"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "3/10",
               "side": "under",
               "line": "4.5"
             }
@@ -122,590 +1248,58 @@
             {
               "selection": "Over 0.5",
               "normalized_selection": "over_0_5",
-              "odds": "1/4",
+              "odds": "2/11",
               "side": "over",
               "line": "0.5"
             },
             {
               "selection": "Under 0.5",
               "normalized_selection": "under_0_5",
-              "odds": "13/5",
+              "odds": "7/2",
               "side": "under",
               "line": "0.5"
             },
             {
               "selection": "Over 1.5",
               "normalized_selection": "over_1_5",
-              "odds": "6/5",
+              "odds": "17/20",
               "side": "over",
               "line": "1.5"
             },
             {
               "selection": "Under 1.5",
               "normalized_selection": "under_1_5",
-              "odds": "8/13",
+              "odds": "17/20",
               "side": "under",
               "line": "1.5"
             },
             {
               "selection": "Over 2.5",
               "normalized_selection": "over_2_5",
-              "odds": "19/5",
+              "odds": "27/10",
               "side": "over",
               "line": "2.5"
             },
             {
               "selection": "Under 2.5",
               "normalized_selection": "under_2_5",
-              "odds": "2/13",
-              "side": "under",
-              "line": "2.5"
-            },
-            {
-              "selection": "Over 3.5",
-              "normalized_selection": "over_3_5",
-              "odds": "12/1",
-              "side": "over",
-              "line": "3.5"
-            },
-            {
-              "selection": "Under 3.5",
-              "normalized_selection": "under_3_5",
-              "odds": "1/33",
-              "side": "under",
-              "line": "3.5"
-            }
-          ]
-        },
-        {
-          "market": "Half Time Result",
-          "normalized_market": "half_time_result",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Bosnia",
-              "normalized_selection": "bosnia",
-              "odds": "4/5"
-            },
-            {
-              "selection": "Qatar",
-              "normalized_selection": "qatar",
-              "odds": "5/1"
-            },
-            {
-              "selection": "Draw",
-              "normalized_selection": "draw",
-              "odds": "6/4"
-            }
-          ]
-        },
-        {
-          "market": "Player to Score",
-          "normalized_market": "player_to_score",
-          "selection_count": 43,
-          "selections": [
-            {
-              "selection": "Edin Dzeko To Score",
-              "normalized_selection": "edin_dzeko_to_score",
-              "odds": "7/10",
-              "player": "Edin Dzeko",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Haris Tabakovic To Score",
-              "normalized_selection": "haris_tabakovic_to_score",
-              "odds": "11/10",
-              "player": "Haris Tabakovic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Jovo Lukic To Score",
-              "normalized_selection": "jovo_lukic_to_score",
-              "odds": "23/20",
-              "player": "Jovo Lukic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Samed Bazdar To Score",
-              "normalized_selection": "samed_bazdar_to_score",
-              "odds": "7/5",
-              "player": "Samed Bazdar",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ermedin Demirovic To Score",
-              "normalized_selection": "ermedin_demirovic_to_score",
-              "odds": "6/4",
-              "player": "Ermedin Demirovic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Esmir Bajraktarevic To Score",
-              "normalized_selection": "esmir_bajraktarevic_to_score",
-              "odds": "2/1",
-              "player": "Esmir Bajraktarevic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ermin Mahmic To Score",
-              "normalized_selection": "ermin_mahmic_to_score",
-              "odds": "2/1",
-              "player": "Ermin Mahmic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Kerim Alajbegovic To Score",
-              "normalized_selection": "kerim_alajbegovic_to_score",
-              "odds": "2/1",
-              "player": "Kerim Alajbegovic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Amar Memic To Score",
-              "normalized_selection": "amar_memic_to_score",
-              "odds": "23/10",
-              "player": "Amar Memic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Al Moez Ali To Score",
-              "normalized_selection": "al_moez_ali_to_score",
-              "odds": "11/4",
-              "player": "Al Moez Ali",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ahmed Alaaeldin To Score",
-              "normalized_selection": "ahmed_alaaeldin_to_score",
-              "odds": "10/3",
-              "player": "Ahmed Alaaeldin",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Mohammed Muntari To Score",
-              "normalized_selection": "mohammed_muntari_to_score",
-              "odds": "10/3",
-              "player": "Mohammed Muntari",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Akram Afif To Score",
-              "normalized_selection": "akram_afif_to_score",
-              "odds": "7/2",
-              "player": "Akram Afif",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Youssef Abdurisag To Score",
-              "normalized_selection": "youssef_abdurisag_to_score",
-              "odds": "7/2",
-              "player": "Youssef Abdurisag",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Armin Gigovic To Score",
-              "normalized_selection": "armin_gigovic_to_score",
-              "odds": "4/1",
-              "player": "Armin Gigovic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ivan Basic To Score",
-              "normalized_selection": "ivan_basic_to_score",
-              "odds": "4/1",
-              "player": "Ivan Basic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Edmilson Junior To Score",
-              "normalized_selection": "edmilson_junior_to_score",
-              "odds": "9/2",
-              "player": "Edmilson Junior",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Hasan Al-Haydos To Score",
-              "normalized_selection": "hasan_al_haydos_to_score",
-              "odds": "9/2",
-              "player": "Hasan Al-Haydos",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Benjamin Tahirovic To Score",
-              "normalized_selection": "benjamin_tahirovic_to_score",
-              "odds": "19/4",
-              "player": "Benjamin Tahirovic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ivan Sunjic To Score",
-              "normalized_selection": "ivan_sunjic_to_score",
-              "odds": "19/4",
-              "player": "Ivan Sunjic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Dzenis Burnic To Score",
-              "normalized_selection": "dzenis_burnic_to_score",
-              "odds": "5/1",
-              "player": "Dzenis Burnic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ahmed Al-Ganehi To Score",
-              "normalized_selection": "ahmed_al_ganehi_to_score",
-              "odds": "11/2",
-              "player": "Ahmed Al-Ganehi",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Amar Dedic To Score",
-              "normalized_selection": "amar_dedic_to_score",
-              "odds": "11/2",
-              "player": "Amar Dedic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Mohamed Al Mannai To Score",
-              "normalized_selection": "mohamed_al_mannai_to_score",
-              "odds": "11/2",
-              "player": "Mohamed Al Mannai",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Nikola Katic To Score",
-              "normalized_selection": "nikola_katic_to_score",
-              "odds": "11/2",
-              "player": "Nikola Katic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Tahsin Mohammed Jamshid To Score",
-              "normalized_selection": "tahsin_mohammed_jamshid_to_score",
-              "odds": "13/2",
-              "player": "Tahsin Mohammed Jamshid",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Sead Kolasinac To Score",
-              "normalized_selection": "sead_kolasinac_to_score",
-              "odds": "17/2",
-              "player": "Sead Kolasinac",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Stjepan Radeljic To Score",
-              "normalized_selection": "stjepan_radeljic_to_score",
-              "odds": "17/2",
-              "player": "Stjepan Radeljic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Dennis Hadzikadunic To Score",
-              "normalized_selection": "dennis_hadzikadunic_to_score",
-              "odds": "17/2",
-              "player": "Dennis Hadzikadunic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Amir Hadziahmetovic To Score",
-              "normalized_selection": "amir_hadziahmetovic_to_score",
-              "odds": "17/2",
-              "player": "Amir Hadziahmetovic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Arjan Malic To Score",
-              "normalized_selection": "arjan_malic_to_score",
-              "odds": "17/2",
-              "player": "Arjan Malic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Abdulaziz Hatem To Score",
-              "normalized_selection": "abdulaziz_hatem_to_score",
-              "odds": "9/1",
-              "player": "Abdulaziz Hatem",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Karim Boudiaf To Score",
-              "normalized_selection": "karim_boudiaf_to_score",
-              "odds": "9/1",
-              "player": "Karim Boudiaf",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ahmed Fathi To Score",
-              "normalized_selection": "ahmed_fathi_to_score",
-              "odds": "10/1",
-              "player": "Ahmed Fathi",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Nihad Mujakic To Score",
-              "normalized_selection": "nihad_mujakic_to_score",
-              "odds": "10/1",
-              "player": "Nihad Mujakic",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Jassem Gaber To Score",
-              "normalized_selection": "jassem_gaber_to_score",
-              "odds": "10/1",
-              "player": "Jassem Gaber",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Boualem Khoukhi To Score",
-              "normalized_selection": "boualem_khoukhi_to_score",
-              "odds": "11/1",
-              "player": "Boualem Khoukhi",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Issa Laye To Score",
-              "normalized_selection": "issa_laye_to_score",
-              "odds": "11/1",
-              "player": "Issa Laye",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ayoub Al Ouwi To Score",
-              "normalized_selection": "ayoub_al_ouwi_to_score",
-              "odds": "12/1",
-              "player": "Ayoub Al Ouwi",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Pedro Miguel To Score",
-              "normalized_selection": "pedro_miguel_to_score",
-              "odds": "14/1",
-              "player": "Pedro Miguel",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Lucas Mendes To Score",
-              "normalized_selection": "lucas_mendes_to_score",
-              "odds": "14/1",
-              "player": "Lucas Mendes",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Sultan Al Brake To Score",
-              "normalized_selection": "sultan_al_brake_to_score",
-              "odds": "18/1",
-              "player": "Sultan Al Brake",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Al-Hashmi Al-Hussain To Score",
-              "normalized_selection": "al_hashmi_al_hussain_to_score",
-              "odds": "18/1",
-              "player": "Al-Hashmi Al-Hussain",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Switzerland v Canada",
-      "home_team": "Switzerland",
-      "away_team": "Canada",
-      "url": "https://www.888sport.com/football/international/world-cup-2026/switzerland-vs-canada-e-7685344/",
-      "markets": [
-        {
-          "market": "Match Betting",
-          "normalized_market": "match_betting",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Draw",
-              "normalized_selection": "draw",
-              "odds": "11/10",
-              "side": "draw"
-            },
-            {
-              "selection": "Canada",
-              "normalized_selection": "canada",
-              "odds": "13/5",
-              "side": "away"
-            },
-            {
-              "selection": "Switzerland",
-              "normalized_selection": "switzerland",
-              "odds": "7/4",
-              "side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Total Goals Over / Under",
-          "normalized_market": "total_goals_over_under",
-          "selection_count": 10,
-          "selections": [
-            {
-              "selection": "Over 0.5",
-              "normalized_selection": "over_0_5",
-              "odds": "1/16",
-              "side": "over",
-              "line": "0.5"
-            },
-            {
-              "selection": "Under 0.5",
-              "normalized_selection": "under_0_5",
-              "odds": "7/1",
-              "side": "under",
-              "line": "0.5"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "1/3",
-              "side": "over",
-              "line": "1.5"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "2/1",
-              "side": "under",
-              "line": "1.5"
-            },
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "11/10",
-              "side": "over",
-              "line": "2.5"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "4/6",
-              "side": "under",
-              "line": "2.5"
-            },
-            {
-              "selection": "Over 3.5",
-              "normalized_selection": "over_3_5",
-              "odds": "14/5",
-              "side": "over",
-              "line": "3.5"
-            },
-            {
-              "selection": "Under 3.5",
-              "normalized_selection": "under_3_5",
               "odds": "2/9",
               "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "15/2",
+              "side": "over",
               "line": "3.5"
             },
             {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "13/2",
-              "side": "over",
-              "line": "4.5"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
               "odds": "1/16",
               "side": "under",
-              "line": "4.5"
-            }
-          ]
-        },
-        {
-          "market": "1st Half Goals Over / Under",
-          "normalized_market": "1st_half_goals_over_under",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 0.5",
-              "normalized_selection": "over_0_5",
-              "odds": "2/5",
-              "side": "over",
-              "line": "0.5"
-            },
-            {
-              "selection": "Under 0.5",
-              "normalized_selection": "under_0_5",
-              "odds": "17/10",
-              "side": "under",
-              "line": "0.5"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "2/1",
-              "side": "over",
-              "line": "1.5"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "1/3",
-              "side": "under",
-              "line": "1.5"
-            },
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "15/2",
-              "side": "over",
-              "line": "2.5"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "1/16",
-              "side": "under",
-              "line": "2.5"
+              "line": "3.5"
             }
           ]
         },
@@ -715,19 +1309,19 @@
           "selection_count": 3,
           "selections": [
             {
+              "selection": "Netherlands",
+              "normalized_selection": "netherlands",
+              "odds": "4/11"
+            },
+            {
               "selection": "Draw",
               "normalized_selection": "draw",
-              "odds": "11/10"
+              "odds": "23/10"
             },
             {
-              "selection": "Canada",
-              "normalized_selection": "canada",
-              "odds": "13/5"
-            },
-            {
-              "selection": "Switzerland",
-              "normalized_selection": "switzerland",
-              "odds": "7/4"
+              "selection": "Tunisia",
+              "normalized_selection": "tunisia",
+              "odds": "14/1"
             }
           ]
         },
@@ -737,918 +1331,370 @@
           "selection_count": 46,
           "selections": [
             {
-              "selection": "Breel Embolo To Score",
-              "normalized_selection": "breel_embolo_to_score",
-              "odds": "9/5",
-              "player": "Breel Embolo",
+              "selection": "Cody Gakpo To Score",
+              "normalized_selection": "cody_gakpo_to_score",
+              "odds": "7/10",
+              "player": "Cody Gakpo",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Jonathan David To Score",
-              "normalized_selection": "jonathan_david_to_score",
-              "odds": "21/10",
-              "player": "Jonathan David",
+              "selection": "Memphis Depay To Score",
+              "normalized_selection": "memphis_depay_to_score",
+              "odds": "7/10",
+              "player": "Memphis Depay",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Zeki Amdouni To Score",
-              "normalized_selection": "zeki_amdouni_to_score",
-              "odds": "11/5",
-              "player": "Zeki Amdouni",
+              "selection": "Donyell Malen To Score",
+              "normalized_selection": "donyell_malen_to_score",
+              "odds": "4/5",
+              "player": "Donyell Malen",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Cedric Itten To Score",
-              "normalized_selection": "cedric_itten_to_score",
-              "odds": "9/4",
-              "player": "Cedric Itten",
+              "selection": "Brian Brobbey To Score",
+              "normalized_selection": "brian_brobbey_to_score",
+              "odds": "4/5",
+              "player": "Brian Brobbey",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Cyle Larin To Score",
-              "normalized_selection": "cyle_larin_to_score",
-              "odds": "9/4",
-              "player": "Cyle Larin",
+              "selection": "Wout Weghorst To Score",
+              "normalized_selection": "wout_weghorst_to_score",
+              "odds": "17/20",
+              "player": "Wout Weghorst",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Promise David To Score",
-              "normalized_selection": "promise_david_to_score",
-              "odds": "5/2",
-              "player": "Promise David",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Noah Okafor To Score",
-              "normalized_selection": "noah_okafor_to_score",
-              "odds": "11/4",
-              "player": "Noah Okafor",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Tani Oluwaseyi To Score",
-              "normalized_selection": "tani_oluwaseyi_to_score",
-              "odds": "14/5",
-              "player": "Tani Oluwaseyi",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Johan Manzambi To Score",
-              "normalized_selection": "johan_manzambi_to_score",
-              "odds": "3/1",
-              "player": "Johan Manzambi",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Dan Ndoye To Score",
-              "normalized_selection": "dan_ndoye_to_score",
-              "odds": "3/1",
-              "player": "Dan Ndoye",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ruben Vargas To Score",
-              "normalized_selection": "ruben_vargas_to_score",
-              "odds": "16/5",
-              "player": "Ruben Vargas",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Christian Fassnacht To Score",
-              "normalized_selection": "christian_fassnacht_to_score",
-              "odds": "17/5",
-              "player": "Christian Fassnacht",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Granit Xhaka To Score",
-              "normalized_selection": "granit_xhaka_to_score",
-              "odds": "4/1",
-              "player": "Granit Xhaka",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Alphonso Davies To Score",
-              "normalized_selection": "alphonso_davies_to_score",
-              "odds": "4/1",
-              "player": "Alphonso Davies",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Jacob Shaffelburg To Score",
-              "normalized_selection": "jacob_shaffelburg_to_score",
-              "odds": "4/1",
-              "player": "Jacob Shaffelburg",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Jayden Nelson To Score",
-              "normalized_selection": "jayden_nelson_to_score",
-              "odds": "4/1",
-              "player": "Jayden Nelson",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Tajon Buchanan To Score",
-              "normalized_selection": "tajon_buchanan_to_score",
-              "odds": "4/1",
-              "player": "Tajon Buchanan",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Jonathan Osorio To Score",
-              "normalized_selection": "jonathan_osorio_to_score",
-              "odds": "4/1",
-              "player": "Jonathan Osorio",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Liam Millar To Score",
-              "normalized_selection": "liam_millar_to_score",
-              "odds": "9/2",
-              "player": "Liam Millar",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ali Ahmed To Score",
-              "normalized_selection": "ali_ahmed_to_score",
-              "odds": "9/2",
-              "player": "Ali Ahmed",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Fabian Rieder To Score",
-              "normalized_selection": "fabian_rieder_to_score",
-              "odds": "5/1",
-              "player": "Fabian Rieder",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ismael Kone To Score",
-              "normalized_selection": "ismael_kone_to_score",
-              "odds": "6/1",
-              "player": "Ismael Kone",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Remo Freuler To Score",
-              "normalized_selection": "remo_freuler_to_score",
-              "odds": "6/1",
-              "player": "Remo Freuler",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Nathan-Dylan Saliba To Score",
-              "normalized_selection": "nathan_dylan_saliba_to_score",
-              "odds": "7/1",
-              "player": "Nathan-Dylan Saliba",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Michel Aebischer To Score",
-              "normalized_selection": "michel_aebischer_to_score",
-              "odds": "15/2",
-              "player": "Michel Aebischer",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Djibril Sow To Score",
-              "normalized_selection": "djibril_sow_to_score",
-              "odds": "15/2",
-              "player": "Djibril Sow",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Silvan Widmer To Score",
-              "normalized_selection": "silvan_widmer_to_score",
-              "odds": "9/1",
-              "player": "Silvan Widmer",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Denis Zakaria To Score",
-              "normalized_selection": "denis_zakaria_to_score",
-              "odds": "9/1",
-              "player": "Denis Zakaria",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Stephen Eustaquio To Score",
-              "normalized_selection": "stephen_eustaquio_to_score",
-              "odds": "9/1",
-              "player": "Stephen Eustaquio",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ricardo Rodriguez To Score",
-              "normalized_selection": "ricardo_rodriguez_to_score",
-              "odds": "10/1",
-              "player": "Ricardo Rodriguez",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Mathieu Choiniere To Score",
-              "normalized_selection": "mathieu_choiniere_to_score",
-              "odds": "10/1",
-              "player": "Mathieu Choiniere",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Alfie Jones To Score",
-              "normalized_selection": "alfie_jones_to_score",
-              "odds": "10/1",
-              "player": "Alfie Jones",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ardon Jashari To Score",
-              "normalized_selection": "ardon_jashari_to_score",
-              "odds": "10/1",
-              "player": "Ardon Jashari",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Richie Laryea To Score",
-              "normalized_selection": "richie_laryea_to_score",
-              "odds": "11/1",
-              "player": "Richie Laryea",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Manuel Akanji To Score",
-              "normalized_selection": "manuel_akanji_to_score",
-              "odds": "11/1",
-              "player": "Manuel Akanji",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Niko Sigur To Score",
-              "normalized_selection": "niko_sigur_to_score",
-              "odds": "11/1",
-              "player": "Niko Sigur",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Alistair Johnston To Score",
-              "normalized_selection": "alistair_johnston_to_score",
-              "odds": "11/1",
-              "player": "Alistair Johnston",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Joel Waterman To Score",
-              "normalized_selection": "joel_waterman_to_score",
-              "odds": "12/1",
-              "player": "Joel Waterman",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Luca Jaquez To Score",
-              "normalized_selection": "luca_jaquez_to_score",
-              "odds": "12/1",
-              "player": "Luca Jaquez",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Nico Elvedi To Score",
-              "normalized_selection": "nico_elvedi_to_score",
-              "odds": "12/1",
-              "player": "Nico Elvedi",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Moise Bombito To Score",
-              "normalized_selection": "moise_bombito_to_score",
-              "odds": "12/1",
-              "player": "Moise Bombito",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Miro Muheim To Score",
-              "normalized_selection": "miro_muheim_to_score",
-              "odds": "12/1",
-              "player": "Miro Muheim",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Eray Comert To Score",
-              "normalized_selection": "eray_comert_to_score",
-              "odds": "14/1",
-              "player": "Eray Comert",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Luc De Fougerolles To Score",
-              "normalized_selection": "luc_de_fougerolles_to_score",
-              "odds": "16/1",
-              "player": "Luc De Fougerolles",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Derek Cornelius To Score",
-              "normalized_selection": "derek_cornelius_to_score",
-              "odds": "16/1",
-              "player": "Derek Cornelius",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Aurele Amenda To Score",
-              "normalized_selection": "aurele_amenda_to_score",
-              "odds": "16/1",
-              "player": "Aurele Amenda",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Scotland v Brazil",
-      "home_team": "Scotland",
-      "away_team": "Brazil",
-      "url": "https://www.888sport.com/football/international/world-cup-2026/scotland-vs-brazil-e-7685341/",
-      "markets": [
-        {
-          "market": "Match Betting",
-          "normalized_market": "match_betting",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Brazil",
-              "normalized_selection": "brazil",
-              "odds": "8/11",
-              "side": "away"
-            },
-            {
-              "selection": "Scotland",
-              "normalized_selection": "scotland",
-              "odds": "15/2",
-              "side": "home"
-            },
-            {
-              "selection": "Draw",
-              "normalized_selection": "draw",
-              "odds": "29/20",
-              "side": "draw"
-            }
-          ]
-        },
-        {
-          "market": "Total Goals Over / Under",
-          "normalized_market": "total_goals_over_under",
-          "selection_count": 10,
-          "selections": [
-            {
-              "selection": "Over 0.5",
-              "normalized_selection": "over_0_5",
-              "odds": "1/25",
-              "side": "over",
-              "line": "0.5"
-            },
-            {
-              "selection": "Under 0.5",
-              "normalized_selection": "under_0_5",
-              "odds": "11/1",
-              "side": "under",
-              "line": "0.5"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "2/9",
-              "side": "over",
-              "line": "1.5"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "11/4",
-              "side": "under",
-              "line": "1.5"
-            },
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "3/4",
-              "side": "over",
-              "line": "2.5"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "1/1",
-              "side": "under",
-              "line": "2.5"
-            },
-            {
-              "selection": "Over 3.5",
-              "normalized_selection": "over_3_5",
-              "odds": "19/10",
-              "side": "over",
-              "line": "3.5"
-            },
-            {
-              "selection": "Under 3.5",
-              "normalized_selection": "under_3_5",
-              "odds": "4/11",
-              "side": "under",
-              "line": "3.5"
-            },
-            {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "4/1",
-              "side": "over",
-              "line": "4.5"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
-              "odds": "1/8",
-              "side": "under",
-              "line": "4.5"
-            }
-          ]
-        },
-        {
-          "market": "1st Half Goals Over / Under",
-          "normalized_market": "1st_half_goals_over_under",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 0.5",
-              "normalized_selection": "over_0_5",
-              "odds": "3/10",
-              "side": "over",
-              "line": "0.5"
-            },
-            {
-              "selection": "Under 0.5",
-              "normalized_selection": "under_0_5",
-              "odds": "11/5",
-              "side": "under",
-              "line": "0.5"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "29/20",
-              "side": "over",
-              "line": "1.5"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "1/2",
-              "side": "under",
-              "line": "1.5"
-            },
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "5/1",
-              "side": "over",
-              "line": "2.5"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "1/9",
-              "side": "under",
-              "line": "2.5"
-            }
-          ]
-        },
-        {
-          "market": "Half Time Result",
-          "normalized_market": "half_time_result",
-          "selection_count": 3,
-          "selections": [
-            {
-              "selection": "Brazil",
-              "normalized_selection": "brazil",
-              "odds": "8/11"
-            },
-            {
-              "selection": "Scotland",
-              "normalized_selection": "scotland",
-              "odds": "15/2"
-            },
-            {
-              "selection": "Draw",
-              "normalized_selection": "draw",
-              "odds": "29/20"
-            }
-          ]
-        },
-        {
-          "market": "Player to Score",
-          "normalized_market": "player_to_score",
-          "selection_count": 45,
-          "selections": [
-            {
-              "selection": "Vinicius To Score",
-              "normalized_selection": "vinicius_to_score",
+              "selection": "Guus Til To Score",
+              "normalized_selection": "guus_til_to_score",
               "odds": "11/10",
-              "player": "Vinicius",
+              "player": "Guus Til",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Matheus Cunha To Score",
-              "normalized_selection": "matheus_cunha_to_score",
-              "odds": "6/5",
-              "player": "Matheus Cunha",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Igor Thiago To Score",
-              "normalized_selection": "igor_thiago_to_score",
+              "selection": "Crysencio Summerville To Score",
+              "normalized_selection": "crysencio_summerville_to_score",
               "odds": "11/8",
-              "player": "Igor Thiago",
+              "player": "Crysencio Summerville",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Endrick To Score",
-              "normalized_selection": "endrick_to_score",
-              "odds": "11/8",
-              "player": "Endrick",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Neymar To Score",
-              "normalized_selection": "neymar_to_score",
+              "selection": "Justin Kluivert To Score",
+              "normalized_selection": "justin_kluivert_to_score",
               "odds": "6/4",
-              "player": "Neymar",
+              "player": "Justin Kluivert",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Rayan To Score",
-              "normalized_selection": "rayan_to_score",
+              "selection": "Teun Koopmeiners To Score",
+              "normalized_selection": "teun_koopmeiners_to_score",
+              "odds": "17/10",
+              "player": "Teun Koopmeiners",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Noa Lang To Score",
+              "normalized_selection": "noa_lang_to_score",
               "odds": "7/4",
-              "player": "Rayan",
+              "player": "Noa Lang",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Luiz Henrique To Score",
-              "normalized_selection": "luiz_henrique_to_score",
+              "selection": "Tijjani Reijnders To Score",
+              "normalized_selection": "tijjani_reijnders_to_score",
               "odds": "2/1",
-              "player": "Luiz Henrique",
+              "player": "Tijjani Reijnders",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Gabriel Martinelli To Score",
-              "normalized_selection": "gabriel_martinelli_to_score",
-              "odds": "9/4",
-              "player": "Gabriel Martinelli",
+              "selection": "Denzel Dumfries To Score",
+              "normalized_selection": "denzel_dumfries_to_score",
+              "odds": "10/3",
+              "player": "Denzel Dumfries",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Lucas Paqueta To Score",
-              "normalized_selection": "lucas_paqueta_to_score",
-              "odds": "12/5",
-              "player": "Lucas Paqueta",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Danilo To Score",
-              "normalized_selection": "danilo_to_score",
-              "odds": "7/2",
-              "player": "Danilo",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Ederson Lourenco To Score",
-              "normalized_selection": "ederson_lourenco_to_score",
-              "odds": "7/2",
-              "player": "Ederson Lourenco",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Lawrence Shankland To Score",
-              "normalized_selection": "lawrence_shankland_to_score",
+              "selection": "Virgil van Dijk To Score",
+              "normalized_selection": "virgil_van_dijk_to_score",
               "odds": "4/1",
-              "player": "Lawrence Shankland",
+              "player": "Virgil van Dijk",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Casemiro To Score",
-              "normalized_selection": "casemiro_to_score",
+              "selection": "Quinten Timber To Score",
+              "normalized_selection": "quinten_timber_to_score",
               "odds": "4/1",
-              "player": "Casemiro",
+              "player": "Quinten Timber",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Che Adams To Score",
-              "normalized_selection": "che_adams_to_score",
+              "selection": "Mats Wieffer To Score",
+              "normalized_selection": "mats_wieffer_to_score",
               "odds": "4/1",
-              "player": "Che Adams",
+              "player": "Mats Wieffer",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Ross Stewart To Score",
-              "normalized_selection": "ross_stewart_to_score",
-              "odds": "9/2",
-              "player": "Ross Stewart",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Lyndon Dykes To Score",
-              "normalized_selection": "lyndon_dykes_to_score",
+              "selection": "Lutsharel Geertruida To Score",
+              "normalized_selection": "lutsharel_geertruida_to_score",
               "odds": "19/4",
-              "player": "Lyndon Dykes",
+              "player": "Lutsharel Geertruida",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Scott McTominay To Score",
-              "normalized_selection": "scott_mctominay_to_score",
+              "selection": "Hazem Mastouri To Score",
+              "normalized_selection": "hazem_mastouri_to_score",
               "odds": "5/1",
-              "player": "Scott McTominay",
+              "player": "Hazem Mastouri",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Bruno Guimaraes To Score",
-              "normalized_selection": "bruno_guimaraes_to_score",
+              "selection": "Nathan Ake To Score",
+              "normalized_selection": "nathan_ake_to_score",
               "odds": "5/1",
-              "player": "Bruno Guimaraes",
+              "player": "Nathan Ake",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "George Hirst To Score",
-              "normalized_selection": "george_hirst_to_score",
+              "selection": "Micky van de Ven To Score",
+              "normalized_selection": "micky_van_de_ven_to_score",
               "odds": "5/1",
-              "player": "George Hirst",
+              "player": "Micky van de Ven",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Bremer To Score",
-              "normalized_selection": "bremer_to_score",
+              "selection": "Marten de Roon To Score",
+              "normalized_selection": "marten_de_roon_to_score",
+              "odds": "5/1",
+              "player": "Marten de Roon",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Ryan Gravenberch To Score",
+              "normalized_selection": "ryan_gravenberch_to_score",
               "odds": "6/1",
-              "player": "Bremer",
+              "player": "Ryan Gravenberch",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Roger Ibanez To Score",
-              "normalized_selection": "roger_ibanez_to_score",
+              "selection": "Firas Chaouat To Score",
+              "normalized_selection": "firas_chaouat_to_score",
               "odds": "6/1",
-              "player": "Roger Ibanez",
+              "player": "Firas Chaouat",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "John McGinn To Score",
-              "normalized_selection": "john_mcginn_to_score",
+              "selection": "Rayan Elloumi To Score",
+              "normalized_selection": "rayan_elloumi_to_score",
               "odds": "6/1",
-              "player": "John McGinn",
+              "player": "Rayan Elloumi",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Findlay Curtis To Score",
-              "normalized_selection": "findlay_curtis_to_score",
+              "selection": "Elias Saad To Score",
+              "normalized_selection": "elias_saad_to_score",
+              "odds": "6/1",
+              "player": "Elias Saad",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Anis Ben Slimane To Score",
+              "normalized_selection": "anis_ben_slimane_to_score",
               "odds": "13/2",
-              "player": "Findlay Curtis",
+              "player": "Anis Ben Slimane",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Fabinho To Score",
-              "normalized_selection": "fabinho_to_score",
-              "odds": "13/2",
-              "player": "Fabinho",
+              "selection": "Elias Achouri To Score",
+              "normalized_selection": "elias_achouri_to_score",
+              "odds": "7/1",
+              "player": "Elias Achouri",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Ryan Christie To Score",
-              "normalized_selection": "ryan_christie_to_score",
+              "selection": "Jan Paul van Hecke To Score",
+              "normalized_selection": "jan_paul_van_hecke_to_score",
+              "odds": "7/1",
+              "player": "Jan Paul van Hecke",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Jorrel Hato To Score",
+              "normalized_selection": "jorrel_hato_to_score",
+              "odds": "15/2",
+              "player": "Jorrel Hato",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Ismael Gharbi To Score",
+              "normalized_selection": "ismael_gharbi_to_score",
+              "odds": "15/2",
+              "player": "Ismael Gharbi",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Frenkie de Jong To Score",
+              "normalized_selection": "frenkie_de_jong_to_score",
               "odds": "8/1",
-              "player": "Ryan Christie",
+              "player": "Frenkie de Jong",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Ben Gannon-Doak To Score",
-              "normalized_selection": "ben_gannon_doak_to_score",
-              "odds": "8/1",
-              "player": "Ben Gannon-Doak",
+              "selection": "Ali Abdi To Score",
+              "normalized_selection": "ali_abdi_to_score",
+              "odds": "17/2",
+              "player": "Ali Abdi",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Gabriel Magalhaes To Score",
-              "normalized_selection": "gabriel_magalhaes_to_score",
-              "odds": "9/1",
-              "player": "Gabriel Magalhaes",
+              "selection": "Sebastian Tounekti To Score",
+              "normalized_selection": "sebastian_tounekti_to_score",
+              "odds": "17/2",
+              "player": "Sebastian Tounekti",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Danilo da Silva To Score",
-              "normalized_selection": "danilo_da_silva_to_score",
-              "odds": "9/1",
-              "player": "Danilo da Silva",
+              "selection": "Mortadha Ben Ouanes To Score",
+              "normalized_selection": "mortadha_ben_ouanes_to_score",
+              "odds": "10/1",
+              "player": "Mortadha Ben Ouanes",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Alex Sandro To Score",
-              "normalized_selection": "alex_sandro_to_score",
-              "odds": "9/1",
-              "player": "Alex Sandro",
+              "selection": "Khalil Ayari To Score",
+              "normalized_selection": "khalil_ayari_to_score",
+              "odds": "10/1",
+              "player": "Khalil Ayari",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Leo Pereira To Score",
-              "normalized_selection": "leo_pereira_to_score",
-              "odds": "9/1",
-              "player": "Leo Pereira",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Douglas Santos To Score",
-              "normalized_selection": "douglas_santos_to_score",
-              "odds": "9/1",
-              "player": "Douglas Santos",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Kenny McLean To Score",
-              "normalized_selection": "kenny_mclean_to_score",
+              "selection": "Rani Khedira To Score",
+              "normalized_selection": "rani_khedira_to_score",
               "odds": "11/1",
-              "player": "Kenny McLean",
+              "player": "Rani Khedira",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Kieran Tierney To Score",
-              "normalized_selection": "kieran_tierney_to_score",
+              "selection": "Hannibal Mejbri To Score",
+              "normalized_selection": "hannibal_mejbri_to_score",
               "odds": "11/1",
-              "player": "Kieran Tierney",
+              "player": "Hannibal Mejbri",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Tyler Fletcher To Score",
-              "normalized_selection": "tyler_fletcher_to_score",
+              "selection": "Ellyes Skhiri To Score",
+              "normalized_selection": "ellyes_skhiri_to_score",
               "odds": "12/1",
-              "player": "Tyler Fletcher",
+              "player": "Ellyes Skhiri",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Lewis Ferguson To Score",
-              "normalized_selection": "lewis_ferguson_to_score",
-              "odds": "12/1",
-              "player": "Lewis Ferguson",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Marquinhos To Score",
-              "normalized_selection": "marquinhos_to_score",
-              "odds": "14/1",
-              "player": "Marquinhos",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Anthony Ralston To Score",
-              "normalized_selection": "anthony_ralston_to_score",
+              "selection": "Hadj Mahmoud To Score",
+              "normalized_selection": "hadj_mahmoud_to_score",
               "odds": "18/1",
-              "player": "Anthony Ralston",
+              "player": "Hadj Mahmoud",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Dominic Hyam To Score",
-              "normalized_selection": "dominic_hyam_to_score",
-              "odds": "20/1",
-              "player": "Dominic Hyam",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Scott McKenna To Score",
-              "normalized_selection": "scott_mckenna_to_score",
-              "odds": "20/1",
-              "player": "Scott McKenna",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "Aaron Hickey To Score",
-              "normalized_selection": "aaron_hickey_to_score",
-              "odds": "20/1",
-              "player": "Aaron Hickey",
-              "prop_type": "anytime_scorer",
-              "line": "0.5"
-            },
-            {
-              "selection": "John Souttar To Score",
-              "normalized_selection": "john_souttar_to_score",
+              "selection": "Yan Valery To Score",
+              "normalized_selection": "yan_valery_to_score",
               "odds": "22/1",
-              "player": "John Souttar",
+              "player": "Yan Valery",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Andrew Robertson To Score",
-              "normalized_selection": "andrew_robertson_to_score",
+              "selection": "Raed Chikhaoui To Score",
+              "normalized_selection": "raed_chikhaoui_to_score",
               "odds": "22/1",
-              "player": "Andrew Robertson",
+              "player": "Raed Chikhaoui",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Jack Hendry To Score",
-              "normalized_selection": "jack_hendry_to_score",
+              "selection": "Montassar Talbi To Score",
+              "normalized_selection": "montassar_talbi_to_score",
               "odds": "22/1",
-              "player": "Jack Hendry",
+              "player": "Montassar Talbi",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Nathan Patterson To Score",
-              "normalized_selection": "nathan_patterson_to_score",
+              "selection": "Moutaz Neffati To Score",
+              "normalized_selection": "moutaz_neffati_to_score",
+              "odds": "22/1",
+              "player": "Moutaz Neffati",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Dylan Bronn To Score",
+              "normalized_selection": "dylan_bronn_to_score",
+              "odds": "25/1",
+              "player": "Dylan Bronn",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Omar Rekik To Score",
+              "normalized_selection": "omar_rekik_to_score",
               "odds": "28/1",
-              "player": "Nathan Patterson",
+              "player": "Omar Rekik",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             },
             {
-              "selection": "Grant Hanley To Score",
-              "normalized_selection": "grant_hanley_to_score",
+              "selection": "Mohamed Amine Ben Hamida To Score",
+              "normalized_selection": "mohamed_amine_ben_hamida_to_score",
               "odds": "28/1",
-              "player": "Grant Hanley",
+              "player": "Mohamed Amine Ben Hamida",
+              "prop_type": "anytime_scorer",
+              "line": "0.5"
+            },
+            {
+              "selection": "Adem Arous To Score",
+              "normalized_selection": "adem_arous_to_score",
+              "odds": "28/1",
+              "player": "Adem Arous",
               "prop_type": "anytime_scorer",
               "line": "0.5"
             }
