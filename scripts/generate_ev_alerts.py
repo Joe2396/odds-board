@@ -204,21 +204,54 @@ def clean_selection(s):
 def selection_key(s):
     text = clean_selection(s).lower()
 
-    replacements = {
-        "ko/tko": "ko",
-        "tko/ko": "ko",
-        "ko or tko": "ko",
-        "knockout": "ko",
-        "submission": "sub",
-        "decision": "dec",
-        "points": "dec",
-        "unanimous": "dec",
-        "split": "dec",
-        "majority": "dec",
-    }
+    # Strip fighter name prefix
+    text = re.sub(r"^[a-z\s\.]+ by ", "", text)
+    text = re.sub(r"^[a-z\s\.]+ via ", "", text)
+    text = re.sub(r"^[a-z\s\.]+\s+-\s+", "", text)
 
-    for old, new in replacements.items():
-        text = text.replace(old, new)
+    # Normalise GTD prefix
+    text = re.sub(r"goes?\s+the\s+distance\s*[-\u2013]?\s*", "", text)
+
+    # Normalise rounds
+    text = re.sub(r"\([\d\s\.\-]+\)", "", text)
+    text = re.sub(r"\s+rounds?\b", "", text)
+
+    # Split compound labels on separators
+    text = re.sub(r"[/,]", " ", text)
+    text = re.sub(r"\bor\b", " ", text)
+    text = re.sub(r"\band\b", " ", text)
+
+    # Normalise MOV keywords
+    text = text.replace("knockout", "ko")
+    text = text.replace("tko", "ko")
+    text = text.replace("disqualification", "dq")
+    text = text.replace("submission", "sub")
+    text = text.replace("technical decision", "dec")
+    text = text.replace("technical dec", "dec")
+    text = text.replace("unanimous decision", "dec")
+    text = text.replace("unanimous", "dec")
+    text = text.replace("split decision", "dec")
+    text = text.replace("split", "dec")
+    text = text.replace("majority decision", "dec")
+    text = text.replace("majority", "dec")
+    text = text.replace("decision", "dec")
+    text = text.replace("points", "dec")
+
+    # Canonicalise compound MOV
+    has_ko  = "ko" in text.split()
+    has_sub = "sub" in text.split()
+    has_dec = "dec" in text.split() or "dq" in text.split()
+
+    if has_ko or has_sub or has_dec:
+        if not any(x in text for x in ["over", "under", "round", "yes", "no", ".5", ".0"]):
+            if has_ko and has_sub:
+                text = "ko"
+            elif has_ko:
+                text = "ko"
+            elif has_sub:
+                text = "sub"
+            else:
+                text = "dec"
 
     text = re.sub(r"[^a-z0-9\s\.]", " ", text)
     text = re.sub(r"\s+", " ", text).strip()

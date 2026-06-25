@@ -192,43 +192,65 @@ def clean_selection(selection):
 def selection_key(selection):
     text = clean_selection(selection).lower()
 
-    # Normalise MOV labels
-    text = text.replace("ko/tko", "ko")
-    text = text.replace("tko/ko", "ko")
-    text = text.replace("knockout", "ko")
-    text = text.replace("submission", "sub")
-    text = text.replace("decision", "dec")
-    text = text.replace("technical dec", "dec")
-    text = text.replace("unanimous", "dec")
-    text = text.replace("split", "dec")
-    text = text.replace("majority", "dec")
-    text = text.replace("disqualification", "dq")
+    # Strip fighter name prefix first ("Fighter by X" / "Fighter - X" / "Fighter via X")
+    text = re.sub(r"^[a-z\s\.]+ by ", "", text)
+    text = re.sub(r"^[a-z\s\.]+ via ", "", text)
+    text = re.sub(r"^[a-z\s\.]+\s+-\s+", "", text)
+    text = re.sub(r"^[a-z\s\.]+ wins? by ", "", text)
 
-    # Normalise compound MOV: "ko or submission" -> "ko"
-    # Coral uses "KO / TKO / Submission" -> normalise to just "ko"
-    text = re.sub(r"ko.*?sub[^a-z]*", "ko ", text)
+    # Normalise fractions
+    text = text.replace("\u00bd", ".5").replace("\u00bc", ".25").replace("\u00be", ".75")
 
-    # Normalise GTD
+    # Normalise GTD prefix
     text = re.sub(r"goes?\s+the\s+distance\s*[-\u2013]?\s*", "", text)
 
     # Normalise rounds: strip bracket ranges and trailing "rounds"
     text = re.sub(r"\([\d\s\.\-]+\)", "", text)
     text = re.sub(r"\s+rounds?\b", "", text)
 
-    # Normalise fractions
-    text = text.replace("\u00bd", ".5").replace("\u00bc", ".25").replace("\u00be", ".75")
-
-    # Strip fighter name prefix ("Fighter by X" -> "X", "Fighter - X" -> "X")
-    text = re.sub(r"^[a-z\s]+ by ", "", text)
-    text = re.sub(r"^[a-z\s]+ via ", "", text)
-    text = re.sub(r"^[a-z\s]+\s+-\s+", "", text)
-    text = re.sub(r"^[a-z\s]+ wins? by ", "", text)
-
-    # Strip "or", "and", "/" connectors between outcome types to normalise
-    # e.g. "ko or disqualification" -> "ko dq", "dec or technical dec" -> "dec"
+    # Replace all separators (/, comma, "or", "and") with space so compound
+    # labels like "ko, tko or disqualification" become "ko tko dq"
+    text = re.sub(r"[/,]", " ", text)
     text = re.sub(r"\bor\b", " ", text)
     text = re.sub(r"\band\b", " ", text)
-    text = re.sub(r"/", " ", text)
+
+    # Normalise MOV keywords AFTER splitting on separators
+    text = text.replace("knockout", "ko")
+    text = text.replace("tko", "ko")         # tko -> ko
+    text = text.replace("ko", "ko")
+    text = text.replace("disqualification", "dq")
+    text = text.replace("submission", "sub")
+    text = text.replace("technical decision", "dec")
+    text = text.replace("technical dec", "dec")
+    text = text.replace("unanimous decision", "dec")
+    text = text.replace("unanimous", "dec")
+    text = text.replace("split decision", "dec")
+    text = text.replace("split", "dec")
+    text = text.replace("majority decision", "dec")
+    text = text.replace("majority", "dec")
+    text = text.replace("decision", "dec")
+    text = text.replace("points", "dec")
+
+    # Now canonicalise compound MOV to a single outcome type:
+    # If text contains "ko" -> canonical is "ko" (KO beats everything)
+    # "sub" alone -> "sub"
+    # "dec" or "dq" alone -> "dec"
+    # "ko" + anything -> "ko"
+    has_ko  = "ko" in text.split()
+    has_sub = "sub" in text.split()
+    has_dec = "dec" in text.split() or "dq" in text.split()
+
+    # Only canonicalise MOV compound labels (not round/over/under/yes/no)
+    if has_ko or has_sub or has_dec:
+        if not any(x in text for x in ["over", "under", "round", "yes", "no", ".5", ".0"]):
+            if has_ko and has_sub:
+                text = "ko"   # "ko or submission" -> ko (rarest joint offer)
+            elif has_ko:
+                text = "ko"
+            elif has_sub:
+                text = "sub"
+            else:
+                text = "dec"
 
     text = re.sub(r"[^a-z0-9\s\.]", "", text)
     text = re.sub(r"\s+", " ", text).strip()
