@@ -285,6 +285,10 @@ def extract_rows_from_fight(default_bookmaker, fight, upcoming_keys):
             if dec <= 1.0:
                 continue
 
+            # Exclude Draw from UFC markets
+            if clean_selection(sel).lower().strip() in ("draw", "a draw"):
+                continue
+
             rows.append({
                 "fight": fight_name,
                 "fight_key": fkey,

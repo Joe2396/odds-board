@@ -1,0 +1,1981 @@
+{
+  "sport": "football",
+  "competition": "FIFA World Cup",
+  "bookmaker": "BetVictor",
+  "market_type": "bet_builder_match_stats_fast_test_v3_row_pairing",
+  "test_mode": true,
+  "generated_at": "2026-06-25T00:02:57.050527+00:00",
+  "source_props_generated_at": "2026-06-24T22:12:02.062380+00:00",
+  "max_matches": 3,
+  "match_count": 3,
+  "matches_with_all_six_markets": 3,
+  "elapsed_seconds": 92.44,
+  "matches": [
+    {
+      "match": "Czechia v Mexico",
+      "home_team": "Czechia",
+      "away_team": "Mexico",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108300",
+      "kickoff": "2026-06-25T01:00:00+00:00",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "heading_clicked": "Match Shots on Target",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 61,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "4+",
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "1/26",
+              "1/8",
+              "3/10",
+              "4/7"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.87,
+          "selections": [
+            {
+              "selection": "Match Shots On Target 4+",
+              "normalized_selection": "match_shots_on_target_4",
+              "odds": "1/26",
+              "threshold": "4+",
+              "stat": "shots_on_target"
+            },
+            {
+              "selection": "Match Shots On Target 5+",
+              "normalized_selection": "match_shots_on_target_5",
+              "odds": "1/8",
+              "threshold": "5+",
+              "stat": "shots_on_target"
+            },
+            {
+              "selection": "Match Shots On Target 6+",
+              "normalized_selection": "match_shots_on_target_6",
+              "odds": "3/10",
+              "threshold": "6+",
+              "stat": "shots_on_target"
+            },
+            {
+              "selection": "Match Shots On Target 7+",
+              "normalized_selection": "match_shots_on_target_7",
+              "odds": "4/7",
+              "threshold": "7+",
+              "stat": "shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "heading_clicked": "Match Shots",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 58,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "20+",
+              "21+",
+              "22+",
+              "23+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "3/4",
+              "3/5",
+              "7/20",
+              "9/20"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.63,
+          "selections": [
+            {
+              "selection": "Match Shots 20+",
+              "normalized_selection": "match_shots_20",
+              "odds": "7/20",
+              "threshold": "20+",
+              "stat": "shots"
+            },
+            {
+              "selection": "Match Shots 21+",
+              "normalized_selection": "match_shots_21",
+              "odds": "9/20",
+              "threshold": "21+",
+              "stat": "shots"
+            },
+            {
+              "selection": "Match Shots 22+",
+              "normalized_selection": "match_shots_22",
+              "odds": "3/5",
+              "threshold": "22+",
+              "stat": "shots"
+            },
+            {
+              "selection": "Match Shots 23+",
+              "normalized_selection": "match_shots_23",
+              "odds": "3/4",
+              "threshold": "23+",
+              "stat": "shots"
+            }
+          ]
+        },
+        {
+          "market": "Czechia Shots On Target",
+          "normalized_market": "czechia_shots_on_target",
+          "heading_clicked": "Czechia Shots on Target",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 3,
+            "odds": 3,
+            "text_length": 48,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 3,
+            "rows_after": 3
+          },
+          "selection_audit": {
+            "raw_row_count": 3,
+            "unique_threshold_count": 3,
+            "selection_count": 3,
+            "thresholds": [
+              "4+",
+              "5+",
+              "6+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 3,
+            "unique_prices": [
+              "19/5",
+              "2/1",
+              "20/21"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 3,
+          "elapsed_seconds": 1.54,
+          "selections": [
+            {
+              "selection": "Czechia Shots On Target 4+",
+              "normalized_selection": "czechia_shots_on_target_4",
+              "odds": "20/21",
+              "threshold": "4+",
+              "stat": "shots_on_target",
+              "team": "Czechia"
+            },
+            {
+              "selection": "Czechia Shots On Target 5+",
+              "normalized_selection": "czechia_shots_on_target_5",
+              "odds": "2/1",
+              "threshold": "5+",
+              "stat": "shots_on_target",
+              "team": "Czechia"
+            },
+            {
+              "selection": "Czechia Shots On Target 6+",
+              "normalized_selection": "czechia_shots_on_target_6",
+              "odds": "19/5",
+              "threshold": "6+",
+              "stat": "shots_on_target",
+              "team": "Czechia"
+            }
+          ]
+        },
+        {
+          "market": "Czechia Shots",
+          "normalized_market": "czechia_shots",
+          "heading_clicked": "Czechia Shots",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 60,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "8+",
+              "9+",
+              "10+",
+              "11+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "1/5",
+              "19/40",
+              "27/40",
+              "8/25"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.61,
+          "selections": [
+            {
+              "selection": "Czechia Shots 8+",
+              "normalized_selection": "czechia_shots_8",
+              "odds": "1/5",
+              "threshold": "8+",
+              "stat": "shots",
+              "team": "Czechia"
+            },
+            {
+              "selection": "Czechia Shots 9+",
+              "normalized_selection": "czechia_shots_9",
+              "odds": "8/25",
+              "threshold": "9+",
+              "stat": "shots",
+              "team": "Czechia"
+            },
+            {
+              "selection": "Czechia Shots 10+",
+              "normalized_selection": "czechia_shots_10",
+              "odds": "19/40",
+              "threshold": "10+",
+              "stat": "shots",
+              "team": "Czechia"
+            },
+            {
+              "selection": "Czechia Shots 11+",
+              "normalized_selection": "czechia_shots_11",
+              "odds": "27/40",
+              "threshold": "11+",
+              "stat": "shots",
+              "team": "Czechia"
+            }
+          ]
+        },
+        {
+          "market": "Mexico Shots On Target",
+          "normalized_market": "mexico_shots_on_target",
+          "heading_clicked": "Mexico Shots on Target",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 3,
+            "odds": 3,
+            "text_length": 57,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 3,
+            "rows_after": 3
+          },
+          "selection_audit": {
+            "raw_row_count": 3,
+            "unique_threshold_count": 3,
+            "selection_count": 3,
+            "thresholds": [
+              "2+",
+              "3+",
+              "4+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 3,
+            "unique_prices": [
+              "2/25",
+              "29/100",
+              "7/10"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 3,
+          "elapsed_seconds": 1.55,
+          "selections": [
+            {
+              "selection": "Mexico Shots On Target 2+",
+              "normalized_selection": "mexico_shots_on_target_2",
+              "odds": "2/25",
+              "threshold": "2+",
+              "stat": "shots_on_target",
+              "team": "Mexico"
+            },
+            {
+              "selection": "Mexico Shots On Target 3+",
+              "normalized_selection": "mexico_shots_on_target_3",
+              "odds": "29/100",
+              "threshold": "3+",
+              "stat": "shots_on_target",
+              "team": "Mexico"
+            },
+            {
+              "selection": "Mexico Shots On Target 4+",
+              "normalized_selection": "mexico_shots_on_target_4",
+              "odds": "7/10",
+              "threshold": "4+",
+              "stat": "shots_on_target",
+              "team": "Mexico"
+            }
+          ]
+        },
+        {
+          "market": "Mexico Shots",
+          "normalized_market": "mexico_shots",
+          "heading_clicked": "Mexico Shots",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 58,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "9+",
+              "10+",
+              "11+",
+              "12+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "11/40",
+              "3/5",
+              "5/12",
+              "5/6"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.59,
+          "selections": [
+            {
+              "selection": "Mexico Shots 9+",
+              "normalized_selection": "mexico_shots_9",
+              "odds": "11/40",
+              "threshold": "9+",
+              "stat": "shots",
+              "team": "Mexico"
+            },
+            {
+              "selection": "Mexico Shots 10+",
+              "normalized_selection": "mexico_shots_10",
+              "odds": "5/12",
+              "threshold": "10+",
+              "stat": "shots",
+              "team": "Mexico"
+            },
+            {
+              "selection": "Mexico Shots 11+",
+              "normalized_selection": "mexico_shots_11",
+              "odds": "3/5",
+              "threshold": "11+",
+              "stat": "shots",
+              "team": "Mexico"
+            },
+            {
+              "selection": "Mexico Shots 12+",
+              "normalized_selection": "mexico_shots_12",
+              "odds": "5/6",
+              "threshold": "12+",
+              "stat": "shots",
+              "team": "Mexico"
+            }
+          ]
+        }
+      ],
+      "event_page_ready": true,
+      "match_stats_active": true,
+      "tab_audit": {
+        "already_active": false,
+        "attempts": [
+          {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "BUTTON",
+                "blocker_class": "coupons-sub-navigation__item bvs-button-tab"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "BUTTON",
+                "blocker_class": "coupons-sub-navigation__item bvs-button-tab"
+              }
+            }
+          }
+        ]
+      },
+      "elapsed_seconds": 31.27
+    },
+    {
+      "match": "South Africa v South Korea",
+      "home_team": "South Africa",
+      "away_team": "South Korea",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107300",
+      "kickoff": "2026-06-25T01:00:00+00:00",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "heading_clicked": "Match Shots on Target",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 65,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "5+",
+              "6+",
+              "7+",
+              "8+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "1/11",
+              "21/100",
+              "5/12",
+              "7/10"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.86,
+          "selections": [
+            {
+              "selection": "Match Shots On Target 5+",
+              "normalized_selection": "match_shots_on_target_5",
+              "odds": "1/11",
+              "threshold": "5+",
+              "stat": "shots_on_target"
+            },
+            {
+              "selection": "Match Shots On Target 6+",
+              "normalized_selection": "match_shots_on_target_6",
+              "odds": "21/100",
+              "threshold": "6+",
+              "stat": "shots_on_target"
+            },
+            {
+              "selection": "Match Shots On Target 7+",
+              "normalized_selection": "match_shots_on_target_7",
+              "odds": "5/12",
+              "threshold": "7+",
+              "stat": "shots_on_target"
+            },
+            {
+              "selection": "Match Shots On Target 8+",
+              "normalized_selection": "match_shots_on_target_8",
+              "odds": "7/10",
+              "threshold": "8+",
+              "stat": "shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "heading_clicked": "Match Shots",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 61,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "20+",
+              "21+",
+              "22+",
+              "23+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "27/40",
+              "5/12",
+              "8/15",
+              "8/25"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.75,
+          "selections": [
+            {
+              "selection": "Match Shots 20+",
+              "normalized_selection": "match_shots_20",
+              "odds": "8/25",
+              "threshold": "20+",
+              "stat": "shots"
+            },
+            {
+              "selection": "Match Shots 21+",
+              "normalized_selection": "match_shots_21",
+              "odds": "5/12",
+              "threshold": "21+",
+              "stat": "shots"
+            },
+            {
+              "selection": "Match Shots 22+",
+              "normalized_selection": "match_shots_22",
+              "odds": "8/15",
+              "threshold": "22+",
+              "stat": "shots"
+            },
+            {
+              "selection": "Match Shots 23+",
+              "normalized_selection": "match_shots_23",
+              "odds": "27/40",
+              "threshold": "23+",
+              "stat": "shots"
+            }
+          ]
+        },
+        {
+          "market": "South Africa Shots On Target",
+          "normalized_market": "south_africa_shots_on_target",
+          "heading_clicked": "South Africa Shots on Target",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 3,
+            "odds": 3,
+            "text_length": 62,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 3,
+            "rows_after": 3
+          },
+          "selection_audit": {
+            "raw_row_count": 3,
+            "unique_threshold_count": 3,
+            "selection_count": 3,
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 3,
+            "unique_prices": [
+              "1/47",
+              "21/100",
+              "3/5"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 3,
+          "elapsed_seconds": 1.74,
+          "selections": [
+            {
+              "selection": "South Africa Shots On Target 1+",
+              "normalized_selection": "south_africa_shots_on_target_1",
+              "odds": "1/47",
+              "threshold": "1+",
+              "stat": "shots_on_target",
+              "team": "South Africa"
+            },
+            {
+              "selection": "South Africa Shots On Target 2+",
+              "normalized_selection": "south_africa_shots_on_target_2",
+              "odds": "21/100",
+              "threshold": "2+",
+              "stat": "shots_on_target",
+              "team": "South Africa"
+            },
+            {
+              "selection": "South Africa Shots On Target 3+",
+              "normalized_selection": "south_africa_shots_on_target_3",
+              "odds": "3/5",
+              "threshold": "3+",
+              "stat": "shots_on_target",
+              "team": "South Africa"
+            }
+          ]
+        },
+        {
+          "market": "South Africa Shots",
+          "normalized_market": "south_africa_shots",
+          "heading_clicked": "South Africa Shots",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 64,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "7+",
+              "8+",
+              "9+",
+              "10+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "13/20",
+              "3/10",
+              "9/20",
+              "9/50"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.66,
+          "selections": [
+            {
+              "selection": "South Africa Shots 7+",
+              "normalized_selection": "south_africa_shots_7",
+              "odds": "9/50",
+              "threshold": "7+",
+              "stat": "shots",
+              "team": "South Africa"
+            },
+            {
+              "selection": "South Africa Shots 8+",
+              "normalized_selection": "south_africa_shots_8",
+              "odds": "3/10",
+              "threshold": "8+",
+              "stat": "shots",
+              "team": "South Africa"
+            },
+            {
+              "selection": "South Africa Shots 9+",
+              "normalized_selection": "south_africa_shots_9",
+              "odds": "9/20",
+              "threshold": "9+",
+              "stat": "shots",
+              "team": "South Africa"
+            },
+            {
+              "selection": "South Africa Shots 10+",
+              "normalized_selection": "south_africa_shots_10",
+              "odds": "13/20",
+              "threshold": "10+",
+              "stat": "shots",
+              "team": "South Africa"
+            }
+          ]
+        },
+        {
+          "market": "South Korea Shots On Target",
+          "normalized_market": "south_korea_shots_on_target",
+          "heading_clicked": "South Korea Shots on Target",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 3,
+            "odds": 3,
+            "text_length": 59,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 3,
+            "rows_after": 3
+          },
+          "selection_audit": {
+            "raw_row_count": 3,
+            "unique_threshold_count": 3,
+            "selection_count": 3,
+            "thresholds": [
+              "3+",
+              "4+",
+              "5+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 3,
+            "unique_prices": [
+              "1/3",
+              "2/15",
+              "7/10"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 3,
+          "elapsed_seconds": 1.64,
+          "selections": [
+            {
+              "selection": "South Korea Shots On Target 3+",
+              "normalized_selection": "south_korea_shots_on_target_3",
+              "odds": "2/15",
+              "threshold": "3+",
+              "stat": "shots_on_target",
+              "team": "South Korea"
+            },
+            {
+              "selection": "South Korea Shots On Target 4+",
+              "normalized_selection": "south_korea_shots_on_target_4",
+              "odds": "1/3",
+              "threshold": "4+",
+              "stat": "shots_on_target",
+              "team": "South Korea"
+            },
+            {
+              "selection": "South Korea Shots On Target 5+",
+              "normalized_selection": "south_korea_shots_on_target_5",
+              "odds": "7/10",
+              "threshold": "5+",
+              "stat": "shots_on_target",
+              "team": "South Korea"
+            }
+          ]
+        },
+        {
+          "market": "South Korea Shots",
+          "normalized_market": "south_korea_shots",
+          "heading_clicked": "South Korea Shots",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 67,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "10+",
+              "11+",
+              "12+",
+              "13+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "11/20",
+              "2/5",
+              "31/40",
+              "4/15"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.69,
+          "selections": [
+            {
+              "selection": "South Korea Shots 10+",
+              "normalized_selection": "south_korea_shots_10",
+              "odds": "4/15",
+              "threshold": "10+",
+              "stat": "shots",
+              "team": "South Korea"
+            },
+            {
+              "selection": "South Korea Shots 11+",
+              "normalized_selection": "south_korea_shots_11",
+              "odds": "2/5",
+              "threshold": "11+",
+              "stat": "shots",
+              "team": "South Korea"
+            },
+            {
+              "selection": "South Korea Shots 12+",
+              "normalized_selection": "south_korea_shots_12",
+              "odds": "11/20",
+              "threshold": "12+",
+              "stat": "shots",
+              "team": "South Korea"
+            },
+            {
+              "selection": "South Korea Shots 13+",
+              "normalized_selection": "south_korea_shots_13",
+              "odds": "31/40",
+              "threshold": "13+",
+              "stat": "shots",
+              "team": "South Korea"
+            }
+          ]
+        }
+      ],
+      "event_page_ready": true,
+      "match_stats_active": true,
+      "tab_audit": {
+        "already_active": false,
+        "attempts": [
+          {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "BUTTON",
+                "blocker_class": "coupons-sub-navigation__item bvs-button-tab"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "BUTTON",
+                "blocker_class": "coupons-sub-navigation__item bvs-button-tab"
+              }
+            }
+          }
+        ]
+      },
+      "elapsed_seconds": 28.01
+    },
+    {
+      "match": "Curacao v Ivory Coast",
+      "home_team": "Curacao",
+      "away_team": "Ivory Coast",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108200",
+      "kickoff": "2026-06-25T20:00:00+00:00",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "heading_clicked": "Match Shots on Target",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 64,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "6+",
+              "7+",
+              "8+",
+              "9+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "2/21",
+              "21/100",
+              "3/8",
+              "4/6"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.53,
+          "selections": [
+            {
+              "selection": "Match Shots On Target 6+",
+              "normalized_selection": "match_shots_on_target_6",
+              "odds": "2/21",
+              "threshold": "6+",
+              "stat": "shots_on_target"
+            },
+            {
+              "selection": "Match Shots On Target 7+",
+              "normalized_selection": "match_shots_on_target_7",
+              "odds": "21/100",
+              "threshold": "7+",
+              "stat": "shots_on_target"
+            },
+            {
+              "selection": "Match Shots On Target 8+",
+              "normalized_selection": "match_shots_on_target_8",
+              "odds": "3/8",
+              "threshold": "8+",
+              "stat": "shots_on_target"
+            },
+            {
+              "selection": "Match Shots On Target 9+",
+              "normalized_selection": "match_shots_on_target_9",
+              "odds": "4/6",
+              "threshold": "9+",
+              "stat": "shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "heading_clicked": "Match Shots",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 60,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "21+",
+              "23+",
+              "25+",
+              "27+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 3,
+            "ladder_gaps": [
+              "22+",
+              "24+",
+              "26+"
+            ],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "11/50",
+              "2/17",
+              "3/5",
+              "4/11"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.57,
+          "selections": [
+            {
+              "selection": "Match Shots 21+",
+              "normalized_selection": "match_shots_21",
+              "odds": "2/17",
+              "threshold": "21+",
+              "stat": "shots"
+            },
+            {
+              "selection": "Match Shots 23+",
+              "normalized_selection": "match_shots_23",
+              "odds": "11/50",
+              "threshold": "23+",
+              "stat": "shots"
+            },
+            {
+              "selection": "Match Shots 25+",
+              "normalized_selection": "match_shots_25",
+              "odds": "4/11",
+              "threshold": "25+",
+              "stat": "shots"
+            },
+            {
+              "selection": "Match Shots 27+",
+              "normalized_selection": "match_shots_27",
+              "odds": "3/5",
+              "threshold": "27+",
+              "stat": "shots"
+            }
+          ]
+        },
+        {
+          "market": "Curacao Shots On Target",
+          "normalized_market": "curacao_shots_on_target",
+          "heading_clicked": "Curacao Shots on Target",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 3,
+            "odds": 3,
+            "text_length": 55,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 3,
+            "rows_after": 3
+          },
+          "selection_audit": {
+            "raw_row_count": 3,
+            "unique_threshold_count": 3,
+            "selection_count": 3,
+            "thresholds": [
+              "1+",
+              "2+",
+              "3+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 3,
+            "unique_prices": [
+              "1/8",
+              "3/5",
+              "33/20"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 3,
+          "elapsed_seconds": 1.61,
+          "selections": [
+            {
+              "selection": "Curacao Shots On Target 1+",
+              "normalized_selection": "curacao_shots_on_target_1",
+              "odds": "1/8",
+              "threshold": "1+",
+              "stat": "shots_on_target",
+              "team": "Curacao"
+            },
+            {
+              "selection": "Curacao Shots On Target 2+",
+              "normalized_selection": "curacao_shots_on_target_2",
+              "odds": "3/5",
+              "threshold": "2+",
+              "stat": "shots_on_target",
+              "team": "Curacao"
+            },
+            {
+              "selection": "Curacao Shots On Target 3+",
+              "normalized_selection": "curacao_shots_on_target_3",
+              "odds": "33/20",
+              "threshold": "3+",
+              "stat": "shots_on_target",
+              "team": "Curacao"
+            }
+          ]
+        },
+        {
+          "market": "Curacao Shots",
+          "normalized_market": "curacao_shots",
+          "heading_clicked": "Curacao Shots",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 55,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "5+",
+              "6+",
+              "7+",
+              "8+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "13/40",
+              "5/6",
+              "8/15",
+              "9/50"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.73,
+          "selections": [
+            {
+              "selection": "Curacao Shots 5+",
+              "normalized_selection": "curacao_shots_5",
+              "odds": "9/50",
+              "threshold": "5+",
+              "stat": "shots",
+              "team": "Curacao"
+            },
+            {
+              "selection": "Curacao Shots 6+",
+              "normalized_selection": "curacao_shots_6",
+              "odds": "13/40",
+              "threshold": "6+",
+              "stat": "shots",
+              "team": "Curacao"
+            },
+            {
+              "selection": "Curacao Shots 7+",
+              "normalized_selection": "curacao_shots_7",
+              "odds": "8/15",
+              "threshold": "7+",
+              "stat": "shots",
+              "team": "Curacao"
+            },
+            {
+              "selection": "Curacao Shots 8+",
+              "normalized_selection": "curacao_shots_8",
+              "odds": "5/6",
+              "threshold": "8+",
+              "stat": "shots",
+              "team": "Curacao"
+            }
+          ]
+        },
+        {
+          "market": "Ivory Coast Shots On Target",
+          "normalized_market": "ivory_coast_shots_on_target",
+          "heading_clicked": "Ivory Coast Shots on Target",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 3,
+            "odds": 3,
+            "text_length": 62,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 3,
+            "rows_after": 3
+          },
+          "selection_audit": {
+            "raw_row_count": 3,
+            "unique_threshold_count": 3,
+            "selection_count": 3,
+            "thresholds": [
+              "5+",
+              "6+",
+              "7+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 3,
+            "unique_prices": [
+              "13/20",
+              "4/25",
+              "7/20"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 3,
+          "elapsed_seconds": 1.68,
+          "selections": [
+            {
+              "selection": "Ivory Coast Shots On Target 5+",
+              "normalized_selection": "ivory_coast_shots_on_target_5",
+              "odds": "4/25",
+              "threshold": "5+",
+              "stat": "shots_on_target",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Shots On Target 6+",
+              "normalized_selection": "ivory_coast_shots_on_target_6",
+              "odds": "7/20",
+              "threshold": "6+",
+              "stat": "shots_on_target",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Shots On Target 7+",
+              "normalized_selection": "ivory_coast_shots_on_target_7",
+              "odds": "13/20",
+              "threshold": "7+",
+              "stat": "shots_on_target",
+              "team": "Ivory Coast"
+            }
+          ]
+        },
+        {
+          "market": "Ivory Coast Shots",
+          "normalized_market": "ivory_coast_shots",
+          "heading_clicked": "Ivory Coast Shots",
+          "show_more_clicked": 0,
+          "scope": {
+            "thresholds": 4,
+            "odds": 4,
+            "text_length": 69,
+            "tag": "DIV"
+          },
+          "click_audit": {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "P",
+                "blocker_class": "market-view__header-title"
+              }
+            }
+          },
+          "show_more_audit": {
+            "found": false,
+            "visible_show_more": 0
+          },
+          "scroll_audit": {
+            "used": true,
+            "steps": 2,
+            "rows_before": 4,
+            "rows_after": 4
+          },
+          "selection_audit": {
+            "raw_row_count": 4,
+            "unique_threshold_count": 4,
+            "selection_count": 4,
+            "thresholds": [
+              "17+",
+              "18+",
+              "19+",
+              "20+"
+            ],
+            "conflict_count": 0,
+            "conflicts": [],
+            "odds_order_violation_count": 0,
+            "odds_order_violations": [],
+            "ladder_gap_count": 0,
+            "ladder_gaps": [],
+            "unique_price_count": 4,
+            "unique_prices": [
+              "11/20",
+              "31/100",
+              "5/12",
+              "7/10"
+            ],
+            "equal_adjacent_price_count": 0,
+            "all_prices_identical": false,
+            "suspicious_identical_prices": false
+          },
+          "selection_count": 4,
+          "elapsed_seconds": 1.61,
+          "selections": [
+            {
+              "selection": "Ivory Coast Shots 17+",
+              "normalized_selection": "ivory_coast_shots_17",
+              "odds": "31/100",
+              "threshold": "17+",
+              "stat": "shots",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Shots 18+",
+              "normalized_selection": "ivory_coast_shots_18",
+              "odds": "5/12",
+              "threshold": "18+",
+              "stat": "shots",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Shots 19+",
+              "normalized_selection": "ivory_coast_shots_19",
+              "odds": "11/20",
+              "threshold": "19+",
+              "stat": "shots",
+              "team": "Ivory Coast"
+            },
+            {
+              "selection": "Ivory Coast Shots 20+",
+              "normalized_selection": "ivory_coast_shots_20",
+              "odds": "7/10",
+              "threshold": "20+",
+              "stat": "shots",
+              "team": "Ivory Coast"
+            }
+          ]
+        }
+      ],
+      "event_page_ready": true,
+      "match_stats_active": true,
+      "tab_audit": {
+        "already_active": false,
+        "attempts": [
+          {
+            "clicked": true,
+            "preparation": {
+              "dismiss_actions": [
+                "escape"
+              ],
+              "before": {
+                "blocked": false,
+                "blocker_tag": "BUTTON",
+                "blocker_class": "coupons-sub-navigation__item bvs-button-tab"
+              },
+              "neutralised": {
+                "changed": false,
+                "reason": "not_needed"
+              },
+              "after": {
+                "blocked": false,
+                "blocker_tag": "BUTTON",
+                "blocker_class": "coupons-sub-navigation__item bvs-button-tab"
+              }
+            }
+          }
+        ]
+      },
+      "elapsed_seconds": 27.23
+    }
+  ]
+}

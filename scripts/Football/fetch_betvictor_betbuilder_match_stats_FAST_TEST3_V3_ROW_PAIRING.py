@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# BETVICTOR_BETBUILDER_MATCH_STATS_PROD15_FAST_V1
+# BETVICTOR_BETBUILDER_MATCH_STATS_FAST_TEST3_V3_ROW_PAIRING
 """
 Fast isolated BetVictor Bet Builder Match/Team Stats test.
 
@@ -19,12 +19,12 @@ Method:
 - no repeated whole-page text captures;
 - one browser context per fixture.
 
-PRODUCTION MODE:
-    MAX_MATCHES = 15
+TEST MODE:
+    MAX_MATCHES = 3
 
 Output:
     football/data/
-    betvictor_worldcup_betbuilder_stats.json
+    betvictor_worldcup_betbuilder_stats_fast_test_v3_row_pairing.json
 
 Production BetVictor files are not modified.
 """
@@ -55,11 +55,11 @@ DEBUG_ROOT = (
     ROOT
     / "football"
     / "debug"
-    / "betvictor_betbuilder_stats"
+    / "betvictor_betbuilder_stats_fast_test_v3_row_pairing"
 )
 
 BETBUILDER_GROUP = "12536"
-MAX_MATCHES = 15
+MAX_MATCHES = 3
 HEADLESS = False
 UPCOMING_BUFFER_MINUTES = 15
 LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")
@@ -2785,7 +2785,7 @@ def main() -> None:
 
     print(
         "BETVICTOR BET BUILDER MATCH STATS "
-        "— PROD15 FAST"
+        "— FAST TEST3 V1"
     )
     print("=" * 76)
     print(f"MAX_MATCHES = {MAX_MATCHES}")
@@ -2841,8 +2841,8 @@ def main() -> None:
             "FIFA World Cup",
         "bookmaker": "BetVictor",
         "market_type":
-            "bet_builder_match_stats",
-        "test_mode": False,
+            "bet_builder_match_stats_fast_test_v3_row_pairing",
+        "test_mode": True,
         "generated_at":
             datetime.now(
                 timezone.utc
@@ -2883,7 +2883,7 @@ def main() -> None:
 
     print("\n" + "=" * 76)
     print(
-        f"Saved production output: "
+        f"Saved TEST output: "
         f"{OUT_PATH}"
     )
     print(
@@ -2896,8 +2896,8 @@ def main() -> None:
         f"{output['elapsed_seconds']:.1f}s"
     )
     print(
-        "Main BetVictor props JSON "
-        "modified directly: NO"
+        "Production BetVictor files "
+        "modified: NO"
     )
 
 

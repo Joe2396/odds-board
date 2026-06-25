@@ -19,6 +19,7 @@ PROP_FILES = [
     ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_moneylines.json"),
     ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props_filtered.json"),
     ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
+    ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
     ("Unibet", ROOT / "ufc" / "data" / "unibet_props.json"),
     ("WilliamHill", ROOT / "ufc" / "data" / "williamhill_props.json"),
     ("888Sport", ROOT / "ufc" / "data" / "888sport_props.json"),
@@ -191,35 +192,11 @@ def clean_selection(selection):
 
 def selection_key(selection):
     text = clean_selection(selection).lower()
-
-    # Normalise method of victory labels
     text = text.replace("ko/tko", "ko")
     text = text.replace("tko/ko", "ko")
     text = text.replace("knockout", "ko")
     text = text.replace("submission", "sub")
     text = text.replace("decision", "dec")
-    text = text.replace("technical decision", "dec")
-    text = text.replace("unanimous", "dec")
-    text = text.replace("split", "dec")
-    text = text.replace("majority", "dec")
-
-    # Normalise GTD: strip prefix, keep just yes/no
-    text = re.sub(r"goes\s+the\s+distance\s*[-\u2013]?\s*", "", text)
-    text = re.sub(r"go\s+the\s+distance\s*[-\u2013]?\s*", "", text)
-
-    # Normalise rounds: strip bracket ranges and trailing "rounds"
-    text = re.sub(r"\([\d\s\.\-]+\)", "", text)
-    text = re.sub(r"\s+rounds?\b", "", text)
-
-    # Normalise over/under fractions
-    text = text.replace("\u00bd", ".5").replace("\u00bc", ".25").replace("\u00be", ".75")
-
-    # Strip fighter name prefixes from MOV
-    text = re.sub(r"^[a-z\s]+ by ", "", text)
-    text = re.sub(r"^[a-z\s]+ via ", "", text)
-    text = re.sub(r"^[a-z\s]+ wins? by ", "", text)
-
-    # Strip everything except letters, numbers, spaces, dots
     text = re.sub(r"[^a-z0-9\s\.]", "", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
@@ -828,6 +805,9 @@ def collect_prop_rows(prop_items):
                 decimal = fractional_to_decimal(odds)
 
                 if not clean or not odds or decimal <= 0:
+                    continue
+                # Exclude Draw from UFC markets
+                if clean.lower().strip() in ("draw", "a draw"):
                     continue
 
                 rows.append(
