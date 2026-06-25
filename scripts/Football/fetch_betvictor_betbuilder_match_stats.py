@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# BETVICTOR_BETBUILDER_MATCH_STATS_PROD15_FAST_V1
+# BETVICTOR_BETBUILDER_MATCH_STATS_PROD15_FAST_V1_FIXED_PATH
 """
 Fast isolated BetVictor Bet Builder Match/Team Stats test.
 
@@ -49,7 +49,7 @@ DATA_DIR = ROOT / "football" / "data"
 PROPS_PATH = DATA_DIR / "betvictor_worldcup_props.json"
 OUT_PATH = (
     DATA_DIR
-    / "betvictor_worldcup_betbuilder_stats_fast_test_v3_row_pairing.json"
+    / "betvictor_worldcup_betbuilder_stats.json"
 )
 DEBUG_ROOT = (
     ROOT

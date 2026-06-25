@@ -1,0 +1,2874 @@
+{
+  "sport": "football",
+  "competition": "FIFA World Cup",
+  "bookmaker": "BetVictor",
+  "market_type": "props_fast_test_v4_parse_fix",
+  "test_mode": true,
+  "source_url": "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches",
+  "generated_at": "2026-06-25T09:42:33.410805+00:00",
+  "match_count": 3,
+  "matches_with_markets": 3,
+  "matches": [
+    {
+      "match": "Curacao v Ivory Coast",
+      "home_team": "Curacao",
+      "away_team": "Ivory Coast",
+      "kickoff": "2026-06-25T21:00:00+01:00",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108200",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "13/10",
+              "side": "yes"
+            },
+            {
+              "selection": "Both Teams To Score - No",
+              "normalized_selection": "both_teams_to_score_no",
+              "odds": "8/15",
+              "side": "no"
+            }
+          ]
+        },
+        {
+          "market": "Double Chance",
+          "normalized_market": "double_chance",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Curacao or Draw",
+              "normalized_selection": "curacao_or_draw",
+              "odds": "9/2",
+              "side": "home_draw"
+            },
+            {
+              "selection": "Ivory Coast or Draw",
+              "normalized_selection": "ivory_coast_or_draw",
+              "odds": "1/33",
+              "side": "away_draw"
+            },
+            {
+              "selection": "Curacao or Ivory Coast",
+              "normalized_selection": "curacao_or_ivory_coast",
+              "odds": "1/14",
+              "side": "home_away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/5",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "11/10",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "19/5",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "31/10",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "7/10",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "1/6",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners Over / Under",
+          "normalized_market": "total_corners_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "2/5",
+              "side": "over",
+              "line": "7.5"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "8.5"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "21/20",
+              "side": "over",
+              "line": "9.5"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "odds": "8/5",
+              "side": "over",
+              "line": "10.5"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "13/8",
+              "side": "under",
+              "line": "7.5"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "21/20",
+              "side": "under",
+              "line": "8.5"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "odds": "4/6",
+              "side": "under",
+              "line": "9.5"
+            },
+            {
+              "selection": "Under 10.5",
+              "normalized_selection": "under_10_5",
+              "odds": "5/12",
+              "side": "under",
+              "line": "10.5"
+            }
+          ]
+        },
+        {
+          "market": "Player Cards",
+          "normalized_market": "player_cards",
+          "selection_count": 53,
+          "selections": [
+            {
+              "selection": "Juninho Bacuna To Get A Card",
+              "normalized_selection": "juninho_bacuna_to_get_a_card",
+              "odds": "17/10",
+              "player": "Juninho Bacuna",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Riechedly Bazoer To Get A Card",
+              "normalized_selection": "riechedly_bazoer_to_get_a_card",
+              "odds": "17/10",
+              "player": "Riechedly Bazoer",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Leandro Bacuna To Get A Card",
+              "normalized_selection": "leandro_bacuna_to_get_a_card",
+              "odds": "17/10",
+              "player": "Leandro Bacuna",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Godfried Roemeratoe To Get A Card",
+              "normalized_selection": "godfried_roemeratoe_to_get_a_card",
+              "odds": "2/1",
+              "player": "Godfried Roemeratoe",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Kevin Felida To Get A Card",
+              "normalized_selection": "kevin_felida_to_get_a_card",
+              "odds": "21/10",
+              "player": "Kevin Felida",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "=== MARKET Player Cards SNAPSHOT 1 === To Get A Card",
+              "normalized_selection": "market_player_cards_snapshot_1_to_get_a_card",
+              "odds": "17/10",
+              "player": "=== MARKET Player Cards SNAPSHOT 1 ===",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Shurandy Sambo To Get A Card",
+              "normalized_selection": "shurandy_sambo_to_get_a_card",
+              "odds": "19/10",
+              "player": "Shurandy Sambo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Sherel Floranus To Get A Card",
+              "normalized_selection": "sherel_floranus_to_get_a_card",
+              "odds": "21/10",
+              "player": "Sherel Floranus",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Deveron Fonville To Get A Card",
+              "normalized_selection": "deveron_fonville_to_get_a_card",
+              "odds": "85/40",
+              "player": "Deveron Fonville",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Livano Comenencia To Get A Card",
+              "normalized_selection": "livano_comenencia_to_get_a_card",
+              "odds": "85/40",
+              "player": "Livano Comenencia",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jeremy Antonisse To Get A Card",
+              "normalized_selection": "jeremy_antonisse_to_get_a_card",
+              "odds": "85/40",
+              "player": "Jeremy Antonisse",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jurien Gaari To Get A Card",
+              "normalized_selection": "jurien_gaari_to_get_a_card",
+              "odds": "85/40",
+              "player": "Jurien Gaari",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Tyrese Noslin To Get A Card",
+              "normalized_selection": "tyrese_noslin_to_get_a_card",
+              "odds": "23/10",
+              "player": "Tyrese Noslin",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Roshon Van Eijma To Get A Card",
+              "normalized_selection": "roshon_van_eijma_to_get_a_card",
+              "odds": "12/5",
+              "player": "Roshon Van Eijma",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Armando Obispo To Get A Card",
+              "normalized_selection": "armando_obispo_to_get_a_card",
+              "odds": "5/2",
+              "player": "Armando Obispo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Tahith Chong To Get A Card",
+              "normalized_selection": "tahith_chong_to_get_a_card",
+              "odds": "5/2",
+              "player": "Tahith Chong",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Angelo Martha To Get A Card",
+              "normalized_selection": "angelo_martha_to_get_a_card",
+              "odds": "5/2",
+              "player": "Angelo Martha",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Christ Inao Oulai To Get A Card",
+              "normalized_selection": "christ_inao_oulai_to_get_a_card",
+              "odds": "13/5",
+              "player": "Christ Inao Oulai",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Sebastian Hansen To Get A Card",
+              "normalized_selection": "sebastian_hansen_to_get_a_card",
+              "odds": "14/5",
+              "player": "Sebastian Hansen",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jearl Margaritha To Get A Card",
+              "normalized_selection": "jearl_margaritha_to_get_a_card",
+              "odds": "29/10",
+              "player": "Jearl Margaritha",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Kenji Gorre To Get A Card",
+              "normalized_selection": "kenji_gorre_to_get_a_card",
+              "odds": "29/10",
+              "player": "Kenji Gorre",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Joshua Brenet To Get A Card",
+              "normalized_selection": "joshua_brenet_to_get_a_card",
+              "odds": "31/10",
+              "player": "Joshua Brenet",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Gervane Kastaneer To Get A Card",
+              "normalized_selection": "gervane_kastaneer_to_get_a_card",
+              "odds": "29/10",
+              "player": "Gervane Kastaneer",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ibrahim Sangare To Get A Card",
+              "normalized_selection": "ibrahim_sangare_to_get_a_card",
+              "odds": "17/5",
+              "player": "Ibrahim Sangare",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Brandley Kuwas To Get A Card",
+              "normalized_selection": "brandley_kuwas_to_get_a_card",
+              "odds": "18/5",
+              "player": "Brandley Kuwas",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jurgen Locadia To Get A Card",
+              "normalized_selection": "jurgen_locadia_to_get_a_card",
+              "odds": "18/5",
+              "player": "Jurgen Locadia",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ousmane Diomande To Get A Card",
+              "normalized_selection": "ousmane_diomande_to_get_a_card",
+              "odds": "18/5",
+              "player": "Ousmane Diomande",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jean Michel Seri To Get A Card",
+              "normalized_selection": "jean_michel_seri_to_get_a_card",
+              "odds": "18/5",
+              "player": "Jean Michel Seri",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Guela Doue To Get A Card",
+              "normalized_selection": "guela_doue_to_get_a_card",
+              "odds": "4/1",
+              "player": "Guela Doue",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Emmanuel Agbadou To Get A Card",
+              "normalized_selection": "emmanuel_agbadou_to_get_a_card",
+              "odds": "4/1",
+              "player": "Emmanuel Agbadou",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Elye Wahi To Get A Card",
+              "normalized_selection": "elye_wahi_to_get_a_card",
+              "odds": "4/1",
+              "player": "Elye Wahi",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Christopher Operi To Get A Card",
+              "normalized_selection": "christopher_operi_to_get_a_card",
+              "odds": "17/4",
+              "player": "Christopher Operi",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Franck Kessie To Get A Card",
+              "normalized_selection": "franck_kessie_to_get_a_card",
+              "odds": "17/4",
+              "player": "Franck Kessie",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "No Card To Get A Card",
+              "normalized_selection": "no_card_to_get_a_card",
+              "odds": "14/1",
+              "player": "No Card",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "- To Get A Card",
+              "normalized_selection": "to_get_a_card",
+              "odds": "9/2",
+              "player": "-",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Oumar Diakite To Get A Card",
+              "normalized_selection": "oumar_diakite_to_get_a_card",
+              "odds": "9/2",
+              "player": "Oumar Diakite",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ange Yoan Bonny To Get A Card",
+              "normalized_selection": "ange_yoan_bonny_to_get_a_card",
+              "odds": "9/2",
+              "player": "Ange Yoan Bonny",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Amad Diallo To Get A Card",
+              "normalized_selection": "amad_diallo_to_get_a_card",
+              "odds": "9/2",
+              "player": "Amad Diallo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Evan Ndicka To Get A Card",
+              "normalized_selection": "evan_ndicka_to_get_a_card",
+              "odds": "19/4",
+              "player": "Evan Ndicka",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Trevor Doornbusch To Get A Card",
+              "normalized_selection": "trevor_doornbusch_to_get_a_card",
+              "odds": "5/1",
+              "player": "Trevor Doornbusch",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Eloy Room To Get A Card",
+              "normalized_selection": "eloy_room_to_get_a_card",
+              "odds": "5/1",
+              "player": "Eloy Room",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Parfait Guiagon To Get A Card",
+              "normalized_selection": "parfait_guiagon_to_get_a_card",
+              "odds": "5/1",
+              "player": "Parfait Guiagon",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Yan Diomande To Get A Card",
+              "normalized_selection": "yan_diomande_to_get_a_card",
+              "odds": "5/1",
+              "player": "Yan Diomande",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Odilon Kossounou To Get A Card",
+              "normalized_selection": "odilon_kossounou_to_get_a_card",
+              "odds": "5/1",
+              "player": "Odilon Kossounou",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Mohamed Kone To Get A Card",
+              "normalized_selection": "mohamed_kone_to_get_a_card",
+              "odds": "6/1",
+              "player": "Mohamed Kone",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Bazoumana Toure To Get A Card",
+              "normalized_selection": "bazoumana_toure_to_get_a_card",
+              "odds": "6/1",
+              "player": "Bazoumana Toure",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Seko Fofana To Get A Card",
+              "normalized_selection": "seko_fofana_to_get_a_card",
+              "odds": "6/1",
+              "player": "Seko Fofana",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Simon Adingra To Get A Card",
+              "normalized_selection": "simon_adingra_to_get_a_card",
+              "odds": "13/2",
+              "player": "Simon Adingra",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Evann Guessand To Get A Card",
+              "normalized_selection": "evann_guessand_to_get_a_card",
+              "odds": "13/2",
+              "player": "Evann Guessand",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ghislain Konan To Get A Card",
+              "normalized_selection": "ghislain_konan_to_get_a_card",
+              "odds": "13/2",
+              "player": "Ghislain Konan",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Yahia Fofana To Get A Card",
+              "normalized_selection": "yahia_fofana_to_get_a_card",
+              "odds": "9/1",
+              "player": "Yahia Fofana",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Nicolas Pepe To Get A Card",
+              "normalized_selection": "nicolas_pepe_to_get_a_card",
+              "odds": "9/1",
+              "player": "Nicolas Pepe",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Alban Lafont To Get A Card",
+              "normalized_selection": "alban_lafont_to_get_a_card",
+              "odds": "10/1",
+              "player": "Alban Lafont",
+              "prop_type": "player_card"
+            }
+          ]
+        },
+        {
+          "market": "Player Assists",
+          "normalized_market": "player_assists",
+          "selection_count": 60,
+          "selections": [
+            {
+              "selection": "‏‏‎ ‎ Assists",
+              "normalized_selection": "assists",
+              "odds": "9/5",
+              "player": "‏‏‎ ‎",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Bazoumana Toure 1+ Assists Assists",
+              "normalized_selection": "bazoumana_toure_1_assists_assists",
+              "odds": "9/5",
+              "player": "Bazoumana Toure 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Nicolas Pepe 1+ Assists Assists",
+              "normalized_selection": "nicolas_pepe_1_assists_assists",
+              "odds": "2/1",
+              "player": "Nicolas Pepe 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jean Michel Seri 1+ Assists Assists",
+              "normalized_selection": "jean_michel_seri_1_assists_assists",
+              "odds": "21/10",
+              "player": "Jean Michel Seri 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Simon Adingra 1+ Assists Assists",
+              "normalized_selection": "simon_adingra_1_assists_assists",
+              "odds": "21/10",
+              "player": "Simon Adingra 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Amad Diallo 1+ Assists Assists",
+              "normalized_selection": "amad_diallo_1_assists_assists",
+              "odds": "85/40",
+              "player": "Amad Diallo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Yan Diomande 1+ Assists Assists",
+              "normalized_selection": "yan_diomande_1_assists_assists",
+              "odds": "11/5",
+              "player": "Yan Diomande 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Evann Guessand 1+ Assists Assists",
+              "normalized_selection": "evann_guessand_1_assists_assists",
+              "odds": "11/5",
+              "player": "Evann Guessand 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ange Yoan Bonny 1+ Assists Assists",
+              "normalized_selection": "ange_yoan_bonny_1_assists_assists",
+              "odds": "5/2",
+              "player": "Ange Yoan Bonny 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Parfait Guiagon 1+ Assists Assists",
+              "normalized_selection": "parfait_guiagon_1_assists_assists",
+              "odds": "13/5",
+              "player": "Parfait Guiagon 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Elye Wahi 1+ Assists Assists",
+              "normalized_selection": "elye_wahi_1_assists_assists",
+              "odds": "29/10",
+              "player": "Elye Wahi 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Seko Fofana 1+ Assists Assists",
+              "normalized_selection": "seko_fofana_1_assists_assists",
+              "odds": "31/10",
+              "player": "Seko Fofana 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Christ Inao Oulai 1+ Assists Assists",
+              "normalized_selection": "christ_inao_oulai_1_assists_assists",
+              "odds": "31/10",
+              "player": "Christ Inao Oulai 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Franck Kessie 1+ Assists Assists",
+              "normalized_selection": "franck_kessie_1_assists_assists",
+              "odds": "31/10",
+              "player": "Franck Kessie 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Guela Doue 1+ Assists Assists",
+              "normalized_selection": "guela_doue_1_assists_assists",
+              "odds": "31/10",
+              "player": "Guela Doue 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Oumar Diakite 1+ Assists Assists",
+              "normalized_selection": "oumar_diakite_1_assists_assists",
+              "odds": "7/2",
+              "player": "Oumar Diakite 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ghislain Konan 1+ Assists Assists",
+              "normalized_selection": "ghislain_konan_1_assists_assists",
+              "odds": "4/1",
+              "player": "Ghislain Konan 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Christopher Operi 1+ Assists Assists",
+              "normalized_selection": "christopher_operi_1_assists_assists",
+              "odds": "17/4",
+              "player": "Christopher Operi 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ibrahim Sangare 1+ Assists Assists",
+              "normalized_selection": "ibrahim_sangare_1_assists_assists",
+              "odds": "9/2",
+              "player": "Ibrahim Sangare 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Evan Ndicka 1+ Assists Assists",
+              "normalized_selection": "evan_ndicka_1_assists_assists",
+              "odds": "6/1",
+              "player": "Evan Ndicka 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jearl Margaritha 1+ Assists Assists",
+              "normalized_selection": "jearl_margaritha_1_assists_assists",
+              "odds": "7/1",
+              "player": "Jearl Margaritha 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Kenji Gorre 1+ Assists Assists",
+              "normalized_selection": "kenji_gorre_1_assists_assists",
+              "odds": "15/2",
+              "player": "Kenji Gorre 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Juninho Bacuna 1+ Assists Assists",
+              "normalized_selection": "juninho_bacuna_1_assists_assists",
+              "odds": "15/2",
+              "player": "Juninho Bacuna 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Emmanuel Agbadou 1+ Assists Assists",
+              "normalized_selection": "emmanuel_agbadou_1_assists_assists",
+              "odds": "15/2",
+              "player": "Emmanuel Agbadou 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Brandley Kuwas 1+ Assists Assists",
+              "normalized_selection": "brandley_kuwas_1_assists_assists",
+              "odds": "15/2",
+              "player": "Brandley Kuwas 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Livano Comenencia 1+ Assists Assists",
+              "normalized_selection": "livano_comenencia_1_assists_assists",
+              "odds": "17/2",
+              "player": "Livano Comenencia 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ousmane Diomande 1+ Assists Assists",
+              "normalized_selection": "ousmane_diomande_1_assists_assists",
+              "odds": "17/2",
+              "player": "Ousmane Diomande 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Odilon Kossounou 1+ Assists Assists",
+              "normalized_selection": "odilon_kossounou_1_assists_assists",
+              "odds": "17/2",
+              "player": "Odilon Kossounou 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jurgen Locadia 1+ Assists Assists",
+              "normalized_selection": "jurgen_locadia_1_assists_assists",
+              "odds": "17/2",
+              "player": "Jurgen Locadia 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Shurandy Sambo 1+ Assists Assists",
+              "normalized_selection": "shurandy_sambo_1_assists_assists",
+              "odds": "19/2",
+              "player": "Shurandy Sambo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Kevin Felida 1+ Assists Assists",
+              "normalized_selection": "kevin_felida_1_assists_assists",
+              "odds": "19/2",
+              "player": "Kevin Felida 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Tyrese Noslin 1+ Assists Assists",
+              "normalized_selection": "tyrese_noslin_1_assists_assists",
+              "odds": "19/2",
+              "player": "Tyrese Noslin 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Gervane Kastaneer 1+ Assists Assists",
+              "normalized_selection": "gervane_kastaneer_1_assists_assists",
+              "odds": "19/2",
+              "player": "Gervane Kastaneer 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Godfried Roemeratoe 1+ Assists Assists",
+              "normalized_selection": "godfried_roemeratoe_1_assists_assists",
+              "odds": "19/2",
+              "player": "Godfried Roemeratoe 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Sebastian Hansen 1+ Assists Assists",
+              "normalized_selection": "sebastian_hansen_1_assists_assists",
+              "odds": "19/2",
+              "player": "Sebastian Hansen 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Leandro Bacuna 1+ Assists Assists",
+              "normalized_selection": "leandro_bacuna_1_assists_assists",
+              "odds": "19/2",
+              "player": "Leandro Bacuna 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Tahith Chong 1+ Assists Assists",
+              "normalized_selection": "tahith_chong_1_assists_assists",
+              "odds": "19/2",
+              "player": "Tahith Chong 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jeremy Antonisse 1+ Assists Assists",
+              "normalized_selection": "jeremy_antonisse_1_assists_assists",
+              "odds": "19/2",
+              "player": "Jeremy Antonisse 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Angelo Martha 1+ Assists Assists",
+              "normalized_selection": "angelo_martha_1_assists_assists",
+              "odds": "19/2",
+              "player": "Angelo Martha 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Joshua Brenet 1+ Assists Assists",
+              "normalized_selection": "joshua_brenet_1_assists_assists",
+              "odds": "11/1",
+              "player": "Joshua Brenet 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Deveron Fonville 1+ Assists Assists",
+              "normalized_selection": "deveron_fonville_1_assists_assists",
+              "odds": "13/1",
+              "player": "Deveron Fonville 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Sherel Floranus 1+ Assists Assists",
+              "normalized_selection": "sherel_floranus_1_assists_assists",
+              "odds": "13/1",
+              "player": "Sherel Floranus 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Bazoumana Toure 2+ Assists Assists",
+              "normalized_selection": "bazoumana_toure_2_assists_assists",
+              "odds": "13/1",
+              "player": "Bazoumana Toure 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Roshon Van Eijma 1+ Assists Assists",
+              "normalized_selection": "roshon_van_eijma_1_assists_assists",
+              "odds": "15/1",
+              "player": "Roshon Van Eijma 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Armando Obispo 1+ Assists Assists",
+              "normalized_selection": "armando_obispo_1_assists_assists",
+              "odds": "15/1",
+              "player": "Armando Obispo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Riechedly Bazoer 1+ Assists Assists",
+              "normalized_selection": "riechedly_bazoer_1_assists_assists",
+              "odds": "15/1",
+              "player": "Riechedly Bazoer 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jurien Gaari 1+ Assists Assists",
+              "normalized_selection": "jurien_gaari_1_assists_assists",
+              "odds": "15/1",
+              "player": "Jurien Gaari 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Nicolas Pepe 2+ Assists Assists",
+              "normalized_selection": "nicolas_pepe_2_assists_assists",
+              "odds": "15/1",
+              "player": "Nicolas Pepe 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Amad Diallo 2+ Assists Assists",
+              "normalized_selection": "amad_diallo_2_assists_assists",
+              "odds": "16/1",
+              "player": "Amad Diallo 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Simon Adingra 2+ Assists Assists",
+              "normalized_selection": "simon_adingra_2_assists_assists",
+              "odds": "16/1",
+              "player": "Simon Adingra 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jean Michel Seri 2+ Assists Assists",
+              "normalized_selection": "jean_michel_seri_2_assists_assists",
+              "odds": "16/1",
+              "player": "Jean Michel Seri 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Yan Diomande 2+ Assists Assists",
+              "normalized_selection": "yan_diomande_2_assists_assists",
+              "odds": "17/1",
+              "player": "Yan Diomande 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Evann Guessand 2+ Assists Assists",
+              "normalized_selection": "evann_guessand_2_assists_assists",
+              "odds": "17/1",
+              "player": "Evann Guessand 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ange Yoan Bonny 2+ Assists Assists",
+              "normalized_selection": "ange_yoan_bonny_2_assists_assists",
+              "odds": "20/1",
+              "player": "Ange Yoan Bonny 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Parfait Guiagon 2+ Assists Assists",
+              "normalized_selection": "parfait_guiagon_2_assists_assists",
+              "odds": "22/1",
+              "player": "Parfait Guiagon 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Elye Wahi 2+ Assists Assists",
+              "normalized_selection": "elye_wahi_2_assists_assists",
+              "odds": "25/1",
+              "player": "Elye Wahi 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Christ Inao Oulai 2+ Assists Assists",
+              "normalized_selection": "christ_inao_oulai_2_assists_assists",
+              "odds": "30/1",
+              "player": "Christ Inao Oulai 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Franck Kessie 2+ Assists Assists",
+              "normalized_selection": "franck_kessie_2_assists_assists",
+              "odds": "30/1",
+              "player": "Franck Kessie 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Guela Doue 2+ Assists Assists",
+              "normalized_selection": "guela_doue_2_assists_assists",
+              "odds": "30/1",
+              "player": "Guela Doue 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Seko Fofana 2+ Assists Assists",
+              "normalized_selection": "seko_fofana_2_assists_assists",
+              "odds": "30/1",
+              "player": "Seko Fofana 2+ Assists",
+              "prop_type": "assist"
+            }
+          ]
+        }
+      ],
+      "parser_line_counts": {
+        "popular": 213,
+        "goals": 133,
+        "corners": 155,
+        "cards": 274,
+        "player": 213
+      },
+      "elapsed_seconds": 61.94
+    },
+    {
+      "match": "Ecuador v Germany",
+      "home_team": "Ecuador",
+      "away_team": "Germany",
+      "kickoff": "2026-06-25T21:00:00+01:00",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108500",
+      "market_count": 7,
+      "markets": [
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "7/10",
+              "side": "yes"
+            },
+            {
+              "selection": "Both Teams To Score - No",
+              "normalized_selection": "both_teams_to_score_no",
+              "odds": "1/1",
+              "side": "no"
+            }
+          ]
+        },
+        {
+          "market": "Double Chance",
+          "normalized_market": "double_chance",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Ecuador or Draw",
+              "normalized_selection": "ecuador_or_draw",
+              "odds": "7/5",
+              "side": "home_draw"
+            },
+            {
+              "selection": "Germany or Draw",
+              "normalized_selection": "germany_or_draw",
+              "odds": "2/13",
+              "side": "away_draw"
+            },
+            {
+              "selection": "Ecuador or Germany",
+              "normalized_selection": "ecuador_or_germany",
+              "odds": "2/11",
+              "side": "home_away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "1/4",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "7/5",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "5/1",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "27/10",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "8/15",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "1/9",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners Over / Under",
+          "normalized_market": "total_corners_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "7.5"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "3/5",
+              "side": "over",
+              "line": "8.5"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "20/21",
+              "side": "over",
+              "line": "9.5"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "odds": "6/4",
+              "side": "over",
+              "line": "10.5"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "9/5",
+              "side": "under",
+              "line": "7.5"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "23/20",
+              "side": "under",
+              "line": "8.5"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "odds": "8/11",
+              "side": "under",
+              "line": "9.5"
+            },
+            {
+              "selection": "Under 10.5",
+              "normalized_selection": "under_10_5",
+              "odds": "9/20",
+              "side": "under",
+              "line": "10.5"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards Over / Under",
+          "normalized_market": "total_cards_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "4/5",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "15/8",
+              "side": "over",
+              "line": "3.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "1/4",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "9/10",
+              "side": "under",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "4/11",
+              "side": "under",
+              "line": "3.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "12/5",
+              "side": "under",
+              "line": "1.5"
+            }
+          ]
+        },
+        {
+          "market": "Player Cards",
+          "normalized_market": "player_cards",
+          "selection_count": 62,
+          "selections": [
+            {
+              "selection": "Moises Caicedo To Get A Card",
+              "normalized_selection": "moises_caicedo_to_get_a_card",
+              "odds": "29/20",
+              "player": "Moises Caicedo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Denil Castillo To Get A Card",
+              "normalized_selection": "denil_castillo_to_get_a_card",
+              "odds": "85/40",
+              "player": "Denil Castillo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jackson Porozo To Get A Card",
+              "normalized_selection": "jackson_porozo_to_get_a_card",
+              "odds": "85/40",
+              "player": "Jackson Porozo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Piero Hincapie To Get A Card",
+              "normalized_selection": "piero_hincapie_to_get_a_card",
+              "odds": "21/10",
+              "player": "Piero Hincapie",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Nilson Angulo To Get A Card",
+              "normalized_selection": "nilson_angulo_to_get_a_card",
+              "odds": "12/5",
+              "player": "Nilson Angulo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Total Cards To Get A Card",
+              "normalized_selection": "total_cards_to_get_a_card",
+              "odds": "4/5",
+              "player": "Total Cards",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "O 2.5 To Get A Card",
+              "normalized_selection": "o_2_5_to_get_a_card",
+              "odds": "4/5",
+              "player": "O 2.5",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "O 3.5 To Get A Card",
+              "normalized_selection": "o_3_5_to_get_a_card",
+              "odds": "15/8",
+              "player": "O 3.5",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "O 1.5 To Get A Card",
+              "normalized_selection": "o_1_5_to_get_a_card",
+              "odds": "1/4",
+              "player": "O 1.5",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "U 2.5 To Get A Card",
+              "normalized_selection": "u_2_5_to_get_a_card",
+              "odds": "9/10",
+              "player": "U 2.5",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "U 3.5 To Get A Card",
+              "normalized_selection": "u_3_5_to_get_a_card",
+              "odds": "4/11",
+              "player": "U 3.5",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "U 1.5 To Get A Card",
+              "normalized_selection": "u_1_5_to_get_a_card",
+              "odds": "12/5",
+              "player": "U 1.5",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "In-Play To Get A Card",
+              "normalized_selection": "in_play_to_get_a_card",
+              "odds": "4/5",
+              "player": "In-Play",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Slots To Get A Card",
+              "normalized_selection": "slots_to_get_a_card",
+              "odds": "4/5",
+              "player": "Slots",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "=== MARKET Total Cards Over/Under SNAPSHOT 1 === To Get A Card",
+              "normalized_selection": "market_total_cards_over_under_snapshot_1_to_get_a_card",
+              "odds": "4/5",
+              "player": "=== MARKET Total Cards Over/Under SNAPSHOT 1 ===",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "=== MARKET Player Cards SNAPSHOT 1 === To Get A Card",
+              "normalized_selection": "market_player_cards_snapshot_1_to_get_a_card",
+              "odds": "29/20",
+              "player": "=== MARKET Player Cards SNAPSHOT 1 ===",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Angelo Preciado To Get A Card",
+              "normalized_selection": "angelo_preciado_to_get_a_card",
+              "odds": "12/5",
+              "player": "Angelo Preciado",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Yaimar Medina To Get A Card",
+              "normalized_selection": "yaimar_medina_to_get_a_card",
+              "odds": "13/5",
+              "player": "Yaimar Medina",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Aleksandar Pavlovic To Get A Card",
+              "normalized_selection": "aleksandar_pavlovic_to_get_a_card",
+              "odds": "14/5",
+              "player": "Aleksandar Pavlovic",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Kendry Paez To Get A Card",
+              "normalized_selection": "kendry_paez_to_get_a_card",
+              "odds": "31/10",
+              "player": "Kendry Paez",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Felix Torres To Get A Card",
+              "normalized_selection": "felix_torres_to_get_a_card",
+              "odds": "31/10",
+              "player": "Felix Torres",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Pervis Estupinan To Get A Card",
+              "normalized_selection": "pervis_estupinan_to_get_a_card",
+              "odds": "29/10",
+              "player": "Pervis Estupinan",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "John Yeboah To Get A Card",
+              "normalized_selection": "john_yeboah_to_get_a_card",
+              "odds": "31/10",
+              "player": "John Yeboah",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Alan Franco To Get A Card",
+              "normalized_selection": "alan_franco_to_get_a_card",
+              "odds": "31/10",
+              "player": "Alan Franco",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Kai Havertz To Get A Card",
+              "normalized_selection": "kai_havertz_to_get_a_card",
+              "odds": "16/5",
+              "player": "Kai Havertz",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Nadiem Amiri To Get A Card",
+              "normalized_selection": "nadiem_amiri_to_get_a_card",
+              "odds": "17/5",
+              "player": "Nadiem Amiri",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Joel Ordonez To Get A Card",
+              "normalized_selection": "joel_ordonez_to_get_a_card",
+              "odds": "18/5",
+              "player": "Joel Ordonez",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Anthony Valencia To Get A Card",
+              "normalized_selection": "anthony_valencia_to_get_a_card",
+              "odds": "18/5",
+              "player": "Anthony Valencia",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jordy Alcivar To Get A Card",
+              "normalized_selection": "jordy_alcivar_to_get_a_card",
+              "odds": "18/5",
+              "player": "Jordy Alcivar",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jordy Caicedo To Get A Card",
+              "normalized_selection": "jordy_caicedo_to_get_a_card",
+              "odds": "18/5",
+              "player": "Jordy Caicedo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "No Card To Get A Card",
+              "normalized_selection": "no_card_to_get_a_card",
+              "odds": "10/1",
+              "player": "No Card",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "- To Get A Card",
+              "normalized_selection": "to_get_a_card",
+              "odds": "18/5",
+              "player": "-",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Antonio Rudiger To Get A Card",
+              "normalized_selection": "antonio_rudiger_to_get_a_card",
+              "odds": "18/5",
+              "player": "Antonio Rudiger",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Willian Pacho To Get A Card",
+              "normalized_selection": "willian_pacho_to_get_a_card",
+              "odds": "15/4",
+              "player": "Willian Pacho",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "David Raum To Get A Card",
+              "normalized_selection": "david_raum_to_get_a_card",
+              "odds": "15/4",
+              "player": "David Raum",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Malick Thiaw To Get A Card",
+              "normalized_selection": "malick_thiaw_to_get_a_card",
+              "odds": "4/1",
+              "player": "Malick Thiaw",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Joshua Kimmich To Get A Card",
+              "normalized_selection": "joshua_kimmich_to_get_a_card",
+              "odds": "4/1",
+              "player": "Joshua Kimmich",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jonathan Tah To Get A Card",
+              "normalized_selection": "jonathan_tah_to_get_a_card",
+              "odds": "4/1",
+              "player": "Jonathan Tah",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jeremy Arevalo To Get A Card",
+              "normalized_selection": "jeremy_arevalo_to_get_a_card",
+              "odds": "9/2",
+              "player": "Jeremy Arevalo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Kevin Rodriguez To Get A Card",
+              "normalized_selection": "kevin_rodriguez_to_get_a_card",
+              "odds": "9/2",
+              "player": "Kevin Rodriguez",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Alan Minda To Get A Card",
+              "normalized_selection": "alan_minda_to_get_a_card",
+              "odds": "9/2",
+              "player": "Alan Minda",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Pedro Vite To Get A Card",
+              "normalized_selection": "pedro_vite_to_get_a_card",
+              "odds": "9/2",
+              "player": "Pedro Vite",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Gonzalo Plata To Get A Card",
+              "normalized_selection": "gonzalo_plata_to_get_a_card",
+              "odds": "17/4",
+              "player": "Gonzalo Plata",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Enner Valencia To Get A Card",
+              "normalized_selection": "enner_valencia_to_get_a_card",
+              "odds": "17/4",
+              "player": "Enner Valencia",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Angelo Stiller To Get A Card",
+              "normalized_selection": "angelo_stiller_to_get_a_card",
+              "odds": "9/2",
+              "player": "Angelo Stiller",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Deniz Undav To Get A Card",
+              "normalized_selection": "deniz_undav_to_get_a_card",
+              "odds": "17/4",
+              "player": "Deniz Undav",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Nick Woltemade To Get A Card",
+              "normalized_selection": "nick_woltemade_to_get_a_card",
+              "odds": "9/2",
+              "player": "Nick Woltemade",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Waldemar Anton To Get A Card",
+              "normalized_selection": "waldemar_anton_to_get_a_card",
+              "odds": "17/4",
+              "player": "Waldemar Anton",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Leroy Sane To Get A Card",
+              "normalized_selection": "leroy_sane_to_get_a_card",
+              "odds": "17/4",
+              "player": "Leroy Sane",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Pascal Gross To Get A Card",
+              "normalized_selection": "pascal_gross_to_get_a_card",
+              "odds": "9/2",
+              "player": "Pascal Gross",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jamie Leweling To Get A Card",
+              "normalized_selection": "jamie_leweling_to_get_a_card",
+              "odds": "19/4",
+              "player": "Jamie Leweling",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jamal Musiala To Get A Card",
+              "normalized_selection": "jamal_musiala_to_get_a_card",
+              "odds": "5/1",
+              "player": "Jamal Musiala",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Florian Wirtz To Get A Card",
+              "normalized_selection": "florian_wirtz_to_get_a_card",
+              "odds": "5/1",
+              "player": "Florian Wirtz",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Leon Goretzka To Get A Card",
+              "normalized_selection": "leon_goretzka_to_get_a_card",
+              "odds": "5/1",
+              "player": "Leon Goretzka",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Felix Nmecha To Get A Card",
+              "normalized_selection": "felix_nmecha_to_get_a_card",
+              "odds": "6/1",
+              "player": "Felix Nmecha",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Maximilian Beier To Get A Card",
+              "normalized_selection": "maximilian_beier_to_get_a_card",
+              "odds": "13/2",
+              "player": "Maximilian Beier",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Moises Ramirez To Get A Card",
+              "normalized_selection": "moises_ramirez_to_get_a_card",
+              "odds": "8/1",
+              "player": "Moises Ramirez",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Gonzalo Valle To Get A Card",
+              "normalized_selection": "gonzalo_valle_to_get_a_card",
+              "odds": "9/1",
+              "player": "Gonzalo Valle",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Alexander Nubel To Get A Card",
+              "normalized_selection": "alexander_nubel_to_get_a_card",
+              "odds": "10/1",
+              "player": "Alexander Nubel",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Oliver Baumann To Get A Card",
+              "normalized_selection": "oliver_baumann_to_get_a_card",
+              "odds": "10/1",
+              "player": "Oliver Baumann",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Manuel Neuer To Get A Card",
+              "normalized_selection": "manuel_neuer_to_get_a_card",
+              "odds": "10/1",
+              "player": "Manuel Neuer",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Hernan Galindez To Get A Card",
+              "normalized_selection": "hernan_galindez_to_get_a_card",
+              "odds": "12/1",
+              "player": "Hernan Galindez",
+              "prop_type": "player_card"
+            }
+          ]
+        },
+        {
+          "market": "Player Assists",
+          "normalized_market": "player_assists",
+          "selection_count": 48,
+          "selections": [
+            {
+              "selection": "‏‏‎ ‎ Assists",
+              "normalized_selection": "assists",
+              "odds": "14/5",
+              "player": "‏‏‎ ‎",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Florian Wirtz 1+ Assists Assists",
+              "normalized_selection": "florian_wirtz_1_assists_assists",
+              "odds": "14/5",
+              "player": "Florian Wirtz 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Pascal Gross 1+ Assists Assists",
+              "normalized_selection": "pascal_gross_1_assists_assists",
+              "odds": "29/10",
+              "player": "Pascal Gross 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Leroy Sane 1+ Assists Assists",
+              "normalized_selection": "leroy_sane_1_assists_assists",
+              "odds": "31/10",
+              "player": "Leroy Sane 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "David Raum 1+ Assists Assists",
+              "normalized_selection": "david_raum_1_assists_assists",
+              "odds": "31/10",
+              "player": "David Raum 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jamal Musiala 1+ Assists Assists",
+              "normalized_selection": "jamal_musiala_1_assists_assists",
+              "odds": "10/3",
+              "player": "Jamal Musiala 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Deniz Undav 1+ Assists Assists",
+              "normalized_selection": "deniz_undav_1_assists_assists",
+              "odds": "10/3",
+              "player": "Deniz Undav 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jamie Leweling 1+ Assists Assists",
+              "normalized_selection": "jamie_leweling_1_assists_assists",
+              "odds": "10/3",
+              "player": "Jamie Leweling 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Joshua Kimmich 1+ Assists Assists",
+              "normalized_selection": "joshua_kimmich_1_assists_assists",
+              "odds": "7/2",
+              "player": "Joshua Kimmich 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Nadiem Amiri 1+ Assists Assists",
+              "normalized_selection": "nadiem_amiri_1_assists_assists",
+              "odds": "18/5",
+              "player": "Nadiem Amiri 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Maximilian Beier 1+ Assists Assists",
+              "normalized_selection": "maximilian_beier_1_assists_assists",
+              "odds": "18/5",
+              "player": "Maximilian Beier 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Kai Havertz 1+ Assists Assists",
+              "normalized_selection": "kai_havertz_1_assists_assists",
+              "odds": "18/5",
+              "player": "Kai Havertz 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Leon Goretzka 1+ Assists Assists",
+              "normalized_selection": "leon_goretzka_1_assists_assists",
+              "odds": "19/5",
+              "player": "Leon Goretzka 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Angelo Stiller 1+ Assists Assists",
+              "normalized_selection": "angelo_stiller_1_assists_assists",
+              "odds": "4/1",
+              "player": "Angelo Stiller 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Nick Woltemade 1+ Assists Assists",
+              "normalized_selection": "nick_woltemade_1_assists_assists",
+              "odds": "17/4",
+              "player": "Nick Woltemade 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Felix Nmecha 1+ Assists Assists",
+              "normalized_selection": "felix_nmecha_1_assists_assists",
+              "odds": "5/1",
+              "player": "Felix Nmecha 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "John Yeboah 1+ Assists Assists",
+              "normalized_selection": "john_yeboah_1_assists_assists",
+              "odds": "11/2",
+              "player": "John Yeboah 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Angelo Preciado 1+ Assists Assists",
+              "normalized_selection": "angelo_preciado_1_assists_assists",
+              "odds": "6/1",
+              "player": "Angelo Preciado 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Gonzalo Plata 1+ Assists Assists",
+              "normalized_selection": "gonzalo_plata_1_assists_assists",
+              "odds": "6/1",
+              "player": "Gonzalo Plata 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Kendry Paez 1+ Assists Assists",
+              "normalized_selection": "kendry_paez_1_assists_assists",
+              "odds": "13/2",
+              "player": "Kendry Paez 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Yaimar Medina 1+ Assists Assists",
+              "normalized_selection": "yaimar_medina_1_assists_assists",
+              "odds": "13/2",
+              "player": "Yaimar Medina 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Aleksandar Pavlovic 1+ Assists Assists",
+              "normalized_selection": "aleksandar_pavlovic_1_assists_assists",
+              "odds": "13/2",
+              "player": "Aleksandar Pavlovic 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Alan Minda 1+ Assists Assists",
+              "normalized_selection": "alan_minda_1_assists_assists",
+              "odds": "13/2",
+              "player": "Alan Minda 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Pervis Estupinan 1+ Assists Assists",
+              "normalized_selection": "pervis_estupinan_1_assists_assists",
+              "odds": "13/2",
+              "player": "Pervis Estupinan 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Pedro Vite 1+ Assists Assists",
+              "normalized_selection": "pedro_vite_1_assists_assists",
+              "odds": "7/1",
+              "player": "Pedro Vite 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Anthony Valencia 1+ Assists Assists",
+              "normalized_selection": "anthony_valencia_1_assists_assists",
+              "odds": "7/1",
+              "player": "Anthony Valencia 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jeremy Arevalo 1+ Assists Assists",
+              "normalized_selection": "jeremy_arevalo_1_assists_assists",
+              "odds": "7/1",
+              "player": "Jeremy Arevalo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Enner Valencia 1+ Assists Assists",
+              "normalized_selection": "enner_valencia_1_assists_assists",
+              "odds": "7/1",
+              "player": "Enner Valencia 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jordy Caicedo 1+ Assists Assists",
+              "normalized_selection": "jordy_caicedo_1_assists_assists",
+              "odds": "7/1",
+              "player": "Jordy Caicedo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Moises Caicedo 1+ Assists Assists",
+              "normalized_selection": "moises_caicedo_1_assists_assists",
+              "odds": "7/1",
+              "player": "Moises Caicedo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Nilson Angulo 1+ Assists Assists",
+              "normalized_selection": "nilson_angulo_1_assists_assists",
+              "odds": "15/2",
+              "player": "Nilson Angulo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Kevin Rodriguez 1+ Assists Assists",
+              "normalized_selection": "kevin_rodriguez_1_assists_assists",
+              "odds": "15/2",
+              "player": "Kevin Rodriguez 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Alan Franco 1+ Assists Assists",
+              "normalized_selection": "alan_franco_1_assists_assists",
+              "odds": "17/2",
+              "player": "Alan Franco 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Waldemar Anton 1+ Assists Assists",
+              "normalized_selection": "waldemar_anton_1_assists_assists",
+              "odds": "17/2",
+              "player": "Waldemar Anton 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jordy Alcivar 1+ Assists Assists",
+              "normalized_selection": "jordy_alcivar_1_assists_assists",
+              "odds": "17/2",
+              "player": "Jordy Alcivar 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Denil Castillo 1+ Assists Assists",
+              "normalized_selection": "denil_castillo_1_assists_assists",
+              "odds": "17/2",
+              "player": "Denil Castillo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Piero Hincapie 1+ Assists Assists",
+              "normalized_selection": "piero_hincapie_1_assists_assists",
+              "odds": "19/2",
+              "player": "Piero Hincapie 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Antonio Rudiger 1+ Assists Assists",
+              "normalized_selection": "antonio_rudiger_1_assists_assists",
+              "odds": "19/2",
+              "player": "Antonio Rudiger 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Joel Ordonez 1+ Assists Assists",
+              "normalized_selection": "joel_ordonez_1_assists_assists",
+              "odds": "11/1",
+              "player": "Joel Ordonez 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jonathan Tah 1+ Assists Assists",
+              "normalized_selection": "jonathan_tah_1_assists_assists",
+              "odds": "11/1",
+              "player": "Jonathan Tah 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Felix Torres 1+ Assists Assists",
+              "normalized_selection": "felix_torres_1_assists_assists",
+              "odds": "11/1",
+              "player": "Felix Torres 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Malick Thiaw 1+ Assists Assists",
+              "normalized_selection": "malick_thiaw_1_assists_assists",
+              "odds": "11/1",
+              "player": "Malick Thiaw 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Willian Pacho 1+ Assists Assists",
+              "normalized_selection": "willian_pacho_1_assists_assists",
+              "odds": "13/1",
+              "player": "Willian Pacho 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jackson Porozo 1+ Assists Assists",
+              "normalized_selection": "jackson_porozo_1_assists_assists",
+              "odds": "13/1",
+              "player": "Jackson Porozo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Pascal Gross 2+ Assists Assists",
+              "normalized_selection": "pascal_gross_2_assists_assists",
+              "odds": "25/1",
+              "player": "Pascal Gross 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Florian Wirtz 2+ Assists Assists",
+              "normalized_selection": "florian_wirtz_2_assists_assists",
+              "odds": "25/1",
+              "player": "Florian Wirtz 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "David Raum 2+ Assists Assists",
+              "normalized_selection": "david_raum_2_assists_assists",
+              "odds": "30/1",
+              "player": "David Raum 2+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Leroy Sane 2+ Assists Assists",
+              "normalized_selection": "leroy_sane_2_assists_assists",
+              "odds": "30/1",
+              "player": "Leroy Sane 2+ Assists",
+              "prop_type": "assist"
+            }
+          ]
+        }
+      ],
+      "parser_line_counts": {
+        "popular": 201,
+        "goals": 133,
+        "corners": 98,
+        "cards": 304,
+        "player": 193
+      },
+      "elapsed_seconds": 66.52
+    },
+    {
+      "match": "Japan v Sweden",
+      "home_team": "Japan",
+      "away_team": "Sweden",
+      "kickoff": "2026-06-26T00:00:00+01:00",
+      "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789109700",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Both Teams To Score",
+          "normalized_market": "both_teams_to_score",
+          "selection_count": 2,
+          "selections": [
+            {
+              "selection": "Both Teams To Score - Yes",
+              "normalized_selection": "both_teams_to_score_yes",
+              "odds": "4/6",
+              "side": "yes"
+            },
+            {
+              "selection": "Both Teams To Score - No",
+              "normalized_selection": "both_teams_to_score_no",
+              "odds": "21/20",
+              "side": "no"
+            }
+          ]
+        },
+        {
+          "market": "Double Chance",
+          "normalized_market": "double_chance",
+          "selection_count": 3,
+          "selections": [
+            {
+              "selection": "Japan or Draw",
+              "normalized_selection": "japan_or_draw",
+              "odds": "1/5",
+              "side": "home_draw"
+            },
+            {
+              "selection": "Sweden or Draw",
+              "normalized_selection": "sweden_or_draw",
+              "odds": "20/23",
+              "side": "away_draw"
+            },
+            {
+              "selection": "Japan or Sweden",
+              "normalized_selection": "japan_or_sweden",
+              "odds": "3/10",
+              "side": "home_away"
+            }
+          ]
+        },
+        {
+          "market": "Total Goals Over / Under",
+          "normalized_market": "total_goals_over_under",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "0.5"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "13/8",
+              "side": "over",
+              "line": "1.5"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "6/1",
+              "side": "over",
+              "line": "2.5"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "19/10",
+              "side": "under",
+              "line": "0.5"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "4/9",
+              "side": "under",
+              "line": "1.5"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "1/12",
+              "side": "under",
+              "line": "2.5"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners Over / Under",
+          "normalized_market": "total_corners_over_under",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "5/12",
+              "side": "over",
+              "line": "7.5"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "7/10",
+              "side": "over",
+              "line": "8.5"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "11/10",
+              "side": "over",
+              "line": "9.5"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "odds": "7/4",
+              "side": "over",
+              "line": "10.5"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "8/5",
+              "side": "under",
+              "line": "7.5"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "1/1",
+              "side": "under",
+              "line": "8.5"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "odds": "8/13",
+              "side": "under",
+              "line": "9.5"
+            },
+            {
+              "selection": "Under 10.5",
+              "normalized_selection": "under_10_5",
+              "odds": "4/11",
+              "side": "under",
+              "line": "10.5"
+            }
+          ]
+        },
+        {
+          "market": "Player Cards",
+          "normalized_market": "player_cards",
+          "selection_count": 52,
+          "selections": [
+            {
+              "selection": "Isak Hien To Get A Card",
+              "normalized_selection": "isak_hien_to_get_a_card",
+              "odds": "21/10",
+              "player": "Isak Hien",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ko Itakura To Get A Card",
+              "normalized_selection": "ko_itakura_to_get_a_card",
+              "odds": "13/5",
+              "player": "Ko Itakura",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Herman Johansson To Get A Card",
+              "normalized_selection": "herman_johansson_to_get_a_card",
+              "odds": "5/2",
+              "player": "Herman Johansson",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Mattias Svanberg To Get A Card",
+              "normalized_selection": "mattias_svanberg_to_get_a_card",
+              "odds": "5/2",
+              "player": "Mattias Svanberg",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Lucas Bergvall To Get A Card",
+              "normalized_selection": "lucas_bergvall_to_get_a_card",
+              "odds": "27/10",
+              "player": "Lucas Bergvall",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "=== MARKET Player Cards SNAPSHOT 1 === To Get A Card",
+              "normalized_selection": "market_player_cards_snapshot_1_to_get_a_card",
+              "odds": "21/10",
+              "player": "=== MARKET Player Cards SNAPSHOT 1 ===",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ayumu Seko To Get A Card",
+              "normalized_selection": "ayumu_seko_to_get_a_card",
+              "odds": "29/10",
+              "player": "Ayumu Seko",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Gustaf Lagerbielke To Get A Card",
+              "normalized_selection": "gustaf_lagerbielke_to_get_a_card",
+              "odds": "14/5",
+              "player": "Gustaf Lagerbielke",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Gabriel Gudmundsson To Get A Card",
+              "normalized_selection": "gabriel_gudmundsson_to_get_a_card",
+              "odds": "31/10",
+              "player": "Gabriel Gudmundsson",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ken Sema To Get A Card",
+              "normalized_selection": "ken_sema_to_get_a_card",
+              "odds": "31/10",
+              "player": "Ken Sema",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Junnosuke Suzuki To Get A Card",
+              "normalized_selection": "junnosuke_suzuki_to_get_a_card",
+              "odds": "16/5",
+              "player": "Junnosuke Suzuki",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Yukinari Sugawara To Get A Card",
+              "normalized_selection": "yukinari_sugawara_to_get_a_card",
+              "odds": "16/5",
+              "player": "Yukinari Sugawara",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Yasin Ayari To Get A Card",
+              "normalized_selection": "yasin_ayari_to_get_a_card",
+              "odds": "16/5",
+              "player": "Yasin Ayari",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Yuto Nagatomo To Get A Card",
+              "normalized_selection": "yuto_nagatomo_to_get_a_card",
+              "odds": "18/5",
+              "player": "Yuto Nagatomo",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Gustaf Nilsson To Get A Card",
+              "normalized_selection": "gustaf_nilsson_to_get_a_card",
+              "odds": "18/5",
+              "player": "Gustaf Nilsson",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jesper Karlstrom To Get A Card",
+              "normalized_selection": "jesper_karlstrom_to_get_a_card",
+              "odds": "18/5",
+              "player": "Jesper Karlstrom",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Kento Shiogai To Get A Card",
+              "normalized_selection": "kento_shiogai_to_get_a_card",
+              "odds": "15/4",
+              "player": "Kento Shiogai",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Shogo Taniguchi To Get A Card",
+              "normalized_selection": "shogo_taniguchi_to_get_a_card",
+              "odds": "15/4",
+              "player": "Shogo Taniguchi",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Takehiro Tomiyasu To Get A Card",
+              "normalized_selection": "takehiro_tomiyasu_to_get_a_card",
+              "odds": "15/4",
+              "player": "Takehiro Tomiyasu",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "No Card To Get A Card",
+              "normalized_selection": "no_card_to_get_a_card",
+              "odds": "11/1",
+              "player": "No Card",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "- To Get A Card",
+              "normalized_selection": "to_get_a_card",
+              "odds": "4/1",
+              "player": "-",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Elliot Stroud To Get A Card",
+              "normalized_selection": "elliot_stroud_to_get_a_card",
+              "odds": "4/1",
+              "player": "Elliot Stroud",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Alexander Bernhardsson To Get A Card",
+              "normalized_selection": "alexander_bernhardsson_to_get_a_card",
+              "odds": "15/4",
+              "player": "Alexander Bernhardsson",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Benjamin Nygren To Get A Card",
+              "normalized_selection": "benjamin_nygren_to_get_a_card",
+              "odds": "15/4",
+              "player": "Benjamin Nygren",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Hjalmar Ekdal To Get A Card",
+              "normalized_selection": "hjalmar_ekdal_to_get_a_card",
+              "odds": "15/4",
+              "player": "Hjalmar Ekdal",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Carl Starfelt To Get A Card",
+              "normalized_selection": "carl_starfelt_to_get_a_card",
+              "odds": "4/1",
+              "player": "Carl Starfelt",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Kaishu Sano To Get A Card",
+              "normalized_selection": "kaishu_sano_to_get_a_card",
+              "odds": "17/4",
+              "player": "Kaishu Sano",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ao Tanaka To Get A Card",
+              "normalized_selection": "ao_tanaka_to_get_a_card",
+              "odds": "17/4",
+              "player": "Ao Tanaka",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Daniel Svensson To Get A Card",
+              "normalized_selection": "daniel_svensson_to_get_a_card",
+              "odds": "17/4",
+              "player": "Daniel Svensson",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Hiroki Ito To Get A Card",
+              "normalized_selection": "hiroki_ito_to_get_a_card",
+              "odds": "9/2",
+              "player": "Hiroki Ito",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Besfort Zeneli To Get A Card",
+              "normalized_selection": "besfort_zeneli_to_get_a_card",
+              "odds": "9/2",
+              "player": "Besfort Zeneli",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Viktor Gyokeres To Get A Card",
+              "normalized_selection": "viktor_gyokeres_to_get_a_card",
+              "odds": "9/2",
+              "player": "Viktor Gyokeres",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Keisuke Goto To Get A Card",
+              "normalized_selection": "keisuke_goto_to_get_a_card",
+              "odds": "19/4",
+              "player": "Keisuke Goto",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Tsuyoshi Watanabe To Get A Card",
+              "normalized_selection": "tsuyoshi_watanabe_to_get_a_card",
+              "odds": "19/4",
+              "player": "Tsuyoshi Watanabe",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Yuito Suzuki To Get A Card",
+              "normalized_selection": "yuito_suzuki_to_get_a_card",
+              "odds": "19/4",
+              "player": "Yuito Suzuki",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Daizen Maeda To Get A Card",
+              "normalized_selection": "daizen_maeda_to_get_a_card",
+              "odds": "19/4",
+              "player": "Daizen Maeda",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Junya Ito To Get A Card",
+              "normalized_selection": "junya_ito_to_get_a_card",
+              "odds": "19/4",
+              "player": "Junya Ito",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Shuto Machino To Get A Card",
+              "normalized_selection": "shuto_machino_to_get_a_card",
+              "odds": "19/4",
+              "player": "Shuto Machino",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Alexander Isak To Get A Card",
+              "normalized_selection": "alexander_isak_to_get_a_card",
+              "odds": "19/4",
+              "player": "Alexander Isak",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Victor Lindelof To Get A Card",
+              "normalized_selection": "victor_lindelof_to_get_a_card",
+              "odds": "19/4",
+              "player": "Victor Lindelof",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Kosuke Nakamura To Get A Card",
+              "normalized_selection": "kosuke_nakamura_to_get_a_card",
+              "odds": "5/1",
+              "player": "Kosuke Nakamura",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ayase Ueda To Get A Card",
+              "normalized_selection": "ayase_ueda_to_get_a_card",
+              "odds": "5/1",
+              "player": "Ayase Ueda",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Daichi Kamada To Get A Card",
+              "normalized_selection": "daichi_kamada_to_get_a_card",
+              "odds": "5/1",
+              "player": "Daichi Kamada",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Taha Abdi Ali To Get A Card",
+              "normalized_selection": "taha_abdi_ali_to_get_a_card",
+              "odds": "5/1",
+              "player": "Taha Abdi Ali",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Koki Ogawa To Get A Card",
+              "normalized_selection": "koki_ogawa_to_get_a_card",
+              "odds": "11/2",
+              "player": "Koki Ogawa",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Ritsu Doan To Get A Card",
+              "normalized_selection": "ritsu_doan_to_get_a_card",
+              "odds": "11/2",
+              "player": "Ritsu Doan",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Anthony Elanga To Get A Card",
+              "normalized_selection": "anthony_elanga_to_get_a_card",
+              "odds": "6/1",
+              "player": "Anthony Elanga",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Kristoffer Nordfeldt To Get A Card",
+              "normalized_selection": "kristoffer_nordfeldt_to_get_a_card",
+              "odds": "13/2",
+              "player": "Kristoffer Nordfeldt",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Zion Suzuki To Get A Card",
+              "normalized_selection": "zion_suzuki_to_get_a_card",
+              "odds": "9/1",
+              "player": "Zion Suzuki",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Tomoki Hayakawa To Get A Card",
+              "normalized_selection": "tomoki_hayakawa_to_get_a_card",
+              "odds": "9/1",
+              "player": "Tomoki Hayakawa",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Keisuke Osako To Get A Card",
+              "normalized_selection": "keisuke_osako_to_get_a_card",
+              "odds": "9/1",
+              "player": "Keisuke Osako",
+              "prop_type": "player_card"
+            },
+            {
+              "selection": "Jacob Widell Zetterstrom To Get A Card",
+              "normalized_selection": "jacob_widell_zetterstrom_to_get_a_card",
+              "odds": "9/1",
+              "player": "Jacob Widell Zetterstrom",
+              "prop_type": "player_card"
+            }
+          ]
+        },
+        {
+          "market": "Player Assists",
+          "normalized_market": "player_assists",
+          "selection_count": 46,
+          "selections": [
+            {
+              "selection": "‏‏‎ ‎ Assists",
+              "normalized_selection": "assists",
+              "odds": "14/5",
+              "player": "‏‏‎ ‎",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Junya Ito 1+ Assists Assists",
+              "normalized_selection": "junya_ito_1_assists_assists",
+              "odds": "14/5",
+              "player": "Junya Ito 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ritsu Doan 1+ Assists Assists",
+              "normalized_selection": "ritsu_doan_1_assists_assists",
+              "odds": "19/5",
+              "player": "Ritsu Doan 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Daichi Kamada 1+ Assists Assists",
+              "normalized_selection": "daichi_kamada_1_assists_assists",
+              "odds": "9/2",
+              "player": "Daichi Kamada 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Keisuke Goto 1+ Assists Assists",
+              "normalized_selection": "keisuke_goto_1_assists_assists",
+              "odds": "5/1",
+              "player": "Keisuke Goto 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Kosuke Nakamura 1+ Assists Assists",
+              "normalized_selection": "kosuke_nakamura_1_assists_assists",
+              "odds": "5/1",
+              "player": "Kosuke Nakamura 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Shuto Machino 1+ Assists Assists",
+              "normalized_selection": "shuto_machino_1_assists_assists",
+              "odds": "5/1",
+              "player": "Shuto Machino 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Yuito Suzuki 1+ Assists Assists",
+              "normalized_selection": "yuito_suzuki_1_assists_assists",
+              "odds": "5/1",
+              "player": "Yuito Suzuki 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Daizen Maeda 1+ Assists Assists",
+              "normalized_selection": "daizen_maeda_1_assists_assists",
+              "odds": "5/1",
+              "player": "Daizen Maeda 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Anthony Elanga 1+ Assists Assists",
+              "normalized_selection": "anthony_elanga_1_assists_assists",
+              "odds": "5/1",
+              "player": "Anthony Elanga 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Alexander Bernhardsson 1+ Assists Assists",
+              "normalized_selection": "alexander_bernhardsson_1_assists_assists",
+              "odds": "5/1",
+              "player": "Alexander Bernhardsson 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Taha Abdi Ali 1+ Assists Assists",
+              "normalized_selection": "taha_abdi_ali_1_assists_assists",
+              "odds": "5/1",
+              "player": "Taha Abdi Ali 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Yukinari Sugawara 1+ Assists Assists",
+              "normalized_selection": "yukinari_sugawara_1_assists_assists",
+              "odds": "11/2",
+              "player": "Yukinari Sugawara 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Benjamin Nygren 1+ Assists Assists",
+              "normalized_selection": "benjamin_nygren_1_assists_assists",
+              "odds": "11/2",
+              "player": "Benjamin Nygren 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Gustaf Nilsson 1+ Assists Assists",
+              "normalized_selection": "gustaf_nilsson_1_assists_assists",
+              "odds": "11/2",
+              "player": "Gustaf Nilsson 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Elliot Stroud 1+ Assists Assists",
+              "normalized_selection": "elliot_stroud_1_assists_assists",
+              "odds": "6/1",
+              "player": "Elliot Stroud 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Besfort Zeneli 1+ Assists Assists",
+              "normalized_selection": "besfort_zeneli_1_assists_assists",
+              "odds": "6/1",
+              "player": "Besfort Zeneli 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Herman Johansson 1+ Assists Assists",
+              "normalized_selection": "herman_johansson_1_assists_assists",
+              "odds": "6/1",
+              "player": "Herman Johansson 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ken Sema 1+ Assists Assists",
+              "normalized_selection": "ken_sema_1_assists_assists",
+              "odds": "6/1",
+              "player": "Ken Sema 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ao Tanaka 1+ Assists Assists",
+              "normalized_selection": "ao_tanaka_1_assists_assists",
+              "odds": "13/2",
+              "player": "Ao Tanaka 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Yasin Ayari 1+ Assists Assists",
+              "normalized_selection": "yasin_ayari_1_assists_assists",
+              "odds": "13/2",
+              "player": "Yasin Ayari 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Mattias Svanberg 1+ Assists Assists",
+              "normalized_selection": "mattias_svanberg_1_assists_assists",
+              "odds": "13/2",
+              "player": "Mattias Svanberg 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Junnosuke Suzuki 1+ Assists Assists",
+              "normalized_selection": "junnosuke_suzuki_1_assists_assists",
+              "odds": "7/1",
+              "player": "Junnosuke Suzuki 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Kaishu Sano 1+ Assists Assists",
+              "normalized_selection": "kaishu_sano_1_assists_assists",
+              "odds": "7/1",
+              "player": "Kaishu Sano 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Kento Shiogai 1+ Assists Assists",
+              "normalized_selection": "kento_shiogai_1_assists_assists",
+              "odds": "7/1",
+              "player": "Kento Shiogai 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Lucas Bergvall 1+ Assists Assists",
+              "normalized_selection": "lucas_bergvall_1_assists_assists",
+              "odds": "7/1",
+              "player": "Lucas Bergvall 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Daniel Svensson 1+ Assists Assists",
+              "normalized_selection": "daniel_svensson_1_assists_assists",
+              "odds": "7/1",
+              "player": "Daniel Svensson 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Koki Ogawa 1+ Assists Assists",
+              "normalized_selection": "koki_ogawa_1_assists_assists",
+              "odds": "15/2",
+              "player": "Koki Ogawa 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Yuto Nagatomo 1+ Assists Assists",
+              "normalized_selection": "yuto_nagatomo_1_assists_assists",
+              "odds": "15/2",
+              "player": "Yuto Nagatomo 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ko Itakura 1+ Assists Assists",
+              "normalized_selection": "ko_itakura_1_assists_assists",
+              "odds": "17/2",
+              "player": "Ko Itakura 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Hiroki Ito 1+ Assists Assists",
+              "normalized_selection": "hiroki_ito_1_assists_assists",
+              "odds": "17/2",
+              "player": "Hiroki Ito 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Tsuyoshi Watanabe 1+ Assists Assists",
+              "normalized_selection": "tsuyoshi_watanabe_1_assists_assists",
+              "odds": "19/2",
+              "player": "Tsuyoshi Watanabe 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Shogo Taniguchi 1+ Assists Assists",
+              "normalized_selection": "shogo_taniguchi_1_assists_assists",
+              "odds": "19/2",
+              "player": "Shogo Taniguchi 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ayumu Seko 1+ Assists Assists",
+              "normalized_selection": "ayumu_seko_1_assists_assists",
+              "odds": "19/2",
+              "player": "Ayumu Seko 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Takehiro Tomiyasu 1+ Assists Assists",
+              "normalized_selection": "takehiro_tomiyasu_1_assists_assists",
+              "odds": "19/2",
+              "player": "Takehiro Tomiyasu 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Viktor Gyokeres 1+ Assists Assists",
+              "normalized_selection": "viktor_gyokeres_1_assists_assists",
+              "odds": "19/2",
+              "player": "Viktor Gyokeres 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Gabriel Gudmundsson 1+ Assists Assists",
+              "normalized_selection": "gabriel_gudmundsson_1_assists_assists",
+              "odds": "19/2",
+              "player": "Gabriel Gudmundsson 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Alexander Isak 1+ Assists Assists",
+              "normalized_selection": "alexander_isak_1_assists_assists",
+              "odds": "19/2",
+              "player": "Alexander Isak 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Jesper Karlstrom 1+ Assists Assists",
+              "normalized_selection": "jesper_karlstrom_1_assists_assists",
+              "odds": "19/2",
+              "player": "Jesper Karlstrom 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Ayase Ueda 1+ Assists Assists",
+              "normalized_selection": "ayase_ueda_1_assists_assists",
+              "odds": "13/1",
+              "player": "Ayase Ueda 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Gustaf Lagerbielke 1+ Assists Assists",
+              "normalized_selection": "gustaf_lagerbielke_1_assists_assists",
+              "odds": "13/1",
+              "player": "Gustaf Lagerbielke 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Isak Hien 1+ Assists Assists",
+              "normalized_selection": "isak_hien_1_assists_assists",
+              "odds": "13/1",
+              "player": "Isak Hien 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Hjalmar Ekdal 1+ Assists Assists",
+              "normalized_selection": "hjalmar_ekdal_1_assists_assists",
+              "odds": "13/1",
+              "player": "Hjalmar Ekdal 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Carl Starfelt 1+ Assists Assists",
+              "normalized_selection": "carl_starfelt_1_assists_assists",
+              "odds": "13/1",
+              "player": "Carl Starfelt 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Victor Lindelof 1+ Assists Assists",
+              "normalized_selection": "victor_lindelof_1_assists_assists",
+              "odds": "15/1",
+              "player": "Victor Lindelof 1+ Assists",
+              "prop_type": "assist"
+            },
+            {
+              "selection": "Junya Ito 2+ Assists Assists",
+              "normalized_selection": "junya_ito_2_assists_assists",
+              "odds": "25/1",
+              "player": "Junya Ito 2+ Assists",
+              "prop_type": "assist"
+            }
+          ]
+        }
+      ],
+      "parser_line_counts": {
+        "popular": 202,
+        "goals": 137,
+        "corners": 119,
+        "cards": 258,
+        "player": 193
+      },
+      "elapsed_seconds": 67.71
+    }
+  ],
+  "elapsed_seconds": 209.69
+}

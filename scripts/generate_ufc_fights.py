@@ -19,7 +19,6 @@ PROP_FILES = [
     ("BoyleSports", ROOT / "ufc" / "data" / "boylesports_moneylines.json"),
     ("BetVictor", ROOT / "ufc" / "data" / "betvictor_props_filtered.json"),
     ("Coral", ROOT / "ufc" / "data" / "coral_props.json"),
-    ("BetMGM", ROOT / "ufc" / "data" / "betmgm_props.json"),
     ("Unibet", ROOT / "ufc" / "data" / "unibet_props.json"),
     ("WilliamHill", ROOT / "ufc" / "data" / "williamhill_props.json"),
     ("888Sport", ROOT / "ufc" / "data" / "888sport_props.json"),
@@ -192,11 +191,45 @@ def clean_selection(selection):
 
 def selection_key(selection):
     text = clean_selection(selection).lower()
+
+    # Normalise MOV labels
     text = text.replace("ko/tko", "ko")
     text = text.replace("tko/ko", "ko")
     text = text.replace("knockout", "ko")
     text = text.replace("submission", "sub")
     text = text.replace("decision", "dec")
+    text = text.replace("technical dec", "dec")
+    text = text.replace("unanimous", "dec")
+    text = text.replace("split", "dec")
+    text = text.replace("majority", "dec")
+    text = text.replace("disqualification", "dq")
+
+    # Normalise compound MOV: "ko or submission" -> "ko"
+    # Coral uses "KO / TKO / Submission" -> normalise to just "ko"
+    text = re.sub(r"ko.*?sub[^a-z]*", "ko ", text)
+
+    # Normalise GTD
+    text = re.sub(r"goes?\s+the\s+distance\s*[-\u2013]?\s*", "", text)
+
+    # Normalise rounds: strip bracket ranges and trailing "rounds"
+    text = re.sub(r"\([\d\s\.\-]+\)", "", text)
+    text = re.sub(r"\s+rounds?\b", "", text)
+
+    # Normalise fractions
+    text = text.replace("\u00bd", ".5").replace("\u00bc", ".25").replace("\u00be", ".75")
+
+    # Strip fighter name prefix ("Fighter by X" -> "X", "Fighter - X" -> "X")
+    text = re.sub(r"^[a-z\s]+ by ", "", text)
+    text = re.sub(r"^[a-z\s]+ via ", "", text)
+    text = re.sub(r"^[a-z\s]+\s+-\s+", "", text)
+    text = re.sub(r"^[a-z\s]+ wins? by ", "", text)
+
+    # Strip "or", "and", "/" connectors between outcome types to normalise
+    # e.g. "ko or disqualification" -> "ko dq", "dec or technical dec" -> "dec"
+    text = re.sub(r"\bor\b", " ", text)
+    text = re.sub(r"\band\b", " ", text)
+    text = re.sub(r"/", " ", text)
+
     text = re.sub(r"[^a-z0-9\s\.]", "", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text

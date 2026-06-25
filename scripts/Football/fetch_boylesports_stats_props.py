@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# BOYLESPORTS_STATS_PROPS_PROD15_FAST_V1
 """
 fetch_boylesports_stats_props.py
 
@@ -27,8 +28,10 @@ This response contains many Stats sections, including:
 import json
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+from zoneinfo import ZoneInfo
 from urllib.parse import urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
@@ -44,10 +47,15 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[2]
 
 BASE_PROPS_PATH = ROOT / "football" / "data" / "boylesports_worldcup_props.json"
+MONEYLINES_PATH = ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 OUT_PATH = ROOT / "football" / "data" / "boylesports_stats_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "boylesports_stats_html"
 
 MAX_MATCHES = 15
+MAX_WORKERS = 3
+SAVE_FULL_HTML = True
+LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")
+UPCOMING_BUFFER_MINUTES = 15
 STATS_MM_ID = "1615"
 
 SKIP_MATCH_SUBSTRINGS = [
@@ -95,6 +103,284 @@ def clean(text: str) -> str:
 
 def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def norm_team(value: str) -> str:
+    value = clean(value).lower().replace("&", "and")
+    replacements = {
+        "bosnia and herzegovina": "bosnia",
+        "bosnia herzegovina": "bosnia",
+        "united states": "usa",
+        "u s a": "usa",
+        "south korea": "korea republic",
+        "korea republic": "korea republic",
+        "czech republic": "czechia",
+        "turkey": "turkiye",
+        "türkiye": "turkiye",
+        "curaçao": "curacao",
+        "ivory coast": "cote divoire",
+        "côte d ivoire": "cote divoire",
+        "cote d ivoire": "cote divoire",
+        "dr congo": "congo dr",
+        "d r congo": "congo dr",
+        "new zealand": "new zealand",
+    }
+
+    for old, new in replacements.items():
+        value = value.replace(old, new)
+
+    return re.sub(
+        r"[^a-z0-9]+",
+        " ",
+        value,
+    ).strip()
+
+
+def split_match_name(value: str) -> tuple[str, str]:
+    value = clean(value)
+
+    for separator in (
+        " v ",
+        " vs ",
+        " versus ",
+    ):
+        if separator in value.lower():
+            parts = re.split(
+                re.escape(separator),
+                value,
+                maxsplit=1,
+                flags=re.I,
+            )
+            if len(parts) == 2:
+                return clean(parts[0]), clean(parts[1])
+
+    return "", ""
+
+
+def get_match_teams(row: dict) -> tuple[str, str]:
+    home = clean(
+        row.get("home_team")
+        or row.get("home")
+        or row.get("home_name")
+        or ""
+    )
+    away = clean(
+        row.get("away_team")
+        or row.get("away")
+        or row.get("away_name")
+        or ""
+    )
+
+    if not home or not away:
+        fallback_home, fallback_away = split_match_name(
+            row.get("match")
+            or row.get("name")
+            or ""
+        )
+        home = home or fallback_home
+        away = away or fallback_away
+
+    return home, away
+
+
+def fixture_key(row: dict) -> tuple[str, str]:
+    home, away = get_match_teams(row)
+    return norm_team(home), norm_team(away)
+
+
+def parse_kickoff_value(value) -> datetime | None:
+    raw = clean(value)
+
+    if not raw:
+        return None
+
+    iso_candidate = raw.replace("Z", "+00:00")
+
+    try:
+        parsed = datetime.fromisoformat(
+            iso_candidate
+        )
+
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(
+                tzinfo=LOCAL_TIMEZONE
+            )
+        else:
+            parsed = parsed.astimezone(
+                LOCAL_TIMEZONE
+            )
+
+        return parsed
+    except Exception:
+        pass
+
+    formats = (
+        "%a %d %B %Y %H:%M",
+        "%A %d %B %Y %H:%M",
+        "%a %d %b %Y %H:%M",
+        "%A %d %b %Y %H:%M",
+        "%d %B %Y %H:%M",
+        "%d %b %Y %H:%M",
+        "%Y-%m-%d %H:%M",
+        "%d/%m/%Y %H:%M",
+    )
+
+    for fmt in formats:
+        try:
+            parsed = datetime.strptime(
+                raw,
+                fmt,
+            )
+            return parsed.replace(
+                tzinfo=LOCAL_TIMEZONE
+            )
+        except Exception:
+            continue
+
+    return None
+
+
+def row_kickoff(row: dict) -> datetime | None:
+    direct_fields = (
+        "kickoff",
+        "commence_time",
+        "start_time",
+        "starts_at",
+        "datetime",
+        "date_time",
+    )
+
+    for field in direct_fields:
+        parsed = parse_kickoff_value(
+            row.get(field)
+        )
+
+        if parsed is not None:
+            return parsed
+
+    date_label = clean(
+        row.get("date_label")
+        or row.get("date")
+        or ""
+    )
+    time_label = clean(
+        row.get("time")
+        or row.get("time_label")
+        or ""
+    )
+
+    if date_label and time_label:
+        parsed = parse_kickoff_value(
+            f"{date_label} {time_label}"
+        )
+
+        if parsed is not None:
+            return parsed
+
+    return None
+
+
+def load_moneyline_kickoffs() -> dict:
+    if not MONEYLINES_PATH.exists():
+        raise FileNotFoundError(
+            "Missing BoyleSports moneyline file needed "
+            f"for kickoff filtering: {MONEYLINES_PATH}"
+        )
+
+    data = json.loads(
+        MONEYLINES_PATH.read_text(
+            encoding="utf-8"
+        )
+    )
+
+    if isinstance(data, dict):
+        rows = (
+            data.get("matches")
+            or data.get("results")
+            or []
+        )
+    elif isinstance(data, list):
+        rows = data
+    else:
+        rows = []
+
+    lookup = {}
+
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+
+        key = fixture_key(row)
+
+        if not all(key):
+            continue
+
+        kickoff = row_kickoff(row)
+
+        if kickoff is not None:
+            lookup[key] = kickoff
+
+    return lookup
+
+
+def select_upcoming_matches(
+    props_rows: list[dict],
+) -> tuple[list[dict], dict]:
+    kickoff_lookup = load_moneyline_kickoffs()
+    now_local = datetime.now(
+        LOCAL_TIMEZONE
+    )
+    cutoff = now_local + timedelta(
+        minutes=UPCOMING_BUFFER_MINUTES
+    )
+
+    upcoming = []
+    started_removed = 0
+    unknown_removed = 0
+    missing_url_removed = 0
+
+    for row in props_rows:
+        if not row.get("url"):
+            missing_url_removed += 1
+            continue
+
+        kickoff = row_kickoff(row)
+
+        if kickoff is None:
+            kickoff = kickoff_lookup.get(
+                fixture_key(row)
+            )
+
+        if kickoff is None:
+            unknown_removed += 1
+            continue
+
+        if kickoff <= cutoff:
+            started_removed += 1
+            continue
+
+        enriched = dict(row)
+        enriched["_kickoff"] = kickoff
+        upcoming.append(enriched)
+
+    upcoming.sort(
+        key=lambda row: row["_kickoff"]
+    )
+
+    audit = {
+        "now_local": now_local,
+        "cutoff": cutoff,
+        "started_removed":
+            started_removed,
+        "unknown_removed":
+            unknown_removed,
+        "missing_url_removed":
+            missing_url_removed,
+        "upcoming_total":
+            len(upcoming),
+    }
+
+    return upcoming[:MAX_MATCHES], audit
 
 
 def make_partial_url(match_url: str) -> str:
@@ -229,7 +515,8 @@ def parse_threshold_section(section_html: str, title: str, market_key: str) -> l
     return final
 
 
-def fetch_stats_for_match(session, match: dict) -> dict:
+def fetch_stats_for_match(match: dict) -> tuple[dict, dict]:
+    started = time.perf_counter()
     match_name = match.get("match", "")
     match_url = match.get("url", "")
     partial_url = make_partial_url(match_url)
@@ -245,37 +532,90 @@ def fetch_stats_for_match(session, match: dict) -> dict:
         ),
     }
 
-    print(f"\n{match_name}")
-    print(f"  {partial_url}")
+    audit = {
+        "match": match_name,
+        "partial_url": partial_url,
+        "status_code": None,
+        "response_bytes": 0,
+        "request_seconds": 0.0,
+        "parse_seconds": 0.0,
+        "total_seconds": 0.0,
+        "security_verification": False,
+        "error": "",
+        "market_counts": {},
+    }
+
+    session = requests.Session(impersonate="chrome124")
+    request_started = time.perf_counter()
 
     try:
-        resp = session.get(partial_url, headers=headers, timeout=30)
-    except Exception as e:
-        print(f"  ⚠ Error: {e}")
-        return {}
+        resp = session.get(
+            partial_url,
+            headers=headers,
+            timeout=30,
+        )
+    except Exception as error:
+        audit["request_seconds"] = round(
+            time.perf_counter() - request_started,
+            3,
+        )
+        audit["total_seconds"] = round(
+            time.perf_counter() - started,
+            3,
+        )
+        audit["error"] = str(error)
+        return {}, audit
 
-    print(f"  Status: {resp.status_code}, length={len(resp.text)}")
+    audit["request_seconds"] = round(
+        time.perf_counter() - request_started,
+        3,
+    )
+    audit["status_code"] = resp.status_code
+    audit["response_bytes"] = len(resp.content or b"")
+    html = resp.text
 
-    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
-    (DEBUG_DIR / f"{slugify(match_name)}_stats.html").write_text(resp.text, encoding="utf-8")
+    if SAVE_FULL_HTML:
+        DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+        (
+            DEBUG_DIR
+            / f"{slugify(match_name)}_stats.html"
+        ).write_text(
+            html,
+            encoding="utf-8",
+        )
 
     if resp.status_code != 200:
-        return {}
+        audit["total_seconds"] = round(
+            time.perf_counter() - started,
+            3,
+        )
+        return {}, audit
 
-    if "Verify you are human" in resp.text or "security verification" in resp.text:
-        print("  ⚠ Security verification returned")
-        return {}
+    if (
+        "Verify you are human" in html
+        or "security verification" in html
+    ):
+        audit["security_verification"] = True
+        audit["total_seconds"] = round(
+            time.perf_counter() - started,
+            3,
+        )
+        return {}, audit
 
+    parse_started = time.perf_counter()
     markets = {}
 
     for market_key, title in MARKETS.items():
-        section = extract_section_html(resp.text, title)
+        section = extract_section_html(html, title)
 
         if not section:
-            print(f"  - {market_key}: not found")
             continue
 
-        selections = parse_threshold_section(section, title, market_key)
+        selections = parse_threshold_section(
+            section,
+            title,
+            market_key,
+        )
 
         if selections:
             markets[market_key] = {
@@ -284,82 +624,255 @@ def fetch_stats_for_match(session, match: dict) -> dict:
                 "partial_url": partial_url,
                 "selections": selections,
             }
-            print(f"  ✓ {market_key}({len(selections)})")
-        else:
-            print(f"  - {market_key}: 0 selections")
+            audit["market_counts"][market_key] = len(selections)
 
-    return markets
+    audit["parse_seconds"] = round(
+        time.perf_counter() - parse_started,
+        3,
+    )
+    audit["total_seconds"] = round(
+        time.perf_counter() - started,
+        3,
+    )
+    return markets, audit
 
+
+def process_match(
+    index: int,
+    match: dict,
+) -> tuple[int, dict, dict]:
+    markets, audit = fetch_stats_for_match(match)
+
+    result = {
+        "match": match.get("match", ""),
+        "home_team": match.get("home_team", ""),
+        "away_team": match.get("away_team", ""),
+        "url": match.get("url", ""),
+        "markets": markets,
+    }
+
+    return index, result, audit
 
 def main():
+    started = time.perf_counter()
+
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
     if not BASE_PROPS_PATH.exists():
         raise FileNotFoundError(f"Missing {BASE_PROPS_PATH}")
 
-    base = json.loads(BASE_PROPS_PATH.read_text(encoding="utf-8"))
+    base = json.loads(
+        BASE_PROPS_PATH.read_text(encoding="utf-8")
+    )
 
-    matches = []
+    source_matches = []
 
-    for m in base.get("matches", []):
-        name = m.get("match", "").lower()
+    for match in base.get("matches", []):
+        name = match.get(
+            "match",
+            "",
+        ).lower()
 
-        if any(skip in name for skip in SKIP_MATCH_SUBSTRINGS):
-            print(f"Skipping finished match: {m.get('match')}")
+        if any(
+            skip in name
+            for skip in SKIP_MATCH_SUBSTRINGS
+        ):
             continue
 
-        matches.append(m)
+        source_matches.append(match)
 
-    matches = matches[:MAX_MATCHES]
+    matches, filter_audit = (
+        select_upcoming_matches(
+            source_matches
+        )
+    )
+
+    print(
+        "BOYLESPORTS STATS PROPS "
+        "— PROD15 FAST V1"
+    )
+    print("=" * 72)
+    print(f"MAX_MATCHES = {MAX_MATCHES}")
+    print(f"MAX_WORKERS = {MAX_WORKERS}")
+    print(
+        "Current Irish time:        "
+        f"{filter_audit['now_local']:%d %b %Y %H:%M:%S %Z}"
+    )
+    print(
+        "Kickoff safety cutoff:     "
+        f"{filter_audit['cutoff']:%d %b %Y %H:%M:%S %Z}"
+    )
+    print(
+        "Started/in-play removed:   "
+        f"{filter_audit['started_removed']}"
+    )
+    print(
+        "Unknown kickoff removed:   "
+        f"{filter_audit['unknown_removed']}"
+    )
+    print(
+        "Missing URL removed:       "
+        f"{filter_audit['missing_url_removed']}"
+    )
+    print(
+        "Upcoming fixtures found:   "
+        f"{filter_audit['upcoming_total']}"
+    )
+    print(
+        f"Fixtures selected:         "
+        f"{len(matches)}"
+    )
+
+    for index, match in enumerate(
+        matches,
+        start=1,
+    ):
+        print(
+            f"  {index:02d}. "
+            f"{match['_kickoff']:%a %d %B %Y %H:%M} | "
+            f"{match.get('match', '')}"
+        )
 
     if not matches:
         print("No matches found.")
         return
 
-    session = requests.Session(impersonate="chrome124")
-    results = []
+    ordered_results = [None] * len(matches)
+    ordered_audits = [None] * len(matches)
 
-    for i, match in enumerate(matches, 1):
-        print(f"\n[{i}/{len(matches)}]", end=" ")
+    with ThreadPoolExecutor(
+        max_workers=MAX_WORKERS
+    ) as executor:
+        futures = {
+            executor.submit(
+                process_match,
+                index,
+                match,
+            ): index
+            for index, match in enumerate(matches)
+        }
 
-        markets = fetch_stats_for_match(session, match)
+        for future in as_completed(futures):
+            fallback_index = futures[future]
 
-        results.append({
-            "match": match.get("match", ""),
-            "home_team": match.get("home_team", ""),
-            "away_team": match.get("away_team", ""),
-            "url": match.get("url", ""),
-            "markets": markets,
-        })
+            try:
+                index, result, audit = future.result()
+            except Exception as error:
+                match = matches[fallback_index]
+                index = fallback_index
+                result = {
+                    "match": match.get("match", ""),
+                    "home_team": match.get("home_team", ""),
+                    "away_team": match.get("away_team", ""),
+                    "url": match.get("url", ""),
+                    "markets": {},
+                }
+                audit = {
+                    "match": result["match"],
+                    "status_code": None,
+                    "response_bytes": 0,
+                    "request_seconds": 0.0,
+                    "parse_seconds": 0.0,
+                    "total_seconds": 0.0,
+                    "security_verification": False,
+                    "error": str(error),
+                    "market_counts": {},
+                }
 
-        time.sleep(1.0)
+            ordered_results[index] = result
+            ordered_audits[index] = audit
+
+            parts = [
+                f"{key}({count})"
+                for key, count
+                in audit.get("market_counts", {}).items()
+            ]
+            markets_text = ", ".join(parts) if parts else "no stats"
+
+            print(f"\n[{index + 1}/{len(matches)}] {result['match']}")
+            print(
+                f"  status={audit.get('status_code')} "
+                f"bytes={audit.get('response_bytes', 0):,}"
+            )
+            print(
+                f"  request={audit.get('request_seconds', 0):.3f}s "
+                f"parse={audit.get('parse_seconds', 0):.3f}s "
+                f"total={audit.get('total_seconds', 0):.3f}s"
+            )
+            print(f"  {markets_text}")
+
+            if audit.get("error"):
+                print(f"  ERROR: {audit['error']}")
+
+            if audit.get("security_verification"):
+                print("  SECURITY VERIFICATION")
+
+    results = [
+        result
+        for result in ordered_results
+        if result is not None
+    ]
+    audits = [
+        audit
+        for audit in ordered_audits
+        if audit is not None
+    ]
 
     output = {
         "sport": "football",
         "competition": "FIFA World Cup",
         "bookmaker": "BoyleSports",
         "market_type": "stats_props",
+        "test_mode": False,
         "source_file": str(BASE_PROPS_PATH),
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "match_count": len(results),
         "matches": results,
+        "filter_audit": {
+            "now_local":
+                filter_audit["now_local"].isoformat(),
+            "cutoff":
+                filter_audit["cutoff"].isoformat(),
+            "started_removed":
+                filter_audit["started_removed"],
+            "unknown_removed":
+                filter_audit["unknown_removed"],
+            "missing_url_removed":
+                filter_audit["missing_url_removed"],
+            "upcoming_total":
+                filter_audit["upcoming_total"],
+        },
+        "audit": audits,
+        "elapsed_seconds": round(
+            time.perf_counter() - started,
+            3,
+        ),
     }
 
-    OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+    OUT_PATH.write_text(
+        json.dumps(
+            output,
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
 
-    print(f"\n✅ Saved → {OUT_PATH}")
+    complete = sum(
+        1
+        for result in results
+        if len(result.get("markets", {})) == len(MARKETS)
+    )
 
-    print("\n── Summary ──────────────────────────────────────────────")
-    for r in results:
-        parts = [
-            f"{k}({len(v.get('selections', []))})"
-            for k, v in r.get("markets", {}).items()
-        ]
-        status = ", ".join(parts) if parts else "no stats"
-        print(f"  {r['match']:<40} {status}")
-
-    print("─" * 60)
+    print("\n" + "=" * 72)
+    print(f"Saved production output: {OUT_PATH}")
+    print(
+        "Matches with all eight markets: "
+        f"{complete}/{len(results)}"
+    )
+    print(f"Total elapsed: {output['elapsed_seconds']:.3f}s")
+    print("Production BoyleSports stats updated: YES")
 
 
 if __name__ == "__main__":
