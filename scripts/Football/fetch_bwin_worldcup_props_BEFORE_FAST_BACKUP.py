@@ -11,7 +11,7 @@ market cards directly from the rendered DOM.
 The first run is deliberately a TEST3 run:
 
     MAX_MATCHES = 3
-    HEADLESS = True
+    HEADLESS = False
 
 Output:
     football/data/bwin_worldcup_props.json
@@ -28,14 +28,13 @@ than guesswork.
 
 from __future__ import annotations
 
-# BWIN_PROPS_PROD15_SIMPLE_HEADFUL_V1
+# BWIN_PROPS_PROD15_VALIDATION
 
 import json
 import re
 import sys
 import time
 from datetime import datetime, timezone, timedelta
-from zoneinfo import ZoneInfo
 from fractions import Fraction
 from pathlib import Path
 from typing import Iterable
@@ -45,22 +44,13 @@ ROOT = Path(__file__).resolve().parents[2]
 MONEYLINES_PATH = (
     ROOT / "football" / "data" / "bwin_worldcup_moneylines.json"
 )
-REFERENCE_MONEYLINES_PATH = (
-    ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
-)
 OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props"
 
 MAX_MATCHES = 15
 HEADLESS = False
 SKIP_STARTED_MATCHES = True
-KICKOFF_BUFFER_MINUTES = 15
-LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")
-
-SAVE_DEBUG_ARTIFACTS = False
-FAST_CARD_SWEEPS = 3
-FAST_STABLE_ROUNDS = 1
-FAST_SCROLL_WAIT_MS = 90
+KICKOFF_BUFFER_MINUTES = 60
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -422,226 +412,24 @@ def canonical_market_name(heading: str) -> tuple[str, str] | None:
     return mapping.get(key)
 
 
-def norm_team(value: object) -> str:
-    value = clean(value).lower().replace("&", "and")
+def parse_local_kickoff(match: dict) -> datetime | None:
+    """
+    Parse Bwin's local fixture labels such as:
+        Today / 6:00 PM
+        Tomorrow / 12:00 AM
+        6/25/26 / 2:00 AM
 
-    replacements = {
-        "bosnia and herzegovina": "bosnia",
-        "bosnia herzegovina": "bosnia",
-        "united states": "usa",
-        "u s a": "usa",
-        "south korea": "korea republic",
-        "korea republic": "korea republic",
-        "czech republic": "czechia",
-        "turkey": "turkiye",
-        "türkiye": "turkiye",
-        "curaçao": "curacao",
-        "ivory coast": "cote divoire",
-        "côte d ivoire": "cote divoire",
-        "cote d ivoire": "cote divoire",
-        "dr congo": "congo dr",
-        "d r congo": "congo dr",
-    }
-
-    for old, new in replacements.items():
-        value = value.replace(old, new)
-
-    return re.sub(
-        r"[^a-z0-9]+",
-        " ",
-        value,
-    ).strip()
-
-
-def split_match_name(value: object) -> tuple[str, str]:
-    value = clean(value)
-
-    for separator in (" v ", " vs ", " versus "):
-        parts = re.split(
-            re.escape(separator),
-            value,
-            maxsplit=1,
-            flags=re.I,
-        )
-
-        if len(parts) == 2:
-            return clean(parts[0]), clean(parts[1])
-
-    return "", ""
-
-
-def fixture_key(row: dict) -> tuple[str, str]:
-    home = clean(
-        row.get("home_team")
-        or row.get("home")
-        or row.get("home_name")
-    )
-    away = clean(
-        row.get("away_team")
-        or row.get("away")
-        or row.get("away_name")
-    )
-
-    if not home or not away:
-        fallback_home, fallback_away = split_match_name(
-            row.get("match")
-            or row.get("name")
-        )
-        home = home or fallback_home
-        away = away or fallback_away
-
-    return norm_team(home), norm_team(away)
-
-
-def parse_iso_datetime(value: object) -> datetime | None:
-    raw = clean(value)
-
-    if not raw:
-        return None
-
-    for candidate in (
-        raw,
-        raw.replace("Z", "+00:00"),
-    ):
-        try:
-            parsed = datetime.fromisoformat(candidate)
-
-            if parsed.tzinfo is None:
-                parsed = parsed.replace(
-                    tzinfo=LOCAL_TIMEZONE
-                )
-
-            return parsed.astimezone(
-                LOCAL_TIMEZONE
-            )
-        except ValueError:
-            continue
-
-    return None
-
-
-def parse_absolute_datetime(
-    date_label: object,
-    time_label: object,
-) -> datetime | None:
-    raw = clean(f"{date_label} {time_label}")
-
-    if not raw:
-        return None
-
-    formats = (
-        "%m/%d/%y %I:%M %p",
-        "%m/%d/%Y %I:%M %p",
-        "%d/%m/%y %I:%M %p",
-        "%d/%m/%Y %I:%M %p",
-        "%m/%d/%y %H:%M",
-        "%m/%d/%Y %H:%M",
-        "%d/%m/%y %H:%M",
-        "%d/%m/%Y %H:%M",
-        "%Y-%m-%d %H:%M",
-        "%d %B %Y %H:%M",
-        "%d %b %Y %H:%M",
-    )
-
-    for fmt in formats:
-        try:
-            return datetime.strptime(
-                raw,
-                fmt,
-            ).replace(
-                tzinfo=LOCAL_TIMEZONE
-            )
-        except ValueError:
-            continue
-
-    return None
-
-
-def parse_reference_row_kickoff(
-    row: dict,
-) -> datetime | None:
-    for field in (
-        "kickoff",
-        "commence_time",
-        "start_time",
-        "starts_at",
-        "datetime",
-        "date_time",
-    ):
-        parsed = parse_iso_datetime(
-            row.get(field)
-        )
-
-        if parsed is not None:
-            return parsed
-
-    return parse_absolute_datetime(
-        row.get("date_label")
-        or row.get("date"),
-        row.get("time")
-        or row.get("time_label"),
-    )
-
-
-def load_reference_kickoffs() -> dict:
-    if not REFERENCE_MONEYLINES_PATH.exists():
-        return {}
-
-    try:
-        payload = json.loads(
-            REFERENCE_MONEYLINES_PATH.read_text(
-                encoding="utf-8"
-            )
-        )
-    except Exception:
-        return {}
-
-    if isinstance(payload, dict):
-        rows = (
-            payload.get("matches")
-            or payload.get("results")
-            or []
-        )
-    elif isinstance(payload, list):
-        rows = payload
-    else:
-        rows = []
-
-    lookup = {}
-
-    for row in rows:
-        if not isinstance(row, dict):
-            continue
-
-        key = fixture_key(row)
-        kickoff = parse_reference_row_kickoff(row)
-
-        if all(key) and kickoff is not None:
-            lookup[key] = kickoff
-
-    return lookup
-
-
-def parse_bwin_kickoff(
-    match: dict,
-    generated_at: datetime | None,
-) -> datetime | None:
+    The browser and Windows task run in the user's local timezone, so use the
+    machine's local timezone rather than assuming UTC.
+    """
+    now = datetime.now().astimezone()
     date_label = clean(match.get("date_label"))
     time_label = clean(match.get("time"))
-
-    absolute = parse_absolute_datetime(
-        date_label,
-        time_label,
-    )
-    if absolute is not None:
-        return absolute
-
-    if generated_at is None:
-        return None
+    combined = clean(f"{date_label} {time_label}").replace("/", " ")
 
     time_match = re.search(
         r"\b(\d{1,2}:\d{2}\s*(?:AM|PM))\b",
-        time_label,
+        combined,
         re.I,
     )
     if not time_match:
@@ -655,22 +443,49 @@ def parse_bwin_kickoff(
     except ValueError:
         return None
 
-    lowered = date_label.lower()
-
+    lowered = combined.lower()
     if "today" in lowered:
-        event_date = generated_at.date()
+        event_date = now.date()
     elif "tomorrow" in lowered:
-        event_date = (
-            generated_at
-            + timedelta(days=1)
-        ).date()
+        event_date = (now + timedelta(days=1)).date()
     else:
-        return None
+        date_match = re.search(
+            r"\b(\d{1,2}/\d{1,2}/\d{2,4})\b",
+            clean(f"{date_label} {time_label}"),
+        )
+        if not date_match:
+            return None
+
+        parsed_date = None
+        for date_format in ("%m/%d/%y", "%m/%d/%Y"):
+            try:
+                parsed_date = datetime.strptime(
+                    date_match.group(1),
+                    date_format,
+                ).date()
+                break
+            except ValueError:
+                continue
+
+        if parsed_date is None:
+            return None
+        event_date = parsed_date
 
     return datetime.combine(
         event_date,
         clock,
-        tzinfo=LOCAL_TIMEZONE,
+        tzinfo=now.tzinfo,
+    )
+
+
+def match_has_started(match: dict) -> bool:
+    kickoff = parse_local_kickoff(match)
+    if kickoff is None:
+        return False
+
+    now = datetime.now().astimezone()
+    return kickoff <= now + timedelta(
+        minutes=KICKOFF_BUFFER_MINUTES
     )
 
 
@@ -680,32 +495,10 @@ def load_matches() -> list[dict]:
             f"Bwin moneyline file not found: {MONEYLINES_PATH}"
         )
 
-    payload = json.loads(
-        MONEYLINES_PATH.read_text(
-            encoding="utf-8"
-        )
-    )
+    payload = json.loads(MONEYLINES_PATH.read_text(encoding="utf-8"))
     rows = payload.get("matches") or []
 
-    generated_at = parse_iso_datetime(
-        payload.get("generated_at")
-    )
-    reference_lookup = load_reference_kickoffs()
-
-    now_local = datetime.now(
-        LOCAL_TIMEZONE
-    )
-    cutoff = now_local + timedelta(
-        minutes=KICKOFF_BUFFER_MINUTES
-    )
-
-    upcoming = []
-    started_removed = 0
-    unknown_removed = 0
-    missing_url_removed = 0
-    reference_matches = 0
-    anchored_bwin_matches = 0
-
+    output = []
     for row in rows:
         if not isinstance(row, dict):
             continue
@@ -714,169 +507,57 @@ def load_matches() -> list[dict]:
         away = clean(row.get("away_team"))
         url = clean(row.get("source_url"))
 
-        if (
-            not home
-            or not away
-            or "/sports/events/" not in url
-        ):
-            missing_url_removed += 1
+        if not home or not away or "/sports/events/" not in url:
             continue
 
-        match = {
-            "match":
-                clean(row.get("match"))
-                or f"{home} v {away}",
-            "home_team": home,
-            "away_team": away,
-            "date_label":
-                clean(row.get("date_label")),
-            "time": clean(row.get("time")),
-            "url": url,
-        }
-
-        kickoff = reference_lookup.get(
-            fixture_key(match)
+        output.append(
+            {
+                "match": clean(row.get("match")) or f"{home} v {away}",
+                "home_team": home,
+                "away_team": away,
+                "date_label": clean(row.get("date_label")),
+                "time": clean(row.get("time")),
+                "url": url,
+            }
         )
 
-        if kickoff is not None:
-            reference_matches += 1
-        else:
-            kickoff = parse_bwin_kickoff(
-                match,
-                generated_at,
-            )
+    if SKIP_STARTED_MATCHES:
+        upcoming = []
+        for match in output:
+            if match_has_started(match):
+                print(f"Skipping live/near-kickoff fixture: {match['match']}")
+                continue
+            upcoming.append(match)
+        output = upcoming
 
-            if kickoff is not None:
-                anchored_bwin_matches += 1
-
-        if kickoff is None:
-            unknown_removed += 1
-            continue
-
-        if kickoff <= cutoff:
-            started_removed += 1
-            continue
-
-        match["_kickoff"] = kickoff
-        upcoming.append(match)
-
-    upcoming.sort(
-        key=lambda row: row["_kickoff"]
-    )
-
-    selected = (
-        upcoming[:MAX_MATCHES]
-        if MAX_MATCHES
-        else upcoming
-    )
-
-    print(
-        "Current Irish time:        "
-        f"{now_local:%d %b %Y %H:%M:%S %Z}"
-    )
-    print(
-        "Kickoff safety cutoff:     "
-        f"{cutoff:%d %b %Y %H:%M:%S %Z}"
-    )
-    print(
-        "Moneyline file generated:  "
-        + (
-            f"{generated_at:%d %b %Y %H:%M:%S %Z}"
-            if generated_at is not None
-            else "unknown"
-        )
-    )
-    print(
-        "Reference kickoffs matched:"
-        f" {reference_matches}"
-    )
-    print(
-        "Bwin relative dates anchored:"
-        f" {anchored_bwin_matches}"
-    )
-    print(
-        "Started/in-play removed:   "
-        f"{started_removed}"
-    )
-    print(
-        "Unknown kickoff removed:   "
-        f"{unknown_removed}"
-    )
-    print(
-        "Missing URL removed:       "
-        f"{missing_url_removed}"
-    )
-    print(
-        "Upcoming fixtures found:   "
-        f"{len(upcoming)}"
-    )
-    print(
-        "Fixtures selected:         "
-        f"{len(selected)}"
-    )
-
-    for index, match in enumerate(
-        selected,
-        start=1,
-    ):
-        print(
-            f"  {index:02d}. "
-            f"{match['_kickoff']:%a %d %B %Y %H:%M} | "
-            f"{match['match']}"
-        )
-
-    return selected
+    return output[:MAX_MATCHES] if MAX_MATCHES else output
 
 
 def dismiss_cookies(page) -> None:
-    try:
-        clicked = page.evaluate(
-            r"""
-            () => {
-                const wanted = new Set([
-                    "accept all",
-                    "accept",
-                    "i accept",
-                    "agree",
-                    "allow all",
-                    "continue",
-                    "got it",
-                ]);
+    labels = [
+        "Accept All",
+        "Accept all",
+        "Accept",
+        "I Accept",
+        "Agree",
+        "Allow all",
+        "Continue",
+        "Got it",
+    ]
 
-                const clean = value =>
-                    (value || "")
-                        .replace(/\s+/g, " ")
-                        .trim()
-                        .toLowerCase();
+    for label in labels:
+        try:
+            button = page.get_by_role(
+                "button",
+                name=re.compile(rf"^{re.escape(label)}$", re.I),
+            )
+            if button.count():
+                button.first.click(timeout=2200)
+                page.wait_for_timeout(500)
+                return
+        except Exception:
+            continue
 
-                for (const element of document.querySelectorAll(
-                    "button, [role='button'], a"
-                )) {
-                    const text = clean(element.innerText);
-                    const rect = element.getBoundingClientRect();
-                    const style = getComputedStyle(element);
-
-                    if (
-                        wanted.has(text)
-                        && rect.width > 0
-                        && rect.height > 0
-                        && style.display !== "none"
-                        && style.visibility !== "hidden"
-                    ) {
-                        element.click();
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-            """
-        )
-
-        if clicked:
-            page.wait_for_timeout(180)
-    except Exception:
-        pass
 
 def block_heavy_resources(route) -> None:
     if route.request.resource_type in {"image", "media", "font"}:
@@ -886,116 +567,42 @@ def block_heavy_resources(route) -> None:
 
 
 def click_visible_text(page, label: str) -> bool:
-    try:
-        result = page.evaluate(
-            r"""
-            label => {
-                const clean = value =>
-                    (value || "")
-                        .replace(/\s+/g, " ")
-                        .trim();
+    """Click an exact tab/control label and scroll it into view first."""
+    patterns = [
+        page.get_by_role(
+            "tab",
+            name=re.compile(rf"^{re.escape(label)}$", re.I),
+        ),
+        page.get_by_role(
+            "button",
+            name=re.compile(rf"^{re.escape(label)}$", re.I),
+        ),
+        page.get_by_text(
+            re.compile(rf"^{re.escape(label)}$", re.I),
+            exact=True,
+        ),
+    ]
 
-                const wanted = clean(label).toLowerCase();
-                const candidates = [];
-
-                for (const element of document.querySelectorAll(
-                    "button, [role='tab'], [role='button'], a, div, span"
-                )) {
-                    const text = clean(element.innerText);
-
-                    if (text.toLowerCase() !== wanted) {
-                        continue;
-                    }
-
-                    const rect = element.getBoundingClientRect();
-                    const style = getComputedStyle(element);
-                    const centreX = rect.left + rect.width / 2;
-
-                    if (
-                        rect.width <= 0
-                        || rect.height <= 0
-                        || rect.width > 220
-                        || rect.height > 90
-                        || centreX < 250
-                        || centreX > 1380
-                        || style.display === "none"
-                        || style.visibility === "hidden"
-                    ) {
-                        continue;
-                    }
-
-                    candidates.push({
-                        element,
-                        visible: (
-                            rect.bottom > 70
-                            && rect.top < innerHeight - 20
-                        ),
-                        y: rect.top,
-                        area: rect.width * rect.height,
-                    });
-                }
-
-                candidates.sort((a, b) => {
-                    if (a.visible !== b.visible) {
-                        return a.visible ? -1 : 1;
-                    }
-                    if (a.y !== b.y) {
-                        return a.y - b.y;
-                    }
-                    return a.area - b.area;
-                });
-
-                const best = candidates[0];
-
-                if (!best) {
-                    return null;
-                }
-
-                best.element.scrollIntoView({
-                    block: "center",
-                    inline: "center",
-                    behavior: "instant",
-                });
-
-                best.element.setAttribute(
-                    "data-btb-fast-click",
-                    "1"
-                );
-
-                const rect = best.element.getBoundingClientRect();
-
-                return {
-                    x: rect.left + rect.width / 2,
-                    y: rect.top + rect.height / 2,
-                };
-            }
-            """,
-            label,
-        )
-    except Exception:
-        result = None
-
-    if not result:
-        return False
-
-    try:
-        page.mouse.click(
-            float(result["x"]),
-            float(result["y"]),
-        )
-        page.wait_for_timeout(220)
-        return True
-    except Exception:
+    for locator in patterns:
         try:
-            page.locator(
-                '[data-btb-fast-click="1"]'
-            ).first.evaluate(
-                "element => element.click()"
-            )
-            page.wait_for_timeout(220)
-            return True
+            count = min(locator.count(), 8)
         except Exception:
-            return False
+            continue
+
+        for index in range(count):
+            try:
+                item = locator.nth(index)
+                item.scroll_into_view_if_needed(timeout=2500)
+                page.wait_for_timeout(120)
+                if item.is_visible():
+                    item.click(timeout=3000)
+                    page.wait_for_timeout(750)
+                    return True
+            except Exception:
+                continue
+
+    return False
+
 
 def market_card_visible(page, aliases: list[str]) -> str:
     """Return the exact rendered heading when its card contains real odds."""
@@ -1575,7 +1182,7 @@ def click_market_view_once(
                 timeout=1800,
                 force=True,
             )
-            page.wait_for_timeout(350)
+            page.wait_for_timeout(700)
 
             return clean(candidate.get("heading"))
         except Exception:
@@ -1597,7 +1204,7 @@ def open_market_accordion(page, aliases: list[str]) -> str:
     if already:
         return already
 
-    expand_visible_markets(page, max_clicks=14)
+    expand_visible_markets(page, max_clicks=30)
 
     for alias in aliases:
         exact = re.compile(rf"^{re.escape(alias)}$", re.I)
@@ -1632,10 +1239,10 @@ def open_market_accordion(page, aliases: list[str]) -> str:
                 # Try the exact text node first.
                 try:
                     item.click(timeout=2500)
-                    page.wait_for_timeout(220)
+                    page.wait_for_timeout(900)
                     opened = market_card_visible(page, aliases)
                     if opened:
-                        expand_visible_markets(page, max_clicks=14)
+                        expand_visible_markets(page, max_clicks=30)
                         return opened
                 except Exception:
                     pass
@@ -1686,13 +1293,13 @@ def open_market_accordion(page, aliases: list[str]) -> str:
                             page.mouse.move(x, y)
                             page.wait_for_timeout(70)
                             page.mouse.click(x, y)
-                            page.wait_for_timeout(220)
+                            page.wait_for_timeout(950)
 
                             opened = market_card_visible(page, aliases)
                             if opened:
                                 expand_visible_markets(
                                     page,
-                                    max_clicks=14,
+                                    max_clicks=30,
                                 )
                                 return opened
                     except Exception:
@@ -1701,96 +1308,104 @@ def open_market_accordion(page, aliases: list[str]) -> str:
     return ""
 
 
-def expand_visible_markets(
-    page,
-    max_clicks: int = 50,
-) -> int:
+def expand_visible_markets(page, max_clicks: int = 50) -> int:
+    """
+    Click every exact Show More/View More control using locator scrolling.
+
+    This works inside Bwin's nested sportsbook panel as well as the page body.
+    Each clicked node is marked in the DOM to prevent loops when it remains
+    labelled Show More after a partial expansion.
+    """
+    labels = [
+        "Show More",
+        "View More",
+        "See More",
+        "More Markets",
+        "All Markets",
+    ]
     clicked = 0
-    maximum = min(max_clicks, 8)
 
-    for _ in range(maximum):
-        try:
-            result = page.evaluate(
-                r"""
-                () => {
-                    const wanted = new Set([
-                        "show more",
-                        "view more",
-                        "see more",
-                        "more markets",
-                        "all markets",
-                    ]);
+    for _round in range(8):
+        round_clicks = 0
 
-                    const clean = value =>
-                        (value || "")
-                            .replace(/\s+/g, " ")
-                            .trim()
-                            .toLowerCase();
+        for label in labels:
+            exact = re.compile(rf"^{re.escape(label)}$", re.I)
+            locator = page.get_by_text(exact, exact=True)
 
-                    const candidates = [];
+            try:
+                count = min(locator.count(), 120)
+            except Exception:
+                continue
 
-                    for (const element of document.querySelectorAll(
-                        "button, [role='button'], a, div, span"
-                    )) {
-                        if (
-                            element.dataset.btbExpanded === "1"
-                            || !wanted.has(clean(element.innerText))
-                        ) {
-                            continue;
-                        }
+            for index in range(count):
+                if clicked >= max_clicks:
+                    return clicked
 
-                        const rect = element.getBoundingClientRect();
-                        const style = getComputedStyle(element);
-                        const centreX = rect.left + rect.width / 2;
+                item = locator.nth(index)
 
-                        if (
-                            rect.width <= 0
-                            || rect.height <= 0
-                            || rect.width > 500
-                            || rect.height > 100
-                            || centreX < 250
-                            || centreX > 1380
-                            || rect.bottom <= 60
-                            || rect.top >= innerHeight - 10
-                            || style.display === "none"
-                            || style.visibility === "hidden"
-                        ) {
-                            continue;
-                        }
+                try:
+                    was_clicked = item.evaluate(
+                        "el => el.dataset.btbExpanded === '1'"
+                    )
+                    if was_clicked:
+                        continue
+                except Exception:
+                    pass
 
-                        candidates.push({
-                            element,
-                            y: rect.top,
-                            area: rect.width * rect.height,
-                        });
-                    }
+                try:
+                    item.scroll_into_view_if_needed(timeout=4500)
+                    page.wait_for_timeout(120)
+                    if not item.is_visible():
+                        continue
+                except Exception:
+                    continue
 
-                    candidates.sort(
-                        (a, b) =>
-                            a.y - b.y
-                            || a.area - b.area
-                    );
+                success = False
 
-                    const best = candidates[0];
+                try:
+                    item.click(timeout=2500)
+                    success = True
+                except Exception:
+                    ancestor = item
+                    for _depth in range(5):
+                        try:
+                            ancestor = ancestor.locator("xpath=..")
+                            box = ancestor.bounding_box(timeout=1200)
+                            if not box:
+                                continue
+                            if not (
+                                30 <= float(box["width"]) <= 1100
+                                and 18 <= float(box["height"]) <= 100
+                            ):
+                                continue
 
-                    if (!best) {
-                        return false;
-                    }
+                            page.mouse.click(
+                                float(box["x"])
+                                + float(box["width"]) / 2,
+                                float(box["y"])
+                                + float(box["height"]) / 2,
+                            )
+                            success = True
+                            break
+                        except Exception:
+                            continue
 
-                    best.element.dataset.btbExpanded = "1";
-                    best.element.click();
-                    return true;
-                }
-                """
-            )
-        except Exception:
-            result = False
+                if not success:
+                    continue
 
-        if not result:
+                try:
+                    item.evaluate(
+                        "el => { el.dataset.btbExpanded = '1'; }"
+                    )
+                except Exception:
+                    pass
+
+                clicked += 1
+                round_clicks += 1
+                page.wait_for_timeout(420)
+
+        if round_clicks == 0:
             break
-
-        clicked += 1
-        page.wait_for_timeout(120)
 
     return clicked
 
@@ -1929,22 +1544,13 @@ CARD_EXTRACTOR = r"""
 """
 
 
-def collect_cards(
-    page,
-    sweeps: int = FAST_CARD_SWEEPS,
-) -> list[dict]:
+def collect_cards(page) -> list[dict]:
     all_cards: dict[str, dict] = {}
-    previous_count = -1
     stable_rounds = 0
+    previous_count = -1
 
-    for _ in range(max(1, sweeps)):
-        try:
-            cards = page.evaluate(
-                CARD_EXTRACTOR,
-                TARGET_HEADINGS,
-            ) or []
-        except Exception:
-            cards = []
+    for _ in range(28):
+        cards = page.evaluate(CARD_EXTRACTOR, TARGET_HEADINGS) or []
 
         for card in cards:
             key = clean(card.get("signature")) or (
@@ -1955,24 +1561,20 @@ def collect_cards(
             all_cards[key] = card
 
         count = len(all_cards)
-
         if count == previous_count:
             stable_rounds += 1
         else:
             stable_rounds = 0
-
         previous_count = count
 
-        if stable_rounds >= FAST_STABLE_ROUNDS:
+        if stable_rounds >= 4:
             break
 
-        if sweeps > 1:
-            page.mouse.wheel(0, 1400)
-            page.wait_for_timeout(
-                FAST_SCROLL_WAIT_MS
-            )
+        page.mouse.wheel(0, 850)
+        page.wait_for_timeout(450)
 
     return list(all_cards.values())
+
 
 def clean_candidate_label(text: str, heading: str) -> str:
     text = clean(text)
@@ -2918,272 +2520,56 @@ def validate_market_shape(market: dict) -> bool:
 
     return bool(selections)
 
-def parent_tabs_ready(
-    page,
-    preferred_tab: str = "",
-) -> bool:
-    try:
-        return bool(
-            page.evaluate(
-                r"""
-                preferredTab => {
-                    const clean = value =>
-                        (value || "")
-                            .replace(/\s+/g, " ")
-                            .trim()
-                            .toLowerCase();
-
-                    const wanted = new Set([
-                        "all",
-                        "goals",
-                        "players",
-                        "cards",
-                        "corners",
-                    ]);
-
-                    const found = new Set();
-
-                    for (const element of document.querySelectorAll(
-                        "button, [role='tab'], [role='button'], a, div, span"
-                    )) {
-                        const text = clean(element.innerText);
-
-                        if (!wanted.has(text)) {
-                            continue;
-                        }
-
-                        const rect = element.getBoundingClientRect();
-                        const style = getComputedStyle(element);
-                        const centreX = rect.left + rect.width / 2;
-
-                        if (
-                            rect.width <= 0
-                            || rect.height <= 0
-                            || rect.width > 220
-                            || rect.height > 90
-                            || centreX < 250
-                            || centreX > 1380
-                            || style.display === "none"
-                            || style.visibility === "hidden"
-                        ) {
-                            continue;
-                        }
-
-                        found.add(text);
-                    }
-
-                    const preferred = clean(preferredTab);
-
-                    return (
-                        found.size >= 3
-                        && (
-                            !preferred
-                            || found.has(preferred)
-                        )
-                    );
-                }
-                """,
-                preferred_tab,
-            )
-        )
-    except Exception:
-        return False
-
-
-def wait_for_parent_tabs(
-    page,
-    preferred_tab: str = "",
-    timeout_ms: int = 5000,
-) -> bool:
-    try:
-        page.wait_for_function(
-            r"""
-            preferredTab => {
-                const clean = value =>
-                    (value || "")
-                        .replace(/\s+/g, " ")
-                        .trim()
-                        .toLowerCase();
-
-                const wanted = new Set([
-                    "all",
-                    "goals",
-                    "players",
-                    "cards",
-                    "corners",
-                ]);
-
-                const found = new Set();
-
-                for (const element of document.querySelectorAll(
-                    "button, [role='tab'], [role='button'], a, div, span"
-                )) {
-                    const text = clean(element.innerText);
-
-                    if (!wanted.has(text)) {
-                        continue;
-                    }
-
-                    const rect = element.getBoundingClientRect();
-                    const style = getComputedStyle(element);
-                    const centreX = rect.left + rect.width / 2;
-
-                    if (
-                        rect.width <= 0
-                        || rect.height <= 0
-                        || rect.width > 220
-                        || rect.height > 90
-                        || centreX < 250
-                        || centreX > 1380
-                        || style.display === "none"
-                        || style.visibility === "hidden"
-                    ) {
-                        continue;
-                    }
-
-                    found.add(text);
-                }
-
-                const preferred = clean(preferredTab);
-
-                return (
-                    found.size >= 3
-                    && (
-                        !preferred
-                        || found.has(preferred)
-                    )
-                );
-            }
-            """,
-            preferred_tab,
-            timeout=timeout_ms,
-        )
-        return True
-    except Exception:
-        return parent_tabs_ready(
-            page,
-            preferred_tab,
-        )
-
-
-def hard_restore_event_parent(
-    page,
-    parent_url: str,
-    parent_tab: str,
-) -> bool:
-    try:
-        page.goto(
-            parent_url,
-            wait_until="domcontentloaded",
-            timeout=30000,
-        )
-        wait_for_event_ready(page)
-        dismiss_cookies(page)
-
-        if not wait_for_parent_tabs(
-            page,
-            parent_tab,
-            timeout_ms=5500,
-        ):
-            return False
-
-        if parent_tab:
-            click_visible_text(
-                page,
-                parent_tab,
-            )
-            page.wait_for_timeout(180)
-
-        return parent_tabs_ready(
-            page,
-            parent_tab,
-        )
-    except Exception:
-        return False
-
-
 def restore_parent_market_view(
     page,
     parent_url: str,
     parent_tab: str,
 ) -> bool:
+    """
+    Return from a clicked Bwin market view to the parent tab.
+
+    Clicking the active tab again often does nothing. Prefer browser history
+    when the URL changed, then fall back to the saved parent URL.
+    """
     current_url = clean(page.url)
 
     if current_url and current_url != parent_url:
         try:
-            page.go_back(
+            response = page.go_back(
                 wait_until="domcontentloaded",
                 timeout=12000,
             )
-            page.wait_for_timeout(180)
+            page.wait_for_timeout(650)
+
+            if clean(page.url) == parent_url:
+                return True
+
+            # Some SPA history transitions return None but still restore.
+            if click_visible_text(page, parent_tab):
+                page.wait_for_timeout(450)
+                return True
         except Exception:
             pass
 
-    # URL equality alone is not enough. Bwin often changes the URL before
-    # remounting the central tabs.
-    if wait_for_parent_tabs(
-        page,
-        parent_tab,
-        timeout_ms=3500,
-    ):
-        if parent_tab:
-            click_visible_text(
-                page,
-                parent_tab,
-            )
-            page.wait_for_timeout(160)
-
-        if parent_tabs_ready(
-            page,
-            parent_tab,
-        ):
-            return True
-
-    print(
-        f"      parent tabs not ready; "
-        f"hard-restoring {parent_tab}"
-    )
-
-    return hard_restore_event_parent(
-        page,
-        parent_url,
-        parent_tab,
-    )
-
-
-def wait_for_event_ready(page) -> float:
-    started = time.perf_counter()
-
     try:
-        page.wait_for_function(
-            r"""
-            () => {
-                const text = (
-                    document.body?.innerText || ""
-                ).replace(/\s+/g, " ");
+        if clean(page.url) != parent_url:
+            page.goto(
+                parent_url,
+                wait_until="domcontentloaded",
+                timeout=30000,
+            )
+            page.wait_for_timeout(900)
+            dismiss_cookies(page)
 
-                const hasTab = /\b(All|Goals|Players|Cards|Corners)\b/i.test(
-                    text
-                );
-                const hasOdds = /\b\d{1,3}[.,]\d{1,3}\b/.test(
-                    text
-                );
+        if click_visible_text(page, parent_tab):
+            page.wait_for_timeout(450)
 
-                return hasTab && hasOdds;
-            }
-            """,
-            timeout=7000,
-        )
+        return True
     except Exception:
-        # The scraper's existing discovery code remains the final authority.
-        pass
-
-    page.wait_for_timeout(250)
-    return time.perf_counter() - started
+        return False
 
 
 def scrape_one(page, match: dict) -> dict:
-    total_started = time.perf_counter()
     url = match["url"]
     name = match["match"]
     slug = slugify(name)
@@ -3192,30 +2578,15 @@ def scrape_one(page, match: dict) -> dict:
     print(f"Opening {name}")
     print(url)
 
-    navigation_started = time.perf_counter()
-
     page.goto(
         url,
         wait_until="domcontentloaded",
         timeout=90000,
     )
-
-    ready_seconds = wait_for_event_ready(page)
+    page.wait_for_timeout(5000)
     dismiss_cookies(page)
 
-    navigation_seconds = (
-        time.perf_counter()
-        - navigation_started
-    )
-
-    print(
-        f"Event ready in {ready_seconds:.2f}s; "
-        f"navigation stage {navigation_seconds:.2f}s"
-    )
-
-    scrape_stage_started = time.perf_counter()
-
-    clicked = expand_visible_markets(page, max_clicks=24)
+    clicked = expand_visible_markets(page, max_clicks=35)
     print(f"Expanded market controls: {clicked}")
 
     cards_by_key: dict[str, dict] = {}
@@ -3243,7 +2614,7 @@ def scrape_one(page, match: dict) -> dict:
         except Exception:
             pass
 
-        cards = collect_cards(page, sweeps=2)
+        cards = collect_cards(page)
         add_cards(cards)
 
         print(
@@ -3257,21 +2628,15 @@ def scrape_one(page, match: dict) -> dict:
     ) -> None:
         inner_expanded = expand_visible_markets(
             page,
-            max_clicks=10,
+            max_clicks=15,
         )
         if inner_expanded:
             print(
                 f"      expanded {inner_expanded} row control(s)"
             )
 
-        regular = collect_cards(
-            page,
-            sweeps=1,
-        )
-        relaxed = collect_market_view_cards(
-            page,
-            aliases,
-        )
+        regular = collect_cards(page)
+        relaxed = collect_market_view_cards(page, aliases)
 
         add_cards(regular)
         added_relaxed = add_cards(relaxed)
@@ -3285,56 +2650,21 @@ def scrape_one(page, match: dict) -> dict:
     capture("default")
 
     for tab in TARGET_TABS:
-        tab_started = time.perf_counter()
-
-        tab_clicked = click_visible_text(
-            page,
-            tab,
-        )
-
-        if not tab_clicked:
-            print(
-                f"  {tab}: tab not found; "
-                "attempting one parent recovery"
-            )
-
-            recovered = hard_restore_event_parent(
-                page,
-                url,
-                "All",
-            )
-
-            if recovered:
-                tab_clicked = click_visible_text(
-                    page,
-                    tab,
-                )
-
-        if not tab_clicked:
-            print(
-                f"  {tab}: tab still not found "
-                "after recovery"
-            )
+        if not click_visible_text(page, tab):
+            print(f"  {tab}: tab not found")
             continue
 
         tab_expanded = expand_visible_markets(
             page,
-            max_clicks=14,
+            max_clicks=30,
         )
         print(
             f"  {tab}: expanded "
             f"{tab_expanded} inner control(s)"
         )
 
-        discovered_by_tab[tab] = []
-
-        if tab == "All":
-            print(
-                "  All: broad card scan skipped; "
-                "using targeted BTTS/DC views"
-            )
-        else:
-            capture(tab)
+        discovered_by_tab[tab] = discover_market_headings(page)
+        capture(tab)
 
         parent_tab_url = clean(page.url)
 
@@ -3352,6 +2682,8 @@ def scrape_one(page, match: dict) -> dict:
                     f"could not restore {tab}"
                 )
                 continue
+
+            expand_visible_markets(page, max_clicks=20)
 
             before_click_url = clean(page.url)
             clicked_alias = click_market_view_once(
@@ -3381,20 +2713,11 @@ def scrape_one(page, match: dict) -> dict:
                     f"      market URL changed; returning to {tab}"
                 )
 
-            if not restore_parent_market_view(
+            restore_parent_market_view(
                 page,
                 parent_tab_url,
                 tab,
-            ):
-                print(
-                    f"      WARNING: failed to restore "
-                    f"{tab} after {group_name}"
-                )
-
-        print(
-            f"  {tab}: total tab time "
-            f"{time.perf_counter() - tab_started:.2f}s"
-        )
+            )
 
     raw_cards = list(cards_by_key.values())
     markets_by_key: dict[str, dict] = {}
@@ -3425,79 +2748,48 @@ def scrape_one(page, match: dict) -> dict:
                 f"{market['selection_count']} selection(s)"
             )
 
-    if SAVE_DEBUG_ARTIFACTS:
-        DEBUG_DIR.mkdir(
-            parents=True,
-            exist_ok=True,
+    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+
+    try:
+        body_text = page.locator("body").inner_text(
+            timeout=8000
+        )
+    except Exception as error:
+        body_text = (
+            "DEBUG BODY CAPTURE FAILED: "
+            + str(error)
         )
 
-        try:
-            body_text = page.locator(
-                "body"
-            ).inner_text(
-                timeout=8000
-            )
-        except Exception as error:
-            body_text = (
-                "DEBUG BODY CAPTURE FAILED: "
-                + str(error)
-            )
-
-        (
-            DEBUG_DIR
-            / f"{slug}.txt"
-        ).write_text(
-            body_text,
-            encoding="utf-8",
-        )
-        (
-            DEBUG_DIR
-            / f"{slug}_cards.json"
-        ).write_text(
-            json.dumps(
-                raw_cards,
-                indent=2,
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
-        (
-            DEBUG_DIR
-            / f"{slug}_headings.json"
-        ).write_text(
-            json.dumps(
-                discovered_by_tab,
-                indent=2,
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
-
-        try:
-            page.screenshot(
-                path=str(
-                    DEBUG_DIR / f"{slug}.png"
-                ),
-                full_page=False,
-            )
-        except Exception:
-            pass
-
-    scrape_seconds = (
-        time.perf_counter()
-        - scrape_stage_started
+    (DEBUG_DIR / f"{slug}.txt").write_text(
+        body_text,
+        encoding="utf-8",
     )
-    total_seconds = (
-        time.perf_counter()
-        - total_started
+    (DEBUG_DIR / f"{slug}_cards.json").write_text(
+        json.dumps(
+            raw_cards,
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
     )
+    (DEBUG_DIR / f"{slug}_headings.json").write_text(
+        json.dumps(
+            discovered_by_tab,
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+    try:
+        page.screenshot(
+            path=str(DEBUG_DIR / f"{slug}.png"),
+            full_page=False,
+        )
+    except Exception:
+        pass
 
     print(f"Parsed markets: {len(markets)}")
-    print(
-        f"Timing: navigation={navigation_seconds:.2f}s | "
-        f"markets={scrape_seconds:.2f}s | "
-        f"total={total_seconds:.2f}s"
-    )
 
     for market in markets:
         thresholds = sorted(
@@ -3530,25 +2822,10 @@ def scrape_one(page, match: dict) -> dict:
         "time": match.get("time", ""),
         "source_url": url,
         "market_count": len(markets),
-        "timing": {
-            "navigation_seconds": round(
-                navigation_seconds,
-                3,
-            ),
-            "market_seconds": round(
-                scrape_seconds,
-                3,
-            ),
-            "total_seconds": round(
-                total_seconds,
-                3,
-            ),
-        },
         "markets": markets,
     }
 
 def main() -> int:
-    script_started = time.perf_counter()
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
@@ -3556,9 +2833,6 @@ def main() -> int:
         return 1
 
     matches = load_matches()
-    print("Scraper mode:             PROD15 simple headful")
-    print(f"Configured MAX_MATCHES:    {MAX_MATCHES}")
-    print(f"Configured HEADLESS:       {HEADLESS}")
     if not matches:
         print("No usable Bwin event URLs found in the moneyline JSON.")
         return 1
@@ -3637,17 +2911,10 @@ def main() -> int:
     temp_path.replace(OUT_PATH)
 
     print("")
-    print("Bwin World Cup props PROD15 SIMPLE HEADFUL completed")
+    print("Bwin World Cup props 15-match validation completed")
     print(f"Matches saved: {len(results)}")
     print(f"Errors: {len(errors)}")
     print(f"Output: {OUT_PATH}")
-    print(
-        "Total elapsed: "
-        f"{time.perf_counter() - script_started:.2f}s"
-    )
-    print(
-        "Production Bwin props updated: YES"
-    )
 
     return 0 if results else 1
 

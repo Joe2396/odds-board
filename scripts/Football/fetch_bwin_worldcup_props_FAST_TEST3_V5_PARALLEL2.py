@@ -28,12 +28,13 @@ than guesswork.
 
 from __future__ import annotations
 
-# BWIN_PROPS_PROD15_SIMPLE_HEADFUL_V1
+# BWIN_PROPS_FAST_TEST3_V5_PARALLEL2
 
 import json
 import re
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone, timedelta
 from zoneinfo import ZoneInfo
 from fractions import Fraction
@@ -48,16 +49,17 @@ MONEYLINES_PATH = (
 REFERENCE_MONEYLINES_PATH = (
     ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 )
-OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props.json"
-DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props"
+OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props_fast_test_v5_parallel2.json"
+DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props_fast_test_v5_parallel2"
 
-MAX_MATCHES = 15
+MAX_MATCHES = 3
 HEADLESS = False
 SKIP_STARTED_MATCHES = True
 KICKOFF_BUFFER_MINUTES = 15
 LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")
 
 SAVE_DEBUG_ARTIFACTS = False
+MAX_WORKERS = 2
 FAST_CARD_SWEEPS = 3
 FAST_STABLE_ROUNDS = 1
 FAST_SCROLL_WAIT_MS = 90
@@ -3547,106 +3549,318 @@ def scrape_one(page, match: dict) -> dict:
         "markets": markets,
     }
 
-def main() -> int:
-    script_started = time.perf_counter()
-    try:
-        from playwright.sync_api import sync_playwright
-    except ImportError:
-        print("Playwright is not installed.")
-        return 1
+def launch_browser_context(playwright):
+    browser = playwright.chromium.launch(
+        headless=HEADLESS,
+        args=[
+            "--disable-background-networking",
+            "--disable-background-timer-throttling",
+            "--disable-backgrounding-occluded-windows",
+            "--disable-breakpad",
+            "--disable-extensions",
+            "--disable-renderer-backgrounding",
+            "--mute-audio",
+            "--no-first-run",
+        ],
+    )
 
-    matches = load_matches()
-    print("Scraper mode:             PROD15 simple headful")
-    print(f"Configured MAX_MATCHES:    {MAX_MATCHES}")
-    print(f"Configured HEADLESS:       {HEADLESS}")
-    if not matches:
-        print("No usable Bwin event URLs found in the moneyline JSON.")
-        return 1
+    context = browser.new_context(
+        viewport={
+            "width": 1700,
+            "height": 1000,
+        },
+        user_agent=USER_AGENT,
+        locale="en-GB",
+    )
+    context.route(
+        "**/*",
+        block_heavy_resources,
+    )
+    page = context.new_page()
 
-    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
-    results = []
-    errors = []
+    return browser, context, page
+
+
+def scrape_worker(
+    worker_id: int,
+    indexed_matches: list[tuple[int, dict]],
+) -> dict:
+    from playwright.sync_api import sync_playwright
+
+    worker_started = time.perf_counter()
+    worker_results = []
+    worker_errors = []
 
     with sync_playwright() as playwright:
         browser = None
         context = None
 
         try:
-            browser = playwright.chromium.launch(
-                headless=HEADLESS,
-                args=[
-                    "--disable-background-networking",
-                    "--disable-background-timer-throttling",
-                    "--disable-backgrounding-occluded-windows",
-                    "--disable-breakpad",
-                    "--disable-extensions",
-                    "--disable-renderer-backgrounding",
-                    "--mute-audio",
-                    "--no-first-run",
-                ],
-            )
+            (
+                browser,
+                context,
+                page,
+            ) = launch_browser_context(playwright)
 
-            context = browser.new_context(
-                viewport={"width": 1700, "height": 1000},
-                user_agent=USER_AGENT,
-                locale="en-GB",
-            )
-            context.route("**/*", block_heavy_resources)
-            page = context.new_page()
-
-            for index, match in enumerate(matches, start=1):
+            for index, match in indexed_matches:
                 print(
-                    f"\n[{index}/{len(matches)}] "
+                    f"\n[worker {worker_id}] "
+                    f"[{index + 1}] "
                     f"{match['match']}"
                 )
 
                 try:
-                    results.append(scrape_one(page, match))
-                except Exception as error:
-                    errors.append(
-                        {
-                            "match": match["match"],
-                            "error": str(error),
-                        }
+                    result = scrape_one(
+                        page,
+                        match,
                     )
-                    print(f"ERROR: {error}")
+                    worker_results.append(
+                        (index, result)
+                    )
+                except Exception as error:
+                    worker_errors.append(
+                        (
+                            index,
+                            {
+                                "match":
+                                    match["match"],
+                                "error":
+                                    str(error),
+                                "worker_id":
+                                    worker_id,
+                            },
+                        )
+                    )
+                    print(
+                        f"[worker {worker_id}] "
+                        f"ERROR: {error}"
+                    )
         finally:
             if context is not None:
                 context.close()
             if browser is not None:
                 browser.close()
 
+    return {
+        "worker_id": worker_id,
+        "results": worker_results,
+        "errors": worker_errors,
+        "elapsed_seconds": round(
+            time.perf_counter()
+            - worker_started,
+            3,
+        ),
+    }
+
+
+def main() -> int:
+    script_started = time.perf_counter()
+
+    try:
+        import playwright.sync_api  # noqa: F401
+    except ImportError:
+        print("Playwright is not installed.")
+        return 1
+
+    matches = load_matches()
+
+    if not matches:
+        print(
+            "No usable Bwin event URLs found "
+            "in the moneyline JSON."
+        )
+        return 1
+
+    DEBUG_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    worker_count = min(
+        MAX_WORKERS,
+        len(matches),
+    )
+
+    chunks = [
+        []
+        for _ in range(worker_count)
+    ]
+
+    for index, match in enumerate(matches):
+        chunks[
+            index % worker_count
+        ].append(
+            (index, match)
+        )
+
+    print(
+        f"Parallel workers:          "
+        f"{worker_count}"
+    )
+
+    for worker_id, chunk in enumerate(
+        chunks,
+        start=1,
+    ):
+        print(
+            f"  Worker {worker_id}: "
+            + ", ".join(
+                match["match"]
+                for _, match in chunk
+            )
+        )
+
+    ordered_results = {}
+    ordered_errors = {}
+    worker_audit = []
+
+    with ThreadPoolExecutor(
+        max_workers=worker_count
+    ) as executor:
+        futures = {
+            executor.submit(
+                scrape_worker,
+                worker_id,
+                chunk,
+            ): worker_id
+            for worker_id, chunk
+            in enumerate(
+                chunks,
+                start=1,
+            )
+        }
+
+        for future in as_completed(futures):
+            worker_id = futures[future]
+
+            try:
+                report = future.result()
+            except Exception as error:
+                print(
+                    f"Worker {worker_id} failed: "
+                    f"{error}"
+                )
+                worker_audit.append(
+                    {
+                        "worker_id": worker_id,
+                        "elapsed_seconds": 0.0,
+                        "fatal_error": str(error),
+                    }
+                )
+                continue
+
+            worker_audit.append(
+                {
+                    "worker_id":
+                        report["worker_id"],
+                    "elapsed_seconds":
+                        report[
+                            "elapsed_seconds"
+                        ],
+                }
+            )
+
+            for index, result in report[
+                "results"
+            ]:
+                ordered_results[index] = result
+
+            for index, error in report[
+                "errors"
+            ]:
+                ordered_errors[index] = error
+
+    results = [
+        ordered_results[index]
+        for index in sorted(
+            ordered_results
+        )
+    ]
+    errors = [
+        ordered_errors[index]
+        for index in sorted(
+            ordered_errors
+        )
+    ]
+
     payload = {
         "sport": "football",
         "competition": "FIFA World Cup",
         "bookmaker": "Bwin",
         "odds_format": "fractional",
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "match_count": len(results),
-        "error_count": len(errors),
+        "generated_at":
+            datetime.now(
+                timezone.utc
+            ).isoformat(),
+        "test_mode": True,
+        "parallel_workers":
+            worker_count,
+        "match_count":
+            len(results),
+        "error_count":
+            len(errors),
+        "worker_audit":
+            sorted(
+                worker_audit,
+                key=lambda item:
+                    item["worker_id"],
+            ),
         "matches": results,
         "errors": errors,
     }
 
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    temp_path = OUT_PATH.with_suffix(".json.tmp")
+    OUT_PATH.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+    temp_path = OUT_PATH.with_suffix(
+        ".json.tmp"
+    )
     temp_path.write_text(
-        json.dumps(payload, indent=2, ensure_ascii=False),
+        json.dumps(
+            payload,
+            indent=2,
+            ensure_ascii=False,
+        ),
         encoding="utf-8",
     )
     temp_path.replace(OUT_PATH)
 
     print("")
-    print("Bwin World Cup props PROD15 SIMPLE HEADFUL completed")
-    print(f"Matches saved: {len(results)}")
-    print(f"Errors: {len(errors)}")
-    print(f"Output: {OUT_PATH}")
+    print(
+        "Bwin World Cup props "
+        "FAST TEST3 V5 PARALLEL2 completed"
+    )
+    print(
+        f"Matches saved: "
+        f"{len(results)}"
+    )
+    print(
+        f"Errors: "
+        f"{len(errors)}"
+    )
+    print(
+        f"Output: "
+        f"{OUT_PATH}"
+    )
+
+    for audit in sorted(
+        worker_audit,
+        key=lambda item:
+            item["worker_id"],
+    ):
+        print(
+            f"Worker "
+            f"{audit['worker_id']} elapsed: "
+            f"{audit['elapsed_seconds']:.2f}s"
+        )
+
     print(
         "Total elapsed: "
         f"{time.perf_counter() - script_started:.2f}s"
     )
     print(
-        "Production Bwin props updated: YES"
+        "Production Bwin props JSON modified: NO"
     )
 
     return 0 if results else 1

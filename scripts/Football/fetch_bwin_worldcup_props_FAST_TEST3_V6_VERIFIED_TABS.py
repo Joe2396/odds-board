@@ -10,7 +10,7 @@ market cards directly from the rendered DOM.
 
 The first run is deliberately a TEST3 run:
 
-    MAX_MATCHES = 3
+    MAX_MATCHES = 15
     HEADLESS = True
 
 Output:
@@ -28,7 +28,7 @@ than guesswork.
 
 from __future__ import annotations
 
-# BWIN_PROPS_PROD15_SIMPLE_HEADFUL_V1
+# BWIN_PROPS_FAST_TEST3_V6_VERIFIED_TABS
 
 import json
 import re
@@ -48,16 +48,73 @@ MONEYLINES_PATH = (
 REFERENCE_MONEYLINES_PATH = (
     ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 )
-OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props.json"
-DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props"
+OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props_fast_test_v6_verified_tabs.json"
+DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props_fast_test_v6_verified_tabs"
 
-MAX_MATCHES = 15
-HEADLESS = False
+MAX_MATCHES = 3
+HEADLESS = True
 SKIP_STARTED_MATCHES = True
 KICKOFF_BUFFER_MINUTES = 15
 LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")
 
 SAVE_DEBUG_ARTIFACTS = False
+MIN_MARKETS_PER_MATCH = 8
+FAILED_OUTPUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props_failed_run.json"
+PREVIOUS_GOOD_PATH = ROOT / "football" / "data" / "bwin_worldcup_props_previous_good.json"
+MAX_INCOMPLETE_RETRIES = 0
+REQUIRED_MARKETS = {
+    "Match Betting",
+    "Both Teams To Score",
+    "Double Chance",
+    "Total Goals Over/Under",
+    "Total Cards Over/Under",
+    "Total Corners Over/Under",
+}
+
+TAB_EXPECTED_HEADINGS = {
+    "All": [
+        "Both teams to score",
+        "Both Teams To Score",
+        "Double Chance",
+    ],
+    "Goals": [
+        "Total Goals",
+        "Goalscorers",
+        "Anytime Goalscorer",
+    ],
+    "Players": [
+        "Player Total Shots",
+        "Player Total Shots On Target",
+        "Player Total Shots on Target",
+        "Player Total Tackles",
+        "Player Total Assists",
+        "Player Total Fouls",
+    ],
+    "Cards": [
+        "Total Cards",
+        "To be shown a Card",
+        "Player to be shown a Card",
+    ],
+    "Corners": [
+        "Total Corners",
+    ],
+}
+
+TAB_REQUIRED_NORMALIZED_KEYS = {
+    "Goals": {
+        "total_goals",
+    },
+    "Players": {
+        "shots",
+        "shots_on_target",
+    },
+    "Cards": {
+        "total_match_cards",
+    },
+    "Corners": {
+        "total_corners",
+    },
+}
 FAST_CARD_SWEEPS = 3
 FAST_STABLE_ROUNDS = 1
 FAST_SCROLL_WAIT_MS = 90
@@ -996,6 +1053,399 @@ def click_visible_text(page, label: str) -> bool:
             return True
         except Exception:
             return False
+
+def expected_tab_content_visible(
+    page,
+    tab: str,
+) -> bool:
+    aliases = TAB_EXPECTED_HEADINGS.get(
+        tab,
+        [],
+    )
+
+    if not aliases:
+        return True
+
+    try:
+        return bool(
+            page.evaluate(
+                r"""
+                aliases => {
+                    const clean = value =>
+                        (value || "")
+                            .replace(/\s+/g, " ")
+                            .trim();
+
+                    const norm = value =>
+                        clean(value)
+                            .toLowerCase()
+                            .replace(/[^a-z0-9]+/g, " ")
+                            .trim();
+
+                    const wanted = new Set(
+                        aliases.map(norm)
+                    );
+
+                    for (const element of document.querySelectorAll(
+                        "div, span, button, [role='button']"
+                    )) {
+                        const rect = element.getBoundingClientRect();
+                        const style = getComputedStyle(element);
+                        const centreX =
+                            rect.left + rect.width / 2;
+
+                        if (
+                            rect.width <= 0
+                            || rect.height <= 0
+                            || centreX < 250
+                            || centreX > 1380
+                            || style.display === "none"
+                            || style.visibility === "hidden"
+                        ) {
+                            continue;
+                        }
+
+                        const own = Array.from(
+                            element.childNodes
+                        )
+                            .filter(
+                                node =>
+                                    node.nodeType
+                                    === Node.TEXT_NODE
+                            )
+                            .map(
+                                node =>
+                                    clean(node.textContent)
+                            )
+                            .filter(Boolean)
+                            .join(" ");
+
+                        const full = clean(
+                            element.innerText
+                        );
+
+                        if (
+                            wanted.has(norm(own))
+                            || wanted.has(norm(full))
+                        ) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+                """,
+                aliases,
+            )
+        )
+    except Exception:
+        return False
+
+
+def wait_for_expected_tab_content(
+    page,
+    tab: str,
+    timeout_ms: int = 4500,
+) -> bool:
+    aliases = TAB_EXPECTED_HEADINGS.get(
+        tab,
+        [],
+    )
+
+    if not aliases:
+        return True
+
+    try:
+        page.wait_for_function(
+            r"""
+            aliases => {
+                const clean = value =>
+                    (value || "")
+                        .replace(/\s+/g, " ")
+                        .trim();
+
+                const norm = value =>
+                    clean(value)
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, " ")
+                        .trim();
+
+                const wanted = new Set(
+                    aliases.map(norm)
+                );
+
+                for (const element of document.querySelectorAll(
+                    "div, span, button, [role='button']"
+                )) {
+                    const rect = element.getBoundingClientRect();
+                    const style = getComputedStyle(element);
+                    const centreX =
+                        rect.left + rect.width / 2;
+
+                    if (
+                        rect.width <= 0
+                        || rect.height <= 0
+                        || centreX < 250
+                        || centreX > 1380
+                        || style.display === "none"
+                        || style.visibility === "hidden"
+                    ) {
+                        continue;
+                    }
+
+                    const own = Array.from(
+                        element.childNodes
+                    )
+                        .filter(
+                            node =>
+                                node.nodeType
+                                === Node.TEXT_NODE
+                        )
+                        .map(
+                            node =>
+                                clean(node.textContent)
+                        )
+                        .filter(Boolean)
+                        .join(" ");
+
+                    const full = clean(
+                        element.innerText
+                    );
+
+                    if (
+                        wanted.has(norm(own))
+                        || wanted.has(norm(full))
+                    ) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            """,
+            aliases,
+            timeout=timeout_ms,
+        )
+        return True
+    except Exception:
+        return expected_tab_content_visible(
+            page,
+            tab,
+        )
+
+
+def click_real_main_tab(
+    page,
+    tab: str,
+) -> bool:
+    try:
+        point = page.evaluate(
+            r"""
+            tab => {
+                const clean = value =>
+                    (value || "")
+                        .replace(/\s+/g, " ")
+                        .trim();
+
+                const wanted = clean(tab).toLowerCase();
+                const tabNames = new Set([
+                    "all",
+                    "goals",
+                    "players",
+                    "cards",
+                    "corners",
+                ]);
+
+                const candidates = [];
+
+                for (const leaf of document.querySelectorAll(
+                    "button, [role='tab'], [role='button'], a, div, span"
+                )) {
+                    if (
+                        clean(leaf.innerText).toLowerCase()
+                        !== wanted
+                    ) {
+                        continue;
+                    }
+
+                    let row = leaf;
+
+                    for (
+                        let depth = 0;
+                        depth < 7 && row;
+                        depth += 1, row = row.parentElement
+                    ) {
+                        const rowRect =
+                            row.getBoundingClientRect();
+
+                        if (
+                            rowRect.width < 300
+                            || rowRect.width > 1500
+                            || rowRect.height < 25
+                            || rowRect.height > 140
+                        ) {
+                            continue;
+                        }
+
+                        const labels = new Set();
+
+                        for (const child of row.querySelectorAll(
+                            "button, [role='tab'], [role='button'], a, div, span"
+                        )) {
+                            const value = clean(
+                                child.innerText
+                            ).toLowerCase();
+
+                            if (tabNames.has(value)) {
+                                labels.add(value);
+                            }
+                        }
+
+                        if (labels.size < 3) {
+                            continue;
+                        }
+
+                        let target = leaf.closest(
+                            "button, [role='tab'], [role='button'], a"
+                        ) || leaf;
+
+                        const rect =
+                            target.getBoundingClientRect();
+                        const style =
+                            getComputedStyle(target);
+                        const centreX =
+                            rect.left + rect.width / 2;
+
+                        if (
+                            rect.width <= 0
+                            || rect.height <= 0
+                            || rect.width > 220
+                            || rect.height > 95
+                            || centreX < 250
+                            || centreX > 1380
+                            || style.display === "none"
+                            || style.visibility === "hidden"
+                        ) {
+                            continue;
+                        }
+
+                        target.scrollIntoView({
+                            block: "center",
+                            inline: "center",
+                            behavior: "instant",
+                        });
+
+                        target.setAttribute(
+                            "data-btb-main-tab",
+                            "1"
+                        );
+
+                        const finalRect =
+                            target.getBoundingClientRect();
+
+                        candidates.push({
+                            target,
+                            x:
+                                finalRect.left
+                                + finalRect.width / 2,
+                            y:
+                                finalRect.top
+                                + finalRect.height / 2,
+                            top: finalRect.top,
+                        });
+
+                        break;
+                    }
+                }
+
+                candidates.sort(
+                    (a, b) =>
+                        a.top - b.top
+                );
+
+                const best = candidates[0];
+
+                if (!best) {
+                    return null;
+                }
+
+                return {
+                    x: best.x,
+                    y: best.y,
+                };
+            }
+            """,
+            tab,
+        )
+    except Exception:
+        point = None
+
+    if not point:
+        return False
+
+    try:
+        page.mouse.click(
+            float(point["x"]),
+            float(point["y"]),
+        )
+        page.wait_for_timeout(250)
+        return True
+    except Exception:
+        try:
+            page.locator(
+                '[data-btb-main-tab="1"]'
+            ).first.evaluate(
+                "element => element.click()"
+            )
+            page.wait_for_timeout(250)
+            return True
+        except Exception:
+            return False
+
+
+def open_verified_main_tab(
+    page,
+    tab: str,
+    event_url: str,
+) -> bool:
+    for attempt in range(2):
+        if attempt:
+            print(
+                f"  {tab}: verification failed; "
+                "reloading event once"
+            )
+
+            try:
+                page.goto(
+                    event_url,
+                    wait_until="domcontentloaded",
+                    timeout=30000,
+                )
+                wait_for_event_ready(page)
+                dismiss_cookies(page)
+                wait_for_parent_tabs(
+                    page,
+                    "",
+                    timeout_ms=5000,
+                )
+            except Exception:
+                continue
+
+        if not click_real_main_tab(
+            page,
+            tab,
+        ):
+            continue
+
+        if wait_for_expected_tab_content(
+            page,
+            tab,
+            timeout_ms=4500,
+        ):
+            return True
+
+    return False
+
 
 def market_card_visible(page, aliases: list[str]) -> str:
     """Return the exact rendered heading when its card contains real odds."""
@@ -3287,33 +3737,15 @@ def scrape_one(page, match: dict) -> dict:
     for tab in TARGET_TABS:
         tab_started = time.perf_counter()
 
-        tab_clicked = click_visible_text(
+        tab_clicked = open_verified_main_tab(
             page,
             tab,
+            url,
         )
 
         if not tab_clicked:
             print(
-                f"  {tab}: tab not found; "
-                "attempting one parent recovery"
-            )
-
-            recovered = hard_restore_event_parent(
-                page,
-                url,
-                "All",
-            )
-
-            if recovered:
-                tab_clicked = click_visible_text(
-                    page,
-                    tab,
-                )
-
-        if not tab_clicked:
-            print(
-                f"  {tab}: tab still not found "
-                "after recovery"
+                f"  {tab}: verified tab open failed"
             )
             continue
 
@@ -3395,6 +3827,102 @@ def scrape_one(page, match: dict) -> dict:
             f"  {tab}: total tab time "
             f"{time.perf_counter() - tab_started:.2f}s"
         )
+
+    def captured_normalized_keys() -> set[str]:
+        keys = set()
+
+        for card in cards_by_key.values():
+            mapped = canonical_market_name(
+                clean(card.get("heading"))
+            )
+
+            if mapped:
+                keys.add(mapped[1])
+
+        return keys
+
+    initial_keys = captured_normalized_keys()
+
+    for fallback_tab, required_keys in (
+        TAB_REQUIRED_NORMALIZED_KEYS.items()
+    ):
+        missing_keys = (
+            required_keys - initial_keys
+        )
+
+        if not missing_keys:
+            continue
+
+        print(
+            f"  TARGETED FALLBACK {fallback_tab}: "
+            f"missing {', '.join(sorted(missing_keys))}"
+        )
+
+        try:
+            page.goto(
+                url,
+                wait_until="domcontentloaded",
+                timeout=30000,
+            )
+            wait_for_event_ready(page)
+            dismiss_cookies(page)
+        except Exception as error:
+            print(
+                f"    fallback reload failed: {error}"
+            )
+            continue
+
+        if not open_verified_main_tab(
+            page,
+            fallback_tab,
+            url,
+        ):
+            print(
+                f"    fallback could not verify "
+                f"{fallback_tab}"
+            )
+            continue
+
+        fallback_expanded = expand_visible_markets(
+            page,
+            max_clicks=14,
+        )
+        print(
+            f"    fallback expanded "
+            f"{fallback_expanded} control(s)"
+        )
+
+        capture(
+            f"{fallback_tab} fallback"
+        )
+
+        if (
+            fallback_tab == "Players"
+            and "player_tackles_completed"
+            not in captured_normalized_keys()
+        ):
+            tackle_aliases = [
+                "Player Total Tackles",
+                "Player Tackles",
+                "Total Tackles",
+            ]
+
+            clicked_alias = click_market_view_once(
+                page,
+                tackle_aliases,
+            )
+
+            if clicked_alias:
+                print(
+                    "    fallback Player Tackles: "
+                    f"clicked {clicked_alias}"
+                )
+                capture_market_view(
+                    "Player Tackles fallback",
+                    tackle_aliases,
+                )
+
+        initial_keys = captured_normalized_keys()
 
     raw_cards = list(cards_by_key.values())
     markets_by_key: dict[str, dict] = {}
@@ -3547,6 +4075,50 @@ def scrape_one(page, match: dict) -> dict:
         "markets": markets,
     }
 
+def result_market_names(result: dict) -> set[str]:
+    return {
+        clean(market.get("market"))
+        for market in result.get("markets") or []
+        if clean(market.get("market"))
+    }
+
+
+def result_validation_issues(result: dict) -> list[str]:
+    names = result_market_names(result)
+    issues = []
+
+    market_count = int(
+        result.get("market_count") or 0
+    )
+
+    if market_count < MIN_MARKETS_PER_MATCH:
+        issues.append(
+            f"only {market_count} markets "
+            f"(minimum {MIN_MARKETS_PER_MATCH})"
+        )
+
+    missing = sorted(
+        REQUIRED_MARKETS - names
+    )
+
+    if missing:
+        issues.append(
+            "missing required markets: "
+            + ", ".join(missing)
+        )
+
+    return issues
+
+
+def result_quality_score(result: dict) -> tuple[int, int]:
+    names = result_market_names(result)
+
+    return (
+        len(REQUIRED_MARKETS & names),
+        int(result.get("market_count") or 0),
+    )
+
+
 def main() -> int:
     script_started = time.perf_counter()
     try:
@@ -3556,9 +4128,22 @@ def main() -> int:
         return 1
 
     matches = load_matches()
-    print("Scraper mode:             PROD15 simple headful")
-    print(f"Configured MAX_MATCHES:    {MAX_MATCHES}")
-    print(f"Configured HEADLESS:       {HEADLESS}")
+
+    print(
+        f"Configured MAX_MATCHES:    "
+        f"{MAX_MATCHES}"
+    )
+    print(
+        f"Required core markets:    "
+        f"{len(REQUIRED_MARKETS)}"
+    )
+    print(
+        "Whole-fixture retries:     0"
+    )
+    print(
+        "Targeted tab fallback:     enabled"
+    )
+
     if not matches:
         print("No usable Bwin event URLs found in the moneyline JSON.")
         return 1
@@ -3601,7 +4186,12 @@ def main() -> int:
                 )
 
                 try:
-                    results.append(scrape_one(page, match))
+                    result = scrape_one(
+                        page,
+                        match,
+                    )
+                    results.append(result)
+
                 except Exception as error:
                     errors.append(
                         {
@@ -3628,25 +4218,74 @@ def main() -> int:
         "errors": errors,
     }
 
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    temp_path = OUT_PATH.with_suffix(".json.tmp")
-    temp_path.write_text(
-        json.dumps(payload, indent=2, ensure_ascii=False),
+    invalid_matches = [
+        {
+            "result": result,
+            "issues": result_validation_issues(
+                result
+            ),
+        }
+        for result in results
+        if result_validation_issues(result)
+    ]
+
+    payload["validation_failures"] = [
+        {
+            "match": item["result"].get(
+                "match"
+            ),
+            "market_count": item[
+                "result"
+            ].get("market_count"),
+            "issues": item["issues"],
+        }
+        for item in invalid_matches
+    ]
+
+    OUT_PATH.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+    OUT_PATH.write_text(
+        json.dumps(
+            payload,
+            indent=2,
+            ensure_ascii=False,
+        ),
         encoding="utf-8",
     )
-    temp_path.replace(OUT_PATH)
 
     print("")
-    print("Bwin World Cup props PROD15 SIMPLE HEADFUL completed")
-    print(f"Matches saved: {len(results)}")
-    print(f"Errors: {len(errors)}")
+    print(
+        "Bwin World Cup props "
+        "FAST TEST3 V6 VERIFIED TABS completed"
+    )
+    print(
+        f"Matches saved: {len(results)}"
+    )
+    print(
+        f"Errors: {len(errors)}"
+    )
+    print(
+        f"Invalid/incomplete matches: "
+        f"{len(invalid_matches)}"
+    )
+
+    for item in invalid_matches:
+        result = item["result"]
+        print(
+            "  - "
+            f"{result.get('match')}: "
+            + "; ".join(item["issues"])
+        )
+
     print(f"Output: {OUT_PATH}")
     print(
         "Total elapsed: "
         f"{time.perf_counter() - script_started:.2f}s"
     )
     print(
-        "Production Bwin props updated: YES"
+        "Production Bwin props JSON modified: NO"
     )
 
     return 0 if results else 1

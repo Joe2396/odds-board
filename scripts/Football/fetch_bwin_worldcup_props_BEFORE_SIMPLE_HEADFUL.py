@@ -10,7 +10,7 @@ market cards directly from the rendered DOM.
 
 The first run is deliberately a TEST3 run:
 
-    MAX_MATCHES = 3
+    MAX_MATCHES = 15
     HEADLESS = True
 
 Output:
@@ -28,7 +28,7 @@ than guesswork.
 
 from __future__ import annotations
 
-# BWIN_PROPS_PROD15_SIMPLE_HEADFUL_V1
+# BWIN_PROPS_PROD15_FAST_V2_VALIDATED
 
 import json
 import re
@@ -52,12 +52,24 @@ OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props"
 
 MAX_MATCHES = 15
-HEADLESS = False
+HEADLESS = True
 SKIP_STARTED_MATCHES = True
 KICKOFF_BUFFER_MINUTES = 15
 LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")
 
 SAVE_DEBUG_ARTIFACTS = False
+MIN_MARKETS_PER_MATCH = 8
+FAILED_OUTPUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props_failed_run.json"
+PREVIOUS_GOOD_PATH = ROOT / "football" / "data" / "bwin_worldcup_props_previous_good.json"
+MAX_INCOMPLETE_RETRIES = 1
+REQUIRED_MARKETS = {
+    "Match Betting",
+    "Both Teams To Score",
+    "Double Chance",
+    "Total Goals Over/Under",
+    "Total Cards Over/Under",
+    "Total Corners Over/Under",
+}
 FAST_CARD_SWEEPS = 3
 FAST_STABLE_ROUNDS = 1
 FAST_SCROLL_WAIT_MS = 90
@@ -3547,6 +3559,50 @@ def scrape_one(page, match: dict) -> dict:
         "markets": markets,
     }
 
+def result_market_names(result: dict) -> set[str]:
+    return {
+        clean(market.get("market"))
+        for market in result.get("markets") or []
+        if clean(market.get("market"))
+    }
+
+
+def result_validation_issues(result: dict) -> list[str]:
+    names = result_market_names(result)
+    issues = []
+
+    market_count = int(
+        result.get("market_count") or 0
+    )
+
+    if market_count < MIN_MARKETS_PER_MATCH:
+        issues.append(
+            f"only {market_count} markets "
+            f"(minimum {MIN_MARKETS_PER_MATCH})"
+        )
+
+    missing = sorted(
+        REQUIRED_MARKETS - names
+    )
+
+    if missing:
+        issues.append(
+            "missing required markets: "
+            + ", ".join(missing)
+        )
+
+    return issues
+
+
+def result_quality_score(result: dict) -> tuple[int, int]:
+    names = result_market_names(result)
+
+    return (
+        len(REQUIRED_MARKETS & names),
+        int(result.get("market_count") or 0),
+    )
+
+
 def main() -> int:
     script_started = time.perf_counter()
     try:
@@ -3556,9 +3612,20 @@ def main() -> int:
         return 1
 
     matches = load_matches()
-    print("Scraper mode:             PROD15 simple headful")
-    print(f"Configured MAX_MATCHES:    {MAX_MATCHES}")
-    print(f"Configured HEADLESS:       {HEADLESS}")
+
+    print(
+        f"Configured MAX_MATCHES:    "
+        f"{MAX_MATCHES}"
+    )
+    print(
+        f"Required core markets:    "
+        f"{len(REQUIRED_MARKETS)}"
+    )
+    print(
+        f"Incomplete retries:       "
+        f"{MAX_INCOMPLETE_RETRIES}"
+    )
+
     if not matches:
         print("No usable Bwin event URLs found in the moneyline JSON.")
         return 1
@@ -3601,7 +3668,66 @@ def main() -> int:
                 )
 
                 try:
-                    results.append(scrape_one(page, match))
+                    best_result = scrape_one(
+                        page,
+                        match,
+                    )
+                    best_issues = (
+                        result_validation_issues(
+                            best_result
+                        )
+                    )
+
+                    for retry_number in range(
+                        1,
+                        MAX_INCOMPLETE_RETRIES + 1,
+                    ):
+                        if not best_issues:
+                            break
+
+                        print(
+                            "Incomplete fixture capture: "
+                            + "; ".join(best_issues)
+                        )
+                        print(
+                            f"Retrying {match['match']} "
+                            f"({retry_number}/"
+                            f"{MAX_INCOMPLETE_RETRIES}) "
+                            "with a clean event reload..."
+                        )
+
+                        try:
+                            page.goto(
+                                "about:blank",
+                                wait_until=(
+                                    "domcontentloaded"
+                                ),
+                                timeout=10000,
+                            )
+                            page.wait_for_timeout(300)
+                        except Exception:
+                            pass
+
+                        retry_result = scrape_one(
+                            page,
+                            match,
+                        )
+                        retry_issues = (
+                            result_validation_issues(
+                                retry_result
+                            )
+                        )
+
+                        if result_quality_score(
+                            retry_result
+                        ) > result_quality_score(
+                            best_result
+                        ):
+                            best_result = retry_result
+                            best_issues = retry_issues
+
+                    results.append(best_result)
+
                 except Exception as error:
                     errors.append(
                         {
@@ -3628,7 +3754,101 @@ def main() -> int:
         "errors": errors,
     }
 
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    invalid_matches = [
+        {
+            "result": result,
+            "issues": result_validation_issues(
+                result
+            ),
+        }
+        for result in results
+        if result_validation_issues(result)
+    ]
+
+    production_valid = (
+        len(results) == len(matches)
+        and not errors
+        and not invalid_matches
+    )
+
+    if not production_valid:
+        payload["validation_failures"] = [
+            {
+                "match": item["result"].get(
+                    "match"
+                ),
+                "market_count": item[
+                    "result"
+                ].get("market_count"),
+                "issues": item["issues"],
+            }
+            for item in invalid_matches
+        ]
+
+        FAILED_OUTPUT_PATH.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+        FAILED_OUTPUT_PATH.write_text(
+            json.dumps(
+                payload,
+                indent=2,
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+
+        print("")
+        print(
+            "Bwin production validation failed. "
+            "Existing production JSON was retained."
+        )
+        print(
+            f"Expected matches: {len(matches)}"
+        )
+        print(
+            f"Successful matches: {len(results)}"
+        )
+        print(
+            f"Errors: {len(errors)}"
+        )
+        print(
+            "Invalid/incomplete matches: "
+            f"{len(invalid_matches)}"
+        )
+
+        for item in invalid_matches:
+            result = item["result"]
+            print(
+                "  - "
+                f"{result.get('match')}: "
+                + "; ".join(item["issues"])
+            )
+
+        print(
+            f"Failed-run audit: {FAILED_OUTPUT_PATH}"
+        )
+        print(
+            "Production Bwin props updated: NO"
+        )
+        return 1
+
+    OUT_PATH.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    if OUT_PATH.exists():
+        try:
+            PREVIOUS_GOOD_PATH.write_bytes(
+                OUT_PATH.read_bytes()
+            )
+        except Exception as error:
+            print(
+                "Warning: could not create "
+                f"previous-output backup: {error}"
+            )
+
     temp_path = OUT_PATH.with_suffix(".json.tmp")
     temp_path.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False),
@@ -3637,7 +3857,7 @@ def main() -> int:
     temp_path.replace(OUT_PATH)
 
     print("")
-    print("Bwin World Cup props PROD15 SIMPLE HEADFUL completed")
+    print("Bwin World Cup props PROD15 FAST V2 completed")
     print(f"Matches saved: {len(results)}")
     print(f"Errors: {len(errors)}")
     print(f"Output: {OUT_PATH}")
@@ -3645,9 +3865,7 @@ def main() -> int:
         "Total elapsed: "
         f"{time.perf_counter() - script_started:.2f}s"
     )
-    print(
-        "Production Bwin props updated: YES"
-    )
+    print("Production Bwin props updated: YES")
 
     return 0 if results else 1
 

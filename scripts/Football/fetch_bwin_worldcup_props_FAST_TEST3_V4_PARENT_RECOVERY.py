@@ -28,7 +28,7 @@ than guesswork.
 
 from __future__ import annotations
 
-# BWIN_PROPS_PROD15_SIMPLE_HEADFUL_V1
+# BWIN_PROPS_FAST_TEST3_V4_PARENT_RECOVERY
 
 import json
 import re
@@ -48,10 +48,10 @@ MONEYLINES_PATH = (
 REFERENCE_MONEYLINES_PATH = (
     ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 )
-OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props.json"
-DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props"
+OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props_fast_test_v4_parent_recovery.json"
+DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props_fast_test_v4_parent_recovery"
 
-MAX_MATCHES = 15
+MAX_MATCHES = 3
 HEADLESS = False
 SKIP_STARTED_MATCHES = True
 KICKOFF_BUFFER_MINUTES = 15
@@ -3556,9 +3556,6 @@ def main() -> int:
         return 1
 
     matches = load_matches()
-    print("Scraper mode:             PROD15 simple headful")
-    print(f"Configured MAX_MATCHES:    {MAX_MATCHES}")
-    print(f"Configured HEADLESS:       {HEADLESS}")
     if not matches:
         print("No usable Bwin event URLs found in the moneyline JSON.")
         return 1
@@ -3637,7 +3634,7 @@ def main() -> int:
     temp_path.replace(OUT_PATH)
 
     print("")
-    print("Bwin World Cup props PROD15 SIMPLE HEADFUL completed")
+    print("Bwin World Cup props FAST TEST3 V4 PARENT RECOVERY completed")
     print(f"Matches saved: {len(results)}")
     print(f"Errors: {len(errors)}")
     print(f"Output: {OUT_PATH}")
@@ -3646,7 +3643,7 @@ def main() -> int:
         f"{time.perf_counter() - script_started:.2f}s"
     )
     print(
-        "Production Bwin props updated: YES"
+        "Production Bwin props JSON modified: NO"
     )
 
     return 0 if results else 1

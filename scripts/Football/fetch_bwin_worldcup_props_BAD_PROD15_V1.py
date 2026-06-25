@@ -10,7 +10,7 @@ market cards directly from the rendered DOM.
 
 The first run is deliberately a TEST3 run:
 
-    MAX_MATCHES = 3
+    MAX_MATCHES = 15
     HEADLESS = True
 
 Output:
@@ -28,7 +28,7 @@ than guesswork.
 
 from __future__ import annotations
 
-# BWIN_PROPS_PROD15_SIMPLE_HEADFUL_V1
+# BWIN_PROPS_PROD15_FAST_V1
 
 import json
 import re
@@ -51,13 +51,15 @@ REFERENCE_MONEYLINES_PATH = (
 OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props"
 
-MAX_MATCHES = 15
-HEADLESS = False
+MAX_MATCHES = 3
+HEADLESS = True
 SKIP_STARTED_MATCHES = True
 KICKOFF_BUFFER_MINUTES = 15
 LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")
 
 SAVE_DEBUG_ARTIFACTS = False
+MIN_MARKETS_PER_MATCH = 5
+FAILED_OUTPUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props_failed_run.json"
 FAST_CARD_SWEEPS = 3
 FAST_STABLE_ROUNDS = 1
 FAST_SCROLL_WAIT_MS = 90
@@ -3556,9 +3558,6 @@ def main() -> int:
         return 1
 
     matches = load_matches()
-    print("Scraper mode:             PROD15 simple headful")
-    print(f"Configured MAX_MATCHES:    {MAX_MATCHES}")
-    print(f"Configured HEADLESS:       {HEADLESS}")
     if not matches:
         print("No usable Bwin event URLs found in the moneyline JSON.")
         return 1
@@ -3628,6 +3627,67 @@ def main() -> int:
         "errors": errors,
     }
 
+    incomplete_matches = [
+        result
+        for result in results
+        if int(result.get("market_count") or 0)
+        < MIN_MARKETS_PER_MATCH
+    ]
+
+    production_valid = (
+        len(results) == len(matches)
+        and not errors
+        and not incomplete_matches
+    )
+
+    if not production_valid:
+        FAILED_OUTPUT_PATH.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+        FAILED_OUTPUT_PATH.write_text(
+            json.dumps(
+                payload,
+                indent=2,
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+
+        print("")
+        print(
+            "Bwin production validation failed. "
+            "Existing production JSON was retained."
+        )
+        print(
+            f"Expected matches: {len(matches)}"
+        )
+        print(
+            f"Successful matches: {len(results)}"
+        )
+        print(
+            f"Errors: {len(errors)}"
+        )
+        print(
+            "Matches below minimum market count: "
+            f"{len(incomplete_matches)}"
+        )
+
+        for result in incomplete_matches:
+            print(
+                "  - "
+                f"{result.get('match')}: "
+                f"{result.get('market_count')} markets"
+            )
+
+        print(
+            f"Failed-run audit: {FAILED_OUTPUT_PATH}"
+        )
+        print(
+            "Production Bwin props updated: NO"
+        )
+        return 1
+
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     temp_path = OUT_PATH.with_suffix(".json.tmp")
     temp_path.write_text(
@@ -3637,7 +3697,7 @@ def main() -> int:
     temp_path.replace(OUT_PATH)
 
     print("")
-    print("Bwin World Cup props PROD15 SIMPLE HEADFUL completed")
+    print("Bwin World Cup props PROD15 FAST completed")
     print(f"Matches saved: {len(results)}")
     print(f"Errors: {len(errors)}")
     print(f"Output: {OUT_PATH}")
@@ -3645,9 +3705,7 @@ def main() -> int:
         "Total elapsed: "
         f"{time.perf_counter() - script_started:.2f}s"
     )
-    print(
-        "Production Bwin props updated: YES"
-    )
+    print("Production Bwin props updated: YES")
 
     return 0 if results else 1
 
