@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# BOYLESPORTS_WORLD_CUP_PROPS_PROD15_FAST_STANDALONE_V2
+# BOYLESPORTS_WORLD_CUP_PROPS_PROD15_FAST_V1
 # BOYLESPORTS_WORLD_CUP_PROPS_FAST_TEST3_V1
 
 """
@@ -15,6 +15,7 @@ Uses the existing production parser functions unchanged, but:
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import re
 import threading
@@ -28,6 +29,7 @@ from bs4 import BeautifulSoup
 from curl_cffi import requests
 
 ROOT = Path(__file__).resolve().parents[2]
+PRODUCTION_SCRIPT = ROOT / "scripts" / "Football" / "fetch_boylesports_worldcup_props.py"
 MONEYLINES_PATH = ROOT / "football" / "data" / "boylesports_worldcup_moneylines.json"
 OUT_PATH = ROOT / "football" / "data" / "boylesports_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "boylesports_props_fast"
@@ -56,411 +58,21 @@ class ThreadLocalDebugPath:
         return path.open(mode, encoding=encoding)
 
 
-# The original validated BoyleSports parser is embedded below.
-# DEBUG_PATH is redirected to one file per worker/fixture.
-DEBUG_PATH = ThreadLocalDebugPath(DEBUG_DIR)
-
-
-MARKET_MAP = {
-    "Match Betting":                    "match_betting",
-    "Half Time Result":                 "half_time_result",
-    "Handicaps":                        "handicap",
-    "Total Goals Over / Under":         "total_goals",
-    "1st Half Goals Over / Under":      "first_half_goals",
-    "Both Teams To Score":              "btts",
-    "Double Chance":                    "double_chance",
-    "Total Corners Over / Under":       "total_corners",
-    "Team Total Corners Over / Under":  "team_total_corners",
-    "Total Team Goals Over / Under":    "team_total_goals",
-    "1st Half Total Team Goals":        "first_half_team_goals",
-    "Main Goalscorer Markets":          "goalscorers",
-    "Player To Be Booked":              "player_booked",
-    "Player To Be Sent Off":            "player_sent_off",
-
-    # These may or may not be exact Boyle labels.
-    "Player Shots On Target Over":      "player_shots_on_target",
-    "Player Shots On Target":           "player_shots_on_target",
-    "Shots On Target":                  "player_shots_on_target",
-    "Player Shots Over":                "player_shots",
-    "Player Shots":                     "player_shots",
-    "Total Shots":                      "player_shots",
-}
-
-
-def clean_text(text: str) -> str:
-    text = re.sub(r"\bCash Out\b", "", text or "", flags=re.I)
-    text = re.sub(r"\s+", " ", text)
-    return text.strip()
-
-
-def find_market_label(panel) -> str:
-    luf = panel.parent
-    if luf is None:
-        return ""
-
-    text = clean_text(luf.get_text(separator=" ", strip=True))
-    text = re.sub(r"\bi\b", "", text).strip()
-
-    # Try to cut the label before common table/header content.
-    cut_patterns = [
-        r"\bHome Draw Away\b",
-        r"\bOver Under\b",
-        r"\bFirst Anytime\b",
-        r"\bYes No\b",
-        r"\bIf your selected player\b",
-        r"\bIf your team goes\b",
-    ]
-
-    label = text
-    for pat in cut_patterns:
-        m = re.search(pat, label, flags=re.I)
-        if m:
-            label = label[:m.start()].strip()
-            break
-
-    return clean_text(label[:120])
-
-
-def force_market_key_from_text(label: str, full_text: str) -> str | None:
-    blob = f"{label} {full_text}".lower()
-
-    # Important: SOT before shots, because SOT includes the word shots.
-    if "shots on target" in blob or "shot on target" in blob:
-        return "player_shots_on_target"
-
-    if (
-        "player shots" in blob
-        or "total shots" in blob
-        or "to have 1+ shots" in blob
-        or "to have 2+ shots" in blob
-        or "to have 3+ shots" in blob
-    ):
-        return "player_shots"
-
-    return None
-
-
-def match_market_key(label: str, full_text: str = "") -> str | None:
-    label_lower = label.lower().strip()
-
-    for key, internal in MARKET_MAP.items():
-        if key.lower() == label_lower:
-            return internal
-
-    for key, internal in sorted(MARKET_MAP.items(), key=lambda x: len(x[0]), reverse=True):
-        if key.lower() in label_lower:
-            return internal
-
-    forced = force_market_key_from_text(label, full_text)
-    if forced:
-        return forced
-
-    return None
-
-
-def get_selections(panel) -> list:
-    sels = []
-    seen = set()
-
-    for el in panel.select("[data-price]"):
-        name  = el.get("data-name", "").strip()
-        price = el.get("data-price", "").strip()
-
-        if not name or not price:
-            continue
-
-        item = {
-            "name":         name,
-            "price":        price,
-            "market_id":    el.get("data-marketid", ""),
-            "selection_id": el.get("data-selectionid", ""),
-        }
-
-        sig = (item["name"], item["price"], item["market_id"], item["selection_id"])
-        if sig in seen:
-            continue
-        seen.add(sig)
-
-        sels.append(item)
-
-    return sels
-
-
-def parse_handicap_main_line(panel) -> list:
-    all_sels = get_selections(panel)
-    return [s for s in all_sels if re.search(r"[+-]1(?:\s|$)", s["name"])]
-
-
-def parse_goalscorer_market(panel) -> dict:
-    result = {"first": [], "anytime": [], "two_plus": [], "three_plus": []}
-
-    headers = []
-    header_row = panel.select_one("tr")
-    if header_row:
-        headers = [th.get_text(strip=True).lower() for th in header_row.select("th")]
-
-    col_map = {}
-    for i, h in enumerate(headers):
-        if h == "first":
-            col_map["first"] = i
-        elif h == "anytime":
-            col_map["anytime"] = i
-        elif "2+" in h:
-            col_map["two_plus"] = i
-        elif "3+" in h:
-            col_map["three_plus"] = i
-
-    rows = panel.select("tr")[1:] if header_row else panel.select("tr")
-
-    for row in rows:
-        cells = row.select("td")
-        if not cells:
-            continue
-
-        player_name = cells[0].get_text(strip=True)
-        if not player_name or player_name.lower() in ("first", "anytime", "2+", "3+"):
-            continue
-
-        def get_price(col_key):
-            idx = col_map.get(col_key)
-            if idx is None or idx >= len(cells):
-                return None
-            el = cells[idx].select_one("[data-price]")
-            return el.get("data-price", "").strip() if el else None
-
-        for col_key in ["first", "anytime", "two_plus", "three_plus"]:
-            price = get_price(col_key)
-            if price and price != "N/A":
-                result[col_key].append({"name": player_name, "price": price})
-
-    if not any(result.values()):
-        bucket_keys = ["first", "anytime", "two_plus", "three_plus"]
-        player_sels = {}
-
-        for sel in get_selections(panel):
-            player_sels.setdefault(sel["name"], []).append(sel["price"])
-
-        for player, prices in player_sels.items():
-            for i, price in enumerate(prices[:4]):
-                if price and price != "N/A":
-                    result[bucket_keys[i]].append({"name": player, "price": price})
-
-    return result
-
-
-def parse_player_booked(panel) -> list:
-    return get_selections(panel)
-
-
-def parse_player_threshold_market(panel) -> list:
-    """
-    Handles player lines like:
-      Christian Pulisic Over 0.5 4/6
-      Christian Pulisic Over 1.5 3/1
-      or data-name containing "Christian Pulisic To Have 1+ Shots On Target"
-    """
-    out = []
-    seen = set()
-
-    # First try row-based parsing.
-    rows = panel.select(".sports-row, tr, .event-selection, .market-row, li")
-
-    for row in rows:
-        row_text = clean_text(row.get_text(" ", strip=True))
-        prices = row.select("[data-price]")
-        if not prices:
-            continue
-
-        player_el = row.select_one(".player-name, span.player-name, .participant-name")
-        player = player_el.get_text(strip=True) if player_el else ""
-
-        for el in prices:
-            price = el.get("data-price", "").strip()
-            data_name = clean_text(el.get("data-name", ""))
-
-            if not price:
-                continue
-
-            name_text = data_name or row_text
-
-            threshold = ""
-            m = re.search(r"(Over\s+\d+(?:\.\d+)?)", name_text, flags=re.I)
-            if m:
-                threshold = m.group(1).title()
-
-            plus = re.search(r"\b(\d+)\+\s+Shots?(?:\s+On\s+Target)?", name_text, flags=re.I)
-            if plus:
-                threshold = f"Over {int(plus.group(1)) - 0.5:g}"
-
-            if not player:
-                player = name_text
-                player = re.sub(r"\bTo Have\b.*$", "", player, flags=re.I).strip()
-                player = re.sub(r"\bOver\s+\d+(?:\.\d+)?.*$", "", player, flags=re.I).strip()
-
-            if not player or not threshold:
-                continue
-
-            item = {
-                "player": player,
-                "threshold": threshold,
-                "price": price,
-                "name": f"{player} {threshold}",
-                "market_id": el.get("data-marketid", ""),
-                "selection_id": el.get("data-selectionid", ""),
-            }
-
-            sig = (item["player"], item["threshold"], item["price"], item["selection_id"])
-            if sig in seen:
-                continue
-            seen.add(sig)
-            out.append(item)
-
-    # Fallback: pure data-price scan.
-    if not out:
-        for el in panel.select("[data-price]"):
-            price = el.get("data-price", "").strip()
-            data_name = clean_text(el.get("data-name", ""))
-
-            if not price or not data_name:
-                continue
-
-            if "shot" not in data_name.lower():
-                continue
-
-            player = re.sub(r"\bTo Have\b.*$", "", data_name, flags=re.I).strip()
-
-            threshold = ""
-            plus = re.search(r"\b(\d+)\+\s+Shots?", data_name, flags=re.I)
-            if plus:
-                threshold = f"Over {int(plus.group(1)) - 0.5:g}"
-
-            over = re.search(r"(Over\s+\d+(?:\.\d+)?)", data_name, flags=re.I)
-            if over:
-                threshold = over.group(1).title()
-
-            if not player or not threshold:
-                continue
-
-            item = {
-                "player": player,
-                "threshold": threshold,
-                "price": price,
-                "name": f"{player} {threshold}",
-                "market_id": el.get("data-marketid", ""),
-                "selection_id": el.get("data-selectionid", ""),
-            }
-
-            sig = (item["player"], item["threshold"], item["price"], item["selection_id"])
-            if sig in seen:
-                continue
-            seen.add(sig)
-            out.append(item)
-
-    return out
-
-
-def parse_markets(html: str, home: str, away: str) -> dict:
-    soup = BeautifulSoup(html, "lxml")
-    markets = {}
-    all_labels = []
-    unknown_interesting = []
-
-    for panel in soup.select("div.panel"):
-        label = find_market_label(panel)
-        panel_text = clean_text(panel.get_text(" ", strip=True))
-        full_text = clean_text(f"{label} {panel_text}")
-
-        if not label:
-            continue
-
-        all_labels.append(label)
-
-        key = match_market_key(label, full_text)
-
-        if not key:
-            low = full_text.lower()
-            if "shot" in low or "target" in low or "player" in low:
-                unknown_interesting.append(label)
-            continue
-
-        if key in markets:
-            continue
-
-        if key == "handicap":
-            sels = parse_handicap_main_line(panel)
-            if sels:
-                markets[key] = {"label": label, "selections": sels}
-
-        elif key == "goalscorers":
-            parsed = parse_goalscorer_market(panel)
-            if any(parsed.values()):
-                markets[key] = {"label": label, "selections": parsed}
-
-        elif key in ("player_booked", "player_sent_off"):
-            sels = parse_player_booked(panel)
-            if sels:
-                markets[key] = {"label": label, "selections": sels}
-
-        elif key in ("player_shots_on_target", "player_shots"):
-            sels = parse_player_threshold_market(panel)
-            if sels:
-                markets[key] = {"label": label, "selections": sels}
-                print(f"  🎯 {key}: {len(sels)} selections from label: {label}")
-            else:
-                print(f"  ⚠ Found {key} label but parsed 0 selections: {label}")
-
-        else:
-            sels = get_selections(panel)
-            if sels:
-                markets[key] = {"label": label, "selections": sels}
-
-    with DEBUG_PATH.open("a", encoding="utf-8") as f:
-        f.write("\n\n============================================================\n")
-        f.write(f"DEBUG MARKET LABELS — {datetime.now(timezone.utc).isoformat()}\n")
-        f.write("============================================================\n")
-        for lbl in sorted(set(all_labels)):
-            f.write(lbl + "\n")
-
-        if unknown_interesting:
-            f.write("\nUNKNOWN INTERESTING LABELS\n")
-            for lbl in sorted(set(unknown_interesting)):
-                f.write(lbl + "\n")
-
-    return markets
-
-
-def parse_teams_from_slug(slug: str):
-    parts = slug.split("-v-", 1)
-
-    if len(parts) == 2:
-        home = parts[0].replace("-", " ").title()
-        away = parts[1].replace("-", " ").title()
-
-        aliases = {
-            "Usa": "USA",
-            "Dr Congo": "DR Congo",
-            "Turkey": "Turkey",
-        }
-
-        home = aliases.get(home, home)
-        away = aliases.get(away, away)
-
-        return home, away
-
-    return "", ""
-
-
-def summarise_markets(markets: dict) -> str:
-    parts = []
-
-    for key, val in markets.items():
-        if key == "goalscorers":
-            counts = {k: len(v) for k, v in val["selections"].items()}
-            parts.append(f"goalscorers({counts})")
-        else:
-            parts.append(f"{key}({len(val['selections'])})")
-
-    return ", ".join(parts) if parts else "none"
+def load_production_parser():
+    spec = importlib.util.spec_from_file_location(
+        "boylesports_core_parser",
+        PRODUCTION_SCRIPT,
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"Unable to import {PRODUCTION_SCRIPT}")
+
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    module.DEBUG_PATH = ThreadLocalDebugPath(DEBUG_DIR)
+    return module
+
+
+PARSER = load_production_parser()
 
 
 def clean(value: object) -> str:
@@ -630,7 +242,7 @@ def discover_fixture_urls() -> tuple[list[dict], dict]:
         seen.add(url)
 
         slug = url.rstrip("/").split("/")[-1]
-        home, away = parse_teams_from_slug(slug)
+        home, away = PARSER.parse_teams_from_slug(slug)
         name = f"{home} v {away}" if home and away else slug.replace("-", " ").title()
         fixtures.append(
             {
@@ -716,7 +328,7 @@ def fetch_fixture(index: int, fixture: dict) -> tuple[int, dict, dict]:
         elif response.status_code == 200:
             parse_started = time.perf_counter()
             _thread_state.fixture_slug = slugify(fixture["name"])
-            markets = parse_markets(
+            markets = PARSER.parse_markets(
                 response.text,
                 fixture["home_team"],
                 fixture["away_team"],
@@ -743,7 +355,7 @@ def main() -> None:
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
-    print("BOYLESPORTS WORLD CUP PROPS — PROD15 FAST STANDALONE V2")
+    print("BOYLESPORTS WORLD CUP PROPS — PROD15 FAST V1")
     print("=" * 72)
     print(f"MAX_FIXTURES = {MAX_FIXTURES}")
     print(f"MAX_WORKERS = {MAX_WORKERS}")
@@ -824,7 +436,7 @@ def main() -> None:
                 f"parse={audit.get('parse_seconds', 0):.3f}s "
                 f"total={audit.get('total_seconds', 0):.3f}s"
             )
-            print("  " + summarise_markets(result["markets"]))
+            print("  " + PARSER.summarise_markets(result["markets"]))
             if audit.get("error"):
                 print(f"  ERROR: {audit['error']}")
             if audit.get("security_verification"):
@@ -833,13 +445,6 @@ def main() -> None:
     results = [item for item in ordered_results if item is not None]
     audits = [item for item in ordered_audits if item is not None]
     good_market_count = sum(1 for item in results if item["markets"])
-
-    if good_market_count == 0:
-        print(
-            "\n0 matches returned markets — "
-            "keeping the existing production JSON untouched."
-        )
-        return
 
     output = {
         "sport": "football",
