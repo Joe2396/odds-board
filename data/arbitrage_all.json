@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-27T12:53:17.953666+00:00",
-  "total_arbitrage": 8,
+  "generated_at": "2026-06-27T19:54:07.984144+00:00",
+  "total_arbitrage": 10,
   "sports": {
-    "All": 8,
-    "Football": 6,
+    "All": 10,
+    "Football": 8,
     "UFC": 2
   },
   "arbitrage": [
@@ -84,28 +84,28 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "event": "Norway v France",
-      "market": "Total Shots On Target Over Under",
+      "event": "Panama v England",
+      "market": "Total Cards Over Under",
       "type": "props_ou",
       "date_label": "",
       "time": "",
-      "profit_margin_percent": 3.614,
-      "arb_percent": 96.512,
-      "arb_sum": 0.965116,
+      "profit_margin_percent": 3.662,
+      "arb_percent": 96.467,
+      "arb_sum": 0.964674,
       "bookmaker_count": 2,
       "bookmakers": [
         {
-          "selection": "Over 9.5",
+          "selection": "Over 1.5",
           "bookmaker": "Ladbrokes",
-          "odds": "23/20",
-          "decimal_odds": 2.15,
+          "odds": "8/15",
+          "decimal_odds": 1.533333,
           "implied_probability": ""
         },
         {
-          "selection": "Under 9.5",
-          "bookmaker": "Bwin",
-          "odds": "EVS",
-          "decimal_odds": 2.0,
+          "selection": "Under 1.5",
+          "bookmaker": "PaddyPower",
+          "odds": "11/5",
+          "decimal_odds": 3.2,
           "implied_probability": ""
         }
       ],
@@ -144,28 +144,58 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "event": "New Zealand v Belgium",
-      "market": "Both Teams To Score",
-      "type": "props_btts",
+      "event": "Croatia v Ghana",
+      "market": "Total Cards Over Under",
+      "type": "props_ou",
       "date_label": "",
       "time": "",
-      "profit_margin_percent": 2.256,
-      "arb_percent": 97.794,
-      "arb_sum": 0.977937,
+      "profit_margin_percent": 2.59,
+      "arb_percent": 97.475,
+      "arb_sum": 0.974755,
       "bookmaker_count": 2,
       "bookmakers": [
         {
-          "selection": "Yes",
-          "bookmaker": "Ladbrokes",
-          "odds": "23/20",
-          "decimal_odds": 2.15,
+          "selection": "Over 3.5",
+          "bookmaker": "PaddyPower",
+          "odds": "21/10",
+          "decimal_odds": 3.1,
           "implied_probability": ""
         },
         {
-          "selection": "No",
+          "selection": "Under 3.5",
+          "bookmaker": "Ladbrokes",
+          "odds": "8/15",
+          "decimal_odds": 1.533333,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Colombia v Portugal",
+      "market": "Total Goals Over Under",
+      "type": "props_ou",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 2.525,
+      "arb_percent": 97.537,
+      "arb_sum": 0.975369,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Over 3.5",
+          "bookmaker": "WilliamHill",
+          "odds": "5/2",
+          "decimal_odds": 3.5,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Under 3.5",
           "bookmaker": "Unibet",
-          "odds": "19/20",
-          "decimal_odds": 1.95,
+          "odds": "9/20",
+          "decimal_odds": 1.45,
           "implied_probability": ""
         }
       ],
@@ -200,6 +230,36 @@
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Colombia v Portugal",
+      "market": "Both Teams To Score",
+      "type": "props_btts",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 2.212,
+      "arb_percent": 97.835,
+      "arb_sum": 0.978355,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Yes",
+          "bookmaker": "PaddyPower",
+          "odds": "10/11",
+          "decimal_odds": 1.909091,
+          "implied_probability": ""
+        },
+        {
+          "selection": "No",
+          "bookmaker": "Unibet",
+          "odds": "6/5",
+          "decimal_odds": 2.2,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
     },
     {
       "sport": "Football",
@@ -268,7 +328,7 @@
     "darts": "C:\\Users\\joete\\odds-board\\darts\\data\\arbitrage.json"
   },
   "source_counts": {
-    "football": 6,
+    "football": 8,
     "ufc": 2,
     "darts": 0
   }

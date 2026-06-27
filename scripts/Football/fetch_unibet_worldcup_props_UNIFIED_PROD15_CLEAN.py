@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-fetch_unibet_worldcup_props_UNIFIED_PROD15_CLEAN_V2.py
+fetch_unibet_worldcup_props_UNIFIED_PROD15_CLEAN.py
 
 Production unified Unibet World Cup props scraper.
 
@@ -16,6 +16,7 @@ Production scope:
   Team Total Goals Over / Under
   Both Teams To Score
   Double Chance
+  Half Time Result
   Total Cards Over / Under
   Total Corners Over / Under
   Anytime Goalscorer
@@ -105,6 +106,7 @@ SUPPORTED_MARKETS = {
     "Team Total Goals Over / Under",
     "Both Teams To Score",
     "Double Chance",
+    "Half Time Result",
     "Total Cards Over / Under",
     "Total Corners Over / Under",
     "Anytime Goalscorer",
@@ -834,7 +836,7 @@ def main():
 
     print("=" * 70)
     print(
-        "UNIBET UNIFIED PROPS PROD15 CLEAN V2"
+        "UNIBET UNIFIED PROPS PROD15 CLEAN"
     )
     print("=" * 70)
     print(
@@ -942,7 +944,7 @@ def main():
         ),
         "player_markets_optional": True,
         "scraper":
-            "unified_single_pass_clean_v2_multi_occurrence",
+            "unified_single_pass_clean_v1",
         "elapsed_seconds": round(
             elapsed,
             3,
@@ -999,7 +1001,7 @@ def main():
     print("")
     print("=" * 70)
     print(
-        "UNIBET UNIFIED PROD15 CLEAN V2 COMPLETE"
+        "UNIBET UNIFIED PROD15 COMPLETE"
     )
     print("=" * 70)
     print(f"Fixtures scraped: {len(matches)}")
