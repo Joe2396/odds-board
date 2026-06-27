@@ -12,8 +12,7 @@ DEBUG_DIR = ROOT / "football" / "debug" / "livescorebet_worldcup_props"
 
 COUPON_URL     = "https://www.livescorebet.com/ie/coupon/21127/"
 PLAYER_GRP_ID  = "757"
-MAX_MATCHES    = 3
-
+MAX_MATCHES = 15
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
 SCOPE_MARKER = "__LSB_SCOPE__"
 

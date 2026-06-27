@@ -3,15 +3,15 @@
   "competition": "FIFA World Cup",
   "bookmaker": "WilliamHill",
   "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches",
-  "generated_at": "2026-06-25T16:43:03.498933+00:00",
-  "match_count": 15,
-  "matches_with_markets": 12,
+  "generated_at": "2026-06-27T21:50:25.131203+00:00",
+  "match_count": 13,
+  "matches_with_markets": 6,
   "matches": [
     {
-      "match": "Curacao v Ivory Coast",
-      "home_team": "Curacao",
-      "away_team": "Ivory Coast",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917250/curacao-vs-ivory-coast",
+      "match": "Colombia v Portugal",
+      "home_team": "Colombia",
+      "away_team": "Portugal",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932826/colombia-vs-portugal",
       "market_count": 6,
       "markets": [
         {
@@ -20,9 +20,33 @@
           "selection_count": 6,
           "selections": [
             {
+              "selection": "Over 25",
+              "normalized_selection": "over_25",
+              "odds": "8/13",
+              "side": "over",
+              "line": "25",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 26",
+              "normalized_selection": "over_26",
+              "odds": "5/6",
+              "side": "over",
+              "line": "26",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 27",
+              "normalized_selection": "over_27",
+              "odds": "11/10",
+              "side": "over",
+              "line": "27",
+              "prop_type": "match_shots"
+            },
+            {
               "selection": "Over 28",
               "normalized_selection": "over_28",
-              "odds": "7/10",
+              "odds": "11/8",
               "side": "over",
               "line": "28",
               "prop_type": "match_shots"
@@ -30,7 +54,7 @@
             {
               "selection": "Over 29",
               "normalized_selection": "over_29",
-              "odds": "10/11",
+              "odds": "7/4",
               "side": "over",
               "line": "29",
               "prop_type": "match_shots"
@@ -38,33 +62,9 @@
             {
               "selection": "Over 30",
               "normalized_selection": "over_30",
-              "odds": "6/5",
+              "odds": "5/2",
               "side": "over",
               "line": "30",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 31",
-              "normalized_selection": "over_31",
-              "odds": "6/4",
-              "side": "over",
-              "line": "31",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 32",
-              "normalized_selection": "over_32",
-              "odds": "2/1",
-              "side": "over",
-              "line": "32",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 33",
-              "normalized_selection": "over_33",
-              "odds": "11/4",
-              "side": "over",
-              "line": "33",
               "prop_type": "match_shots"
             }
           ]
@@ -85,7 +85,7 @@
             {
               "selection": "Over 9",
               "normalized_selection": "over_9",
-              "odds": "21/20",
+              "odds": "EVS",
               "side": "over",
               "line": "9",
               "prop_type": "match_shots_on_target"
@@ -101,7 +101,7 @@
             {
               "selection": "Over 11",
               "normalized_selection": "over_11",
-              "odds": "11/4",
+              "odds": "5/2",
               "side": "over",
               "line": "11",
               "prop_type": "match_shots_on_target"
@@ -109,7 +109,7 @@
             {
               "selection": "Over 12",
               "normalized_selection": "over_12",
-              "odds": "4/1",
+              "odds": "15/4",
               "side": "over",
               "line": "12",
               "prop_type": "match_shots_on_target"
@@ -125,189 +125,189 @@
           ]
         },
         {
-          "market": "Curacao Shots",
-          "normalized_market": "curacao_shots",
+          "market": "Colombia Shots",
+          "normalized_market": "colombia_shots",
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Curacao Over 8",
-              "normalized_selection": "curacao_over_8",
-              "odds": "5/6",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots",
-              "team": "Curacao",
-              "team_side": "home"
-            },
-            {
-              "selection": "Curacao Over 9",
-              "normalized_selection": "curacao_over_9",
-              "odds": "11/8",
+              "selection": "Colombia Over 9",
+              "normalized_selection": "colombia_over_9",
+              "odds": "4/6",
               "side": "over",
               "line": "9",
               "prop_type": "team_shots",
-              "team": "Curacao",
+              "team": "Colombia",
               "team_side": "home"
             },
             {
-              "selection": "Curacao Over 10",
-              "normalized_selection": "curacao_over_10",
-              "odds": "9/4",
+              "selection": "Colombia Over 10",
+              "normalized_selection": "colombia_over_10",
+              "odds": "21/20",
               "side": "over",
               "line": "10",
               "prop_type": "team_shots",
-              "team": "Curacao",
+              "team": "Colombia",
               "team_side": "home"
             },
             {
-              "selection": "Curacao Over 11",
-              "normalized_selection": "curacao_over_11",
-              "odds": "10/3",
+              "selection": "Colombia Over 11",
+              "normalized_selection": "colombia_over_11",
+              "odds": "13/8",
               "side": "over",
               "line": "11",
               "prop_type": "team_shots",
-              "team": "Curacao",
+              "team": "Colombia",
+              "team_side": "home"
+            },
+            {
+              "selection": "Colombia Over 12",
+              "normalized_selection": "colombia_over_12",
+              "odds": "5/2",
+              "side": "over",
+              "line": "12",
+              "prop_type": "team_shots",
+              "team": "Colombia",
               "team_side": "home"
             }
           ]
         },
         {
-          "market": "Ivory Coast Shots",
-          "normalized_market": "ivory_coast_shots",
+          "market": "Portugal Shots",
+          "normalized_market": "portugal_shots",
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Ivory Coast Over 20",
-              "normalized_selection": "ivory_coast_over_20",
+              "selection": "Portugal Over 15",
+              "normalized_selection": "portugal_over_15",
+              "odds": "4/7",
+              "side": "over",
+              "line": "15",
+              "prop_type": "team_shots",
+              "team": "Portugal",
+              "team_side": "away"
+            },
+            {
+              "selection": "Portugal Over 16",
+              "normalized_selection": "portugal_over_16",
               "odds": "5/6",
               "side": "over",
-              "line": "20",
+              "line": "16",
               "prop_type": "team_shots",
-              "team": "Ivory Coast",
+              "team": "Portugal",
               "team_side": "away"
             },
             {
-              "selection": "Ivory Coast Over 21",
-              "normalized_selection": "ivory_coast_over_21",
-              "odds": "11/10",
+              "selection": "Portugal Over 17",
+              "normalized_selection": "portugal_over_17",
+              "odds": "6/5",
               "side": "over",
-              "line": "21",
+              "line": "17",
               "prop_type": "team_shots",
-              "team": "Ivory Coast",
+              "team": "Portugal",
               "team_side": "away"
             },
             {
-              "selection": "Ivory Coast Over 22",
-              "normalized_selection": "ivory_coast_over_22",
-              "odds": "6/4",
+              "selection": "Portugal Over 18",
+              "normalized_selection": "portugal_over_18",
+              "odds": "13/8",
               "side": "over",
-              "line": "22",
+              "line": "18",
               "prop_type": "team_shots",
-              "team": "Ivory Coast",
-              "team_side": "away"
-            },
-            {
-              "selection": "Ivory Coast Over 23",
-              "normalized_selection": "ivory_coast_over_23",
-              "odds": "2/1",
-              "side": "over",
-              "line": "23",
-              "prop_type": "team_shots",
-              "team": "Ivory Coast",
+              "team": "Portugal",
               "team_side": "away"
             }
           ]
         },
         {
-          "market": "Curacao Shots On Target",
-          "normalized_market": "curacao_shots_on_target",
+          "market": "Colombia Shots On Target",
+          "normalized_market": "colombia_shots_on_target",
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Curacao Over 1",
-              "normalized_selection": "curacao_over_1",
-              "odds": "4/9",
-              "side": "over",
-              "line": "1",
-              "prop_type": "team_shots_on_target",
-              "team": "Curacao",
-              "team_side": "home"
-            },
-            {
-              "selection": "Curacao Over 2",
-              "normalized_selection": "curacao_over_2",
-              "odds": "13/10",
-              "side": "over",
-              "line": "2",
-              "prop_type": "team_shots_on_target",
-              "team": "Curacao",
-              "team_side": "home"
-            },
-            {
-              "selection": "Curacao Over 3",
-              "normalized_selection": "curacao_over_3",
-              "odds": "3/1",
+              "selection": "Colombia Over 3",
+              "normalized_selection": "colombia_over_3",
+              "odds": "5/6",
               "side": "over",
               "line": "3",
               "prop_type": "team_shots_on_target",
-              "team": "Curacao",
+              "team": "Colombia",
               "team_side": "home"
             },
             {
-              "selection": "Curacao Over 4",
-              "normalized_selection": "curacao_over_4",
-              "odds": "7/1",
+              "selection": "Colombia Over 4",
+              "normalized_selection": "colombia_over_4",
+              "odds": "13/8",
               "side": "over",
               "line": "4",
               "prop_type": "team_shots_on_target",
-              "team": "Curacao",
+              "team": "Colombia",
+              "team_side": "home"
+            },
+            {
+              "selection": "Colombia Over 5",
+              "normalized_selection": "colombia_over_5",
+              "odds": "10/3",
+              "side": "over",
+              "line": "5",
+              "prop_type": "team_shots_on_target",
+              "team": "Colombia",
+              "team_side": "home"
+            },
+            {
+              "selection": "Colombia Over 6",
+              "normalized_selection": "colombia_over_6",
+              "odds": "6/1",
+              "side": "over",
+              "line": "6",
+              "prop_type": "team_shots_on_target",
+              "team": "Colombia",
               "team_side": "home"
             }
           ]
         },
         {
-          "market": "Ivory Coast Shots On Target",
-          "normalized_market": "ivory_coast_shots_on_target",
+          "market": "Portugal Shots On Target",
+          "normalized_market": "portugal_shots_on_target",
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Ivory Coast Over 6",
-              "normalized_selection": "ivory_coast_over_6",
-              "odds": "4/6",
+              "selection": "Portugal Over 5",
+              "normalized_selection": "portugal_over_5",
+              "odds": "5/6",
+              "side": "over",
+              "line": "5",
+              "prop_type": "team_shots_on_target",
+              "team": "Portugal",
+              "team_side": "away"
+            },
+            {
+              "selection": "Portugal Over 6",
+              "normalized_selection": "portugal_over_6",
+              "odds": "6/4",
               "side": "over",
               "line": "6",
               "prop_type": "team_shots_on_target",
-              "team": "Ivory Coast",
+              "team": "Portugal",
               "team_side": "away"
             },
             {
-              "selection": "Ivory Coast Over 7",
-              "normalized_selection": "ivory_coast_over_7",
-              "odds": "11/10",
+              "selection": "Portugal Over 7",
+              "normalized_selection": "portugal_over_7",
+              "odds": "11/4",
               "side": "over",
               "line": "7",
               "prop_type": "team_shots_on_target",
-              "team": "Ivory Coast",
+              "team": "Portugal",
               "team_side": "away"
             },
             {
-              "selection": "Ivory Coast Over 8",
-              "normalized_selection": "ivory_coast_over_8",
-              "odds": "2/1",
+              "selection": "Portugal Over 8",
+              "normalized_selection": "portugal_over_8",
+              "odds": "9/2",
               "side": "over",
               "line": "8",
               "prop_type": "team_shots_on_target",
-              "team": "Ivory Coast",
-              "team_side": "away"
-            },
-            {
-              "selection": "Ivory Coast Over 9",
-              "normalized_selection": "ivory_coast_over_9",
-              "odds": "3/1",
-              "side": "over",
-              "line": "9",
-              "prop_type": "team_shots_on_target",
-              "team": "Ivory Coast",
+              "team": "Portugal",
               "team_side": "away"
             }
           ]
@@ -315,10 +315,10 @@
       ]
     },
     {
-      "match": "Ecuador v Germany",
-      "home_team": "Ecuador",
-      "away_team": "Germany",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917251/ecuador-vs-germany",
+      "match": "DR Congo v Uzbekistan",
+      "home_team": "DR Congo",
+      "away_team": "Uzbekistan",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932827/congo-dr-vs-uzbekistan",
       "market_count": 6,
       "markets": [
         {
@@ -382,9 +382,17 @@
           "selection_count": 6,
           "selections": [
             {
+              "selection": "Over 7",
+              "normalized_selection": "over_7",
+              "odds": "8/13",
+              "side": "over",
+              "line": "7",
+              "prop_type": "match_shots_on_target"
+            },
+            {
               "selection": "Over 8",
               "normalized_selection": "over_8",
-              "odds": "8/11",
+              "odds": "EVS",
               "side": "over",
               "line": "8",
               "prop_type": "match_shots_on_target"
@@ -392,7 +400,7 @@
             {
               "selection": "Over 9",
               "normalized_selection": "over_9",
-              "odds": "11/10",
+              "odds": "13/8",
               "side": "over",
               "line": "9",
               "prop_type": "match_shots_on_target"
@@ -400,7 +408,7 @@
             {
               "selection": "Over 10",
               "normalized_selection": "over_10",
-              "odds": "7/4",
+              "odds": "11/4",
               "side": "over",
               "line": "10",
               "prop_type": "match_shots_on_target"
@@ -408,7 +416,7 @@
             {
               "selection": "Over 11",
               "normalized_selection": "over_11",
-              "odds": "3/1",
+              "odds": "4/1",
               "side": "over",
               "line": "11",
               "prop_type": "match_shots_on_target"
@@ -416,205 +424,197 @@
             {
               "selection": "Over 12",
               "normalized_selection": "over_12",
-              "odds": "9/2",
+              "odds": "13/2",
               "side": "over",
               "line": "12",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 13",
-              "normalized_selection": "over_13",
-              "odds": "7/1",
-              "side": "over",
-              "line": "13",
               "prop_type": "match_shots_on_target"
             }
           ]
         },
         {
-          "market": "Ecuador Shots",
-          "normalized_market": "ecuador_shots",
+          "market": "DR Congo Shots",
+          "normalized_market": "dr_congo_shots",
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Ecuador Over 11",
-              "normalized_selection": "ecuador_over_11",
-              "odds": "4/5",
-              "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Ecuador",
-              "team_side": "home"
-            },
-            {
-              "selection": "Ecuador Over 12",
-              "normalized_selection": "ecuador_over_12",
-              "odds": "6/5",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Ecuador",
-              "team_side": "home"
-            },
-            {
-              "selection": "Ecuador Over 13",
-              "normalized_selection": "ecuador_over_13",
-              "odds": "7/4",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Ecuador",
-              "team_side": "home"
-            },
-            {
-              "selection": "Ecuador Over 14",
-              "normalized_selection": "ecuador_over_14",
-              "odds": "11/4",
-              "side": "over",
-              "line": "14",
-              "prop_type": "team_shots",
-              "team": "Ecuador",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Germany Shots",
-          "normalized_market": "germany_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Germany Over 13",
-              "normalized_selection": "germany_over_13",
-              "odds": "4/5",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Germany",
-              "team_side": "away"
-            },
-            {
-              "selection": "Germany Over 14",
-              "normalized_selection": "germany_over_14",
-              "odds": "11/10",
-              "side": "over",
-              "line": "14",
-              "prop_type": "team_shots",
-              "team": "Germany",
-              "team_side": "away"
-            },
-            {
-              "selection": "Germany Over 15",
-              "normalized_selection": "germany_over_15",
-              "odds": "13/8",
+              "selection": "DR Congo Over 15",
+              "normalized_selection": "dr_congo_over_15",
+              "odds": "5/6",
               "side": "over",
               "line": "15",
               "prop_type": "team_shots",
-              "team": "Germany",
-              "team_side": "away"
+              "team": "DR Congo",
+              "team_side": "home"
             },
             {
-              "selection": "Germany Over 16",
-              "normalized_selection": "germany_over_16",
-              "odds": "5/2",
+              "selection": "DR Congo Over 16",
+              "normalized_selection": "dr_congo_over_16",
+              "odds": "6/5",
               "side": "over",
               "line": "16",
               "prop_type": "team_shots",
-              "team": "Germany",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Ecuador Shots On Target",
-          "normalized_market": "ecuador_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Ecuador Over 2",
-              "normalized_selection": "ecuador_over_2",
-              "odds": "4/11",
-              "side": "over",
-              "line": "2",
-              "prop_type": "team_shots_on_target",
-              "team": "Ecuador",
+              "team": "DR Congo",
               "team_side": "home"
             },
             {
-              "selection": "Ecuador Over 3",
-              "normalized_selection": "ecuador_over_3",
-              "odds": "10/11",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Ecuador",
-              "team_side": "home"
-            },
-            {
-              "selection": "Ecuador Over 4",
-              "normalized_selection": "ecuador_over_4",
-              "odds": "2/1",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Ecuador",
-              "team_side": "home"
-            },
-            {
-              "selection": "Ecuador Over 5",
-              "normalized_selection": "ecuador_over_5",
-              "odds": "15/4",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Ecuador",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Germany Shots On Target",
-          "normalized_market": "germany_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Germany Over 4",
-              "normalized_selection": "germany_over_4",
-              "odds": "4/9",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Germany",
-              "team_side": "away"
-            },
-            {
-              "selection": "Germany Over 5",
-              "normalized_selection": "germany_over_5",
-              "odds": "10/11",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Germany",
-              "team_side": "away"
-            },
-            {
-              "selection": "Germany Over 6",
-              "normalized_selection": "germany_over_6",
+              "selection": "DR Congo Over 17",
+              "normalized_selection": "dr_congo_over_17",
               "odds": "13/8",
+              "side": "over",
+              "line": "17",
+              "prop_type": "team_shots",
+              "team": "DR Congo",
+              "team_side": "home"
+            },
+            {
+              "selection": "DR Congo Over 18",
+              "normalized_selection": "dr_congo_over_18",
+              "odds": "12/5",
+              "side": "over",
+              "line": "18",
+              "prop_type": "team_shots",
+              "team": "DR Congo",
+              "team_side": "home"
+            }
+          ]
+        },
+        {
+          "market": "Uzbekistan Shots",
+          "normalized_market": "uzbekistan_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Uzbekistan Over 9",
+              "normalized_selection": "uzbekistan_over_9",
+              "odds": "8/11",
+              "side": "over",
+              "line": "9",
+              "prop_type": "team_shots",
+              "team": "Uzbekistan",
+              "team_side": "away"
+            },
+            {
+              "selection": "Uzbekistan Over 10",
+              "normalized_selection": "uzbekistan_over_10",
+              "odds": "6/5",
+              "side": "over",
+              "line": "10",
+              "prop_type": "team_shots",
+              "team": "Uzbekistan",
+              "team_side": "away"
+            },
+            {
+              "selection": "Uzbekistan Over 11",
+              "normalized_selection": "uzbekistan_over_11",
+              "odds": "7/4",
+              "side": "over",
+              "line": "11",
+              "prop_type": "team_shots",
+              "team": "Uzbekistan",
+              "team_side": "away"
+            },
+            {
+              "selection": "Uzbekistan Over 12",
+              "normalized_selection": "uzbekistan_over_12",
+              "odds": "11/4",
+              "side": "over",
+              "line": "12",
+              "prop_type": "team_shots",
+              "team": "Uzbekistan",
+              "team_side": "away"
+            }
+          ]
+        },
+        {
+          "market": "DR Congo Shots On Target",
+          "normalized_market": "dr_congo_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "DR Congo Over 4",
+              "normalized_selection": "dr_congo_over_4",
+              "odds": "8/13",
+              "side": "over",
+              "line": "4",
+              "prop_type": "team_shots_on_target",
+              "team": "DR Congo",
+              "team_side": "home"
+            },
+            {
+              "selection": "DR Congo Over 5",
+              "normalized_selection": "dr_congo_over_5",
+              "odds": "6/5",
+              "side": "over",
+              "line": "5",
+              "prop_type": "team_shots_on_target",
+              "team": "DR Congo",
+              "team_side": "home"
+            },
+            {
+              "selection": "DR Congo Over 6",
+              "normalized_selection": "dr_congo_over_6",
+              "odds": "2/1",
               "side": "over",
               "line": "6",
               "prop_type": "team_shots_on_target",
-              "team": "Germany",
-              "team_side": "away"
+              "team": "DR Congo",
+              "team_side": "home"
             },
             {
-              "selection": "Germany Over 7",
-              "normalized_selection": "germany_over_7",
-              "odds": "3/1",
+              "selection": "DR Congo Over 7",
+              "normalized_selection": "dr_congo_over_7",
+              "odds": "15/4",
               "side": "over",
               "line": "7",
               "prop_type": "team_shots_on_target",
-              "team": "Germany",
+              "team": "DR Congo",
+              "team_side": "home"
+            }
+          ]
+        },
+        {
+          "market": "Uzbekistan Shots On Target",
+          "normalized_market": "uzbekistan_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Uzbekistan Over 2",
+              "normalized_selection": "uzbekistan_over_2",
+              "odds": "1/2",
+              "side": "over",
+              "line": "2",
+              "prop_type": "team_shots_on_target",
+              "team": "Uzbekistan",
+              "team_side": "away"
+            },
+            {
+              "selection": "Uzbekistan Over 3",
+              "normalized_selection": "uzbekistan_over_3",
+              "odds": "6/5",
+              "side": "over",
+              "line": "3",
+              "prop_type": "team_shots_on_target",
+              "team": "Uzbekistan",
+              "team_side": "away"
+            },
+            {
+              "selection": "Uzbekistan Over 4",
+              "normalized_selection": "uzbekistan_over_4",
+              "odds": "5/2",
+              "side": "over",
+              "line": "4",
+              "prop_type": "team_shots_on_target",
+              "team": "Uzbekistan",
+              "team_side": "away"
+            },
+            {
+              "selection": "Uzbekistan Over 5",
+              "normalized_selection": "uzbekistan_over_5",
+              "odds": "5/1",
+              "side": "over",
+              "line": "5",
+              "prop_type": "team_shots_on_target",
+              "team": "Uzbekistan",
               "team_side": "away"
             }
           ]
@@ -622,10 +622,931 @@
       ]
     },
     {
-      "match": "Japan v Sweden",
-      "home_team": "Japan",
-      "away_team": "Sweden",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917248/japan-vs-sweden",
+      "match": "Algeria v Austria",
+      "home_team": "Algeria",
+      "away_team": "Austria",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932825/algeria-vs-austria",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 21",
+              "normalized_selection": "over_21",
+              "odds": "5/6",
+              "side": "over",
+              "line": "21",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 22",
+              "normalized_selection": "over_22",
+              "odds": "11/10",
+              "side": "over",
+              "line": "22",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 23",
+              "normalized_selection": "over_23",
+              "odds": "6/4",
+              "side": "over",
+              "line": "23",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 24",
+              "normalized_selection": "over_24",
+              "odds": "2/1",
+              "side": "over",
+              "line": "24",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 25",
+              "normalized_selection": "over_25",
+              "odds": "11/4",
+              "side": "over",
+              "line": "25",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 26",
+              "normalized_selection": "over_26",
+              "odds": "7/2",
+              "side": "over",
+              "line": "26",
+              "prop_type": "match_shots"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 6",
+              "normalized_selection": "over_6",
+              "odds": "1/2",
+              "side": "over",
+              "line": "6",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 7",
+              "normalized_selection": "over_7",
+              "odds": "10/11",
+              "side": "over",
+              "line": "7",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 8",
+              "normalized_selection": "over_8",
+              "odds": "6/4",
+              "side": "over",
+              "line": "8",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 9",
+              "normalized_selection": "over_9",
+              "odds": "5/2",
+              "side": "over",
+              "line": "9",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 10",
+              "normalized_selection": "over_10",
+              "odds": "4/1",
+              "side": "over",
+              "line": "10",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 11",
+              "normalized_selection": "over_11",
+              "odds": "13/2",
+              "side": "over",
+              "line": "11",
+              "prop_type": "match_shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "Algeria Shots",
+          "normalized_market": "algeria_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Algeria Over 9",
+              "normalized_selection": "algeria_over_9",
+              "odds": "4/6",
+              "side": "over",
+              "line": "9",
+              "prop_type": "team_shots",
+              "team": "Algeria",
+              "team_side": "home"
+            },
+            {
+              "selection": "Algeria Over 10",
+              "normalized_selection": "algeria_over_10",
+              "odds": "21/20",
+              "side": "over",
+              "line": "10",
+              "prop_type": "team_shots",
+              "team": "Algeria",
+              "team_side": "home"
+            },
+            {
+              "selection": "Algeria Over 11",
+              "normalized_selection": "algeria_over_11",
+              "odds": "13/8",
+              "side": "over",
+              "line": "11",
+              "prop_type": "team_shots",
+              "team": "Algeria",
+              "team_side": "home"
+            },
+            {
+              "selection": "Algeria Over 12",
+              "normalized_selection": "algeria_over_12",
+              "odds": "5/2",
+              "side": "over",
+              "line": "12",
+              "prop_type": "team_shots",
+              "team": "Algeria",
+              "team_side": "home"
+            }
+          ]
+        },
+        {
+          "market": "Austria Shots",
+          "normalized_market": "austria_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Austria Over 11",
+              "normalized_selection": "austria_over_11",
+              "odds": "5/6",
+              "side": "over",
+              "line": "11",
+              "prop_type": "team_shots",
+              "team": "Austria",
+              "team_side": "away"
+            },
+            {
+              "selection": "Austria Over 12",
+              "normalized_selection": "austria_over_12",
+              "odds": "5/4",
+              "side": "over",
+              "line": "12",
+              "prop_type": "team_shots",
+              "team": "Austria",
+              "team_side": "away"
+            },
+            {
+              "selection": "Austria Over 13",
+              "normalized_selection": "austria_over_13",
+              "odds": "7/4",
+              "side": "over",
+              "line": "13",
+              "prop_type": "team_shots",
+              "team": "Austria",
+              "team_side": "away"
+            },
+            {
+              "selection": "Austria Over 14",
+              "normalized_selection": "austria_over_14",
+              "odds": "11/4",
+              "side": "over",
+              "line": "14",
+              "prop_type": "team_shots",
+              "team": "Austria",
+              "team_side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Algeria Shots On Target",
+          "normalized_market": "algeria_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Algeria Over 3",
+              "normalized_selection": "algeria_over_3",
+              "odds": "5/6",
+              "side": "over",
+              "line": "3",
+              "prop_type": "team_shots_on_target",
+              "team": "Algeria",
+              "team_side": "home"
+            },
+            {
+              "selection": "Algeria Over 4",
+              "normalized_selection": "algeria_over_4",
+              "odds": "7/4",
+              "side": "over",
+              "line": "4",
+              "prop_type": "team_shots_on_target",
+              "team": "Algeria",
+              "team_side": "home"
+            },
+            {
+              "selection": "Algeria Over 5",
+              "normalized_selection": "algeria_over_5",
+              "odds": "7/2",
+              "side": "over",
+              "line": "5",
+              "prop_type": "team_shots_on_target",
+              "team": "Algeria",
+              "team_side": "home"
+            },
+            {
+              "selection": "Algeria Over 6",
+              "normalized_selection": "algeria_over_6",
+              "odds": "7/1",
+              "side": "over",
+              "line": "6",
+              "prop_type": "team_shots_on_target",
+              "team": "Algeria",
+              "team_side": "home"
+            }
+          ]
+        },
+        {
+          "market": "Austria Shots On Target",
+          "normalized_market": "austria_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Austria Over 3",
+              "normalized_selection": "austria_over_3",
+              "odds": "7/10",
+              "side": "over",
+              "line": "3",
+              "prop_type": "team_shots_on_target",
+              "team": "Austria",
+              "team_side": "away"
+            },
+            {
+              "selection": "Austria Over 4",
+              "normalized_selection": "austria_over_4",
+              "odds": "11/8",
+              "side": "over",
+              "line": "4",
+              "prop_type": "team_shots_on_target",
+              "team": "Austria",
+              "team_side": "away"
+            },
+            {
+              "selection": "Austria Over 5",
+              "normalized_selection": "austria_over_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "5",
+              "prop_type": "team_shots_on_target",
+              "team": "Austria",
+              "team_side": "away"
+            },
+            {
+              "selection": "Austria Over 6",
+              "normalized_selection": "austria_over_6",
+              "odds": "5/1",
+              "side": "over",
+              "line": "6",
+              "prop_type": "team_shots_on_target",
+              "team": "Austria",
+              "team_side": "away"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Jordan v Argentina",
+      "home_team": "Jordan",
+      "away_team": "Argentina",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932823/jordan-vs-argentina",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 25",
+              "normalized_selection": "over_25",
+              "odds": "8/13",
+              "side": "over",
+              "line": "25",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 26",
+              "normalized_selection": "over_26",
+              "odds": "5/6",
+              "side": "over",
+              "line": "26",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 27",
+              "normalized_selection": "over_27",
+              "odds": "11/10",
+              "side": "over",
+              "line": "27",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 28",
+              "normalized_selection": "over_28",
+              "odds": "11/8",
+              "side": "over",
+              "line": "28",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 29",
+              "normalized_selection": "over_29",
+              "odds": "7/4",
+              "side": "over",
+              "line": "29",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 30",
+              "normalized_selection": "over_30",
+              "odds": "5/2",
+              "side": "over",
+              "line": "30",
+              "prop_type": "match_shots"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 9",
+              "normalized_selection": "over_9",
+              "odds": "8/11",
+              "side": "over",
+              "line": "9",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 10",
+              "normalized_selection": "over_10",
+              "odds": "6/5",
+              "side": "over",
+              "line": "10",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 11",
+              "normalized_selection": "over_11",
+              "odds": "7/4",
+              "side": "over",
+              "line": "11",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 12",
+              "normalized_selection": "over_12",
+              "odds": "11/4",
+              "side": "over",
+              "line": "12",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 13",
+              "normalized_selection": "over_13",
+              "odds": "4/1",
+              "side": "over",
+              "line": "13",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 14",
+              "normalized_selection": "over_14",
+              "odds": "13/2",
+              "side": "over",
+              "line": "14",
+              "prop_type": "match_shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "Jordan Shots",
+          "normalized_market": "jordan_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Jordan Over 7",
+              "normalized_selection": "jordan_over_7",
+              "odds": "4/5",
+              "side": "over",
+              "line": "7",
+              "prop_type": "team_shots",
+              "team": "Jordan",
+              "team_side": "home"
+            },
+            {
+              "selection": "Jordan Over 8",
+              "normalized_selection": "jordan_over_8",
+              "odds": "13/10",
+              "side": "over",
+              "line": "8",
+              "prop_type": "team_shots",
+              "team": "Jordan",
+              "team_side": "home"
+            },
+            {
+              "selection": "Jordan Over 9",
+              "normalized_selection": "jordan_over_9",
+              "odds": "2/1",
+              "side": "over",
+              "line": "9",
+              "prop_type": "team_shots",
+              "team": "Jordan",
+              "team_side": "home"
+            },
+            {
+              "selection": "Jordan Over 10",
+              "normalized_selection": "jordan_over_10",
+              "odds": "10/3",
+              "side": "over",
+              "line": "10",
+              "prop_type": "team_shots",
+              "team": "Jordan",
+              "team_side": "home"
+            }
+          ]
+        },
+        {
+          "market": "Argentina Shots",
+          "normalized_market": "argentina_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Argentina Over 18",
+              "normalized_selection": "argentina_over_18",
+              "odds": "8/11",
+              "side": "over",
+              "line": "18",
+              "prop_type": "team_shots",
+              "team": "Argentina",
+              "team_side": "away"
+            },
+            {
+              "selection": "Argentina Over 19",
+              "normalized_selection": "argentina_over_19",
+              "odds": "21/20",
+              "side": "over",
+              "line": "19",
+              "prop_type": "team_shots",
+              "team": "Argentina",
+              "team_side": "away"
+            },
+            {
+              "selection": "Argentina Over 20",
+              "normalized_selection": "argentina_over_20",
+              "odds": "6/4",
+              "side": "over",
+              "line": "20",
+              "prop_type": "team_shots",
+              "team": "Argentina",
+              "team_side": "away"
+            },
+            {
+              "selection": "Argentina Over 21",
+              "normalized_selection": "argentina_over_21",
+              "odds": "2/1",
+              "side": "over",
+              "line": "21",
+              "prop_type": "team_shots",
+              "team": "Argentina",
+              "team_side": "away"
+            }
+          ]
+        },
+        {
+          "market": "Jordan Shots On Target",
+          "normalized_market": "jordan_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Jordan Over 1",
+              "normalized_selection": "jordan_over_1",
+              "odds": "3/10",
+              "side": "over",
+              "line": "1",
+              "prop_type": "team_shots_on_target",
+              "team": "Jordan",
+              "team_side": "home"
+            },
+            {
+              "selection": "Jordan Over 2",
+              "normalized_selection": "jordan_over_2",
+              "odds": "EVS",
+              "side": "over",
+              "line": "2",
+              "prop_type": "team_shots_on_target",
+              "team": "Jordan",
+              "team_side": "home"
+            },
+            {
+              "selection": "Jordan Over 3",
+              "normalized_selection": "jordan_over_3",
+              "odds": "12/5",
+              "side": "over",
+              "line": "3",
+              "prop_type": "team_shots_on_target",
+              "team": "Jordan",
+              "team_side": "home"
+            },
+            {
+              "selection": "Jordan Over 4",
+              "normalized_selection": "jordan_over_4",
+              "odds": "5/1",
+              "side": "over",
+              "line": "4",
+              "prop_type": "team_shots_on_target",
+              "team": "Jordan",
+              "team_side": "home"
+            }
+          ]
+        },
+        {
+          "market": "Argentina Shots On Target",
+          "normalized_market": "argentina_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Argentina Over 6",
+              "normalized_selection": "argentina_over_6",
+              "odds": "1/2",
+              "side": "over",
+              "line": "6",
+              "prop_type": "team_shots_on_target",
+              "team": "Argentina",
+              "team_side": "away"
+            },
+            {
+              "selection": "Argentina Over 7",
+              "normalized_selection": "argentina_over_7",
+              "odds": "10/11",
+              "side": "over",
+              "line": "7",
+              "prop_type": "team_shots_on_target",
+              "team": "Argentina",
+              "team_side": "away"
+            },
+            {
+              "selection": "Argentina Over 8",
+              "normalized_selection": "argentina_over_8",
+              "odds": "6/4",
+              "side": "over",
+              "line": "8",
+              "prop_type": "team_shots_on_target",
+              "team": "Argentina",
+              "team_side": "away"
+            },
+            {
+              "selection": "Argentina Over 9",
+              "normalized_selection": "argentina_over_9",
+              "odds": "5/2",
+              "side": "over",
+              "line": "9",
+              "prop_type": "team_shots_on_target",
+              "team": "Argentina",
+              "team_side": "away"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "South Africa v Canada",
+      "home_team": "South Africa",
+      "away_team": "Canada",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40250321/south-africa-vs-canada",
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 21",
+              "normalized_selection": "over_21",
+              "odds": "7/10",
+              "side": "over",
+              "line": "21",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 22",
+              "normalized_selection": "over_22",
+              "odds": "10/11",
+              "side": "over",
+              "line": "22",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 23",
+              "normalized_selection": "over_23",
+              "odds": "13/10",
+              "side": "over",
+              "line": "23",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 24",
+              "normalized_selection": "over_24",
+              "odds": "7/4",
+              "side": "over",
+              "line": "24",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 25",
+              "normalized_selection": "over_25",
+              "odds": "12/5",
+              "side": "over",
+              "line": "25",
+              "prop_type": "match_shots"
+            },
+            {
+              "selection": "Over 26",
+              "normalized_selection": "over_26",
+              "odds": "3/1",
+              "side": "over",
+              "line": "26",
+              "prop_type": "match_shots"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 6",
+              "normalized_selection": "over_6",
+              "odds": "1/2",
+              "side": "over",
+              "line": "6",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 7",
+              "normalized_selection": "over_7",
+              "odds": "10/11",
+              "side": "over",
+              "line": "7",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 8",
+              "normalized_selection": "over_8",
+              "odds": "6/4",
+              "side": "over",
+              "line": "8",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 9",
+              "normalized_selection": "over_9",
+              "odds": "5/2",
+              "side": "over",
+              "line": "9",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 10",
+              "normalized_selection": "over_10",
+              "odds": "4/1",
+              "side": "over",
+              "line": "10",
+              "prop_type": "match_shots_on_target"
+            },
+            {
+              "selection": "Over 11",
+              "normalized_selection": "over_11",
+              "odds": "13/2",
+              "side": "over",
+              "line": "11",
+              "prop_type": "match_shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "South Africa Shots",
+          "normalized_market": "south_africa_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "South Africa Over 8",
+              "normalized_selection": "south_africa_over_8",
+              "odds": "4/7",
+              "side": "over",
+              "line": "8",
+              "prop_type": "team_shots",
+              "team": "South Africa",
+              "team_side": "home"
+            },
+            {
+              "selection": "South Africa Over 9",
+              "normalized_selection": "south_africa_over_9",
+              "odds": "10/11",
+              "side": "over",
+              "line": "9",
+              "prop_type": "team_shots",
+              "team": "South Africa",
+              "team_side": "home"
+            },
+            {
+              "selection": "South Africa Over 10",
+              "normalized_selection": "south_africa_over_10",
+              "odds": "6/4",
+              "side": "over",
+              "line": "10",
+              "prop_type": "team_shots",
+              "team": "South Africa",
+              "team_side": "home"
+            },
+            {
+              "selection": "South Africa Over 11",
+              "normalized_selection": "south_africa_over_11",
+              "odds": "5/2",
+              "side": "over",
+              "line": "11",
+              "prop_type": "team_shots",
+              "team": "South Africa",
+              "team_side": "home"
+            }
+          ]
+        },
+        {
+          "market": "Canada Shots",
+          "normalized_market": "canada_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Canada Over 12",
+              "normalized_selection": "canada_over_12",
+              "odds": "8/11",
+              "side": "over",
+              "line": "12",
+              "prop_type": "team_shots",
+              "team": "Canada",
+              "team_side": "away"
+            },
+            {
+              "selection": "Canada Over 13",
+              "normalized_selection": "canada_over_13",
+              "odds": "11/10",
+              "side": "over",
+              "line": "13",
+              "prop_type": "team_shots",
+              "team": "Canada",
+              "team_side": "away"
+            },
+            {
+              "selection": "Canada Over 14",
+              "normalized_selection": "canada_over_14",
+              "odds": "13/8",
+              "side": "over",
+              "line": "14",
+              "prop_type": "team_shots",
+              "team": "Canada",
+              "team_side": "away"
+            },
+            {
+              "selection": "Canada Over 15",
+              "normalized_selection": "canada_over_15",
+              "odds": "12/5",
+              "side": "over",
+              "line": "15",
+              "prop_type": "team_shots",
+              "team": "Canada",
+              "team_side": "away"
+            }
+          ]
+        },
+        {
+          "market": "South Africa Shots On Target",
+          "normalized_market": "south_africa_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "South Africa Over 2",
+              "normalized_selection": "south_africa_over_2",
+              "odds": "7/10",
+              "side": "over",
+              "line": "2",
+              "prop_type": "team_shots_on_target",
+              "team": "South Africa",
+              "team_side": "home"
+            },
+            {
+              "selection": "South Africa Over 3",
+              "normalized_selection": "south_africa_over_3",
+              "odds": "6/4",
+              "side": "over",
+              "line": "3",
+              "prop_type": "team_shots_on_target",
+              "team": "South Africa",
+              "team_side": "home"
+            },
+            {
+              "selection": "South Africa Over 4",
+              "normalized_selection": "south_africa_over_4",
+              "odds": "10/3",
+              "side": "over",
+              "line": "4",
+              "prop_type": "team_shots_on_target",
+              "team": "South Africa",
+              "team_side": "home"
+            },
+            {
+              "selection": "South Africa Over 5",
+              "normalized_selection": "south_africa_over_5",
+              "odds": "7/1",
+              "side": "over",
+              "line": "5",
+              "prop_type": "team_shots_on_target",
+              "team": "South Africa",
+              "team_side": "home"
+            }
+          ]
+        },
+        {
+          "market": "Canada Shots On Target",
+          "normalized_market": "canada_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Canada Over 4",
+              "normalized_selection": "canada_over_4",
+              "odds": "5/6",
+              "side": "over",
+              "line": "4",
+              "prop_type": "team_shots_on_target",
+              "team": "Canada",
+              "team_side": "away"
+            },
+            {
+              "selection": "Canada Over 5",
+              "normalized_selection": "canada_over_5",
+              "odds": "13/8",
+              "side": "over",
+              "line": "5",
+              "prop_type": "team_shots_on_target",
+              "team": "Canada",
+              "team_side": "away"
+            },
+            {
+              "selection": "Canada Over 6",
+              "normalized_selection": "canada_over_6",
+              "odds": "3/1",
+              "side": "over",
+              "line": "6",
+              "prop_type": "team_shots_on_target",
+              "team": "Canada",
+              "team_side": "away"
+            },
+            {
+              "selection": "Canada Over 7",
+              "normalized_selection": "canada_over_7",
+              "odds": "11/2",
+              "side": "over",
+              "line": "7",
+              "prop_type": "team_shots_on_target",
+              "team": "Canada",
+              "team_side": "away"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Brazil v Japan",
+      "home_team": "Brazil",
+      "away_team": "Japan",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40261448/brazil-vs-japan",
       "market_count": 6,
       "markets": [
         {
@@ -636,7 +1557,7 @@
             {
               "selection": "Over 22",
               "normalized_selection": "over_22",
-              "odds": "7/10",
+              "odds": "8/13",
               "side": "over",
               "line": "22",
               "prop_type": "match_shots"
@@ -652,7 +1573,7 @@
             {
               "selection": "Over 24",
               "normalized_selection": "over_24",
-              "odds": "5/4",
+              "odds": "6/5",
               "side": "over",
               "line": "24",
               "prop_type": "match_shots"
@@ -668,7 +1589,7 @@
             {
               "selection": "Over 26",
               "normalized_selection": "over_26",
-              "odds": "9/4",
+              "odds": "2/1",
               "side": "over",
               "line": "26",
               "prop_type": "match_shots"
@@ -676,7 +1597,7 @@
             {
               "selection": "Over 27",
               "normalized_selection": "over_27",
-              "odds": "3/1",
+              "odds": "11/4",
               "side": "over",
               "line": "27",
               "prop_type": "match_shots"
@@ -691,7 +1612,7 @@
             {
               "selection": "Over 7",
               "normalized_selection": "over_7",
-              "odds": "1/2",
+              "odds": "4/6",
               "side": "over",
               "line": "7",
               "prop_type": "match_shots_on_target"
@@ -699,7 +1620,7 @@
             {
               "selection": "Over 8",
               "normalized_selection": "over_8",
-              "odds": "5/6",
+              "odds": "11/10",
               "side": "over",
               "line": "8",
               "prop_type": "match_shots_on_target"
@@ -707,7 +1628,7 @@
             {
               "selection": "Over 9",
               "normalized_selection": "over_9",
-              "odds": "11/8",
+              "odds": "7/4",
               "side": "over",
               "line": "9",
               "prop_type": "match_shots_on_target"
@@ -715,7 +1636,7 @@
             {
               "selection": "Over 10",
               "normalized_selection": "over_10",
-              "odds": "9/4",
+              "odds": "3/1",
               "side": "over",
               "line": "10",
               "prop_type": "match_shots_on_target"
@@ -723,7 +1644,7 @@
             {
               "selection": "Over 11",
               "normalized_selection": "over_11",
-              "odds": "7/2",
+              "odds": "9/2",
               "side": "over",
               "line": "11",
               "prop_type": "match_shots_on_target"
@@ -731,10 +1652,57 @@
             {
               "selection": "Over 12",
               "normalized_selection": "over_12",
-              "odds": "11/2",
+              "odds": "7/1",
               "side": "over",
               "line": "12",
               "prop_type": "match_shots_on_target"
+            }
+          ]
+        },
+        {
+          "market": "Brazil Shots",
+          "normalized_market": "brazil_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Brazil Over 13",
+              "normalized_selection": "brazil_over_13",
+              "odds": "4/5",
+              "side": "over",
+              "line": "13",
+              "prop_type": "team_shots",
+              "team": "Brazil",
+              "team_side": "home"
+            },
+            {
+              "selection": "Brazil Over 14",
+              "normalized_selection": "brazil_over_14",
+              "odds": "11/10",
+              "side": "over",
+              "line": "14",
+              "prop_type": "team_shots",
+              "team": "Brazil",
+              "team_side": "home"
+            },
+            {
+              "selection": "Brazil Over 15",
+              "normalized_selection": "brazil_over_15",
+              "odds": "13/8",
+              "side": "over",
+              "line": "15",
+              "prop_type": "team_shots",
+              "team": "Brazil",
+              "team_side": "home"
+            },
+            {
+              "selection": "Brazil Over 16",
+              "normalized_selection": "brazil_over_16",
+              "odds": "5/2",
+              "side": "over",
+              "line": "16",
+              "prop_type": "team_shots",
+              "team": "Brazil",
+              "team_side": "home"
             }
           ]
         },
@@ -744,91 +1712,91 @@
           "selection_count": 4,
           "selections": [
             {
+              "selection": "Japan Over 9",
+              "normalized_selection": "japan_over_9",
+              "odds": "4/5",
+              "side": "over",
+              "line": "9",
+              "prop_type": "team_shots",
+              "team": "Japan",
+              "team_side": "away"
+            },
+            {
+              "selection": "Japan Over 10",
+              "normalized_selection": "japan_over_10",
+              "odds": "5/4",
+              "side": "over",
+              "line": "10",
+              "prop_type": "team_shots",
+              "team": "Japan",
+              "team_side": "away"
+            },
+            {
               "selection": "Japan Over 11",
               "normalized_selection": "japan_over_11",
-              "odds": "8/15",
+              "odds": "2/1",
               "side": "over",
               "line": "11",
               "prop_type": "team_shots",
               "team": "Japan",
-              "team_side": "home"
+              "team_side": "away"
             },
             {
               "selection": "Japan Over 12",
               "normalized_selection": "japan_over_12",
-              "odds": "5/6",
+              "odds": "3/1",
               "side": "over",
               "line": "12",
               "prop_type": "team_shots",
               "team": "Japan",
-              "team_side": "home"
-            },
-            {
-              "selection": "Japan Over 13",
-              "normalized_selection": "japan_over_13",
-              "odds": "13/10",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Japan",
-              "team_side": "home"
-            },
-            {
-              "selection": "Japan Over 14",
-              "normalized_selection": "japan_over_14",
-              "odds": "7/4",
-              "side": "over",
-              "line": "14",
-              "prop_type": "team_shots",
-              "team": "Japan",
-              "team_side": "home"
+              "team_side": "away"
             }
           ]
         },
         {
-          "market": "Sweden Shots",
-          "normalized_market": "sweden_shots",
+          "market": "Brazil Shots On Target",
+          "normalized_market": "brazil_shots_on_target",
           "selection_count": 4,
           "selections": [
             {
-              "selection": "Sweden Over 10",
-              "normalized_selection": "sweden_over_10",
-              "odds": "4/5",
+              "selection": "Brazil Over 4",
+              "normalized_selection": "brazil_over_4",
+              "odds": "5/6",
               "side": "over",
-              "line": "10",
-              "prop_type": "team_shots",
-              "team": "Sweden",
-              "team_side": "away"
+              "line": "4",
+              "prop_type": "team_shots_on_target",
+              "team": "Brazil",
+              "team_side": "home"
             },
             {
-              "selection": "Sweden Over 11",
-              "normalized_selection": "sweden_over_11",
-              "odds": "5/4",
+              "selection": "Brazil Over 5",
+              "normalized_selection": "brazil_over_5",
+              "odds": "6/4",
               "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Sweden",
-              "team_side": "away"
+              "line": "5",
+              "prop_type": "team_shots_on_target",
+              "team": "Brazil",
+              "team_side": "home"
             },
             {
-              "selection": "Sweden Over 12",
-              "normalized_selection": "sweden_over_12",
-              "odds": "7/4",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Sweden",
-              "team_side": "away"
-            },
-            {
-              "selection": "Sweden Over 13",
-              "normalized_selection": "sweden_over_13",
+              "selection": "Brazil Over 6",
+              "normalized_selection": "brazil_over_6",
               "odds": "11/4",
               "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Sweden",
-              "team_side": "away"
+              "line": "6",
+              "prop_type": "team_shots_on_target",
+              "team": "Brazil",
+              "team_side": "home"
+            },
+            {
+              "selection": "Brazil Over 7",
+              "normalized_selection": "brazil_over_7",
+              "odds": "5/1",
+              "side": "over",
+              "line": "7",
+              "prop_type": "team_shots_on_target",
+              "team": "Brazil",
+              "team_side": "home"
             }
           ]
         },
@@ -838,90 +1806,43 @@
           "selection_count": 4,
           "selections": [
             {
+              "selection": "Japan Over 2",
+              "normalized_selection": "japan_over_2",
+              "odds": "2/5",
+              "side": "over",
+              "line": "2",
+              "prop_type": "team_shots_on_target",
+              "team": "Japan",
+              "team_side": "away"
+            },
+            {
+              "selection": "Japan Over 3",
+              "normalized_selection": "japan_over_3",
+              "odds": "21/20",
+              "side": "over",
+              "line": "3",
+              "prop_type": "team_shots_on_target",
+              "team": "Japan",
+              "team_side": "away"
+            },
+            {
               "selection": "Japan Over 4",
               "normalized_selection": "japan_over_4",
-              "odds": "5/6",
+              "odds": "2/1",
               "side": "over",
               "line": "4",
               "prop_type": "team_shots_on_target",
               "team": "Japan",
-              "team_side": "home"
+              "team_side": "away"
             },
             {
               "selection": "Japan Over 5",
               "normalized_selection": "japan_over_5",
-              "odds": "6/4",
+              "odds": "4/1",
               "side": "over",
               "line": "5",
               "prop_type": "team_shots_on_target",
               "team": "Japan",
-              "team_side": "home"
-            },
-            {
-              "selection": "Japan Over 6",
-              "normalized_selection": "japan_over_6",
-              "odds": "11/4",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Japan",
-              "team_side": "home"
-            },
-            {
-              "selection": "Japan Over 7",
-              "normalized_selection": "japan_over_7",
-              "odds": "5/1",
-              "side": "over",
-              "line": "7",
-              "prop_type": "team_shots_on_target",
-              "team": "Japan",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Sweden Shots On Target",
-          "normalized_market": "sweden_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Sweden Over 3",
-              "normalized_selection": "sweden_over_3",
-              "odds": "7/10",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Sweden",
-              "team_side": "away"
-            },
-            {
-              "selection": "Sweden Over 4",
-              "normalized_selection": "sweden_over_4",
-              "odds": "11/8",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Sweden",
-              "team_side": "away"
-            },
-            {
-              "selection": "Sweden Over 5",
-              "normalized_selection": "sweden_over_5",
-              "odds": "11/4",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Sweden",
-              "team_side": "away"
-            },
-            {
-              "selection": "Sweden Over 6",
-              "normalized_selection": "sweden_over_6",
-              "odds": "5/1",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Sweden",
               "team_side": "away"
             }
           ]
@@ -929,2789 +1850,58 @@
       ]
     },
     {
-      "match": "Tunisia v Netherlands",
-      "home_team": "Tunisia",
-      "away_team": "Netherlands",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917249/tunisia-vs-netherlands",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 23",
-              "normalized_selection": "over_23",
-              "odds": "4/5",
-              "side": "over",
-              "line": "23",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 24",
-              "normalized_selection": "over_24",
-              "odds": "21/20",
-              "side": "over",
-              "line": "24",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 25",
-              "normalized_selection": "over_25",
-              "odds": "11/8",
-              "side": "over",
-              "line": "25",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 26",
-              "normalized_selection": "over_26",
-              "odds": "7/4",
-              "side": "over",
-              "line": "26",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 27",
-              "normalized_selection": "over_27",
-              "odds": "5/2",
-              "side": "over",
-              "line": "27",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 28",
-              "normalized_selection": "over_28",
-              "odds": "10/3",
-              "side": "over",
-              "line": "28",
-              "prop_type": "match_shots"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 8",
-              "normalized_selection": "over_8",
-              "odds": "7/10",
-              "side": "over",
-              "line": "8",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 9",
-              "normalized_selection": "over_9",
-              "odds": "11/10",
-              "side": "over",
-              "line": "9",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 10",
-              "normalized_selection": "over_10",
-              "odds": "7/4",
-              "side": "over",
-              "line": "10",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 11",
-              "normalized_selection": "over_11",
-              "odds": "11/4",
-              "side": "over",
-              "line": "11",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 12",
-              "normalized_selection": "over_12",
-              "odds": "4/1",
-              "side": "over",
-              "line": "12",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 13",
-              "normalized_selection": "over_13",
-              "odds": "13/2",
-              "side": "over",
-              "line": "13",
-              "prop_type": "match_shots_on_target"
-            }
-          ]
-        },
-        {
-          "market": "Tunisia Shots",
-          "normalized_market": "tunisia_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Tunisia Over 5",
-              "normalized_selection": "tunisia_over_5",
-              "odds": "8/11",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots",
-              "team": "Tunisia",
-              "team_side": "home"
-            },
-            {
-              "selection": "Tunisia Over 6",
-              "normalized_selection": "tunisia_over_6",
-              "odds": "13/10",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots",
-              "team": "Tunisia",
-              "team_side": "home"
-            },
-            {
-              "selection": "Tunisia Over 7",
-              "normalized_selection": "tunisia_over_7",
-              "odds": "9/4",
-              "side": "over",
-              "line": "7",
-              "prop_type": "team_shots",
-              "team": "Tunisia",
-              "team_side": "home"
-            },
-            {
-              "selection": "Tunisia Over 8",
-              "normalized_selection": "tunisia_over_8",
-              "odds": "15/4",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots",
-              "team": "Tunisia",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Netherlands Shots",
-          "normalized_market": "netherlands_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Netherlands Over 17",
-              "normalized_selection": "netherlands_over_17",
-              "odds": "8/11",
-              "side": "over",
-              "line": "17",
-              "prop_type": "team_shots",
-              "team": "Netherlands",
-              "team_side": "away"
-            },
-            {
-              "selection": "Netherlands Over 18",
-              "normalized_selection": "netherlands_over_18",
-              "odds": "21/20",
-              "side": "over",
-              "line": "18",
-              "prop_type": "team_shots",
-              "team": "Netherlands",
-              "team_side": "away"
-            },
-            {
-              "selection": "Netherlands Over 19",
-              "normalized_selection": "netherlands_over_19",
-              "odds": "11/8",
-              "side": "over",
-              "line": "19",
-              "prop_type": "team_shots",
-              "team": "Netherlands",
-              "team_side": "away"
-            },
-            {
-              "selection": "Netherlands Over 20",
-              "normalized_selection": "netherlands_over_20",
-              "odds": "2/1",
-              "side": "over",
-              "line": "20",
-              "prop_type": "team_shots",
-              "team": "Netherlands",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Tunisia Shots On Target",
-          "normalized_market": "tunisia_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Tunisia Over 1",
-              "normalized_selection": "tunisia_over_1",
-              "odds": "6/10",
-              "side": "over",
-              "line": "1",
-              "prop_type": "team_shots_on_target",
-              "team": "Tunisia",
-              "team_side": "home"
-            },
-            {
-              "selection": "Tunisia Over 2",
-              "normalized_selection": "tunisia_over_2",
-              "odds": "13/8",
-              "side": "over",
-              "line": "2",
-              "prop_type": "team_shots_on_target",
-              "team": "Tunisia",
-              "team_side": "home"
-            },
-            {
-              "selection": "Tunisia Over 3",
-              "normalized_selection": "tunisia_over_3",
-              "odds": "4/1",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Tunisia",
-              "team_side": "home"
-            },
-            {
-              "selection": "Tunisia Over 4",
-              "normalized_selection": "tunisia_over_4",
-              "odds": "9/1",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Tunisia",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Netherlands Shots On Target",
-          "normalized_market": "netherlands_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Netherlands Over 6",
-              "normalized_selection": "netherlands_over_6",
-              "odds": "8/13",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Netherlands",
-              "team_side": "away"
-            },
-            {
-              "selection": "Netherlands Over 7",
-              "normalized_selection": "netherlands_over_7",
-              "odds": "11/10",
-              "side": "over",
-              "line": "7",
-              "prop_type": "team_shots_on_target",
-              "team": "Netherlands",
-              "team_side": "away"
-            },
-            {
-              "selection": "Netherlands Over 8",
-              "normalized_selection": "netherlands_over_8",
-              "odds": "7/4",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots_on_target",
-              "team": "Netherlands",
-              "team_side": "away"
-            },
-            {
-              "selection": "Netherlands Over 9",
-              "normalized_selection": "netherlands_over_9",
-              "odds": "3/1",
-              "side": "over",
-              "line": "9",
-              "prop_type": "team_shots_on_target",
-              "team": "Netherlands",
-              "team_side": "away"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Paraguay v Australia",
-      "home_team": "Paraguay",
-      "away_team": "Australia",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39922196/paraguay-vs-australia",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 19",
-              "normalized_selection": "over_19",
-              "odds": "8/13",
-              "side": "over",
-              "line": "19",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 20",
-              "normalized_selection": "over_20",
-              "odds": "5/6",
-              "side": "over",
-              "line": "20",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 21",
-              "normalized_selection": "over_21",
-              "odds": "6/5",
-              "side": "over",
-              "line": "21",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 22",
-              "normalized_selection": "over_22",
-              "odds": "13/8",
-              "side": "over",
-              "line": "22",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 23",
-              "normalized_selection": "over_23",
-              "odds": "9/4",
-              "side": "over",
-              "line": "23",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 24",
-              "normalized_selection": "over_24",
-              "odds": "3/1",
-              "side": "over",
-              "line": "24",
-              "prop_type": "match_shots"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 6",
-              "normalized_selection": "over_6",
-              "odds": "5/6",
-              "side": "over",
-              "line": "6",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 7",
-              "normalized_selection": "over_7",
-              "odds": "11/8",
-              "side": "over",
-              "line": "7",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 8",
-              "normalized_selection": "over_8",
-              "odds": "5/2",
-              "side": "over",
-              "line": "8",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 9",
-              "normalized_selection": "over_9",
-              "odds": "4/1",
-              "side": "over",
-              "line": "9",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 10",
-              "normalized_selection": "over_10",
-              "odds": "13/2",
-              "side": "over",
-              "line": "10",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 11",
-              "normalized_selection": "over_11",
-              "odds": "10/1",
-              "side": "over",
-              "line": "11",
-              "prop_type": "match_shots_on_target"
-            }
-          ]
-        },
-        {
-          "market": "Paraguay Shots",
-          "normalized_market": "paraguay_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Paraguay Over 10",
-              "normalized_selection": "paraguay_over_10",
-              "odds": "8/11",
-              "side": "over",
-              "line": "10",
-              "prop_type": "team_shots",
-              "team": "Paraguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Paraguay Over 11",
-              "normalized_selection": "paraguay_over_11",
-              "odds": "11/10",
-              "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Paraguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Paraguay Over 12",
-              "normalized_selection": "paraguay_over_12",
-              "odds": "7/4",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Paraguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Paraguay Over 13",
-              "normalized_selection": "paraguay_over_13",
-              "odds": "5/2",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Paraguay",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Australia Shots",
-          "normalized_market": "australia_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Australia Over 9",
-              "normalized_selection": "australia_over_9",
-              "odds": "5/6",
-              "side": "over",
-              "line": "9",
-              "prop_type": "team_shots",
-              "team": "Australia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Australia Over 10",
-              "normalized_selection": "australia_over_10",
-              "odds": "13/10",
-              "side": "over",
-              "line": "10",
-              "prop_type": "team_shots",
-              "team": "Australia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Australia Over 11",
-              "normalized_selection": "australia_over_11",
-              "odds": "2/1",
-              "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Australia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Australia Over 12",
-              "normalized_selection": "australia_over_12",
-              "odds": "3/1",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Australia",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Paraguay Shots On Target",
-          "normalized_market": "paraguay_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Paraguay Over 2",
-              "normalized_selection": "paraguay_over_2",
-              "odds": "4/11",
-              "side": "over",
-              "line": "2",
-              "prop_type": "team_shots_on_target",
-              "team": "Paraguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Paraguay Over 3",
-              "normalized_selection": "paraguay_over_3",
-              "odds": "10/11",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Paraguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Paraguay Over 4",
-              "normalized_selection": "paraguay_over_4",
-              "odds": "2/1",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Paraguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Paraguay Over 5",
-              "normalized_selection": "paraguay_over_5",
-              "odds": "15/4",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Paraguay",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Australia Shots On Target",
-          "normalized_market": "australia_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Australia Over 2",
-              "normalized_selection": "australia_over_2",
-              "odds": "1/2",
-              "side": "over",
-              "line": "2",
-              "prop_type": "team_shots_on_target",
-              "team": "Australia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Australia Over 3",
-              "normalized_selection": "australia_over_3",
-              "odds": "6/5",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Australia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Australia Over 4",
-              "normalized_selection": "australia_over_4",
-              "odds": "5/2",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Australia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Australia Over 5",
-              "normalized_selection": "australia_over_5",
-              "odds": "5/1",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Australia",
-              "team_side": "away"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Türkiye v USA",
-      "home_team": "Türkiye",
-      "away_team": "USA",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39921604/turkey-vs-usa",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 25",
-              "normalized_selection": "over_25",
-              "odds": "4/5",
-              "side": "over",
-              "line": "25",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 26",
-              "normalized_selection": "over_26",
-              "odds": "21/20",
-              "side": "over",
-              "line": "26",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 27",
-              "normalized_selection": "over_27",
-              "odds": "11/8",
-              "side": "over",
-              "line": "27",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 28",
-              "normalized_selection": "over_28",
-              "odds": "7/4",
-              "side": "over",
-              "line": "28",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 29",
-              "normalized_selection": "over_29",
-              "odds": "5/2",
-              "side": "over",
-              "line": "29",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 30",
-              "normalized_selection": "over_30",
-              "odds": "3/1",
-              "side": "over",
-              "line": "30",
-              "prop_type": "match_shots"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 7",
-              "normalized_selection": "over_7",
-              "odds": "1/2",
-              "side": "over",
-              "line": "7",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 8",
-              "normalized_selection": "over_8",
-              "odds": "5/6",
-              "side": "over",
-              "line": "8",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 9",
-              "normalized_selection": "over_9",
-              "odds": "11/8",
-              "side": "over",
-              "line": "9",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 10",
-              "normalized_selection": "over_10",
-              "odds": "9/4",
-              "side": "over",
-              "line": "10",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 11",
-              "normalized_selection": "over_11",
-              "odds": "7/2",
-              "side": "over",
-              "line": "11",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 12",
-              "normalized_selection": "over_12",
-              "odds": "11/2",
-              "side": "over",
-              "line": "12",
-              "prop_type": "match_shots_on_target"
-            }
-          ]
-        },
-        {
-          "market": "Türkiye Shots",
-          "normalized_market": "t_rkiye_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Türkiye Over 12",
-              "normalized_selection": "t_rkiye_over_12",
-              "odds": "8/11",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Türkiye",
-              "team_side": "home"
-            },
-            {
-              "selection": "Türkiye Over 13",
-              "normalized_selection": "t_rkiye_over_13",
-              "odds": "11/10",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Türkiye",
-              "team_side": "home"
-            },
-            {
-              "selection": "Türkiye Over 14",
-              "normalized_selection": "t_rkiye_over_14",
-              "odds": "13/8",
-              "side": "over",
-              "line": "14",
-              "prop_type": "team_shots",
-              "team": "Türkiye",
-              "team_side": "home"
-            },
-            {
-              "selection": "Türkiye Over 15",
-              "normalized_selection": "t_rkiye_over_15",
-              "odds": "12/5",
-              "side": "over",
-              "line": "15",
-              "prop_type": "team_shots",
-              "team": "Türkiye",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "USA Shots",
-          "normalized_market": "usa_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "USA Over 12",
-              "normalized_selection": "usa_over_12",
-              "odds": "8/11",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "USA",
-              "team_side": "away"
-            },
-            {
-              "selection": "USA Over 13",
-              "normalized_selection": "usa_over_13",
-              "odds": "11/10",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "USA",
-              "team_side": "away"
-            },
-            {
-              "selection": "USA Over 14",
-              "normalized_selection": "usa_over_14",
-              "odds": "13/8",
-              "side": "over",
-              "line": "14",
-              "prop_type": "team_shots",
-              "team": "USA",
-              "team_side": "away"
-            },
-            {
-              "selection": "USA Over 15",
-              "normalized_selection": "usa_over_15",
-              "odds": "12/5",
-              "side": "over",
-              "line": "15",
-              "prop_type": "team_shots",
-              "team": "USA",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Türkiye Shots On Target",
-          "normalized_market": "t_rkiye_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Türkiye Over 3",
-              "normalized_selection": "t_rkiye_over_3",
-              "odds": "6/10",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Türkiye",
-              "team_side": "home"
-            },
-            {
-              "selection": "Türkiye Over 4",
-              "normalized_selection": "t_rkiye_over_4",
-              "odds": "5/4",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Türkiye",
-              "team_side": "home"
-            },
-            {
-              "selection": "Türkiye Over 5",
-              "normalized_selection": "t_rkiye_over_5",
-              "odds": "5/2",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Türkiye",
-              "team_side": "home"
-            },
-            {
-              "selection": "Türkiye Over 6",
-              "normalized_selection": "t_rkiye_over_6",
-              "odds": "9/2",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Türkiye",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "USA Shots On Target",
-          "normalized_market": "usa_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "USA Over 3",
-              "normalized_selection": "usa_over_3",
-              "odds": "2/5",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "USA",
-              "team_side": "away"
-            },
-            {
-              "selection": "USA Over 4",
-              "normalized_selection": "usa_over_4",
-              "odds": "10/11",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "USA",
-              "team_side": "away"
-            },
-            {
-              "selection": "USA Over 5",
-              "normalized_selection": "usa_over_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "USA",
-              "team_side": "away"
-            },
-            {
-              "selection": "USA Over 6",
-              "normalized_selection": "usa_over_6",
-              "odds": "10/3",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "USA",
-              "team_side": "away"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Norway v France",
-      "home_team": "Norway",
-      "away_team": "France",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 25",
-              "normalized_selection": "over_25",
-              "odds": "8/11",
-              "side": "over",
-              "line": "25",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 26",
-              "normalized_selection": "over_26",
-              "odds": "EVS",
-              "side": "over",
-              "line": "26",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 27",
-              "normalized_selection": "over_27",
-              "odds": "13/10",
-              "side": "over",
-              "line": "27",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 28",
-              "normalized_selection": "over_28",
-              "odds": "7/4",
-              "side": "over",
-              "line": "28",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 29",
-              "normalized_selection": "over_29",
-              "odds": "9/4",
-              "side": "over",
-              "line": "29",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 30",
-              "normalized_selection": "over_30",
-              "odds": "3/1",
-              "side": "over",
-              "line": "30",
-              "prop_type": "match_shots"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 8",
-              "normalized_selection": "over_8",
-              "odds": "1/2",
-              "side": "over",
-              "line": "8",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 9",
-              "normalized_selection": "over_9",
-              "odds": "5/6",
-              "side": "over",
-              "line": "9",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 10",
-              "normalized_selection": "over_10",
-              "odds": "11/8",
-              "side": "over",
-              "line": "10",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 11",
-              "normalized_selection": "over_11",
-              "odds": "2/1",
-              "side": "over",
-              "line": "11",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 12",
-              "normalized_selection": "over_12",
-              "odds": "10/3",
-              "side": "over",
-              "line": "12",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 13",
-              "normalized_selection": "over_13",
-              "odds": "5/1",
-              "side": "over",
-              "line": "13",
-              "prop_type": "match_shots_on_target"
-            }
-          ]
-        },
-        {
-          "market": "Norway Shots",
-          "normalized_market": "norway_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Norway Over 10",
-              "normalized_selection": "norway_over_10",
-              "odds": "4/5",
-              "side": "over",
-              "line": "10",
-              "prop_type": "team_shots",
-              "team": "Norway",
-              "team_side": "home"
-            },
-            {
-              "selection": "Norway Over 11",
-              "normalized_selection": "norway_over_11",
-              "odds": "5/4",
-              "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Norway",
-              "team_side": "home"
-            },
-            {
-              "selection": "Norway Over 12",
-              "normalized_selection": "norway_over_12",
-              "odds": "7/4",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Norway",
-              "team_side": "home"
-            },
-            {
-              "selection": "Norway Over 13",
-              "normalized_selection": "norway_over_13",
-              "odds": "11/4",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Norway",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "France Shots",
-          "normalized_market": "france_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "France Over 14",
-              "normalized_selection": "france_over_14",
-              "odds": "8/13",
-              "side": "over",
-              "line": "14",
-              "prop_type": "team_shots",
-              "team": "France",
-              "team_side": "away"
-            },
-            {
-              "selection": "France Over 15",
-              "normalized_selection": "france_over_15",
-              "odds": "10/11",
-              "side": "over",
-              "line": "15",
-              "prop_type": "team_shots",
-              "team": "France",
-              "team_side": "away"
-            },
-            {
-              "selection": "France Over 16",
-              "normalized_selection": "france_over_16",
-              "odds": "13/10",
-              "side": "over",
-              "line": "16",
-              "prop_type": "team_shots",
-              "team": "France",
-              "team_side": "away"
-            },
-            {
-              "selection": "France Over 17",
-              "normalized_selection": "france_over_17",
-              "odds": "7/4",
-              "side": "over",
-              "line": "17",
-              "prop_type": "team_shots",
-              "team": "France",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Norway Shots On Target",
-          "normalized_market": "norway_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Norway Over 3",
-              "normalized_selection": "norway_over_3",
-              "odds": "7/10",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Norway",
-              "team_side": "home"
-            },
-            {
-              "selection": "Norway Over 4",
-              "normalized_selection": "norway_over_4",
-              "odds": "11/8",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Norway",
-              "team_side": "home"
-            },
-            {
-              "selection": "Norway Over 5",
-              "normalized_selection": "norway_over_5",
-              "odds": "11/4",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Norway",
-              "team_side": "home"
-            },
-            {
-              "selection": "Norway Over 6",
-              "normalized_selection": "norway_over_6",
-              "odds": "5/1",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Norway",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "France Shots On Target",
-          "normalized_market": "france_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "France Over 5",
-              "normalized_selection": "france_over_5",
-              "odds": "4/5",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "France",
-              "team_side": "away"
-            },
-            {
-              "selection": "France Over 6",
-              "normalized_selection": "france_over_6",
-              "odds": "11/8",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "France",
-              "team_side": "away"
-            },
-            {
-              "selection": "France Over 7",
-              "normalized_selection": "france_over_7",
-              "odds": "5/2",
-              "side": "over",
-              "line": "7",
-              "prop_type": "team_shots_on_target",
-              "team": "France",
-              "team_side": "away"
-            },
-            {
-              "selection": "France Over 8",
-              "normalized_selection": "france_over_8",
-              "odds": "4/1",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots_on_target",
-              "team": "France",
-              "team_side": "away"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Senegal v Iraq",
-      "home_team": "Senegal",
-      "away_team": "Iraq",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932819/senegal-vs-iraq",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 23",
-              "normalized_selection": "over_23",
-              "odds": "8/13",
-              "side": "over",
-              "line": "23",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 24",
-              "normalized_selection": "over_24",
-              "odds": "5/6",
-              "side": "over",
-              "line": "24",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 25",
-              "normalized_selection": "over_25",
-              "odds": "11/10",
-              "side": "over",
-              "line": "25",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 26",
-              "normalized_selection": "over_26",
-              "odds": "6/4",
-              "side": "over",
-              "line": "26",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 27",
-              "normalized_selection": "over_27",
-              "odds": "2/1",
-              "side": "over",
-              "line": "27",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 28",
-              "normalized_selection": "over_28",
-              "odds": "5/2",
-              "side": "over",
-              "line": "28",
-              "prop_type": "match_shots"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 7",
-              "normalized_selection": "over_7",
-              "odds": "8/13",
-              "side": "over",
-              "line": "7",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 8",
-              "normalized_selection": "over_8",
-              "odds": "11/10",
-              "side": "over",
-              "line": "8",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 9",
-              "normalized_selection": "over_9",
-              "odds": "7/4",
-              "side": "over",
-              "line": "9",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 10",
-              "normalized_selection": "over_10",
-              "odds": "11/4",
-              "side": "over",
-              "line": "10",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 11",
-              "normalized_selection": "over_11",
-              "odds": "9/2",
-              "side": "over",
-              "line": "11",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 12",
-              "normalized_selection": "over_12",
-              "odds": "7/1",
-              "side": "over",
-              "line": "12",
-              "prop_type": "match_shots_on_target"
-            }
-          ]
-        },
-        {
-          "market": "Senegal Shots",
-          "normalized_market": "senegal_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Senegal Over 17",
-              "normalized_selection": "senegal_over_17",
-              "odds": "4/5",
-              "side": "over",
-              "line": "17",
-              "prop_type": "team_shots",
-              "team": "Senegal",
-              "team_side": "home"
-            },
-            {
-              "selection": "Senegal Over 18",
-              "normalized_selection": "senegal_over_18",
-              "odds": "11/10",
-              "side": "over",
-              "line": "18",
-              "prop_type": "team_shots",
-              "team": "Senegal",
-              "team_side": "home"
-            },
-            {
-              "selection": "Senegal Over 19",
-              "normalized_selection": "senegal_over_19",
-              "odds": "6/4",
-              "side": "over",
-              "line": "19",
-              "prop_type": "team_shots",
-              "team": "Senegal",
-              "team_side": "home"
-            },
-            {
-              "selection": "Senegal Over 20",
-              "normalized_selection": "senegal_over_20",
-              "odds": "2/1",
-              "side": "over",
-              "line": "20",
-              "prop_type": "team_shots",
-              "team": "Senegal",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Iraq Shots",
-          "normalized_market": "iraq_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Iraq Over 6",
-              "normalized_selection": "iraq_over_6",
-              "odds": "8/11",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots",
-              "team": "Iraq",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iraq Over 7",
-              "normalized_selection": "iraq_over_7",
-              "odds": "5/4",
-              "side": "over",
-              "line": "7",
-              "prop_type": "team_shots",
-              "team": "Iraq",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iraq Over 8",
-              "normalized_selection": "iraq_over_8",
-              "odds": "2/1",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots",
-              "team": "Iraq",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iraq Over 9",
-              "normalized_selection": "iraq_over_9",
-              "odds": "7/2",
-              "side": "over",
-              "line": "9",
-              "prop_type": "team_shots",
-              "team": "Iraq",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Senegal Shots On Target",
-          "normalized_market": "senegal_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Senegal Over 5",
-              "normalized_selection": "senegal_over_5",
-              "odds": "4/5",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Senegal",
-              "team_side": "home"
-            },
-            {
-              "selection": "Senegal Over 6",
-              "normalized_selection": "senegal_over_6",
-              "odds": "11/8",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Senegal",
-              "team_side": "home"
-            },
-            {
-              "selection": "Senegal Over 7",
-              "normalized_selection": "senegal_over_7",
-              "odds": "5/2",
-              "side": "over",
-              "line": "7",
-              "prop_type": "team_shots_on_target",
-              "team": "Senegal",
-              "team_side": "home"
-            },
-            {
-              "selection": "Senegal Over 8",
-              "normalized_selection": "senegal_over_8",
-              "odds": "4/1",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots_on_target",
-              "team": "Senegal",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Iraq Shots On Target",
-          "normalized_market": "iraq_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Iraq Over 1",
-              "normalized_selection": "iraq_over_1",
-              "odds": "3/10",
-              "side": "over",
-              "line": "1",
-              "prop_type": "team_shots_on_target",
-              "team": "Iraq",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iraq Over 2",
-              "normalized_selection": "iraq_over_2",
-              "odds": "EVS",
-              "side": "over",
-              "line": "2",
-              "prop_type": "team_shots_on_target",
-              "team": "Iraq",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iraq Over 3",
-              "normalized_selection": "iraq_over_3",
-              "odds": "12/5",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Iraq",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iraq Over 4",
-              "normalized_selection": "iraq_over_4",
-              "odds": "5/1",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Iraq",
-              "team_side": "away"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Cape Verde v Saudi Arabia",
-      "home_team": "Cape Verde",
-      "away_team": "Saudi Arabia",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932812/cape-verde-vs-saudi-arabia",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 22",
-              "normalized_selection": "over_22",
-              "odds": "8/11",
-              "side": "over",
-              "line": "22",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 23",
-              "normalized_selection": "over_23",
-              "odds": "10/11",
-              "side": "over",
-              "line": "23",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 24",
-              "normalized_selection": "over_24",
-              "odds": "13/10",
-              "side": "over",
-              "line": "24",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 25",
-              "normalized_selection": "over_25",
-              "odds": "7/4",
-              "side": "over",
-              "line": "25",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 26",
-              "normalized_selection": "over_26",
-              "odds": "12/5",
-              "side": "over",
-              "line": "26",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 27",
-              "normalized_selection": "over_27",
-              "odds": "3/1",
-              "side": "over",
-              "line": "27",
-              "prop_type": "match_shots"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 7",
-              "normalized_selection": "over_7",
-              "odds": "4/7",
-              "side": "over",
-              "line": "7",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 8",
-              "normalized_selection": "over_8",
-              "odds": "10/11",
-              "side": "over",
-              "line": "8",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 9",
-              "normalized_selection": "over_9",
-              "odds": "6/4",
-              "side": "over",
-              "line": "9",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 10",
-              "normalized_selection": "over_10",
-              "odds": "5/2",
-              "side": "over",
-              "line": "10",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 11",
-              "normalized_selection": "over_11",
-              "odds": "4/1",
-              "side": "over",
-              "line": "11",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 12",
-              "normalized_selection": "over_12",
-              "odds": "6/1",
-              "side": "over",
-              "line": "12",
-              "prop_type": "match_shots_on_target"
-            }
-          ]
-        },
-        {
-          "market": "Cape Verde Shots",
-          "normalized_market": "cape_verde_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Cape Verde Over 11",
-              "normalized_selection": "cape_verde_over_11",
-              "odds": "8/11",
-              "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Cape Verde",
-              "team_side": "home"
-            },
-            {
-              "selection": "Cape Verde Over 12",
-              "normalized_selection": "cape_verde_over_12",
-              "odds": "11/10",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Cape Verde",
-              "team_side": "home"
-            },
-            {
-              "selection": "Cape Verde Over 13",
-              "normalized_selection": "cape_verde_over_13",
-              "odds": "13/8",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Cape Verde",
-              "team_side": "home"
-            },
-            {
-              "selection": "Cape Verde Over 14",
-              "normalized_selection": "cape_verde_over_14",
-              "odds": "5/2",
-              "side": "over",
-              "line": "14",
-              "prop_type": "team_shots",
-              "team": "Cape Verde",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Saudi Arabia Shots",
-          "normalized_market": "saudi_arabia_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Saudi Arabia Over 10",
-              "normalized_selection": "saudi_arabia_over_10",
-              "odds": "8/13",
-              "side": "over",
-              "line": "10",
-              "prop_type": "team_shots",
-              "team": "Saudi Arabia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Saudi Arabia Over 11",
-              "normalized_selection": "saudi_arabia_over_11",
-              "odds": "EVS",
-              "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Saudi Arabia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Saudi Arabia Over 12",
-              "normalized_selection": "saudi_arabia_over_12",
-              "odds": "6/4",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Saudi Arabia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Saudi Arabia Over 13",
-              "normalized_selection": "saudi_arabia_over_13",
-              "odds": "9/4",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Saudi Arabia",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Cape Verde Shots On Target",
-          "normalized_market": "cape_verde_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Cape Verde Over 3",
-              "normalized_selection": "cape_verde_over_3",
-              "odds": "2/5",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Cape Verde",
-              "team_side": "home"
-            },
-            {
-              "selection": "Cape Verde Over 4",
-              "normalized_selection": "cape_verde_over_4",
-              "odds": "10/11",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Cape Verde",
-              "team_side": "home"
-            },
-            {
-              "selection": "Cape Verde Over 5",
-              "normalized_selection": "cape_verde_over_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Cape Verde",
-              "team_side": "home"
-            },
-            {
-              "selection": "Cape Verde Over 6",
-              "normalized_selection": "cape_verde_over_6",
-              "odds": "10/3",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Cape Verde",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Saudi Arabia Shots On Target",
-          "normalized_market": "saudi_arabia_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Saudi Arabia Over 3",
-              "normalized_selection": "saudi_arabia_over_3",
-              "odds": "7/10",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Saudi Arabia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Saudi Arabia Over 4",
-              "normalized_selection": "saudi_arabia_over_4",
-              "odds": "11/8",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Saudi Arabia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Saudi Arabia Over 5",
-              "normalized_selection": "saudi_arabia_over_5",
-              "odds": "11/4",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Saudi Arabia",
-              "team_side": "away"
-            },
-            {
-              "selection": "Saudi Arabia Over 6",
-              "normalized_selection": "saudi_arabia_over_6",
-              "odds": "5/1",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Saudi Arabia",
-              "team_side": "away"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Uruguay v Spain",
-      "home_team": "Uruguay",
-      "away_team": "Spain",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932809/uruguay-vs-spain",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 25",
-              "normalized_selection": "over_25",
-              "odds": "8/11",
-              "side": "over",
-              "line": "25",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 26",
-              "normalized_selection": "over_26",
-              "odds": "EVS",
-              "side": "over",
-              "line": "26",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 27",
-              "normalized_selection": "over_27",
-              "odds": "13/10",
-              "side": "over",
-              "line": "27",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 28",
-              "normalized_selection": "over_28",
-              "odds": "7/4",
-              "side": "over",
-              "line": "28",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 29",
-              "normalized_selection": "over_29",
-              "odds": "9/4",
-              "side": "over",
-              "line": "29",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 30",
-              "normalized_selection": "over_30",
-              "odds": "3/1",
-              "side": "over",
-              "line": "30",
-              "prop_type": "match_shots"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 8",
-              "normalized_selection": "over_8",
-              "odds": "7/10",
-              "side": "over",
-              "line": "8",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 9",
-              "normalized_selection": "over_9",
-              "odds": "11/10",
-              "side": "over",
-              "line": "9",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 10",
-              "normalized_selection": "over_10",
-              "odds": "7/4",
-              "side": "over",
-              "line": "10",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 11",
-              "normalized_selection": "over_11",
-              "odds": "11/4",
-              "side": "over",
-              "line": "11",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 12",
-              "normalized_selection": "over_12",
-              "odds": "4/1",
-              "side": "over",
-              "line": "12",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 13",
-              "normalized_selection": "over_13",
-              "odds": "13/2",
-              "side": "over",
-              "line": "13",
-              "prop_type": "match_shots_on_target"
-            }
-          ]
-        },
-        {
-          "market": "Uruguay Shots",
-          "normalized_market": "uruguay_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Uruguay Over 8",
-              "normalized_selection": "uruguay_over_8",
-              "odds": "8/13",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots",
-              "team": "Uruguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Uruguay Over 9",
-              "normalized_selection": "uruguay_over_9",
-              "odds": "EVS",
-              "side": "over",
-              "line": "9",
-              "prop_type": "team_shots",
-              "team": "Uruguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Uruguay Over 10",
-              "normalized_selection": "uruguay_over_10",
-              "odds": "13/8",
-              "side": "over",
-              "line": "10",
-              "prop_type": "team_shots",
-              "team": "Uruguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Uruguay Over 11",
-              "normalized_selection": "uruguay_over_11",
-              "odds": "5/2",
-              "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Uruguay",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Spain Shots",
-          "normalized_market": "spain_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Spain Over 16",
-              "normalized_selection": "spain_over_16",
-              "odds": "8/11",
-              "side": "over",
-              "line": "16",
-              "prop_type": "team_shots",
-              "team": "Spain",
-              "team_side": "away"
-            },
-            {
-              "selection": "Spain Over 17",
-              "normalized_selection": "spain_over_17",
-              "odds": "11/10",
-              "side": "over",
-              "line": "17",
-              "prop_type": "team_shots",
-              "team": "Spain",
-              "team_side": "away"
-            },
-            {
-              "selection": "Spain Over 18",
-              "normalized_selection": "spain_over_18",
-              "odds": "6/4",
-              "side": "over",
-              "line": "18",
-              "prop_type": "team_shots",
-              "team": "Spain",
-              "team_side": "away"
-            },
-            {
-              "selection": "Spain Over 19",
-              "normalized_selection": "spain_over_19",
-              "odds": "2/1",
-              "side": "over",
-              "line": "19",
-              "prop_type": "team_shots",
-              "team": "Spain",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Uruguay Shots On Target",
-          "normalized_market": "uruguay_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Uruguay Over 2",
-              "normalized_selection": "uruguay_over_2",
-              "odds": "7/10",
-              "side": "over",
-              "line": "2",
-              "prop_type": "team_shots_on_target",
-              "team": "Uruguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Uruguay Over 3",
-              "normalized_selection": "uruguay_over_3",
-              "odds": "6/4",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Uruguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Uruguay Over 4",
-              "normalized_selection": "uruguay_over_4",
-              "odds": "10/3",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Uruguay",
-              "team_side": "home"
-            },
-            {
-              "selection": "Uruguay Over 5",
-              "normalized_selection": "uruguay_over_5",
-              "odds": "7/1",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Uruguay",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Spain Shots On Target",
-          "normalized_market": "spain_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Spain Over 5",
-              "normalized_selection": "spain_over_5",
-              "odds": "4/7",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Spain",
-              "team_side": "away"
-            },
-            {
-              "selection": "Spain Over 6",
-              "normalized_selection": "spain_over_6",
-              "odds": "21/20",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Spain",
-              "team_side": "away"
-            },
-            {
-              "selection": "Spain Over 7",
-              "normalized_selection": "spain_over_7",
-              "odds": "7/4",
-              "side": "over",
-              "line": "7",
-              "prop_type": "team_shots_on_target",
-              "team": "Spain",
-              "team_side": "away"
-            },
-            {
-              "selection": "Spain Over 8",
-              "normalized_selection": "spain_over_8",
-              "odds": "3/1",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots_on_target",
-              "team": "Spain",
-              "team_side": "away"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Egypt v Iran",
-      "home_team": "Egypt",
-      "away_team": "Iran",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932806/egypt-vs-iran",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 21",
-              "normalized_selection": "over_21",
-              "odds": "8/11",
-              "side": "over",
-              "line": "21",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 22",
-              "normalized_selection": "over_22",
-              "odds": "10/11",
-              "side": "over",
-              "line": "22",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 23",
-              "normalized_selection": "over_23",
-              "odds": "13/10",
-              "side": "over",
-              "line": "23",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 24",
-              "normalized_selection": "over_24",
-              "odds": "7/4",
-              "side": "over",
-              "line": "24",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 25",
-              "normalized_selection": "over_25",
-              "odds": "5/2",
-              "side": "over",
-              "line": "25",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 26",
-              "normalized_selection": "over_26",
-              "odds": "3/1",
-              "side": "over",
-              "line": "26",
-              "prop_type": "match_shots"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 6",
-              "normalized_selection": "over_6",
-              "odds": "8/13",
-              "side": "over",
-              "line": "6",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 7",
-              "normalized_selection": "over_7",
-              "odds": "11/10",
-              "side": "over",
-              "line": "7",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 8",
-              "normalized_selection": "over_8",
-              "odds": "7/4",
-              "side": "over",
-              "line": "8",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 9",
-              "normalized_selection": "over_9",
-              "odds": "3/1",
-              "side": "over",
-              "line": "9",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 10",
-              "normalized_selection": "over_10",
-              "odds": "5/1",
-              "side": "over",
-              "line": "10",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 11",
-              "normalized_selection": "over_11",
-              "odds": "8/1",
-              "side": "over",
-              "line": "11",
-              "prop_type": "match_shots_on_target"
-            }
-          ]
-        },
-        {
-          "market": "Egypt Shots",
-          "normalized_market": "egypt_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Egypt Over 11",
-              "normalized_selection": "egypt_over_11",
-              "odds": "8/11",
-              "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Egypt",
-              "team_side": "home"
-            },
-            {
-              "selection": "Egypt Over 12",
-              "normalized_selection": "egypt_over_12",
-              "odds": "11/10",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Egypt",
-              "team_side": "home"
-            },
-            {
-              "selection": "Egypt Over 13",
-              "normalized_selection": "egypt_over_13",
-              "odds": "13/8",
-              "side": "over",
-              "line": "13",
-              "prop_type": "team_shots",
-              "team": "Egypt",
-              "team_side": "home"
-            },
-            {
-              "selection": "Egypt Over 14",
-              "normalized_selection": "egypt_over_14",
-              "odds": "5/2",
-              "side": "over",
-              "line": "14",
-              "prop_type": "team_shots",
-              "team": "Egypt",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Iran Shots",
-          "normalized_market": "iran_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Iran Over 9",
-              "normalized_selection": "iran_over_9",
-              "odds": "8/13",
-              "side": "over",
-              "line": "9",
-              "prop_type": "team_shots",
-              "team": "Iran",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iran Over 10",
-              "normalized_selection": "iran_over_10",
-              "odds": "EVS",
-              "side": "over",
-              "line": "10",
-              "prop_type": "team_shots",
-              "team": "Iran",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iran Over 11",
-              "normalized_selection": "iran_over_11",
-              "odds": "6/4",
-              "side": "over",
-              "line": "11",
-              "prop_type": "team_shots",
-              "team": "Iran",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iran Over 12",
-              "normalized_selection": "iran_over_12",
-              "odds": "12/5",
-              "side": "over",
-              "line": "12",
-              "prop_type": "team_shots",
-              "team": "Iran",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "Egypt Shots On Target",
-          "normalized_market": "egypt_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Egypt Over 3",
-              "normalized_selection": "egypt_over_3",
-              "odds": "7/10",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Egypt",
-              "team_side": "home"
-            },
-            {
-              "selection": "Egypt Over 4",
-              "normalized_selection": "egypt_over_4",
-              "odds": "11/8",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Egypt",
-              "team_side": "home"
-            },
-            {
-              "selection": "Egypt Over 5",
-              "normalized_selection": "egypt_over_5",
-              "odds": "11/4",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Egypt",
-              "team_side": "home"
-            },
-            {
-              "selection": "Egypt Over 6",
-              "normalized_selection": "egypt_over_6",
-              "odds": "5/1",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Egypt",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Iran Shots On Target",
-          "normalized_market": "iran_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Iran Over 2",
-              "normalized_selection": "iran_over_2",
-              "odds": "4/9",
-              "side": "over",
-              "line": "2",
-              "prop_type": "team_shots_on_target",
-              "team": "Iran",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iran Over 3",
-              "normalized_selection": "iran_over_3",
-              "odds": "11/10",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "Iran",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iran Over 4",
-              "normalized_selection": "iran_over_4",
-              "odds": "12/5",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "Iran",
-              "team_side": "away"
-            },
-            {
-              "selection": "Iran Over 5",
-              "normalized_selection": "iran_over_5",
-              "odds": "9/2",
-              "side": "over",
-              "line": "5",
-              "prop_type": "team_shots_on_target",
-              "team": "Iran",
-              "team_side": "away"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "New Zealand v Belgium",
-      "home_team": "New Zealand",
-      "away_team": "Belgium",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium",
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 26",
-              "normalized_selection": "over_26",
-              "odds": "7/10",
-              "side": "over",
-              "line": "26",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 27",
-              "normalized_selection": "over_27",
-              "odds": "10/11",
-              "side": "over",
-              "line": "27",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 28",
-              "normalized_selection": "over_28",
-              "odds": "6/5",
-              "side": "over",
-              "line": "28",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 29",
-              "normalized_selection": "over_29",
-              "odds": "13/8",
-              "side": "over",
-              "line": "29",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 30",
-              "normalized_selection": "over_30",
-              "odds": "2/1",
-              "side": "over",
-              "line": "30",
-              "prop_type": "match_shots"
-            },
-            {
-              "selection": "Over 31",
-              "normalized_selection": "over_31",
-              "odds": "11/4",
-              "side": "over",
-              "line": "31",
-              "prop_type": "match_shots"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 8",
-              "normalized_selection": "over_8",
-              "odds": "7/10",
-              "side": "over",
-              "line": "8",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 9",
-              "normalized_selection": "over_9",
-              "odds": "11/10",
-              "side": "over",
-              "line": "9",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 10",
-              "normalized_selection": "over_10",
-              "odds": "7/4",
-              "side": "over",
-              "line": "10",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 11",
-              "normalized_selection": "over_11",
-              "odds": "11/4",
-              "side": "over",
-              "line": "11",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 12",
-              "normalized_selection": "over_12",
-              "odds": "4/1",
-              "side": "over",
-              "line": "12",
-              "prop_type": "match_shots_on_target"
-            },
-            {
-              "selection": "Over 13",
-              "normalized_selection": "over_13",
-              "odds": "13/2",
-              "side": "over",
-              "line": "13",
-              "prop_type": "match_shots_on_target"
-            }
-          ]
-        },
-        {
-          "market": "New Zealand Shots",
-          "normalized_market": "new_zealand_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "New Zealand Over 7",
-              "normalized_selection": "new_zealand_over_7",
-              "odds": "8/11",
-              "side": "over",
-              "line": "7",
-              "prop_type": "team_shots",
-              "team": "New Zealand",
-              "team_side": "home"
-            },
-            {
-              "selection": "New Zealand Over 8",
-              "normalized_selection": "new_zealand_over_8",
-              "odds": "6/5",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots",
-              "team": "New Zealand",
-              "team_side": "home"
-            },
-            {
-              "selection": "New Zealand Over 9",
-              "normalized_selection": "new_zealand_over_9",
-              "odds": "2/1",
-              "side": "over",
-              "line": "9",
-              "prop_type": "team_shots",
-              "team": "New Zealand",
-              "team_side": "home"
-            },
-            {
-              "selection": "New Zealand Over 10",
-              "normalized_selection": "new_zealand_over_10",
-              "odds": "3/1",
-              "side": "over",
-              "line": "10",
-              "prop_type": "team_shots",
-              "team": "New Zealand",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Belgium Shots",
-          "normalized_market": "belgium_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Belgium Over 18",
-              "normalized_selection": "belgium_over_18",
-              "odds": "8/13",
-              "side": "over",
-              "line": "18",
-              "prop_type": "team_shots",
-              "team": "Belgium",
-              "team_side": "away"
-            },
-            {
-              "selection": "Belgium Over 19",
-              "normalized_selection": "belgium_over_19",
-              "odds": "10/11",
-              "side": "over",
-              "line": "19",
-              "prop_type": "team_shots",
-              "team": "Belgium",
-              "team_side": "away"
-            },
-            {
-              "selection": "Belgium Over 20",
-              "normalized_selection": "belgium_over_20",
-              "odds": "5/4",
-              "side": "over",
-              "line": "20",
-              "prop_type": "team_shots",
-              "team": "Belgium",
-              "team_side": "away"
-            },
-            {
-              "selection": "Belgium Over 21",
-              "normalized_selection": "belgium_over_21",
-              "odds": "13/8",
-              "side": "over",
-              "line": "21",
-              "prop_type": "team_shots",
-              "team": "Belgium",
-              "team_side": "away"
-            }
-          ]
-        },
-        {
-          "market": "New Zealand Shots On Target",
-          "normalized_market": "new_zealand_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "New Zealand Over 1",
-              "normalized_selection": "new_zealand_over_1",
-              "odds": "4/11",
-              "side": "over",
-              "line": "1",
-              "prop_type": "team_shots_on_target",
-              "team": "New Zealand",
-              "team_side": "home"
-            },
-            {
-              "selection": "New Zealand Over 2",
-              "normalized_selection": "new_zealand_over_2",
-              "odds": "11/10",
-              "side": "over",
-              "line": "2",
-              "prop_type": "team_shots_on_target",
-              "team": "New Zealand",
-              "team_side": "home"
-            },
-            {
-              "selection": "New Zealand Over 3",
-              "normalized_selection": "new_zealand_over_3",
-              "odds": "5/2",
-              "side": "over",
-              "line": "3",
-              "prop_type": "team_shots_on_target",
-              "team": "New Zealand",
-              "team_side": "home"
-            },
-            {
-              "selection": "New Zealand Over 4",
-              "normalized_selection": "new_zealand_over_4",
-              "odds": "11/2",
-              "side": "over",
-              "line": "4",
-              "prop_type": "team_shots_on_target",
-              "team": "New Zealand",
-              "team_side": "home"
-            }
-          ]
-        },
-        {
-          "market": "Belgium Shots On Target",
-          "normalized_market": "belgium_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Belgium Over 6",
-              "normalized_selection": "belgium_over_6",
-              "odds": "4/5",
-              "side": "over",
-              "line": "6",
-              "prop_type": "team_shots_on_target",
-              "team": "Belgium",
-              "team_side": "away"
-            },
-            {
-              "selection": "Belgium Over 7",
-              "normalized_selection": "belgium_over_7",
-              "odds": "11/8",
-              "side": "over",
-              "line": "7",
-              "prop_type": "team_shots_on_target",
-              "team": "Belgium",
-              "team_side": "away"
-            },
-            {
-              "selection": "Belgium Over 8",
-              "normalized_selection": "belgium_over_8",
-              "odds": "12/5",
-              "side": "over",
-              "line": "8",
-              "prop_type": "team_shots_on_target",
-              "team": "Belgium",
-              "team_side": "away"
-            },
-            {
-              "selection": "Belgium Over 9",
-              "normalized_selection": "belgium_over_9",
-              "odds": "15/4",
-              "side": "over",
-              "line": "9",
-              "prop_type": "team_shots_on_target",
-              "team": "Belgium",
-              "team_side": "away"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Croatia v Ghana",
-      "home_team": "Croatia",
-      "away_team": "Ghana",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932828/croatia-vs-ghana",
+      "match": "Germany v Paraguay",
+      "home_team": "Germany",
+      "away_team": "Paraguay",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40273655/germany-vs-paraguay",
       "market_count": 0,
       "markets": []
     },
     {
-      "match": "Panama v England",
-      "home_team": "Panama",
-      "away_team": "England",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932829/panama-vs-england",
+      "match": "Netherlands v Morocco",
+      "home_team": "Netherlands",
+      "away_team": "Morocco",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40261449/netherlands-vs-morocco",
       "market_count": 0,
       "markets": []
     },
     {
-      "match": "Colombia v Portugal",
-      "home_team": "Colombia",
-      "away_team": "Portugal",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932826/colombia-vs-portugal",
+      "match": "Ivory Coast v Norway",
+      "home_team": "Ivory Coast",
+      "away_team": "Norway",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40265652/ivory-coast-vs-norway",
+      "market_count": 0,
+      "markets": []
+    },
+    {
+      "match": "France v Sweden",
+      "home_team": "France",
+      "away_team": "Sweden",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40273653/france-vs-sweden",
+      "market_count": 0,
+      "markets": []
+    },
+    {
+      "match": "USA v Bosnia",
+      "home_team": "USA",
+      "away_team": "Bosnia",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40261614/usa-vs-bosnia",
+      "market_count": 0,
+      "markets": []
+    },
+    {
+      "match": "Australia v Egypt",
+      "home_team": "Australia",
+      "away_team": "Egypt",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40273925/australia-vs-egypt",
+      "market_count": 0,
+      "markets": []
+    },
+    {
+      "match": "Argentina v Cape Verde",
+      "home_team": "Argentina",
+      "away_team": "Cape Verde",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40273590/argentina-vs-cape-verde",
       "market_count": 0,
       "markets": []
     }

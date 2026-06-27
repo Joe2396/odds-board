@@ -29,6 +29,7 @@ LADBROKES_PROPS_PATH  = ROOT / "football" / "data" / "ladbrokes_worldcup_props.j
 MIDNITE_PROPS_PATH    = ROOT / "football" / "data" / "midnite_worldcup_props.json"
 BWIN_PROPS_PATH       = ROOT / "football" / "data" / "bwin_worldcup_props.json"
 BWIN_MATCH_STATS_PATH = ROOT / "football" / "data" / "bwin_worldcup_match_stats.json"
+UPCOMING_SNAPSHOT_PATH = ROOT / "football" / "data" / "midnite_worldcup_props_fixtures_prod15.json"
 
 OUT_DIR  = ROOT / "football" / "world-cup"
 OUT_PATH = OUT_DIR / "index.html"
@@ -921,6 +922,20 @@ def date_sort_key(label):
     num   = next((int(p) for p in parts if p.isdigit()),999)
     return (num, day, label)
 
+def load_upcoming_snapshot_pair_keys():
+    """Canonical fixture pairs that are allowed onto the live World Cup site."""
+    payload = load_json(UPCOMING_SNAPSHOT_PATH)
+    rows = payload.get("matches") or []
+    keys = set()
+
+    for row in rows:
+        home = clean(row.get("home") or row.get("home_team"))
+        away = clean(row.get("away") or row.get("away_team"))
+        if home and away:
+            keys.add(loose_fixture_key(home, away))
+
+    return keys
+
 def load_all():
     paddy_rows,   paddy_gen    = load_book("PaddyPower",   PADDY_PATH)
     boyle_rows,   boyle_gen    = load_book("BoyleSports",  BOYLE_PATH)
@@ -978,8 +993,44 @@ def load_all():
                 fixtures[tk].setdefault("props",{})
                 fixtures[tk]["props"][bk] = pd
 
-    fl = sorted(fixtures.values(), key=lambda x:(date_sort_key(x.get("date_label")),x.get("time",""),x.get("match","")))
-    generated = paddy_p_gen or boyle_p_gen or unibet_p_gen or lsb_p_gen or eee_p_gen or wh_p_gen or betv_p_gen or ladb_p_gen or bwin_p_gen or bwin_s_gen or eee_gen or wh_gen or lsb_gen or unibet_gen or betv_gen or boyle_gen or paddy_gen or ladb_gen or bwin_gen
+    allowed_snapshot_pairs = load_upcoming_snapshot_pair_keys()
+
+    fixture_values = list(fixtures.values())
+
+    if allowed_snapshot_pairs:
+
+     fixture_values = [
+
+      fixture
+
+      for fixture in fixture_values
+
+      if loose_fixture_key(
+
+       fixture.get("home_team", ""),
+
+       fixture.get("away_team", ""),
+
+      ) in allowed_snapshot_pairs
+
+     ]
+
+    fl = sorted(
+
+     fixture_values,
+
+     key=lambda x:(
+
+      date_sort_key(x.get("date_label")),
+
+      x.get("time", ""),
+
+      x.get("match", ""),
+
+     ),
+
+    )
+    generated = datetime.now().astimezone().isoformat()
     bk_count  = len({b for f in fl for b in f.get("bookmakers",{})})
     return fl, bk_count, generated
 

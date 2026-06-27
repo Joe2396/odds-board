@@ -1,49 +1,12 @@
 {
-  "generated_at": "2026-06-27T19:54:07.984144+00:00",
-  "total_arbitrage": 10,
+  "generated_at": "2026-06-27T21:59:19.207495+00:00",
+  "total_arbitrage": 6,
   "sports": {
-    "All": 10,
-    "Football": 8,
+    "All": 6,
+    "Football": 4,
     "UFC": 2
   },
   "arbitrage": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Croatia v Ghana",
-      "market": "Half Time Result",
-      "type": "props_half_time_result",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 13.022,
-      "arb_percent": 88.478,
-      "arb_sum": 0.884783,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Croatia",
-          "bookmaker": "PaddyPower",
-          "odds": "13/10",
-          "decimal_odds": 2.3,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Draw",
-          "bookmaker": "Midnite",
-          "odds": 4.0,
-          "decimal_odds": 4.0,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Ghana",
-          "bookmaker": "PaddyPower",
-          "odds": "4/1",
-          "decimal_odds": 5.0,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
@@ -84,28 +47,28 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "event": "Panama v England",
-      "market": "Total Cards Over Under",
-      "type": "props_ou",
+      "event": "Colombia v Portugal",
+      "market": "Both Teams To Score",
+      "type": "props_btts",
       "date_label": "",
       "time": "",
-      "profit_margin_percent": 3.662,
-      "arb_percent": 96.467,
-      "arb_sum": 0.964674,
+      "profit_margin_percent": 3.279,
+      "arb_percent": 96.825,
+      "arb_sum": 0.968254,
       "bookmaker_count": 2,
       "bookmakers": [
         {
-          "selection": "Over 1.5",
-          "bookmaker": "Ladbrokes",
-          "odds": "8/15",
-          "decimal_odds": 1.533333,
+          "selection": "Yes",
+          "bookmaker": "PaddyPower",
+          "odds": "10/11",
+          "decimal_odds": 1.909091,
           "implied_probability": ""
         },
         {
-          "selection": "Under 1.5",
-          "bookmaker": "PaddyPower",
-          "odds": "11/5",
-          "decimal_odds": 3.2,
+          "selection": "No",
+          "bookmaker": "LiveScoreBet",
+          "odds": "5/4",
+          "decimal_odds": 2.25,
           "implied_probability": ""
         }
       ],
@@ -114,7 +77,7 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "event": "Dr Congo v Uzbekistan",
+      "event": "DR Congo v Uzbekistan",
       "market": "Both Teams To Score",
       "type": "props_btts",
       "date_label": "",
@@ -126,8 +89,8 @@
       "bookmakers": [
         {
           "selection": "Yes",
-          "bookmaker": "Midnite",
-          "odds": 2.2,
+          "bookmaker": "WilliamHill",
+          "odds": "6/5",
           "decimal_odds": 2.2,
           "implied_probability": ""
         },
@@ -136,36 +99,6 @@
           "bookmaker": "BetVictor",
           "odds": "37/40",
           "decimal_odds": 1.925,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Croatia v Ghana",
-      "market": "Total Cards Over Under",
-      "type": "props_ou",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 2.59,
-      "arb_percent": 97.475,
-      "arb_sum": 0.974755,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Over 3.5",
-          "bookmaker": "PaddyPower",
-          "odds": "21/10",
-          "decimal_odds": 3.1,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Under 3.5",
-          "bookmaker": "Ladbrokes",
-          "odds": "8/15",
-          "decimal_odds": 1.533333,
           "implied_probability": ""
         }
       ],
@@ -186,7 +119,7 @@
       "bookmakers": [
         {
           "selection": "Over 3.5",
-          "bookmaker": "WilliamHill",
+          "bookmaker": "Bwin",
           "odds": "5/2",
           "decimal_odds": 3.5,
           "implied_probability": ""
@@ -232,66 +165,6 @@
       "source_file": "ufc/data/arbitrage.json"
     },
     {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Colombia v Portugal",
-      "market": "Both Teams To Score",
-      "type": "props_btts",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 2.212,
-      "arb_percent": 97.835,
-      "arb_sum": 0.978355,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Yes",
-          "bookmaker": "PaddyPower",
-          "odds": "10/11",
-          "decimal_odds": 1.909091,
-          "implied_probability": ""
-        },
-        {
-          "selection": "No",
-          "bookmaker": "Unibet",
-          "odds": "6/5",
-          "decimal_odds": 2.2,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "New Zealand v Belgium",
-      "market": "Total Cards Over Under",
-      "type": "props_ou",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 2.128,
-      "arb_percent": 97.917,
-      "arb_sum": 0.979167,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Over 3.5",
-          "bookmaker": "PaddyPower",
-          "odds": "11/5",
-          "decimal_odds": 3.2,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Under 3.5",
-          "bookmaker": "Bwin",
-          "odds": "1/2",
-          "decimal_odds": 1.5,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
       "sport": "UFC",
       "competition": "UFC",
       "event": "Conor McGregor vs Max Holloway",
@@ -328,7 +201,7 @@
     "darts": "C:\\Users\\joete\\odds-board\\darts\\data\\arbitrage.json"
   },
   "source_counts": {
-    "football": 8,
+    "football": 4,
     "ufc": 2,
     "darts": 0
   }

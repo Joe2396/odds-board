@@ -8,6 +8,13 @@ echo Started: %date% %time%
 echo ==================================================
 echo.
 
+echo [0/8] Limiting William Hill targets to the upcoming snapshot...
+python scripts\Football\filter_worldcup_production_to_snapshot.py --file williamhill_worldcup_moneylines.json
+if errorlevel 1 (
+ echo FAILED: William Hill upcoming-target filter.
+ exit /b 1
+)
+echo.
 echo [1/8] William Hill main props...
 python scripts\Football\fetch_williamhill_worldcup_props.py
 if errorlevel 1 (

@@ -63,6 +63,9 @@ if errorlevel 1 goto FAIL
 
 python scripts\Football\fetch_midnite_worldcup_moneylines.py
 if errorlevel 1 goto FAIL
+echo Preparing shared upcoming World Cup snapshot...
+python scripts\Football\prepare_midnite_worldcup_props_fixtures.py
+if errorlevel 1 goto FAIL
 
 echo.
 echo Running lightweight BoyleSports props while long branches continue...
@@ -101,6 +104,10 @@ if errorlevel 1 (
 )
 
 echo.
+echo Filtering production data to the upcoming snapshot...
+python scripts\Football\filter_worldcup_production_to_snapshot.py --all-production
+if errorlevel 1 goto FAIL
+echo.
 echo Validating World Cup moneyline data...
 python validate_worldcup_moneylines.py
 if errorlevel 1 (
@@ -108,6 +115,10 @@ if errorlevel 1 (
     goto FAIL
 )
 
+echo.
+echo Cleaning stale World Cup generated folders...
+python scripts\Football\clean_worldcup_generated_output.py
+if errorlevel 1 goto FAIL
 echo.
 echo Building football pages...
 python scripts\Football\generate_worldcup_page.py
@@ -153,6 +164,7 @@ if errorlevel 1 goto FAIL
 echo.
 echo Staging approved generated data and pages...
 git add football data ev-alerts arbitrage
+git add scripts\Football\fetch_livescorebet_worldcup_props.py scripts\Football\generate_worldcup_page.py scripts\Football\filter_worldcup_production_to_snapshot.py scripts\Football\clean_worldcup_generated_output.py scripts\Pipeline\run_props_06_williamhill.bat run_big_auto_update_PARALLEL_PROPS.bat
 
 git diff --cached --quiet
 if not errorlevel 1 (
