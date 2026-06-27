@@ -135,6 +135,10 @@ echo.
 echo Building football EV alerts...
 python scripts\Football\build_football_ev_alerts.py
 if errorlevel 1 goto FAIL
+echo. 
+echo Removing expired football EV alerts...
+python scripts\Football\filter_expired_football_ev_alerts.py
+if errorlevel 1 goto FAIL
 
 echo.
 echo Building combined EV alerts...
