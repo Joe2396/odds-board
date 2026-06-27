@@ -235,7 +235,7 @@ def render_alert_card(alert, index):
       </div>
       {f'<a class="player-link" href="{player_props_url(alert)}">View all bookmaker prices →</a>' if player_props_url(alert) else ""}
       <a class="btn-tracker"
-         href="../ufc/tracker/?sport={url_param(sport)}&event={url_param(alert.get('event',''))}&market={url_param(alert.get('market',''))}&selection={url_param(alert.get('selection',''))}&bookmaker={url_param(alert.get('bookmaker',''))}&odds={url_param(alert.get('odds',''))}"
+         href="https://beatthebooks-2.myshopify.com/pages/betting-tracker?sport={url_param(sport)}&event={url_param(alert.get('event',''))}&market={url_param(alert.get('market',''))}&selection={url_param(alert.get('selection',''))}&bookmaker={url_param(alert.get('bookmaker',''))}&odds={url_param(alert.get('odds',''))}"
          target="_blank">
         Add to Bet Tracker →
       </a>

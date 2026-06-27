@@ -586,7 +586,7 @@ def render_spot_card(spot, index):
 
       <div class="spot-actions">
         <a class="btn-tracker"
-           href="../tracker/?sport=UFC&event={tracker_event}&market={tracker_market}&selection={tracker_selection}&bookmaker={tracker_bookmaker}&odds={tracker_odds}"
+           href="https://beatthebooks-2.myshopify.com/pages/betting-tracker?sport=UFC&event={tracker_event}&market={tracker_market}&selection={tracker_selection}&bookmaker={tracker_bookmaker}&odds={tracker_odds}"
            target="_blank">
           Add to Bet Tracker →
         </a>
