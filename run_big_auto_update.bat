@@ -45,7 +45,11 @@ python scripts\Football\fetch_williamhill_worldcup_props.py
 python scripts\Football\fetch_betvictor_worldcup_props.py
 python scripts\Football\fetch_ladbrokes_worldcup_props.py
 python scripts\Football\fetch_ladbrokes_shots_props.py
-python scripts\Football\fetch_midnite_worldcup_props.py
+call scripts\Pipeline\run_midnite_worldcup_props_PROD15.bat SKIP_MONEYLINES
+IF ERRORLEVEL 1 (
+    echo Midnite PROD15 pipeline failed. Stopping before build.
+    exit /b 1
+)
 echo.
 echo Validating World Cup moneyline data...
 python validate_worldcup_moneylines.py

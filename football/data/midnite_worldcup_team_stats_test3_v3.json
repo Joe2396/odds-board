@@ -1,0 +1,41 @@
+{
+  "bookmaker": "Midnite",
+  "competition": "FIFA World Cup 2026",
+  "market_type": "match_and_team_shots",
+  "core_markets": [
+    "total_shots_on_target",
+    "total_shots",
+    "home_shots",
+    "away_shots"
+  ],
+  "optional_markets": [
+    "home_shots_on_target",
+    "away_shots_on_target"
+  ],
+  "scraped_at": "2026-06-26T23:02:42.648850+00:00",
+  "test_mode": true,
+  "production_modified": false,
+  "max_matches": 3,
+  "test_start_index": 2,
+  "match_count": 0,
+  "error_count": 3,
+  "errors": [
+    {
+      "match": "Cape Verde v Saudi Arabia",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/cape-verde-v-saudi-arabia-54677257",
+      "error": "BrowserContext.new_page: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> C:\\Users\\joete\\AppData\\Local\\ms-playwright\\chromium-1217\\chrome-win64\\chrome.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --no-sandbox --user-data-dir=C:\\Users\\joete\\odds-board\\scripts\\Football\\midnite_team_stats_test3_v3_profile --remote-debugging-pipe about:blank\n<launched> pid=15496"
+    },
+    {
+      "match": "Uruguay v Spain",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/uruguay-v-spain-54677724",
+      "error": "BrowserContext.new_page: Target page, context or browser has been closed"
+    },
+    {
+      "match": "New Zealand v Belgium",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/new-zealand-v-belgium-54677018",
+      "error": "BrowserContext.new_page: Target page, context or browser has been closed"
+    }
+  ],
+  "elapsed_seconds": 14.739,
+  "matches": []
+}

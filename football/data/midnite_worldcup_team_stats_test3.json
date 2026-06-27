@@ -1,0 +1,31 @@
+{
+  "bookmaker": "Midnite",
+  "competition": "FIFA World Cup 2026",
+  "market_type": "match_and_team_shots",
+  "scraped_at": "2026-06-26T22:39:09.141191+00:00",
+  "test_mode": true,
+  "production_modified": false,
+  "max_matches": 3,
+  "test_start_index": 2,
+  "match_count": 0,
+  "error_count": 3,
+  "errors": [
+    {
+      "match": "Cape Verde v Saudi Arabia",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/cape-verde-v-saudi-arabia-54677257",
+      "error": "Page.wait_for_selector: Timeout 12000ms exceeded.\nCall log:\n  - waiting for locator(\"button\") to be visible\n    - locator resolved to 4 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n    - locator resolved to 9 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n    - locator resolved to 10 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n    8 × locator resolved to 58 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n"
+    },
+    {
+      "match": "Uruguay v Spain",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/uruguay-v-spain-54677724",
+      "error": "Page.wait_for_selector: Timeout 12000ms exceeded.\nCall log:\n  - waiting for locator(\"button\") to be visible\n    - locator resolved to 9 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n    - locator resolved to 55 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n    15 × locator resolved to 56 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n"
+    },
+    {
+      "match": "New Zealand v Belgium",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/new-zealand-v-belgium-54677018",
+      "error": "Page.wait_for_selector: Timeout 12000ms exceeded.\nCall log:\n  - waiting for locator(\"button\") to be visible\n    2 × locator resolved to 9 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n    2 × locator resolved to 10 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n    15 × locator resolved to 56 elements. Proceeding with the first one: <button class=\"cookiebot__button hide-on-intro-screen\" id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection\"> Confirm my choices </button>\n"
+    }
+  ],
+  "elapsed_seconds": 45.931,
+  "matches": []
+}

@@ -1,0 +1,29 @@
+{
+  "bookmaker": "Midnite",
+  "competition": "FIFA World Cup 2026",
+  "scraped_at": "2026-06-26T14:17:53.517781+00:00",
+  "test_mode": true,
+  "production_modified": false,
+  "max_matches": 3,
+  "match_count": 0,
+  "error_count": 3,
+  "errors": [
+    {
+      "match": "Norway v France",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/norway-v-france-54677084",
+      "error": "Total Shots on Target: option 'Combined' was not clickable"
+    },
+    {
+      "match": "Senegal v Iraq",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/senegal-v-iraq-54688063",
+      "error": "Total Shots on Target: requested 'Combined', active filter is 'Match'"
+    },
+    {
+      "match": "Cape Verde v Saudi Arabia",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/cape-verde-v-saudi-arabia-54677257",
+      "error": "Total Shots on Target: requested 'Combined', active filter is 'Match'"
+    }
+  ],
+  "elapsed_seconds": 72.794,
+  "matches": []
+}

@@ -1,0 +1,625 @@
+{
+  "bookmaker": "Midnite",
+  "competition": "FIFA World Cup 2026",
+  "market_type": "match_and_team_shots",
+  "scraped_at": "2026-06-26T22:48:27.614121+00:00",
+  "test_mode": true,
+  "production_modified": false,
+  "max_matches": 3,
+  "test_start_index": 2,
+  "match_count": 1,
+  "error_count": 2,
+  "errors": [
+    {
+      "match": "Cape Verde v Saudi Arabia",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/cape-verde-v-saudi-arabia-54677257",
+      "error": "Midnite event content did not load for Cape Verde v Saudi Arabia"
+    },
+    {
+      "match": "New Zealand v Belgium",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/new-zealand-v-belgium-54677018",
+      "error": "Midnite event content did not load for New Zealand v Belgium"
+    }
+  ],
+  "elapsed_seconds": 31.976,
+  "matches": [
+    {
+      "match_id": "uruguay-v-spain",
+      "event_id": "54677724",
+      "home": "Uruguay",
+      "away": "Spain",
+      "kickoff": "Tomorrow 01:00",
+      "bookmaker": "Midnite",
+      "url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/uruguay-v-spain-54677724",
+      "market_count": 4,
+      "markets": {
+        "total_shots_on_target": {
+          "over_8": 1.3,
+          "over_9": 1.5,
+          "over_10": 1.8333,
+          "over_11": 2.3,
+          "over_12": 3.0
+        },
+        "total_shots": {
+          "over_26": 1.5,
+          "over_27": 1.6154,
+          "over_28": 1.75,
+          "over_29": 1.95,
+          "over_30": 2.15,
+          "over_31": 2.4
+        },
+        "home_shots": {
+          "over_9": 1.4444,
+          "over_10": 1.7,
+          "over_11": 2.05,
+          "over_12": 2.5,
+          "over_13": 3.3
+        },
+        "away_shots": {
+          "over_16": 1.5,
+          "over_17": 1.7,
+          "over_18": 1.95,
+          "over_19": 2.25,
+          "over_20": 2.625,
+          "over_21": 3.2
+        }
+      },
+      "removed_identical_sot_markets": [],
+      "audit": {
+        "total_shots_on_target": {
+          "heading": "Total Shots on Target",
+          "scope": "Combined",
+          "rows": [
+            {
+              "label": "8+",
+              "threshold": 8,
+              "fractional_odds": "3/10",
+              "label_y": 584,
+              "odds_y": 583.5999999046326,
+              "vertical_delta": 0.4,
+              "decimal_odds": 1.3
+            },
+            {
+              "label": "9+",
+              "threshold": 9,
+              "fractional_odds": "1/2",
+              "label_y": 634,
+              "odds_y": 634,
+              "vertical_delta": 0,
+              "decimal_odds": 1.5
+            },
+            {
+              "label": "10+",
+              "threshold": 10,
+              "fractional_odds": "5/6",
+              "label_y": 684,
+              "odds_y": 683.5999999046326,
+              "vertical_delta": 0.4,
+              "decimal_odds": 1.8333
+            },
+            {
+              "label": "11+",
+              "threshold": 11,
+              "fractional_odds": "13/10",
+              "label_y": 734,
+              "odds_y": 733.5999999046326,
+              "vertical_delta": 0.4,
+              "decimal_odds": 2.3
+            },
+            {
+              "label": "12+",
+              "threshold": 12,
+              "fractional_odds": "2/1",
+              "label_y": 784,
+              "odds_y": 784,
+              "vertical_delta": 0,
+              "decimal_odds": 3.0
+            }
+          ],
+          "raw": {
+            "region": {
+              "left": 221,
+              "right": 1480,
+              "top": 487.20001220703125,
+              "bottom": 841,
+              "headingX": 348.3312530517578,
+              "headingY": 475.20001220703125,
+              "nextHeading": "Total Shots"
+            },
+            "pills": [
+              {
+                "label": "Combined",
+                "x": 315.3000011444092,
+                "y": 515.2000122070312
+              },
+              {
+                "label": "Match",
+                "x": 407.3062572479248,
+                "y": 515.2000122070312
+              }
+            ],
+            "requestedPill": {
+              "label": "Combined",
+              "x": 315.3000011444092,
+              "y": 515.2000122070312
+            },
+            "rows": [
+              {
+                "label": "8+",
+                "threshold": 8,
+                "fractional_odds": "3/10",
+                "label_y": 584,
+                "odds_y": 583.5999999046326,
+                "vertical_delta": 0.4
+              },
+              {
+                "label": "9+",
+                "threshold": 9,
+                "fractional_odds": "1/2",
+                "label_y": 634,
+                "odds_y": 634,
+                "vertical_delta": 0
+              },
+              {
+                "label": "10+",
+                "threshold": 10,
+                "fractional_odds": "5/6",
+                "label_y": 684,
+                "odds_y": 683.5999999046326,
+                "vertical_delta": 0.4
+              },
+              {
+                "label": "11+",
+                "threshold": 11,
+                "fractional_odds": "13/10",
+                "label_y": 734,
+                "odds_y": 733.5999999046326,
+                "vertical_delta": 0.4
+              },
+              {
+                "label": "12+",
+                "threshold": 12,
+                "fractional_odds": "2/1",
+                "label_y": 784,
+                "odds_y": 784,
+                "vertical_delta": 0
+              }
+            ],
+            "thresholdCount": 5,
+            "oddsCount": 7
+          }
+        },
+        "home_shots_on_target": {
+          "heading": "Total Shots on Target",
+          "scope": "Uruguay",
+          "rows": [],
+          "raw": {}
+        },
+        "away_shots_on_target": {
+          "heading": "Total Shots on Target",
+          "scope": "Spain",
+          "rows": [],
+          "raw": {}
+        },
+        "total_shots": {
+          "heading": "Total Shots",
+          "scope": "Combined",
+          "rows": [
+            {
+              "label": "26+",
+              "threshold": 26,
+              "fractional_odds": "1/2",
+              "label_y": 580,
+              "odds_y": 580,
+              "vertical_delta": 0,
+              "decimal_odds": 1.5
+            },
+            {
+              "label": "27+",
+              "threshold": 27,
+              "fractional_odds": "8/13",
+              "label_y": 630,
+              "odds_y": 630,
+              "vertical_delta": 0,
+              "decimal_odds": 1.6154
+            },
+            {
+              "label": "28+",
+              "threshold": 28,
+              "fractional_odds": "3/4",
+              "label_y": 680,
+              "odds_y": 680,
+              "vertical_delta": 0,
+              "decimal_odds": 1.75
+            },
+            {
+              "label": "29+",
+              "threshold": 29,
+              "fractional_odds": "19/20",
+              "label_y": 730,
+              "odds_y": 730,
+              "vertical_delta": 0,
+              "decimal_odds": 1.95
+            },
+            {
+              "label": "30+",
+              "threshold": 30,
+              "fractional_odds": "23/20",
+              "label_y": 780,
+              "odds_y": 779.5999999046326,
+              "vertical_delta": 0.4,
+              "decimal_odds": 2.15
+            },
+            {
+              "label": "31+",
+              "threshold": 31,
+              "fractional_odds": "7/5",
+              "label_y": 830,
+              "odds_y": 830,
+              "vertical_delta": 0,
+              "decimal_odds": 2.4
+            }
+          ],
+          "raw": {
+            "region": {
+              "left": 221,
+              "right": 1480,
+              "top": 487.20001220703125,
+              "bottom": 887,
+              "headingX": 314.3062515258789,
+              "headingY": 475.20001220703125,
+              "nextHeading": "Total Shots Outside the Box"
+            },
+            "pills": [
+              {
+                "label": "Combined",
+                "x": 316.10001945495605,
+                "y": 513.2000122070312
+              },
+              {
+                "label": "Uruguay",
+                "x": 413.73125076293945,
+                "y": 513.2000122070312
+              },
+              {
+                "label": "Spain",
+                "x": 499.1000003814697,
+                "y": 513.2000122070312
+              }
+            ],
+            "requestedPill": {
+              "label": "Combined",
+              "x": 316.10001945495605,
+              "y": 513.2000122070312
+            },
+            "rows": [
+              {
+                "label": "26+",
+                "threshold": 26,
+                "fractional_odds": "1/2",
+                "label_y": 580,
+                "odds_y": 580,
+                "vertical_delta": 0
+              },
+              {
+                "label": "27+",
+                "threshold": 27,
+                "fractional_odds": "8/13",
+                "label_y": 630,
+                "odds_y": 630,
+                "vertical_delta": 0
+              },
+              {
+                "label": "28+",
+                "threshold": 28,
+                "fractional_odds": "3/4",
+                "label_y": 680,
+                "odds_y": 680,
+                "vertical_delta": 0
+              },
+              {
+                "label": "29+",
+                "threshold": 29,
+                "fractional_odds": "19/20",
+                "label_y": 730,
+                "odds_y": 730,
+                "vertical_delta": 0
+              },
+              {
+                "label": "30+",
+                "threshold": 30,
+                "fractional_odds": "23/20",
+                "label_y": 780,
+                "odds_y": 779.5999999046326,
+                "vertical_delta": 0.4
+              },
+              {
+                "label": "31+",
+                "threshold": 31,
+                "fractional_odds": "7/5",
+                "label_y": 830,
+                "odds_y": 830,
+                "vertical_delta": 0
+              }
+            ],
+            "thresholdCount": 6,
+            "oddsCount": 11
+          }
+        },
+        "home_shots": {
+          "heading": "Total Shots",
+          "scope": "Uruguay",
+          "rows": [
+            {
+              "label": "Uruguay 9+",
+              "threshold": 9,
+              "fractional_odds": "4/9",
+              "label_y": 580,
+              "odds_y": 579.5999999046326,
+              "vertical_delta": 0.4,
+              "decimal_odds": 1.4444
+            },
+            {
+              "label": "Uruguay 10+",
+              "threshold": 10,
+              "fractional_odds": "7/10",
+              "label_y": 630,
+              "odds_y": 630,
+              "vertical_delta": 0,
+              "decimal_odds": 1.7
+            },
+            {
+              "label": "Uruguay 11+",
+              "threshold": 11,
+              "fractional_odds": "21/20",
+              "label_y": 680,
+              "odds_y": 679.5999999046326,
+              "vertical_delta": 0.4,
+              "decimal_odds": 2.05
+            },
+            {
+              "label": "Uruguay 12+",
+              "threshold": 12,
+              "fractional_odds": "6/4",
+              "label_y": 730,
+              "odds_y": 729.5999999046326,
+              "vertical_delta": 0.4,
+              "decimal_odds": 2.5
+            },
+            {
+              "label": "Uruguay 13+",
+              "threshold": 13,
+              "fractional_odds": "23/10",
+              "label_y": 780,
+              "odds_y": 780,
+              "vertical_delta": 0,
+              "decimal_odds": 3.3
+            }
+          ],
+          "raw": {
+            "region": {
+              "left": 221,
+              "right": 1480,
+              "top": 487.20001220703125,
+              "bottom": 837,
+              "headingX": 314.3062515258789,
+              "headingY": 475.20001220703125,
+              "nextHeading": "Total Shots Outside the Box"
+            },
+            "pills": [
+              {
+                "label": "Combined",
+                "x": 316.10001945495605,
+                "y": 513.2000122070312
+              },
+              {
+                "label": "Uruguay",
+                "x": 413.73125076293945,
+                "y": 513.2000122070312
+              },
+              {
+                "label": "Spain",
+                "x": 499.1000003814697,
+                "y": 513.2000122070312
+              }
+            ],
+            "requestedPill": {
+              "label": "Uruguay",
+              "x": 413.73125076293945,
+              "y": 513.2000122070312
+            },
+            "rows": [
+              {
+                "label": "Uruguay 9+",
+                "threshold": 9,
+                "fractional_odds": "4/9",
+                "label_y": 580,
+                "odds_y": 579.5999999046326,
+                "vertical_delta": 0.4
+              },
+              {
+                "label": "Uruguay 10+",
+                "threshold": 10,
+                "fractional_odds": "7/10",
+                "label_y": 630,
+                "odds_y": 630,
+                "vertical_delta": 0
+              },
+              {
+                "label": "Uruguay 11+",
+                "threshold": 11,
+                "fractional_odds": "21/20",
+                "label_y": 680,
+                "odds_y": 679.5999999046326,
+                "vertical_delta": 0.4
+              },
+              {
+                "label": "Uruguay 12+",
+                "threshold": 12,
+                "fractional_odds": "6/4",
+                "label_y": 730,
+                "odds_y": 729.5999999046326,
+                "vertical_delta": 0.4
+              },
+              {
+                "label": "Uruguay 13+",
+                "threshold": 13,
+                "fractional_odds": "23/10",
+                "label_y": 780,
+                "odds_y": 780,
+                "vertical_delta": 0
+              }
+            ],
+            "thresholdCount": 5,
+            "oddsCount": 7
+          }
+        },
+        "away_shots": {
+          "heading": "Total Shots",
+          "scope": "Spain",
+          "rows": [
+            {
+              "label": "Spain 16+",
+              "threshold": 16,
+              "fractional_odds": "1/2",
+              "label_y": 580,
+              "odds_y": 580,
+              "vertical_delta": 0,
+              "decimal_odds": 1.5
+            },
+            {
+              "label": "Spain 17+",
+              "threshold": 17,
+              "fractional_odds": "7/10",
+              "label_y": 630,
+              "odds_y": 630,
+              "vertical_delta": 0,
+              "decimal_odds": 1.7
+            },
+            {
+              "label": "Spain 18+",
+              "threshold": 18,
+              "fractional_odds": "19/20",
+              "label_y": 680,
+              "odds_y": 680,
+              "vertical_delta": 0,
+              "decimal_odds": 1.95
+            },
+            {
+              "label": "Spain 19+",
+              "threshold": 19,
+              "fractional_odds": "5/4",
+              "label_y": 730,
+              "odds_y": 729.5999999046326,
+              "vertical_delta": 0.4,
+              "decimal_odds": 2.25
+            },
+            {
+              "label": "Spain 20+",
+              "threshold": 20,
+              "fractional_odds": "13/8",
+              "label_y": 780,
+              "odds_y": 780,
+              "vertical_delta": 0,
+              "decimal_odds": 2.625
+            },
+            {
+              "label": "Spain 21+",
+              "threshold": 21,
+              "fractional_odds": "11/5",
+              "label_y": 830,
+              "odds_y": 829.5999999046326,
+              "vertical_delta": 0.4,
+              "decimal_odds": 3.2
+            }
+          ],
+          "raw": {
+            "region": {
+              "left": 221,
+              "right": 1480,
+              "top": 487.20001220703125,
+              "bottom": 887,
+              "headingX": 314.3062515258789,
+              "headingY": 475.20001220703125,
+              "nextHeading": "Total Shots Outside the Box"
+            },
+            "pills": [
+              {
+                "label": "Combined",
+                "x": 316.10001945495605,
+                "y": 513.2000122070312
+              },
+              {
+                "label": "Uruguay",
+                "x": 413.73125076293945,
+                "y": 513.2000122070312
+              },
+              {
+                "label": "Spain",
+                "x": 499.1000003814697,
+                "y": 513.2000122070312
+              }
+            ],
+            "requestedPill": {
+              "label": "Spain",
+              "x": 499.1000003814697,
+              "y": 513.2000122070312
+            },
+            "rows": [
+              {
+                "label": "Spain 16+",
+                "threshold": 16,
+                "fractional_odds": "1/2",
+                "label_y": 580,
+                "odds_y": 580,
+                "vertical_delta": 0
+              },
+              {
+                "label": "Spain 17+",
+                "threshold": 17,
+                "fractional_odds": "7/10",
+                "label_y": 630,
+                "odds_y": 630,
+                "vertical_delta": 0
+              },
+              {
+                "label": "Spain 18+",
+                "threshold": 18,
+                "fractional_odds": "19/20",
+                "label_y": 680,
+                "odds_y": 680,
+                "vertical_delta": 0
+              },
+              {
+                "label": "Spain 19+",
+                "threshold": 19,
+                "fractional_odds": "5/4",
+                "label_y": 730,
+                "odds_y": 729.5999999046326,
+                "vertical_delta": 0.4
+              },
+              {
+                "label": "Spain 20+",
+                "threshold": 20,
+                "fractional_odds": "13/8",
+                "label_y": 780,
+                "odds_y": 780,
+                "vertical_delta": 0
+              },
+              {
+                "label": "Spain 21+",
+                "threshold": 21,
+                "fractional_odds": "11/5",
+                "label_y": 830,
+                "odds_y": 829.5999999046326,
+                "vertical_delta": 0.4
+              }
+            ],
+            "thresholdCount": 6,
+            "oddsCount": 10
+          }
+        }
+      }
+    }
+  ]
+}

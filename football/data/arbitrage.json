@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-25T17:00:56.485069+00:00",
+  "generated_at": "2026-06-27T12:53:11.274170+00:00",
   "sport": "Football",
   "competition": "FIFA World Cup",
   "bookmaker_summary": {
@@ -47,9 +47,552 @@
   "fixture_count": 19,
   "compared_fixtures": 19,
   "skipped_fixtures": 0,
-  "arbitrage_count": 1,
-  "near_miss_count": 95,
+  "arbitrage_count": 6,
+  "near_miss_count": 135,
   "arbitrage": [
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_half_time_result",
+      "match": "Croatia v Ghana",
+      "market": "Half Time Result",
+      "arb_sum": 0.884783,
+      "arb_percent": 88.478,
+      "profit_margin_percent": 13.022,
+      "bookmaker_count": 2,
+      "selections": {
+        "home": {
+          "bookmaker": "PaddyPower",
+          "odds": "13/10",
+          "decimal": 2.3,
+          "decimal_odds": 2.3,
+          "match": "Croatia v Ghana",
+          "source_market": "Half Time Result",
+          "selection_label": "Croatia"
+        },
+        "draw": {
+          "bookmaker": "Midnite",
+          "odds": 4.0,
+          "decimal": 4.0,
+          "decimal_odds": 4.0,
+          "match": "Croatia v Ghana",
+          "source_market": "Half Time Result",
+          "selection_label": "Draw"
+        },
+        "away": {
+          "bookmaker": "PaddyPower",
+          "odds": "4/1",
+          "decimal": 5.0,
+          "decimal_odds": 5.0,
+          "match": "Croatia v Ghana",
+          "source_market": "Half Time Result",
+          "selection_label": "Ghana"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "decimal_odds": 2.3,
+            "match": "Croatia v Ghana",
+            "source_market": "Half Time Result",
+            "selection_label": "Croatia"
+          },
+          {
+            "bookmaker": "Midnite",
+            "odds": 1.85,
+            "decimal": 1.85,
+            "decimal_odds": 1.85,
+            "match": "Croatia v Ghana",
+            "source_market": "Half Time Result",
+            "selection_label": "Croatia"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "Midnite",
+            "odds": 4.0,
+            "decimal": 4.0,
+            "decimal_odds": 4.0,
+            "match": "Croatia v Ghana",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Croatia v Ghana",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/1",
+            "decimal": 5.0,
+            "decimal_odds": 5.0,
+            "match": "Croatia v Ghana",
+            "source_market": "Half Time Result",
+            "selection_label": "Ghana"
+          },
+          {
+            "bookmaker": "Midnite",
+            "odds": 2.375,
+            "decimal": 2.375,
+            "decimal_odds": 2.375,
+            "match": "Croatia v Ghana",
+            "source_market": "Half Time Result",
+            "selection_label": "Ghana"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_half_time_result",
+      "match": "Colombia v Portugal",
+      "market": "Half Time Result",
+      "arb_sum": 0.929184,
+      "arb_percent": 92.918,
+      "profit_margin_percent": 7.621,
+      "bookmaker_count": 2,
+      "selections": {
+        "home": {
+          "bookmaker": "PaddyPower",
+          "odds": "7/2",
+          "decimal": 4.5,
+          "decimal_odds": 4.5,
+          "match": "Colombia v Portugal",
+          "source_market": "Half Time Result",
+          "selection_label": "Colombia"
+        },
+        "draw": {
+          "bookmaker": "PaddyPower",
+          "odds": "11/10",
+          "decimal": 2.1,
+          "decimal_odds": 2.1,
+          "match": "Colombia v Portugal",
+          "source_market": "Half Time Result",
+          "selection_label": "Draw"
+        },
+        "away": {
+          "bookmaker": "Midnite",
+          "odds": 4.3333,
+          "decimal": 4.3333,
+          "decimal_odds": 4.3333,
+          "match": "Colombia v Portugal",
+          "source_market": "Half Time Result",
+          "selection_label": "Portugal"
+        }
+      },
+      "all_prices": {
+        "home": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/2",
+            "decimal": 4.5,
+            "decimal_odds": 4.5,
+            "match": "Colombia v Portugal",
+            "source_market": "Half Time Result",
+            "selection_label": "Colombia"
+          },
+          {
+            "bookmaker": "Midnite",
+            "odds": 3.3,
+            "decimal": 3.3,
+            "decimal_odds": 3.3,
+            "match": "Colombia v Portugal",
+            "source_market": "Half Time Result",
+            "selection_label": "Colombia"
+          }
+        ],
+        "draw": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "11/10",
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Colombia v Portugal",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          },
+          {
+            "bookmaker": "Midnite",
+            "odds": 1.85,
+            "decimal": 1.85,
+            "decimal_odds": 1.85,
+            "match": "Colombia v Portugal",
+            "source_market": "Half Time Result",
+            "selection_label": "Draw"
+          }
+        ],
+        "away": [
+          {
+            "bookmaker": "Midnite",
+            "odds": 4.3333,
+            "decimal": 4.3333,
+            "decimal_odds": 4.3333,
+            "match": "Colombia v Portugal",
+            "source_market": "Half Time Result",
+            "selection_label": "Portugal"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "7/5",
+            "decimal": 2.4,
+            "decimal_odds": 2.4,
+            "match": "Colombia v Portugal",
+            "source_market": "Half Time Result",
+            "selection_label": "Portugal"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Norway v France",
+      "market": "Total Shots On Target Over Under",
+      "canonical_market": "match_shots_on_target",
+      "scope": "match",
+      "scope_team": "",
+      "line": "9.5",
+      "arb_sum": 0.965116,
+      "arb_percent": 96.512,
+      "profit_margin_percent": 3.614,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Ladbrokes",
+          "odds": "23/20",
+          "decimal_odds": 2.15,
+          "source_market": "Total Shots On Target Over / Under",
+          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+        },
+        "under": {
+          "bookmaker": "Bwin",
+          "odds": "EVS",
+          "decimal_odds": 2.0,
+          "source_market": "Match Total Shots On Target",
+          "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "match": "Norway v France",
+            "market": "Total Shots On Target Over Under",
+            "source_market": "Total Shots On Target Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "shots_on_target",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "33/50",
+            "decimal": 1.66,
+            "match": "Norway v France",
+            "market": "Total Shots On Target Over Under",
+            "source_market": "Match Total Shots On Target",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "shots_on_target",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "match": "Norway v France",
+            "market": "Total Shots On Target Over Under",
+            "source_market": "Match Total Shots On Target",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "shots_on_target",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/13",
+            "decimal": 1.615385,
+            "match": "Norway v France",
+            "market": "Total Shots On Target Over Under",
+            "source_market": "Total Shots On Target Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "shots_on_target",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Dr Congo v Uzbekistan",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.974026,
+      "arb_percent": 97.403,
+      "profit_margin_percent": 2.667,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "Midnite",
+          "odds": 2.2,
+          "decimal": 2.2,
+          "decimal_odds": 2.2,
+          "match": "Congo DR v Uzbekistan",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "BetVictor",
+          "odds": "37/40",
+          "decimal": 1.925,
+          "decimal_odds": 1.925,
+          "match": "DR Congo v Uzbekistan",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "Midnite",
+            "odds": 2.2,
+            "decimal": 2.2,
+            "decimal_odds": 2.2,
+            "match": "Congo DR v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "9/10",
+            "decimal": 1.9,
+            "decimal_odds": 1.9,
+            "match": "DR Congo v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "5/6",
+            "decimal": 1.833333,
+            "decimal_odds": 1.833333,
+            "match": "Dr Congo v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "31/40",
+            "decimal": 1.775,
+            "decimal_odds": 1.775,
+            "match": "DR Congo v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "BetVictor",
+            "odds": "37/40",
+            "decimal": 1.925,
+            "decimal_odds": 1.925,
+            "match": "DR Congo v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Dr Congo v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "21/25",
+            "decimal": 1.84,
+            "decimal_odds": 1.84,
+            "match": "DR Congo v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Midnite",
+            "odds": 1.6154,
+            "decimal": 1.6154,
+            "decimal_odds": 1.6154,
+            "match": "Congo DR v Uzbekistan",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "New Zealand v Belgium",
+      "market": "Both Teams To Score",
+      "arb_sum": 0.977937,
+      "arb_percent": 97.794,
+      "profit_margin_percent": 2.256,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "Ladbrokes",
+          "odds": "23/20",
+          "decimal": 2.15,
+          "decimal_odds": 2.15,
+          "match": "New Zealand v Belgium",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "Unibet",
+          "odds": "19/20",
+          "decimal": 1.95,
+          "decimal_odds": 1.95,
+          "match": "New Zealand v Belgium",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "decimal_odds": 2.05,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "decimal_odds": 1.727273,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "decimal_odds": 1.7,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "8/13",
+            "decimal": 1.615385,
+            "decimal_odds": 1.615385,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "8/13",
+            "decimal": 1.615385,
+            "decimal_odds": 1.615385,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "61/100",
+            "decimal": 1.61,
+            "decimal_odds": 1.61,
+            "match": "New Zealand v Belgium",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          }
+        ]
+      }
+    },
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
@@ -189,83 +732,83 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Turkiye v Usa",
-      "market": "Usa Total Shots On Target Over Under",
-      "canonical_market": "team_shots_on_target::usa",
+      "match": "New Zealand v Belgium",
+      "market": "New Zealand Total Goals Over Under",
+      "canonical_market": "team_goals::new zealand",
       "scope": "team",
-      "scope_team": "usa",
-      "line": "4.5",
-      "arb_sum": 0.981231,
-      "arb_percent": 98.123,
-      "profit_margin_percent": 1.913,
+      "scope_team": "new zealand",
+      "line": "0.5",
+      "arb_sum": 0.980769,
+      "arb_percent": 98.077,
+      "profit_margin_percent": 1.961,
       "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "Ladbrokes",
-          "odds": "13/10",
-          "decimal_odds": 2.3,
-          "source_market": "Usa Shots On Target Over / Under",
-          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/turkiye-v-usa/256213517/main-markets"
+          "odds": "1/1",
+          "decimal_odds": 2.0,
+          "source_market": "New Zealand Goals Over / Under",
+          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/new-zealand-v-belgium/256213696/main-markets"
         },
         "under": {
-          "bookmaker": "Bwin",
-          "odds": "83/100",
-          "decimal_odds": 1.83,
-          "source_market": "USA Total Shots On Target",
-          "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
+          "bookmaker": "Unibet",
+          "odds": "27/25",
+          "decimal_odds": 2.08,
+          "source_market": "Team Total Goals Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
         }
       },
       "all_prices": {
         "over": [
           {
             "bookmaker": "Ladbrokes",
-            "odds": "13/10",
-            "decimal": 2.3,
-            "match": "Turkiye v Usa",
-            "market": "Usa Total Shots On Target Over Under",
-            "source_market": "Usa Shots On Target Over / Under",
+            "odds": "1/1",
+            "decimal": 2.0,
+            "match": "New Zealand v Belgium",
+            "market": "New Zealand Total Goals Over Under",
+            "source_market": "New Zealand Goals Over / Under",
             "scope": "team",
-            "scope_team": "usa",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/turkiye-v-usa/256213517/main-markets"
+            "scope_team": "new zealand",
+            "metric": "goals",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/new-zealand-v-belgium/256213696/main-markets"
           },
           {
-            "bookmaker": "Bwin",
-            "odds": "41/50",
-            "decimal": 1.82,
-            "match": "Türkiye v USA",
-            "market": "Usa Total Shots On Target Over Under",
-            "source_market": "USA Total Shots On Target",
+            "bookmaker": "Unibet",
+            "odds": "73/100",
+            "decimal": 1.73,
+            "match": "New Zealand v Belgium",
+            "market": "New Zealand Total Goals Over Under",
+            "source_market": "Team Total Goals Over / Under",
             "scope": "team",
-            "scope_team": "usa",
-            "metric": "shots_on_target",
-            "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
+            "scope_team": "new zealand",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
           }
         ],
         "under": [
           {
-            "bookmaker": "Bwin",
-            "odds": "83/100",
-            "decimal": 1.83,
-            "match": "Türkiye v USA",
-            "market": "Usa Total Shots On Target Over Under",
-            "source_market": "USA Total Shots On Target",
+            "bookmaker": "Unibet",
+            "odds": "27/25",
+            "decimal": 2.08,
+            "match": "New Zealand v Belgium",
+            "market": "New Zealand Total Goals Over Under",
+            "source_market": "Team Total Goals Over / Under",
             "scope": "team",
-            "scope_team": "usa",
-            "metric": "shots_on_target",
-            "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
+            "scope_team": "new zealand",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
           },
           {
             "bookmaker": "Ladbrokes",
-            "odds": "8/15",
-            "decimal": 1.533333,
-            "match": "Turkiye v Usa",
-            "market": "Usa Total Shots On Target Over Under",
-            "source_market": "Usa Shots On Target Over / Under",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "match": "New Zealand v Belgium",
+            "market": "New Zealand Total Goals Over Under",
+            "source_market": "New Zealand Goals Over / Under",
             "scope": "team",
-            "scope_team": "usa",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/turkiye-v-usa/256213517/main-markets"
+            "scope_team": "new zealand",
+            "metric": "goals",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/new-zealand-v-belgium/256213696/main-markets"
           }
         ]
       }
@@ -407,204 +950,131 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Ecuador v Germany",
-      "market": "Total Shots Over Under",
-      "canonical_market": "match_shots",
+      "match": "New Zealand v Belgium",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
       "scope": "match",
       "scope_team": "",
-      "line": "25.5",
+      "line": "3.5",
       "arb_sum": 0.987805,
       "arb_percent": 98.78,
       "profit_margin_percent": 1.235,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "Ladbrokes",
-          "odds": "1/1",
+          "bookmaker": "WilliamHill",
+          "odds": "EVS",
           "decimal_odds": 2.0,
-          "source_market": "Total Shots Over / Under",
-          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/ecuador-v-germany/256213445/main-markets"
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
         },
         "under": {
-          "bookmaker": "Bwin",
+          "bookmaker": "Unibet",
           "odds": "21/20",
           "decimal_odds": 2.05,
-          "source_market": "Match Total Shots",
-          "source_url": "https://www.bwin.com/en/sports/events/ecuador-germany-2:7812553"
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "Ladbrokes",
-            "odds": "1/1",
+            "bookmaker": "WilliamHill",
+            "odds": "EVS",
             "decimal": 2.0,
-            "match": "Ecuador v Germany",
-            "market": "Total Shots Over Under",
-            "source_market": "Total Shots Over / Under",
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "shots",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/ecuador-v-germany/256213445/main-markets"
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
           },
           {
-            "bookmaker": "Bwin",
-            "odds": "13/20",
-            "decimal": 1.65,
-            "match": "Ecuador v Germany",
-            "market": "Total Shots Over Under",
-            "source_market": "Match Total Shots",
+            "bookmaker": "WilliamHill",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "shots",
-            "source_url": "https://www.bwin.com/en/sports/events/ecuador-germany-2:7812553"
-          },
-          {
-            "bookmaker": "Midnite",
-            "odds": 1.4444,
-            "decimal": 1.4444,
-            "match": "Ecuador v Germany",
-            "market": "Total Shots Over Under",
-            "source_market": "Total Shots Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "shots",
-            "source_url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/ecuador-v-germany-54677372"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Bwin",
-            "odds": "21/20",
-            "decimal": 2.05,
-            "match": "Ecuador v Germany",
-            "market": "Total Shots Over Under",
-            "source_market": "Match Total Shots",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "shots",
-            "source_url": "https://www.bwin.com/en/sports/events/ecuador-germany-2:7812553"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "8/11",
-            "decimal": 1.727273,
-            "match": "Ecuador v Germany",
-            "market": "Total Shots Over Under",
-            "source_market": "Total Shots Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "shots",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/ecuador-v-germany/256213445/main-markets"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Curacao v Ivory Coast",
-      "market": "Ivory Coast Total Shots On Target Over Under",
-      "canonical_market": "team_shots_on_target::ivory coast",
-      "scope": "team",
-      "scope_team": "ivory coast",
-      "line": "7.5",
-      "arb_sum": 0.988926,
-      "arb_percent": 98.893,
-      "profit_margin_percent": 1.12,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "23/20",
-          "decimal_odds": 2.15,
-          "source_market": "Ivory Coast Shots On Target Over / Under",
-          "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "10/11",
-          "decimal_odds": 1.909091,
-          "source_market": "Ivory Coast Shots On Target Over / Under",
-          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
           },
           {
             "bookmaker": "Bwin",
             "odds": "EVS",
             "decimal": 2.0,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Total Shots On Target",
-            "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.bwin.com/en/sports/events/curacao-ivory-coast-2:7812552"
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/new-zealand-belgium-2:7812557"
           },
           {
-            "bookmaker": "Ladbrokes",
+            "bookmaker": "Unibet",
             "odds": "4/5",
             "decimal": 1.8,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
           }
         ],
         "under": [
           {
-            "bookmaker": "Ladbrokes",
-            "odds": "10/11",
-            "decimal": 1.909091,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+            "bookmaker": "Unibet",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
           },
           {
             "bookmaker": "Bwin",
-            "odds": "17/25",
-            "decimal": 1.68,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Total Shots On Target",
-            "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.bwin.com/en/sports/events/curacao-ivory-coast-2:7812552"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "3/5",
-            "decimal": 1.6,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
+            "odds": "18/25",
+            "decimal": 1.72,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/new-zealand-belgium-2:7812557"
           }
         ]
       }
@@ -613,107 +1083,421 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Curacao v Ivory Coast",
-      "market": "Curacao Total Shots On Target Over Under",
-      "canonical_market": "team_shots_on_target::curacao",
-      "scope": "team",
-      "scope_team": "curacao",
-      "line": "1.5",
-      "arb_sum": 0.99537,
-      "arb_percent": 99.537,
-      "profit_margin_percent": 0.465,
+      "match": "New Zealand v Belgium",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 0.997347,
+      "arb_percent": 99.735,
+      "profit_margin_percent": 0.266,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "Ladbrokes",
-          "odds": "3/5",
-          "decimal_odds": 1.6,
-          "source_market": "Curacao Shots On Target Over / Under",
-          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+          "bookmaker": "WilliamHill",
+          "odds": "9/4",
+          "decimal_odds": 3.25,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
         },
         "under": {
-          "bookmaker": "Bwin",
-          "odds": "17/10",
-          "decimal_odds": 2.7,
-          "source_market": "Curacao Total Shots On Target",
-          "source_url": "https://www.bwin.com/en/sports/events/curacao-ivory-coast-2:7812552"
+          "bookmaker": "Unibet",
+          "odds": "9/20",
+          "decimal_odds": 1.45,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
         }
       },
       "all_prices": {
         "over": [
           {
+            "bookmaker": "WilliamHill",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
+          },
+          {
             "bookmaker": "Ladbrokes",
-            "odds": "3/5",
-            "decimal": 1.6,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+            "odds": "11/5",
+            "decimal": 3.2,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/new-zealand-v-belgium/256213696/main-markets"
           },
           {
             "bookmaker": "Bwin",
-            "odds": "39/100",
-            "decimal": 1.39,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Total Shots On Target",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.bwin.com/en/sports/events/curacao-ivory-coast-2:7812552"
+            "odds": "21/10",
+            "decimal": 3.1,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/new-zealand-belgium-2:7812557"
           },
           {
-            "bookmaker": "LiveScoreBet",
-            "odds": "4/11",
-            "decimal": 1.363636,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
+            "bookmaker": "Unibet",
+            "odds": "7/4",
+            "decimal": 2.75,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
           }
         ],
         "under": [
           {
-            "bookmaker": "Bwin",
-            "odds": "17/10",
-            "decimal": 2.7,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Total Shots On Target",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.bwin.com/en/sports/events/curacao-ivory-coast-2:7812552"
+            "bookmaker": "Unibet",
+            "odds": "9/20",
+            "decimal": 1.45,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
           },
           {
-            "bookmaker": "LiveScoreBet",
-            "odds": "31/20",
-            "decimal": 2.55,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
+            "bookmaker": "WilliamHill",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932801/new-zealand-vs-belgium"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "8/25",
+            "decimal": 1.32,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/new-zealand-belgium-2:7812557"
           },
           {
             "bookmaker": "Ladbrokes",
-            "odds": "6/5",
-            "decimal": 2.2,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "New Zealand v Belgium",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/new-zealand-v-belgium/256213696/main-markets"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Norway v France",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 0.997928,
+      "arb_percent": 99.793,
+      "profit_margin_percent": 0.208,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Bwin",
+          "odds": "15/4",
+          "decimal_odds": 4.75,
+          "source_market": "Total Goals Over/Under",
+          "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+        },
+        "under": {
+          "bookmaker": "Unibet",
+          "odds": "27/100",
+          "decimal_odds": 1.27,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Bwin",
+            "odds": "15/4",
+            "decimal": 4.75,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "10/3",
+            "decimal": 4.333333,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "10/3",
+            "decimal": 4.333333,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "14/5",
+            "decimal": 3.8,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "27/100",
+            "decimal": 1.27,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "4/25",
+            "decimal": 1.16,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Norway v France",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "3.5",
+      "arb_sum": 0.998236,
+      "arb_percent": 99.824,
+      "profit_margin_percent": 0.177,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "WilliamHill",
+          "odds": "13/8",
+          "decimal_odds": 2.625,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+        },
+        "under": {
+          "bookmaker": "Unibet",
+          "odds": "31/50",
+          "decimal_odds": 1.62,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/8",
+            "decimal": 2.625,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "13/8",
+            "decimal": 2.625,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "8/5",
+            "decimal": 2.6,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "31/50",
+            "decimal": 1.62,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/9",
+            "decimal": 1.444444,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "11/25",
+            "decimal": 1.44,
+            "match": "Norway v France",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
           }
         ]
       }
@@ -734,11 +1518,11 @@
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "Bwin",
+          "bookmaker": "Ladbrokes",
           "odds": "3/1",
           "decimal_odds": 4.0,
-          "source_market": "Total Cards Over/Under",
-          "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          "source_market": "Total Cards Over / Under",
+          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
         },
         "under": {
           "bookmaker": "WilliamHill",
@@ -750,6 +1534,18 @@
       },
       "all_prices": {
         "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/1",
+            "decimal": 4.0,
+            "match": "Norway v France",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          },
           {
             "bookmaker": "Bwin",
             "odds": "3/1",
@@ -847,6 +1643,18 @@
             "scope_team": "",
             "metric": "cards",
             "source_url": "https://www.paddypower.com/football/fifa-world-cup/norway-v-france-35631925"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "match": "Norway v France",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
           }
         ]
       }
@@ -855,107 +1663,318 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Curacao v Ivory Coast",
-      "market": "Curacao Total Shots On Target Over Under",
-      "canonical_market": "team_shots_on_target::curacao",
-      "scope": "team",
-      "scope_team": "curacao",
-      "line": "2.5",
-      "arb_sum": 1.000579,
-      "arb_percent": 100.058,
-      "profit_margin_percent": -0.058,
+      "match": "Norway v France",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "7.5",
+      "arb_sum": 1.0,
+      "arb_percent": 100.0,
+      "profit_margin_percent": 0.0,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "Ladbrokes",
-          "odds": "7/4",
-          "decimal_odds": 2.75,
-          "source_market": "Curacao Shots On Target Over / Under",
-          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+          "bookmaker": "Unibet",
+          "odds": "2/5",
+          "decimal_odds": 1.4,
+          "source_market": "Total Corners Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
         },
         "under": {
-          "bookmaker": "Bwin",
-          "odds": "57/100",
-          "decimal_odds": 1.57,
-          "source_market": "Curacao Total Shots On Target",
-          "source_url": "https://www.bwin.com/en/sports/events/curacao-ivory-coast-2:7812552"
+          "bookmaker": "Ladbrokes",
+          "odds": "5/2",
+          "decimal_odds": 3.5,
+          "source_market": "Total Corners Over / Under",
+          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "Ladbrokes",
-            "odds": "7/4",
-            "decimal": 2.75,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "6/5",
-            "decimal": 2.2,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Total Shots On Target",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.bwin.com/en/sports/events/curacao-ivory-coast-2:7812552"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Bwin",
-            "odds": "57/100",
-            "decimal": 1.57,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Total Shots On Target",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.bwin.com/en/sports/events/curacao-ivory-coast-2:7812552"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "8/15",
-            "decimal": 1.533333,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
-          },
-          {
-            "bookmaker": "Ladbrokes",
+            "bookmaker": "Unibet",
             "odds": "2/5",
             "decimal": 1.4,
-            "match": "Curacao v Ivory Coast",
-            "market": "Curacao Total Shots On Target Over Under",
-            "source_market": "Curacao Shots On Target Over / Under",
-            "scope": "team",
-            "scope_team": "curacao",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108800"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "2/7",
+            "decimal": 1.285714,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "13/50",
+            "decimal": 1.26,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "21/10",
+            "decimal": 3.1,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108800"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "47/25",
+            "decimal": 2.88,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_btts",
+      "match": "Colombia v Portugal",
+      "market": "Both Teams To Score",
+      "arb_sum": 1.0,
+      "arb_percent": 100.0,
+      "profit_margin_percent": 0.0,
+      "bookmaker_count": 2,
+      "selections": {
+        "yes": {
+          "bookmaker": "PaddyPower",
+          "odds": "10/11",
+          "decimal": 1.909091,
+          "decimal_odds": 1.909091,
+          "match": "Colombia v Portugal",
+          "source_market": "Both Teams To Score",
+          "selection_label": "Yes"
+        },
+        "no": {
+          "bookmaker": "Midnite",
+          "odds": 2.1,
+          "decimal": 2.1,
+          "decimal_odds": 2.1,
+          "match": "Colombia v Portugal",
+          "source_market": "Both Teams To Score",
+          "selection_label": "No"
+        }
+      },
+      "all_prices": {
+        "yes": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "decimal_odds": 1.909091,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "22/25",
+            "decimal": 1.88,
+            "decimal_odds": 1.88,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "decimal_odds": 1.85,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "5/6",
+            "decimal": 1.833333,
+            "decimal_odds": 1.833333,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "decimal_odds": 1.727273,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Midnite",
+            "odds": 1.6667,
+            "decimal": 1.6667,
+            "decimal_odds": 1.6667,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          }
+        ],
+        "no": [
+          {
+            "bookmaker": "Midnite",
+            "odds": 2.1,
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "decimal_odds": 1.85,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "17/20",
+            "decimal": 1.85,
+            "decimal_odds": 1.85,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "decimal_odds": 1.8,
+            "match": "Colombia v Portugal",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
           }
         ]
       }
@@ -964,83 +1983,240 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Ecuador v Germany",
-      "market": "Germany Total Shots Over Under",
-      "canonical_market": "team_shots::germany",
+      "match": "Norway v France",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "9.5",
+      "arb_sum": 1.000625,
+      "arb_percent": 100.063,
+      "profit_margin_percent": -0.063,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Unibet",
+          "odds": "21/20",
+          "decimal_odds": 2.05,
+          "source_market": "Total Corners Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+        },
+        "under": {
+          "bookmaker": "WilliamHill",
+          "odds": "19/20",
+          "decimal_odds": 1.95,
+          "source_market": "Total Corners",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "5/6",
+            "decimal": 1.833333,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "5/6",
+            "decimal": 1.833333,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108800"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "4/5",
+            "decimal": 1.8,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/11",
+            "decimal": 1.909091,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "87/100",
+            "decimal": 1.87,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "5/6",
+            "decimal": 1.833333,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108800"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "73/100",
+            "decimal": 1.73,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Norway v France",
+      "market": "France Total Shots On Target Over Under",
+      "canonical_market": "team_shots_on_target::france",
       "scope": "team",
-      "scope_team": "germany",
-      "line": "14.5",
-      "arb_sum": 1.002506,
-      "arb_percent": 100.251,
-      "profit_margin_percent": -0.25,
+      "scope_team": "france",
+      "line": "5.5",
+      "arb_sum": 1.000625,
+      "arb_percent": 100.063,
+      "profit_margin_percent": -0.063,
       "bookmaker_count": 2,
       "selections": {
         "over": {
           "bookmaker": "Ladbrokes",
-          "odds": "11/10",
-          "decimal_odds": 2.1,
-          "source_market": "Germany Shots Over / Under",
-          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/ecuador-v-germany/256213445/main-markets"
+          "odds": "19/20",
+          "decimal_odds": 1.95,
+          "source_market": "France Shots On Target Over / Under",
+          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
         },
         "under": {
           "bookmaker": "Bwin",
-          "odds": "9/10",
-          "decimal_odds": 1.9,
-          "source_market": "Germany Total Shots",
-          "source_url": "https://www.bwin.com/en/sports/events/ecuador-germany-2:7812553"
+          "odds": "21/20",
+          "decimal_odds": 2.05,
+          "source_market": "France Total Shots On Target",
+          "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
         }
       },
       "all_prices": {
         "over": [
           {
             "bookmaker": "Ladbrokes",
-            "odds": "11/10",
-            "decimal": 2.1,
-            "match": "Ecuador v Germany",
-            "market": "Germany Total Shots Over Under",
-            "source_market": "Germany Shots Over / Under",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "match": "Norway v France",
+            "market": "France Total Shots On Target Over Under",
+            "source_market": "France Shots On Target Over / Under",
             "scope": "team",
-            "scope_team": "germany",
-            "metric": "shots",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/ecuador-v-germany/256213445/main-markets"
+            "scope_team": "france",
+            "metric": "shots_on_target",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
           },
           {
             "bookmaker": "Bwin",
-            "odds": "3/4",
-            "decimal": 1.75,
-            "match": "Ecuador v Germany",
-            "market": "Germany Total Shots Over Under",
-            "source_market": "Germany Total Shots",
+            "odds": "63/100",
+            "decimal": 1.63,
+            "match": "Norway v France",
+            "market": "France Total Shots On Target Over Under",
+            "source_market": "France Total Shots On Target",
             "scope": "team",
-            "scope_team": "germany",
-            "metric": "shots",
-            "source_url": "https://www.bwin.com/en/sports/events/ecuador-germany-2:7812553"
+            "scope_team": "france",
+            "metric": "shots_on_target",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
           }
         ],
         "under": [
           {
             "bookmaker": "Bwin",
-            "odds": "9/10",
-            "decimal": 1.9,
-            "match": "Ecuador v Germany",
-            "market": "Germany Total Shots Over Under",
-            "source_market": "Germany Total Shots",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "Norway v France",
+            "market": "France Total Shots On Target Over Under",
+            "source_market": "France Total Shots On Target",
             "scope": "team",
-            "scope_team": "germany",
-            "metric": "shots",
-            "source_url": "https://www.bwin.com/en/sports/events/ecuador-germany-2:7812553"
+            "scope_team": "france",
+            "metric": "shots_on_target",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
           },
           {
             "bookmaker": "Ladbrokes",
-            "odds": "13/20",
-            "decimal": 1.65,
-            "match": "Ecuador v Germany",
-            "market": "Germany Total Shots Over Under",
-            "source_market": "Germany Shots Over / Under",
+            "odds": "3/4",
+            "decimal": 1.75,
+            "match": "Norway v France",
+            "market": "France Total Shots On Target Over Under",
+            "source_market": "France Shots On Target Over / Under",
             "scope": "team",
-            "scope_team": "germany",
-            "metric": "shots",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/ecuador-v-germany/256213445/main-markets"
+            "scope_team": "france",
+            "metric": "shots_on_target",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
           }
         ]
       }
@@ -1088,6 +2264,18 @@
             "scope_team": "",
             "metric": "cards",
             "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "2/5",
+            "decimal": 1.4,
+            "match": "Norway v France",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
           },
           {
             "bookmaker": "PaddyPower",
@@ -1164,6 +2352,18 @@
             "source_url": "https://www.paddypower.com/football/fifa-world-cup/norway-v-france-35631925"
           },
           {
+            "bookmaker": "Ladbrokes",
+            "odds": "17/10",
+            "decimal": 2.7,
+            "match": "Norway v France",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          },
+          {
             "bookmaker": "Bwin",
             "odds": "33/20",
             "decimal": 2.65,
@@ -1182,83 +2382,83 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Curacao v Ivory Coast",
-      "market": "Ivory Coast Total Shots On Target Over Under",
-      "canonical_market": "team_shots_on_target::ivory coast",
+      "match": "Türkiye v USA",
+      "market": "Turkiye Total Shots Over Under",
+      "canonical_market": "team_shots::turkiye",
       "scope": "team",
-      "scope_team": "ivory coast",
-      "line": "8.5",
-      "arb_sum": 1.00565,
-      "arb_percent": 100.565,
-      "profit_margin_percent": -0.562,
+      "scope_team": "turkiye",
+      "line": "13.5",
+      "arb_sum": 1.00594,
+      "arb_percent": 100.594,
+      "profit_margin_percent": -0.59,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "LiveScoreBet",
-          "odds": "39/20",
-          "decimal_odds": 2.95,
-          "source_market": "Ivory Coast Shots On Target Over / Under",
-          "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
+          "bookmaker": "Bwin",
+          "odds": "93/100",
+          "decimal_odds": 1.93,
+          "source_market": "Türkiye Total Shots",
+          "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
         },
         "under": {
           "bookmaker": "Ladbrokes",
-          "odds": "1/2",
-          "decimal_odds": 1.5,
-          "source_market": "Ivory Coast Shots On Target Over / Under",
-          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+          "odds": "21/20",
+          "decimal_odds": 2.05,
+          "source_market": "Türkiye Shots Over / Under",
+          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/turkiye-v-usa/256213517/main-markets"
         }
       },
       "all_prices": {
         "over": [
           {
-            "bookmaker": "LiveScoreBet",
-            "odds": "39/20",
-            "decimal": 2.95,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Shots On Target Over / Under",
+            "bookmaker": "Bwin",
+            "odds": "93/100",
+            "decimal": 1.93,
+            "match": "Türkiye v USA",
+            "market": "Turkiye Total Shots Over Under",
+            "source_market": "Türkiye Total Shots",
             "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
+            "scope_team": "turkiye",
+            "metric": "shots",
+            "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
           },
           {
             "bookmaker": "Ladbrokes",
-            "odds": "7/5",
-            "decimal": 2.4,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Shots On Target Over / Under",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "match": "Türkiye v Usa",
+            "market": "Turkiye Total Shots Over Under",
+            "source_market": "Türkiye Shots Over / Under",
             "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+            "scope_team": "turkiye",
+            "metric": "shots",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/turkiye-v-usa/256213517/main-markets"
           }
         ],
         "under": [
           {
             "bookmaker": "Ladbrokes",
-            "odds": "1/2",
-            "decimal": 1.5,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Shots On Target Over / Under",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "match": "Türkiye v Usa",
+            "market": "Turkiye Total Shots Over Under",
+            "source_market": "Türkiye Shots Over / Under",
             "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/curacao-v-ivory-coast/256213423/main-markets"
+            "scope_team": "turkiye",
+            "metric": "shots",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/turkiye-v-usa/256213517/main-markets"
           },
           {
-            "bookmaker": "LiveScoreBet",
-            "odds": "33/100",
-            "decimal": 1.33,
-            "match": "Curacao v Ivory Coast",
-            "market": "Ivory Coast Total Shots On Target Over Under",
-            "source_market": "Ivory Coast Shots On Target Over / Under",
+            "bookmaker": "Bwin",
+            "odds": "18/25",
+            "decimal": 1.72,
+            "match": "Türkiye v USA",
+            "market": "Turkiye Total Shots Over Under",
+            "source_market": "Türkiye Total Shots",
             "scope": "team",
-            "scope_team": "ivory coast",
-            "metric": "shots_on_target",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/curacao-ivory-coast/SBTE_2_1025862134/"
+            "scope_team": "turkiye",
+            "metric": "shots",
+            "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
           }
         ]
       }
@@ -1266,162 +2466,374 @@
     {
       "sport": "Football",
       "competition": "FIFA World Cup",
-      "type": "props_btts",
-      "match": "Curacao v Ivory Coast",
-      "market": "Both Teams To Score",
-      "arb_sum": 1.009288,
-      "arb_percent": 100.929,
-      "profit_margin_percent": -0.92,
+      "type": "props_ou",
+      "match": "Norway v France",
+      "market": "Total Corners Over Under",
+      "canonical_market": "match_corners",
+      "scope": "match",
+      "scope_team": "",
+      "line": "8.5",
+      "arb_sum": 1.006061,
+      "arb_percent": 100.606,
+      "profit_margin_percent": -0.602,
       "bookmaker_count": 2,
       "selections": {
-        "yes": {
-          "bookmaker": "Ladbrokes",
-          "odds": "11/8",
-          "decimal": 2.375,
-          "decimal_odds": 2.375,
-          "match": "Curacao v Ivory Coast",
-          "source_market": "Both Teams To Score",
-          "selection_label": "Yes"
+        "over": {
+          "bookmaker": "Unibet",
+          "odds": "13/20",
+          "decimal_odds": 1.65,
+          "source_market": "Total Corners Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
         },
-        "no": {
+        "under": {
           "bookmaker": "WilliamHill",
-          "odds": "7/10",
-          "decimal": 1.7,
-          "decimal_odds": 1.7,
-          "match": "Curacao v Ivory Coast",
-          "source_market": "Both Teams To Score",
-          "selection_label": "No"
+          "odds": "6/4",
+          "decimal_odds": 2.5,
+          "source_market": "Total Corners",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
         }
       },
       "all_prices": {
-        "yes": [
+        "over": [
           {
-            "bookmaker": "Ladbrokes",
-            "odds": "11/8",
-            "decimal": 2.375,
-            "decimal_odds": 2.375,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          },
-          {
-            "bookmaker": "Midnite",
-            "odds": 2.375,
-            "decimal": 2.375,
-            "decimal_odds": 2.375,
-            "match": "Curaçao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "27/20",
-            "decimal": 2.35,
-            "decimal_odds": 2.35,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "5/4",
-            "decimal": 2.25,
-            "decimal_odds": 2.25,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
+            "bookmaker": "Unibet",
+            "odds": "13/20",
+            "decimal": 1.65,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "5/4",
-            "decimal": 2.25,
-            "decimal_odds": 2.25,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "57/50",
-            "decimal": 2.14,
-            "decimal_odds": 2.14,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "21/20",
-            "decimal": 2.05,
-            "decimal_odds": 2.05,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          }
-        ],
-        "no": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "7/10",
-            "decimal": 1.7,
-            "decimal_odds": 1.7,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "8/13",
-            "decimal": 1.615385,
-            "decimal_odds": 1.615385,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "4/7",
-            "decimal": 1.571429,
-            "decimal_odds": 1.571429,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "4/7",
-            "decimal": 1.571429,
-            "decimal_odds": 1.571429,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "Ladbrokes",
             "odds": "8/15",
             "decimal": 1.533333,
-            "decimal_odds": 1.533333,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108800"
           },
           {
-            "bookmaker": "Midnite",
-            "odds": 1.5333,
-            "decimal": 1.5333,
-            "decimal_odds": 1.5333,
-            "match": "Curaçao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
+            "bookmaker": "WilliamHill",
+            "odds": "1/2",
+            "decimal": 1.5,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "10/21",
+            "decimal": 1.47619,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
           },
           {
             "bookmaker": "Bwin",
-            "odds": "13/25",
-            "decimal": 1.52,
-            "decimal_odds": 1.52,
-            "match": "Curacao v Ivory Coast",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
+            "odds": "47/100",
+            "decimal": 1.47,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "6/4",
+            "decimal": 2.5,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "29/20",
+            "decimal": 2.45,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "13/10",
+            "decimal": 2.3,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108800"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "match": "Norway v France",
+            "market": "Total Corners Over Under",
+            "source_market": "Total Corners Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "corners",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/norway-vs-france/1ca256c366c0dbce24b99d65606d7e42"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Egypt v Iran",
+      "market": "Total Cards Over Under",
+      "canonical_market": "match_cards",
+      "scope": "match",
+      "scope_team": "",
+      "line": "4.5",
+      "arb_sum": 1.00641,
+      "arb_percent": 100.641,
+      "profit_margin_percent": -0.637,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "PaddyPower",
+          "odds": "29/10",
+          "decimal_odds": 3.9,
+          "source_market": "Total Cards Over/Under",
+          "source_url": "https://www.paddypower.com/football/fifa-world-cup/egypt-v-iran-35632854"
+        },
+        "under": {
+          "bookmaker": "WilliamHill",
+          "odds": "1/3",
+          "decimal_odds": 1.333333,
+          "source_market": "Total Cards",
+          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932806/egypt-vs-iran"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "29/10",
+            "decimal": 3.9,
+            "match": "Egypt v Iran",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/egypt-v-iran-35632854"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "29/10",
+            "decimal": 3.9,
+            "match": "Egypt v Iran",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/egypt-iran-2:7812556"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "Egypt v Iran",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932806/egypt-vs-iran"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "Egypt v Iran",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107400"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "1/3",
+            "decimal": 1.333333,
+            "match": "Egypt v Iran",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932806/egypt-vs-iran"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "2/7",
+            "decimal": 1.285714,
+            "match": "Egypt v Iran",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107400"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "11/50",
+            "decimal": 1.22,
+            "match": "Egypt v Iran",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.bwin.com/en/sports/events/egypt-iran-2:7812556"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "1/5",
+            "decimal": 1.2,
+            "match": "Egypt v Iran",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.paddypower.com/football/fifa-world-cup/egypt-v-iran-35632854"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "New Zealand v Belgium",
+      "market": "New Zealand Total Goals Over Under",
+      "canonical_market": "team_goals::new zealand",
+      "scope": "team",
+      "scope_team": "new zealand",
+      "line": "1.5",
+      "arb_sum": 1.007003,
+      "arb_percent": 100.7,
+      "profit_margin_percent": -0.695,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Ladbrokes",
+          "odds": "5/1",
+          "decimal_odds": 6.0,
+          "source_market": "New Zealand Goals Over / Under",
+          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/new-zealand-v-belgium/256213696/main-markets"
+        },
+        "under": {
+          "bookmaker": "Unibet",
+          "odds": "19/100",
+          "decimal_odds": 1.19,
+          "source_market": "Team Total Goals Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "5/1",
+            "decimal": 6.0,
+            "match": "New Zealand v Belgium",
+            "market": "New Zealand Total Goals Over Under",
+            "source_market": "New Zealand Goals Over / Under",
+            "scope": "team",
+            "scope_team": "new zealand",
+            "metric": "goals",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/new-zealand-v-belgium/256213696/main-markets"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "18/5",
+            "decimal": 4.6,
+            "match": "New Zealand v Belgium",
+            "market": "New Zealand Total Goals Over Under",
+            "source_market": "Team Total Goals Over / Under",
+            "scope": "team",
+            "scope_team": "new zealand",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "19/100",
+            "decimal": 1.19,
+            "match": "New Zealand v Belgium",
+            "market": "New Zealand Total Goals Over Under",
+            "source_market": "Team Total Goals Over / Under",
+            "scope": "team",
+            "scope_team": "new zealand",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/new-zealand-vs-belgium/8411b33967d3b938be02d227b9790e86"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/10",
+            "decimal": 1.1,
+            "match": "New Zealand v Belgium",
+            "market": "New Zealand Total Goals Over Under",
+            "source_market": "New Zealand Goals Over / Under",
+            "scope": "team",
+            "scope_team": "new zealand",
+            "metric": "goals",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/new-zealand-v-belgium/256213696/main-markets"
           }
         ]
       }
@@ -1442,11 +2854,11 @@
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "Bwin",
+          "bookmaker": "Ladbrokes",
           "odds": "6/5",
           "decimal_odds": 2.2,
-          "source_market": "Total Cards Over/Under",
-          "source_url": "https://www.bwin.com/en/sports/events/norway-france-2:7812560"
+          "source_market": "Total Cards Over / Under",
+          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
         },
         "under": {
           "bookmaker": "WilliamHill",
@@ -1458,6 +2870,18 @@
       },
       "all_prices": {
         "over": [
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "6/5",
+            "decimal": 2.2,
+            "match": "Norway v France",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
+          },
           {
             "bookmaker": "Bwin",
             "odds": "6/5",
@@ -1543,6 +2967,18 @@
             "scope_team": "",
             "metric": "cards",
             "source_url": "https://www.paddypower.com/football/fifa-world-cup/norway-v-france-35631925"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "3/5",
+            "decimal": 1.6,
+            "match": "Norway v France",
+            "market": "Total Cards Over Under",
+            "source_market": "Total Cards Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "cards",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/norway-v-france/256213518/main-markets"
           },
           {
             "bookmaker": "Bwin",
@@ -1696,7 +3132,7 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_btts",
-      "match": "Egypt v Iran",
+      "match": "Senegal v Iraq",
       "market": "Both Teams To Score",
       "arb_sum": 1.010101,
       "arb_percent": 101.01,
@@ -1704,20 +3140,20 @@
       "bookmaker_count": 2,
       "selections": {
         "yes": {
-          "bookmaker": "WilliamHill",
+          "bookmaker": "Ladbrokes",
           "odds": "6/5",
           "decimal": 2.2,
           "decimal_odds": 2.2,
-          "match": "Egypt v Iran",
+          "match": "Senegal v Iraq",
           "source_market": "Both Teams To Score",
           "selection_label": "Yes"
         },
         "no": {
-          "bookmaker": "Unibet",
+          "bookmaker": "WilliamHill",
           "odds": "4/5",
           "decimal": 1.8,
           "decimal_odds": 1.8,
-          "match": "Egypt v Iran",
+          "match": "Senegal v Iraq",
           "source_market": "Both Teams To Score",
           "selection_label": "No"
         }
@@ -1725,38 +3161,20 @@
       "all_prices": {
         "yes": [
           {
-            "bookmaker": "WilliamHill",
+            "bookmaker": "Ladbrokes",
             "odds": "6/5",
             "decimal": 2.2,
             "decimal_odds": 2.2,
-            "match": "Egypt v Iran",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "decimal_odds": 2.15,
-            "match": "Egypt v Iran",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "11/10",
-            "decimal": 2.1,
-            "decimal_odds": 2.1,
-            "match": "Egypt v Iran",
+            "match": "Senegal v Iraq",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
           {
             "bookmaker": "Bwin",
-            "odds": "11/10",
-            "decimal": 2.1,
-            "decimal_odds": 2.1,
-            "match": "Egypt v Iran",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "Senegal v Iraq",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
@@ -1765,27 +3183,63 @@
             "odds": "21/20",
             "decimal": 2.05,
             "decimal_odds": 2.05,
-            "match": "Egypt v Iran",
+            "match": "Senegal v Iraq",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
           {
             "bookmaker": "Unibet",
-            "odds": "9/10",
-            "decimal": 1.9,
-            "decimal_odds": 1.9,
-            "match": "Egypt v Iran",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "decimal_odds": 2.05,
+            "match": "Senegal v Iraq",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Senegal v Iraq",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "19/20",
+            "decimal": 1.95,
+            "decimal_odds": 1.95,
+            "match": "Senegal v Iraq",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           }
         ],
         "no": [
           {
-            "bookmaker": "Unibet",
+            "bookmaker": "WilliamHill",
             "odds": "4/5",
             "decimal": 1.8,
             "decimal_odds": 1.8,
-            "match": "Egypt v Iran",
+            "match": "Senegal v Iraq",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "PaddyPower",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "decimal_odds": 1.727273,
+            "match": "Senegal v Iraq",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "7/10",
+            "decimal": 1.7,
+            "decimal_odds": 1.7,
+            "match": "Senegal v Iraq",
             "source_market": "Both Teams To Score",
             "selection_label": "No"
           },
@@ -1794,43 +3248,25 @@
             "odds": "4/6",
             "decimal": 1.666667,
             "decimal_odds": 1.666667,
-            "match": "Egypt v Iran",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "13/20",
-            "decimal": 1.65,
-            "decimal_odds": 1.65,
-            "match": "Egypt v Iran",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "13/20",
-            "decimal": 1.65,
-            "decimal_odds": 1.65,
-            "match": "Egypt v Iran",
+            "match": "Senegal v Iraq",
             "source_market": "Both Teams To Score",
             "selection_label": "No"
           },
           {
             "bookmaker": "Bwin",
-            "odds": "63/100",
-            "decimal": 1.63,
-            "decimal_odds": 1.63,
-            "match": "Egypt v Iran",
+            "odds": "31/50",
+            "decimal": 1.62,
+            "decimal_odds": 1.62,
+            "match": "Senegal v Iraq",
             "source_market": "Both Teams To Score",
             "selection_label": "No"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "8/13",
-            "decimal": 1.615385,
-            "decimal_odds": 1.615385,
-            "match": "Egypt v Iran",
+            "bookmaker": "Ladbrokes",
+            "odds": "3/5",
+            "decimal": 1.6,
+            "decimal_odds": 1.6,
+            "match": "Senegal v Iraq",
             "source_market": "Both Teams To Score",
             "selection_label": "No"
           }
@@ -1974,6 +3410,272 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
+      "match": "Algeria v Austria",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "0.5",
+      "arb_sum": 1.010526,
+      "arb_percent": 101.053,
+      "profit_margin_percent": -1.042,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Midnite",
+          "odds": 1.25,
+          "decimal_odds": 1.25,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/algeria-v-austria-54677940"
+        },
+        "under": {
+          "bookmaker": "Unibet",
+          "odds": "15/4",
+          "decimal_odds": 4.75,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/algeria-vs-austria/f80c8d1e179d5da2216ea516d62494e9"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Midnite",
+            "odds": 1.25,
+            "decimal": 1.25,
+            "match": "Algeria v Austria",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/algeria-v-austria-54677940"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "19/100",
+            "decimal": 1.19,
+            "match": "Algeria v Austria",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/algeria-vs-austria/f80c8d1e179d5da2216ea516d62494e9"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "15/4",
+            "decimal": 4.75,
+            "match": "Algeria v Austria",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/algeria-vs-austria/f80c8d1e179d5da2216ea516d62494e9"
+          },
+          {
+            "bookmaker": "Midnite",
+            "odds": 3.75,
+            "decimal": 3.75,
+            "match": "Algeria v Austria",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/algeria-v-austria-54677940"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
+      "match": "Colombia v Portugal",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
+      "scope": "match",
+      "scope_team": "",
+      "line": "3.5",
+      "arb_sum": 1.011131,
+      "arb_percent": 101.113,
+      "profit_margin_percent": -1.101,
+      "bookmaker_count": 2,
+      "selections": {
+        "over": {
+          "bookmaker": "Unibet",
+          "odds": "13/5",
+          "decimal_odds": 3.6,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/colombia-vs-portugal/ebae6b1d25f2c6279346cd8b6a94e419"
+        },
+        "under": {
+          "bookmaker": "Midnite",
+          "odds": 1.3636,
+          "decimal_odds": 1.3636,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/colombia-v-portugal-54518458"
+        }
+      },
+      "all_prices": {
+        "over": [
+          {
+            "bookmaker": "Unibet",
+            "odds": "13/5",
+            "decimal": 3.6,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/colombia-vs-portugal/ebae6b1d25f2c6279346cd8b6a94e419"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/colombia-v-portugal/256213710/main-markets"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932826/colombia-vs-portugal"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932826/colombia-vs-portugal"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "5/2",
+            "decimal": 3.5,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/colombia-portugal-2:7812564"
+          },
+          {
+            "bookmaker": "Midnite",
+            "odds": 3.0,
+            "decimal": 3.0,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/colombia-v-portugal-54518458"
+          }
+        ],
+        "under": [
+          {
+            "bookmaker": "Midnite",
+            "odds": 1.3636,
+            "decimal": 1.3636,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.midnite.com/sports/football/world-cup-2026-38826387/colombia-v-portugal-54518458"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "3/10",
+            "decimal": 1.3,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/colombia-vs-portugal/ebae6b1d25f2c6279346cd8b6a94e419"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "2/7",
+            "decimal": 1.285714,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932826/colombia-vs-portugal"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "2/7",
+            "decimal": 1.285714,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932826/colombia-vs-portugal"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "27/100",
+            "decimal": 1.27,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.bwin.com/en/sports/events/colombia-portugal-2:7812564"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "1/4",
+            "decimal": 1.25,
+            "match": "Colombia v Portugal",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/colombia-v-portugal/256213710/main-markets"
+          }
+        ]
+      }
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "type": "props_ou",
       "match": "Uruguay v Spain",
       "market": "Total Cards Over Under",
       "canonical_market": "match_cards",
@@ -2107,495 +3809,131 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_ou",
-      "match": "Egypt v Iran",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "10.5",
-      "arb_sum": 1.013289,
-      "arb_percent": 101.329,
-      "profit_margin_percent": -1.311,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "Bwin",
-          "odds": "16/5",
-          "decimal_odds": 4.2,
-          "source_market": "Total Corners Over/Under",
-          "source_url": "https://www.bwin.com/en/sports/events/egypt-iran-2:7812556"
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "29/100",
-          "decimal_odds": 1.29,
-          "source_market": "Total Corners Over / Under",
-          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/egypt-vs-iran/5fbaacf99ba1ac65a3277ddd84da6a9e"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "Bwin",
-            "odds": "16/5",
-            "decimal": 4.2,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.bwin.com/en/sports/events/egypt-iran-2:7812556"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "12/5",
-            "decimal": 3.4,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/egypt-vs-iran/5fbaacf99ba1ac65a3277ddd84da6a9e"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "29/100",
-            "decimal": 1.29,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/egypt-vs-iran/5fbaacf99ba1ac65a3277ddd84da6a9e"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "19/100",
-            "decimal": 1.19,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.bwin.com/en/sports/events/egypt-iran-2:7812556"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Türkiye v USA",
-      "market": "Usa Total Shots Over Under",
-      "canonical_market": "team_shots::usa",
-      "scope": "team",
-      "scope_team": "usa",
-      "line": "12.5",
-      "arb_sum": 1.014121,
-      "arb_percent": 101.412,
-      "profit_margin_percent": -1.392,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "Bwin",
-          "odds": "9/10",
-          "decimal_odds": 1.9,
-          "source_market": "USA Total Shots",
-          "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
-        },
-        "under": {
-          "bookmaker": "Ladbrokes",
-          "odds": "21/20",
-          "decimal_odds": 2.05,
-          "source_market": "Usa Shots Over / Under",
-          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/turkiye-v-usa/256213517/main-markets"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "Bwin",
-            "odds": "9/10",
-            "decimal": 1.9,
-            "match": "Türkiye v USA",
-            "market": "Usa Total Shots Over Under",
-            "source_market": "USA Total Shots",
-            "scope": "team",
-            "scope_team": "usa",
-            "metric": "shots",
-            "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "7/10",
-            "decimal": 1.7,
-            "match": "Turkiye v Usa",
-            "market": "Usa Total Shots Over Under",
-            "source_market": "Usa Shots Over / Under",
-            "scope": "team",
-            "scope_team": "usa",
-            "metric": "shots",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/turkiye-v-usa/256213517/main-markets"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "21/20",
-            "decimal": 2.05,
-            "match": "Turkiye v Usa",
-            "market": "Usa Total Shots Over Under",
-            "source_market": "Usa Shots Over / Under",
-            "scope": "team",
-            "scope_team": "usa",
-            "metric": "shots",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/turkiye-v-usa/256213517/main-markets"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "73/100",
-            "decimal": 1.73,
-            "match": "Türkiye v USA",
-            "market": "Usa Total Shots Over Under",
-            "source_market": "USA Total Shots",
-            "scope": "team",
-            "scope_team": "usa",
-            "metric": "shots",
-            "source_url": "https://www.bwin.com/en/sports/events/turkiye-usa-2:7812551"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
       "match": "Uruguay v Spain",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
+      "market": "Total Goals Over Under",
+      "canonical_market": "match_goals",
       "scope": "match",
       "scope_team": "",
-      "line": "4.5",
-      "arb_sum": 1.014889,
-      "arb_percent": 101.489,
-      "profit_margin_percent": -1.467,
+      "line": "3.5",
+      "arb_sum": 1.013158,
+      "arb_percent": 101.316,
+      "profit_margin_percent": -1.299,
       "bookmaker_count": 2,
       "selections": {
         "over": {
-          "bookmaker": "Bwin",
-          "odds": "21/10",
-          "decimal_odds": 3.1,
-          "source_market": "Total Cards Over/Under",
-          "source_url": "https://www.bwin.com/en/sports/events/uruguay-spain-2:7812559"
+          "bookmaker": "Unibet",
+          "odds": "14/5",
+          "decimal_odds": 3.8,
+          "source_market": "Total Goals Over / Under",
+          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/uruguay-vs-spain/6a268702b2101858d09d66a14357ef4e"
         },
         "under": {
           "bookmaker": "WilliamHill",
-          "odds": "4/9",
-          "decimal_odds": 1.444444,
-          "source_market": "Total Cards",
+          "odds": "1/3",
+          "decimal_odds": 1.333333,
+          "source_market": "Total Goals Over / Under",
           "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932809/uruguay-vs-spain"
         }
       },
       "all_prices": {
         "over": [
           {
+            "bookmaker": "Unibet",
+            "odds": "14/5",
+            "decimal": 3.8,
+            "match": "Uruguay v Spain",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/uruguay-vs-spain/6a268702b2101858d09d66a14357ef4e"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "Uruguay v Spain",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932809/uruguay-vs-spain"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "9/4",
+            "decimal": 3.25,
+            "match": "Uruguay v Spain",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
+            "scope": "match",
+            "scope_team": "",
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932809/uruguay-vs-spain"
+          },
+          {
             "bookmaker": "Bwin",
             "odds": "21/10",
             "decimal": 3.1,
             "match": "Uruguay v Spain",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards",
+            "metric": "goals",
             "source_url": "https://www.bwin.com/en/sports/events/uruguay-spain-2:7812559"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "9/5",
-            "decimal": 2.8,
-            "match": "Uruguay v Spain",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108400"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "17/10",
-            "decimal": 2.7,
-            "match": "Uruguay v Spain",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.paddypower.com/football/fifa-world-cup/uruguay-v-spain-35631949"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "13/8",
-            "decimal": 2.625,
-            "match": "Uruguay v Spain",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932809/uruguay-vs-spain"
           }
         ],
         "under": [
           {
             "bookmaker": "WilliamHill",
-            "odds": "4/9",
-            "decimal": 1.444444,
+            "odds": "1/3",
+            "decimal": 1.333333,
             "match": "Uruguay v Spain",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards",
+            "metric": "goals",
             "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932809/uruguay-vs-spain"
           },
           {
-            "bookmaker": "PaddyPower",
-            "odds": "2/5",
-            "decimal": 1.4,
+            "bookmaker": "WilliamHill",
+            "odds": "1/3",
+            "decimal": 1.333333,
             "match": "Uruguay v Spain",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "market": "Total Goals Over Under",
+            "source_market": "1st Half Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.paddypower.com/football/fifa-world-cup/uruguay-v-spain-35631949"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "4/11",
-            "decimal": 1.363636,
-            "match": "Uruguay v Spain",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108400"
+            "metric": "goals",
+            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932809/uruguay-vs-spain"
           },
           {
             "bookmaker": "Bwin",
-            "odds": "8/25",
-            "decimal": 1.32,
+            "odds": "33/100",
+            "decimal": 1.33,
             "match": "Uruguay v Spain",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over/Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "cards",
+            "metric": "goals",
             "source_url": "https://www.bwin.com/en/sports/events/uruguay-spain-2:7812559"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Egypt v Iran",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "5.5",
-      "arb_sum": 1.017857,
-      "arb_percent": 101.786,
-      "profit_margin_percent": -1.754,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "6/1",
-          "decimal_odds": 7.0,
-          "source_market": "Total Cards Over/Under",
-          "source_url": "https://www.paddypower.com/football/fifa-world-cup/egypt-v-iran-35632854"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "1/7",
-          "decimal_odds": 1.142857,
-          "source_market": "Total Cards",
-          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932806/egypt-vs-iran"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "6/1",
-            "decimal": 7.0,
-            "match": "Egypt v Iran",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.paddypower.com/football/fifa-world-cup/egypt-v-iran-35632854"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "4/1",
-            "decimal": 5.0,
-            "match": "Egypt v Iran",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932806/egypt-vs-iran"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/7",
-            "decimal": 1.142857,
-            "match": "Egypt v Iran",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932806/egypt-vs-iran"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "1/18",
-            "decimal": 1.055556,
-            "match": "Egypt v Iran",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.paddypower.com/football/fifa-world-cup/egypt-v-iran-35632854"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Egypt v Iran",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "9.5",
-      "arb_sum": 1.020503,
-      "arb_percent": 102.05,
-      "profit_margin_percent": -2.009,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "Bwin",
-          "odds": "19/10",
-          "decimal_odds": 2.9,
-          "source_market": "Total Corners Over/Under",
-          "source_url": "https://www.bwin.com/en/sports/events/egypt-iran-2:7812556"
-        },
-        "under": {
-          "bookmaker": "Unibet",
-          "odds": "12/25",
-          "decimal_odds": 1.48,
-          "source_market": "Total Corners Over / Under",
-          "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/egypt-vs-iran/5fbaacf99ba1ac65a3277ddd84da6a9e"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "Bwin",
-            "odds": "19/10",
-            "decimal": 2.9,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.bwin.com/en/sports/events/egypt-iran-2:7812556"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "8/5",
-            "decimal": 2.6,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107400"
           },
           {
             "bookmaker": "Unibet",
-            "odds": "31/20",
-            "decimal": 2.55,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
+            "odds": "27/100",
+            "decimal": 1.27,
+            "match": "Uruguay v Spain",
+            "market": "Total Goals Over Under",
+            "source_market": "Total Goals Over / Under",
             "scope": "match",
             "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/egypt-vs-iran/5fbaacf99ba1ac65a3277ddd84da6a9e"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "Unibet",
-            "odds": "12/25",
-            "decimal": 1.48,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/egypt-vs-iran/5fbaacf99ba1ac65a3277ddd84da6a9e"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "5/12",
-            "decimal": 1.416667,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789107400"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "7/20",
-            "decimal": 1.35,
-            "match": "Egypt v Iran",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.bwin.com/en/sports/events/egypt-iran-2:7812556"
+            "metric": "goals",
+            "source_url": "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-matches/uruguay-vs-spain/6a268702b2101858d09d66a14357ef4e"
           }
         ]
       }
@@ -2604,28 +3942,28 @@
       "sport": "Football",
       "competition": "FIFA World Cup",
       "type": "props_btts",
-      "match": "Senegal v Iraq",
+      "match": "Norway v France",
       "market": "Both Teams To Score",
-      "arb_sum": 1.020672,
-      "arb_percent": 102.067,
-      "profit_margin_percent": -2.025,
+      "arb_sum": 1.01373,
+      "arb_percent": 101.373,
+      "profit_margin_percent": -1.354,
       "bookmaker_count": 2,
       "selections": {
         "yes": {
-          "bookmaker": "Ladbrokes",
-          "odds": "23/20",
-          "decimal": 2.15,
-          "decimal_odds": 2.15,
-          "match": "Senegal v Iraq",
+          "bookmaker": "WilliamHill",
+          "odds": "8/11",
+          "decimal": 1.727273,
+          "decimal_odds": 1.727273,
+          "match": "Norway v France",
           "source_market": "Both Teams To Score",
           "selection_label": "Yes"
         },
         "no": {
-          "bookmaker": "WilliamHill",
-          "odds": "4/5",
-          "decimal": 1.8,
-          "decimal_odds": 1.8,
-          "match": "Senegal v Iraq",
+          "bookmaker": "Unibet",
+          "odds": "13/10",
+          "decimal": 2.3,
+          "decimal_odds": 2.3,
+          "match": "Norway v France",
           "source_market": "Both Teams To Score",
           "selection_label": "No"
         }
@@ -2633,489 +3971,114 @@
       "all_prices": {
         "yes": [
           {
-            "bookmaker": "Ladbrokes",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "decimal_odds": 2.15,
-            "match": "Senegal v Iraq",
+            "bookmaker": "WilliamHill",
+            "odds": "8/11",
+            "decimal": 1.727273,
+            "decimal_odds": 1.727273,
+            "match": "Norway v France",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
           {
             "bookmaker": "Bwin",
-            "odds": "23/20",
-            "decimal": 2.15,
-            "decimal_odds": 2.15,
-            "match": "Senegal v Iraq",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          },
-          {
-            "bookmaker": "Unibet",
-            "odds": "27/25",
-            "decimal": 2.08,
-            "decimal_odds": 2.08,
-            "match": "Senegal v Iraq",
-            "source_market": "Both Teams To Score",
-            "selection_label": "Yes"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "21/20",
-            "decimal": 2.05,
-            "decimal_odds": 2.05,
-            "match": "Senegal v Iraq",
+            "odds": "17/25",
+            "decimal": 1.68,
+            "decimal_odds": 1.68,
+            "match": "Norway v France",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
           {
             "bookmaker": "PaddyPower",
-            "odds": "EVS",
-            "decimal": 2.0,
-            "decimal_odds": 2.0,
-            "match": "Senegal v Iraq",
+            "odds": "13/20",
+            "decimal": 1.65,
+            "decimal_odds": 1.65,
+            "match": "Norway v France",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           },
           {
-            "bookmaker": "WilliamHill",
-            "odds": "19/20",
-            "decimal": 1.95,
-            "decimal_odds": 1.95,
-            "match": "Senegal v Iraq",
+            "bookmaker": "Ladbrokes",
+            "odds": "13/20",
+            "decimal": 1.65,
+            "decimal_odds": 1.65,
+            "match": "Norway v France",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "BetVictor",
+            "odds": "13/20",
+            "decimal": 1.65,
+            "decimal_odds": 1.65,
+            "match": "Norway v France",
+            "source_market": "Both Teams To Score",
+            "selection_label": "Yes"
+          },
+          {
+            "bookmaker": "Unibet",
+            "odds": "29/50",
+            "decimal": 1.58,
+            "decimal_odds": 1.58,
+            "match": "Norway v France",
             "source_market": "Both Teams To Score",
             "selection_label": "Yes"
           }
         ],
         "no": [
           {
-            "bookmaker": "WilliamHill",
-            "odds": "4/5",
-            "decimal": 1.8,
-            "decimal_odds": 1.8,
-            "match": "Senegal v Iraq",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "8/11",
-            "decimal": 1.727273,
-            "decimal_odds": 1.727273,
-            "match": "Senegal v Iraq",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
             "bookmaker": "Unibet",
-            "odds": "7/10",
-            "decimal": 1.7,
-            "decimal_odds": 1.7,
-            "match": "Senegal v Iraq",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "4/6",
-            "decimal": 1.666667,
-            "decimal_odds": 1.666667,
-            "match": "Senegal v Iraq",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "31/50",
-            "decimal": 1.62,
-            "decimal_odds": 1.62,
-            "match": "Senegal v Iraq",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "8/13",
-            "decimal": 1.615385,
-            "decimal_odds": 1.615385,
-            "match": "Senegal v Iraq",
-            "source_market": "Both Teams To Score",
-            "selection_label": "No"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Tunisia v Netherlands",
-      "market": "Total Corners Over Under",
-      "canonical_market": "match_corners",
-      "scope": "match",
-      "scope_team": "",
-      "line": "7.5",
-      "arb_sum": 1.021978,
-      "arb_percent": 102.198,
-      "profit_margin_percent": -2.151,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "Ladbrokes",
-          "odds": "2/5",
-          "decimal_odds": 1.4,
-          "source_market": "Total Corners Over / Under",
-          "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/tunisia-v-netherlands/256213495/main-markets"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "9/4",
-          "decimal_odds": 3.25,
-          "source_market": "Total Corners",
-          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917249/tunisia-vs-netherlands"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "2/5",
-            "decimal": 1.4,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/tunisia-v-netherlands/256213495/main-markets"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "2/5",
-            "decimal": 1.4,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108900"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "19/50",
-            "decimal": 1.38,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.bwin.com/en/sports/events/tunisia-netherlands-2:7812555"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/3",
-            "decimal": 1.333333,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917249/tunisia-vs-netherlands"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "9/4",
-            "decimal": 3.25,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917249/tunisia-vs-netherlands"
-          },
-          {
-            "bookmaker": "Ladbrokes",
-            "odds": "9/5",
-            "decimal": 2.8,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.ladbrokes.com/en/sports/event/football/international/world-cup-2026/tunisia-v-netherlands/256213495/main-markets"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "9/5",
-            "decimal": 2.8,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.bwin.com/en/sports/events/tunisia-netherlands-2:7812555"
-          },
-          {
-            "bookmaker": "BetVictor",
-            "odds": "17/10",
-            "decimal": 2.7,
-            "match": "Tunisia v Netherlands",
-            "market": "Total Corners Over Under",
-            "source_market": "Total Corners Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "corners",
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789108900"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Norway v France",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "4.5",
-      "arb_sum": 1.022222,
-      "arb_percent": 102.222,
-      "profit_margin_percent": -2.174,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "PaddyPower",
-          "odds": "13/2",
-          "decimal_odds": 7.5,
-          "source_market": "Total Cards Over/Under",
-          "source_url": "https://www.paddypower.com/football/fifa-world-cup/norway-v-france-35631925"
-        },
-        "under": {
-          "bookmaker": "WilliamHill",
-          "odds": "1/8",
-          "decimal_odds": 1.125,
-          "source_market": "Total Cards",
-          "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "13/2",
-            "decimal": 7.5,
-            "match": "Norway v France",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.paddypower.com/football/fifa-world-cup/norway-v-france-35631925"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "9/2",
-            "decimal": 5.5,
-            "match": "Norway v France",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
-          }
-        ],
-        "under": [
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "1/8",
-            "decimal": 1.125,
-            "match": "Norway v France",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39932813/norway-vs-france"
-          },
-          {
-            "bookmaker": "PaddyPower",
-            "odds": "1/20",
-            "decimal": 1.05,
-            "match": "Norway v France",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.paddypower.com/football/fifa-world-cup/norway-v-france-35631925"
-          }
-        ]
-      }
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "type": "props_ou",
-      "match": "Japan v Sweden",
-      "market": "Total Cards Over Under",
-      "canonical_market": "match_cards",
-      "scope": "match",
-      "scope_team": "",
-      "line": "3.5",
-      "arb_sum": 1.022544,
-      "arb_percent": 102.254,
-      "profit_margin_percent": -2.205,
-      "bookmaker_count": 2,
-      "selections": {
-        "over": {
-          "bookmaker": "BetVictor",
-          "odds": "17/10",
-          "decimal_odds": 2.7,
-          "source_market": "Total Cards Over / Under",
-          "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789109700"
-        },
-        "under": {
-          "bookmaker": "PaddyPower",
-          "odds": "8/15",
-          "decimal_odds": 1.533333,
-          "source_market": "Total Cards Over/Under",
-          "source_url": "https://www.paddypower.com/football/fifa-world-cup/japan-v-sweden-35632064"
-        }
-      },
-      "all_prices": {
-        "over": [
-          {
-            "bookmaker": "BetVictor",
-            "odds": "17/10",
-            "decimal": 2.7,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789109700"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "13/8",
-            "decimal": 2.625,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917248/japan-vs-sweden"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "8/5",
-            "decimal": 2.6,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.bwin.com/en/sports/events/japan-sweden-2:7812554"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "31/20",
-            "decimal": 2.55,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/japan-sweden/SBTE_2_1027164908/"
-          },
-          {
-            "bookmaker": "PaddyPower",
             "odds": "13/10",
             "decimal": 2.3,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.paddypower.com/football/fifa-world-cup/japan-v-sweden-35632064"
-          }
-        ],
-        "under": [
+            "decimal_odds": 2.3,
+            "match": "Norway v France",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Ladbrokes",
+            "odds": "23/20",
+            "decimal": 2.15,
+            "decimal_odds": 2.15,
+            "match": "Norway v France",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
           {
             "bookmaker": "PaddyPower",
-            "odds": "8/15",
-            "decimal": 1.533333,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.paddypower.com/football/fifa-world-cup/japan-v-sweden-35632064"
-          },
-          {
-            "bookmaker": "WilliamHill",
-            "odds": "4/9",
-            "decimal": 1.444444,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV39917248/japan-vs-sweden"
-          },
-          {
-            "bookmaker": "LiveScoreBet",
-            "odds": "11/25",
-            "decimal": 1.44,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.livescorebet.com/ie/sports/football/world-cup-2026/japan-sweden/SBTE_2_1027164908/"
-          },
-          {
-            "bookmaker": "Bwin",
-            "odds": "43/100",
-            "decimal": 1.43,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over/Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.bwin.com/en/sports/events/japan-sweden-2:7812554"
+            "odds": "11/10",
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Norway v France",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
           },
           {
             "bookmaker": "BetVictor",
-            "odds": "2/5",
-            "decimal": 1.4,
-            "match": "Japan v Sweden",
-            "market": "Total Cards Over Under",
-            "source_market": "Total Cards Over / Under",
-            "scope": "match",
-            "scope_team": "",
-            "metric": "cards",
-            "source_url": "https://www.betvictor.com/en-ie/sports/240/meetings/726764210/events/2789109700"
+            "odds": "11/10",
+            "decimal": 2.1,
+            "decimal_odds": 2.1,
+            "match": "Norway v France",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "Bwin",
+            "odds": "21/20",
+            "decimal": 2.05,
+            "decimal_odds": 2.05,
+            "match": "Norway v France",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
+          },
+          {
+            "bookmaker": "WilliamHill",
+            "odds": "EVS",
+            "decimal": 2.0,
+            "decimal_odds": 2.0,
+            "match": "Norway v France",
+            "source_market": "Both Teams To Score",
+            "selection_label": "No"
           }
         ]
       }
@@ -3141,7 +4104,7 @@
     ],
     "model": "source_book_validation_v4_over_only_stats"
   },
-  "props_arb_count": 1,
-  "props_ou_arb_count": 1,
-  "props_named_arb_count": 0
+  "props_arb_count": 6,
+  "props_ou_arb_count": 2,
+  "props_named_arb_count": 4
 }

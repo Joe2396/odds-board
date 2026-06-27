@@ -1,12 +1,176 @@
 {
-  "generated_at": "2026-06-25T17:00:59.364810+00:00",
-  "total_arbitrage": 3,
+  "generated_at": "2026-06-27T12:53:17.953666+00:00",
+  "total_arbitrage": 8,
   "sports": {
-    "All": 3,
-    "UFC": 2,
-    "Football": 1
+    "All": 8,
+    "Football": 6,
+    "UFC": 2
   },
   "arbitrage": [
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Croatia v Ghana",
+      "market": "Half Time Result",
+      "type": "props_half_time_result",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 13.022,
+      "arb_percent": 88.478,
+      "arb_sum": 0.884783,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Croatia",
+          "bookmaker": "PaddyPower",
+          "odds": "13/10",
+          "decimal_odds": 2.3,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Draw",
+          "bookmaker": "Midnite",
+          "odds": 4.0,
+          "decimal_odds": 4.0,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Ghana",
+          "bookmaker": "PaddyPower",
+          "odds": "4/1",
+          "decimal_odds": 5.0,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Colombia v Portugal",
+      "market": "Half Time Result",
+      "type": "props_half_time_result",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 7.621,
+      "arb_percent": 92.918,
+      "arb_sum": 0.929184,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Colombia",
+          "bookmaker": "PaddyPower",
+          "odds": "7/2",
+          "decimal_odds": 4.5,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Draw",
+          "bookmaker": "PaddyPower",
+          "odds": "11/10",
+          "decimal_odds": 2.1,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Portugal",
+          "bookmaker": "Midnite",
+          "odds": 4.3333,
+          "decimal_odds": 4.3333,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Norway v France",
+      "market": "Total Shots On Target Over Under",
+      "type": "props_ou",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 3.614,
+      "arb_percent": 96.512,
+      "arb_sum": 0.965116,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Over 9.5",
+          "bookmaker": "Ladbrokes",
+          "odds": "23/20",
+          "decimal_odds": 2.15,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Under 9.5",
+          "bookmaker": "Bwin",
+          "odds": "EVS",
+          "decimal_odds": 2.0,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Dr Congo v Uzbekistan",
+      "market": "Both Teams To Score",
+      "type": "props_btts",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 2.667,
+      "arb_percent": 97.403,
+      "arb_sum": 0.974026,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Yes",
+          "bookmaker": "Midnite",
+          "odds": 2.2,
+          "decimal_odds": 2.2,
+          "implied_probability": ""
+        },
+        {
+          "selection": "No",
+          "bookmaker": "BetVictor",
+          "odds": "37/40",
+          "decimal_odds": 1.925,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "New Zealand v Belgium",
+      "market": "Both Teams To Score",
+      "type": "props_btts",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 2.256,
+      "arb_percent": 97.794,
+      "arb_sum": 0.977937,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Yes",
+          "bookmaker": "Ladbrokes",
+          "odds": "23/20",
+          "decimal_odds": 2.15,
+          "implied_probability": ""
+        },
+        {
+          "selection": "No",
+          "bookmaker": "Unibet",
+          "odds": "19/20",
+          "decimal_odds": 1.95,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
+    },
     {
       "sport": "UFC",
       "competition": "UFC",
@@ -104,7 +268,7 @@
     "darts": "C:\\Users\\joete\\odds-board\\darts\\data\\arbitrage.json"
   },
   "source_counts": {
-    "football": 1,
+    "football": 6,
     "ufc": 2,
     "darts": 0
   }

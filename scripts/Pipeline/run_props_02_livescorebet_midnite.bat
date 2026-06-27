@@ -1,9 +1,9 @@
 @echo off
-setlocal
+setlocal EnableExtensions
 cd /d "%~dp0\..\.."
 
 echo ==================================================
-echo PROPS PART 2 OF 6 - LIVESCOREBET AND MIDNITE
+echo PROPS PART 2 OF 6 - LIVESCOREBET AND MIDNITE PROD15
 echo Started: %date% %time%
 echo ==================================================
 echo.
@@ -16,10 +16,10 @@ if errorlevel 1 (
 )
 
 echo.
-echo [2/2] Midnite World Cup props...
-python scripts\Football\fetch_midnite_worldcup_props.py
+echo [2/2] Midnite World Cup production props pipeline...
+call scripts\Pipeline\run_midnite_worldcup_props_PROD15.bat SKIP_MONEYLINES
 if errorlevel 1 (
-    echo FAILED: Midnite props.
+    echo FAILED: Midnite PROD15 pipeline.
     exit /b 1
 )
 
