@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-fetch_ladbrokes_worldcup_props.py
+fetch_ladbrokes_worldcup_props_PROD15_COMPLETE.py
 
 Markets:
   Match:  Match Betting, BTTS, Double Chance, Half Time Result,
@@ -15,16 +15,20 @@ Markets:
 
 import json
 import re
+import time
 from pathlib import Path
 from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 
 ROOT      = Path(__file__).resolve().parents[2]
 OUT_PATH  = ROOT / "football" / "data" / "ladbrokes_worldcup_props.json"
-DEBUG_DIR = ROOT / "football" / "debug" / "ladbrokes_worldcup_props"
+DEBUG_DIR = ROOT / "football" / "debug" / "ladbrokes_worldcup_props_fast_test_v5_complete_components"
 
 COMPETITION_URL = "https://www.ladbrokes.com/en/sports/competitions/football/international/world-cup-2026"
 MAX_MATCHES = 15
+PRODUCTION_MARKER = "LADBROKES_PROPS_PROD15_COMPLETE_V1"
+HEADLESS = False
+SAVE_DEBUG_ARTIFACTS = False
 
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
 
@@ -623,14 +627,15 @@ def accept_cookies(page):
             btn = page.get_by_role("button", name=re.compile(label, re.I))
             if btn.count():
                 btn.first.click(timeout=3000)
-                page.wait_for_timeout(1000)
+                page.wait_for_timeout(350)
                 return
         except: pass
 
 def scroll_page(page, steps=12):
+    """Trigger Ladbrokes lazy loading with larger, shorter scroll steps."""
     for _ in range(steps):
-        page.mouse.wheel(0, 600)
-        page.wait_for_timeout(300)
+        page.mouse.wheel(0, 1000)
+        page.wait_for_timeout(180)
 
 def get_body(page):
     try:
@@ -638,12 +643,30 @@ def get_body(page):
     except:
         return ""
 
+
+def wait_for_any_text(page, labels, timeout=8000):
+    """Wait until any expected Ladbrokes label appears in body text."""
+    try:
+        page.wait_for_function(
+            """
+            labels => {
+                const text = (document.body?.innerText || '').toLowerCase();
+                return labels.some(label => text.includes(label.toLowerCase()));
+            }
+            """,
+            labels,
+            timeout=timeout,
+        )
+        return True
+    except Exception:
+        return False
+
 def expand_show_all(page):
     try:
         btn = page.get_by_text("Show All", exact=True)
         if btn.count():
             btn.first.click(timeout=3000)
-            page.wait_for_timeout(1000)
+            page.wait_for_timeout(450)
     except: pass
 
 def click_filter(page, name):
@@ -651,19 +674,1801 @@ def click_filter(page, name):
         loc = page.get_by_text(name, exact=True)
         if loc.count():
             loc.first.click(timeout=3000)
-            page.wait_for_timeout(1500)
+            page.wait_for_timeout(650)
             return True
     except: pass
     return False
 
+def mark_player_stats_cards(page):
+    """
+    Mark the two independent cards on Ladbrokes' player-stats page:
+      - Player Total Tackles
+      - Bet Builder Player Markets
+
+    The page contains a PLAYERS heading inside both cards, so parsing the
+    entire body causes the player-market parser to start in the tackles card.
+    """
+    try:
+        result = page.evaluate(
+            r"""
+            () => {
+                const clean = value =>
+                    (value || "")
+                        .replace(/\s+/g, " ")
+                        .trim();
+
+                const visible = element => {
+                    const rect = element.getBoundingClientRect();
+                    const style = getComputedStyle(element);
+
+                    return (
+                        rect.width > 0
+                        && rect.height > 0
+                        && style.display !== "none"
+                        && style.visibility !== "hidden"
+                    );
+                };
+
+                const exactElement = label => {
+                    const candidates = Array.from(
+                        document.querySelectorAll(
+                            "h1, h2, h3, h4, h5, button, span, div, p"
+                        )
+                    ).filter(
+                        element =>
+                            visible(element)
+                            && clean(element.innerText) === label
+                    );
+
+                    candidates.sort(
+                        (a, b) => {
+                            const ar = a.getBoundingClientRect();
+                            const br = b.getBoundingClientRect();
+                            return (
+                                ar.width * ar.height
+                                - br.width * br.height
+                            );
+                        }
+                    );
+
+                    return candidates[0] || null;
+                };
+
+                const climbToCard = (
+                    start,
+                    requiredLabels
+                ) => {
+                    let node = start;
+
+                    for (
+                        let depth = 0;
+                        node && depth < 10;
+                        depth += 1, node = node.parentElement
+                    ) {
+                        const text = clean(node.innerText);
+
+                        if (
+                            requiredLabels.every(
+                                label => text.includes(label)
+                            )
+                            && node.getBoundingClientRect().width > 350
+                        ) {
+                            return node;
+                        }
+                    }
+
+                    return null;
+                };
+
+                document.querySelectorAll(
+                    "[data-btb-ladbrokes-card]"
+                ).forEach(
+                    element =>
+                        element.removeAttribute(
+                            "data-btb-ladbrokes-card"
+                        )
+                );
+
+                const tacklesHeading = exactElement(
+                    "Player Total Tackles"
+                );
+                const playerHeading = exactElement(
+                    "Bet Builder Player Markets"
+                );
+
+                const tacklesCard = climbToCard(
+                    tacklesHeading,
+                    [
+                        "Player Total Tackles",
+                        "PLAYERS",
+                        "1+",
+                        "2+",
+                        "3+",
+                        "4+",
+                    ]
+                );
+
+                const playerCard = climbToCard(
+                    playerHeading,
+                    [
+                        "Bet Builder Player Markets",
+                        "PLAYERS",
+                        "SoT",
+                        "Carded",
+                        "Fouls",
+                        "Shots",
+                        "Assists",
+                    ]
+                );
+
+                if (tacklesCard) {
+                    tacklesCard.setAttribute(
+                        "data-btb-ladbrokes-card",
+                        "tackles"
+                    );
+                }
+
+                if (playerCard) {
+                    playerCard.setAttribute(
+                        "data-btb-ladbrokes-card",
+                        "player-markets"
+                    );
+                }
+
+                return {
+                    tackles: Boolean(tacklesCard),
+                    playerMarkets: Boolean(playerCard),
+                };
+            }
+            """
+        )
+
+        return result or {
+            "tackles": False,
+            "playerMarkets": False,
+        }
+    except Exception:
+        return {
+            "tackles": False,
+            "playerMarkets": False,
+        }
+
+
+def card_text(page, marker):
+    try:
+        locator = page.locator(
+            f'[data-btb-ladbrokes-card="{marker}"]'
+        )
+
+        if not locator.count():
+            return ""
+
+        return locator.first.inner_text(
+            timeout=8000
+        )
+    except Exception:
+        return ""
+
+
+def refresh_player_cards_and_text(
+    page,
+    marker,
+    previous_text="",
+    timeout_ms=5000,
+):
+    """
+    Ladbrokes often remounts a card after a filter/team click, removing our
+    temporary data attribute. Re-mark it and wait for useful card text.
+    """
+    deadline = time.perf_counter() + (
+        timeout_ms / 1000
+    )
+    latest = ""
+
+    while time.perf_counter() < deadline:
+        mark_player_stats_cards(page)
+        latest = card_text(page, marker)
+
+        if (
+            latest
+            and len(latest) >= 80
+            and (
+                not previous_text
+                or latest != previous_text
+            )
+        ):
+            return latest
+
+        page.wait_for_timeout(250)
+
+    mark_player_stats_cards(page)
+    return card_text(page, marker)
+
+
+def write_player_debug(
+    fixture_name,
+    label,
+    content,
+):
+    """Small test-only card snapshot, not a full-page debug dump."""
+    debug_name = (
+        f"{slugify(fixture_name)}_"
+        f"{slugify(label)}.txt"
+    )
+    (DEBUG_DIR / debug_name).write_text(
+        content,
+        encoding="utf-8",
+    )
+
+
+def click_card_label(page, marker, label):
+    """
+    Click an exact visible label inside one marked card only.
+    This avoids accidentally clicking identically named controls elsewhere.
+    """
+    try:
+        clicked = page.evaluate(
+            r"""
+            ({marker, label}) => {
+                const clean = value =>
+                    (value || "")
+                        .replace(/\s+/g, " ")
+                        .trim();
+
+                const card = document.querySelector(
+                    `[data-btb-ladbrokes-card="${marker}"]`
+                );
+
+                if (!card) {
+                    return false;
+                }
+
+                const candidates = Array.from(
+                    card.querySelectorAll(
+                        "button, a, [role='button'], [role='tab'], div, span"
+                    )
+                ).filter(
+                    element => {
+                        const rect =
+                            element.getBoundingClientRect();
+                        const style =
+                            getComputedStyle(element);
+
+                        return (
+                            clean(element.innerText) === label
+                            && rect.width > 0
+                            && rect.height > 0
+                            && rect.width < 300
+                            && rect.height < 100
+                            && style.display !== "none"
+                            && style.visibility !== "hidden"
+                        );
+                    }
+                );
+
+                candidates.sort(
+                    (a, b) => {
+                        const ar =
+                            a.getBoundingClientRect();
+                        const br =
+                            b.getBoundingClientRect();
+
+                        return (
+                            ar.width * ar.height
+                            - br.width * br.height
+                        );
+                    }
+                );
+
+                const target = candidates[0];
+
+                if (!target) {
+                    return false;
+                }
+
+                target.scrollIntoView({
+                    block: "center",
+                    inline: "center",
+                    behavior: "instant",
+                });
+                target.click();
+                return true;
+            }
+            """,
+            {
+                "marker": marker,
+                "label": label,
+            },
+        )
+
+        if clicked:
+            page.wait_for_timeout(650)
+
+        return bool(clicked)
+    except Exception:
+        return False
+
+
+def expand_show_all_in_card(page, marker):
+    """
+    Expand every visible Show All control within the selected card.
+    Returns the number clicked.
+    """
+    clicked_total = 0
+
+    for _ in range(3):
+        try:
+            clicked = page.evaluate(
+                r"""
+                marker => {
+                    const clean = value =>
+                        (value || "")
+                            .replace(/\s+/g, " ")
+                            .trim();
+
+                    const card = document.querySelector(
+                        `[data-btb-ladbrokes-card="${marker}"]`
+                    );
+
+                    if (!card) {
+                        return false;
+                    }
+
+                    const candidates = Array.from(
+                        card.querySelectorAll(
+                            "button, a, [role='button'], div, span"
+                        )
+                    ).filter(
+                        element => {
+                            const rect =
+                                element.getBoundingClientRect();
+                            const style =
+                                getComputedStyle(element);
+
+                            return (
+                                clean(element.innerText)
+                                === "Show All"
+                                && rect.width > 0
+                                && rect.height > 0
+                                && rect.width < 300
+                                && rect.height < 100
+                                && style.display !== "none"
+                                && style.visibility !== "hidden"
+                            );
+                        }
+                    );
+
+                    candidates.sort(
+                        (a, b) => {
+                            const ar =
+                                a.getBoundingClientRect();
+                            const br =
+                                b.getBoundingClientRect();
+
+                            return (
+                                ar.width * ar.height
+                                - br.width * br.height
+                            );
+                        }
+                    );
+
+                    const target = candidates[0];
+
+                    if (!target) {
+                        return false;
+                    }
+
+                    target.scrollIntoView({
+                        block: "center",
+                        behavior: "instant",
+                    });
+                    target.click();
+                    return true;
+                }
+                """,
+                marker,
+            )
+        except Exception:
+            clicked = False
+
+        if not clicked:
+            break
+
+        clicked_total += 1
+        page.wait_for_timeout(500)
+
+    return clicked_total
+
+
+def merge_market_selections(target, incoming):
+    """Merge selections into one market without duplicate normalized names."""
+    existing = {
+        selection.get("normalized_selection")
+        for selection in target.get("selections", [])
+    }
+
+    for selection in incoming.get("selections", []):
+        key = selection.get(
+            "normalized_selection"
+        )
+
+        if key in existing:
+            continue
+
+        target["selections"].append(selection)
+        existing.add(key)
+
+    target["selection_count"] = len(
+        target["selections"]
+    )
+
+
+def teams_from_fixture_url(url, fallback_name=""):
+    slug_part = (
+        clean(url)
+        .split("/world-cup-2026/")[-1]
+        .split("/")[0]
+    )
+
+    if "-v-" in slug_part:
+        home_slug, away_slug = slug_part.split(
+            "-v-",
+            1,
+        )
+        return (
+            canonical_team(
+                home_slug.replace("-", " ").title()
+            ),
+            canonical_team(
+                away_slug.replace("-", " ").title()
+            ),
+        )
+
+    match = re.match(
+        r"^(.+?)\s+[Vv]\s+(.+?)$",
+        clean(fallback_name),
+    )
+
+    if match:
+        return (
+            canonical_team(match.group(1)),
+            canonical_team(match.group(2)),
+        )
+
+    return "", ""
+
+
+def event_is_live(page):
+    """
+    Reject live/started events because Ladbrokes removes or changes prematch
+    markets after kickoff.
+    """
+    try:
+        state = page.evaluate(
+            r"""
+            () => {
+                const scoreboard = document.querySelector(
+                    ".mfe-scoreboard"
+                );
+
+                return {
+                    inplayClass: Boolean(
+                        document.querySelector(
+                            ".mfe-scoreboard.inplay"
+                        )
+                    ),
+                    scoreboardClass:
+                        scoreboard?.className || "",
+                    scoreboardData:
+                        document.querySelector(
+                            "#sdm-scoreboards"
+                        )?.getAttribute("sb-data") || "",
+                };
+            }
+            """
+        )
+
+        if state.get("inplayClass"):
+            return True
+
+        if "inplay" in clean(
+            state.get("scoreboardClass")
+        ).lower().split():
+            return True
+    except Exception:
+        pass
+
+    body = get_body(page)
+    event_area = body
+
+    # Limit the fallback to the actual event section where possible so global
+    # navigation labels such as "Live Casino" cannot trigger a false positive.
+    for marker in (
+        "Hide Stats",
+        "Show Stats",
+        "⭐",
+    ):
+        if marker in event_area:
+            event_area = event_area.split(
+                marker,
+                1,
+            )[0]
+
+    return bool(
+        re.search(
+            r"\b(?:1st|2nd)\s+Half\s*(?:\||-)\s*"
+            r"\d{1,2}:\d{2}\b",
+            event_area,
+            re.I,
+        )
+        or re.search(
+            r"\bHalf Time\b|\bFull Time\b",
+            event_area,
+            re.I,
+        )
+    )
+
+
+def list_market_titles(page):
+    try:
+        return page.evaluate(
+            r"""
+            () => {
+                const clean = value =>
+                    (value || "")
+                        .replace(/\s+/g, " ")
+                        .trim();
+
+                return Array.from(
+                    document.querySelectorAll(
+                        'markets-group-component '
+                        + '[data-crlat="containerHeader"]'
+                    )
+                )
+                    .map(header => clean(header.innerText))
+                    .filter(Boolean);
+            }
+            """
+        )
+    except Exception:
+        return []
+
+
+def expand_market_component(
+    page,
+    title,
+    show_all=False,
+):
+    """
+    Expand one exact markets-group-component and optionally click its Show All.
+    """
+    try:
+        result = page.evaluate(
+            r"""
+            ({title, showAll}) => {
+                const clean = value =>
+                    (value || "")
+                        .replace(/\s+/g, " ")
+                        .trim();
+
+                const wanted = clean(title).toLowerCase();
+
+                const component = Array.from(
+                    document.querySelectorAll(
+                        "markets-group-component"
+                    )
+                ).find(item => {
+                    const header = item.querySelector(
+                        '[data-crlat="containerHeader"]'
+                    );
+
+                    return (
+                        header
+                        && clean(header.innerText)
+                            .toLowerCase() === wanted
+                    );
+                });
+
+                if (!component) {
+                    return {
+                        found: false,
+                        clicked: false,
+                        showAllClicks: 0,
+                    };
+                }
+
+                const accordion =
+                    component.querySelector("accordion");
+                const header = component.querySelector(
+                    '[data-crlat="containerHeader"]'
+                );
+
+                let clicked = false;
+
+                if (
+                    header
+                    && (
+                        !accordion
+                        || !accordion.classList.contains(
+                            "is-expanded"
+                        )
+                    )
+                ) {
+                    header.scrollIntoView({
+                        block: "center",
+                        behavior: "instant",
+                    });
+                    header.click();
+                    clicked = true;
+                }
+
+                return {
+                    found: true,
+                    clicked,
+                    showAllRequested: showAll,
+                };
+            }
+            """,
+            {
+                "title": title,
+                "showAll": show_all,
+            },
+        )
+    except Exception:
+        result = {
+            "found": False,
+            "clicked": False,
+        }
+
+    if not result.get("found"):
+        return result
+
+    page.wait_for_timeout(
+        650 if result.get("clicked") else 250
+    )
+
+    show_all_clicks = 0
+
+    if show_all:
+        for _ in range(4):
+            try:
+                clicked_show_all = page.evaluate(
+                    r"""
+                    title => {
+                        const clean = value =>
+                            (value || "")
+                                .replace(/\s+/g, " ")
+                                .trim();
+
+                        const wanted =
+                            clean(title).toLowerCase();
+
+                        const component = Array.from(
+                            document.querySelectorAll(
+                                "markets-group-component"
+                            )
+                        ).find(item => {
+                            const header = item.querySelector(
+                                '[data-crlat="containerHeader"]'
+                            );
+
+                            return (
+                                header
+                                && clean(header.innerText)
+                                    .toLowerCase()
+                                    === wanted
+                            );
+                        });
+
+                        if (!component) {
+                            return false;
+                        }
+
+                        const candidates = Array.from(
+                            component.querySelectorAll(
+                                '[data-crlat="showAllButton"], '
+                                + 'button, a, [role="button"], '
+                                + 'span, div'
+                            )
+                        ).filter(element => {
+                            const rect =
+                                element.getBoundingClientRect();
+                            const style =
+                                getComputedStyle(element);
+
+                            return (
+                                clean(element.innerText)
+                                    === "Show All"
+                                && rect.width > 0
+                                && rect.height > 0
+                                && rect.width < 350
+                                && rect.height < 120
+                                && style.display !== "none"
+                                && style.visibility !== "hidden"
+                            );
+                        });
+
+                        candidates.sort(
+                            (a, b) => {
+                                const ar =
+                                    a.getBoundingClientRect();
+                                const br =
+                                    b.getBoundingClientRect();
+
+                                return (
+                                    ar.width * ar.height
+                                    - br.width * br.height
+                                );
+                            }
+                        );
+
+                        const target = candidates[0];
+
+                        if (!target) {
+                            return false;
+                        }
+
+                        target.scrollIntoView({
+                            block: "center",
+                            behavior: "instant",
+                        });
+                        target.click();
+                        return true;
+                    }
+                    """,
+                    title,
+                )
+            except Exception:
+                clicked_show_all = False
+
+            if not clicked_show_all:
+                break
+
+            show_all_clicks += 1
+            page.wait_for_timeout(550)
+
+    result["showAllClicks"] = show_all_clicks
+    return result
+
+
+def click_market_switcher(
+    page,
+    title,
+    label,
+):
+    try:
+        clicked = page.evaluate(
+            r"""
+            ({title, label}) => {
+                const clean = value =>
+                    (value || "")
+                        .replace(/\s+/g, " ")
+                        .trim();
+
+                const wantedTitle =
+                    clean(title).toLowerCase();
+                const wantedLabel =
+                    clean(label).toLowerCase();
+
+                const component = Array.from(
+                    document.querySelectorAll(
+                        "markets-group-component"
+                    )
+                ).find(item => {
+                    const header = item.querySelector(
+                        '[data-crlat="containerHeader"]'
+                    );
+
+                    return (
+                        header
+                        && clean(header.innerText)
+                            .toLowerCase()
+                            === wantedTitle
+                    );
+                });
+
+                if (!component) {
+                    return false;
+                }
+
+                const switcher = Array.from(
+                    component.querySelectorAll(
+                        '[data-crlat="buttonSwitch"]'
+                    )
+                ).find(item =>
+                    clean(item.innerText).toLowerCase()
+                    === wantedLabel
+                );
+
+                if (!switcher) {
+                    return false;
+                }
+
+                switcher.scrollIntoView({
+                    block: "center",
+                    behavior: "instant",
+                });
+                switcher.click();
+                return true;
+            }
+            """,
+            {
+                "title": title,
+                "label": label,
+            },
+        )
+    except Exception:
+        clicked = False
+
+    if clicked:
+        page.wait_for_timeout(650)
+
+    return bool(clicked)
+
+
+def extract_market_component(page, title):
+    """
+    Read Ladbrokes' real outcome DOM from one markets-group-component.
+
+    Supports:
+      - standard .odds-card rows
+      - player table .player-market-odds-item rows
+      - Show All expanded rows
+      - suspended/missing cells while preserving column position
+    """
+    try:
+        return page.evaluate(
+            r"""
+            title => {
+                const clean = value =>
+                    (value || "")
+                        .replace(/\s+/g, " ")
+                        .trim();
+
+                const wanted =
+                    clean(title).toLowerCase();
+
+                const component = Array.from(
+                    document.querySelectorAll(
+                        "markets-group-component"
+                    )
+                ).find(item => {
+                    const header = item.querySelector(
+                        '[data-crlat="containerHeader"]'
+                    );
+
+                    return (
+                        header
+                        && clean(header.innerText)
+                            .toLowerCase() === wanted
+                    );
+                });
+
+                if (!component) {
+                    return null;
+                }
+
+                const headers = Array.from(
+                    component.querySelectorAll(
+                        '[data-crlat="oddsHeader"]'
+                    )
+                ).map(item => clean(item.innerText));
+
+                const switchers = Array.from(
+                    component.querySelectorAll(
+                        '[data-crlat="buttonSwitch"]'
+                    )
+                ).map(item => clean(item.innerText));
+
+                const standardRows = Array.from(
+                    component.querySelectorAll(
+                        ".odds-card"
+                    )
+                ).map(row => {
+                    const nameElement =
+                        row.querySelector(
+                            '[data-crlat="oddsNames"]'
+                        )
+                        || row.querySelector(
+                            ".odds-left"
+                        );
+
+                    const wrappers = Array.from(
+                        row.querySelectorAll(
+                            ".odds-btn-wrapper"
+                        )
+                    );
+
+                    let cells = wrappers.map(cell => {
+                        const price = cell.querySelector(
+                            '[data-crlat="oddsPrice"], '
+                            + ".odds-price"
+                        );
+
+                        if (price) {
+                            return clean(price.innerText);
+                        }
+
+                        const raw = clean(cell.innerText);
+                        return raw || "-";
+                    });
+
+                    if (!cells.length) {
+                        cells = Array.from(
+                            row.querySelectorAll(
+                                '[data-crlat="oddsPrice"], '
+                                + ".odds-price"
+                            )
+                        ).map(price =>
+                            clean(price.innerText)
+                        );
+                    }
+
+                    if (!cells.length) {
+                        const right = row.querySelector(
+                            '[data-crlat="oddsRight"], '
+                            + ".odds-right"
+                        );
+                        const raw = clean(
+                            right ? right.innerText : ""
+                        );
+
+                        if (raw) {
+                            cells = [raw];
+                        }
+                    }
+
+                    return {
+                        name: clean(
+                            nameElement
+                                ? nameElement.innerText
+                                : ""
+                        ),
+                        cells,
+                        raw: clean(row.innerText),
+                    };
+                });
+
+                const names = Array.from(
+                    component.querySelectorAll(
+                        '[data-crlat="oddsNames"]'
+                    )
+                ).map(item => clean(item.innerText));
+
+                const matrixRows = Array.from(
+                    component.querySelectorAll(
+                        ".player-market-odds-item"
+                    )
+                ).map((row, index) => ({
+                    name: names[index] || "",
+                    cells: Array.from(
+                        row.querySelectorAll(
+                            ".odds-btn-wrapper"
+                        )
+                    ).map(cell => {
+                        const price = cell.querySelector(
+                            '[data-crlat="oddsPrice"]'
+                        );
+
+                        if (price) {
+                            return clean(price.innerText);
+                        }
+
+                        const raw = clean(cell.innerText);
+                        return raw || "-";
+                    }),
+                    raw: clean(row.innerText),
+                }));
+
+                return {
+                    title: clean(
+                        component.querySelector(
+                            '[data-crlat="containerHeader"]'
+                        )?.innerText || title
+                    ),
+                    headers,
+                    switchers,
+                    rows:
+                        matrixRows.length
+                            ? matrixRows
+                            : standardRows,
+                    standardRows,
+                    matrixRows,
+                    text: clean(component.innerText),
+                };
+            }
+            """,
+            title,
+        )
+    except Exception:
+        return None
+
+
+def extract_marked_card(page, marker):
+    """
+    Same structured extractor for V2's marked Bet Builder/Tackles cards.
+    """
+    try:
+        return page.evaluate(
+            r"""
+            marker => {
+                const clean = value =>
+                    (value || "")
+                        .replace(/\s+/g, " ")
+                        .trim();
+
+                const root = document.querySelector(
+                    `[data-btb-ladbrokes-card="${marker}"]`
+                );
+
+                if (!root) {
+                    return null;
+                }
+
+                const headers = Array.from(
+                    root.querySelectorAll(
+                        '[data-crlat="oddsHeader"]'
+                    )
+                ).map(item => clean(item.innerText));
+
+                const names = Array.from(
+                    root.querySelectorAll(
+                        '[data-crlat="oddsNames"]'
+                    )
+                ).map(item => clean(item.innerText));
+
+                const matrixRows = Array.from(
+                    root.querySelectorAll(
+                        ".player-market-odds-item"
+                    )
+                ).map((row, index) => ({
+                    name: names[index] || "",
+                    cells: Array.from(
+                        row.querySelectorAll(
+                            ".odds-btn-wrapper"
+                        )
+                    ).map(cell => {
+                        const price = cell.querySelector(
+                            '[data-crlat="oddsPrice"]'
+                        );
+
+                        if (price) {
+                            return clean(price.innerText);
+                        }
+
+                        const raw = clean(cell.innerText);
+                        return raw || "-";
+                    }),
+                    raw: clean(row.innerText),
+                }));
+
+                const standardRows = Array.from(
+                    root.querySelectorAll(
+                        ".odds-card"
+                    )
+                ).map(row => {
+                    const nameElement =
+                        row.querySelector(
+                            '[data-crlat="oddsNames"]'
+                        )
+                        || row.querySelector(
+                            ".odds-left"
+                        );
+
+                    return {
+                        name: clean(
+                            nameElement
+                                ? nameElement.innerText
+                                : ""
+                        ),
+                        cells: (() => {
+                            const wrappers = Array.from(
+                                row.querySelectorAll(
+                                    ".odds-btn-wrapper"
+                                )
+                            );
+
+                            let values = wrappers.map(
+                                cell => {
+                                    const price =
+                                        cell.querySelector(
+                                            '[data-crlat="oddsPrice"], '
+                                            + ".odds-price"
+                                        );
+
+                                    if (price) {
+                                        return clean(
+                                            price.innerText
+                                        );
+                                    }
+
+                                    const raw = clean(
+                                        cell.innerText
+                                    );
+                                    return raw || "-";
+                                }
+                            );
+
+                            if (!values.length) {
+                                values = Array.from(
+                                    row.querySelectorAll(
+                                        '[data-crlat="oddsPrice"], '
+                                        + ".odds-price"
+                                    )
+                                ).map(
+                                    price =>
+                                        clean(price.innerText)
+                                );
+                            }
+
+                            if (!values.length) {
+                                const right =
+                                    row.querySelector(
+                                        '[data-crlat="oddsRight"], '
+                                        + ".odds-right"
+                                    );
+                                const raw = clean(
+                                    right
+                                        ? right.innerText
+                                        : ""
+                                );
+
+                                if (raw) {
+                                    values = [raw];
+                                }
+                            }
+
+                            return values;
+                        })(),
+                        raw: clean(row.innerText),
+                    };
+                });
+
+                return {
+                    title: marker,
+                    headers,
+                    switchers: Array.from(
+                        root.querySelectorAll(
+                            '[data-crlat="buttonSwitch"]'
+                        )
+                    ).map(item => clean(item.innerText)),
+                    rows:
+                        matrixRows.length
+                            ? matrixRows
+                            : standardRows,
+                    standardRows,
+                    matrixRows,
+                    text: clean(root.innerText),
+                };
+            }
+            """,
+            marker,
+        )
+    except Exception:
+        return None
+
+
+def structured_rows(data):
+    if not data:
+        return []
+
+    return [
+        row
+        for row in data.get("rows", [])
+        if clean(row.get("name"))
+    ]
+
+
+def structured_headers(data):
+    if not data:
+        return []
+
+    return [
+        clean(header)
+        for header in data.get("headers", [])
+        if clean(header)
+        and clean(header).upper()
+            not in {"PLAYERS", "PLAYER"}
+    ]
+
+
+def parse_three_way_component(
+    data,
+    market_name,
+    labels,
+    row_label="90 Mins",
+):
+    rows = structured_rows(data)
+    target = next(
+        (
+            row
+            for row in rows
+            if normalize(row.get("name"))
+            == normalize(row_label)
+        ),
+        rows[0] if rows else None,
+    )
+
+    if not target:
+        return mkt(market_name, [])
+
+    prices = [
+        clean(cell)
+        for cell in target.get("cells", [])
+    ]
+    selections = []
+
+    for index, label in enumerate(labels):
+        if index >= len(prices):
+            continue
+
+        price = prices[index]
+
+        if not is_odds(price):
+            continue
+
+        side = (
+            "home"
+            if index == 0
+            else "draw"
+            if index == 1
+            else "away"
+        )
+        selections.append(
+            sel(
+                label,
+                price,
+                {
+                    "side": side,
+                    "period": "full_time",
+                },
+            )
+        )
+
+    return mkt(market_name, selections)
+
+
+def parse_yes_no_component(
+    data,
+    market_name,
+):
+    selections = []
+
+    for row in structured_rows(data):
+        label = clean(row.get("name"))
+        low = label.lower()
+
+        if low not in {
+            "yes",
+            "no",
+        }:
+            continue
+
+        price = next(
+            (
+                clean(cell)
+                for cell in row.get("cells", [])
+                if is_odds(cell)
+            ),
+            "",
+        )
+
+        if not price:
+            continue
+
+        selections.append(
+            sel(
+                f"{market_name} - "
+                f"{label.title()}",
+                price,
+                {
+                    "side": low,
+                },
+            )
+        )
+
+    # Some Ladbrokes layouts use a single row with Yes/No columns.
+    if not selections:
+        headers = [
+            header.lower()
+            for header in structured_headers(data)
+        ]
+
+        for row in structured_rows(data):
+            cells = [
+                clean(cell)
+                for cell in row.get("cells", [])
+            ]
+
+            for side in ("yes", "no"):
+                try:
+                    index = headers.index(side)
+                except ValueError:
+                    continue
+
+                if (
+                    index < len(cells)
+                    and is_odds(cells[index])
+                ):
+                    selections.append(
+                        sel(
+                            f"{market_name} - "
+                            f"{side.title()}",
+                            cells[index],
+                            {
+                                "side": side,
+                            },
+                        )
+                    )
+
+            if selections:
+                break
+
+    return mkt(
+        market_name,
+        selections,
+    )
+
+
+def classify_player_component_title(title):
+    """
+    Map Ladbrokes title variants without depending on one exact wording.
+    """
+    low = clean(title).lower()
+
+    if not low or "player" not in low:
+        return None
+
+    if (
+        "shot" in low
+        and "target" in low
+    ):
+        return (
+            "Shots On Target",
+            "shots_on_target",
+        )
+
+    if "shot" in low:
+        return (
+            "Shots",
+            "shots",
+        )
+
+    if "card" in low or "booked" in low:
+        return (
+            "Player Cards",
+            "player_card",
+        )
+
+    if "foul" in low:
+        if "won" in low:
+            return (
+                "Player Fouls Won",
+                "fouls_won",
+            )
+
+        if (
+            "committed" in low
+            or "commit" in low
+        ):
+            return (
+                "Player Fouls Committed",
+                "fouls_committed",
+            )
+
+        return (
+            "Player Fouls",
+            "fouls",
+        )
+
+    if "assist" in low:
+        return (
+            "Player Assists",
+            "assists",
+        )
+
+    if "tackle" in low:
+        return (
+            "Player Tackles",
+            "tackles",
+        )
+
+    return None
+
+
+def parse_double_chance_component(
+    data,
+    home,
+    away,
+):
+    selections = []
+
+    for row in structured_rows(data):
+        display = clean(row.get("name"))
+        prices = row.get("cells", [])
+        price = next(
+            (
+                clean(cell)
+                for cell in prices
+                if is_odds(cell)
+            ),
+            "",
+        )
+
+        if not display or not price:
+            continue
+
+        low = display.lower()
+
+        if home.lower() in low and "draw" in low:
+            side = "home_draw"
+            canonical = f"{home} or Draw"
+        elif away.lower() in low and "draw" in low:
+            side = "away_draw"
+            canonical = f"{away} or Draw"
+        elif (
+            home.lower() in low
+            and away.lower() in low
+        ):
+            side = "home_away"
+            canonical = f"{home} or {away}"
+        else:
+            continue
+
+        selections.append(
+            sel(
+                canonical,
+                price,
+                {
+                    "side": side,
+                    "base_market": "double_chance",
+                    "period": "full_time",
+                },
+            )
+        )
+
+    return mkt(
+        "Double Chance",
+        selections,
+    )
+
+
+def parse_ou_component(
+    data,
+    market_name,
+    selection_prefix="",
+    max_line=None,
+):
+    selections = []
+
+    for row in structured_rows(data):
+        line = clean(row.get("name"))
+
+        if not re.fullmatch(
+            r"\d+(?:\.\d+)?",
+            line,
+        ):
+            continue
+
+        if max_line is not None:
+            try:
+                if float(line) > max_line:
+                    continue
+            except Exception:
+                continue
+
+        cells = [
+            clean(cell)
+            for cell in row.get("cells", [])
+        ]
+
+        if len(cells) < 2:
+            continue
+
+        over_price = cells[0]
+        under_price = cells[1]
+
+        # Keep complete two-sided lines only; safer for comparison/arb.
+        if not (
+            is_odds(over_price)
+            and is_odds(under_price)
+        ):
+            continue
+
+        prefix = (
+            f"{selection_prefix} "
+            if selection_prefix
+            else ""
+        )
+
+        extra = {
+            "line": line,
+        }
+
+        if selection_prefix:
+            extra["team"] = selection_prefix
+
+        selections.append(
+            sel(
+                f"{prefix}Over {line}",
+                over_price,
+                {
+                    **extra,
+                    "side": "over",
+                },
+            )
+        )
+        selections.append(
+            sel(
+                f"{prefix}Under {line}",
+                under_price,
+                {
+                    **extra,
+                    "side": "under",
+                },
+            )
+        )
+
+    return mkt(market_name, selections)
+
+
+def parse_goalscorer_component(data):
+    headers = [
+        header
+        for header in structured_headers(data)
+        if header.lower()
+        not in {
+            "player",
+            "players",
+        }
+    ]
+
+    lower_headers = [
+        header.lower()
+        for header in headers
+    ]
+
+    first_index = next(
+        (
+            index
+            for index, header in enumerate(
+                lower_headers
+            )
+            if "first" in header
+            or "1st" in header
+        ),
+        None,
+    )
+    anytime_index = next(
+        (
+            index
+            for index, header in enumerate(
+                lower_headers
+            )
+            if "anytime" in header
+        ),
+        None,
+    )
+
+    # Prematch Ladbrokes normally provides First + Anytime in the first
+    # two columns. This fallback is intentionally disabled for live "2nd".
+    if (
+        first_index is None
+        and headers
+        and not any(
+            "2nd" in header
+            for header in lower_headers
+        )
+    ):
+        first_index = 0
+
+    if anytime_index is None and len(headers) >= 2:
+        anytime_index = 1
+
+    selections = []
+
+    for row in structured_rows(data):
+        player = clean(row.get("name"))
+
+        if (
+            not player
+            or player.lower()
+            == "no goalscorer"
+        ):
+            continue
+
+        cells = [
+            clean(cell)
+            for cell in row.get("cells", [])
+        ]
+
+        if (
+            first_index is not None
+            and first_index < len(cells)
+            and is_odds(cells[first_index])
+        ):
+            selections.append(
+                sel(
+                    f"{player} First Goalscorer",
+                    cells[first_index],
+                    {
+                        "player": player,
+                        "prop_type":
+                            "first_goalscorer",
+                    },
+                )
+            )
+
+        if (
+            anytime_index is not None
+            and anytime_index < len(cells)
+            and is_odds(cells[anytime_index])
+        ):
+            selections.append(
+                sel(
+                    f"{player} Anytime Goalscorer",
+                    cells[anytime_index],
+                    {
+                        "player": player,
+                        "prop_type":
+                            "anytime_goalscorer",
+                    },
+                )
+            )
+
+    return mkt(
+        "Player to Score",
+        selections,
+    )
+
+
+def parse_player_component(
+    data,
+    market_name,
+    prop_type,
+):
+    headers = structured_headers(data)
+    thresholds = [
+        header
+        for header in headers
+        if re.fullmatch(
+            r"\d+\+",
+            header,
+        )
+    ]
+
+    selections = []
+    seen = set()
+
+    for row in structured_rows(data):
+        player = clean(row.get("name"))
+
+        if not player:
+            continue
+
+        cells = [
+            clean(cell)
+            for cell in row.get("cells", [])
+        ]
+
+        if prop_type == "player_card":
+            price = next(
+                (
+                    cell
+                    for cell in cells
+                    if is_odds(cell)
+                ),
+                "",
+            )
+
+            if not price:
+                continue
+
+            key = (
+                normalize(player),
+                "0.5",
+            )
+
+            if key in seen:
+                continue
+
+            seen.add(key)
+            selections.append(
+                sel(
+                    f"{player} To Be Carded",
+                    price,
+                    {
+                        "player": player,
+                        "prop_type": prop_type,
+                        "line": "0.5",
+                    },
+                )
+            )
+            continue
+
+        if not thresholds:
+            thresholds = [
+                f"{index + 1}+"
+                for index in range(
+                    max(1, len(cells))
+                )
+            ]
+
+        for index, threshold in enumerate(
+            thresholds
+        ):
+            if index >= len(cells):
+                break
+
+            price = cells[index]
+
+            if not is_odds(price):
+                continue
+
+            integer_line = int(
+                threshold.replace("+", "")
+            )
+            line = str(
+                float(integer_line) - 0.5
+            )
+
+            key = (
+                normalize(player),
+                line,
+            )
+
+            if key in seen:
+                continue
+
+            seen.add(key)
+            selections.append(
+                sel(
+                    f"{player} Over {line} "
+                    f"{market_name}",
+                    price,
+                    {
+                        "player": player,
+                        "prop_type": prop_type,
+                        "line": line,
+                    },
+                )
+            )
+
+    return mkt(
+        market_name,
+        selections,
+    )
+
+
+def merge_markets(markets):
+    merged = {}
+
+    for market in markets:
+        if not market.get("selections"):
+            continue
+
+        key = market["normalized_market"]
+
+        if key not in merged:
+            merged[key] = market
+            continue
+
+        merge_market_selections(
+            merged[key],
+            market,
+        )
+
+    return list(merged.values())
+
+
 def get_match_links(page):
     print(f"Opening: {COMPETITION_URL}")
     page.goto(COMPETITION_URL, wait_until="domcontentloaded", timeout=60000)
-    page.wait_for_timeout(8000)
+    page.wait_for_timeout(4500)
     accept_cookies(page)
-    for _ in range(20):
-        page.mouse.wheel(0, 600)
-        page.wait_for_timeout(400)
+    for _ in range(12):
+        page.mouse.wheel(0, 1000)
+        page.wait_for_timeout(220)
     links = page.evaluate("""
         () => [...new Set(
             Array.from(document.querySelectorAll('a[href*="/sports/event/football/international/world-cup-2026/"]'))
@@ -687,7 +2492,7 @@ def get_match_links(page):
         name = slug.replace("-v-"," v ").replace("-"," ").title()
         fixtures.append({"url": base, "name": name})
     print(f"Found {len(fixtures)} fixtures")
-    return fixtures[:MAX_MATCHES]
+    return fixtures
 
 def detect_teams(text):
     lines = [clean(l) for l in text.splitlines() if clean(l)]
@@ -703,243 +2508,1090 @@ def detect_teams(text):
     return "", ""
 
 def scrape_match(page, fixture):
-    url  = fixture["url"]
-    base = url.replace("/main-markets","")
+    total_started = time.perf_counter()
+    stage_timings = {}
+
+    url = fixture["url"]
+    base = url.replace("/main-markets", "")
     name = fixture["name"]
+    home, away = teams_from_fixture_url(
+        url,
+        name,
+    )
+
     print(f"  [{name}]")
-
-    all_text = ""
-
-    # Main tab
-    page.goto(url, wait_until="domcontentloaded", timeout=60000)
-    page.wait_for_timeout(5000)
-    accept_cookies(page)
-    try:
-        page.wait_for_function("() => document.body.innerText.includes('Match Betting')", timeout=10000)
-    except: pass
-    scroll_page(page, 10)
-    # Click accordions to expand them
-    for heading in ["Both Teams To Score", "Double Chance"]:
-        try:
-            loc = page.locator(f"text='{heading}'").first
-            if loc.count():
-                loc.scroll_into_view_if_needed(timeout=2000)
-                page.wait_for_timeout(300)
-                loc.click(timeout=2000)
-                page.wait_for_timeout(1000)
-        except: pass
-    scroll_page(page, 10)
-    expand_show_all(page)
-    scroll_page(page, 5)
-    all_text += "\n" + get_body(page)
-    print(f"    main ok")
-
-
-
-    # Goals tab
-    page.goto(f"{base}/goals", wait_until="domcontentloaded", timeout=30000)
-    page.wait_for_timeout(4000)
-    try:
-        page.wait_for_function("() => document.body.innerText.includes('Total Goals')", timeout=8000)
-    except: pass
-    try:
-        page.get_by_text("1st Half", exact=True).first.click(timeout=3000)
-        page.wait_for_timeout(1500)
-    except: pass
-    try:
-        page.get_by_text("Show All", exact=True).first.click(timeout=3000)
-        page.wait_for_timeout(1000)
-    except: pass
-    scroll_page(page, 10)
-    all_text += "\n" + get_body(page)
-    print(f"    goals ok")
-
-    # Goalscorer tab
-    page.goto(f"{base}/goalscorer", wait_until="domcontentloaded", timeout=30000)
-    page.wait_for_timeout(4000)
-    expand_show_all(page)
-    scroll_page(page, 10)
-    all_text += "\n" + get_body(page)
-    print(f"    goalscorer ok")
-
-    # Half tab
-    page.goto(f"{base}/half", wait_until="domcontentloaded", timeout=30000)
-    page.wait_for_timeout(7000)
-    try:
-        page.wait_for_function("() => document.body.innerText.includes('Both Teams To Score')", timeout=8000)
-    except: pass
-    scroll_page(page, 8)
-    all_text += "\n" + get_body(page)
-    print(f"    half ok")
-
-    # Corners and Cards tab
-    page.goto(f"{base}/corners-and-cards", wait_until="domcontentloaded", timeout=30000)
-    page.wait_for_timeout(4000)
-    scroll_page(page, 10)
-    all_text += "\n" + get_body(page)
-    print(f"    corners-and-cards ok")
-
-    # Debug
-    debug_file = DEBUG_DIR / f"{slugify(name)}.txt"
-    debug_file.write_text(all_text, encoding="utf-8")
-
-    home, away = detect_teams(all_text)
-    if not home:
-        slug_part = url.split("/world-cup-2026/")[-1].split("/")[0]
-        if "-v-" in slug_part:
-            h, a = slug_part.split("-v-", 1)
-            home = h.replace("-"," ").title()
-            away = a.replace("-"," ").title()
-
-    lines = [clean(l) for l in all_text.splitlines() if clean(l)]
+    print(
+        f"    fixture teams: "
+        f"{home or 'unknown'} v "
+        f"{away or 'unknown'}"
+    )
 
     markets = []
-    for parser, args in [
-        (parse_match_betting,  (lines, home, away)),
-        (parse_btts,           (lines,)),
-        (parse_double_chance,  (lines, home, away)),
-        (parse_goalscorers,    (lines,)),
-        (parse_half_time_result, (lines, home, away)),
-    ]:
-        try:
-            m = parser(*args)
-            if m["selections"]: markets.append(m)
-        except Exception as e:
-            print(f"    Parser error ({parser.__name__}): {e}")
+    all_text = ""
 
-    # Total Goals O/U
+    # ------------------------------------------------------------------
+    # Main
+    # ------------------------------------------------------------------
+    stage_started = time.perf_counter()
+    page.goto(
+        url,
+        wait_until="domcontentloaded",
+        timeout=60000,
+    )
+    page.wait_for_timeout(2500)
+    accept_cookies(page)
+    wait_for_any_text(
+        page,
+        ["Match Betting"],
+        timeout=10000,
+    )
+
+    if event_is_live(page):
+        print(
+            "    SKIP: event is live/started; "
+            "prematch props are no longer complete"
+        )
+        return None
+
+    scroll_page(page, 8)
+
+    for heading in (
+        "Match Betting",
+        "Both Teams To Score",
+        "Double Chance",
+    ):
+        result = expand_market_component(
+            page,
+            heading,
+            show_all=False,
+        )
+        print(
+            f"    main/{heading}: "
+            f"found={result.get('found')} | "
+            f"clicked={result.get('clicked')}"
+        )
+
+    match_data = extract_market_component(
+        page,
+        "Match Betting",
+    )
+    match_market = parse_three_way_component(
+        match_data,
+        "Match Betting",
+        [home, "Draw", away],
+    )
+    if match_market["selections"]:
+        markets.append(match_market)
+
+    dc_data = extract_market_component(
+        page,
+        "Double Chance",
+    )
+    dc_market = parse_double_chance_component(
+        dc_data,
+        home,
+        away,
+    )
+    if dc_market["selections"]:
+        markets.append(dc_market)
+
+    main_text = get_body(page)
+    all_text += "\n" + main_text
+
+    # Prefer the real market component; preserve text parsing as fallback.
+    btts_title = next(
+        (
+            title
+            for title in list_market_titles(page)
+            if title.lower()
+            == "both teams to score"
+        ),
+        "",
+    )
+
+    btts_market = mkt(
+        "Both Teams To Score",
+        [],
+    )
+
+    if btts_title:
+        expand_market_component(
+            page,
+            btts_title,
+            show_all=False,
+        )
+        btts_data = extract_market_component(
+            page,
+            btts_title,
+        )
+        btts_market = parse_yes_no_component(
+            btts_data,
+            "Both Teams To Score",
+        )
+
+    main_lines = [
+        clean(line)
+        for line in main_text.splitlines()
+        if clean(line)
+    ]
+
+    if not btts_market["selections"]:
+        btts_market = parse_btts(
+            main_lines
+        )
+
+    if btts_market["selections"]:
+        markets.append(btts_market)
+
+    stage_timings["main"] = (
+        time.perf_counter() - stage_started
+    )
+    print(
+        f"    main ok "
+        f"({stage_timings['main']:.2f}s)"
+    )
+
+    # ------------------------------------------------------------------
+    # Goals: match, first half, home and away
+    # ------------------------------------------------------------------
+    stage_started = time.perf_counter()
+    page.goto(
+        f"{base}/goals",
+        wait_until="domcontentloaded",
+        timeout=30000,
+    )
+    wait_for_any_text(
+        page,
+        ["Over/Under Total Goals"],
+        timeout=8000,
+    )
+    page.wait_for_timeout(700)
+    scroll_page(page, 6)
+
+    expand_market_component(
+        page,
+        "Over/Under Total Goals",
+        show_all=True,
+    )
+
+    click_market_switcher(
+        page,
+        "Over/Under Total Goals",
+        "90 mins",
+    )
+    total_goals_data = extract_market_component(
+        page,
+        "Over/Under Total Goals",
+    )
+    total_goals_market = parse_ou_component(
+        total_goals_data,
+        "Total Goals Over / Under",
+        max_line=6.5,
+    )
+    if total_goals_market["selections"]:
+        markets.append(total_goals_market)
+
+    click_market_switcher(
+        page,
+        "Over/Under Total Goals",
+        "1st Half",
+    )
+    first_half_data = extract_market_component(
+        page,
+        "Over/Under Total Goals",
+    )
+    first_half_market = parse_ou_component(
+        first_half_data,
+        "1st Half Goals Over / Under",
+        max_line=3.5,
+    )
+    if first_half_market["selections"]:
+        markets.append(first_half_market)
+
+    for team in (home, away):
+        title = f"Over/Under Goals {team}"
+        result = expand_market_component(
+            page,
+            title,
+            show_all=True,
+        )
+        data = extract_market_component(
+            page,
+            title,
+        )
+        team_market = parse_ou_component(
+            data,
+            f"{team} Goals Over / Under",
+            selection_prefix=team,
+            max_line=5.5,
+        )
+        if team_market["selections"]:
+            markets.append(team_market)
+
+        print(
+            f"    goals/{team}: "
+            f"found={result.get('found')} | "
+            f"{team_market['selection_count']}"
+        )
+
+    goals_text = get_body(page)
+    all_text += "\n" + goals_text
+
+    stage_timings["goals"] = (
+        time.perf_counter() - stage_started
+    )
+    print(
+        f"    goals ok "
+        f"({stage_timings['goals']:.2f}s)"
+    )
+
+    # ------------------------------------------------------------------
+    # Goalscorer: both team tabs, full Show All
+    # ------------------------------------------------------------------
+    stage_started = time.perf_counter()
+    page.goto(
+        f"{base}/goalscorer",
+        wait_until="domcontentloaded",
+        timeout=30000,
+    )
+    wait_for_any_text(
+        page,
+        [
+            "Popular Goalscorer Markets",
+            "Goalscorer",
+            "Player To Score",
+        ],
+        timeout=8000,
+    )
+    page.wait_for_timeout(500)
+    scroll_page(page, 5)
+
+    goalscorer_title = next(
+        (
+            title
+            for title in list_market_titles(page)
+            if title.lower()
+            in {
+                "popular goalscorer markets",
+                "goalscorer",
+                "goalscorers",
+                "player to score",
+            }
+        ),
+        "",
+    )
+
+    goalscorer_market = mkt(
+        "Player to Score",
+        [],
+    )
+
+    if goalscorer_title:
+        for team in (home, away):
+            expand_market_component(
+                page,
+                goalscorer_title,
+                show_all=False,
+            )
+            clicked_team = click_market_switcher(
+                page,
+                goalscorer_title,
+                team,
+            )
+            expand_result = expand_market_component(
+                page,
+                goalscorer_title,
+                show_all=True,
+            )
+            data = extract_market_component(
+                page,
+                goalscorer_title,
+            )
+            team_market = parse_goalscorer_component(
+                data
+            )
+            merge_market_selections(
+                goalscorer_market,
+                team_market,
+            )
+            print(
+                f"    goalscorer/{team}: "
+                f"tab={clicked_team} | "
+                f"Show All="
+                f"{expand_result.get('showAllClicks', 0)} | "
+                f"captured="
+                f"{team_market['selection_count']}"
+            )
+
+    if goalscorer_market["selections"]:
+        markets.append(goalscorer_market)
+
+    scorer_text = get_body(page)
+    all_text += "\n" + scorer_text
+
+    stage_timings["goalscorer"] = (
+        time.perf_counter() - stage_started
+    )
+    print(
+        f"    goalscorer ok "
+        f"({stage_timings['goalscorer']:.2f}s)"
+    )
+
+    # ------------------------------------------------------------------
+    # Half
+    # ------------------------------------------------------------------
+    stage_started = time.perf_counter()
+    page.goto(
+        f"{base}/half",
+        wait_until="domcontentloaded",
+        timeout=30000,
+    )
+    page.wait_for_timeout(1600)
+    scroll_page(page, 5)
+
+    half_text = get_body(page)
+    all_text += "\n" + half_text
+    half_lines = [
+        clean(line)
+        for line in half_text.splitlines()
+        if clean(line)
+    ]
+
+    half_result = parse_half_time_result(
+        half_lines,
+        home,
+        away,
+    )
+    if half_result["selections"]:
+        markets.append(half_result)
+
+    # Half page is often the most reliable BTTS source.
+    btts_half = parse_btts(half_lines)
+    if btts_half["selections"]:
+        markets.append(btts_half)
+
+    stage_timings["half"] = (
+        time.perf_counter() - stage_started
+    )
+    print(
+        f"    half ok "
+        f"({stage_timings['half']:.2f}s)"
+    )
+
+    # ------------------------------------------------------------------
+    # Corners and cards: independent components, not tabs
+    # ------------------------------------------------------------------
+    stage_started = time.perf_counter()
+    page.goto(
+        f"{base}/corners-and-cards",
+        wait_until="domcontentloaded",
+        timeout=30000,
+    )
+    wait_for_any_text(
+        page,
+        [
+            "Over/Under Total Corners",
+            "Over/Under Total Cards",
+        ],
+        timeout=8000,
+    )
+    page.wait_for_timeout(500)
+    scroll_page(page, 7)
+
+    titles = list_market_titles(page)
+
+    most_corners_title = next(
+        (
+            title
+            for title in titles
+            if title.lower()
+            == "team to have the most corners"
+        ),
+        "",
+    )
+    most_cards_title = next(
+        (
+            title
+            for title in titles
+            if "team to have the most total cards"
+            in title.lower()
+        ),
+        "",
+    )
+
+    if most_corners_title:
+        expand_market_component(
+            page,
+            most_corners_title,
+        )
+        data = extract_market_component(
+            page,
+            most_corners_title,
+        )
+        market = parse_three_way_component(
+            data,
+            "Team To Have The Most Corners",
+            [home, "Draw", away],
+        )
+        if market["selections"]:
+            markets.append(market)
+
+    if most_cards_title:
+        expand_market_component(
+            page,
+            most_cards_title,
+        )
+        data = extract_market_component(
+            page,
+            most_cards_title,
+        )
+        market = parse_three_way_component(
+            data,
+            "Team To Have The Most Cards",
+            [home, "Draw", away],
+        )
+        if market["selections"]:
+            markets.append(market)
+
+    corner_specs = [
+        (
+            "Over/Under Total Corners",
+            "Total Corners Over / Under",
+            "",
+            20.5,
+        ),
+        (
+            f"Over/Under Total Corners {home}",
+            f"{home} Corners Over / Under",
+            home,
+            15.5,
+        ),
+        (
+            f"Over/Under Total Corners {away}",
+            f"{away} Corners Over / Under",
+            away,
+            15.5,
+        ),
+    ]
+
+    card_specs = [
+        (
+            "Over/Under Total Cards",
+            "Total Cards Over / Under",
+            "",
+            12.5,
+        ),
+        (
+            f"Over/Under Total Cards {home}",
+            f"{home} Cards Over / Under",
+            home,
+            10.5,
+        ),
+        (
+            f"Over/Under Total Cards {away}",
+            f"{away} Cards Over / Under",
+            away,
+            10.5,
+        ),
+    ]
+
+    for (
+        title,
+        market_name,
+        prefix,
+        max_line,
+    ) in corner_specs + card_specs:
+        result = expand_market_component(
+            page,
+            title,
+            show_all=True,
+        )
+        data = extract_market_component(
+            page,
+            title,
+        )
+        market = parse_ou_component(
+            data,
+            market_name,
+            selection_prefix=prefix,
+            max_line=max_line,
+        )
+        if market["selections"]:
+            markets.append(market)
+
+        print(
+            f"    component/{title}: "
+            f"found={result.get('found')} | "
+            f"clicked={result.get('clicked')} | "
+            f"{market['selection_count']}"
+        )
+
+    corner_text = get_body(page)
+    all_text += "\n" + corner_text
+
+    stage_timings["corners_cards"] = (
+        time.perf_counter() - stage_started
+    )
+    print(
+        f"    corners-and-cards ok "
+        f"({stage_timings['corners_cards']:.2f}s)"
+    )
+
+    # ------------------------------------------------------------------
+    # Player stats: Bet Builder card + direct-component fallback
+    # ------------------------------------------------------------------
+    stage_started = time.perf_counter()
+
     try:
-        m = parse_ou_goals(lines, "Total Goals Over / Under", max_line=5.5)
-        if m["selections"]: markets.append(m)
-    except Exception as e:
-        print(f"    Parser error (total_goals): {e}")
-
-    # 1st half goals
-    try:
-        m = parse_ou_goals(lines, "1st Half Goals Over / Under", max_line=2.5)
-        if m["selections"]: markets.append(m)
-    except Exception as e:
-        print(f"    Parser error (1st_half_goals): {e}")
-
-    for heading, mkt_name, max_line in [
-        ("Over/Under Total Corners", "Total Corners Over / Under", 15.5),
-        ("Over/Under Total Cards",   "Total Cards Over / Under",  4.5),
-    ]:
-        try:
-            m = parse_ou_generic(lines, heading, mkt_name, max_line)
-            if m["selections"]: markets.append(m)
-        except Exception as e:
-            print(f"    Parser error ({mkt_name}): {e}")
-
-
-
-    # Team corners O/U
-    try:
-        for m in parse_team_corners(lines, home, away):
-            markets.append(m)
-    except Exception as e:
-        print(f"    Parser error (team_corners): {e}")
-
-    # Player Stats tab — click each filter
-    try:
-        page.goto(f"{base}/player-stats", wait_until="domcontentloaded", timeout=30000)
-        page.wait_for_timeout(5000)
+        page.goto(
+            f"{base}/player-stats",
+            wait_until="domcontentloaded",
+            timeout=30000,
+        )
+        page.wait_for_timeout(1700)
         accept_cookies(page)
+        scroll_page(page, 5)
+
+        marked = mark_player_stats_cards(page)
+        print(
+            "    player cards: "
+            f"tackles={marked.get('tackles')} | "
+            f"player-markets="
+            f"{marked.get('playerMarkets')}"
+        )
 
         filters = [
-            ("SoT",     "Shots On Target", "shots_on_target", "Over 0.5 Shots On Target"),
-            ("Shots",   "Shots",           "shots",           "Over 0.5 Shots"),
-            ("Carded",  "Player Cards",    "player_card",     "To Be Carded"),
-            ("Fouls",   "Player Fouls",    "fouls",           "Over 0.5 Fouls"),
-            ("Assists", "Player Assists",  "assists",         "Over 0.5 Assists"),
+            (
+                "SoT",
+                "Shots On Target",
+                "shots_on_target",
+            ),
+            (
+                "Shots",
+                "Shots",
+                "shots",
+            ),
+            (
+                "Carded",
+                "Player Cards",
+                "player_card",
+            ),
+            (
+                "Fouls",
+                "Player Fouls",
+                "fouls",
+            ),
+            (
+                "Assists",
+                "Player Assists",
+                "assists",
+            ),
         ]
 
-        for filter_name, mkt_name, prop_type, threshold_label in filters:
-            if not click_filter(page, filter_name):
-                print(f"    player/{filter_name}: not found")
+        if marked.get("playerMarkets"):
+            for (
+                filter_name,
+                market_name,
+                prop_type,
+            ) in filters:
+                mark_player_stats_cards(page)
+
+                clicked = click_card_label(
+                    page,
+                    "player-markets",
+                    filter_name,
+                )
+
+                mark_player_stats_cards(page)
+                expanded = expand_show_all_in_card(
+                    page,
+                    "player-markets",
+                )
+
+                mark_player_stats_cards(page)
+                data = extract_marked_card(
+                    page,
+                    "player-markets",
+                )
+                market = parse_player_component(
+                    data,
+                    market_name,
+                    prop_type,
+                )
+
+                if market["selections"]:
+                    markets.append(market)
+
+                print(
+                    f"    player/{filter_name}: "
+                    f"clicked={clicked} | "
+                    f"Show All={expanded} | "
+                    f"rows="
+                    f"{len(structured_rows(data))} | "
+                    f"{market['selection_count']}"
+                )
+
+        if marked.get("tackles"):
+            tackles_market = mkt(
+                "Player Tackles",
+                [],
+            )
+
+            for team in (home, away):
+                mark_player_stats_cards(page)
+                clicked = click_card_label(
+                    page,
+                    "tackles",
+                    team,
+                )
+                mark_player_stats_cards(page)
+                expanded = expand_show_all_in_card(
+                    page,
+                    "tackles",
+                )
+                mark_player_stats_cards(page)
+                data = extract_marked_card(
+                    page,
+                    "tackles",
+                )
+                team_market = parse_player_component(
+                    data,
+                    "Player Tackles",
+                    "tackles",
+                )
+                merge_market_selections(
+                    tackles_market,
+                    team_market,
+                )
+
+                print(
+                    f"    tackles/{team}: "
+                    f"clicked={clicked} | "
+                    f"Show All={expanded} | "
+                    f"rows="
+                    f"{len(structured_rows(data))} | "
+                    f"{team_market['selection_count']}"
+                )
+
+            if tackles_market["selections"]:
+                markets.append(tackles_market)
+
+        # Direct component fallback/supplement.
+        direct_titles = list_market_titles(page)
+        print(
+            "    player page market titles: "
+            + (
+                " | ".join(direct_titles)
+                if direct_titles
+                else "none"
+            )
+        )
+        player_titles = []
+
+        for title in direct_titles:
+            classification = (
+                classify_player_component_title(
+                    title
+                )
+            )
+
+            if not classification:
                 continue
-            expand_show_all(page)
-            scroll_page(page, 10)
-            tab_text = get_body(page)
-            tab_lines = [clean(l) for l in tab_text.splitlines() if clean(l)]
-            m = parse_player_stat(tab_lines, mkt_name, prop_type, threshold_label)
-            if m["selections"]:
-                markets.append(m)
-                print(f"    player/{filter_name}: {m['selection_count']}")
-            else:
-                print(f"    player/{filter_name}: 0")
 
-        # Player Total Tackles — separate section, not a filter button
+            player_titles.append(
+                (
+                    title,
+                    classification[0],
+                    classification[1],
+                )
+            )
+
+        print(
+            "    direct player components: "
+            + (
+                " | ".join(
+                    title
+                    for title, _, _
+                    in player_titles
+                )
+                if player_titles
+                else "none"
+            )
+        )
+
+        for (
+            title,
+            market_name,
+            prop_type,
+        ) in player_titles:
+            combined = mkt(
+                market_name,
+                [],
+            )
+
+            expand_market_component(
+                page,
+                title,
+                show_all=False,
+            )
+            data_initial = extract_market_component(
+                page,
+                title,
+            )
+            switches = (
+                data_initial.get("switchers", [])
+                if data_initial
+                else []
+            )
+
+            team_switches = [
+                team
+                for team in (home, away)
+                if any(
+                    normalize(item)
+                    == normalize(team)
+                    for item in switches
+                )
+            ]
+
+            capture_tabs = (
+                team_switches
+                if team_switches
+                else [""]
+            )
+
+            for team in capture_tabs:
+                expand_market_component(
+                    page,
+                    title,
+                    show_all=False,
+                )
+
+                if team:
+                    click_market_switcher(
+                        page,
+                        title,
+                        team,
+                    )
+
+                expand_result = expand_market_component(
+                    page,
+                    title,
+                    show_all=True,
+                )
+                data = extract_market_component(
+                    page,
+                    title,
+                )
+                market = parse_player_component(
+                    data,
+                    market_name,
+                    prop_type,
+                )
+                merge_market_selections(
+                    combined,
+                    market,
+                )
+
+                print(
+                    f"    direct/{title}"
+                    f"{'/' + team if team else ''}: "
+                    f"Show All="
+                    f"{expand_result.get('showAllClicks', 0)} | "
+                    f"rows="
+                    f"{len(structured_rows(data))} | "
+                    f"{market['selection_count']}"
+                )
+
+            if combined["selections"]:
+                markets.append(combined)
+
+        all_text += "\n" + get_body(page)
+
+    except Exception as error:
+        print(
+            f"    player-stats error: {error}"
+        )
+
+    stage_timings["player_stats"] = (
+        time.perf_counter() - stage_started
+    )
+    print(
+        f"    player-stats total "
+        f"({stage_timings['player_stats']:.2f}s)"
+    )
+
+    # ------------------------------------------------------------------
+    # Safe fallbacks for markets not captured structurally.
+    # ------------------------------------------------------------------
+    lines = [
+        clean(line)
+        for line in all_text.splitlines()
+        if clean(line)
+    ]
+
+    existing_keys = {
+        market["normalized_market"]
+        for market in markets
+        if market.get("selections")
+    }
+
+    fallback_specs = [
+        (
+            "match_betting",
+            parse_match_betting,
+            (lines, home, away),
+        ),
+        (
+            "both_teams_to_score",
+            parse_btts,
+            (lines,),
+        ),
+        (
+            "double_chance",
+            parse_double_chance,
+            (lines, home, away),
+        ),
+        (
+            "player_to_score",
+            parse_goalscorers,
+            (lines,),
+        ),
+        (
+            "half_time_result",
+            parse_half_time_result,
+            (lines, home, away),
+        ),
+    ]
+
+    for key, parser, args in fallback_specs:
+        if key in existing_keys:
+            continue
+
         try:
-            tab_text = get_body(page)
-            tab_lines = [clean(l) for l in tab_text.splitlines() if clean(l)]
-            m = parse_player_tackles(tab_lines)
-            if m["selections"]:
-                markets.append(m)
-                print(f"    player/Tackles: {m['selection_count']}")
-            else:
-                print(f"    player/Tackles: 0")
-        except Exception as e:
-            print(f"    player/Tackles error: {e}")
+            fallback = parser(*args)
+            if fallback["selections"]:
+                markets.append(fallback)
+        except Exception as error:
+            print(
+                f"    fallback/{parser.__name__}: "
+                f"{error}"
+            )
 
-        print(f"    player-stats ok")
-    except Exception as e:
-        print(f"    player-stats error: {e}")
+    unique = merge_markets(markets)
 
-    # Dedupe
-    seen, unique = set(), []
-    for m in markets:
-        k = m["normalized_market"]
-        if k not in seen: seen.add(k); unique.append(m)
+    expected = {
+        "match_betting",
+        "both_teams_to_score",
+        "double_chance",
+        "player_to_score",
+        "total_goals_over_under",
+        "total_corners_over_under",
+        normalize(f"{home} Corners Over / Under"),
+        normalize(f"{away} Corners Over / Under"),
+        "total_cards_over_under",
+        normalize(f"{home} Cards Over / Under"),
+        normalize(f"{away} Cards Over / Under"),
+        "shots_on_target",
+        "shots",
+        "player_cards",
+        "player_assists",
+        "player_tackles",
+    }
 
-    print(f"  ✓ {home} v {away} — {len(unique)} markets")
-    return {"match": f"{home} v {away}" if home else name,
-            "home_team": home, "away_team": away, "url": url, "markets": unique}
+    captured = {
+        market["normalized_market"]
+        for market in unique
+    }
+
+    foul_keys = {
+        "player_fouls",
+        "player_fouls_won",
+        "player_fouls_committed",
+    }
+
+    if not captured.intersection(foul_keys):
+        expected.add("player_fouls")
+
+    missing = sorted(
+        expected - captured
+    )
+
+    print(
+        "    complete-props audit: "
+        + (
+            ", ".join(missing)
+            if missing
+            else "none"
+        )
+    )
+
+    total_seconds = (
+        time.perf_counter() - total_started
+    )
+    print(
+        f"  ✓ {home} v {away} — "
+        f"{len(unique)} markets "
+        f"in {total_seconds:.2f}s"
+    )
+    print(
+        "    timing: "
+        + " | ".join(
+            f"{stage}={seconds:.2f}s"
+            for stage, seconds
+            in stage_timings.items()
+        )
+    )
+
+    return {
+        "match": (
+            f"{home} v {away}"
+            if home
+            else name
+        ),
+        "home_team": home,
+        "away_team": away,
+        "url": url,
+        "market_count": len(unique),
+        "timing": {
+            key: round(value, 3)
+            for key, value
+            in stage_timings.items()
+        },
+        "total_seconds": round(
+            total_seconds,
+            3,
+        ),
+        "missing_markets": missing,
+        "markets": unique,
+    }
+
 
 
 def main():
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+    script_started = time.perf_counter()
 
-    print("=" * 60)
-    print("Ladbrokes World Cup Props Scraper")
-    print("=" * 60)
+    OUT_PATH.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+    DEBUG_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page(viewport={"width": 1700, "height": 1000})
+    print("=" * 64)
+    print(
+        "Ladbrokes World Cup Props "
+        "PROD15 COMPLETE"
+    )
+    print(f"Marker: {PRODUCTION_MARKER}")
+    print("=" * 64)
+
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(
+            headless=HEADLESS
+        )
+        page = browser.new_page(
+            viewport={
+                "width": 1700,
+                "height": 1000,
+            }
+        )
 
         fixtures = get_match_links(page)
         results = []
+        attempted = 0
 
-        for i, fixture in enumerate(fixtures):
-            print(f"\n[{i+1}/{len(fixtures)}]")
+        for fixture in fixtures:
+            if len(results) >= MAX_MATCHES:
+                break
+
+            attempted += 1
+            print(
+                f"\n[usable {len(results) + 1}/"
+                f"{MAX_MATCHES} | "
+                f"candidate {attempted}/"
+                f"{len(fixtures)}]"
+            )
+
             try:
-                result = scrape_match(page, fixture)
+                result = scrape_match(
+                    page,
+                    fixture,
+                )
+
+                if result is None:
+                    continue
+
                 results.append(result)
-            except Exception as e:
-                print(f"  ERROR: {e}")
-                results.append({"match": fixture["name"], "home_team": "", "away_team": "",
-                                "url": fixture["url"], "markets": []})
+
+            except Exception as error:
+                print(
+                    f"  ERROR: {error}"
+                )
 
         browser.close()
 
     output = {
-        "sport": "football", "competition": "FIFA World Cup",
-        "bookmaker": "Ladbrokes", "market_type": "props",
+        "sport": "football",
+        "competition": "FIFA World Cup",
+        "bookmaker": "Ladbrokes",
+        "market_type": "props",
         "source_url": COMPETITION_URL,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "match_count": len(results), "matches": results,
+        "generated_at":
+            datetime.now(
+                timezone.utc
+            ).isoformat(),
+        "match_count": len(results),
+        "matches": results,
     }
-    OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    OUT_PATH.write_text(
+        json.dumps(
+            output,
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
 
     print(f"\n✅ Saved → {OUT_PATH}")
-    print("\n── Summary ──────────────────────────────────────────────")
-    for r in results:
-        print(f"  {r['match']:<40} {len(r['markets'])} markets")
-        for m in r["markets"]:
-            print(f"      - {m['market']} ({m['selection_count']})")
-    print("─" * 60)
+    print(
+        "\n── Summary "
+        "──────────────────────────────────────────────"
+    )
+
+    for result in results:
+        print(
+            f"  {result['match']:<40} "
+            f"{len(result['markets'])} markets"
+        )
+
+        for market in result["markets"]:
+            print(
+                f"      - {market['market']} "
+                f"({market['selection_count']})"
+            )
+
+        if result.get("missing_markets"):
+            print(
+                "      MISSING: "
+                + ", ".join(
+                    result["missing_markets"]
+                )
+            )
+
+    print("─" * 64)
+    print(
+        f"Total elapsed: "
+        f"{time.perf_counter() - script_started:.2f}s"
+    )
+    print(f"Output: {OUT_PATH}")
+    print(
+        "Production Ladbrokes props JSON "
+        "modified: YES"
+    )
 
 
 if __name__ == "__main__":

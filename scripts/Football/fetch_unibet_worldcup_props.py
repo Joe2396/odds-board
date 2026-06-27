@@ -52,6 +52,8 @@ LIST_URL = "https://www.unibet.ie/betting/odds/football/fifa-world-cup/group-mat
 MAX_MATCHES = 15
 HEADLESS = False
 
+PARSER_VERSION = "MULTI_OCCURRENCE_MATCH_MARKETS_V2"
+
 DECIMAL_RE = re.compile(r"^\d+(?:\.\d+)?$")
 LINE_RE = re.compile(r"^\d+(?:\.5)?$")
 THRESHOLD_RE = re.compile(r"^\d\+$")
@@ -347,103 +349,406 @@ def parse_two_way_ou(lines, idx, market_name, end_idx=None, team=None, prop_hint
     return market_obj(market_name, selections) if selections else None
 
 
+def all_heading_indices(lines, heading):
+    return [
+        index
+        for index, line in enumerate(lines)
+        if line == heading
+    ]
+
+
+def best_market_candidate(candidates):
+    candidates = [
+        market
+        for market in candidates
+        if market
+        and market.get("selections")
+    ]
+
+    if not candidates:
+        return None
+
+    return max(
+        candidates,
+        key=lambda market: len(
+            market.get("selections", [])
+        ),
+    )
+
+
+def parse_three_way_candidate(
+    lines,
+    idx,
+    market_name,
+    selections,
+):
+    end = next_heading_index(lines, idx)
+    block = lines[idx:end]
+    odds = [
+        value
+        for value in block
+        if is_decimal_odds(value)
+    ]
+
+    if len(odds) < 3:
+        return None
+
+    return market_obj(
+        market_name,
+        [
+            selection_obj(
+                label,
+                odds[position],
+                extra,
+            )
+            for position, (
+                label,
+                extra,
+            ) in enumerate(selections)
+        ],
+    )
+
+
+def parse_btts_candidate(lines, idx):
+    end = next_heading_index(lines, idx)
+    block = lines[idx:end]
+
+    prices = {}
+
+    # Layout A:
+    #   Yes
+    #   2.20
+    #   No
+    #   1.62
+    for position, value in enumerate(block):
+        side = clean(value).lower()
+
+        if side not in {"yes", "no"}:
+            continue
+
+        for following in block[
+            position + 1:
+            min(len(block), position + 4)
+        ]:
+            if clean(following).lower() in {
+                "yes",
+                "no",
+            }:
+                break
+
+            if is_decimal_odds(following):
+                prices.setdefault(
+                    side,
+                    following,
+                )
+                break
+
+    # Layout B:
+    #   Yes 2.20
+    #   No 1.62
+    inline_pattern = re.compile(
+        r"^(Yes|No)\s+"
+        r"(\d+(?:\.\d+)?)$",
+        re.I,
+    )
+
+    for value in block:
+        match = inline_pattern.match(
+            clean(value)
+        )
+
+        if not match:
+            continue
+
+        side = match.group(1).lower()
+        odd = match.group(2)
+
+        if is_decimal_odds(odd):
+            prices.setdefault(side, odd)
+
+    # Layout C:
+    #   Yes
+    #   No
+    #   2.20
+    #   1.62
+    if set(prices) != {"yes", "no"}:
+        labels = [
+            clean(value).lower()
+            for value in block
+            if clean(value).lower()
+            in {"yes", "no"}
+        ]
+        odds = [
+            value
+            for value in block
+            if is_decimal_odds(value)
+        ]
+
+        if (
+            "yes" in labels
+            and "no" in labels
+            and len(odds) >= 2
+        ):
+            prices = {
+                "yes": odds[0],
+                "no": odds[1],
+            }
+
+    if set(prices) != {"yes", "no"}:
+        return None
+
+    return market_obj(
+        "Both Teams To Score",
+        [
+            selection_obj(
+                "Both Teams To Score - Yes",
+                prices["yes"],
+                {"side": "yes"},
+            ),
+            selection_obj(
+                "Both Teams To Score - No",
+                prices["no"],
+                {"side": "no"},
+            ),
+        ],
+    )
+
+
 def parse_match_markets(text, home, away):
+    """
+    Parse supported Unibet match/team markets.
+
+    Unibet often renders duplicate market cards in different columns or tabs.
+    We therefore inspect every occurrence of each heading and keep the richest
+    valid candidate instead of trusting only the first copy.
+    """
     lines = lines_from_text(text)
     markets = []
 
-    # Match Betting / Full Time Result
-    for name in ["Full Time Result"]:
-        try:
-            idx = next(i for i, x in enumerate(lines) if x == name)
-            block = lines[idx: min(len(lines), idx + 28)]
-            odds = [x for x in block if is_decimal_odds(x)]
-            if len(odds) >= 3:
-                markets.append(market_obj("Match Betting", [
-                    selection_obj(home, odds[0], {"side": "home"}),
-                    selection_obj("Draw", odds[1], {"side": "draw"}),
-                    selection_obj(away, odds[2], {"side": "away"}),
-                ]))
-        except Exception:
-            pass
+    # Match Betting / Full Time Result.
+    match_candidates = []
 
-    # Total Goals, Total Cards, Total Corners, Match Shots/SOT
+    for idx in all_heading_indices(
+        lines,
+        "Full Time Result",
+    ):
+        candidate = parse_three_way_candidate(
+            lines,
+            idx,
+            "Match Betting",
+            [
+                (home, {"side": "home"}),
+                ("Draw", {"side": "draw"}),
+                (away, {"side": "away"}),
+            ],
+        )
+
+        if candidate:
+            match_candidates.append(candidate)
+
+    best = best_market_candidate(
+        match_candidates
+    )
+    if best:
+        markets.append(best)
+
+    # Two-way Over/Under markets. Scan every duplicate heading and retain the
+    # candidate with the greatest number of complete Over/Under selections.
     simple_ou = [
-        ("Total Goals", "Total Goals Over / Under", None),
-        ("Total Cards", "Total Cards Over / Under", "cards"),
-        ("Total Corners", "Total Corners Over / Under", "corners"),
-        ("Match Shots on Target", "Match Shots On Target", "match_shots_on_target"),
-        ("Match Shots", "Match Shots", "match_shots"),
+        (
+            "Total Goals",
+            "Total Goals Over / Under",
+            None,
+        ),
+        (
+            "Total Cards",
+            "Total Cards Over / Under",
+            "cards",
+        ),
+        (
+            "Total Corners",
+            "Total Corners Over / Under",
+            "corners",
+        ),
+        (
+            "Match Shots on Target",
+            "Match Shots On Target",
+            "match_shots_on_target",
+        ),
+        (
+            "Match Shots",
+            "Match Shots",
+            "match_shots",
+        ),
     ]
-    for heading, mname, hint in simple_ou:
-        for idx, line in enumerate(lines):
-            if line == heading:
-                m = parse_two_way_ou(lines, idx, mname, prop_hint=hint)
-                if m:
-                    markets.append(m)
-                break
 
-    # Team total goals / corners / shots. Heading usually: Total Goals by Germany
+    for heading, market_name, hint in simple_ou:
+        candidates = []
+
+        for idx in all_heading_indices(
+            lines,
+            heading,
+        ):
+            candidate = parse_two_way_ou(
+                lines,
+                idx,
+                market_name,
+                prop_hint=hint,
+            )
+
+            if candidate:
+                candidates.append(candidate)
+
+        best = best_market_candidate(
+            candidates
+        )
+        if best:
+            markets.append(best)
+
+    # Team total goals / corners / generic team shots. Duplicate copies are
+    # allowed here; dedupe_markets merges and removes duplicate selections.
     for idx, line in enumerate(lines):
         low = line.lower()
+
         for prefix, out_name, hint in [
-            ("total goals by ", "Team Total Goals Over / Under", "team_total_goals"),
-            ("total corners by ", "Team Total Corners Over / Under", "team_total_corners"),
-            ("team shots on target by ", "Team Shots On Target", "team_shots_on_target"),
-            ("team shots by ", "Team Shots", "team_shots"),
-            ("shots on target by ", "Team Shots On Target", "team_shots_on_target"),
-            ("shots by ", "Team Shots", "team_shots"),
+            (
+                "total goals by ",
+                "Team Total Goals Over / Under",
+                "team_total_goals",
+            ),
+            (
+                "total corners by ",
+                "Team Total Corners Over / Under",
+                "team_total_corners",
+            ),
+            (
+                "team shots on target by ",
+                "Team Shots On Target",
+                "team_shots_on_target",
+            ),
+            (
+                "team shots by ",
+                "Team Shots",
+                "team_shots",
+            ),
+            (
+                "shots on target by ",
+                "Team Shots On Target",
+                "team_shots_on_target",
+            ),
+            (
+                "shots by ",
+                "Team Shots",
+                "team_shots",
+            ),
         ]:
-            if low.startswith(prefix):
-                team = canonical_team(line[len(prefix):])
-                m = parse_two_way_ou(lines, idx, out_name, team=team, prop_hint=hint)
-                if m:
-                    markets.append(m)
+            if not low.startswith(prefix):
+                continue
 
-    # BTTS
-    try:
-        idx = next(i for i, x in enumerate(lines) if x == "Both Teams to Score")
-        end = next_heading_index(lines, idx)
-        block = lines[idx:end]
-        selections = []
-        for i, x in enumerate(block):
-            if x.lower() == "yes" and i + 1 < len(block) and is_decimal_odds(block[i + 1]):
-                selections.append(selection_obj("Both Teams To Score - Yes", block[i + 1], {"side": "yes"}))
-            if x.lower() == "no" and i + 1 < len(block) and is_decimal_odds(block[i + 1]):
-                selections.append(selection_obj("Both Teams To Score - No", block[i + 1], {"side": "no"}))
-        if selections:
-            markets.append(market_obj("Both Teams To Score", selections))
-    except Exception:
-        pass
+            team = canonical_team(
+                line[len(prefix):]
+            )
+            candidate = parse_two_way_ou(
+                lines,
+                idx,
+                out_name,
+                team=team,
+                prop_hint=hint,
+            )
 
-    # Double Chance
-    try:
-        idx = next(i for i, x in enumerate(lines) if x == "Double Chance")
-        end = next_heading_index(lines, idx)
-        block = lines[idx:end]
-        odds = [x for x in block if is_decimal_odds(x)]
-        if len(odds) >= 3:
-            markets.append(market_obj("Double Chance", [
-                selection_obj(f"{home} or Draw", odds[0]),
-                selection_obj(f"{home} or {away}", odds[1]),
-                selection_obj(f"Draw or {away}", odds[2]),
-            ]))
-    except Exception:
-        pass
+            if candidate:
+                markets.append(candidate)
 
-    # Half Time Result only, NOT HT/FT.
-    try:
-        idx = next(i for i, x in enumerate(lines) if x == "Half Time Result")
-        end = next_heading_index(lines, idx)
-        block = lines[idx:end]
-        odds = [x for x in block if is_decimal_odds(x)]
-        if len(odds) >= 3:
-            markets.append(market_obj("Half Time Result", [
-                selection_obj(f"{home} Half Time", odds[0], {"side": "home"}),
-                selection_obj("Draw Half Time", odds[1], {"side": "draw"}),
-                selection_obj(f"{away} Half Time", odds[2], {"side": "away"}),
-            ]))
-    except Exception:
-        pass
+    # Both Teams To Score. Scan all copies and require a complete Yes/No pair.
+    btts_candidates = [
+        parse_btts_candidate(lines, idx)
+        for idx in all_heading_indices(
+            lines,
+            "Both Teams to Score",
+        )
+    ]
+    best = best_market_candidate(
+        btts_candidates
+    )
+    if best:
+        markets.append(best)
+
+    # Double Chance. Scan every copy and keep a complete three-selection card.
+    double_chance_candidates = []
+
+    for idx in all_heading_indices(
+        lines,
+        "Double Chance",
+    ):
+        candidate = parse_three_way_candidate(
+            lines,
+            idx,
+            "Double Chance",
+            [
+                (
+                    f"{home} or Draw",
+                    {},
+                ),
+                (
+                    f"{home} or {away}",
+                    {},
+                ),
+                (
+                    f"Draw or {away}",
+                    {},
+                ),
+            ],
+        )
+
+        if candidate:
+            double_chance_candidates.append(
+                candidate
+            )
+
+    best = best_market_candidate(
+        double_chance_candidates
+    )
+    if best:
+        markets.append(best)
+
+    # Retained as a parser fallback, although the cleaned production runner no
+    # longer expects or audits this market.
+    half_time_candidates = []
+
+    for idx in all_heading_indices(
+        lines,
+        "Half Time Result",
+    ):
+        candidate = parse_three_way_candidate(
+            lines,
+            idx,
+            "Half Time Result",
+            [
+                (
+                    f"{home} Half Time",
+                    {"side": "home"},
+                ),
+                (
+                    "Draw Half Time",
+                    {"side": "draw"},
+                ),
+                (
+                    f"{away} Half Time",
+                    {"side": "away"},
+                ),
+            ],
+        )
+
+        if candidate:
+            half_time_candidates.append(
+                candidate
+            )
+
+    best = best_market_candidate(
+        half_time_candidates
+    )
+    if best:
+        markets.append(best)
 
     return dedupe_markets(markets)
 
