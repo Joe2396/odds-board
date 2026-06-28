@@ -4,8 +4,8 @@ import string
 import time
 from pathlib import Path
 
-import requests
 from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -14,10 +14,6 @@ MATCHES_OUT_PATH = ROOT / "ufc" / "data" / "ufcstats_fighter_matches.json"
 FIGHTERS_OUT_PATH = ROOT / "ufc" / "data" / "fighters.json"
 
 UPCOMING_EVENTS_URL = "http://ufcstats.com/statistics/events/upcoming"
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
-}
 
 MIN_INDEXED_FIGHTERS = 100
 MIN_SAVED_FIGHTERS = 20
@@ -45,12 +41,10 @@ def collect_names_from_events_json():
         data = json.loads(EVENTS_JSON.read_text(encoding="utf-8"))
 
     names = set()
-
     for event in data.get("events", []) or []:
         for fight in event.get("fights", []) or []:
             red = clean_text(get_corner_name(fight.get("red")))
             blue = clean_text(get_corner_name(fight.get("blue")))
-
             if red and red.upper() != "TBA":
                 names.add(red)
             if blue and blue.upper() != "TBA":
@@ -62,24 +56,16 @@ def collect_names_from_events_json():
 
 def classify_method(method):
     method = clean_text(method).lower()
-
     if any(x in method for x in ["ko", "tko"]):
         return "ko_tko"
     if any(x in method for x in ["sub", "submission"]):
         return "sub"
     if any(x in method for x in ["dec", "decision"]):
         return "dec"
-
     return "other"
 
 
-def safe_get(url, timeout=30):
-    response = requests.get(url, headers=HEADERS, timeout=timeout)
-    response.raise_for_status()
-    return response
-
-
-def build_ufcstats_index():
+def build_ufcstats_index(page):
     index = {}
 
     for char in string.ascii_lowercase:
@@ -87,12 +73,13 @@ def build_ufcstats_index():
         print(f"Fetching UFCStats index: {char}")
 
         try:
-            response = safe_get(url)
+            page.goto(url, wait_until="networkidle", timeout=30000)
+            html = page.content()
         except Exception as e:
             print(f"Warning: failed index {char}: {e}")
             continue
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(html, "html.parser")
         rows = soup.select("tr.b-statistics__table-row")
 
         for row in rows:
@@ -101,7 +88,6 @@ def build_ufcstats_index():
                 first = links[0].get_text(strip=True)
                 last = links[1].get_text(strip=True)
                 href = links[0].get("href")
-
                 full_name = f"{first} {last}".strip()
 
                 if full_name and href and "/fighter-details/" in href:
@@ -115,11 +101,11 @@ def build_ufcstats_index():
     return index
 
 
-def get_upcoming_event_urls():
+def get_upcoming_event_urls(page):
     print(f"Fetching UFCStats upcoming events: {UPCOMING_EVENTS_URL}")
-
-    response = safe_get(UPCOMING_EVENTS_URL)
-    soup = BeautifulSoup(response.text, "html.parser")
+    page.goto(UPCOMING_EVENTS_URL, wait_until="networkidle", timeout=30000)
+    html = page.content()
+    soup = BeautifulSoup(html, "html.parser")
     event_urls = []
 
     for link in soup.select("a.b-link.b-link_style_black"):
@@ -128,22 +114,20 @@ def get_upcoming_event_urls():
             event_urls.append(href)
 
     event_urls = sorted(set(event_urls))
-
     print(f"Found {len(event_urls)} upcoming UFCStats events")
     return event_urls
 
 
-def get_fighter_names_from_event_page(event_url):
+def get_fighter_names_from_event_page(page, event_url):
     print(f"Fetching UFCStats event page: {event_url}")
-
-    response = safe_get(event_url)
-    soup = BeautifulSoup(response.text, "html.parser")
+    page.goto(event_url, wait_until="networkidle", timeout=30000)
+    html = page.content()
+    soup = BeautifulSoup(html, "html.parser")
     names = set()
 
     for link in soup.select("a.b-link.b-link_style_black"):
         href = link.get("href", "")
         text = link.get_text(" ", strip=True)
-
         if "/fighter-details/" in href and text:
             names.add(text)
 
@@ -153,34 +137,20 @@ def get_fighter_names_from_event_page(event_url):
 
 def parse_label_value_items(soup):
     data = {}
-
     for item in soup.select(".b-list__box-list-item"):
         text = clean_text(item.get_text(" ", strip=True))
-
         if ":" not in text:
             continue
-
         label, value = text.split(":", 1)
-        label = clean_text(label).lower()
-        value = clean_text(value)
-
-        data[label] = value
-
+        data[clean_text(label).lower()] = clean_text(value)
     return data
 
 
 def extract_fight_history(soup, fighter_name):
     recent_fights = []
-
     methods = {
-        "ko_tko_w": 0,
-        "sub_w": 0,
-        "dec_w": 0,
-        "other_w": 0,
-        "ko_tko_l": 0,
-        "sub_l": 0,
-        "dec_l": 0,
-        "other_l": 0,
+        "ko_tko_w": 0, "sub_w": 0, "dec_w": 0, "other_w": 0,
+        "ko_tko_l": 0, "sub_l": 0, "dec_l": 0, "other_l": 0,
     }
 
     rows = soup.select("tr.b-fight-details__table-row.b-fight-details__table-row__hover.js-fight-details-click")
@@ -191,16 +161,10 @@ def extract_fight_history(soup, fighter_name):
             continue
 
         result = clean_text(cols[0].get_text(" ", strip=True)).upper()
-
         fighter_links = cols[1].select("a")
-        fighters = [
-            clean_text(a.get_text(" ", strip=True))
-            for a in fighter_links
-            if clean_text(a.get_text(" ", strip=True))
-        ]
+        fighters = [clean_text(a.get_text(" ", strip=True)) for a in fighter_links if clean_text(a.get_text(" ", strip=True))]
 
         opponent = ""
-
         if len(fighters) >= 2:
             if normalize_name(fighters[0]) == normalize_name(fighter_name):
                 opponent = fighters[1]
@@ -211,7 +175,6 @@ def extract_fight_history(soup, fighter_name):
         method = clean_text(cols[7].get_text(" ", strip=True))
         round_num = clean_text(cols[8].get_text(" ", strip=True))
         fight_time = clean_text(cols[9].get_text(" ", strip=True))
-
         method_type = classify_method(method)
 
         if result == "WIN":
@@ -219,25 +182,23 @@ def extract_fight_history(soup, fighter_name):
         elif result == "LOSS":
             methods[f"{method_type}_l"] = methods.get(f"{method_type}_l", 0) + 1
 
-        recent_fights.append(
-            {
-                "result": result,
-                "opponent": opponent,
-                "method": method,
-                "round": round_num,
-                "time": fight_time,
-                "event": event,
-            }
-        )
+        recent_fights.append({
+            "result": result,
+            "opponent": opponent,
+            "method": method,
+            "round": round_num,
+            "time": fight_time,
+            "event": event,
+        })
 
     return recent_fights[:10], methods
 
 
-def scrape_fighter_profile(name, url):
+def scrape_fighter_profile(page, name, url):
     print(f"Scraping fighter profile: {name}")
-
-    response = safe_get(url)
-    soup = BeautifulSoup(response.text, "html.parser")
+    page.goto(url, wait_until="networkidle", timeout=30000)
+    html = page.content()
+    soup = BeautifulSoup(html, "html.parser")
 
     fighter = {
         "name": name,
@@ -258,13 +219,11 @@ def scrape_fighter_profile(name, url):
         fighter["record"] = clean_text(record_el.get_text()).replace("Record:", "").strip()
 
     fields = parse_label_value_items(soup)
-
     fighter["height"] = fields.get("height", "")
     fighter["weight"] = fields.get("weight", "")
     fighter["reach"] = fields.get("reach", "")
     fighter["stance"] = fields.get("stance", "")
     fighter["dob"] = fields.get("dob", "")
-
     fighter["stats"] = {
         "slpm": fields.get("slpm", ""),
         "str_acc": fields.get("str. acc.", ""),
@@ -277,7 +236,6 @@ def scrape_fighter_profile(name, url):
     }
 
     recent_fights, methods = extract_fight_history(soup, name)
-
     fighter["recent_fights"] = recent_fights
     fighter["methods"] = methods
 
@@ -285,52 +243,63 @@ def scrape_fighter_profile(name, url):
 
 
 def main():
-    ufcstats_index = build_ufcstats_index()
-    print(f"Indexed {len(ufcstats_index)} UFCStats fighters")
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+        )
+        page = context.new_page()
 
-    if len(ufcstats_index) < MIN_INDEXED_FIGHTERS:
-        print(f"❌ Refusing to continue: UFCStats index only returned {len(ufcstats_index)} fighters")
-        print("Existing fighters.json has NOT been overwritten.")
-        raise SystemExit(1)
+        # Build index
+        ufcstats_index = build_ufcstats_index(page)
+        print(f"Indexed {len(ufcstats_index)} UFCStats fighters")
 
-    fighter_names = set()
-    fighter_names.update(collect_names_from_events_json())
+        if len(ufcstats_index) < MIN_INDEXED_FIGHTERS:
+            print(f"❌ Refusing to continue: UFCStats index only returned {len(ufcstats_index)} fighters")
+            print("Existing fighters.json has NOT been overwritten.")
+            browser.close()
+            raise SystemExit(1)
 
-    try:
-        event_urls = get_upcoming_event_urls()
-        for event_url in event_urls:
-            fighter_names.update(get_fighter_names_from_event_page(event_url))
-            time.sleep(0.5)
-    except Exception as e:
-        print(f"Warning: UFCStats upcoming scrape failed: {e}")
-
-    fighter_names = sorted(fighter_names)
-
-    print(f"Found {len(fighter_names)} total booked fighter names")
-
-    matches = {}
-    fighters = []
-
-    for name in fighter_names:
-        key = normalize_name(name)
-        info = ufcstats_index.get(key)
-
-        if not info:
-            print(f"Missing UFCStats match: {name}")
-            continue
-
-        matches[name] = {
-            "name": info["name"],
-            "ufcstats_url": info["ufcstats_url"],
-        }
+        # Collect fighter names
+        fighter_names = set()
+        fighter_names.update(collect_names_from_events_json())
 
         try:
-            fighter = scrape_fighter_profile(info["name"], info["ufcstats_url"])
-            fighters.append(fighter)
+            event_urls = get_upcoming_event_urls(page)
+            for event_url in event_urls:
+                fighter_names.update(get_fighter_names_from_event_page(page, event_url))
+                time.sleep(0.5)
         except Exception as e:
-            print(f"Warning: failed fighter profile {name}: {e}")
+            print(f"Warning: UFCStats upcoming scrape failed: {e}")
 
-        time.sleep(0.5)
+        fighter_names = sorted(fighter_names)
+        print(f"Found {len(fighter_names)} total booked fighter names")
+
+        matches = {}
+        fighters = []
+
+        for name in fighter_names:
+            key = normalize_name(name)
+            info = ufcstats_index.get(key)
+
+            if not info:
+                print(f"Missing UFCStats match: {name}")
+                continue
+
+            matches[name] = {
+                "name": info["name"],
+                "ufcstats_url": info["ufcstats_url"],
+            }
+
+            try:
+                fighter = scrape_fighter_profile(page, info["name"], info["ufcstats_url"])
+                fighters.append(fighter)
+            except Exception as e:
+                print(f"Warning: failed fighter profile {name}: {e}")
+
+            time.sleep(0.5)
+
+        browser.close()
 
     if len(fighters) < MIN_SAVED_FIGHTERS:
         print(f"❌ Refusing to overwrite fighters.json with only {len(fighters)} fighters")
@@ -349,20 +318,12 @@ def main():
     print(f"Saved {len(fighters)} fighters to {FIGHTERS_OUT_PATH}")
 
     print("\nSample fighters:")
-    for fighter in fighters[:10]:
+    for fighter in fighters[:5]:
         print(
-            "-",
-            fighter["name"],
-            "| record:",
-            fighter["record"],
-            "| KO/TKO wins:",
-            fighter["methods"].get("ko_tko_w", 0),
-            "| SUB wins:",
-            fighter["methods"].get("sub_w", 0),
-            "| DEC wins:",
-            fighter["methods"].get("dec_w", 0),
-            "| recent fights:",
-            len(fighter.get("recent_fights", [])),
+            "-", fighter["name"],
+            "| record:", fighter["record"],
+            "| KO/TKO wins:", fighter["methods"].get("ko_tko_w", 0),
+            "| recent fights:", len(fighter.get("recent_fights", [])),
         )
 
 
