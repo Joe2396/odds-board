@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-fetch_williamhill_worldcup_match_stats_FAST_TEST3_CORNERS_CARDS_V5_FAST_DIRECT.py
+fetch_williamhill_worldcup_match_stats.py (V14 topmost position grid cards/corners fix)
 
-FAST TEST3 match-stats V5: direct full-ladder parse with one tab retry.
+Separate William Hill World Cup match/team stats scraper — TEST VERSION — V14 topmost position grid cards/corners fix.
 
-MAX_MATCHES = 3 while testing.
+MAX_MATCHES = 15 while testing.
 
 This targets the bottom of the Popular/default event page, especially:
   - Team Performance
@@ -31,7 +31,6 @@ Run moneylines first so fixture targets are fresh:
 
 import json
 import re
-import time
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -39,14 +38,13 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 
-OUT_PATH = ROOT / "football" / "data" / "williamhill_worldcup_match_stats_FAST_TEST3_CORNERS_CARDS_V5_FAST_DIRECT.json"
-DEBUG_DIR = ROOT / "football" / "debug" / "williamhill_worldcup_match_stats_FAST_TEST3_CORNERS_CARDS_V5_FAST_DIRECT"
+OUT_PATH = ROOT / "football" / "data" / "williamhill_worldcup_match_stats.json"
+DEBUG_DIR = ROOT / "football" / "debug" / "williamhill_worldcup_match_stats"
 MONEYLINES_PATH = ROOT / "football" / "data" / "williamhill_worldcup_moneylines.json"
-PROPS_URL_CACHE_PATH = ROOT / "football" / "data" / "williamhill_worldcup_props.json"
 
 COMPETITION_URL = "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
 
-MAX_MATCHES = 3
+MAX_MATCHES = 15
 HEADLESS = False
 
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
@@ -81,7 +79,7 @@ STAT_TARGETS = [
     (["Total Team Match Shots On Target", "Team Match Shots On Target", "Team Shots On Target", "Total Team Shots On Target"], None, "team_shots_on_target", True),
 
     (["Match Over/Under Corners", "Total Corners", "Match Corners", "Total Match Corners", "Corners Over/Under", "Total Corners Over/Under", "Match Over/Under Corner"], "Total Corners", "corners", False),
-    (["Match Over/Under Cards", "Total Cards", "Match Cards", "Total Match Cards", "Cards Over/Under", "Total Cards Over/Under", "Match Over/Under Card"], "Total Cards", "cards", False),
+    (["Match Over/Under Cards", "Total Cards", "Match Cards", "Total Match Cards", "Cards Over/Under", "Total Cards Over/Under", "Match Over/Under Card", "Total Booking Points", "Booking Points"], "Total Cards", "cards", False),
 ]
 
 ALL_STAT_HEADINGS = []
@@ -515,7 +513,7 @@ def discover_event_url_for_target(page, target):
     list_url = COMPETITION_URL
 
     page.goto(list_url, wait_until="domcontentloaded", timeout=90000)
-    page.wait_for_timeout(3600)
+    page.wait_for_timeout(5500)
     accept_cookies(page)
 
     try:
@@ -558,90 +556,15 @@ def discover_event_url_for_target(page, target):
     return ""
 
 
-
-def load_props_event_url_cache():
-    """Load exact event URLs already validated by the V23 props scraper."""
-    if not PROPS_URL_CACHE_PATH.exists():
-        return {}
-
-    try:
-        data = json.loads(PROPS_URL_CACHE_PATH.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-
-    cache = {}
-    for row in data.get("matches", []):
-        if not isinstance(row, dict):
-            continue
-
-        url = clean(row.get("url"))
-        if "/OB_EV" not in url:
-            continue
-
-        home = canonical_team(clean(row.get("home_team")))
-        away = canonical_team(clean(row.get("away_team")))
-        match = clean(row.get("match"))
-
-        if (not home or not away) and " v " in match:
-            home, away = [
-                canonical_team(clean(part))
-                for part in match.split(" v ", 1)
-            ]
-
-        if not home or not away:
-            continue
-
-        keys = {
-            normalize(f"{home} v {away}"),
-            normalize(match),
-        }
-
-        # Alias-token key handles DR Congo / Congo DR and similar display order.
-        home_tokens = tuple(sorted(normalize(home).split("_")))
-        away_tokens = tuple(sorted(normalize(away).split("_")))
-        keys.add(f"tokens:{home_tokens}:{away_tokens}")
-
-        for key in keys:
-            if key:
-                cache[key] = url.split("?", 1)[0]
-
-    return cache
-
-
-def cached_url_for_target(target, cache):
-    home = canonical_team(clean(target.get("home")))
-    away = canonical_team(clean(target.get("away")))
-    name = clean(target.get("name"))
-
-    keys = [
-        normalize(f"{home} v {away}"),
-        normalize(name),
-        f"tokens:{tuple(sorted(normalize(home).split('_')))}:"
-        f"{tuple(sorted(normalize(away).split('_')))}",
-    ]
-
-    for key in keys:
-        url = cache.get(key)
-        if url:
-            return url
-
-    return ""
-
-
-
 def get_match_links(page):
+    print(f"Opening: {COMPETITION_URL}")
+
     targets = load_moneyline_targets()
     print(f"  valid moneyline targets loaded: {len(targets)}")
 
     if not targets:
-        print(
-            "  No valid moneyline targets found. "
-            "Run fetch_williamhill_worldcup_moneylines.py first."
-        )
+        print("  No valid moneyline targets found. Run fetch_williamhill_worldcup_moneylines.py first.")
         return []
-
-    cache = load_props_event_url_cache()
-    print(f"  exact V23 event URLs cached: {len(cache)}")
 
     fixtures = []
     seen_urls = set()
@@ -650,16 +573,7 @@ def get_match_links(page):
         if len(fixtures) >= MAX_MATCHES:
             break
 
-        url = cached_url_for_target(target, cache)
-        source = "v23_props_cache"
-
-        if url:
-            print(f"  ✓ cached {target['name']}: {url}")
-        else:
-            source = "row_discovery"
-            print(f"  - no cached URL for {target['name']}; using row discovery")
-            url = discover_event_url_for_target(page, target)
-
+        url = discover_event_url_for_target(page, target)
         if not url or url in seen_urls:
             continue
 
@@ -669,10 +583,9 @@ def get_match_links(page):
             "name": target["name"],
             "home": target["home"],
             "away": target["away"],
-            "url_source": source,
         })
 
-    print(f"Found {len(fixtures)} TEST3 fixtures")
+    print(f"Found {len(fixtures)} fixtures")
     return fixtures[:MAX_MATCHES]
 
 
@@ -1685,1064 +1598,53 @@ def extract_visible_ou_grid_by_position(page, heading_candidates, market_name, p
     return mkt(market_name, final)
 
 
-
-def v16_find_first_exact_heading(page, heading_candidates):
-    """Find one real exact market heading without paying timeout costs per alias."""
-    try:
-        result = page.evaluate(
-            r"""
-            (headings) => {
-                const norm = s => (s || '')
-                    .replace(/\s+/g, ' ')
-                    .trim()
-                    .toLowerCase();
-
-                const wanted = (headings || []).map(norm);
-                const priority = new Map(
-                    wanted.map((value, index) => [value, index])
-                );
-
-                const displayed = el => {
-                    if (!el) return false;
-                    const st = getComputedStyle(el);
-                    return st.display !== 'none' &&
-                           st.visibility !== 'hidden' &&
-                           st.opacity !== '0';
-                };
-
-                const nodes = Array.from(document.querySelectorAll(
-                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
-                )).filter(displayed);
-
-                const candidates = [];
-
-                for (const el of nodes) {
-                    const raw = (el.innerText || el.textContent || '')
-                        .replace(/\s+/g, ' ')
-                        .trim();
-                    const key = norm(raw);
-
-                    if (!priority.has(key)) continue;
-                    if (!raw || raw.length > 90) continue;
-
-                    const r = el.getBoundingClientRect();
-                    if (r.width < 5 || r.height < 5) continue;
-
-                    let row = el;
-                    let bestRow = null;
-
-                    for (
-                        let depth = 0;
-                        depth < 9 && row && row !== document.body;
-                        depth++, row = row.parentElement
-                    ) {
-                        if (!displayed(row)) continue;
-
-                        const rr = row.getBoundingClientRect();
-                        const rowText = (row.innerText || row.textContent || '')
-                            .replace(/\s+/g, ' ')
-                            .trim();
-
-                        if (
-                            rr.width >= 300 &&
-                            rr.height >= 22 &&
-                            rr.height <= 150 &&
-                            rowText.length <= 320 &&
-                            norm(rowText).includes(key)
-                        ) {
-                            bestRow = row;
-                            break;
-                        }
-                    }
-
-                    const target =
-                        bestRow ||
-                        el.closest('button,[role=button]') ||
-                        el;
-                    const tr = target.getBoundingClientRect();
-
-                    candidates.push({
-                        heading: raw,
-                        priority: priority.get(key),
-                        x: tr.left + tr.width / 2,
-                        y: tr.top + tr.height / 2,
-                        top: tr.top,
-                        left: tr.left,
-                        width: tr.width,
-                        height: tr.height
-                    });
-                }
-
-                candidates.sort((a, b) =>
-                    a.priority - b.priority ||
-                    a.top - b.top ||
-                    a.left - b.left
-                );
-
-                return candidates[0] || null;
-            }
-            """,
-            heading_candidates,
-        )
-    except Exception:
-        result = None
-
-    return result
-
-
-def v16_open_exact_market(page, heading_candidates):
-    """Open only the first exact market heading actually present."""
-    candidate = v16_find_first_exact_heading(page, heading_candidates)
-    if not candidate:
-        return "", {
-            "status": "no_exact_heading",
-            "available_candidates": [],
-        }
-
-    heading = clean(candidate.get("heading"))
-    try:
-        page.evaluate(
-            r"""
-            ({heading}) => {
-                const norm = s => (s || '')
-                    .replace(/\s+/g, ' ')
-                    .trim()
-                    .toLowerCase();
-                const wanted = norm(heading);
-
-                const nodes = Array.from(document.querySelectorAll(
-                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
-                ));
-
-                const exact = nodes.filter(el =>
-                    norm(el.innerText || el.textContent || '') === wanted
-                );
-
-                exact.sort((a, b) => {
-                    const ar = a.getBoundingClientRect();
-                    const br = b.getBoundingClientRect();
-                    return (
-                        ar.width * ar.height -
-                        br.width * br.height
-                    );
-                });
-
-                if (exact.length) {
-                    exact[0].scrollIntoView({
-                        behavior: 'instant',
-                        block: 'center',
-                        inline: 'nearest'
-                    });
-                }
-            }
-            """,
-            {"heading": heading},
-        )
-        page.wait_for_timeout(250)
-    except Exception:
-        pass
-
-    # Re-query after scrolling so coordinates are current.
-    candidate = v16_find_first_exact_heading(page, [heading])
-    if not candidate:
-        return heading, {"status": "lost_after_scroll"}
-
-    try:
-        page.mouse.click(
-            float(candidate["x"]),
-            float(candidate["y"]),
-        )
-        page.wait_for_timeout(650)
-        close_login_popups(page)
-        return heading, {
-            "status": "clicked",
-            "candidate": candidate,
-        }
-    except Exception as exc:
-        return heading, {
-            "status": f"click_error:{type(exc).__name__}",
-            "error": str(exc),
-        }
-
-
-def v16_find_market_container(page, heading):
-    """Find the smallest heading ancestor containing visible O/U selections."""
-    try:
-        return page.evaluate(
-            r"""
-            (heading) => {
-                const norm = s => (s || '')
-                    .replace(/\s+/g, ' ')
-                    .trim()
-                    .toLowerCase();
-                const wanted = norm(heading);
-
-                const displayed = el => {
-                    if (!el) return false;
-                    const st = getComputedStyle(el);
-                    return st.display !== 'none' &&
-                           st.visibility !== 'hidden' &&
-                           st.opacity !== '0';
-                };
-
-                const oddsRe =
-                    /^(?:\d+\/\d+|EVS|EVENS|EVEN)$/i;
-                const ouRe =
-                    /^(?:Over|Under)\s+\d+(?:\.\d+)?(?:\s+.*)?$/i;
-
-                const headingNodes = Array.from(document.querySelectorAll(
-                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
-                )).filter(el =>
-                    displayed(el) &&
-                    norm(el.innerText || el.textContent || '') === wanted
-                );
-
-                const containers = [];
-
-                for (const headingEl of headingNodes) {
-                    let cur = headingEl.parentElement;
-
-                    for (
-                        let depth = 0;
-                        depth < 12 && cur && cur !== document.body;
-                        depth++, cur = cur.parentElement
-                    ) {
-                        if (!displayed(cur)) continue;
-
-                        const r = cur.getBoundingClientRect();
-                        if (
-                            r.width < 300 ||
-                            r.height < 70 ||
-                            r.height > 2600
-                        ) {
-                            continue;
-                        }
-
-                        const clickables = Array.from(
-                            cur.querySelectorAll(
-                                'button,[role=button],a'
-                            )
-                        ).filter(displayed);
-
-                        let outcomeButtons = 0;
-                        for (const item of clickables) {
-                            const lines = (item.innerText || item.textContent || '')
-                                .split(/\n+/)
-                                .map(x => x.replace(/\s+/g, ' ').trim())
-                                .filter(Boolean);
-
-                            if (
-                                lines.some(x => ouRe.test(x)) &&
-                                lines.some(x => oddsRe.test(x))
-                            ) {
-                                outcomeButtons++;
-                            }
-                        }
-
-                        const allText = (cur.innerText || cur.textContent || '')
-                            .split(/\n+/)
-                            .map(x => x.replace(/\s+/g, ' ').trim())
-                            .filter(Boolean);
-
-                        const ouCount =
-                            allText.filter(x => ouRe.test(x)).length;
-                        const oddsCount =
-                            allText.filter(x => oddsRe.test(x)).length;
-
-                        if (
-                            outcomeButtons >= 2 ||
-                            (ouCount >= 2 && oddsCount >= 2)
-                        ) {
-                            containers.push({
-                                depth,
-                                left: r.left,
-                                top: r.top,
-                                width: r.width,
-                                height: r.height,
-                                outcomeButtons,
-                                ouCount,
-                                oddsCount,
-                                score:
-                                    outcomeButtons * 10000 +
-                                    Math.min(ouCount, oddsCount) * 100 -
-                                    r.width * r.height * 0.00001
-                            });
-                            break;
-                        }
-                    }
-                }
-
-                containers.sort((a, b) =>
-                    b.score - a.score ||
-                    a.height - b.height ||
-                    a.width - b.width
-                );
-
-                return containers[0] || null;
-            }
-            """,
-            heading,
-        )
-    except Exception:
-        return None
-
-
-def v16_click_inner_match_scoped(page, heading):
-    """Click Match only inside the opened Corners/Cards market container."""
-    try:
-        result = page.evaluate(
-            r"""
-            (heading) => {
-                const norm = s => (s || '')
-                    .replace(/\s+/g, ' ')
-                    .trim()
-                    .toLowerCase();
-                const wanted = norm(heading);
-
-                const displayed = el => {
-                    if (!el) return false;
-                    const r = el.getBoundingClientRect();
-                    const st = getComputedStyle(el);
-                    return r.width > 4 && r.height > 4 &&
-                           st.display !== 'none' &&
-                           st.visibility !== 'hidden' &&
-                           st.opacity !== '0';
-                };
-
-                const headingNodes = Array.from(document.querySelectorAll(
-                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
-                )).filter(el =>
-                    displayed(el) &&
-                    norm(el.innerText || el.textContent || '') === wanted
-                );
-
-                const candidates = [];
-
-                for (const headingEl of headingNodes) {
-                    let cur = headingEl.parentElement;
-
-                    for (
-                        let depth = 0;
-                        depth < 12 && cur && cur !== document.body;
-                        depth++, cur = cur.parentElement
-                    ) {
-                        if (!displayed(cur)) continue;
-
-                        const r = cur.getBoundingClientRect();
-                        if (
-                            r.width < 300 ||
-                            r.height < 70 ||
-                            r.height > 2600
-                        ) {
-                            continue;
-                        }
-
-                        const tabs = Array.from(
-                            cur.querySelectorAll(
-                                'button,[role=tab],[role=button],a,div,span'
-                            )
-                        ).filter(el =>
-                            displayed(el) &&
-                            norm(el.innerText || el.textContent || '') ===
-                                'match'
-                        );
-
-                        for (const tab of tabs) {
-                            const target =
-                                tab.closest(
-                                    'button,[role=tab],[role=button],a'
-                                ) || tab;
-                            const tr = target.getBoundingClientRect();
-
-                            if (
-                                tr.width < 30 ||
-                                tr.width > 500 ||
-                                tr.height < 15 ||
-                                tr.height > 100
-                            ) {
-                                continue;
-                            }
-
-                            candidates.push({
-                                x: tr.left + tr.width / 2,
-                                y: tr.top + tr.height / 2,
-                                top: tr.top,
-                                left: tr.left,
-                                width: tr.width,
-                                height: tr.height,
-                                score:
-                                    depth * 1000 +
-                                    tr.width * tr.height
-                            });
-                        }
-                    }
-                }
-
-                candidates.sort((a, b) =>
-                    a.score - b.score ||
-                    a.top - b.top ||
-                    a.left - b.left
-                );
-                return candidates[0] || null;
-            }
-            """,
-            heading,
-        )
-    except Exception:
-        result = None
-
-    if not result:
-        return False
-
-    try:
-        page.mouse.click(float(result["x"]), float(result["y"]))
-        page.wait_for_timeout(500)
-        close_login_popups(page)
-        return True
-    except Exception:
-        return False
-
-
-def v16_extract_scoped_ou_buttons(
-    page,
-    heading,
-    market_name,
-    prop_type,
-):
-    """Read visible Over/Under and odds directly from selection buttons."""
-    min_line = min_full_match_line(prop_type)
-
-    try:
-        raw = page.evaluate(
-            r"""
-            (heading) => {
-                const norm = s => (s || '')
-                    .replace(/\s+/g, ' ')
-                    .trim()
-                    .toLowerCase();
-                const wanted = norm(heading);
-
-                const displayed = el => {
-                    if (!el) return false;
-                    const r = el.getBoundingClientRect();
-                    const st = getComputedStyle(el);
-                    return r.width > 4 && r.height > 4 &&
-                           st.display !== 'none' &&
-                           st.visibility !== 'hidden' &&
-                           st.opacity !== '0';
-                };
-
-                const oddsRe =
-                    /^(?:\d+\/\d+|EVS|EVENS|EVEN)$/i;
-                const ouRe =
-                    /^(Over|Under)\s+(\d+(?:\.\d+)?)(?:\s+.*)?$/i;
-
-                const headingNodes = Array.from(document.querySelectorAll(
-                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
-                )).filter(el =>
-                    displayed(el) &&
-                    norm(el.innerText || el.textContent || '') === wanted
-                );
-
-                let best = null;
-
-                for (const headingEl of headingNodes) {
-                    let cur = headingEl.parentElement;
-
-                    for (
-                        let depth = 0;
-                        depth < 12 && cur && cur !== document.body;
-                        depth++, cur = cur.parentElement
-                    ) {
-                        if (!displayed(cur)) continue;
-
-                        const r = cur.getBoundingClientRect();
-                        if (
-                            r.width < 300 ||
-                            r.height < 70 ||
-                            r.height > 2600
-                        ) {
-                            continue;
-                        }
-
-                        const selections = [];
-                        const clickables = Array.from(
-                            cur.querySelectorAll(
-                                'button,[role=button],a'
-                            )
-                        ).filter(displayed);
-
-                        for (const item of clickables) {
-                            const lines = (item.innerText || item.textContent || '')
-                                .split(/\n+/)
-                                .map(x => x.replace(/\s+/g, ' ').trim())
-                                .filter(Boolean);
-
-                            let label = '';
-                            let price = '';
-
-                            for (const line of lines) {
-                                if (!label && ouRe.test(line)) label = line;
-                                if (!price && oddsRe.test(line)) price = line;
-                            }
-
-                            if (!label || !price) continue;
-
-                            const match = label.match(ouRe);
-                            if (!match) continue;
-
-                            const ir = item.getBoundingClientRect();
-                            selections.push({
-                                side: match[1].toLowerCase(),
-                                line: match[2],
-                                odds: price,
-                                top: ir.top,
-                                left: ir.left,
-                                source: 'outcome_button'
-                            });
-                        }
-
-                        // Fallback: pair individual visible text nodes by row.
-                        if (!selections.length) {
-                            const nodes = Array.from(
-                                cur.querySelectorAll(
-                                    'button,[role=button],a,div,span,p'
-                                )
-                            ).filter(displayed);
-
-                            const labels = [];
-                            const prices = [];
-
-                            for (const node of nodes) {
-                                const txt = (node.innerText || node.textContent || '')
-                                    .replace(/\s+/g, ' ')
-                                    .trim();
-
-                                if (
-                                    !txt ||
-                                    txt.length > 45 ||
-                                    txt.includes('\n')
-                                ) {
-                                    continue;
-                                }
-
-                                const nr = node.getBoundingClientRect();
-                                const match = txt.match(ouRe);
-
-                                if (match) {
-                                    labels.push({
-                                        side: match[1].toLowerCase(),
-                                        line: match[2],
-                                        cx: nr.left + nr.width / 2,
-                                        cy: nr.top + nr.height / 2,
-                                        top: nr.top,
-                                        left: nr.left
-                                    });
-                                } else if (oddsRe.test(txt)) {
-                                    prices.push({
-                                        odds: txt,
-                                        cx: nr.left + nr.width / 2,
-                                        cy: nr.top + nr.height / 2,
-                                        top: nr.top,
-                                        left: nr.left
-                                    });
-                                }
-                            }
-
-                            const used = new Set();
-                            for (const label of labels) {
-                                let bestPrice = null;
-                                let bestIndex = -1;
-                                let bestScore = Infinity;
-
-                                for (
-                                    let priceIndex = 0;
-                                    priceIndex < prices.length;
-                                    priceIndex++
-                                ) {
-                                    if (used.has(priceIndex)) continue;
-
-                                    const price = prices[priceIndex];
-                                    const dx = Math.abs(price.cx - label.cx);
-                                    const dy = price.cy - label.cy;
-
-                                    // William Hill can render price on the same
-                                    // row or just underneath the label.
-                                    if (dx > 210) continue;
-                                    if (dy < -25 || dy > 110) continue;
-
-                                    const score =
-                                        dx * 0.75 +
-                                        Math.abs(dy) * 0.35;
-
-                                    if (score < bestScore) {
-                                        bestScore = score;
-                                        bestPrice = price;
-                                        bestIndex = priceIndex;
-                                    }
-                                }
-
-                                if (bestPrice) {
-                                    used.add(bestIndex);
-                                    selections.push({
-                                        side: label.side,
-                                        line: label.line,
-                                        odds: bestPrice.odds,
-                                        top: label.top,
-                                        left: label.left,
-                                        source: 'position_pair'
-                                    });
-                                }
-                            }
-                        }
-
-                        const unique = [];
-                        const seen = new Set();
-
-                        selections.sort((a, b) =>
-                            a.top - b.top || a.left - b.left
-                        );
-
-                        for (const item of selections) {
-                            const key =
-                                `${item.side}|${item.line}|${item.odds}`;
-                            if (seen.has(key)) continue;
-                            seen.add(key);
-                            unique.push(item);
-                        }
-
-                        const score =
-                            unique.length * 10000 -
-                            r.width * r.height * 0.00001;
-
-                        if (
-                            unique.length &&
-                            (!best || score > best.score)
-                        ) {
-                            best = {
-                                score,
-                                selections: unique,
-                                container: {
-                                    left: r.left,
-                                    top: r.top,
-                                    width: r.width,
-                                    height: r.height,
-                                    depth
-                                }
-                            };
-                        }
-                    }
-                }
-
-                return best || {
-                    selections: [],
-                    container: null
-                };
-            }
-            """,
-            heading,
-        ) or {"selections": [], "container": None}
-    except Exception:
-        raw = {"selections": [], "container": None}
-
-    selections = []
-    for item in raw.get("selections", []):
-        side = clean(item.get("side")).lower()
-        line = clean(item.get("line"))
-        price = clean(item.get("odds"))
-
-        if side not in {"over", "under"}:
-            continue
-        if not is_odds(price):
-            continue
-
-        try:
-            line_value = float(line)
-        except Exception:
-            continue
-
-        if min_line is not None and line_value < min_line:
-            continue
-
-        selections.append(
-            sel(
-                f"{side.title()} {line}",
-                price,
-                {
-                    "side": side,
-                    "line": line,
-                    "prop_type": prop_type,
-                    "source_parser": clean(item.get("source")),
-                },
-            )
-        )
-
-    return mkt(market_name, selections), {
-        "heading": heading,
-        "container": raw.get("container"),
-        "raw_selection_count": len(raw.get("selections", [])),
-        "kept_selection_count": len(selections),
-    }
-
-
-
-def v4_scoped_show_more_once(page, heading):
-    """Click one Show More only inside the exact opened market."""
-    try:
-        result = page.evaluate(
-            r"""
-            (heading) => {
-                const clean = s => (s || '').replace(/\s+/g, ' ').trim();
-                const norm = s => clean(s).toLowerCase();
-                const wanted = norm(heading);
-                const showLabels = new Set([
-                    'show more', 'see more', 'view more'
-                ]);
-
-                const visible = el => {
-                    if (!el) return false;
-                    const r = el.getBoundingClientRect();
-                    const st = getComputedStyle(el);
-                    return r.width > 5 && r.height > 5 &&
-                           st.display !== 'none' &&
-                           st.visibility !== 'hidden' &&
-                           st.opacity !== '0';
-                };
-
-                const headingNodes = Array.from(document.querySelectorAll(
-                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
-                )).filter(el =>
-                    visible(el) &&
-                    norm(el.innerText || el.textContent || '') === wanted
-                );
-
-                const candidates = [];
-
-                for (const headingEl of headingNodes) {
-                    let cur = headingEl.parentElement;
-
-                    for (
-                        let depth = 0;
-                        depth < 12 && cur && cur !== document.body;
-                        depth++, cur = cur.parentElement
-                    ) {
-                        if (!visible(cur)) continue;
-
-                        const r = cur.getBoundingClientRect();
-                        if (
-                            r.width < 300 ||
-                            r.height < 60 ||
-                            r.height > 2600
-                        ) {
-                            continue;
-                        }
-
-                        const controls = Array.from(cur.querySelectorAll(
-                            'button,[role=button],a,div,span'
-                        )).filter(el =>
-                            visible(el) &&
-                            showLabels.has(
-                                norm(el.innerText || el.textContent || '')
-                            )
-                        );
-
-                        for (const control of controls) {
-                            const target =
-                                control.closest(
-                                    'button,[role=button],a'
-                                ) || control;
-                            const tr = target.getBoundingClientRect();
-
-                            if (
-                                tr.width < 30 || tr.width > 650 ||
-                                tr.height < 14 || tr.height > 110
-                            ) {
-                                continue;
-                            }
-
-                            candidates.push({
-                                x: tr.left + tr.width / 2,
-                                y: tr.top + tr.height / 2,
-                                top: tr.top,
-                                left: tr.left,
-                                containerArea: r.width * r.height,
-                                depth
-                            });
-                        }
-
-                        if (controls.length) break;
-                    }
-                }
-
-                candidates.sort((a, b) =>
-                    a.containerArea - b.containerArea ||
-                    a.depth - b.depth ||
-                    a.top - b.top ||
-                    a.left - b.left
-                );
-
-                return candidates[0] || null;
-            }
-            """,
-            heading,
-        )
-    except Exception:
-        result = None
-
-    if not result:
-        return False
-
-    try:
-        page.mouse.click(float(result["x"]), float(result["y"]))
-        page.wait_for_timeout(650)
-        close_login_popups(page)
-        return True
-    except Exception:
-        return False
-
-
-def v4_expand_scoped_market(page, heading, max_clicks=5):
-    clicks = 0
-    for _ in range(max_clicks):
-        if not v4_scoped_show_more_once(page, heading):
-            break
-        clicks += 1
-    return clicks
-
-
-def v4_read_market_two_ways(page, heading, market_name, prop_type):
-    """Use the scoped DOM parser and anchored text parser; keep the fuller one."""
-    direct, direct_diag = v16_extract_scoped_ou_buttons(
-        page,
-        heading,
-        market_name,
-        prop_type,
-    )
-
-    try:
-        body_text = page.locator("body").inner_text(timeout=12000)
-    except Exception:
-        body_text = ""
-
-    text_market = parse_tab_ou_market_from_text(
-        body_text,
-        [heading],
-        market_name,
-        prop_type,
-    )
-
-    if text_market["selection_count"] > direct["selection_count"]:
-        return text_market, {
-            "chosen_source": "anchored_body_text",
-            "direct_count": direct["selection_count"],
-            "text_count": text_market["selection_count"],
-            "direct": direct_diag,
-        }
-
-    return direct, {
-        "chosen_source": "scoped_dom",
-        "direct_count": direct["selection_count"],
-        "text_count": text_market["selection_count"],
-        "direct": direct_diag,
-    }
-
-
-def v4_safe_heading_order(tab_name):
-    if normalize(tab_name) == "corners":
-        # Default Match O/U has returned only one line. Prefer the alternate
-        # total ladder first.
-        return [
-            "Total Match Corners",
-            "Total Corners Over/Under",
-            "Corners Over/Under",
-            "Match Over/Under Corners",
-            "Total Corners",
-        ]
-
-    if normalize(tab_name) == "cards":
-        # This heading already returned ten valid selections in V16.
-        return [
-            "Match Over/Under Cards",
-            "Total Match Cards",
-            "Total Cards Over/Under",
-            "Cards Over/Under",
-            "Total Cards",
-        ]
-
-    return []
-
-
 def scrape_tab_market(page, tab_name, heading_candidates, market_name, prop_type, debug_chunks):
-    """V5 fast path: one proven heading, one anchored parse, one tab retry."""
-    started = time.perf_counter()
-
-    preferred_heading = (
-        "Match Over/Under Corners"
-        if normalize(tab_name) == "corners"
-        else "Match Over/Under Cards"
-    )
-
-    # First attempt.
+    """Click a top WH tab, open target market, force inner Match tab, and parse by DOM position."""
     clicked_tab = click_tab(page, tab_name)
-
-    # William Hill occasionally hydrates a later tab slowly. Retry the same
-    # tab once rather than running all aliases or abandoning the market.
-    retried_tab = False
-    if not clicked_tab:
-        retried_tab = True
-        page.wait_for_timeout(1200)
-        try:
-            page.evaluate(
-                "window.scrollTo(0,0);"
-                "if(document.scrollingElement) "
-                "document.scrollingElement.scrollTop=0;"
-            )
-        except Exception:
-            pass
-        page.wait_for_timeout(350)
-        clicked_tab = click_tab(page, tab_name)
-
-    print(
-        f"      {'✓' if clicked_tab else '-'} {tab_name} tab"
-        + (" (retry)" if retried_tab else "")
-    )
+    print(f"      {'✓' if clicked_tab else '-'} {tab_name} tab")
 
     if not clicked_tab:
-        debug_chunks.append(
-            f"\n\n=== V5 TAB {tab_name} ABSENT ===\n"
-            + json.dumps(
-                {
-                    "preferred_heading": preferred_heading,
-                    "tab_retried": retried_tab,
-                    "elapsed_seconds": round(
-                        time.perf_counter() - started, 1
-                    ),
-                },
-                indent=2,
-            )
-        )
         return None
 
     close_login_popups(page)
 
-    opened_heading, open_diag = v16_open_exact_market(
-        page,
-        [preferred_heading],
-    )
+    for heading in heading_candidates:
+        ok = open_single_market(page, heading)
+        if not ok:
+            continue
 
-    if not opened_heading:
-        # One short hydration retry for the same exact market only.
-        page.wait_for_timeout(700)
-        opened_heading, open_diag_retry = v16_open_exact_market(
-            page,
-            [preferred_heading],
-        )
-        open_diag = {
-            "first": open_diag,
-            "retry": open_diag_retry,
-        }
+        close_login_popups(page)
 
-    if not opened_heading:
-        print(
-            f"      - exact {preferred_heading} not published"
-        )
-        debug_chunks.append(
-            f"\n\n=== V5 TAB {tab_name} / HEADING ABSENT ===\n"
-            + json.dumps(
-                {
-                    "preferred_heading": preferred_heading,
-                    "open": open_diag,
-                    "tab_retried": retried_tab,
-                    "elapsed_seconds": round(
-                        time.perf_counter() - started, 1
-                    ),
-                },
-                indent=2,
-                ensure_ascii=False,
-            )
-        )
-        return None
+        if click_inner_match_by_heading_position(page, heading_candidates):
+            print(f"        clicked inner Match tab by position for {heading}")
+        elif click_inner_match_subtab(page):
+            print(f"        clicked inner Match tab for {heading}")
 
-    print(f"      clicked exact {opened_heading}")
+        # Position-based parser first. This fixes WH two-column text-order issues
+        # where body.inner_text swaps Over/Under odds.
+        m_pos = extract_visible_ou_grid_by_position(page, heading_candidates, market_name, prop_type)
 
-    match_clicked = v16_click_inner_match_scoped(
-        page,
-        opened_heading,
-    )
-    if match_clicked:
-        print("        clicked scoped inner Match tab")
-
-    # The V4 run proved the complete ladder is already present. Read it once
-    # with the anchored text parser that returned 12-14 correct selections.
-    page.wait_for_timeout(350)
-    try:
-        body_text = page.locator("body").inner_text(timeout=10000)
-    except Exception:
-        body_text = ""
-
-    market = parse_tab_ou_market_from_text(
-        body_text,
-        [opened_heading],
-        market_name,
-        prop_type,
-    )
-
-    # Only one same-heading retry for an empty lazy-render result.
-    lazy_retry = False
-    if market["selection_count"] == 0:
-        lazy_retry = True
-        page.wait_for_timeout(700)
         try:
-            body_text_retry = page.locator("body").inner_text(
-                timeout=10000
-            )
+            text = page.locator("body").inner_text(timeout=18000)
         except Exception:
-            body_text_retry = ""
+            text = ""
 
-        retry_market = parse_tab_ou_market_from_text(
-            body_text_retry,
-            [opened_heading],
-            market_name,
-            prop_type,
-        )
-        if (
-            retry_market["selection_count"] >
-            market["selection_count"]
-        ):
-            market = retry_market
+        debug_chunks.append(f"\n\n=== TAB {tab_name} / {heading} / INNER MATCH ===\n{text}")
 
-    elapsed = round(time.perf_counter() - started, 1)
+        if m_pos["selection_count"] > 0:
+            return m_pos
 
-    print(
-        f"        parsed {market['selection_count']} selections "
-        f"in {elapsed}s"
-    )
-
-    debug_chunks.append(
-        f"\n\n=== MATCH-STATS V5 TAB {tab_name} ===\n"
-        + json.dumps(
-            {
-                "preferred_heading": preferred_heading,
-                "tab_retried": retried_tab,
-                "open": open_diag,
-                "inner_match_clicked": match_clicked,
-                "lazy_retry": lazy_retry,
-                "selection_count": market["selection_count"],
-                "elapsed_seconds": elapsed,
-            },
-            indent=2,
-            ensure_ascii=False,
-        )
-    )
-
-    if market["selection_count"] > 0:
-        return market
+        # Do not text-fallback for Cards/Corners because WH text order includes
+        # hidden/half-tab rows and causes wrong odds. Better to miss than publish bad prices.
+        if prop_type not in {"cards", "corners"}:
+            m = parse_tab_ou_market_from_text(text, heading_candidates, market_name, prop_type)
+            if m["selection_count"] > 0:
+                return m
 
     return None
 
 
 def scrape_match_stats(page, fixture):
-    match_started = time.perf_counter()
     url = fixture["url"]
     name = fixture["name"]
     home = fixture.get("home") or ""
@@ -2754,7 +1656,6 @@ def scrape_match_stats(page, fixture):
 
     print(f"  Scraping stats: {name}")
     print(f"  URL: {url}")
-    print(f"  URL source: {fixture.get('url_source', 'unknown')}")
 
     page.goto(url, wait_until="domcontentloaded", timeout=70000)
     page.wait_for_timeout(5500)
@@ -2762,7 +1663,6 @@ def scrape_match_stats(page, fixture):
     close_login_popups(page)
 
     prepare_popular_page(page)
-    navigation_ready_at = time.perf_counter()
 
     markets = []
     debug_chunks = []
@@ -2786,13 +1686,11 @@ def scrape_match_stats(page, fixture):
             if m["selection_count"] > 0:
                 markets.append(m)
 
-    match_sections_done_at = time.perf_counter()
-
     # Corners/Cards live on their own top tabs, not the lower Popular stat area.
     corners_market = scrape_tab_market(
         page,
         "Corners",
-        ["Match Over/Under Corners", "Total Match Corners", "Total Corners", "Match Corners", "Corners Over/Under", "Total Corners Over/Under"],
+        ["Match Over/Under Corners", "Total Corners", "Match Corners", "Total Match Corners", "Corners Over/Under", "Total Corners Over/Under"],
         "Total Corners",
         "corners",
         debug_chunks,
@@ -2803,15 +1701,13 @@ def scrape_match_stats(page, fixture):
     cards_market = scrape_tab_market(
         page,
         "Cards",
-        ["Match Over/Under Cards", "Total Match Cards", "Total Cards", "Match Cards", "Cards Over/Under", "Total Cards Over/Under"],
+        ["Match Over/Under Cards", "Total Cards", "Match Cards", "Total Match Cards", "Cards Over/Under", "Total Cards Over/Under", "Total Booking Points", "Booking Points"],
         "Total Cards",
         "cards",
         debug_chunks,
     )
     if cards_market and cards_market["selection_count"] > 0:
         markets.append(cards_market)
-
-    top_tabs_done_at = time.perf_counter()
 
     # Return to Popular before team sections.
     click_tab(page, "Popular")
@@ -2897,28 +1793,7 @@ def scrape_match_stats(page, fixture):
     debug_file.write_text(full_debug, encoding="utf-8")
     save_hits(debug_file, full_debug)
 
-    finished_at = time.perf_counter()
-    elapsed = round(finished_at - match_started, 1)
-    timing = {
-        "navigation_seconds": round(navigation_ready_at - match_started, 1),
-        "match_sections_seconds": round(
-            match_sections_done_at - navigation_ready_at, 1
-        ),
-        "corners_cards_seconds": round(
-            top_tabs_done_at - match_sections_done_at, 1
-        ),
-        "team_sections_seconds": round(finished_at - top_tabs_done_at, 1),
-        "total_seconds": elapsed,
-    }
-
-    print(f"  ✓ {home} v {away} — {len(unique)} stat markets in {elapsed}s")
-    print(
-        "    timing: "
-        f"nav={timing['navigation_seconds']}s | "
-        f"match={timing['match_sections_seconds']}s | "
-        f"corners/cards={timing['corners_cards_seconds']}s | "
-        f"team={timing['team_sections_seconds']}s"
-    )
+    print(f"  ✓ {home} v {away} — {len(unique)} stat markets")
     for m in unique:
         print(f"      {m['market']:<34} {m['selection_count']} selections")
 
@@ -2927,9 +1802,6 @@ def scrape_match_stats(page, fixture):
         "home_team": home,
         "away_team": away,
         "url": url,
-        "url_source": fixture.get("url_source", "unknown"),
-        "elapsed_seconds": elapsed,
-        "timing": timing,
         "market_count": len(unique),
         "markets": unique,
     }
@@ -2940,8 +1812,8 @@ def main():
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
     print("=" * 60)
-    print("William Hill Match/Team Stats — FAST TEST3 CORNERS + CARDS V5 FAST DIRECT")
-    print(f"TEST MODE: MAX_MATCHES = {MAX_MATCHES} — production untouched")
+    print("William Hill World Cup Match/Team Stats Scraper")
+    print("TEST MODE: MAX_MATCHES = 3")
     print("=" * 60)
 
     with sync_playwright() as p:
@@ -2988,11 +1860,7 @@ def main():
     print(f"\nSaved → {OUT_PATH}")
     print("\n── Summary ─────────────────────────────────────────────")
     for r in results:
-        print(
-            f"  {r['match']:<40} "
-            f"{r.get('market_count', 0)} stat markets | "
-            f"{r.get('elapsed_seconds', 0)}s"
-        )
+        print(f"  {r['match']:<40} {r.get('market_count', 0)} stat markets")
     print("─" * 60)
 
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-fetch_williamhill_worldcup_match_stats_FAST_TEST3_V17_FULL_LADDERS.py
+fetch_williamhill_worldcup_match_stats_PRODUCTION_V4.py
 
-FAST TEST3 V17: strict exact headings plus scoped alternate-line expansion.
+Production V4 based on the validated TEST3 V4 extraction.
 
-MAX_MATCHES = 3 while testing.
+MAX_MATCHES = 15 for production.
 
 This targets the bottom of the Popular/default event page, especially:
   - Team Performance
@@ -24,13 +24,14 @@ Debug:
   football/debug/williamhill_worldcup_match_stats/<match>.txt
   football/debug/williamhill_worldcup_match_stats/<match>_hits.txt
 
-Run moneylines first so fixture targets are fresh:
-  python scripts/Football/fetch_williamhill_worldcup_moneylines.py
-  python scripts/Football/fetch_williamhill_worldcup_match_stats.py (V14 topmost position grid cards/corners fix)
+Run moneylines and the production props scraper first so fixture URLs are fresh.
+Install this file as scripts/Football/fetch_williamhill_worldcup_match_stats.py.
 """
 
 import json
+import os
 import re
+import shutil
 import time
 from pathlib import Path
 from datetime import datetime, timezone
@@ -39,14 +40,25 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 
-OUT_PATH = ROOT / "football" / "data" / "williamhill_worldcup_match_stats_FAST_TEST3_V17_FULL_LADDERS.json"
-DEBUG_DIR = ROOT / "football" / "debug" / "williamhill_worldcup_match_stats_FAST_TEST3_V17_FULL_LADDERS"
+LIVE_OUT_PATH = ROOT / "football" / "data" / "williamhill_worldcup_match_stats.json"
+STAGING_OUT_PATH = ROOT / "football" / "data" / "williamhill_worldcup_match_stats_PRODUCTION_V4_STAGING.json"
+OUT_PATH = STAGING_OUT_PATH
+
+DEBUG_DIR = ROOT / "football" / "debug" / "williamhill_worldcup_match_stats_PRODUCTION_V4"
+VALIDATION_REPORT_PATH = DEBUG_DIR / "production_validation_report.json"
+BACKUP_DIR = ROOT / "football" / "data" / "backups"
+
 MONEYLINES_PATH = ROOT / "football" / "data" / "williamhill_worldcup_moneylines.json"
 PROPS_URL_CACHE_PATH = ROOT / "football" / "data" / "williamhill_worldcup_props.json"
 
+# Full page dumps created most of the old disk usage. Production writes compact
+# diagnostics on success and keeps capped detailed text only for empty fixtures.
+SAVE_FULL_DEBUG_ON_SUCCESS = False
+MAX_FAILURE_DEBUG_CHARS = 500_000
+
 COMPETITION_URL = "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
 
-MAX_MATCHES = 3
+MAX_MATCHES = 15
 HEADLESS = False
 
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
@@ -2386,216 +2398,8 @@ def v16_extract_scoped_ou_buttons(
 
 
 
-def v17_present_exact_headings(page, heading_candidates):
-    """Return unique exact whitelisted headings currently visible on the tab."""
-    try:
-        return page.evaluate(
-            r"""
-            (headings) => {
-                const clean = s => (s || '').replace(/\s+/g, ' ').trim();
-                const norm = s => clean(s).toLowerCase();
-                const wanted = new Map(
-                    (headings || []).map((value, index) => [norm(value), index])
-                );
-
-                const displayed = el => {
-                    if (!el) return false;
-                    const st = getComputedStyle(el);
-                    return st.display !== 'none' &&
-                           st.visibility !== 'hidden' &&
-                           st.opacity !== '0';
-                };
-
-                const found = [];
-
-                for (const el of document.querySelectorAll(
-                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
-                )) {
-                    if (!displayed(el)) continue;
-
-                    const raw = clean(el.innerText || el.textContent || '');
-                    const key = norm(raw);
-                    if (!wanted.has(key)) continue;
-                    if (!raw || raw.length > 90) continue;
-
-                    const r = el.getBoundingClientRect();
-                    if (r.width < 5 || r.height < 5) continue;
-
-                    found.push({
-                        heading: raw,
-                        priority: wanted.get(key),
-                        top: r.top,
-                        left: r.left,
-                        area: r.width * r.height
-                    });
-                }
-
-                found.sort((a, b) =>
-                    a.priority - b.priority ||
-                    a.top - b.top ||
-                    a.area - b.area
-                );
-
-                const unique = [];
-                const seen = new Set();
-
-                for (const item of found) {
-                    const key = norm(item.heading);
-                    if (seen.has(key)) continue;
-                    seen.add(key);
-                    unique.push(item.heading);
-                }
-
-                return unique;
-            }
-            """,
-            heading_candidates,
-        ) or []
-    except Exception:
-        return []
-
-
-def v17_click_strict_exact_heading(page, heading):
-    """Click only the compact exact heading/control, never a broad parent row."""
-    try:
-        page.evaluate(
-            r"""
-            (heading) => {
-                const clean = s => (s || '').replace(/\s+/g, ' ').trim();
-                const wanted = clean(heading).toLowerCase();
-
-                const displayed = el => {
-                    if (!el) return false;
-                    const st = getComputedStyle(el);
-                    return st.display !== 'none' &&
-                           st.visibility !== 'hidden' &&
-                           st.opacity !== '0';
-                };
-
-                const exact = Array.from(document.querySelectorAll(
-                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
-                )).filter(el =>
-                    displayed(el) &&
-                    clean(el.innerText || el.textContent || '').toLowerCase() ===
-                        wanted
-                );
-
-                exact.sort((a, b) => {
-                    const ar = a.getBoundingClientRect();
-                    const br = b.getBoundingClientRect();
-                    return ar.width * ar.height - br.width * br.height;
-                });
-
-                if (exact.length) {
-                    exact[0].scrollIntoView({
-                        behavior: 'instant',
-                        block: 'center',
-                        inline: 'nearest'
-                    });
-                }
-            }
-            """,
-            heading,
-        )
-        page.wait_for_timeout(250)
-    except Exception:
-        pass
-
-    try:
-        result = page.evaluate(
-            r"""
-            (heading) => {
-                const clean = s => (s || '').replace(/\s+/g, ' ').trim();
-                const wanted = clean(heading).toLowerCase();
-
-                const visible = el => {
-                    if (!el) return false;
-                    const r = el.getBoundingClientRect();
-                    const st = getComputedStyle(el);
-                    return r.width > 5 && r.height > 5 &&
-                           r.bottom > 0 && r.top < window.innerHeight &&
-                           st.display !== 'none' &&
-                           st.visibility !== 'hidden' &&
-                           st.opacity !== '0';
-                };
-
-                const candidates = [];
-
-                for (const el of document.querySelectorAll(
-                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
-                )) {
-                    if (!visible(el)) continue;
-
-                    const raw = clean(el.innerText || el.textContent || '');
-                    if (raw.toLowerCase() !== wanted) continue;
-
-                    // A clickable ancestor is allowed only when its entire text
-                    // is still exactly the heading. This prevents broad-row clicks.
-                    let target = el;
-                    const clickable = el.closest('button,[role=button]');
-                    if (
-                        clickable &&
-                        clean(clickable.innerText || clickable.textContent || '')
-                            .toLowerCase() === wanted
-                    ) {
-                        target = clickable;
-                    }
-
-                    const r = target.getBoundingClientRect();
-                    if (
-                        r.width < 20 || r.width > 950 ||
-                        r.height < 12 || r.height > 130
-                    ) {
-                        continue;
-                    }
-
-                    candidates.push({
-                        x: r.left + r.width / 2,
-                        y: r.top + r.height / 2,
-                        top: r.top,
-                        left: r.left,
-                        width: r.width,
-                        height: r.height,
-                        area: r.width * r.height,
-                        tag: target.tagName,
-                        role: target.getAttribute('role') || ''
-                    });
-                }
-
-                candidates.sort((a, b) =>
-                    a.area - b.area ||
-                    a.top - b.top ||
-                    a.left - b.left
-                );
-
-                return candidates[0] || null;
-            }
-            """,
-            heading,
-        )
-    except Exception:
-        result = None
-
-    if not result:
-        return False, {"status": "exact_heading_not_clickable"}
-
-    try:
-        page.mouse.click(float(result["x"]), float(result["y"]))
-        page.wait_for_timeout(650)
-        close_login_popups(page)
-        return True, {
-            "status": "clicked_strict_exact",
-            "candidate": result,
-        }
-    except Exception as exc:
-        return False, {
-            "status": f"click_error:{type(exc).__name__}",
-            "error": str(exc),
-        }
-
-
-def v17_scoped_show_more_once(page, heading):
-    """Find one Show More belonging to this exact market and click it."""
+def v4_scoped_show_more_once(page, heading):
+    """Click one Show More only inside the exact opened market."""
     try:
         result = page.evaluate(
             r"""
@@ -2612,13 +2416,12 @@ def v17_scoped_show_more_once(page, heading):
                     const r = el.getBoundingClientRect();
                     const st = getComputedStyle(el);
                     return r.width > 5 && r.height > 5 &&
-                           r.bottom > 0 && r.top < window.innerHeight &&
                            st.display !== 'none' &&
                            st.visibility !== 'hidden' &&
                            st.opacity !== '0';
                 };
 
-                const headings = Array.from(document.querySelectorAll(
+                const headingNodes = Array.from(document.querySelectorAll(
                     'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
                 )).filter(el =>
                     visible(el) &&
@@ -2627,7 +2430,7 @@ def v17_scoped_show_more_once(page, heading):
 
                 const candidates = [];
 
-                for (const headingEl of headings) {
+                for (const headingEl of headingNodes) {
                     let cur = headingEl.parentElement;
 
                     for (
@@ -2646,7 +2449,7 @@ def v17_scoped_show_more_once(page, heading):
                             continue;
                         }
 
-                        const shows = Array.from(cur.querySelectorAll(
+                        const controls = Array.from(cur.querySelectorAll(
                             'button,[role=button],a,div,span'
                         )).filter(el =>
                             visible(el) &&
@@ -2655,14 +2458,16 @@ def v17_scoped_show_more_once(page, heading):
                             )
                         );
 
-                        for (const show of shows) {
-                            let target =
-                                show.closest('button,[role=button],a') || show;
+                        for (const control of controls) {
+                            const target =
+                                control.closest(
+                                    'button,[role=button],a'
+                                ) || control;
                             const tr = target.getBoundingClientRect();
 
                             if (
-                                tr.width < 30 || tr.width > 600 ||
-                                tr.height < 14 || tr.height > 100
+                                tr.width < 30 || tr.width > 650 ||
+                                tr.height < 14 || tr.height > 110
                             ) {
                                 continue;
                             }
@@ -2672,21 +2477,20 @@ def v17_scoped_show_more_once(page, heading):
                                 y: tr.top + tr.height / 2,
                                 top: tr.top,
                                 left: tr.left,
-                                width: tr.width,
-                                height: tr.height,
                                 containerArea: r.width * r.height,
                                 depth
                             });
                         }
 
-                        if (shows.length) break;
+                        if (controls.length) break;
                     }
                 }
 
                 candidates.sort((a, b) =>
                     a.containerArea - b.containerArea ||
                     a.depth - b.depth ||
-                    a.top - b.top
+                    a.top - b.top ||
+                    a.left - b.left
                 );
 
                 return candidates[0] || null;
@@ -2709,17 +2513,17 @@ def v17_scoped_show_more_once(page, heading):
         return False
 
 
-def v17_expand_scoped_market(page, heading, max_clicks=5):
+def v4_expand_scoped_market(page, heading, max_clicks=5):
     clicks = 0
     for _ in range(max_clicks):
-        if not v17_scoped_show_more_once(page, heading):
+        if not v4_scoped_show_more_once(page, heading):
             break
         clicks += 1
     return clicks
 
 
-def v17_read_market_two_ways(page, heading, market_name, prop_type):
-    """Read direct outcome buttons and legacy body text; keep fuller result."""
+def v4_read_market_two_ways(page, heading, market_name, prop_type):
+    """Use the scoped DOM parser and anchored text parser; keep the fuller one."""
     direct, direct_diag = v16_extract_scoped_ou_buttons(
         page,
         heading,
@@ -2728,34 +2532,60 @@ def v17_read_market_two_ways(page, heading, market_name, prop_type):
     )
 
     try:
-        body = page.locator("body").inner_text(timeout=12000)
+        body_text = page.locator("body").inner_text(timeout=12000)
     except Exception:
-        body = ""
+        body_text = ""
 
     text_market = parse_tab_ou_market_from_text(
-        body,
+        body_text,
         [heading],
         market_name,
         prop_type,
     )
 
     if text_market["selection_count"] > direct["selection_count"]:
-        chosen = text_market
-        source = "body_text_fallback"
-    else:
-        chosen = direct
-        source = "scoped_outcome_buttons"
+        return text_market, {
+            "chosen_source": "anchored_body_text",
+            "direct_count": direct["selection_count"],
+            "text_count": text_market["selection_count"],
+            "direct": direct_diag,
+        }
 
-    return chosen, {
-        "chosen_source": source,
+    return direct, {
+        "chosen_source": "scoped_dom",
         "direct_count": direct["selection_count"],
         "text_count": text_market["selection_count"],
         "direct": direct_diag,
     }
 
 
+def v4_safe_heading_order(tab_name):
+    if normalize(tab_name) == "corners":
+        # Default Match O/U has returned only one line. Prefer the alternate
+        # total ladder first.
+        return [
+            "Total Match Corners",
+            "Total Corners Over/Under",
+            "Corners Over/Under",
+            "Match Over/Under Corners",
+            "Total Corners",
+        ]
+
+    if normalize(tab_name) == "cards":
+        # This heading already returned ten valid selections in V16.
+        return [
+            "Match Over/Under Cards",
+            "Total Match Cards",
+            "Total Cards Over/Under",
+            "Cards Over/Under",
+            "Total Cards",
+        ]
+
+    return []
+
+
 def scrape_tab_market(page, tab_name, heading_candidates, market_name, prop_type, debug_chunks):
-    """V17: strict exact clicks, scoped Show More, and two-way parsing."""
+    """Match-stats V4: try only safe total headings and keep the fullest ladder."""
     started = time.perf_counter()
 
     clicked_tab = click_tab(page, tab_name)
@@ -2766,91 +2596,100 @@ def scrape_tab_market(page, tab_name, heading_candidates, market_name, prop_type
 
     close_login_popups(page)
 
-    # Exclude exact-count and non-card-count markets. Only O/U/total headings.
-    safe_headings = [
-        heading
-        for heading in heading_candidates
-        if normalize(heading) not in {
+    requested = {
+        normalize(value): value
+        for value in heading_candidates
+        if normalize(value) not in {
             "match_corners",
             "match_cards",
             "total_booking_points",
             "booking_points",
         }
+    }
+
+    ordered = [
+        heading
+        for heading in v4_safe_heading_order(tab_name)
+        if normalize(heading) in requested
     ]
 
-    present = v17_present_exact_headings(page, safe_headings)
-    if not present:
-        print(f"      - no exact {tab_name} O/U heading published")
-        debug_chunks.append(
-            f"\n\n=== V17 TAB {tab_name} / NO SAFE HEADING ===\n"
-            + json.dumps(
-                {
-                    "safe_headings": safe_headings,
-                    "present": present,
-                },
-                indent=2,
-            )
-        )
-        return None
+    # Include any remaining safe supplied aliases last.
+    for heading in heading_candidates:
+        key = normalize(heading)
+        if (
+            key in requested and
+            heading not in ordered
+        ):
+            ordered.append(heading)
 
-    best_market = None
-    best_diag = None
     attempts = []
+    best_market = None
+    best_attempt = None
 
-    for heading_index, heading in enumerate(present, start=1):
-        click_ok, click_diag = v17_click_strict_exact_heading(page, heading)
-        print(
-            f"      {'clicked' if click_ok else 'missed '} "
-            f"strict exact {heading}"
+    for heading in ordered:
+        # Reset to the requested top tab before each safe alternate heading.
+        if not click_tab(page, tab_name):
+            continue
+        close_login_popups(page)
+
+        opened_heading, open_diag = v16_open_exact_market(
+            page,
+            [heading],
         )
 
-        if not click_ok:
+        if not opened_heading:
             attempts.append({
                 "heading": heading,
-                "click": click_diag,
+                "status": "not_present",
+                "open": open_diag,
             })
             continue
 
-        # Some layouts expose the full ladder only after Match is selected.
-        match_clicked = v16_click_inner_match_scoped(page, heading)
+        print(f"      clicked safe exact {opened_heading}")
+
+        match_clicked = v16_click_inner_match_scoped(
+            page,
+            opened_heading,
+        )
         if match_clicked:
             print("        clicked scoped inner Match tab")
 
-        show_more_clicks = v17_expand_scoped_market(
+        show_more_clicks = v4_expand_scoped_market(
             page,
-            heading,
+            opened_heading,
             max_clicks=5,
         )
         print(
             f"        scoped Show More clicks: {show_more_clicks}"
         )
 
-        market, read_diag = v17_read_market_two_ways(
+        market, read_diag = v4_read_market_two_ways(
             page,
-            heading,
+            opened_heading,
             market_name,
             prop_type,
         )
 
-        # A low/empty result can be a lazy-render race. Re-open the same exact
-        # market once, expand again, and re-read before trying another heading.
+        # Retry only this same safe heading once if rendering is empty/partial.
         retried = False
         if market["selection_count"] < 6:
             retried = True
-            page.wait_for_timeout(600)
-            v17_click_strict_exact_heading(page, heading)
-            page.wait_for_timeout(350)
-            v16_click_inner_match_scoped(page, heading)
-            extra_show_more = v17_expand_scoped_market(
+            page.wait_for_timeout(550)
+
+            v16_open_exact_market(page, [opened_heading])
+            page.wait_for_timeout(300)
+            v16_click_inner_match_scoped(page, opened_heading)
+
+            extra_clicks = v4_expand_scoped_market(
                 page,
-                heading,
+                opened_heading,
                 max_clicks=5,
             )
-            show_more_clicks += extra_show_more
+            show_more_clicks += extra_clicks
 
-            retry_market, retry_diag = v17_read_market_two_ways(
+            retry_market, retry_diag = v4_read_market_two_ways(
                 page,
-                heading,
+                opened_heading,
                 market_name,
                 prop_type,
             )
@@ -2862,16 +2701,16 @@ def scrape_tab_market(page, tab_name, heading_candidates, market_name, prop_type
                 market = retry_market
                 read_diag = retry_diag
 
-        attempt_diag = {
-            "heading": heading,
-            "click": click_diag,
+        attempt = {
+            "heading": opened_heading,
+            "open": open_diag,
             "inner_match_clicked": match_clicked,
             "show_more_clicks": show_more_clicks,
             "retried_low_count": retried,
             "read": read_diag,
-            "final_count": market["selection_count"],
+            "selection_count": market["selection_count"],
         }
-        attempts.append(attempt_diag)
+        attempts.append(attempt)
 
         print(
             f"        parsed {market['selection_count']} selections "
@@ -2884,23 +2723,21 @@ def scrape_tab_market(page, tab_name, heading_candidates, market_name, prop_type
             best_market["selection_count"]
         ):
             best_market = market
-            best_diag = attempt_diag
+            best_attempt = attempt
 
-        # Six or more means we have at least three full O/U lines.
-        # Stop immediately rather than opening unrelated alternative headings.
+        # A full useful ladder should contain at least three O/U lines.
         if market["selection_count"] >= 6:
             break
 
     elapsed = round(time.perf_counter() - started, 1)
 
     debug_chunks.append(
-        f"\n\n=== V17 TAB {tab_name} ===\n"
+        f"\n\n=== MATCH-STATS V4 TAB {tab_name} ===\n"
         + json.dumps(
             {
-                "safe_headings": safe_headings,
-                "present_exact_headings": present,
+                "safe_order": ordered,
                 "attempts": attempts,
-                "best": best_diag,
+                "best_attempt": best_attempt,
                 "elapsed_seconds": elapsed,
             },
             indent=2,
@@ -2910,8 +2747,8 @@ def scrape_tab_market(page, tab_name, heading_candidates, market_name, prop_type
 
     count = best_market["selection_count"] if best_market else 0
     print(
-        f"        best {tab_name} result: {count} selections "
-        f"in {elapsed}s"
+        f"        best {tab_name} result: "
+        f"{count} selections in {elapsed}s"
     )
 
     if best_market and count > 0:
@@ -2971,7 +2808,7 @@ def scrape_match_stats(page, fixture):
     corners_market = scrape_tab_market(
         page,
         "Corners",
-        ["Match Over/Under Corners", "Total Match Corners", "Total Corners", "Corners Over/Under", "Total Corners Over/Under"],
+        ["Match Over/Under Corners", "Total Match Corners", "Total Corners", "Match Corners", "Corners Over/Under", "Total Corners Over/Under"],
         "Total Corners",
         "corners",
         debug_chunks,
@@ -2982,7 +2819,7 @@ def scrape_match_stats(page, fixture):
     cards_market = scrape_tab_market(
         page,
         "Cards",
-        ["Match Over/Under Cards", "Total Match Cards", "Total Cards", "Cards Over/Under", "Total Cards Over/Under"],
+        ["Match Over/Under Cards", "Total Match Cards", "Total Cards", "Match Cards", "Cards Over/Under", "Total Cards Over/Under"],
         "Total Cards",
         "cards",
         debug_chunks,
@@ -3073,8 +2910,37 @@ def scrape_match_stats(page, fixture):
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
     debug_file = DEBUG_DIR / f"{slugify(name)}.txt"
     full_debug = "\n".join(debug_chunks)
-    debug_file.write_text(full_debug, encoding="utf-8")
-    save_hits(debug_file, full_debug)
+
+    if SAVE_FULL_DEBUG_ON_SUCCESS or not unique:
+        capped_debug = full_debug[:MAX_FAILURE_DEBUG_CHARS]
+        if len(full_debug) > MAX_FAILURE_DEBUG_CHARS:
+            capped_debug += (
+                "\n\n[DEBUG TRUNCATED — original character count: "
+                f"{len(full_debug)}]"
+            )
+        debug_file.write_text(capped_debug, encoding="utf-8")
+        save_hits(debug_file, capped_debug)
+    else:
+        compact_debug = {
+            "match": f"{home} v {away}",
+            "url": url,
+            "market_count": len(unique),
+            "markets": [
+                {
+                    "market": market.get("market"),
+                    "selection_count": market.get("selection_count", 0),
+                }
+                for market in unique
+            ],
+            "note": (
+                "Full successful page text disabled in production to prevent "
+                "debug folders consuming excessive disk space."
+            ),
+        }
+        debug_file.write_text(
+            json.dumps(compact_debug, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
 
     finished_at = time.perf_counter()
     elapsed = round(finished_at - match_started, 1)
@@ -3114,65 +2980,390 @@ def scrape_match_stats(page, fixture):
     }
 
 
-def main():
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
-    print("=" * 60)
-    print("William Hill Match/Team Stats — FAST TEST3 V17 FULL CORNERS + CARDS LADDERS")
-    print(f"TEST MODE: MAX_MATCHES = {MAX_MATCHES} — production untouched")
-    print("=" * 60)
+def market_map(result):
+    return {
+        normalize(market.get("market", "")): market
+        for market in result.get("markets", [])
+        if isinstance(market, dict)
+    }
+
+
+def validate_production_output(output):
+    """Availability-aware validation before replacing the live JSON."""
+    errors = []
+    warnings = []
+    matches = output.get("matches", [])
+
+    if output.get("match_count") != MAX_MATCHES:
+        errors.append(
+            f"Expected {MAX_MATCHES} result rows, got "
+            f"{output.get('match_count', 0)}."
+        )
+
+    if len(matches) != MAX_MATCHES:
+        errors.append(
+            f"Expected {MAX_MATCHES} matches in output, got {len(matches)}."
+        )
+
+    names = [clean(row.get("match")) for row in matches]
+    urls = [clean(row.get("url")) for row in matches]
+
+    duplicate_names = sorted({
+        value for value in names
+        if value and names.count(value) > 1
+    })
+    duplicate_urls = sorted({
+        value for value in urls
+        if value and urls.count(value) > 1
+    })
+
+    if duplicate_names:
+        errors.append(
+            "Duplicate match rows: " + ", ".join(duplicate_names)
+        )
+    if duplicate_urls:
+        errors.append(
+            "Duplicate event URLs: " + ", ".join(duplicate_urls)
+        )
+
+    error_rows = [
+        row for row in matches
+        if clean(row.get("error"))
+    ]
+    if error_rows:
+        errors.append(
+            f"{len(error_rows)} fixture(s) ended with scraper errors: "
+            + ", ".join(clean(row.get("match")) for row in error_rows)
+        )
+
+    matches_with_markets = 0
+    rich_matches = 0
+    full_corner_matches = 0
+    full_card_matches = 0
+
+    minimum_by_generic_market = {
+        "match_shots": 6,
+        "match_shots_on_target": 6,
+        "total_corners": 10,
+        "total_cards": 12,
+    }
+
+    per_match = []
+
+    for row in matches:
+        match_name = clean(row.get("match"))
+        home = clean(row.get("home_team"))
+        away = clean(row.get("away_team"))
+        markets = market_map(row)
+
+        failures = []
+        row_warnings = []
+
+        if markets:
+            matches_with_markets += 1
+
+        for key, minimum in minimum_by_generic_market.items():
+            market = markets.get(key)
+            if market and market.get("selection_count", 0) < minimum:
+                failures.append(
+                    f"{key} has {market.get('selection_count', 0)} "
+                    f"selection(s); expected at least {minimum}"
+                )
+
+        team_expected = [
+            (normalize(f"{home} Shots"), 4),
+            (normalize(f"{away} Shots"), 4),
+            (normalize(f"{home} Shots On Target"), 4),
+            (normalize(f"{away} Shots On Target"), 4),
+        ]
+
+        for key, minimum in team_expected:
+            market = markets.get(key)
+            if market and market.get("selection_count", 0) < minimum:
+                failures.append(
+                    f"{key} has {market.get('selection_count', 0)} "
+                    f"selection(s); expected at least {minimum}"
+                )
+
+        home_shots = normalize(f"{home} Shots")
+        away_shots = normalize(f"{away} Shots")
+        home_sot = normalize(f"{home} Shots On Target")
+        away_sot = normalize(f"{away} Shots On Target")
+
+        if (home_shots in markets) != (away_shots in markets):
+            failures.append(
+                "Team Shots is missing one team side."
+            )
+
+        if (home_sot in markets) != (away_sot in markets):
+            failures.append(
+                "Team Shots On Target is missing one team side."
+            )
+
+        if ("match_shots" in markets) != (
+            "match_shots_on_target" in markets
+        ):
+            row_warnings.append(
+                "Only one of Match Shots / Match Shots On Target is present."
+            )
+
+        if markets.get("total_corners", {}).get(
+            "selection_count", 0
+        ) >= 10:
+            full_corner_matches += 1
+
+        if markets.get("total_cards", {}).get(
+            "selection_count", 0
+        ) >= 12:
+            full_card_matches += 1
+
+        rich_keys = {
+            "match_shots",
+            "match_shots_on_target",
+            "total_corners",
+            "total_cards",
+            home_shots,
+            away_shots,
+            home_sot,
+            away_sot,
+        }
+        if rich_keys.issubset(markets):
+            rich_matches += 1
+
+        if failures:
+            errors.append(
+                f"{match_name}: " + "; ".join(failures)
+            )
+
+        for warning in row_warnings:
+            warnings.append(f"{match_name}: {warning}")
+
+        per_match.append({
+            "match": match_name,
+            "market_count": row.get("market_count", 0),
+            "status": "FAIL" if failures else "OK",
+            "failures": failures,
+            "warnings": row_warnings,
+            "markets": {
+                market.get("market", key): market.get(
+                    "selection_count", 0
+                )
+                for key, market in markets.items()
+            },
+        })
+
+    # Current William Hill availability has at least the first three rich
+    # fixtures. This prevents a partial/default-line regression being promoted.
+    if matches_with_markets < 3:
+        errors.append(
+            "Fewer than 3 fixtures returned any match-stat markets."
+        )
+    if rich_matches < 3:
+        errors.append(
+            f"Expected at least 3 complete eight-market fixtures; "
+            f"got {rich_matches}."
+        )
+    if full_corner_matches < 3:
+        errors.append(
+            f"Expected at least 3 full Corners ladders; "
+            f"got {full_corner_matches}."
+        )
+    if full_card_matches < 3:
+        errors.append(
+            f"Expected at least 3 full Cards ladders; "
+            f"got {full_card_matches}."
+        )
+
+    report = {
+        "status": "PASS" if not errors else "FAIL",
+        "validated_at": datetime.now(timezone.utc).isoformat(),
+        "expected_matches": MAX_MATCHES,
+        "actual_matches": len(matches),
+        "matches_with_markets": matches_with_markets,
+        "complete_eight_market_matches": rich_matches,
+        "full_corner_matches": full_corner_matches,
+        "full_card_matches": full_card_matches,
+        "errors": errors,
+        "warnings": warnings,
+        "per_match": per_match,
+    }
+    return report
+
+
+def atomic_promote_staging():
+    """Back up the current live JSON and atomically replace it."""
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+    backup_path = None
+    if LIVE_OUT_PATH.exists():
+        backup_path = (
+            BACKUP_DIR /
+            f"williamhill_worldcup_match_stats_before_prod_v4_{timestamp}.json"
+        )
+        shutil.copy2(LIVE_OUT_PATH, backup_path)
+
+    temp_live = LIVE_OUT_PATH.with_suffix(".json.tmp")
+    shutil.copy2(STAGING_OUT_PATH, temp_live)
+    os.replace(temp_live, LIVE_OUT_PATH)
+
+    return backup_path
+
+
+def main():
+    STAGING_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+
+    print("=" * 68)
+    print("William Hill Match/Team Stats — PRODUCTION V4")
+    print(
+        f"PRODUCTION: MAX_MATCHES = {MAX_MATCHES} | "
+        "staging + validation + atomic promotion"
+    )
+    print("=" * 68)
+
+    run_started = time.perf_counter()
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=HEADLESS)
-        page = browser.new_page(viewport={"width": 1700, "height": 1000})
+        page = browser.new_page(
+            viewport={"width": 1700, "height": 1000}
+        )
 
         fixtures = get_match_links(page)
 
         results = []
-        for i, fixture in enumerate(fixtures, 1):
-            print("\n" + "=" * 60)
-            print(f"[{i}/{len(fixtures)}]")
+        for index, fixture in enumerate(fixtures, 1):
+            print("\n" + "=" * 68)
+            print(f"[{index}/{len(fixtures)}]")
             try:
-                results.append(scrape_match_stats(page, fixture))
+                result = scrape_match_stats(page, fixture)
+                results.append(result)
             except KeyboardInterrupt:
+                browser.close()
                 raise
-            except Exception as e:
-                print(f"  ⚠ Error: {type(e).__name__}: {e}")
+            except Exception as exc:
+                print(
+                    f"  ⚠ Error: {type(exc).__name__}: {exc}"
+                )
                 results.append({
                     "match": fixture.get("name", ""),
                     "home_team": fixture.get("home", ""),
                     "away_team": fixture.get("away", ""),
                     "url": fixture.get("url", ""),
+                    "url_source": fixture.get(
+                        "url_source", "unknown"
+                    ),
+                    "elapsed_seconds": 0,
                     "market_count": 0,
                     "markets": [],
-                    "error": str(e),
+                    "error": (
+                        f"{type(exc).__name__}: {exc}"
+                    ),
                 })
 
         browser.close()
+
+    runtime_seconds = round(
+        time.perf_counter() - run_started,
+        1,
+    )
 
     output = {
         "sport": "football",
         "competition": "FIFA World Cup",
         "bookmaker": "WilliamHill",
+        "scraper_version": "match_stats_production_v4",
         "source_url": COMPETITION_URL,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(
+            timezone.utc
+        ).isoformat(),
+        "runtime_seconds": runtime_seconds,
         "match_count": len(results),
-        "matches_with_markets": len([r for r in results if r.get("market_count", 0) > 0]),
+        "matches_with_markets": len([
+            row for row in results
+            if row.get("market_count", 0) > 0
+        ]),
         "matches": results,
     }
 
-    OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+    STAGING_OUT_PATH.write_text(
+        json.dumps(output, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
 
-    print(f"\nSaved → {OUT_PATH}")
-    print("\n── Summary ─────────────────────────────────────────────")
-    for r in results:
+    report = validate_production_output(output)
+    VALIDATION_REPORT_PATH.write_text(
+        json.dumps(report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    print(f"\nStaging saved → {STAGING_OUT_PATH}")
+    print(
+        f"Validation report → {VALIDATION_REPORT_PATH}"
+    )
+    print(
+        f"Runtime → {runtime_seconds}s "
+        f"({round(runtime_seconds / 60, 1)} minutes)"
+    )
+
+    print("\n── Production validation ─────────────────────────────")
+    print(
+        f"  Matches:             "
+        f"{report['actual_matches']}/{report['expected_matches']}"
+    )
+    print(
+        f"  With markets:        "
+        f"{report['matches_with_markets']}"
+    )
+    print(
+        f"  Complete 8-market:   "
+        f"{report['complete_eight_market_matches']}"
+    )
+    print(
+        f"  Full Corners:        "
+        f"{report['full_corner_matches']}"
+    )
+    print(
+        f"  Full Cards:          "
+        f"{report['full_card_matches']}"
+    )
+
+    if report["warnings"]:
+        print("\nWarnings:")
+        for warning in report["warnings"]:
+            print(f"  - {warning}")
+
+    if report["status"] != "PASS":
+        print("\nVALIDATION FAIL — live JSON was NOT changed.")
+        for error in report["errors"]:
+            print(f"  - {error}")
+        raise SystemExit(1)
+
+    backup_path = atomic_promote_staging()
+
+    print("\nVALIDATION PASS")
+    if backup_path:
+        print(f"Previous live backup → {backup_path}")
+    else:
+        print("No previous live JSON existed; no backup was needed.")
+
+    print(f"Live JSON promoted → {LIVE_OUT_PATH}")
+    print(
+        "Canonical match-stats output is now the validated "
+        "Production V4 result."
+    )
+
+    print("\n── Summary ───────────────────────────────────────────")
+    for row in results:
         print(
-            f"  {r['match']:<40} "
-            f"{r.get('market_count', 0)} stat markets | "
-            f"{r.get('elapsed_seconds', 0)}s"
+            f"  {row['match']:<40} "
+            f"{row.get('market_count', 0)} stat markets | "
+            f"{row.get('elapsed_seconds', 0)}s"
         )
-    print("─" * 60)
+    print("─" * 68)
 
 
 if __name__ == "__main__":

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-fetch_williamhill_worldcup_match_stats.py (V14 topmost position grid cards/corners fix)
+fetch_williamhill_worldcup_match_stats_PRODUCTION_V4_ARB_LINES.py
 
-Separate William Hill World Cup match/team stats scraper — TEST VERSION — V14 topmost position grid cards/corners fix.
+Production V4 extraction with arb-compatible half-line normalization.
 
-MAX_MATCHES = 15 while testing.
+MAX_MATCHES = 15 for production.
 
 This targets the bottom of the Popular/default event page, especially:
   - Team Performance
@@ -24,13 +24,16 @@ Debug:
   football/debug/williamhill_worldcup_match_stats/<match>.txt
   football/debug/williamhill_worldcup_match_stats/<match>_hits.txt
 
-Run moneylines first so fixture targets are fresh:
-  python scripts/Football/fetch_williamhill_worldcup_moneylines.py
-  python scripts/Football/fetch_williamhill_worldcup_match_stats.py (V14 topmost position grid cards/corners fix)
+Run moneylines and the production props scraper first so fixture URLs are fresh.
+Install this file as scripts/Football/fetch_williamhill_worldcup_match_stats.py.
 """
 
 import json
+import os
 import re
+import sys
+import shutil
+import time
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -38,9 +41,21 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 
-OUT_PATH = ROOT / "football" / "data" / "williamhill_worldcup_match_stats.json"
-DEBUG_DIR = ROOT / "football" / "debug" / "williamhill_worldcup_match_stats"
+LIVE_OUT_PATH = ROOT / "football" / "data" / "williamhill_worldcup_match_stats.json"
+STAGING_OUT_PATH = ROOT / "football" / "data" / "williamhill_worldcup_match_stats_PRODUCTION_V4_STAGING.json"
+OUT_PATH = STAGING_OUT_PATH
+
+DEBUG_DIR = ROOT / "football" / "debug" / "williamhill_worldcup_match_stats_PRODUCTION_V4"
+VALIDATION_REPORT_PATH = DEBUG_DIR / "production_validation_report.json"
+BACKUP_DIR = ROOT / "football" / "data" / "backups"
+
 MONEYLINES_PATH = ROOT / "football" / "data" / "williamhill_worldcup_moneylines.json"
+PROPS_URL_CACHE_PATH = ROOT / "football" / "data" / "williamhill_worldcup_props.json"
+
+# Full page dumps created most of the old disk usage. Production writes compact
+# diagnostics on success and keeps capped detailed text only for empty fixtures.
+SAVE_FULL_DEBUG_ON_SUCCESS = False
+MAX_FAILURE_DEBUG_CHARS = 500_000
 
 COMPETITION_URL = "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
 
@@ -79,7 +94,7 @@ STAT_TARGETS = [
     (["Total Team Match Shots On Target", "Team Match Shots On Target", "Team Shots On Target", "Total Team Shots On Target"], None, "team_shots_on_target", True),
 
     (["Match Over/Under Corners", "Total Corners", "Match Corners", "Total Match Corners", "Corners Over/Under", "Total Corners Over/Under", "Match Over/Under Corner"], "Total Corners", "corners", False),
-    (["Match Over/Under Cards", "Total Cards", "Match Cards", "Total Match Cards", "Cards Over/Under", "Total Cards Over/Under", "Match Over/Under Card", "Total Booking Points", "Booking Points"], "Total Cards", "cards", False),
+    (["Match Over/Under Cards", "Total Cards", "Match Cards", "Total Match Cards", "Cards Over/Under", "Total Cards Over/Under", "Match Over/Under Card"], "Total Cards", "cards", False),
 ]
 
 ALL_STAT_HEADINGS = []
@@ -158,9 +173,62 @@ def sel(name, odds, extra=None):
     return obj
 
 
+
+ARB_HALF_LINE_PROP_TYPES = {
+    "match_shots",
+    "match_shots_on_target",
+    "team_shots",
+    "team_shots_on_target",
+}
+
+
+def normalize_arb_half_line_selection(selection):
+    """
+    William Hill displays over-only count ladders as:
+      Over 22, Over 23, ...
+    These mean 23+ and 24+, so the comparison/arb line is:
+      Over 22.5, Over 23.5, ...
+
+    Only the four shots/SOT count-ladder prop types are changed.
+    Corners, cards and genuine two-sided O/U markets remain untouched.
+    """
+    item = dict(selection)
+
+    prop_type = normalize(item.get("prop_type"))
+    side = clean(item.get("side")).lower()
+    raw_line = clean(item.get("line"))
+
+    if (
+        prop_type not in ARB_HALF_LINE_PROP_TYPES
+        or side != "over"
+        or not re.fullmatch(r"\d+", raw_line)
+    ):
+        return item
+
+    arb_line = f"{int(raw_line) + 0.5:g}"
+    raw_selection = clean(item.get("selection"))
+
+    item["raw_selection"] = raw_selection
+    item["raw_line"] = raw_line
+    item["line"] = arb_line
+    item["arb_line_adjusted"] = True
+    item["line_basis"] = "william_hill_integer_over_count_to_half_line"
+
+    team = clean(item.get("team"))
+    prefix = f"{team} " if team else ""
+
+    # Rebuild rather than broad string replacement so team names remain exact.
+    item["selection"] = f"{prefix}Over {arb_line}"
+    item["normalized_selection"] = normalize(item["selection"])
+
+    return item
+
+
+
 def mkt(name, selections):
     seen, out = set(), []
-    for s in selections:
+    for raw_selection in selections:
+        s = normalize_arb_half_line_selection(raw_selection)
         key = (
             s.get("selection"),
             s.get("odds"),
@@ -513,7 +581,7 @@ def discover_event_url_for_target(page, target):
     list_url = COMPETITION_URL
 
     page.goto(list_url, wait_until="domcontentloaded", timeout=90000)
-    page.wait_for_timeout(5500)
+    page.wait_for_timeout(3600)
     accept_cookies(page)
 
     try:
@@ -556,15 +624,90 @@ def discover_event_url_for_target(page, target):
     return ""
 
 
-def get_match_links(page):
-    print(f"Opening: {COMPETITION_URL}")
 
+def load_props_event_url_cache():
+    """Load exact event URLs already validated by the V23 props scraper."""
+    if not PROPS_URL_CACHE_PATH.exists():
+        return {}
+
+    try:
+        data = json.loads(PROPS_URL_CACHE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+    cache = {}
+    for row in data.get("matches", []):
+        if not isinstance(row, dict):
+            continue
+
+        url = clean(row.get("url"))
+        if "/OB_EV" not in url:
+            continue
+
+        home = canonical_team(clean(row.get("home_team")))
+        away = canonical_team(clean(row.get("away_team")))
+        match = clean(row.get("match"))
+
+        if (not home or not away) and " v " in match:
+            home, away = [
+                canonical_team(clean(part))
+                for part in match.split(" v ", 1)
+            ]
+
+        if not home or not away:
+            continue
+
+        keys = {
+            normalize(f"{home} v {away}"),
+            normalize(match),
+        }
+
+        # Alias-token key handles DR Congo / Congo DR and similar display order.
+        home_tokens = tuple(sorted(normalize(home).split("_")))
+        away_tokens = tuple(sorted(normalize(away).split("_")))
+        keys.add(f"tokens:{home_tokens}:{away_tokens}")
+
+        for key in keys:
+            if key:
+                cache[key] = url.split("?", 1)[0]
+
+    return cache
+
+
+def cached_url_for_target(target, cache):
+    home = canonical_team(clean(target.get("home")))
+    away = canonical_team(clean(target.get("away")))
+    name = clean(target.get("name"))
+
+    keys = [
+        normalize(f"{home} v {away}"),
+        normalize(name),
+        f"tokens:{tuple(sorted(normalize(home).split('_')))}:"
+        f"{tuple(sorted(normalize(away).split('_')))}",
+    ]
+
+    for key in keys:
+        url = cache.get(key)
+        if url:
+            return url
+
+    return ""
+
+
+
+def get_match_links(page):
     targets = load_moneyline_targets()
     print(f"  valid moneyline targets loaded: {len(targets)}")
 
     if not targets:
-        print("  No valid moneyline targets found. Run fetch_williamhill_worldcup_moneylines.py first.")
+        print(
+            "  No valid moneyline targets found. "
+            "Run fetch_williamhill_worldcup_moneylines.py first."
+        )
         return []
+
+    cache = load_props_event_url_cache()
+    print(f"  exact V23 event URLs cached: {len(cache)}")
 
     fixtures = []
     seen_urls = set()
@@ -573,7 +716,16 @@ def get_match_links(page):
         if len(fixtures) >= MAX_MATCHES:
             break
 
-        url = discover_event_url_for_target(page, target)
+        url = cached_url_for_target(target, cache)
+        source = "v23_props_cache"
+
+        if url:
+            print(f"  ✓ cached {target['name']}: {url}")
+        else:
+            source = "row_discovery"
+            print(f"  - no cached URL for {target['name']}; using row discovery")
+            url = discover_event_url_for_target(page, target)
+
         if not url or url in seen_urls:
             continue
 
@@ -583,9 +735,10 @@ def get_match_links(page):
             "name": target["name"],
             "home": target["home"],
             "away": target["away"],
+            "url_source": source,
         })
 
-    print(f"Found {len(fixtures)} fixtures")
+    print(f"Found {len(fixtures)} TEST3 fixtures")
     return fixtures[:MAX_MATCHES]
 
 
@@ -1598,8 +1751,897 @@ def extract_visible_ou_grid_by_position(page, heading_candidates, market_name, p
     return mkt(market_name, final)
 
 
+
+def v16_find_first_exact_heading(page, heading_candidates):
+    """Find one real exact market heading without paying timeout costs per alias."""
+    try:
+        result = page.evaluate(
+            r"""
+            (headings) => {
+                const norm = s => (s || '')
+                    .replace(/\s+/g, ' ')
+                    .trim()
+                    .toLowerCase();
+
+                const wanted = (headings || []).map(norm);
+                const priority = new Map(
+                    wanted.map((value, index) => [value, index])
+                );
+
+                const displayed = el => {
+                    if (!el) return false;
+                    const st = getComputedStyle(el);
+                    return st.display !== 'none' &&
+                           st.visibility !== 'hidden' &&
+                           st.opacity !== '0';
+                };
+
+                const nodes = Array.from(document.querySelectorAll(
+                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
+                )).filter(displayed);
+
+                const candidates = [];
+
+                for (const el of nodes) {
+                    const raw = (el.innerText || el.textContent || '')
+                        .replace(/\s+/g, ' ')
+                        .trim();
+                    const key = norm(raw);
+
+                    if (!priority.has(key)) continue;
+                    if (!raw || raw.length > 90) continue;
+
+                    const r = el.getBoundingClientRect();
+                    if (r.width < 5 || r.height < 5) continue;
+
+                    let row = el;
+                    let bestRow = null;
+
+                    for (
+                        let depth = 0;
+                        depth < 9 && row && row !== document.body;
+                        depth++, row = row.parentElement
+                    ) {
+                        if (!displayed(row)) continue;
+
+                        const rr = row.getBoundingClientRect();
+                        const rowText = (row.innerText || row.textContent || '')
+                            .replace(/\s+/g, ' ')
+                            .trim();
+
+                        if (
+                            rr.width >= 300 &&
+                            rr.height >= 22 &&
+                            rr.height <= 150 &&
+                            rowText.length <= 320 &&
+                            norm(rowText).includes(key)
+                        ) {
+                            bestRow = row;
+                            break;
+                        }
+                    }
+
+                    const target =
+                        bestRow ||
+                        el.closest('button,[role=button]') ||
+                        el;
+                    const tr = target.getBoundingClientRect();
+
+                    candidates.push({
+                        heading: raw,
+                        priority: priority.get(key),
+                        x: tr.left + tr.width / 2,
+                        y: tr.top + tr.height / 2,
+                        top: tr.top,
+                        left: tr.left,
+                        width: tr.width,
+                        height: tr.height
+                    });
+                }
+
+                candidates.sort((a, b) =>
+                    a.priority - b.priority ||
+                    a.top - b.top ||
+                    a.left - b.left
+                );
+
+                return candidates[0] || null;
+            }
+            """,
+            heading_candidates,
+        )
+    except Exception:
+        result = None
+
+    return result
+
+
+def v16_open_exact_market(page, heading_candidates):
+    """Open only the first exact market heading actually present."""
+    candidate = v16_find_first_exact_heading(page, heading_candidates)
+    if not candidate:
+        return "", {
+            "status": "no_exact_heading",
+            "available_candidates": [],
+        }
+
+    heading = clean(candidate.get("heading"))
+    try:
+        page.evaluate(
+            r"""
+            ({heading}) => {
+                const norm = s => (s || '')
+                    .replace(/\s+/g, ' ')
+                    .trim()
+                    .toLowerCase();
+                const wanted = norm(heading);
+
+                const nodes = Array.from(document.querySelectorAll(
+                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
+                ));
+
+                const exact = nodes.filter(el =>
+                    norm(el.innerText || el.textContent || '') === wanted
+                );
+
+                exact.sort((a, b) => {
+                    const ar = a.getBoundingClientRect();
+                    const br = b.getBoundingClientRect();
+                    return (
+                        ar.width * ar.height -
+                        br.width * br.height
+                    );
+                });
+
+                if (exact.length) {
+                    exact[0].scrollIntoView({
+                        behavior: 'instant',
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                }
+            }
+            """,
+            {"heading": heading},
+        )
+        page.wait_for_timeout(250)
+    except Exception:
+        pass
+
+    # Re-query after scrolling so coordinates are current.
+    candidate = v16_find_first_exact_heading(page, [heading])
+    if not candidate:
+        return heading, {"status": "lost_after_scroll"}
+
+    try:
+        page.mouse.click(
+            float(candidate["x"]),
+            float(candidate["y"]),
+        )
+        page.wait_for_timeout(650)
+        close_login_popups(page)
+        return heading, {
+            "status": "clicked",
+            "candidate": candidate,
+        }
+    except Exception as exc:
+        return heading, {
+            "status": f"click_error:{type(exc).__name__}",
+            "error": str(exc),
+        }
+
+
+def v16_find_market_container(page, heading):
+    """Find the smallest heading ancestor containing visible O/U selections."""
+    try:
+        return page.evaluate(
+            r"""
+            (heading) => {
+                const norm = s => (s || '')
+                    .replace(/\s+/g, ' ')
+                    .trim()
+                    .toLowerCase();
+                const wanted = norm(heading);
+
+                const displayed = el => {
+                    if (!el) return false;
+                    const st = getComputedStyle(el);
+                    return st.display !== 'none' &&
+                           st.visibility !== 'hidden' &&
+                           st.opacity !== '0';
+                };
+
+                const oddsRe =
+                    /^(?:\d+\/\d+|EVS|EVENS|EVEN)$/i;
+                const ouRe =
+                    /^(?:Over|Under)\s+\d+(?:\.\d+)?(?:\s+.*)?$/i;
+
+                const headingNodes = Array.from(document.querySelectorAll(
+                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
+                )).filter(el =>
+                    displayed(el) &&
+                    norm(el.innerText || el.textContent || '') === wanted
+                );
+
+                const containers = [];
+
+                for (const headingEl of headingNodes) {
+                    let cur = headingEl.parentElement;
+
+                    for (
+                        let depth = 0;
+                        depth < 12 && cur && cur !== document.body;
+                        depth++, cur = cur.parentElement
+                    ) {
+                        if (!displayed(cur)) continue;
+
+                        const r = cur.getBoundingClientRect();
+                        if (
+                            r.width < 300 ||
+                            r.height < 70 ||
+                            r.height > 2600
+                        ) {
+                            continue;
+                        }
+
+                        const clickables = Array.from(
+                            cur.querySelectorAll(
+                                'button,[role=button],a'
+                            )
+                        ).filter(displayed);
+
+                        let outcomeButtons = 0;
+                        for (const item of clickables) {
+                            const lines = (item.innerText || item.textContent || '')
+                                .split(/\n+/)
+                                .map(x => x.replace(/\s+/g, ' ').trim())
+                                .filter(Boolean);
+
+                            if (
+                                lines.some(x => ouRe.test(x)) &&
+                                lines.some(x => oddsRe.test(x))
+                            ) {
+                                outcomeButtons++;
+                            }
+                        }
+
+                        const allText = (cur.innerText || cur.textContent || '')
+                            .split(/\n+/)
+                            .map(x => x.replace(/\s+/g, ' ').trim())
+                            .filter(Boolean);
+
+                        const ouCount =
+                            allText.filter(x => ouRe.test(x)).length;
+                        const oddsCount =
+                            allText.filter(x => oddsRe.test(x)).length;
+
+                        if (
+                            outcomeButtons >= 2 ||
+                            (ouCount >= 2 && oddsCount >= 2)
+                        ) {
+                            containers.push({
+                                depth,
+                                left: r.left,
+                                top: r.top,
+                                width: r.width,
+                                height: r.height,
+                                outcomeButtons,
+                                ouCount,
+                                oddsCount,
+                                score:
+                                    outcomeButtons * 10000 +
+                                    Math.min(ouCount, oddsCount) * 100 -
+                                    r.width * r.height * 0.00001
+                            });
+                            break;
+                        }
+                    }
+                }
+
+                containers.sort((a, b) =>
+                    b.score - a.score ||
+                    a.height - b.height ||
+                    a.width - b.width
+                );
+
+                return containers[0] || null;
+            }
+            """,
+            heading,
+        )
+    except Exception:
+        return None
+
+
+def v16_click_inner_match_scoped(page, heading):
+    """Click Match only inside the opened Corners/Cards market container."""
+    try:
+        result = page.evaluate(
+            r"""
+            (heading) => {
+                const norm = s => (s || '')
+                    .replace(/\s+/g, ' ')
+                    .trim()
+                    .toLowerCase();
+                const wanted = norm(heading);
+
+                const displayed = el => {
+                    if (!el) return false;
+                    const r = el.getBoundingClientRect();
+                    const st = getComputedStyle(el);
+                    return r.width > 4 && r.height > 4 &&
+                           st.display !== 'none' &&
+                           st.visibility !== 'hidden' &&
+                           st.opacity !== '0';
+                };
+
+                const headingNodes = Array.from(document.querySelectorAll(
+                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
+                )).filter(el =>
+                    displayed(el) &&
+                    norm(el.innerText || el.textContent || '') === wanted
+                );
+
+                const candidates = [];
+
+                for (const headingEl of headingNodes) {
+                    let cur = headingEl.parentElement;
+
+                    for (
+                        let depth = 0;
+                        depth < 12 && cur && cur !== document.body;
+                        depth++, cur = cur.parentElement
+                    ) {
+                        if (!displayed(cur)) continue;
+
+                        const r = cur.getBoundingClientRect();
+                        if (
+                            r.width < 300 ||
+                            r.height < 70 ||
+                            r.height > 2600
+                        ) {
+                            continue;
+                        }
+
+                        const tabs = Array.from(
+                            cur.querySelectorAll(
+                                'button,[role=tab],[role=button],a,div,span'
+                            )
+                        ).filter(el =>
+                            displayed(el) &&
+                            norm(el.innerText || el.textContent || '') ===
+                                'match'
+                        );
+
+                        for (const tab of tabs) {
+                            const target =
+                                tab.closest(
+                                    'button,[role=tab],[role=button],a'
+                                ) || tab;
+                            const tr = target.getBoundingClientRect();
+
+                            if (
+                                tr.width < 30 ||
+                                tr.width > 500 ||
+                                tr.height < 15 ||
+                                tr.height > 100
+                            ) {
+                                continue;
+                            }
+
+                            candidates.push({
+                                x: tr.left + tr.width / 2,
+                                y: tr.top + tr.height / 2,
+                                top: tr.top,
+                                left: tr.left,
+                                width: tr.width,
+                                height: tr.height,
+                                score:
+                                    depth * 1000 +
+                                    tr.width * tr.height
+                            });
+                        }
+                    }
+                }
+
+                candidates.sort((a, b) =>
+                    a.score - b.score ||
+                    a.top - b.top ||
+                    a.left - b.left
+                );
+                return candidates[0] || null;
+            }
+            """,
+            heading,
+        )
+    except Exception:
+        result = None
+
+    if not result:
+        return False
+
+    try:
+        page.mouse.click(float(result["x"]), float(result["y"]))
+        page.wait_for_timeout(500)
+        close_login_popups(page)
+        return True
+    except Exception:
+        return False
+
+
+def v16_extract_scoped_ou_buttons(
+    page,
+    heading,
+    market_name,
+    prop_type,
+):
+    """Read visible Over/Under and odds directly from selection buttons."""
+    min_line = min_full_match_line(prop_type)
+
+    try:
+        raw = page.evaluate(
+            r"""
+            (heading) => {
+                const norm = s => (s || '')
+                    .replace(/\s+/g, ' ')
+                    .trim()
+                    .toLowerCase();
+                const wanted = norm(heading);
+
+                const displayed = el => {
+                    if (!el) return false;
+                    const r = el.getBoundingClientRect();
+                    const st = getComputedStyle(el);
+                    return r.width > 4 && r.height > 4 &&
+                           st.display !== 'none' &&
+                           st.visibility !== 'hidden' &&
+                           st.opacity !== '0';
+                };
+
+                const oddsRe =
+                    /^(?:\d+\/\d+|EVS|EVENS|EVEN)$/i;
+                const ouRe =
+                    /^(Over|Under)\s+(\d+(?:\.\d+)?)(?:\s+.*)?$/i;
+
+                const headingNodes = Array.from(document.querySelectorAll(
+                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
+                )).filter(el =>
+                    displayed(el) &&
+                    norm(el.innerText || el.textContent || '') === wanted
+                );
+
+                let best = null;
+
+                for (const headingEl of headingNodes) {
+                    let cur = headingEl.parentElement;
+
+                    for (
+                        let depth = 0;
+                        depth < 12 && cur && cur !== document.body;
+                        depth++, cur = cur.parentElement
+                    ) {
+                        if (!displayed(cur)) continue;
+
+                        const r = cur.getBoundingClientRect();
+                        if (
+                            r.width < 300 ||
+                            r.height < 70 ||
+                            r.height > 2600
+                        ) {
+                            continue;
+                        }
+
+                        const selections = [];
+                        const clickables = Array.from(
+                            cur.querySelectorAll(
+                                'button,[role=button],a'
+                            )
+                        ).filter(displayed);
+
+                        for (const item of clickables) {
+                            const lines = (item.innerText || item.textContent || '')
+                                .split(/\n+/)
+                                .map(x => x.replace(/\s+/g, ' ').trim())
+                                .filter(Boolean);
+
+                            let label = '';
+                            let price = '';
+
+                            for (const line of lines) {
+                                if (!label && ouRe.test(line)) label = line;
+                                if (!price && oddsRe.test(line)) price = line;
+                            }
+
+                            if (!label || !price) continue;
+
+                            const match = label.match(ouRe);
+                            if (!match) continue;
+
+                            const ir = item.getBoundingClientRect();
+                            selections.push({
+                                side: match[1].toLowerCase(),
+                                line: match[2],
+                                odds: price,
+                                top: ir.top,
+                                left: ir.left,
+                                source: 'outcome_button'
+                            });
+                        }
+
+                        // Fallback: pair individual visible text nodes by row.
+                        if (!selections.length) {
+                            const nodes = Array.from(
+                                cur.querySelectorAll(
+                                    'button,[role=button],a,div,span,p'
+                                )
+                            ).filter(displayed);
+
+                            const labels = [];
+                            const prices = [];
+
+                            for (const node of nodes) {
+                                const txt = (node.innerText || node.textContent || '')
+                                    .replace(/\s+/g, ' ')
+                                    .trim();
+
+                                if (
+                                    !txt ||
+                                    txt.length > 45 ||
+                                    txt.includes('\n')
+                                ) {
+                                    continue;
+                                }
+
+                                const nr = node.getBoundingClientRect();
+                                const match = txt.match(ouRe);
+
+                                if (match) {
+                                    labels.push({
+                                        side: match[1].toLowerCase(),
+                                        line: match[2],
+                                        cx: nr.left + nr.width / 2,
+                                        cy: nr.top + nr.height / 2,
+                                        top: nr.top,
+                                        left: nr.left
+                                    });
+                                } else if (oddsRe.test(txt)) {
+                                    prices.push({
+                                        odds: txt,
+                                        cx: nr.left + nr.width / 2,
+                                        cy: nr.top + nr.height / 2,
+                                        top: nr.top,
+                                        left: nr.left
+                                    });
+                                }
+                            }
+
+                            const used = new Set();
+                            for (const label of labels) {
+                                let bestPrice = null;
+                                let bestIndex = -1;
+                                let bestScore = Infinity;
+
+                                for (
+                                    let priceIndex = 0;
+                                    priceIndex < prices.length;
+                                    priceIndex++
+                                ) {
+                                    if (used.has(priceIndex)) continue;
+
+                                    const price = prices[priceIndex];
+                                    const dx = Math.abs(price.cx - label.cx);
+                                    const dy = price.cy - label.cy;
+
+                                    // William Hill can render price on the same
+                                    // row or just underneath the label.
+                                    if (dx > 210) continue;
+                                    if (dy < -25 || dy > 110) continue;
+
+                                    const score =
+                                        dx * 0.75 +
+                                        Math.abs(dy) * 0.35;
+
+                                    if (score < bestScore) {
+                                        bestScore = score;
+                                        bestPrice = price;
+                                        bestIndex = priceIndex;
+                                    }
+                                }
+
+                                if (bestPrice) {
+                                    used.add(bestIndex);
+                                    selections.push({
+                                        side: label.side,
+                                        line: label.line,
+                                        odds: bestPrice.odds,
+                                        top: label.top,
+                                        left: label.left,
+                                        source: 'position_pair'
+                                    });
+                                }
+                            }
+                        }
+
+                        const unique = [];
+                        const seen = new Set();
+
+                        selections.sort((a, b) =>
+                            a.top - b.top || a.left - b.left
+                        );
+
+                        for (const item of selections) {
+                            const key =
+                                `${item.side}|${item.line}|${item.odds}`;
+                            if (seen.has(key)) continue;
+                            seen.add(key);
+                            unique.push(item);
+                        }
+
+                        const score =
+                            unique.length * 10000 -
+                            r.width * r.height * 0.00001;
+
+                        if (
+                            unique.length &&
+                            (!best || score > best.score)
+                        ) {
+                            best = {
+                                score,
+                                selections: unique,
+                                container: {
+                                    left: r.left,
+                                    top: r.top,
+                                    width: r.width,
+                                    height: r.height,
+                                    depth
+                                }
+                            };
+                        }
+                    }
+                }
+
+                return best || {
+                    selections: [],
+                    container: null
+                };
+            }
+            """,
+            heading,
+        ) or {"selections": [], "container": None}
+    except Exception:
+        raw = {"selections": [], "container": None}
+
+    selections = []
+    for item in raw.get("selections", []):
+        side = clean(item.get("side")).lower()
+        line = clean(item.get("line"))
+        price = clean(item.get("odds"))
+
+        if side not in {"over", "under"}:
+            continue
+        if not is_odds(price):
+            continue
+
+        try:
+            line_value = float(line)
+        except Exception:
+            continue
+
+        if min_line is not None and line_value < min_line:
+            continue
+
+        selections.append(
+            sel(
+                f"{side.title()} {line}",
+                price,
+                {
+                    "side": side,
+                    "line": line,
+                    "prop_type": prop_type,
+                    "source_parser": clean(item.get("source")),
+                },
+            )
+        )
+
+    return mkt(market_name, selections), {
+        "heading": heading,
+        "container": raw.get("container"),
+        "raw_selection_count": len(raw.get("selections", [])),
+        "kept_selection_count": len(selections),
+    }
+
+
+
+def v4_scoped_show_more_once(page, heading):
+    """Click one Show More only inside the exact opened market."""
+    try:
+        result = page.evaluate(
+            r"""
+            (heading) => {
+                const clean = s => (s || '').replace(/\s+/g, ' ').trim();
+                const norm = s => clean(s).toLowerCase();
+                const wanted = norm(heading);
+                const showLabels = new Set([
+                    'show more', 'see more', 'view more'
+                ]);
+
+                const visible = el => {
+                    if (!el) return false;
+                    const r = el.getBoundingClientRect();
+                    const st = getComputedStyle(el);
+                    return r.width > 5 && r.height > 5 &&
+                           st.display !== 'none' &&
+                           st.visibility !== 'hidden' &&
+                           st.opacity !== '0';
+                };
+
+                const headingNodes = Array.from(document.querySelectorAll(
+                    'button,[role=button],h1,h2,h3,h4,h5,div,span,p'
+                )).filter(el =>
+                    visible(el) &&
+                    norm(el.innerText || el.textContent || '') === wanted
+                );
+
+                const candidates = [];
+
+                for (const headingEl of headingNodes) {
+                    let cur = headingEl.parentElement;
+
+                    for (
+                        let depth = 0;
+                        depth < 12 && cur && cur !== document.body;
+                        depth++, cur = cur.parentElement
+                    ) {
+                        if (!visible(cur)) continue;
+
+                        const r = cur.getBoundingClientRect();
+                        if (
+                            r.width < 300 ||
+                            r.height < 60 ||
+                            r.height > 2600
+                        ) {
+                            continue;
+                        }
+
+                        const controls = Array.from(cur.querySelectorAll(
+                            'button,[role=button],a,div,span'
+                        )).filter(el =>
+                            visible(el) &&
+                            showLabels.has(
+                                norm(el.innerText || el.textContent || '')
+                            )
+                        );
+
+                        for (const control of controls) {
+                            const target =
+                                control.closest(
+                                    'button,[role=button],a'
+                                ) || control;
+                            const tr = target.getBoundingClientRect();
+
+                            if (
+                                tr.width < 30 || tr.width > 650 ||
+                                tr.height < 14 || tr.height > 110
+                            ) {
+                                continue;
+                            }
+
+                            candidates.push({
+                                x: tr.left + tr.width / 2,
+                                y: tr.top + tr.height / 2,
+                                top: tr.top,
+                                left: tr.left,
+                                containerArea: r.width * r.height,
+                                depth
+                            });
+                        }
+
+                        if (controls.length) break;
+                    }
+                }
+
+                candidates.sort((a, b) =>
+                    a.containerArea - b.containerArea ||
+                    a.depth - b.depth ||
+                    a.top - b.top ||
+                    a.left - b.left
+                );
+
+                return candidates[0] || null;
+            }
+            """,
+            heading,
+        )
+    except Exception:
+        result = None
+
+    if not result:
+        return False
+
+    try:
+        page.mouse.click(float(result["x"]), float(result["y"]))
+        page.wait_for_timeout(650)
+        close_login_popups(page)
+        return True
+    except Exception:
+        return False
+
+
+def v4_expand_scoped_market(page, heading, max_clicks=5):
+    clicks = 0
+    for _ in range(max_clicks):
+        if not v4_scoped_show_more_once(page, heading):
+            break
+        clicks += 1
+    return clicks
+
+
+def v4_read_market_two_ways(page, heading, market_name, prop_type):
+    """Use the scoped DOM parser and anchored text parser; keep the fuller one."""
+    direct, direct_diag = v16_extract_scoped_ou_buttons(
+        page,
+        heading,
+        market_name,
+        prop_type,
+    )
+
+    try:
+        body_text = page.locator("body").inner_text(timeout=12000)
+    except Exception:
+        body_text = ""
+
+    text_market = parse_tab_ou_market_from_text(
+        body_text,
+        [heading],
+        market_name,
+        prop_type,
+    )
+
+    if text_market["selection_count"] > direct["selection_count"]:
+        return text_market, {
+            "chosen_source": "anchored_body_text",
+            "direct_count": direct["selection_count"],
+            "text_count": text_market["selection_count"],
+            "direct": direct_diag,
+        }
+
+    return direct, {
+        "chosen_source": "scoped_dom",
+        "direct_count": direct["selection_count"],
+        "text_count": text_market["selection_count"],
+        "direct": direct_diag,
+    }
+
+
+def v4_safe_heading_order(tab_name):
+    if normalize(tab_name) == "corners":
+        # Default Match O/U has returned only one line. Prefer the alternate
+        # total ladder first.
+        return [
+            "Total Match Corners",
+            "Total Corners Over/Under",
+            "Corners Over/Under",
+            "Match Over/Under Corners",
+            "Total Corners",
+        ]
+
+    if normalize(tab_name) == "cards":
+        # This heading already returned ten valid selections in V16.
+        return [
+            "Match Over/Under Cards",
+            "Total Match Cards",
+            "Total Cards Over/Under",
+            "Cards Over/Under",
+            "Total Cards",
+        ]
+
+    return []
+
+
 def scrape_tab_market(page, tab_name, heading_candidates, market_name, prop_type, debug_chunks):
-    """Click a top WH tab, open target market, force inner Match tab, and parse by DOM position."""
+    """Match-stats V4: try only safe total headings and keep the fullest ladder."""
+    started = time.perf_counter()
+
     clicked_tab = click_tab(page, tab_name)
     print(f"      {'✓' if clicked_tab else '-'} {tab_name} tab")
 
@@ -1608,43 +2650,169 @@ def scrape_tab_market(page, tab_name, heading_candidates, market_name, prop_type
 
     close_login_popups(page)
 
-    for heading in heading_candidates:
-        ok = open_single_market(page, heading)
-        if not ok:
-            continue
+    requested = {
+        normalize(value): value
+        for value in heading_candidates
+        if normalize(value) not in {
+            "match_corners",
+            "match_cards",
+            "total_booking_points",
+            "booking_points",
+        }
+    }
 
+    ordered = [
+        heading
+        for heading in v4_safe_heading_order(tab_name)
+        if normalize(heading) in requested
+    ]
+
+    # Include any remaining safe supplied aliases last.
+    for heading in heading_candidates:
+        key = normalize(heading)
+        if (
+            key in requested and
+            heading not in ordered
+        ):
+            ordered.append(heading)
+
+    attempts = []
+    best_market = None
+    best_attempt = None
+
+    for heading in ordered:
+        # Reset to the requested top tab before each safe alternate heading.
+        if not click_tab(page, tab_name):
+            continue
         close_login_popups(page)
 
-        if click_inner_match_by_heading_position(page, heading_candidates):
-            print(f"        clicked inner Match tab by position for {heading}")
-        elif click_inner_match_subtab(page):
-            print(f"        clicked inner Match tab for {heading}")
+        opened_heading, open_diag = v16_open_exact_market(
+            page,
+            [heading],
+        )
 
-        # Position-based parser first. This fixes WH two-column text-order issues
-        # where body.inner_text swaps Over/Under odds.
-        m_pos = extract_visible_ou_grid_by_position(page, heading_candidates, market_name, prop_type)
+        if not opened_heading:
+            attempts.append({
+                "heading": heading,
+                "status": "not_present",
+                "open": open_diag,
+            })
+            continue
 
-        try:
-            text = page.locator("body").inner_text(timeout=18000)
-        except Exception:
-            text = ""
+        print(f"      clicked safe exact {opened_heading}")
 
-        debug_chunks.append(f"\n\n=== TAB {tab_name} / {heading} / INNER MATCH ===\n{text}")
+        match_clicked = v16_click_inner_match_scoped(
+            page,
+            opened_heading,
+        )
+        if match_clicked:
+            print("        clicked scoped inner Match tab")
 
-        if m_pos["selection_count"] > 0:
-            return m_pos
+        show_more_clicks = v4_expand_scoped_market(
+            page,
+            opened_heading,
+            max_clicks=5,
+        )
+        print(
+            f"        scoped Show More clicks: {show_more_clicks}"
+        )
 
-        # Do not text-fallback for Cards/Corners because WH text order includes
-        # hidden/half-tab rows and causes wrong odds. Better to miss than publish bad prices.
-        if prop_type not in {"cards", "corners"}:
-            m = parse_tab_ou_market_from_text(text, heading_candidates, market_name, prop_type)
-            if m["selection_count"] > 0:
-                return m
+        market, read_diag = v4_read_market_two_ways(
+            page,
+            opened_heading,
+            market_name,
+            prop_type,
+        )
+
+        # Retry only this same safe heading once if rendering is empty/partial.
+        retried = False
+        if market["selection_count"] < 6:
+            retried = True
+            page.wait_for_timeout(550)
+
+            v16_open_exact_market(page, [opened_heading])
+            page.wait_for_timeout(300)
+            v16_click_inner_match_scoped(page, opened_heading)
+
+            extra_clicks = v4_expand_scoped_market(
+                page,
+                opened_heading,
+                max_clicks=5,
+            )
+            show_more_clicks += extra_clicks
+
+            retry_market, retry_diag = v4_read_market_two_ways(
+                page,
+                opened_heading,
+                market_name,
+                prop_type,
+            )
+
+            if (
+                retry_market["selection_count"] >
+                market["selection_count"]
+            ):
+                market = retry_market
+                read_diag = retry_diag
+
+        attempt = {
+            "heading": opened_heading,
+            "open": open_diag,
+            "inner_match_clicked": match_clicked,
+            "show_more_clicks": show_more_clicks,
+            "retried_low_count": retried,
+            "read": read_diag,
+            "selection_count": market["selection_count"],
+        }
+        attempts.append(attempt)
+
+        print(
+            f"        parsed {market['selection_count']} selections "
+            f"via {read_diag.get('chosen_source')}"
+        )
+
+        if (
+            best_market is None or
+            market["selection_count"] >
+            best_market["selection_count"]
+        ):
+            best_market = market
+            best_attempt = attempt
+
+        # A full useful ladder should contain at least three O/U lines.
+        if market["selection_count"] >= 6:
+            break
+
+    elapsed = round(time.perf_counter() - started, 1)
+
+    debug_chunks.append(
+        f"\n\n=== MATCH-STATS V4 TAB {tab_name} ===\n"
+        + json.dumps(
+            {
+                "safe_order": ordered,
+                "attempts": attempts,
+                "best_attempt": best_attempt,
+                "elapsed_seconds": elapsed,
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+    )
+
+    count = best_market["selection_count"] if best_market else 0
+    print(
+        f"        best {tab_name} result: "
+        f"{count} selections in {elapsed}s"
+    )
+
+    if best_market and count > 0:
+        return best_market
 
     return None
 
 
 def scrape_match_stats(page, fixture):
+    match_started = time.perf_counter()
     url = fixture["url"]
     name = fixture["name"]
     home = fixture.get("home") or ""
@@ -1656,6 +2824,7 @@ def scrape_match_stats(page, fixture):
 
     print(f"  Scraping stats: {name}")
     print(f"  URL: {url}")
+    print(f"  URL source: {fixture.get('url_source', 'unknown')}")
 
     page.goto(url, wait_until="domcontentloaded", timeout=70000)
     page.wait_for_timeout(5500)
@@ -1663,6 +2832,7 @@ def scrape_match_stats(page, fixture):
     close_login_popups(page)
 
     prepare_popular_page(page)
+    navigation_ready_at = time.perf_counter()
 
     markets = []
     debug_chunks = []
@@ -1686,11 +2856,13 @@ def scrape_match_stats(page, fixture):
             if m["selection_count"] > 0:
                 markets.append(m)
 
+    match_sections_done_at = time.perf_counter()
+
     # Corners/Cards live on their own top tabs, not the lower Popular stat area.
     corners_market = scrape_tab_market(
         page,
         "Corners",
-        ["Match Over/Under Corners", "Total Corners", "Match Corners", "Total Match Corners", "Corners Over/Under", "Total Corners Over/Under"],
+        ["Match Over/Under Corners", "Total Match Corners", "Total Corners", "Match Corners", "Corners Over/Under", "Total Corners Over/Under"],
         "Total Corners",
         "corners",
         debug_chunks,
@@ -1701,13 +2873,15 @@ def scrape_match_stats(page, fixture):
     cards_market = scrape_tab_market(
         page,
         "Cards",
-        ["Match Over/Under Cards", "Total Cards", "Match Cards", "Total Match Cards", "Cards Over/Under", "Total Cards Over/Under", "Total Booking Points", "Booking Points"],
+        ["Match Over/Under Cards", "Total Match Cards", "Total Cards", "Match Cards", "Cards Over/Under", "Total Cards Over/Under"],
         "Total Cards",
         "cards",
         debug_chunks,
     )
     if cards_market and cards_market["selection_count"] > 0:
         markets.append(cards_market)
+
+    top_tabs_done_at = time.perf_counter()
 
     # Return to Popular before team sections.
     click_tab(page, "Popular")
@@ -1790,10 +2964,60 @@ def scrape_match_stats(page, fixture):
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
     debug_file = DEBUG_DIR / f"{slugify(name)}.txt"
     full_debug = "\n".join(debug_chunks)
-    debug_file.write_text(full_debug, encoding="utf-8")
-    save_hits(debug_file, full_debug)
 
-    print(f"  ✓ {home} v {away} — {len(unique)} stat markets")
+    if SAVE_FULL_DEBUG_ON_SUCCESS or not unique:
+        capped_debug = full_debug[:MAX_FAILURE_DEBUG_CHARS]
+        if len(full_debug) > MAX_FAILURE_DEBUG_CHARS:
+            capped_debug += (
+                "\n\n[DEBUG TRUNCATED — original character count: "
+                f"{len(full_debug)}]"
+            )
+        debug_file.write_text(capped_debug, encoding="utf-8")
+        save_hits(debug_file, capped_debug)
+    else:
+        compact_debug = {
+            "match": f"{home} v {away}",
+            "url": url,
+            "market_count": len(unique),
+            "markets": [
+                {
+                    "market": market.get("market"),
+                    "selection_count": market.get("selection_count", 0),
+                }
+                for market in unique
+            ],
+            "note": (
+                "Full successful page text disabled in production to prevent "
+                "debug folders consuming excessive disk space."
+            ),
+        }
+        debug_file.write_text(
+            json.dumps(compact_debug, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+
+    finished_at = time.perf_counter()
+    elapsed = round(finished_at - match_started, 1)
+    timing = {
+        "navigation_seconds": round(navigation_ready_at - match_started, 1),
+        "match_sections_seconds": round(
+            match_sections_done_at - navigation_ready_at, 1
+        ),
+        "corners_cards_seconds": round(
+            top_tabs_done_at - match_sections_done_at, 1
+        ),
+        "team_sections_seconds": round(finished_at - top_tabs_done_at, 1),
+        "total_seconds": elapsed,
+    }
+
+    print(f"  ✓ {home} v {away} — {len(unique)} stat markets in {elapsed}s")
+    print(
+        "    timing: "
+        f"nav={timing['navigation_seconds']}s | "
+        f"match={timing['match_sections_seconds']}s | "
+        f"corners/cards={timing['corners_cards_seconds']}s | "
+        f"team={timing['team_sections_seconds']}s"
+    )
     for m in unique:
         print(f"      {m['market']:<34} {m['selection_count']} selections")
 
@@ -1802,67 +3026,541 @@ def scrape_match_stats(page, fixture):
         "home_team": home,
         "away_team": away,
         "url": url,
+        "url_source": fixture.get("url_source", "unknown"),
+        "elapsed_seconds": elapsed,
+        "timing": timing,
         "market_count": len(unique),
         "markets": unique,
     }
 
 
-def main():
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
-    print("=" * 60)
-    print("William Hill World Cup Match/Team Stats Scraper")
-    print("TEST MODE: MAX_MATCHES = 3")
-    print("=" * 60)
+def market_map(result):
+    return {
+        normalize(market.get("market", "")): market
+        for market in result.get("markets", [])
+        if isinstance(market, dict)
+    }
+
+
+def validate_production_output(output):
+    """Availability-aware validation before replacing the live JSON."""
+    errors = []
+    warnings = []
+    matches = output.get("matches", [])
+
+    if output.get("match_count") != MAX_MATCHES:
+        errors.append(
+            f"Expected {MAX_MATCHES} result rows, got "
+            f"{output.get('match_count', 0)}."
+        )
+
+    if len(matches) != MAX_MATCHES:
+        errors.append(
+            f"Expected {MAX_MATCHES} matches in output, got {len(matches)}."
+        )
+
+    names = [clean(row.get("match")) for row in matches]
+    urls = [clean(row.get("url")) for row in matches]
+
+    duplicate_names = sorted({
+        value for value in names
+        if value and names.count(value) > 1
+    })
+    duplicate_urls = sorted({
+        value for value in urls
+        if value and urls.count(value) > 1
+    })
+
+    if duplicate_names:
+        errors.append(
+            "Duplicate match rows: " + ", ".join(duplicate_names)
+        )
+    if duplicate_urls:
+        errors.append(
+            "Duplicate event URLs: " + ", ".join(duplicate_urls)
+        )
+
+    error_rows = [
+        row for row in matches
+        if clean(row.get("error"))
+    ]
+    if error_rows:
+        errors.append(
+            f"{len(error_rows)} fixture(s) ended with scraper errors: "
+            + ", ".join(clean(row.get("match")) for row in error_rows)
+        )
+
+    matches_with_markets = 0
+    rich_matches = 0
+    full_corner_matches = 0
+    full_card_matches = 0
+
+    minimum_by_generic_market = {
+        "match_shots": 6,
+        "match_shots_on_target": 6,
+        "total_corners": 10,
+        "total_cards": 12,
+    }
+
+    per_match = []
+
+    for row in matches:
+        match_name = clean(row.get("match"))
+        home = clean(row.get("home_team"))
+        away = clean(row.get("away_team"))
+        markets = market_map(row)
+
+        failures = []
+        row_warnings = []
+
+        if markets:
+            matches_with_markets += 1
+
+        for key, minimum in minimum_by_generic_market.items():
+            market = markets.get(key)
+            if market and market.get("selection_count", 0) < minimum:
+                failures.append(
+                    f"{key} has {market.get('selection_count', 0)} "
+                    f"selection(s); expected at least {minimum}"
+                )
+
+        team_expected = [
+            (normalize(f"{home} Shots"), 4),
+            (normalize(f"{away} Shots"), 4),
+            (normalize(f"{home} Shots On Target"), 4),
+            (normalize(f"{away} Shots On Target"), 4),
+        ]
+
+        for key, minimum in team_expected:
+            market = markets.get(key)
+            if market and market.get("selection_count", 0) < minimum:
+                failures.append(
+                    f"{key} has {market.get('selection_count', 0)} "
+                    f"selection(s); expected at least {minimum}"
+                )
+
+        home_shots = normalize(f"{home} Shots")
+        away_shots = normalize(f"{away} Shots")
+        home_sot = normalize(f"{home} Shots On Target")
+        away_sot = normalize(f"{away} Shots On Target")
+
+        if (home_shots in markets) != (away_shots in markets):
+            failures.append(
+                "Team Shots is missing one team side."
+            )
+
+        if (home_sot in markets) != (away_sot in markets):
+            failures.append(
+                "Team Shots On Target is missing one team side."
+            )
+
+        if ("match_shots" in markets) != (
+            "match_shots_on_target" in markets
+        ):
+            row_warnings.append(
+                "Only one of Match Shots / Match Shots On Target is present."
+            )
+
+        if markets.get("total_corners", {}).get(
+            "selection_count", 0
+        ) >= 10:
+            full_corner_matches += 1
+
+        if markets.get("total_cards", {}).get(
+            "selection_count", 0
+        ) >= 12:
+            full_card_matches += 1
+
+        rich_keys = {
+            "match_shots",
+            "match_shots_on_target",
+            "total_corners",
+            "total_cards",
+            home_shots,
+            away_shots,
+            home_sot,
+            away_sot,
+        }
+        if rich_keys.issubset(markets):
+            rich_matches += 1
+
+        if failures:
+            errors.append(
+                f"{match_name}: " + "; ".join(failures)
+            )
+
+        for warning in row_warnings:
+            warnings.append(f"{match_name}: {warning}")
+
+        per_match.append({
+            "match": match_name,
+            "market_count": row.get("market_count", 0),
+            "status": "FAIL" if failures else "OK",
+            "failures": failures,
+            "warnings": row_warnings,
+            "markets": {
+                market.get("market", key): market.get(
+                    "selection_count", 0
+                )
+                for key, market in markets.items()
+            },
+        })
+
+    # Current William Hill availability has at least the first three rich
+    # fixtures. This prevents a partial/default-line regression being promoted.
+    if matches_with_markets < 3:
+        errors.append(
+            "Fewer than 3 fixtures returned any match-stat markets."
+        )
+    if rich_matches < 3:
+        errors.append(
+            f"Expected at least 3 complete eight-market fixtures; "
+            f"got {rich_matches}."
+        )
+    if full_corner_matches < 3:
+        errors.append(
+            f"Expected at least 3 full Corners ladders; "
+            f"got {full_corner_matches}."
+        )
+    if full_card_matches < 3:
+        errors.append(
+            f"Expected at least 3 full Cards ladders; "
+            f"got {full_card_matches}."
+        )
+
+    report = {
+        "status": "PASS" if not errors else "FAIL",
+        "validated_at": datetime.now(timezone.utc).isoformat(),
+        "expected_matches": MAX_MATCHES,
+        "actual_matches": len(matches),
+        "matches_with_markets": matches_with_markets,
+        "complete_eight_market_matches": rich_matches,
+        "full_corner_matches": full_corner_matches,
+        "full_card_matches": full_card_matches,
+        "errors": errors,
+        "warnings": warnings,
+        "per_match": per_match,
+    }
+    return report
+
+
+def atomic_promote_staging():
+    """Back up the current live JSON and atomically replace it."""
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+    backup_path = None
+    if LIVE_OUT_PATH.exists():
+        backup_path = (
+            BACKUP_DIR /
+            f"williamhill_worldcup_match_stats_before_prod_v4_{timestamp}.json"
+        )
+        shutil.copy2(LIVE_OUT_PATH, backup_path)
+
+    temp_live = LIVE_OUT_PATH.with_suffix(".json.tmp")
+    shutil.copy2(STAGING_OUT_PATH, temp_live)
+    os.replace(temp_live, LIVE_OUT_PATH)
+
+    return backup_path
+
+
+
+def repair_existing_live_json_arb_lines():
+    """
+    One-time, atomic repair of the already-promoted canonical JSON.
+
+    Odds are never changed. A backup is written before replacement.
+    """
+    if not LIVE_OUT_PATH.exists():
+        raise FileNotFoundError(
+            f"Canonical match-stats JSON not found: {LIVE_OUT_PATH}"
+        )
+
+    payload = json.loads(
+        LIVE_OUT_PATH.read_text(encoding="utf-8")
+    )
+
+    changed = 0
+    by_market = {}
+    examples = []
+
+    for match_row in payload.get("matches", []):
+        match_name = clean(match_row.get("match"))
+
+        for market in match_row.get("markets", []):
+            market_name = clean(market.get("market"))
+            converted = []
+
+            for selection in market.get("selections", []):
+                before = dict(selection)
+                after = normalize_arb_half_line_selection(selection)
+
+                # Prices must remain byte-for-byte equivalent as strings.
+                if clean(before.get("odds")) != clean(after.get("odds")):
+                    raise RuntimeError(
+                        "Safety failure: odds changed during line repair."
+                    )
+
+                if after != before:
+                    changed += 1
+                    by_market[market_name] = (
+                        by_market.get(market_name, 0) + 1
+                    )
+
+                    if len(examples) < 12:
+                        examples.append({
+                            "match": match_name,
+                            "market": market_name,
+                            "before_selection": before.get("selection"),
+                            "before_line": before.get("line"),
+                            "after_selection": after.get("selection"),
+                            "after_line": after.get("line"),
+                            "odds": after.get("odds"),
+                        })
+
+                converted.append(after)
+
+            market["selections"] = converted
+            market["selection_count"] = len(converted)
+
+    # Verify no target over-only integer lines remain.
+    remaining_bad = []
+
+    for match_row in payload.get("matches", []):
+        for market in match_row.get("markets", []):
+            for selection in market.get("selections", []):
+                prop_type = normalize(selection.get("prop_type"))
+                side = clean(selection.get("side")).lower()
+                line = clean(selection.get("line"))
+
+                if (
+                    prop_type in ARB_HALF_LINE_PROP_TYPES
+                    and side == "over"
+                    and re.fullmatch(r"\d+", line)
+                ):
+                    remaining_bad.append({
+                        "match": match_row.get("match"),
+                        "market": market.get("market"),
+                        "selection": selection.get("selection"),
+                        "line": line,
+                    })
+
+    if remaining_bad:
+        raise RuntimeError(
+            "Safety failure: integer shot/SOT arb lines remain after repair."
+        )
+
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime(
+        "%Y%m%dT%H%M%SZ"
+    )
+    backup_path = (
+        BACKUP_DIR
+        / f"williamhill_worldcup_match_stats_before_arb_line_fix_{timestamp}.json"
+    )
+    shutil.copy2(LIVE_OUT_PATH, backup_path)
+
+    payload["arb_line_normalization"] = {
+        "applied_at": datetime.now(timezone.utc).isoformat(),
+        "rule": (
+            "William Hill over-only integer shots/SOT counts are stored "
+            "as comparison half-lines: Over N -> Over N.5"
+        ),
+        "converted_selection_count": changed,
+        "converted_by_market": by_market,
+    }
+
+    temp_path = LIVE_OUT_PATH.with_suffix(".json.arbfix.tmp")
+    temp_path.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    os.replace(temp_path, LIVE_OUT_PATH)
+
+    print("=" * 68)
+    print("William Hill match-stats arb-line repair")
+    print("=" * 68)
+    print(f"Converted selections: {changed}")
+    print(f"Backup:               {backup_path}")
+    print(f"Updated live JSON:    {LIVE_OUT_PATH}")
+
+    if by_market:
+        print("\nConverted by market:")
+        for market_name, count in sorted(by_market.items()):
+            print(f"  {market_name:<36} {count}")
+
+    if examples:
+        print("\nExamples:")
+        for row in examples:
+            print(
+                f"  {row['match']} | {row['market']} | "
+                f"{row['before_selection']} ({row['before_line']}) "
+                f"→ {row['after_selection']} ({row['after_line']}) "
+                f"@ {row['odds']}"
+            )
+
+    print("\nPASS: odds were preserved and no target integer lines remain.")
+
+
+
+def main():
+    STAGING_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+
+    print("=" * 68)
+    print("William Hill Match/Team Stats — PRODUCTION V4")
+    print(
+        f"PRODUCTION: MAX_MATCHES = {MAX_MATCHES} | "
+        "staging + validation + atomic promotion"
+    )
+    print("=" * 68)
+
+    run_started = time.perf_counter()
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=HEADLESS)
-        page = browser.new_page(viewport={"width": 1700, "height": 1000})
+        page = browser.new_page(
+            viewport={"width": 1700, "height": 1000}
+        )
 
         fixtures = get_match_links(page)
 
         results = []
-        for i, fixture in enumerate(fixtures, 1):
-            print("\n" + "=" * 60)
-            print(f"[{i}/{len(fixtures)}]")
+        for index, fixture in enumerate(fixtures, 1):
+            print("\n" + "=" * 68)
+            print(f"[{index}/{len(fixtures)}]")
             try:
-                results.append(scrape_match_stats(page, fixture))
+                result = scrape_match_stats(page, fixture)
+                results.append(result)
             except KeyboardInterrupt:
+                browser.close()
                 raise
-            except Exception as e:
-                print(f"  ⚠ Error: {type(e).__name__}: {e}")
+            except Exception as exc:
+                print(
+                    f"  ⚠ Error: {type(exc).__name__}: {exc}"
+                )
                 results.append({
                     "match": fixture.get("name", ""),
                     "home_team": fixture.get("home", ""),
                     "away_team": fixture.get("away", ""),
                     "url": fixture.get("url", ""),
+                    "url_source": fixture.get(
+                        "url_source", "unknown"
+                    ),
+                    "elapsed_seconds": 0,
                     "market_count": 0,
                     "markets": [],
-                    "error": str(e),
+                    "error": (
+                        f"{type(exc).__name__}: {exc}"
+                    ),
                 })
 
         browser.close()
+
+    runtime_seconds = round(
+        time.perf_counter() - run_started,
+        1,
+    )
 
     output = {
         "sport": "football",
         "competition": "FIFA World Cup",
         "bookmaker": "WilliamHill",
+        "scraper_version": "match_stats_production_v4",
         "source_url": COMPETITION_URL,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(
+            timezone.utc
+        ).isoformat(),
+        "runtime_seconds": runtime_seconds,
         "match_count": len(results),
-        "matches_with_markets": len([r for r in results if r.get("market_count", 0) > 0]),
+        "matches_with_markets": len([
+            row for row in results
+            if row.get("market_count", 0) > 0
+        ]),
         "matches": results,
     }
 
-    OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+    STAGING_OUT_PATH.write_text(
+        json.dumps(output, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
 
-    print(f"\nSaved → {OUT_PATH}")
-    print("\n── Summary ─────────────────────────────────────────────")
-    for r in results:
-        print(f"  {r['match']:<40} {r.get('market_count', 0)} stat markets")
-    print("─" * 60)
+    report = validate_production_output(output)
+    VALIDATION_REPORT_PATH.write_text(
+        json.dumps(report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    print(f"\nStaging saved → {STAGING_OUT_PATH}")
+    print(
+        f"Validation report → {VALIDATION_REPORT_PATH}"
+    )
+    print(
+        f"Runtime → {runtime_seconds}s "
+        f"({round(runtime_seconds / 60, 1)} minutes)"
+    )
+
+    print("\n── Production validation ─────────────────────────────")
+    print(
+        f"  Matches:             "
+        f"{report['actual_matches']}/{report['expected_matches']}"
+    )
+    print(
+        f"  With markets:        "
+        f"{report['matches_with_markets']}"
+    )
+    print(
+        f"  Complete 8-market:   "
+        f"{report['complete_eight_market_matches']}"
+    )
+    print(
+        f"  Full Corners:        "
+        f"{report['full_corner_matches']}"
+    )
+    print(
+        f"  Full Cards:          "
+        f"{report['full_card_matches']}"
+    )
+
+    if report["warnings"]:
+        print("\nWarnings:")
+        for warning in report["warnings"]:
+            print(f"  - {warning}")
+
+    if report["status"] != "PASS":
+        print("\nVALIDATION FAIL — live JSON was NOT changed.")
+        for error in report["errors"]:
+            print(f"  - {error}")
+        raise SystemExit(1)
+
+    backup_path = atomic_promote_staging()
+
+    print("\nVALIDATION PASS")
+    if backup_path:
+        print(f"Previous live backup → {backup_path}")
+    else:
+        print("No previous live JSON existed; no backup was needed.")
+
+    print(f"Live JSON promoted → {LIVE_OUT_PATH}")
+    print(
+        "Canonical match-stats output is now the validated "
+        "Production V4 result."
+    )
+
+    print("\n── Summary ───────────────────────────────────────────")
+    for row in results:
+        print(
+            f"  {row['match']:<40} "
+            f"{row.get('market_count', 0)} stat markets | "
+            f"{row.get('elapsed_seconds', 0)}s"
+        )
+    print("─" * 68)
 
 
 if __name__ == "__main__":
-    main()
+    if "--repair-existing-json" in sys.argv:
+        repair_existing_live_json_arb_lines()
+    else:
+        main()

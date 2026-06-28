@@ -762,9 +762,47 @@ def render_best_odds_tab(red_name, blue_name, odds_event, props):
     """
 
 
-def render_odds(fighter_name, odds_event):
-    odds_by_fighter = get_all_moneyline_odds(odds_event)
-    odds_rows = odds_by_fighter.get(fighter_name, [])
+def get_moneyline_odds_from_props(fighter_name, props):
+    """Extract fight_betting odds for a fighter from scraped props data."""
+    results = []
+    norm_name = normalize_person_name(fighter_name)
+
+    for prop in props or []:
+        bookmaker = prop.get("bookmaker", "")
+        markets = prop.get("markets") or {}
+        fight_betting = markets.get("fight_betting") or []
+
+        for entry in fight_betting:
+            sel = entry.get("selection", "")
+            if normalize_person_name(sel) == norm_name:
+                dec = fractional_to_decimal(entry.get("odds", ""))
+                if dec > MIN_VALID_PRICE:
+                    results.append({
+                        "bookmaker": bookmaker,
+                        "price": dec,
+                        "odds": entry.get("odds", ""),
+                    })
+
+    # Deduplicate by bookmaker — keep best price per book
+    by_book = {}
+    for r in results:
+        book = r["bookmaker"]
+        if book not in by_book or r["price"] > by_book[book]["price"]:
+            by_book[book] = r
+
+    results = sorted(by_book.values(), key=lambda r: r["price"], reverse=True)
+    return results
+
+
+def render_odds(fighter_name, odds_event, props=None):
+    # Try scraped props first
+    odds_rows = get_moneyline_odds_from_props(fighter_name, props or [])
+
+    # Fall back to OddsAPI if nothing from props
+    if not odds_rows:
+        odds_by_fighter = get_all_moneyline_odds(odds_event)
+        raw = odds_by_fighter.get(fighter_name, [])
+        odds_rows = [{"bookmaker": r["bookmaker"], "price": r["price"], "odds": f"{r['price']:.2f}"} for r in raw]
 
     if not odds_rows:
         return """
@@ -779,20 +817,23 @@ def render_odds(fighter_name, odds_event):
 
     for row in odds_rows:
         marker = " ⭐ Best" if row["price"] == best["price"] and row["bookmaker"] == best["bookmaker"] else ""
+        odds_display = row.get("odds") or f"{row['price']:.2f}"
         rows_html.append(
             f"""
         <tr>
           <td>{html_escape(row.get("bookmaker"))}{marker}</td>
-          <td>{row["price"]:.2f}</td>
+          <td>{html_escape(odds_display)}</td>
         </tr>
             """.rstrip()
         )
+
+    best_display = best.get("odds") or f"{best['price']:.2f}"
 
     return f"""
       <div class="section-block">
         <h3>UK Moneyline Odds</h3>
         <table>
-          <tr><td><strong>Best Price</strong></td><td><strong>{best["price"]:.2f}</strong></td></tr>
+          <tr><td><strong>Best Price</strong></td><td><strong>{html_escape(best_display)}</strong></td></tr>
           {"".join(rows_html)}
         </table>
       </div>
@@ -1303,7 +1344,7 @@ def render_fight_props(prop_items):
     """
 
 
-def fighter_panel(fighter, odds_event, corner_label):
+def fighter_panel(fighter, odds_event, corner_label, props=None):
     name_raw = fighter.get("name")
     name = html_escape(name_raw)
     slug = fighter.get("slug", "")
@@ -1359,7 +1400,7 @@ def fighter_panel(fighter, odds_event, corner_label):
         </div>
       </div>
 
-      {render_odds(name_raw, odds_event)}
+      {render_odds(name_raw, odds_event, props=props)}
 
       <div class="stats-grid">
         <div class="section-block">
@@ -2194,8 +2235,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
 
       <section class="tab-panel active" id="tab-overview">
         <div class="matchup-grid">
-          {fighter_panel(red, odds_event, "Left Side")}
-          {fighter_panel(blue, odds_event, "Right Side")}
+          {fighter_panel(red, odds_event, "Left Side", props=props)}
+          {fighter_panel(blue, odds_event, "Right Side", props=props)}
         </div>
       </section>
 
@@ -2209,8 +2250,8 @@ def build_fight_page(event, fight, fight_id, fighters_by_slug, odds_events, prop
 
       <section class="tab-panel" id="tab-stats">
         <div class="matchup-grid">
-          {fighter_panel(red, odds_event, "Left Side")}
-          {fighter_panel(blue, odds_event, "Right Side")}
+          {fighter_panel(red, odds_event, "Left Side", props=props)}
+          {fighter_panel(blue, odds_event, "Right Side", props=props)}
         </div>
       </section>
 
