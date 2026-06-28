@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import re
+import unicodedata
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -35,6 +36,11 @@ def html_escape(s):
 
 def slugify(name):
     name = str(name or "").lower().strip()
+    # Strip accents e.g. Benoît -> benoit
+    name = "".join(
+        c for c in unicodedata.normalize("NFD", name)
+        if unicodedata.category(c) != "Mn"
+    )
     name = re.sub(r"[^a-z0-9]+", "-", name)
     return name.strip("-")
 
