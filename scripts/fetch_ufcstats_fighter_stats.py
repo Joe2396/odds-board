@@ -2,6 +2,7 @@ import json
 import re
 import string
 import time
+import unicodedata
 from pathlib import Path
 
 from bs4 import BeautifulSoup
@@ -19,8 +20,18 @@ MIN_INDEXED_FIGHTERS = 100
 MIN_SAVED_FIGHTERS = 20
 
 
+def strip_accents(text):
+    """Strip accented characters — e.g. Benoît -> Benoit"""
+    return "".join(
+        c for c in unicodedata.normalize("NFD", text)
+        if unicodedata.category(c) != "Mn"
+    )
+
+
 def normalize_name(name):
-    return " ".join(str(name or "").lower().strip().split())
+    name = str(name or "").lower().strip()
+    name = strip_accents(name)
+    return " ".join(name.split())
 
 
 def clean_text(value):
@@ -250,7 +261,6 @@ def main():
         )
         page = context.new_page()
 
-        # Build index
         ufcstats_index = build_ufcstats_index(page)
         print(f"Indexed {len(ufcstats_index)} UFCStats fighters")
 
@@ -260,7 +270,6 @@ def main():
             browser.close()
             raise SystemExit(1)
 
-        # Collect fighter names
         fighter_names = set()
         fighter_names.update(collect_names_from_events_json())
 
