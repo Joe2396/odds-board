@@ -4,24 +4,302 @@
   "bookmaker": "WilliamHill",
   "scraper_version": "match_stats_production_v4",
   "source_url": "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches",
-  "generated_at": "2026-06-28T18:35:53.729647+00:00",
-  "runtime_seconds": 601.2,
-  "match_count": 15,
-  "matches_with_markets": 5,
+  "generated_at": "2026-06-30T21:23:48.763314+00:00",
+  "runtime_seconds": 730.6,
+  "match_count": 13,
+  "matches_with_markets": 10,
   "matches": [
     {
-      "match": "South Africa v Canada",
-      "home_team": "South Africa",
-      "away_team": "Canada",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40250321/south-africa-vs-canada",
+      "match": "France v Sweden",
+      "home_team": "France",
+      "away_team": "Sweden",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40273653/france-vs-sweden",
       "url_source": "v23_props_cache",
-      "elapsed_seconds": 87.4,
+      "elapsed_seconds": 74.3,
       "timing": {
-        "navigation_seconds": 15.5,
-        "match_sections_seconds": 8.8,
-        "corners_cards_seconds": 38.9,
-        "team_sections_seconds": 24.1,
-        "total_seconds": 87.4
+        "navigation_seconds": 13.6,
+        "match_sections_seconds": 7.0,
+        "corners_cards_seconds": 31.1,
+        "team_sections_seconds": 22.6,
+        "total_seconds": 74.3
+      },
+      "market_count": 6,
+      "markets": [
+        {
+          "market": "Total Corners",
+          "normalized_market": "total_corners",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "5/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/9",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "1/10",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "11/2",
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "2/9",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "3/1",
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "2/5",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "7/4",
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "7/10",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "19/20",
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners",
+              "source_parser": "position_pair"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards",
+          "normalized_market": "total_cards",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "7/1",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "cards",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "1/16",
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "cards",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "21/20",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "cards",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "13/20",
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "cards",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "cards",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "1/4",
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "cards",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "6/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "cards",
+              "source_parser": "position_pair"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/12",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "cards",
+              "source_parser": "position_pair"
+            }
+          ]
+        },
+        {
+          "market": "France Shots",
+          "normalized_market": "france_shots",
+          "selection_count": 1,
+          "selections": [
+            {
+              "selection": "France Over 16.5",
+              "normalized_selection": "france_over_16_5",
+              "odds": "5/6",
+              "side": "over",
+              "line": "16.5",
+              "prop_type": "team_shots",
+              "team": "France",
+              "team_side": "home",
+              "raw_selection": "France Over 16",
+              "raw_line": "16",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Sweden Shots",
+          "normalized_market": "sweden_shots",
+          "selection_count": 1,
+          "selections": [
+            {
+              "selection": "Sweden Over 8.5",
+              "normalized_selection": "sweden_over_8_5",
+              "odds": "8/11",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "team_shots",
+              "team": "Sweden",
+              "team_side": "away",
+              "raw_selection": "Sweden Over 8",
+              "raw_line": "8",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "France Shots On Target",
+          "normalized_market": "france_shots_on_target",
+          "selection_count": 1,
+          "selections": [
+            {
+              "selection": "France Over 6.5",
+              "normalized_selection": "france_over_6_5",
+              "odds": "10/11",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "team_shots_on_target",
+              "team": "France",
+              "team_side": "home",
+              "raw_selection": "France Over 6",
+              "raw_line": "6",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Sweden Shots On Target",
+          "normalized_market": "sweden_shots_on_target",
+          "selection_count": 1,
+          "selections": [
+            {
+              "selection": "Sweden Over 3.5",
+              "normalized_selection": "sweden_over_3_5",
+              "odds": "4/5",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Sweden",
+              "team_side": "away",
+              "raw_selection": "Sweden Over 3",
+              "raw_line": "3",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Mexico v Ecuador",
+      "home_team": "Mexico",
+      "away_team": "Ecuador",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40281380/mexico-vs-ecuador",
+      "url_source": "v23_props_cache",
+      "elapsed_seconds": 70.0,
+      "timing": {
+        "navigation_seconds": 11.0,
+        "match_sections_seconds": 7.9,
+        "corners_cards_seconds": 28.3,
+        "team_sections_seconds": 22.9,
+        "total_seconds": 70.0
       },
       "market_count": 8,
       "markets": [
@@ -31,21 +309,9 @@
           "selection_count": 6,
           "selections": [
             {
-              "selection": "Over 21.5",
-              "normalized_selection": "over_21_5",
-              "odds": "6/10",
-              "side": "over",
-              "line": "21.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 21",
-              "raw_line": "21",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
               "selection": "Over 22.5",
               "normalized_selection": "over_22_5",
-              "odds": "5/6",
+              "odds": "8/11",
               "side": "over",
               "line": "22.5",
               "prop_type": "match_shots",
@@ -57,7 +323,7 @@
             {
               "selection": "Over 23.5",
               "normalized_selection": "over_23_5",
-              "odds": "11/10",
+              "odds": "EVS",
               "side": "over",
               "line": "23.5",
               "prop_type": "match_shots",
@@ -69,7 +335,7 @@
             {
               "selection": "Over 24.5",
               "normalized_selection": "over_24_5",
-              "odds": "6/4",
+              "odds": "13/10",
               "side": "over",
               "line": "24.5",
               "prop_type": "match_shots",
@@ -81,7 +347,7 @@
             {
               "selection": "Over 25.5",
               "normalized_selection": "over_25_5",
-              "odds": "2/1",
+              "odds": "7/4",
               "side": "over",
               "line": "25.5",
               "prop_type": "match_shots",
@@ -93,12 +359,24 @@
             {
               "selection": "Over 26.5",
               "normalized_selection": "over_26_5",
-              "odds": "11/4",
+              "odds": "5/2",
               "side": "over",
               "line": "26.5",
               "prop_type": "match_shots",
               "raw_selection": "Over 26",
               "raw_line": "26",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 27.5",
+              "normalized_selection": "over_27_5",
+              "odds": "3/1",
+              "side": "over",
+              "line": "27.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 27",
+              "raw_line": "27",
               "arb_line_adjusted": true,
               "line_basis": "william_hill_integer_over_count_to_half_line"
             }
@@ -112,7 +390,1179 @@
             {
               "selection": "Over 6.5",
               "normalized_selection": "over_6_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 6",
+              "raw_line": "6",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "11/10",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 7",
+              "raw_line": "7",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "2/1",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 8",
+              "raw_line": "8",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "3/1",
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 9",
+              "raw_line": "9",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "odds": "5/1",
+              "side": "over",
+              "line": "10.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 10",
+              "raw_line": "10",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 11.5",
+              "normalized_selection": "over_11_5",
+              "odds": "8/1",
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 11",
+              "raw_line": "11",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners",
+          "normalized_market": "total_corners",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 0.5",
+              "normalized_selection": "over_0_5",
+              "odds": "3/10",
+              "side": "over",
+              "line": "0.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 0.5",
+              "normalized_selection": "under_0_5",
+              "odds": "12/5",
+              "side": "under",
+              "line": "0.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "11/10",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "4/6",
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "3/1",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "2/9",
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "13/2",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "1/14",
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "corners"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards",
+          "normalized_market": "total_cards",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "4/9",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "13/8",
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "11/8",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "8/15",
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "10/3",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "1/5",
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "7/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/16",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "cards"
+            }
+          ]
+        },
+        {
+          "market": "Mexico Shots",
+          "normalized_market": "mexico_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Mexico Over 11.5",
+              "normalized_selection": "mexico_over_11_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "team_shots",
+              "team": "Mexico",
+              "team_side": "home",
+              "raw_selection": "Mexico Over 11",
+              "raw_line": "11",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Mexico Over 12.5",
+              "normalized_selection": "mexico_over_12_5",
+              "odds": "EVS",
+              "side": "over",
+              "line": "12.5",
+              "prop_type": "team_shots",
+              "team": "Mexico",
+              "team_side": "home",
+              "raw_selection": "Mexico Over 12",
+              "raw_line": "12",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Mexico Over 13.5",
+              "normalized_selection": "mexico_over_13_5",
+              "odds": "6/4",
+              "side": "over",
+              "line": "13.5",
+              "prop_type": "team_shots",
+              "team": "Mexico",
+              "team_side": "home",
+              "raw_selection": "Mexico Over 13",
+              "raw_line": "13",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Mexico Over 14.5",
+              "normalized_selection": "mexico_over_14_5",
+              "odds": "9/4",
+              "side": "over",
+              "line": "14.5",
+              "prop_type": "team_shots",
+              "team": "Mexico",
+              "team_side": "home",
+              "raw_selection": "Mexico Over 14",
+              "raw_line": "14",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Ecuador Shots",
+          "normalized_market": "ecuador_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Ecuador Over 10.5",
+              "normalized_selection": "ecuador_over_10_5",
+              "odds": "8/11",
+              "side": "over",
+              "line": "10.5",
+              "prop_type": "team_shots",
+              "team": "Ecuador",
+              "team_side": "away",
+              "raw_selection": "Ecuador Over 10",
+              "raw_line": "10",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Ecuador Over 11.5",
+              "normalized_selection": "ecuador_over_11_5",
+              "odds": "11/10",
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "team_shots",
+              "team": "Ecuador",
+              "team_side": "away",
+              "raw_selection": "Ecuador Over 11",
+              "raw_line": "11",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Ecuador Over 12.5",
+              "normalized_selection": "ecuador_over_12_5",
+              "odds": "7/4",
+              "side": "over",
+              "line": "12.5",
+              "prop_type": "team_shots",
+              "team": "Ecuador",
+              "team_side": "away",
+              "raw_selection": "Ecuador Over 12",
+              "raw_line": "12",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Ecuador Over 13.5",
+              "normalized_selection": "ecuador_over_13_5",
+              "odds": "5/2",
+              "side": "over",
+              "line": "13.5",
+              "prop_type": "team_shots",
+              "team": "Ecuador",
+              "team_side": "away",
+              "raw_selection": "Ecuador Over 13",
+              "raw_line": "13",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Mexico Shots On Target",
+          "normalized_market": "mexico_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Mexico Over 3.5",
+              "normalized_selection": "mexico_over_3_5",
+              "odds": "8/13",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Mexico",
+              "team_side": "home",
+              "raw_selection": "Mexico Over 3",
+              "raw_line": "3",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Mexico Over 4.5",
+              "normalized_selection": "mexico_over_4_5",
+              "odds": "13/10",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Mexico",
+              "team_side": "home",
+              "raw_selection": "Mexico Over 4",
+              "raw_line": "4",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Mexico Over 5.5",
+              "normalized_selection": "mexico_over_5_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Mexico",
+              "team_side": "home",
+              "raw_selection": "Mexico Over 5",
+              "raw_line": "5",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Mexico Over 6.5",
+              "normalized_selection": "mexico_over_6_5",
+              "odds": "9/2",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Mexico",
+              "team_side": "home",
+              "raw_selection": "Mexico Over 6",
+              "raw_line": "6",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Ecuador Shots On Target",
+          "normalized_market": "ecuador_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Ecuador Over 2.5",
+              "normalized_selection": "ecuador_over_2_5",
+              "odds": "4/7",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Ecuador",
+              "team_side": "away",
+              "raw_selection": "Ecuador Over 2",
+              "raw_line": "2",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Ecuador Over 3.5",
+              "normalized_selection": "ecuador_over_3_5",
+              "odds": "13/10",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Ecuador",
+              "team_side": "away",
+              "raw_selection": "Ecuador Over 3",
+              "raw_line": "3",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Ecuador Over 4.5",
+              "normalized_selection": "ecuador_over_4_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Ecuador",
+              "team_side": "away",
+              "raw_selection": "Ecuador Over 4",
+              "raw_line": "4",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Ecuador Over 5.5",
+              "normalized_selection": "ecuador_over_5_5",
+              "odds": "11/2",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Ecuador",
+              "team_side": "away",
+              "raw_selection": "Ecuador Over 5",
+              "raw_line": "5",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "England v DR Congo",
+      "home_team": "England",
+      "away_team": "DR Congo",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284330/england-vs-congo-dr",
+      "url_source": "v23_props_cache",
+      "elapsed_seconds": 78.1,
+      "timing": {
+        "navigation_seconds": 10.0,
+        "match_sections_seconds": 8.2,
+        "corners_cards_seconds": 37.3,
+        "team_sections_seconds": 22.6,
+        "total_seconds": 78.1
+      },
+      "market_count": 8,
+      "markets": [
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 25.5",
+              "normalized_selection": "over_25_5",
+              "odds": "5/6",
+              "side": "over",
+              "line": "25.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 25",
+              "raw_line": "25",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 26.5",
+              "normalized_selection": "over_26_5",
+              "odds": "21/20",
+              "side": "over",
+              "line": "26.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 26",
+              "raw_line": "26",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 27.5",
+              "normalized_selection": "over_27_5",
+              "odds": "11/8",
+              "side": "over",
+              "line": "27.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 27",
+              "raw_line": "27",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 28.5",
+              "normalized_selection": "over_28_5",
+              "odds": "7/4",
+              "side": "over",
+              "line": "28.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 28",
+              "raw_line": "28",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 29.5",
+              "normalized_selection": "over_29_5",
+              "odds": "5/2",
+              "side": "over",
+              "line": "29.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 29",
+              "raw_line": "29",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 30.5",
+              "normalized_selection": "over_30_5",
+              "odds": "3/1",
+              "side": "over",
+              "line": "30.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 30",
+              "raw_line": "30",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
               "odds": "1/2",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 7",
+              "raw_line": "7",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "5/6",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 8",
+              "raw_line": "8",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "11/8",
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 9",
+              "raw_line": "9",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "odds": "9/4",
+              "side": "over",
+              "line": "10.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 10",
+              "raw_line": "10",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 11.5",
+              "normalized_selection": "over_11_5",
+              "odds": "7/2",
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 11",
+              "raw_line": "11",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 12.5",
+              "normalized_selection": "over_12_5",
+              "odds": "11/2",
+              "side": "over",
+              "line": "12.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 12",
+              "raw_line": "12",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners",
+          "normalized_market": "total_corners",
+          "selection_count": 12,
+          "selections": [
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "9/4",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/3",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "4/1",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "1/7",
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "1/7",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "4/1",
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "2/7",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "5/2",
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "8/15",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "11/8",
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "4/5",
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 9.5",
+              "normalized_selection": "under_9_5",
+              "odds": "19/20",
+              "side": "under",
+              "line": "9.5",
+              "prop_type": "corners"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards",
+          "normalized_market": "total_cards",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "5/1",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "1/9",
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "6/10",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "5/4",
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "11/8",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "8/15",
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "3/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "2/9",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "cards"
+            }
+          ]
+        },
+        {
+          "market": "England Shots",
+          "normalized_market": "england_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "England Over 18.5",
+              "normalized_selection": "england_over_18_5",
+              "odds": "8/11",
+              "side": "over",
+              "line": "18.5",
+              "prop_type": "team_shots",
+              "team": "England",
+              "team_side": "home",
+              "raw_selection": "England Over 18",
+              "raw_line": "18",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "England Over 19.5",
+              "normalized_selection": "england_over_19_5",
+              "odds": "21/20",
+              "side": "over",
+              "line": "19.5",
+              "prop_type": "team_shots",
+              "team": "England",
+              "team_side": "home",
+              "raw_selection": "England Over 19",
+              "raw_line": "19",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "England Over 20.5",
+              "normalized_selection": "england_over_20_5",
+              "odds": "6/4",
+              "side": "over",
+              "line": "20.5",
+              "prop_type": "team_shots",
+              "team": "England",
+              "team_side": "home",
+              "raw_selection": "England Over 20",
+              "raw_line": "20",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "England Over 21.5",
+              "normalized_selection": "england_over_21_5",
+              "odds": "2/1",
+              "side": "over",
+              "line": "21.5",
+              "prop_type": "team_shots",
+              "team": "England",
+              "team_side": "home",
+              "raw_selection": "England Over 21",
+              "raw_line": "21",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "DR Congo Shots",
+          "normalized_market": "dr_congo_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "DR Congo Over 6.5",
+              "normalized_selection": "dr_congo_over_6_5",
+              "odds": "8/11",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "team_shots",
+              "team": "DR Congo",
+              "team_side": "away",
+              "raw_selection": "DR Congo Over 6",
+              "raw_line": "6",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "DR Congo Over 7.5",
+              "normalized_selection": "dr_congo_over_7_5",
+              "odds": "5/4",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "team_shots",
+              "team": "DR Congo",
+              "team_side": "away",
+              "raw_selection": "DR Congo Over 7",
+              "raw_line": "7",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "DR Congo Over 8.5",
+              "normalized_selection": "dr_congo_over_8_5",
+              "odds": "2/1",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "team_shots",
+              "team": "DR Congo",
+              "team_side": "away",
+              "raw_selection": "DR Congo Over 8",
+              "raw_line": "8",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "DR Congo Over 9.5",
+              "normalized_selection": "dr_congo_over_9_5",
+              "odds": "7/2",
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "team_shots",
+              "team": "DR Congo",
+              "team_side": "away",
+              "raw_selection": "DR Congo Over 9",
+              "raw_line": "9",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "England Shots On Target",
+          "normalized_market": "england_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "England Over 5.5",
+              "normalized_selection": "england_over_5_5",
+              "odds": "4/9",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "team_shots_on_target",
+              "team": "England",
+              "team_side": "home",
+              "raw_selection": "England Over 5",
+              "raw_line": "5",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "England Over 6.5",
+              "normalized_selection": "england_over_6_5",
+              "odds": "10/11",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "team_shots_on_target",
+              "team": "England",
+              "team_side": "home",
+              "raw_selection": "England Over 6",
+              "raw_line": "6",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "England Over 7.5",
+              "normalized_selection": "england_over_7_5",
+              "odds": "6/4",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "team_shots_on_target",
+              "team": "England",
+              "team_side": "home",
+              "raw_selection": "England Over 7",
+              "raw_line": "7",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "England Over 8.5",
+              "normalized_selection": "england_over_8_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "team_shots_on_target",
+              "team": "England",
+              "team_side": "home",
+              "raw_selection": "England Over 8",
+              "raw_line": "8",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "DR Congo Shots On Target",
+          "normalized_market": "dr_congo_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "DR Congo Over 1.5",
+              "normalized_selection": "dr_congo_over_1_5",
+              "odds": "1/2",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "team_shots_on_target",
+              "team": "DR Congo",
+              "team_side": "away",
+              "raw_selection": "DR Congo Over 1",
+              "raw_line": "1",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "DR Congo Over 2.5",
+              "normalized_selection": "dr_congo_over_2_5",
+              "odds": "6/4",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "team_shots_on_target",
+              "team": "DR Congo",
+              "team_side": "away",
+              "raw_selection": "DR Congo Over 2",
+              "raw_line": "2",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "DR Congo Over 3.5",
+              "normalized_selection": "dr_congo_over_3_5",
+              "odds": "7/2",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "team_shots_on_target",
+              "team": "DR Congo",
+              "team_side": "away",
+              "raw_selection": "DR Congo Over 3",
+              "raw_line": "3",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "DR Congo Over 4.5",
+              "normalized_selection": "dr_congo_over_4_5",
+              "odds": "8/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "team_shots_on_target",
+              "team": "DR Congo",
+              "team_side": "away",
+              "raw_selection": "DR Congo Over 4",
+              "raw_line": "4",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Belgium v Senegal",
+      "home_team": "Belgium",
+      "away_team": "Senegal",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284348/belgium-vs-senegal",
+      "url_source": "v23_props_cache",
+      "elapsed_seconds": 77.5,
+      "timing": {
+        "navigation_seconds": 9.9,
+        "match_sections_seconds": 8.0,
+        "corners_cards_seconds": 37.1,
+        "team_sections_seconds": 22.6,
+        "total_seconds": 77.5
+      },
+      "market_count": 8,
+      "markets": [
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 23.5",
+              "normalized_selection": "over_23_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "23.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 23",
+              "raw_line": "23",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 24.5",
+              "normalized_selection": "over_24_5",
+              "odds": "10/11",
+              "side": "over",
+              "line": "24.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 24",
+              "raw_line": "24",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 25.5",
+              "normalized_selection": "over_25_5",
+              "odds": "6/5",
+              "side": "over",
+              "line": "25.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 25",
+              "raw_line": "25",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 26.5",
+              "normalized_selection": "over_26_5",
+              "odds": "13/8",
+              "side": "over",
+              "line": "26.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 26",
+              "raw_line": "26",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 27.5",
+              "normalized_selection": "over_27_5",
+              "odds": "2/1",
+              "side": "over",
+              "line": "27.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 27",
+              "raw_line": "27",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 28.5",
+              "normalized_selection": "over_28_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "28.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 28",
+              "raw_line": "28",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "4/9",
               "side": "over",
               "line": "6.5",
               "prop_type": "match_shots_on_target",
@@ -160,7 +1610,7 @@
             {
               "selection": "Over 10.5",
               "normalized_selection": "over_10_5",
-              "odds": "4/1",
+              "odds": "15/4",
               "side": "over",
               "line": "10.5",
               "prop_type": "match_shots_on_target",
@@ -172,7 +1622,7 @@
             {
               "selection": "Over 11.5",
               "normalized_selection": "over_11_5",
-              "odds": "13/2",
+              "odds": "6/1",
               "side": "over",
               "line": "11.5",
               "prop_type": "match_shots_on_target",
@@ -186,8 +1636,626 @@
         {
           "market": "Total Corners",
           "normalized_market": "total_corners",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "7/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/16",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "1/12",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "6/1",
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "1/5",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "10/3",
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "2/5",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "7/4",
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "11/10",
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards",
+          "normalized_market": "total_cards",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "9/2",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "1/8",
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "4/11",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "2/1",
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "19/20",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "4/5",
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "2/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "4/11",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "7/2",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "1/6",
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "cards"
+            }
+          ]
+        },
+        {
+          "market": "Belgium Shots",
+          "normalized_market": "belgium_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Belgium Over 13.5",
+              "normalized_selection": "belgium_over_13_5",
+              "odds": "4/7",
+              "side": "over",
+              "line": "13.5",
+              "prop_type": "team_shots",
+              "team": "Belgium",
+              "team_side": "home",
+              "raw_selection": "Belgium Over 13",
+              "raw_line": "13",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Belgium Over 14.5",
+              "normalized_selection": "belgium_over_14_5",
+              "odds": "5/6",
+              "side": "over",
+              "line": "14.5",
+              "prop_type": "team_shots",
+              "team": "Belgium",
+              "team_side": "home",
+              "raw_selection": "Belgium Over 14",
+              "raw_line": "14",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Belgium Over 15.5",
+              "normalized_selection": "belgium_over_15_5",
+              "odds": "5/4",
+              "side": "over",
+              "line": "15.5",
+              "prop_type": "team_shots",
+              "team": "Belgium",
+              "team_side": "home",
+              "raw_selection": "Belgium Over 15",
+              "raw_line": "15",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Belgium Over 16.5",
+              "normalized_selection": "belgium_over_16_5",
+              "odds": "7/4",
+              "side": "over",
+              "line": "16.5",
+              "prop_type": "team_shots",
+              "team": "Belgium",
+              "team_side": "home",
+              "raw_selection": "Belgium Over 16",
+              "raw_line": "16",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Senegal Shots",
+          "normalized_market": "senegal_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Senegal Over 9.5",
+              "normalized_selection": "senegal_over_9_5",
+              "odds": "8/11",
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "team_shots",
+              "team": "Senegal",
+              "team_side": "away",
+              "raw_selection": "Senegal Over 9",
+              "raw_line": "9",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Senegal Over 10.5",
+              "normalized_selection": "senegal_over_10_5",
+              "odds": "6/5",
+              "side": "over",
+              "line": "10.5",
+              "prop_type": "team_shots",
+              "team": "Senegal",
+              "team_side": "away",
+              "raw_selection": "Senegal Over 10",
+              "raw_line": "10",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Senegal Over 11.5",
+              "normalized_selection": "senegal_over_11_5",
+              "odds": "7/4",
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "team_shots",
+              "team": "Senegal",
+              "team_side": "away",
+              "raw_selection": "Senegal Over 11",
+              "raw_line": "11",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Senegal Over 12.5",
+              "normalized_selection": "senegal_over_12_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "12.5",
+              "prop_type": "team_shots",
+              "team": "Senegal",
+              "team_side": "away",
+              "raw_selection": "Senegal Over 12",
+              "raw_line": "12",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Belgium Shots On Target",
+          "normalized_market": "belgium_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Belgium Over 4.5",
+              "normalized_selection": "belgium_over_4_5",
+              "odds": "5/6",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Belgium",
+              "team_side": "home",
+              "raw_selection": "Belgium Over 4",
+              "raw_line": "4",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Belgium Over 5.5",
+              "normalized_selection": "belgium_over_5_5",
+              "odds": "6/4",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Belgium",
+              "team_side": "home",
+              "raw_selection": "Belgium Over 5",
+              "raw_line": "5",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Belgium Over 6.5",
+              "normalized_selection": "belgium_over_6_5",
+              "odds": "11/4",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Belgium",
+              "team_side": "home",
+              "raw_selection": "Belgium Over 6",
+              "raw_line": "6",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Belgium Over 7.5",
+              "normalized_selection": "belgium_over_7_5",
+              "odds": "5/1",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Belgium",
+              "team_side": "home",
+              "raw_selection": "Belgium Over 7",
+              "raw_line": "7",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Senegal Shots On Target",
+          "normalized_market": "senegal_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Senegal Over 2.5",
+              "normalized_selection": "senegal_over_2_5",
+              "odds": "7/10",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Senegal",
+              "team_side": "away",
+              "raw_selection": "Senegal Over 2",
+              "raw_line": "2",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Senegal Over 3.5",
+              "normalized_selection": "senegal_over_3_5",
+              "odds": "6/4",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Senegal",
+              "team_side": "away",
+              "raw_selection": "Senegal Over 3",
+              "raw_line": "3",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Senegal Over 4.5",
+              "normalized_selection": "senegal_over_4_5",
+              "odds": "10/3",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Senegal",
+              "team_side": "away",
+              "raw_selection": "Senegal Over 4",
+              "raw_line": "4",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Senegal Over 5.5",
+              "normalized_selection": "senegal_over_5_5",
+              "odds": "7/1",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Senegal",
+              "team_side": "away",
+              "raw_selection": "Senegal Over 5",
+              "raw_line": "5",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "USA v Bosnia",
+      "home_team": "USA",
+      "away_team": "Bosnia",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40261614/usa-vs-bosnia",
+      "url_source": "v23_props_cache",
+      "elapsed_seconds": 78.1,
+      "timing": {
+        "navigation_seconds": 9.9,
+        "match_sections_seconds": 7.8,
+        "corners_cards_seconds": 36.9,
+        "team_sections_seconds": 23.4,
+        "total_seconds": 78.1
+      },
+      "market_count": 8,
+      "markets": [
+        {
+          "market": "Match Shots",
+          "normalized_market": "match_shots",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 24.5",
+              "normalized_selection": "over_24_5",
+              "odds": "8/11",
+              "side": "over",
+              "line": "24.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 24",
+              "raw_line": "24",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 25.5",
+              "normalized_selection": "over_25_5",
+              "odds": "EVS",
+              "side": "over",
+              "line": "25.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 25",
+              "raw_line": "25",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 26.5",
+              "normalized_selection": "over_26_5",
+              "odds": "13/10",
+              "side": "over",
+              "line": "26.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 26",
+              "raw_line": "26",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 27.5",
+              "normalized_selection": "over_27_5",
+              "odds": "7/4",
+              "side": "over",
+              "line": "27.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 27",
+              "raw_line": "27",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 28.5",
+              "normalized_selection": "over_28_5",
+              "odds": "12/5",
+              "side": "over",
+              "line": "28.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 28",
+              "raw_line": "28",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 29.5",
+              "normalized_selection": "over_29_5",
+              "odds": "3/1",
+              "side": "over",
+              "line": "29.5",
+              "prop_type": "match_shots",
+              "raw_selection": "Over 29",
+              "raw_line": "29",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Match Shots On Target",
+          "normalized_market": "match_shots_on_target",
+          "selection_count": 6,
+          "selections": [
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "5/6",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 8",
+              "raw_line": "8",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 9.5",
+              "normalized_selection": "over_9_5",
+              "odds": "11/8",
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 9",
+              "raw_line": "9",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 10.5",
+              "normalized_selection": "over_10_5",
+              "odds": "9/4",
+              "side": "over",
+              "line": "10.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 10",
+              "raw_line": "10",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 11.5",
+              "normalized_selection": "over_11_5",
+              "odds": "10/3",
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 11",
+              "raw_line": "11",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 12.5",
+              "normalized_selection": "over_12_5",
+              "odds": "5/1",
+              "side": "over",
+              "line": "12.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 12",
+              "raw_line": "12",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Over 13.5",
+              "normalized_selection": "over_13_5",
+              "odds": "8/1",
+              "side": "over",
+              "line": "13.5",
+              "prop_type": "match_shots_on_target",
+              "raw_selection": "Over 13",
+              "raw_line": "13",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Total Corners",
+          "normalized_market": "total_corners",
           "selection_count": 12,
           "selections": [
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "10/3",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/5",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
             {
               "selection": "Over 5.5",
               "normalized_selection": "over_5_5",
@@ -267,34 +2335,18 @@
               "side": "under",
               "line": "9.5",
               "prop_type": "corners"
-            },
-            {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "3/1",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
-              "odds": "2/9",
-              "side": "under",
-              "line": "4.5",
-              "prop_type": "corners"
             }
           ]
         },
         {
           "market": "Total Cards",
           "normalized_market": "total_cards",
-          "selection_count": 14,
+          "selection_count": 10,
           "selections": [
             {
               "selection": "Over 1.5",
               "normalized_selection": "over_1_5",
-              "odds": "1/10",
+              "odds": "15/4",
               "side": "over",
               "line": "1.5",
               "prop_type": "cards"
@@ -302,7 +2354,7 @@
             {
               "selection": "Under 1.5",
               "normalized_selection": "under_1_5",
-              "odds": "11/2",
+              "odds": "2/13",
               "side": "under",
               "line": "1.5",
               "prop_type": "cards"
@@ -310,7 +2362,7 @@
             {
               "selection": "Over 2.5",
               "normalized_selection": "over_2_5",
-              "odds": "3/10",
+              "odds": "4/11",
               "side": "over",
               "line": "2.5",
               "prop_type": "cards"
@@ -318,7 +2370,7 @@
             {
               "selection": "Under 2.5",
               "normalized_selection": "under_2_5",
-              "odds": "12/5",
+              "odds": "2/1",
               "side": "under",
               "line": "2.5",
               "prop_type": "cards"
@@ -326,7 +2378,7 @@
             {
               "selection": "Over 3.5",
               "normalized_selection": "over_3_5",
-              "odds": "8/11",
+              "odds": "19/20",
               "side": "over",
               "line": "3.5",
               "prop_type": "cards"
@@ -334,7 +2386,627 @@
             {
               "selection": "Under 3.5",
               "normalized_selection": "under_3_5",
-              "odds": "EVS",
+              "odds": "4/5",
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "7/4",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "2/5",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "7/2",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "1/6",
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "cards"
+            }
+          ]
+        },
+        {
+          "market": "USA Shots",
+          "normalized_market": "usa_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "USA Over 15.5",
+              "normalized_selection": "usa_over_15_5",
+              "odds": "5/6",
+              "side": "over",
+              "line": "15.5",
+              "prop_type": "team_shots",
+              "team": "USA",
+              "team_side": "home",
+              "raw_selection": "USA Over 15",
+              "raw_line": "15",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "USA Over 16.5",
+              "normalized_selection": "usa_over_16_5",
+              "odds": "6/5",
+              "side": "over",
+              "line": "16.5",
+              "prop_type": "team_shots",
+              "team": "USA",
+              "team_side": "home",
+              "raw_selection": "USA Over 16",
+              "raw_line": "16",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "USA Over 17.5",
+              "normalized_selection": "usa_over_17_5",
+              "odds": "13/8",
+              "side": "over",
+              "line": "17.5",
+              "prop_type": "team_shots",
+              "team": "USA",
+              "team_side": "home",
+              "raw_selection": "USA Over 17",
+              "raw_line": "17",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "USA Over 18.5",
+              "normalized_selection": "usa_over_18_5",
+              "odds": "12/5",
+              "side": "over",
+              "line": "18.5",
+              "prop_type": "team_shots",
+              "team": "USA",
+              "team_side": "home",
+              "raw_selection": "USA Over 18",
+              "raw_line": "18",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Bosnia Shots",
+          "normalized_market": "bosnia_shots",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Bosnia Over 8.5",
+              "normalized_selection": "bosnia_over_8_5",
+              "odds": "8/15",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "team_shots",
+              "team": "Bosnia",
+              "team_side": "away",
+              "raw_selection": "Bosnia Over 8",
+              "raw_line": "8",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Bosnia Over 9.5",
+              "normalized_selection": "bosnia_over_9_5",
+              "odds": "10/11",
+              "side": "over",
+              "line": "9.5",
+              "prop_type": "team_shots",
+              "team": "Bosnia",
+              "team_side": "away",
+              "raw_selection": "Bosnia Over 9",
+              "raw_line": "9",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Bosnia Over 10.5",
+              "normalized_selection": "bosnia_over_10_5",
+              "odds": "11/8",
+              "side": "over",
+              "line": "10.5",
+              "prop_type": "team_shots",
+              "team": "Bosnia",
+              "team_side": "away",
+              "raw_selection": "Bosnia Over 10",
+              "raw_line": "10",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Bosnia Over 11.5",
+              "normalized_selection": "bosnia_over_11_5",
+              "odds": "9/4",
+              "side": "over",
+              "line": "11.5",
+              "prop_type": "team_shots",
+              "team": "Bosnia",
+              "team_side": "away",
+              "raw_selection": "Bosnia Over 11",
+              "raw_line": "11",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "USA Shots On Target",
+          "normalized_market": "usa_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "USA Over 4.5",
+              "normalized_selection": "usa_over_4_5",
+              "odds": "4/9",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "team_shots_on_target",
+              "team": "USA",
+              "team_side": "home",
+              "raw_selection": "USA Over 4",
+              "raw_line": "4",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "USA Over 5.5",
+              "normalized_selection": "usa_over_5_5",
+              "odds": "10/11",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "team_shots_on_target",
+              "team": "USA",
+              "team_side": "home",
+              "raw_selection": "USA Over 5",
+              "raw_line": "5",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "USA Over 6.5",
+              "normalized_selection": "usa_over_6_5",
+              "odds": "13/8",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "team_shots_on_target",
+              "team": "USA",
+              "team_side": "home",
+              "raw_selection": "USA Over 6",
+              "raw_line": "6",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "USA Over 7.5",
+              "normalized_selection": "usa_over_7_5",
+              "odds": "3/1",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "team_shots_on_target",
+              "team": "USA",
+              "team_side": "home",
+              "raw_selection": "USA Over 7",
+              "raw_line": "7",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        },
+        {
+          "market": "Bosnia Shots On Target",
+          "normalized_market": "bosnia_shots_on_target",
+          "selection_count": 4,
+          "selections": [
+            {
+              "selection": "Bosnia Over 2.5",
+              "normalized_selection": "bosnia_over_2_5",
+              "odds": "1/2",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Bosnia",
+              "team_side": "away",
+              "raw_selection": "Bosnia Over 2",
+              "raw_line": "2",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Bosnia Over 3.5",
+              "normalized_selection": "bosnia_over_3_5",
+              "odds": "6/5",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Bosnia",
+              "team_side": "away",
+              "raw_selection": "Bosnia Over 3",
+              "raw_line": "3",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Bosnia Over 4.5",
+              "normalized_selection": "bosnia_over_4_5",
+              "odds": "5/2",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Bosnia",
+              "team_side": "away",
+              "raw_selection": "Bosnia Over 4",
+              "raw_line": "4",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            },
+            {
+              "selection": "Bosnia Over 5.5",
+              "normalized_selection": "bosnia_over_5_5",
+              "odds": "5/1",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "team_shots_on_target",
+              "team": "Bosnia",
+              "team_side": "away",
+              "raw_selection": "Bosnia Over 5",
+              "raw_line": "5",
+              "arb_line_adjusted": true,
+              "line_basis": "william_hill_integer_over_count_to_half_line"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Spain v Austria",
+      "home_team": "Spain",
+      "away_team": "Austria",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284532/spain-vs-austria",
+      "url_source": "v23_props_cache",
+      "elapsed_seconds": 60.6,
+      "timing": {
+        "navigation_seconds": 9.9,
+        "match_sections_seconds": 5.5,
+        "corners_cards_seconds": 36.9,
+        "team_sections_seconds": 8.3,
+        "total_seconds": 60.6
+      },
+      "market_count": 2,
+      "markets": [
+        {
+          "market": "Total Corners",
+          "normalized_market": "total_corners",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "7/2",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/6",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "1/10",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "11/2",
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "1/5",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "10/3",
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "2/5",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "7/4",
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "11/10",
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards",
+          "normalized_market": "total_cards",
+          "selection_count": 8,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "11/2",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "1/10",
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "6/10",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "5/4",
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "6/4",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "1/2",
+              "side": "under",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "10/3",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/5",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "cards"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Portugal v Croatia",
+      "home_team": "Portugal",
+      "away_team": "Croatia",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284299/portugal-vs-croatia",
+      "url_source": "v23_props_cache",
+      "elapsed_seconds": 61.0,
+      "timing": {
+        "navigation_seconds": 9.9,
+        "match_sections_seconds": 5.6,
+        "corners_cards_seconds": 37.0,
+        "team_sections_seconds": 8.5,
+        "total_seconds": 61.0
+      },
+      "market_count": 2,
+      "markets": [
+        {
+          "market": "Total Corners",
+          "normalized_market": "total_corners",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "6/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/12",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "1/8",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "9/2",
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "2/7",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "5/2",
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "1/2",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "6/4",
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "19/20",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "4/5",
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners"
+            }
+          ]
+        },
+        {
+          "market": "Total Cards",
+          "normalized_market": "total_cards",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 1.5",
+              "normalized_selection": "over_1_5",
+              "odds": "4/1",
+              "side": "over",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 1.5",
+              "normalized_selection": "under_1_5",
+              "odds": "1/7",
+              "side": "under",
+              "line": "1.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 2.5",
+              "normalized_selection": "over_2_5",
+              "odds": "1/3",
+              "side": "over",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 2.5",
+              "normalized_selection": "under_2_5",
+              "odds": "9/4",
+              "side": "under",
+              "line": "2.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Over 3.5",
+              "normalized_selection": "over_3_5",
+              "odds": "4/5",
+              "side": "over",
+              "line": "3.5",
+              "prop_type": "cards"
+            },
+            {
+              "selection": "Under 3.5",
+              "normalized_selection": "under_3_5",
+              "odds": "19/20",
               "side": "under",
               "line": "3.5",
               "prop_type": "cards"
@@ -370,474 +3042,48 @@
               "side": "under",
               "line": "5.5",
               "prop_type": "cards"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "7/2",
-              "side": "over",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "1/6",
-              "side": "under",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "6/1",
-              "side": "over",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "1/12",
-              "side": "under",
-              "line": "1.5",
-              "prop_type": "cards"
-            }
-          ]
-        },
-        {
-          "market": "South Africa Shots",
-          "normalized_market": "south_africa_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "South Africa Over 8.5",
-              "normalized_selection": "south_africa_over_8_5",
-              "odds": "1/2",
-              "side": "over",
-              "line": "8.5",
-              "prop_type": "team_shots",
-              "team": "South Africa",
-              "team_side": "home",
-              "raw_selection": "South Africa Over 8",
-              "raw_line": "8",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "South Africa Over 9.5",
-              "normalized_selection": "south_africa_over_9_5",
-              "odds": "5/6",
-              "side": "over",
-              "line": "9.5",
-              "prop_type": "team_shots",
-              "team": "South Africa",
-              "team_side": "home",
-              "raw_selection": "South Africa Over 9",
-              "raw_line": "9",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "South Africa Over 10.5",
-              "normalized_selection": "south_africa_over_10_5",
-              "odds": "11/8",
-              "side": "over",
-              "line": "10.5",
-              "prop_type": "team_shots",
-              "team": "South Africa",
-              "team_side": "home",
-              "raw_selection": "South Africa Over 10",
-              "raw_line": "10",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "South Africa Over 11.5",
-              "normalized_selection": "south_africa_over_11_5",
-              "odds": "2/1",
-              "side": "over",
-              "line": "11.5",
-              "prop_type": "team_shots",
-              "team": "South Africa",
-              "team_side": "home",
-              "raw_selection": "South Africa Over 11",
-              "raw_line": "11",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Canada Shots",
-          "normalized_market": "canada_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Canada Over 12.5",
-              "normalized_selection": "canada_over_12_5",
-              "odds": "4/6",
-              "side": "over",
-              "line": "12.5",
-              "prop_type": "team_shots",
-              "team": "Canada",
-              "team_side": "away",
-              "raw_selection": "Canada Over 12",
-              "raw_line": "12",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Canada Over 13.5",
-              "normalized_selection": "canada_over_13_5",
-              "odds": "EVS",
-              "side": "over",
-              "line": "13.5",
-              "prop_type": "team_shots",
-              "team": "Canada",
-              "team_side": "away",
-              "raw_selection": "Canada Over 13",
-              "raw_line": "13",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Canada Over 14.5",
-              "normalized_selection": "canada_over_14_5",
-              "odds": "6/4",
-              "side": "over",
-              "line": "14.5",
-              "prop_type": "team_shots",
-              "team": "Canada",
-              "team_side": "away",
-              "raw_selection": "Canada Over 14",
-              "raw_line": "14",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Canada Over 15.5",
-              "normalized_selection": "canada_over_15_5",
-              "odds": "9/4",
-              "side": "over",
-              "line": "15.5",
-              "prop_type": "team_shots",
-              "team": "Canada",
-              "team_side": "away",
-              "raw_selection": "Canada Over 15",
-              "raw_line": "15",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "South Africa Shots On Target",
-          "normalized_market": "south_africa_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "South Africa Over 2.5",
-              "normalized_selection": "south_africa_over_2_5",
-              "odds": "7/10",
-              "side": "over",
-              "line": "2.5",
-              "prop_type": "team_shots_on_target",
-              "team": "South Africa",
-              "team_side": "home",
-              "raw_selection": "South Africa Over 2",
-              "raw_line": "2",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "South Africa Over 3.5",
-              "normalized_selection": "south_africa_over_3_5",
-              "odds": "6/4",
-              "side": "over",
-              "line": "3.5",
-              "prop_type": "team_shots_on_target",
-              "team": "South Africa",
-              "team_side": "home",
-              "raw_selection": "South Africa Over 3",
-              "raw_line": "3",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "South Africa Over 4.5",
-              "normalized_selection": "south_africa_over_4_5",
-              "odds": "10/3",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "team_shots_on_target",
-              "team": "South Africa",
-              "team_side": "home",
-              "raw_selection": "South Africa Over 4",
-              "raw_line": "4",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "South Africa Over 5.5",
-              "normalized_selection": "south_africa_over_5_5",
-              "odds": "7/1",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "team_shots_on_target",
-              "team": "South Africa",
-              "team_side": "home",
-              "raw_selection": "South Africa Over 5",
-              "raw_line": "5",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Canada Shots On Target",
-          "normalized_market": "canada_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Canada Over 4.5",
-              "normalized_selection": "canada_over_4_5",
-              "odds": "5/6",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Canada",
-              "team_side": "away",
-              "raw_selection": "Canada Over 4",
-              "raw_line": "4",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Canada Over 5.5",
-              "normalized_selection": "canada_over_5_5",
-              "odds": "13/8",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Canada",
-              "team_side": "away",
-              "raw_selection": "Canada Over 5",
-              "raw_line": "5",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Canada Over 6.5",
-              "normalized_selection": "canada_over_6_5",
-              "odds": "3/1",
-              "side": "over",
-              "line": "6.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Canada",
-              "team_side": "away",
-              "raw_selection": "Canada Over 6",
-              "raw_line": "6",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Canada Over 7.5",
-              "normalized_selection": "canada_over_7_5",
-              "odds": "11/2",
-              "side": "over",
-              "line": "7.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Canada",
-              "team_side": "away",
-              "raw_selection": "Canada Over 7",
-              "raw_line": "7",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
             }
           ]
         }
       ]
     },
     {
-      "match": "Brazil v Japan",
-      "home_team": "Brazil",
-      "away_team": "Japan",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40261448/brazil-vs-japan",
+      "match": "Switzerland v Algeria",
+      "home_team": "Switzerland",
+      "away_team": "Algeria",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284485/switzerland-vs-algeria",
       "url_source": "v23_props_cache",
-      "elapsed_seconds": 82.8,
+      "elapsed_seconds": 60.6,
       "timing": {
-        "navigation_seconds": 10.9,
-        "match_sections_seconds": 9.5,
-        "corners_cards_seconds": 38.2,
-        "team_sections_seconds": 24.2,
-        "total_seconds": 82.8
+        "navigation_seconds": 10.0,
+        "match_sections_seconds": 5.5,
+        "corners_cards_seconds": 36.6,
+        "team_sections_seconds": 8.5,
+        "total_seconds": 60.6
       },
-      "market_count": 8,
+      "market_count": 2,
       "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 22.5",
-              "normalized_selection": "over_22_5",
-              "odds": "8/13",
-              "side": "over",
-              "line": "22.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 22",
-              "raw_line": "22",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 23.5",
-              "normalized_selection": "over_23_5",
-              "odds": "10/11",
-              "side": "over",
-              "line": "23.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 23",
-              "raw_line": "23",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 24.5",
-              "normalized_selection": "over_24_5",
-              "odds": "6/5",
-              "side": "over",
-              "line": "24.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 24",
-              "raw_line": "24",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 25.5",
-              "normalized_selection": "over_25_5",
-              "odds": "13/8",
-              "side": "over",
-              "line": "25.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 25",
-              "raw_line": "25",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 26.5",
-              "normalized_selection": "over_26_5",
-              "odds": "2/1",
-              "side": "over",
-              "line": "26.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 26",
-              "raw_line": "26",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 27.5",
-              "normalized_selection": "over_27_5",
-              "odds": "11/4",
-              "side": "over",
-              "line": "27.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 27",
-              "raw_line": "27",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 7.5",
-              "normalized_selection": "over_7_5",
-              "odds": "4/6",
-              "side": "over",
-              "line": "7.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 7",
-              "raw_line": "7",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 8.5",
-              "normalized_selection": "over_8_5",
-              "odds": "11/10",
-              "side": "over",
-              "line": "8.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 8",
-              "raw_line": "8",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 9.5",
-              "normalized_selection": "over_9_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "9.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 9",
-              "raw_line": "9",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 10.5",
-              "normalized_selection": "over_10_5",
-              "odds": "3/1",
-              "side": "over",
-              "line": "10.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 10",
-              "raw_line": "10",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 11.5",
-              "normalized_selection": "over_11_5",
-              "odds": "9/2",
-              "side": "over",
-              "line": "11.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 11",
-              "raw_line": "11",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 12.5",
-              "normalized_selection": "over_12_5",
-              "odds": "7/1",
-              "side": "over",
-              "line": "12.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 12",
-              "raw_line": "12",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
         {
           "market": "Total Corners",
           "normalized_market": "total_corners",
-          "selection_count": 14,
+          "selection_count": 12,
           "selections": [
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "9/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/25",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
             {
               "selection": "Over 5.5",
               "normalized_selection": "over_5_5",
@@ -917,50 +3163,18 @@
               "side": "under",
               "line": "9.5",
               "prop_type": "corners"
-            },
-            {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "11/2",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
-              "odds": "1/10",
-              "side": "under",
-              "line": "4.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "9/1",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
-              "odds": "1/25",
-              "side": "under",
-              "line": "4.5",
-              "prop_type": "corners"
             }
           ]
         },
         {
           "market": "Total Cards",
           "normalized_market": "total_cards",
-          "selection_count": 14,
+          "selection_count": 10,
           "selections": [
             {
               "selection": "Over 1.5",
               "normalized_selection": "over_1_5",
-              "odds": "1/8",
+              "odds": "11/2",
               "side": "over",
               "line": "1.5",
               "prop_type": "cards"
@@ -968,7 +3182,7 @@
             {
               "selection": "Under 1.5",
               "normalized_selection": "under_1_5",
-              "odds": "9/2",
+              "odds": "1/10",
               "side": "under",
               "line": "1.5",
               "prop_type": "cards"
@@ -976,665 +3190,15 @@
             {
               "selection": "Over 2.5",
               "normalized_selection": "over_2_5",
-              "odds": "2/5",
-              "side": "over",
-              "line": "2.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 2.5",
-              "normalized_selection": "under_2_5",
-              "odds": "7/4",
-              "side": "under",
-              "line": "2.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 3.5",
-              "normalized_selection": "over_3_5",
-              "odds": "EVS",
-              "side": "over",
-              "line": "3.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 3.5",
-              "normalized_selection": "under_3_5",
-              "odds": "8/11",
-              "side": "under",
-              "line": "3.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "9/4",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
-              "odds": "1/3",
-              "side": "under",
-              "line": "4.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 5.5",
-              "normalized_selection": "over_5_5",
-              "odds": "4/1",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 5.5",
-              "normalized_selection": "under_5_5",
-              "odds": "1/7",
-              "side": "under",
-              "line": "5.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "6/1",
-              "side": "over",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "1/12",
-              "side": "under",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "5/1",
-              "side": "over",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "1/9",
-              "side": "under",
-              "line": "1.5",
-              "prop_type": "cards"
-            }
-          ]
-        },
-        {
-          "market": "Brazil Shots",
-          "normalized_market": "brazil_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Brazil Over 13.5",
-              "normalized_selection": "brazil_over_13_5",
-              "odds": "4/5",
-              "side": "over",
-              "line": "13.5",
-              "prop_type": "team_shots",
-              "team": "Brazil",
-              "team_side": "home",
-              "raw_selection": "Brazil Over 13",
-              "raw_line": "13",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Brazil Over 14.5",
-              "normalized_selection": "brazil_over_14_5",
-              "odds": "11/10",
-              "side": "over",
-              "line": "14.5",
-              "prop_type": "team_shots",
-              "team": "Brazil",
-              "team_side": "home",
-              "raw_selection": "Brazil Over 14",
-              "raw_line": "14",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Brazil Over 15.5",
-              "normalized_selection": "brazil_over_15_5",
-              "odds": "13/8",
-              "side": "over",
-              "line": "15.5",
-              "prop_type": "team_shots",
-              "team": "Brazil",
-              "team_side": "home",
-              "raw_selection": "Brazil Over 15",
-              "raw_line": "15",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Brazil Over 16.5",
-              "normalized_selection": "brazil_over_16_5",
-              "odds": "5/2",
-              "side": "over",
-              "line": "16.5",
-              "prop_type": "team_shots",
-              "team": "Brazil",
-              "team_side": "home",
-              "raw_selection": "Brazil Over 16",
-              "raw_line": "16",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Japan Shots",
-          "normalized_market": "japan_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Japan Over 9.5",
-              "normalized_selection": "japan_over_9_5",
-              "odds": "4/5",
-              "side": "over",
-              "line": "9.5",
-              "prop_type": "team_shots",
-              "team": "Japan",
-              "team_side": "away",
-              "raw_selection": "Japan Over 9",
-              "raw_line": "9",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Japan Over 10.5",
-              "normalized_selection": "japan_over_10_5",
-              "odds": "5/4",
-              "side": "over",
-              "line": "10.5",
-              "prop_type": "team_shots",
-              "team": "Japan",
-              "team_side": "away",
-              "raw_selection": "Japan Over 10",
-              "raw_line": "10",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Japan Over 11.5",
-              "normalized_selection": "japan_over_11_5",
-              "odds": "2/1",
-              "side": "over",
-              "line": "11.5",
-              "prop_type": "team_shots",
-              "team": "Japan",
-              "team_side": "away",
-              "raw_selection": "Japan Over 11",
-              "raw_line": "11",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Japan Over 12.5",
-              "normalized_selection": "japan_over_12_5",
-              "odds": "3/1",
-              "side": "over",
-              "line": "12.5",
-              "prop_type": "team_shots",
-              "team": "Japan",
-              "team_side": "away",
-              "raw_selection": "Japan Over 12",
-              "raw_line": "12",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Brazil Shots On Target",
-          "normalized_market": "brazil_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Brazil Over 4.5",
-              "normalized_selection": "brazil_over_4_5",
-              "odds": "5/6",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Brazil",
-              "team_side": "home",
-              "raw_selection": "Brazil Over 4",
-              "raw_line": "4",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Brazil Over 5.5",
-              "normalized_selection": "brazil_over_5_5",
-              "odds": "6/4",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Brazil",
-              "team_side": "home",
-              "raw_selection": "Brazil Over 5",
-              "raw_line": "5",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Brazil Over 6.5",
-              "normalized_selection": "brazil_over_6_5",
-              "odds": "11/4",
-              "side": "over",
-              "line": "6.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Brazil",
-              "team_side": "home",
-              "raw_selection": "Brazil Over 6",
-              "raw_line": "6",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Brazil Over 7.5",
-              "normalized_selection": "brazil_over_7_5",
-              "odds": "5/1",
-              "side": "over",
-              "line": "7.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Brazil",
-              "team_side": "home",
-              "raw_selection": "Brazil Over 7",
-              "raw_line": "7",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Japan Shots On Target",
-          "normalized_market": "japan_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Japan Over 2.5",
-              "normalized_selection": "japan_over_2_5",
-              "odds": "2/5",
-              "side": "over",
-              "line": "2.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Japan",
-              "team_side": "away",
-              "raw_selection": "Japan Over 2",
-              "raw_line": "2",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Japan Over 3.5",
-              "normalized_selection": "japan_over_3_5",
-              "odds": "21/20",
-              "side": "over",
-              "line": "3.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Japan",
-              "team_side": "away",
-              "raw_selection": "Japan Over 3",
-              "raw_line": "3",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Japan Over 4.5",
-              "normalized_selection": "japan_over_4_5",
-              "odds": "2/1",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Japan",
-              "team_side": "away",
-              "raw_selection": "Japan Over 4",
-              "raw_line": "4",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Japan Over 5.5",
-              "normalized_selection": "japan_over_5_5",
-              "odds": "4/1",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Japan",
-              "team_side": "away",
-              "raw_selection": "Japan Over 5",
-              "raw_line": "5",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Germany v Paraguay",
-      "home_team": "Germany",
-      "away_team": "Paraguay",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40273655/germany-vs-paraguay",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 82.0,
-      "timing": {
-        "navigation_seconds": 10.3,
-        "match_sections_seconds": 9.3,
-        "corners_cards_seconds": 38.1,
-        "team_sections_seconds": 24.3,
-        "total_seconds": 82.0
-      },
-      "market_count": 8,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 27.5",
-              "normalized_selection": "over_27_5",
-              "odds": "5/6",
-              "side": "over",
-              "line": "27.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 27",
-              "raw_line": "27",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 28.5",
-              "normalized_selection": "over_28_5",
-              "odds": "21/20",
-              "side": "over",
-              "line": "28.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 28",
-              "raw_line": "28",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 29.5",
-              "normalized_selection": "over_29_5",
-              "odds": "11/8",
-              "side": "over",
-              "line": "29.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 29",
-              "raw_line": "29",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 30.5",
-              "normalized_selection": "over_30_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "30.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 30",
-              "raw_line": "30",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 31.5",
-              "normalized_selection": "over_31_5",
-              "odds": "12/5",
-              "side": "over",
-              "line": "31.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 31",
-              "raw_line": "31",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 32.5",
-              "normalized_selection": "over_32_5",
-              "odds": "3/1",
-              "side": "over",
-              "line": "32.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 32",
-              "raw_line": "32",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 8.5",
-              "normalized_selection": "over_8_5",
               "odds": "1/2",
               "side": "over",
-              "line": "8.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 8",
-              "raw_line": "8",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 9.5",
-              "normalized_selection": "over_9_5",
-              "odds": "5/6",
-              "side": "over",
-              "line": "9.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 9",
-              "raw_line": "9",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 10.5",
-              "normalized_selection": "over_10_5",
-              "odds": "11/8",
-              "side": "over",
-              "line": "10.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 10",
-              "raw_line": "10",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 11.5",
-              "normalized_selection": "over_11_5",
-              "odds": "2/1",
-              "side": "over",
-              "line": "11.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 11",
-              "raw_line": "11",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 12.5",
-              "normalized_selection": "over_12_5",
-              "odds": "10/3",
-              "side": "over",
-              "line": "12.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 12",
-              "raw_line": "12",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 13.5",
-              "normalized_selection": "over_13_5",
-              "odds": "5/1",
-              "side": "over",
-              "line": "13.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 13",
-              "raw_line": "13",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Total Corners",
-          "normalized_market": "total_corners",
-          "selection_count": 12,
-          "selections": [
-            {
-              "selection": "Over 5.5",
-              "normalized_selection": "over_5_5",
-              "odds": "1/14",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 5.5",
-              "normalized_selection": "under_5_5",
-              "odds": "13/2",
-              "side": "under",
-              "line": "5.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 6.5",
-              "normalized_selection": "over_6_5",
-              "odds": "1/6",
-              "side": "over",
-              "line": "6.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 6.5",
-              "normalized_selection": "under_6_5",
-              "odds": "7/2",
-              "side": "under",
-              "line": "6.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 7.5",
-              "normalized_selection": "over_7_5",
-              "odds": "1/3",
-              "side": "over",
-              "line": "7.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 7.5",
-              "normalized_selection": "under_7_5",
-              "odds": "9/4",
-              "side": "under",
-              "line": "7.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 8.5",
-              "normalized_selection": "over_8_5",
-              "odds": "4/7",
-              "side": "over",
-              "line": "8.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 8.5",
-              "normalized_selection": "under_8_5",
-              "odds": "13/10",
-              "side": "under",
-              "line": "8.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 9.5",
-              "normalized_selection": "over_9_5",
-              "odds": "19/20",
-              "side": "over",
-              "line": "9.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 9.5",
-              "normalized_selection": "under_9_5",
-              "odds": "4/5",
-              "side": "under",
-              "line": "9.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "10/3",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
-              "odds": "1/5",
-              "side": "under",
-              "line": "4.5",
-              "prop_type": "corners"
-            }
-          ]
-        },
-        {
-          "market": "Total Cards",
-          "normalized_market": "total_cards",
-          "selection_count": 14,
-          "selections": [
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "1/6",
-              "side": "over",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "7/2",
-              "side": "under",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 2.5",
-              "normalized_selection": "over_2_5",
-              "odds": "4/7",
-              "side": "over",
               "line": "2.5",
               "prop_type": "cards"
             },
             {
               "selection": "Under 2.5",
               "normalized_selection": "under_2_5",
-              "odds": "13/10",
+              "odds": "6/4",
               "side": "under",
               "line": "2.5",
               "prop_type": "cards"
@@ -1642,7 +3206,7 @@
             {
               "selection": "Over 3.5",
               "normalized_selection": "over_3_5",
-              "odds": "11/8",
+              "odds": "6/5",
               "side": "over",
               "line": "3.5",
               "prop_type": "cards"
@@ -1650,7 +3214,7 @@
             {
               "selection": "Under 3.5",
               "normalized_selection": "under_3_5",
-              "odds": "8/15",
+              "odds": "8/13",
               "side": "under",
               "line": "3.5",
               "prop_type": "cards"
@@ -1658,1023 +3222,38 @@
             {
               "selection": "Over 4.5",
               "normalized_selection": "over_4_5",
-              "odds": "11/4",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
-              "odds": "1/4",
-              "side": "under",
-              "line": "4.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 5.5",
-              "normalized_selection": "over_5_5",
-              "odds": "11/2",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 5.5",
-              "normalized_selection": "under_5_5",
-              "odds": "1/10",
-              "side": "under",
-              "line": "5.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "9/1",
-              "side": "over",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "1/25",
-              "side": "under",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Over 1.5",
-              "normalized_selection": "over_1_5",
-              "odds": "9/2",
-              "side": "over",
-              "line": "1.5",
-              "prop_type": "cards"
-            },
-            {
-              "selection": "Under 1.5",
-              "normalized_selection": "under_1_5",
-              "odds": "1/8",
-              "side": "under",
-              "line": "1.5",
-              "prop_type": "cards"
-            }
-          ]
-        },
-        {
-          "market": "Germany Shots",
-          "normalized_market": "germany_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Germany Over 18.5",
-              "normalized_selection": "germany_over_18_5",
-              "odds": "7/10",
-              "side": "over",
-              "line": "18.5",
-              "prop_type": "team_shots",
-              "team": "Germany",
-              "team_side": "home",
-              "raw_selection": "Germany Over 18",
-              "raw_line": "18",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Germany Over 19.5",
-              "normalized_selection": "germany_over_19_5",
-              "odds": "10/11",
-              "side": "over",
-              "line": "19.5",
-              "prop_type": "team_shots",
-              "team": "Germany",
-              "team_side": "home",
-              "raw_selection": "Germany Over 19",
-              "raw_line": "19",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Germany Over 20.5",
-              "normalized_selection": "germany_over_20_5",
-              "odds": "13/10",
-              "side": "over",
-              "line": "20.5",
-              "prop_type": "team_shots",
-              "team": "Germany",
-              "team_side": "home",
-              "raw_selection": "Germany Over 20",
-              "raw_line": "20",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Germany Over 21.5",
-              "normalized_selection": "germany_over_21_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "21.5",
-              "prop_type": "team_shots",
-              "team": "Germany",
-              "team_side": "home",
-              "raw_selection": "Germany Over 21",
-              "raw_line": "21",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Paraguay Shots",
-          "normalized_market": "paraguay_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Paraguay Over 8.5",
-              "normalized_selection": "paraguay_over_8_5",
-              "odds": "5/6",
-              "side": "over",
-              "line": "8.5",
-              "prop_type": "team_shots",
-              "team": "Paraguay",
-              "team_side": "away",
-              "raw_selection": "Paraguay Over 8",
-              "raw_line": "8",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Paraguay Over 9.5",
-              "normalized_selection": "paraguay_over_9_5",
-              "odds": "11/8",
-              "side": "over",
-              "line": "9.5",
-              "prop_type": "team_shots",
-              "team": "Paraguay",
-              "team_side": "away",
-              "raw_selection": "Paraguay Over 9",
-              "raw_line": "9",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Paraguay Over 10.5",
-              "normalized_selection": "paraguay_over_10_5",
-              "odds": "9/4",
-              "side": "over",
-              "line": "10.5",
-              "prop_type": "team_shots",
-              "team": "Paraguay",
-              "team_side": "away",
-              "raw_selection": "Paraguay Over 10",
-              "raw_line": "10",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Paraguay Over 11.5",
-              "normalized_selection": "paraguay_over_11_5",
-              "odds": "10/3",
-              "side": "over",
-              "line": "11.5",
-              "prop_type": "team_shots",
-              "team": "Paraguay",
-              "team_side": "away",
-              "raw_selection": "Paraguay Over 11",
-              "raw_line": "11",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Germany Shots On Target",
-          "normalized_market": "germany_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Germany Over 6.5",
-              "normalized_selection": "germany_over_6_5",
-              "odds": "8/11",
-              "side": "over",
-              "line": "6.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Germany",
-              "team_side": "home",
-              "raw_selection": "Germany Over 6",
-              "raw_line": "6",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Germany Over 7.5",
-              "normalized_selection": "germany_over_7_5",
-              "odds": "13/10",
-              "side": "over",
-              "line": "7.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Germany",
-              "team_side": "home",
-              "raw_selection": "Germany Over 7",
-              "raw_line": "7",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Germany Over 8.5",
-              "normalized_selection": "germany_over_8_5",
-              "odds": "9/4",
-              "side": "over",
-              "line": "8.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Germany",
-              "team_side": "home",
-              "raw_selection": "Germany Over 8",
-              "raw_line": "8",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Germany Over 9.5",
-              "normalized_selection": "germany_over_9_5",
-              "odds": "7/2",
-              "side": "over",
-              "line": "9.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Germany",
-              "team_side": "home",
-              "raw_selection": "Germany Over 9",
-              "raw_line": "9",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Paraguay Shots On Target",
-          "normalized_market": "paraguay_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Paraguay Over 2.5",
-              "normalized_selection": "paraguay_over_2_5",
-              "odds": "8/11",
-              "side": "over",
-              "line": "2.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Paraguay",
-              "team_side": "away",
-              "raw_selection": "Paraguay Over 2",
-              "raw_line": "2",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Paraguay Over 3.5",
-              "normalized_selection": "paraguay_over_3_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "3.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Paraguay",
-              "team_side": "away",
-              "raw_selection": "Paraguay Over 3",
-              "raw_line": "3",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Paraguay Over 4.5",
-              "normalized_selection": "paraguay_over_4_5",
-              "odds": "15/4",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Paraguay",
-              "team_side": "away",
-              "raw_selection": "Paraguay Over 4",
-              "raw_line": "4",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Paraguay Over 5.5",
-              "normalized_selection": "paraguay_over_5_5",
-              "odds": "7/1",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Paraguay",
-              "team_side": "away",
-              "raw_selection": "Paraguay Over 5",
-              "raw_line": "5",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Netherlands v Morocco",
-      "home_team": "Netherlands",
-      "away_team": "Morocco",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40261449/netherlands-vs-morocco",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 43.9,
-      "timing": {
-        "navigation_seconds": 10.3,
-        "match_sections_seconds": 9.2,
-        "corners_cards_seconds": 0.8,
-        "team_sections_seconds": 23.6,
-        "total_seconds": 43.9
-      },
-      "market_count": 6,
-      "markets": [
-        {
-          "market": "Match Shots",
-          "normalized_market": "match_shots",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 23.5",
-              "normalized_selection": "over_23_5",
-              "odds": "5/6",
-              "side": "over",
-              "line": "23.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 23",
-              "raw_line": "23",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 24.5",
-              "normalized_selection": "over_24_5",
-              "odds": "11/10",
-              "side": "over",
-              "line": "24.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 24",
-              "raw_line": "24",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 25.5",
-              "normalized_selection": "over_25_5",
-              "odds": "11/8",
-              "side": "over",
-              "line": "25.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 25",
-              "raw_line": "25",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 26.5",
-              "normalized_selection": "over_26_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "26.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 26",
-              "raw_line": "26",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 27.5",
-              "normalized_selection": "over_27_5",
               "odds": "5/2",
               "side": "over",
-              "line": "27.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 27",
-              "raw_line": "27",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 28.5",
-              "normalized_selection": "over_28_5",
-              "odds": "10/3",
-              "side": "over",
-              "line": "28.5",
-              "prop_type": "match_shots",
-              "raw_selection": "Over 28",
-              "raw_line": "28",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Match Shots On Target",
-          "normalized_market": "match_shots_on_target",
-          "selection_count": 6,
-          "selections": [
-            {
-              "selection": "Over 7.5",
-              "normalized_selection": "over_7_5",
-              "odds": "4/6",
-              "side": "over",
-              "line": "7.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 7",
-              "raw_line": "7",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 8.5",
-              "normalized_selection": "over_8_5",
-              "odds": "11/10",
-              "side": "over",
-              "line": "8.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 8",
-              "raw_line": "8",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 9.5",
-              "normalized_selection": "over_9_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "9.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 9",
-              "raw_line": "9",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 10.5",
-              "normalized_selection": "over_10_5",
-              "odds": "3/1",
-              "side": "over",
-              "line": "10.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 10",
-              "raw_line": "10",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 11.5",
-              "normalized_selection": "over_11_5",
-              "odds": "9/2",
-              "side": "over",
-              "line": "11.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 11",
-              "raw_line": "11",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Over 12.5",
-              "normalized_selection": "over_12_5",
-              "odds": "7/1",
-              "side": "over",
-              "line": "12.5",
-              "prop_type": "match_shots_on_target",
-              "raw_selection": "Over 12",
-              "raw_line": "12",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Netherlands Shots",
-          "normalized_market": "netherlands_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Netherlands Over 12.5",
-              "normalized_selection": "netherlands_over_12_5",
-              "odds": "5/6",
-              "side": "over",
-              "line": "12.5",
-              "prop_type": "team_shots",
-              "team": "Netherlands",
-              "team_side": "home",
-              "raw_selection": "Netherlands Over 12",
-              "raw_line": "12",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Netherlands Over 13.5",
-              "normalized_selection": "netherlands_over_13_5",
-              "odds": "5/4",
-              "side": "over",
-              "line": "13.5",
-              "prop_type": "team_shots",
-              "team": "Netherlands",
-              "team_side": "home",
-              "raw_selection": "Netherlands Over 13",
-              "raw_line": "13",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Netherlands Over 14.5",
-              "normalized_selection": "netherlands_over_14_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "14.5",
-              "prop_type": "team_shots",
-              "team": "Netherlands",
-              "team_side": "home",
-              "raw_selection": "Netherlands Over 14",
-              "raw_line": "14",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Netherlands Over 15.5",
-              "normalized_selection": "netherlands_over_15_5",
-              "odds": "11/4",
-              "side": "over",
-              "line": "15.5",
-              "prop_type": "team_shots",
-              "team": "Netherlands",
-              "team_side": "home",
-              "raw_selection": "Netherlands Over 15",
-              "raw_line": "15",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Morocco Shots",
-          "normalized_market": "morocco_shots",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Morocco Over 10.5",
-              "normalized_selection": "morocco_over_10_5",
-              "odds": "4/6",
-              "side": "over",
-              "line": "10.5",
-              "prop_type": "team_shots",
-              "team": "Morocco",
-              "team_side": "away",
-              "raw_selection": "Morocco Over 10",
-              "raw_line": "10",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Morocco Over 11.5",
-              "normalized_selection": "morocco_over_11_5",
-              "odds": "21/20",
-              "side": "over",
-              "line": "11.5",
-              "prop_type": "team_shots",
-              "team": "Morocco",
-              "team_side": "away",
-              "raw_selection": "Morocco Over 11",
-              "raw_line": "11",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Morocco Over 12.5",
-              "normalized_selection": "morocco_over_12_5",
-              "odds": "6/4",
-              "side": "over",
-              "line": "12.5",
-              "prop_type": "team_shots",
-              "team": "Morocco",
-              "team_side": "away",
-              "raw_selection": "Morocco Over 12",
-              "raw_line": "12",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Morocco Over 13.5",
-              "normalized_selection": "morocco_over_13_5",
-              "odds": "12/5",
-              "side": "over",
-              "line": "13.5",
-              "prop_type": "team_shots",
-              "team": "Morocco",
-              "team_side": "away",
-              "raw_selection": "Morocco Over 13",
-              "raw_line": "13",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Netherlands Shots On Target",
-          "normalized_market": "netherlands_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Netherlands Over 3.5",
-              "normalized_selection": "netherlands_over_3_5",
-              "odds": "2/5",
-              "side": "over",
-              "line": "3.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Netherlands",
-              "team_side": "home",
-              "raw_selection": "Netherlands Over 3",
-              "raw_line": "3",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Netherlands Over 4.5",
-              "normalized_selection": "netherlands_over_4_5",
-              "odds": "10/11",
-              "side": "over",
               "line": "4.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Netherlands",
-              "team_side": "home",
-              "raw_selection": "Netherlands Over 4",
-              "raw_line": "4",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Netherlands Over 5.5",
-              "normalized_selection": "netherlands_over_5_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Netherlands",
-              "team_side": "home",
-              "raw_selection": "Netherlands Over 5",
-              "raw_line": "5",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Netherlands Over 6.5",
-              "normalized_selection": "netherlands_over_6_5",
-              "odds": "10/3",
-              "side": "over",
-              "line": "6.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Netherlands",
-              "team_side": "home",
-              "raw_selection": "Netherlands Over 6",
-              "raw_line": "6",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        },
-        {
-          "market": "Morocco Shots On Target",
-          "normalized_market": "morocco_shots_on_target",
-          "selection_count": 4,
-          "selections": [
-            {
-              "selection": "Morocco Over 3.5",
-              "normalized_selection": "morocco_over_3_5",
-              "odds": "5/6",
-              "side": "over",
-              "line": "3.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Morocco",
-              "team_side": "away",
-              "raw_selection": "Morocco Over 3",
-              "raw_line": "3",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Morocco Over 4.5",
-              "normalized_selection": "morocco_over_4_5",
-              "odds": "7/4",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Morocco",
-              "team_side": "away",
-              "raw_selection": "Morocco Over 4",
-              "raw_line": "4",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Morocco Over 5.5",
-              "normalized_selection": "morocco_over_5_5",
-              "odds": "7/2",
-              "side": "over",
-              "line": "5.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Morocco",
-              "team_side": "away",
-              "raw_selection": "Morocco Over 5",
-              "raw_line": "5",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            },
-            {
-              "selection": "Morocco Over 6.5",
-              "normalized_selection": "morocco_over_6_5",
-              "odds": "7/1",
-              "side": "over",
-              "line": "6.5",
-              "prop_type": "team_shots_on_target",
-              "team": "Morocco",
-              "team_side": "away",
-              "raw_selection": "Morocco Over 6",
-              "raw_line": "6",
-              "arb_line_adjusted": true,
-              "line_basis": "william_hill_integer_over_count_to_half_line"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "match": "Ivory Coast v Norway",
-      "home_team": "Ivory Coast",
-      "away_team": "Norway",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40265652/ivory-coast-vs-norway",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 46.2,
-      "timing": {
-        "navigation_seconds": 9.9,
-        "match_sections_seconds": 5.4,
-        "corners_cards_seconds": 22.8,
-        "team_sections_seconds": 8.1,
-        "total_seconds": 46.2
-      },
-      "market_count": 1,
-      "markets": [
-        {
-          "market": "Total Corners",
-          "normalized_market": "total_corners",
-          "selection_count": 14,
-          "selections": [
-            {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "1/25",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "corners"
+              "prop_type": "cards"
             },
             {
               "selection": "Under 4.5",
               "normalized_selection": "under_4_5",
-              "odds": "9/1",
+              "odds": "2/7",
               "side": "under",
               "line": "4.5",
-              "prop_type": "corners"
+              "prop_type": "cards"
             },
             {
               "selection": "Over 5.5",
               "normalized_selection": "over_5_5",
-              "odds": "1/9",
+              "odds": "5/1",
               "side": "over",
               "line": "5.5",
-              "prop_type": "corners"
+              "prop_type": "cards"
             },
             {
               "selection": "Under 5.5",
               "normalized_selection": "under_5_5",
-              "odds": "5/1",
+              "odds": "1/9",
               "side": "under",
               "line": "5.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 6.5",
-              "normalized_selection": "over_6_5",
-              "odds": "2/9",
-              "side": "over",
-              "line": "6.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 6.5",
-              "normalized_selection": "under_6_5",
-              "odds": "3/1",
-              "side": "under",
-              "line": "6.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 7.5",
-              "normalized_selection": "over_7_5",
-              "odds": "4/9",
-              "side": "over",
-              "line": "7.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 7.5",
-              "normalized_selection": "under_7_5",
-              "odds": "13/8",
-              "side": "under",
-              "line": "7.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 8.5",
-              "normalized_selection": "over_8_5",
-              "odds": "8/11",
-              "side": "over",
-              "line": "8.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 8.5",
-              "normalized_selection": "under_8_5",
-              "odds": "EVS",
-              "side": "under",
-              "line": "8.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "9/1",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
-              "odds": "1/25",
-              "side": "under",
-              "line": "4.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Over 4.5",
-              "normalized_selection": "over_4_5",
-              "odds": "11/2",
-              "side": "over",
-              "line": "4.5",
-              "prop_type": "corners"
-            },
-            {
-              "selection": "Under 4.5",
-              "normalized_selection": "under_4_5",
-              "odds": "1/10",
-              "side": "under",
-              "line": "4.5",
-              "prop_type": "corners"
+              "prop_type": "cards"
             }
           ]
         }
       ]
-    },
-    {
-      "match": "France v Sweden",
-      "home_team": "France",
-      "away_team": "Sweden",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40273653/france-vs-sweden",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 23.4,
-      "timing": {
-        "navigation_seconds": 9.7,
-        "match_sections_seconds": 5.2,
-        "corners_cards_seconds": 0.7,
-        "team_sections_seconds": 7.7,
-        "total_seconds": 23.4
-      },
-      "market_count": 0,
-      "markets": []
-    },
-    {
-      "match": "Mexico v Ecuador",
-      "home_team": "Mexico",
-      "away_team": "Ecuador",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40281380/mexico-vs-ecuador",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 43.9,
-      "timing": {
-        "navigation_seconds": 13.4,
-        "match_sections_seconds": 11.2,
-        "corners_cards_seconds": 0.7,
-        "team_sections_seconds": 18.7,
-        "total_seconds": 43.9
-      },
-      "market_count": 0,
-      "markets": []
-    },
-    {
-      "match": "England v DR Congo",
-      "home_team": "England",
-      "away_team": "DR Congo",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284330/england-vs-congo-dr",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 23.6,
-      "timing": {
-        "navigation_seconds": 9.7,
-        "match_sections_seconds": 5.5,
-        "corners_cards_seconds": 0.7,
-        "team_sections_seconds": 7.7,
-        "total_seconds": 23.6
-      },
-      "market_count": 0,
-      "markets": []
-    },
-    {
-      "match": "Belgium v Senegal",
-      "home_team": "Belgium",
-      "away_team": "Senegal",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284348/belgium-vs-senegal",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 23.3,
-      "timing": {
-        "navigation_seconds": 9.7,
-        "match_sections_seconds": 5.3,
-        "corners_cards_seconds": 0.7,
-        "team_sections_seconds": 7.6,
-        "total_seconds": 23.3
-      },
-      "market_count": 0,
-      "markets": []
-    },
-    {
-      "match": "USA v Bosnia",
-      "home_team": "USA",
-      "away_team": "Bosnia",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40261614/usa-vs-bosnia",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 23.1,
-      "timing": {
-        "navigation_seconds": 9.7,
-        "match_sections_seconds": 5.2,
-        "corners_cards_seconds": 0.7,
-        "team_sections_seconds": 7.6,
-        "total_seconds": 23.1
-      },
-      "market_count": 0,
-      "markets": []
-    },
-    {
-      "match": "Spain v Austria",
-      "home_team": "Spain",
-      "away_team": "Austria",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284532/spain-vs-austria",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 23.2,
-      "timing": {
-        "navigation_seconds": 9.8,
-        "match_sections_seconds": 5.2,
-        "corners_cards_seconds": 0.7,
-        "team_sections_seconds": 7.6,
-        "total_seconds": 23.2
-      },
-      "market_count": 0,
-      "markets": []
-    },
-    {
-      "match": "Portugal v Croatia",
-      "home_team": "Portugal",
-      "away_team": "Croatia",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284299/portugal-vs-croatia",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 23.1,
-      "timing": {
-        "navigation_seconds": 9.5,
-        "match_sections_seconds": 5.2,
-        "corners_cards_seconds": 0.7,
-        "team_sections_seconds": 7.6,
-        "total_seconds": 23.1
-      },
-      "market_count": 0,
-      "markets": []
-    },
-    {
-      "match": "Switzerland v Algeria",
-      "home_team": "Switzerland",
-      "away_team": "Algeria",
-      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284485/switzerland-vs-algeria",
-      "url_source": "v23_props_cache",
-      "elapsed_seconds": 23.1,
-      "timing": {
-        "navigation_seconds": 9.6,
-        "match_sections_seconds": 5.2,
-        "corners_cards_seconds": 0.7,
-        "team_sections_seconds": 7.6,
-        "total_seconds": 23.1
-      },
-      "market_count": 0,
-      "markets": []
     },
     {
       "match": "Australia v Egypt",
@@ -2682,16 +3261,104 @@
       "away_team": "Egypt",
       "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40273925/australia-vs-egypt",
       "url_source": "v23_props_cache",
-      "elapsed_seconds": 23.0,
+      "elapsed_seconds": 46.7,
       "timing": {
-        "navigation_seconds": 9.6,
-        "match_sections_seconds": 5.2,
-        "corners_cards_seconds": 0.7,
-        "team_sections_seconds": 7.5,
-        "total_seconds": 23.0
+        "navigation_seconds": 9.7,
+        "match_sections_seconds": 5.4,
+        "corners_cards_seconds": 23.3,
+        "team_sections_seconds": 8.3,
+        "total_seconds": 46.7
       },
-      "market_count": 0,
-      "markets": []
+      "market_count": 1,
+      "markets": [
+        {
+          "market": "Total Corners",
+          "normalized_market": "total_corners",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "13/2",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "1/14",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "1/8",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "9/2",
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "1/4",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "11/4",
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "1/2",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "6/4",
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "4/5",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "19/20",
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners"
+            }
+          ]
+        }
+      ]
     },
     {
       "match": "Argentina v Cape Verde",
@@ -2699,41 +3366,162 @@
       "away_team": "Cape Verde",
       "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40273590/argentina-vs-cape-verde",
       "url_source": "v23_props_cache",
-      "elapsed_seconds": 22.9,
+      "elapsed_seconds": 47.1,
       "timing": {
-        "navigation_seconds": 9.5,
-        "match_sections_seconds": 5.2,
+        "navigation_seconds": 10.1,
+        "match_sections_seconds": 5.5,
+        "corners_cards_seconds": 23.1,
+        "team_sections_seconds": 8.5,
+        "total_seconds": 47.1
+      },
+      "market_count": 1,
+      "markets": [
+        {
+          "market": "Total Corners",
+          "normalized_market": "total_corners",
+          "selection_count": 10,
+          "selections": [
+            {
+              "selection": "Over 4.5",
+              "normalized_selection": "over_4_5",
+              "odds": "3/1",
+              "side": "over",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 4.5",
+              "normalized_selection": "under_4_5",
+              "odds": "2/9",
+              "side": "under",
+              "line": "4.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 5.5",
+              "normalized_selection": "over_5_5",
+              "odds": "1/10",
+              "side": "over",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 5.5",
+              "normalized_selection": "under_5_5",
+              "odds": "11/2",
+              "side": "under",
+              "line": "5.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 6.5",
+              "normalized_selection": "over_6_5",
+              "odds": "1/5",
+              "side": "over",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 6.5",
+              "normalized_selection": "under_6_5",
+              "odds": "10/3",
+              "side": "under",
+              "line": "6.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 7.5",
+              "normalized_selection": "over_7_5",
+              "odds": "2/5",
+              "side": "over",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 7.5",
+              "normalized_selection": "under_7_5",
+              "odds": "7/4",
+              "side": "under",
+              "line": "7.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Over 8.5",
+              "normalized_selection": "over_8_5",
+              "odds": "4/6",
+              "side": "over",
+              "line": "8.5",
+              "prop_type": "corners"
+            },
+            {
+              "selection": "Under 8.5",
+              "normalized_selection": "under_8_5",
+              "odds": "11/10",
+              "side": "under",
+              "line": "8.5",
+              "prop_type": "corners"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "match": "Colombia v Ghana",
+      "home_team": "Colombia",
+      "away_team": "Ghana",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40284304/colombia-vs-ghana",
+      "url_source": "v23_props_cache",
+      "elapsed_seconds": 24.1,
+      "timing": {
+        "navigation_seconds": 10.0,
+        "match_sections_seconds": 5.6,
+        "corners_cards_seconds": 0.7,
+        "team_sections_seconds": 7.8,
+        "total_seconds": 24.1
+      },
+      "market_count": 0,
+      "markets": []
+    },
+    {
+      "match": "Canada v Morocco",
+      "home_team": "Canada",
+      "away_team": "Morocco",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40305880/canada-vs-morocco",
+      "url_source": "v23_props_cache",
+      "elapsed_seconds": 24.0,
+      "timing": {
+        "navigation_seconds": 9.9,
+        "match_sections_seconds": 5.6,
+        "corners_cards_seconds": 0.7,
+        "team_sections_seconds": 7.8,
+        "total_seconds": 24.0
+      },
+      "market_count": 0,
+      "markets": []
+    },
+    {
+      "match": "Brazil v Norway",
+      "home_team": "Brazil",
+      "away_team": "Norway",
+      "url": "https://sports.williamhill.com/betting/en-gb/football/OB_EV40309562/brazil-vs-norway",
+      "url_source": "v23_props_cache",
+      "elapsed_seconds": 23.5,
+      "timing": {
+        "navigation_seconds": 9.7,
+        "match_sections_seconds": 5.3,
         "corners_cards_seconds": 0.7,
         "team_sections_seconds": 7.6,
-        "total_seconds": 22.9
+        "total_seconds": 23.5
       },
       "market_count": 0,
       "markets": []
     }
   ],
-  "arb_line_normalization": {
-    "applied_at": "2026-06-28T20:30:11.820936+00:00",
-    "rule": "William Hill over-only integer shots/SOT counts are stored as comparison half-lines: Over N -> Over N.5",
-    "converted_selection_count": 112,
-    "converted_by_market": {
-      "Match Shots": 24,
-      "Match Shots On Target": 24,
-      "South Africa Shots": 4,
-      "Canada Shots": 4,
-      "South Africa Shots On Target": 4,
-      "Canada Shots On Target": 4,
-      "Brazil Shots": 4,
-      "Japan Shots": 4,
-      "Brazil Shots On Target": 4,
-      "Japan Shots On Target": 4,
-      "Germany Shots": 4,
-      "Paraguay Shots": 4,
-      "Germany Shots On Target": 4,
-      "Paraguay Shots On Target": 4,
-      "Netherlands Shots": 4,
-      "Morocco Shots": 4,
-      "Netherlands Shots On Target": 4,
-      "Morocco Shots On Target": 4
-    }
+  "validation_sanitized_at": "2026-06-30T21:33:28.908546+00:00",
+  "availability_validation": {
+    "complete_eight_market_matches": 4,
+    "valid_corner_ladders": 10,
+    "valid_card_ladders": 8,
+    "rule": "Corners/Cards require complete Over+Under pairs; ladder depth may vary by fixture."
   }
 }

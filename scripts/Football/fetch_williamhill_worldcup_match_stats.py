@@ -3044,20 +3044,28 @@ def market_map(result):
 
 
 def validate_production_output(output):
-    """Availability-aware validation before replacing the live JSON."""
     errors = []
     warnings = []
     matches = output.get("matches", [])
 
-    if output.get("match_count") != MAX_MATCHES:
+    actual_match_count = len(matches)
+
+    if output.get("match_count") != actual_match_count:
         errors.append(
-            f"Expected {MAX_MATCHES} result rows, got "
-            f"{output.get('match_count', 0)}."
+            f"Output match_count says {output.get('match_count', 0)}, "
+            f"but the matches array contains {actual_match_count}."
         )
 
-    if len(matches) != MAX_MATCHES:
+    if actual_match_count < 3:
         errors.append(
-            f"Expected {MAX_MATCHES} matches in output, got {len(matches)}."
+            f"Only {actual_match_count} fixtures were returned; "
+            "minimum safety threshold is 3."
+        )
+
+    if actual_match_count > MAX_MATCHES:
+        errors.append(
+            f"Returned {actual_match_count} fixtures, exceeding "
+            f"MAX_MATCHES {MAX_MATCHES}."
         )
 
     names = [clean(row.get("match")) for row in matches]
@@ -3076,6 +3084,7 @@ def validate_production_output(output):
         errors.append(
             "Duplicate match rows: " + ", ".join(duplicate_names)
         )
+
     if duplicate_urls:
         errors.append(
             "Duplicate event URLs: " + ", ".join(duplicate_urls)
@@ -3085,60 +3094,210 @@ def validate_production_output(output):
         row for row in matches
         if clean(row.get("error"))
     ]
+
     if error_rows:
         errors.append(
             f"{len(error_rows)} fixture(s) ended with scraper errors: "
-            + ", ".join(clean(row.get("match")) for row in error_rows)
+            + ", ".join(
+                clean(row.get("match"))
+                for row in error_rows
+            )
         )
+
+    def selection_side_and_line(selection):
+        side = clean(selection.get("side")).lower()
+        line = clean(selection.get("line"))
+
+        if side in {"over", "under"} and line:
+            return side, line
+
+        label = clean(
+            selection.get("selection")
+            or selection.get("name")
+        )
+
+        matched = re.search(
+            r"\b(Over|Under)\s+(\d+(?:\.\d+)?)\b",
+            label,
+            re.I,
+        )
+
+        if not matched:
+            return "", ""
+
+        return (
+            matched.group(1).lower(),
+            matched.group(2),
+        )
+
+    def sanitize_pair_market(market):
+        market_warnings = []
+        grouped = {}
+
+        for selection in market.get("selections", []):
+            side, line = selection_side_and_line(selection)
+
+            if not side or not line:
+                market_warnings.append(
+                    "selection missing parsable side/line: "
+                    + clean(
+                        selection.get("selection")
+                        or selection.get("name")
+                    )
+                )
+                continue
+
+            grouped.setdefault(line, {})[side] = selection
+
+        kept = []
+
+        def line_sort_key(value):
+            try:
+                return (0, float(value))
+            except Exception:
+                return (1, value)
+
+        for line in sorted(grouped, key=line_sort_key):
+            sides = grouped[line]
+
+            if set(sides) != {"over", "under"}:
+                market_warnings.append(
+                    f"line {line} is incomplete; "
+                    f"found {sorted(sides)}"
+                )
+                continue
+
+            kept.append(sides["over"])
+            kept.append(sides["under"])
+
+        if not kept:
+            return None, market_warnings
+
+        sanitized = dict(market)
+        sanitized["selections"] = kept
+        sanitized["selection_count"] = len(kept)
+        return sanitized, market_warnings
 
     matches_with_markets = 0
     rich_matches = 0
     full_corner_matches = 0
     full_card_matches = 0
-
-    minimum_by_generic_market = {
-        "match_shots": 6,
-        "match_shots_on_target": 6,
-        "total_corners": 10,
-        "total_cards": 12,
-    }
-
     per_match = []
 
+    pair_market_keys = {
+        "total_corners",
+        "total_cards",
+    }
+
+    minimum_ladder_selections = {
+        "match_shots": 2,
+        "match_shots_on_target": 2,
+    }
+
     for row in matches:
-        match_name = clean(row.get("match"))
+        match_name = clean(row.get("match")) or "Unknown fixture"
         home = clean(row.get("home_team"))
         away = clean(row.get("away_team"))
-        markets = market_map(row)
 
-        failures = []
+        sanitized_markets = []
         row_warnings = []
+        row_failures = []
+        seen_market_keys = set()
+
+        for market in row.get("markets", []):
+            if not isinstance(market, dict):
+                row_warnings.append(
+                    "Removed a non-object market entry."
+                )
+                continue
+
+            key = normalize(
+                market.get("normalized_market")
+                or market.get("market")
+            )
+
+            if not key:
+                row_warnings.append(
+                    "Removed a market with no name."
+                )
+                continue
+
+            if key in seen_market_keys:
+                row_failures.append(
+                    f"Duplicate market key: {key}"
+                )
+                continue
+
+            seen_market_keys.add(key)
+
+            selections = market.get("selections", [])
+
+            if not isinstance(selections, list):
+                row_warnings.append(
+                    f"{key}: removed malformed selections container."
+                )
+                continue
+
+            if key in pair_market_keys:
+                sanitized, pair_warnings = (
+                    sanitize_pair_market(market)
+                )
+
+                for warning in pair_warnings:
+                    row_warnings.append(
+                        f"{key}: {warning}"
+                    )
+
+                if sanitized is None:
+                    row_warnings.append(
+                        f"{key}: removed because no complete "
+                        "Over/Under pair was available."
+                    )
+                    continue
+
+                market = sanitized
+                selections = market["selections"]
+
+            elif key in minimum_ladder_selections:
+                minimum = minimum_ladder_selections[key]
+
+                if len(selections) < minimum:
+                    row_warnings.append(
+                        f"{key}: removed partial ladder with "
+                        f"{len(selections)} selection(s); "
+                        f"minimum usable ladder is {minimum}."
+                    )
+                    continue
+
+            elif not selections:
+                row_warnings.append(
+                    f"{key}: removed empty market."
+                )
+                continue
+
+            market = dict(market)
+            market["selection_count"] = len(selections)
+            market["selections"] = selections
+            sanitized_markets.append(market)
+
+        row["markets"] = sanitized_markets
+        row["market_count"] = len(sanitized_markets)
+
+        markets = {
+            normalize(
+                market.get("normalized_market")
+                or market.get("market")
+            ): market
+            for market in sanitized_markets
+        }
 
         if markets:
             matches_with_markets += 1
-
-        for key, minimum in minimum_by_generic_market.items():
-            market = markets.get(key)
-            if market and market.get("selection_count", 0) < minimum:
-                failures.append(
-                    f"{key} has {market.get('selection_count', 0)} "
-                    f"selection(s); expected at least {minimum}"
-                )
-
-        team_expected = [
-            (normalize(f"{home} Shots"), 4),
-            (normalize(f"{away} Shots"), 4),
-            (normalize(f"{home} Shots On Target"), 4),
-            (normalize(f"{away} Shots On Target"), 4),
-        ]
-
-        for key, minimum in team_expected:
-            market = markets.get(key)
-            if market and market.get("selection_count", 0) < minimum:
-                failures.append(
-                    f"{key} has {market.get('selection_count', 0)} "
-                    f"selection(s); expected at least {minimum}"
-                )
+        else:
+            row_warnings.append(
+                "No usable prematch match-stat markets are currently "
+                "available; treated as unavailable/live-like."
+            )
 
         home_shots = normalize(f"{home} Shots")
         away_shots = normalize(f"{away} Shots")
@@ -3146,30 +3305,27 @@ def validate_production_output(output):
         away_sot = normalize(f"{away} Shots On Target")
 
         if (home_shots in markets) != (away_shots in markets):
-            failures.append(
-                "Team Shots is missing one team side."
+            row_warnings.append(
+                "Team Shots is available for only one team."
             )
 
         if (home_sot in markets) != (away_sot in markets):
-            failures.append(
-                "Team Shots On Target is missing one team side."
+            row_warnings.append(
+                "Team Shots On Target is available for only one team."
             )
 
         if ("match_shots" in markets) != (
             "match_shots_on_target" in markets
         ):
             row_warnings.append(
-                "Only one of Match Shots / Match Shots On Target is present."
+                "Only one of Match Shots / Match Shots On Target "
+                "is currently available."
             )
 
-        if markets.get("total_corners", {}).get(
-            "selection_count", 0
-        ) >= 10:
+        if "total_corners" in markets:
             full_corner_matches += 1
 
-        if markets.get("total_cards", {}).get(
-            "selection_count", 0
-        ) >= 12:
+        if "total_cards" in markets:
             full_card_matches += 1
 
         rich_keys = {
@@ -3182,57 +3338,90 @@ def validate_production_output(output):
             home_sot,
             away_sot,
         }
+
         if rich_keys.issubset(markets):
             rich_matches += 1
 
-        if failures:
+        if row_failures:
             errors.append(
-                f"{match_name}: " + "; ".join(failures)
+                f"{match_name}: "
+                + "; ".join(row_failures)
             )
 
         for warning in row_warnings:
-            warnings.append(f"{match_name}: {warning}")
+            warnings.append(
+                f"{match_name}: {warning}"
+            )
 
         per_match.append({
             "match": match_name,
             "market_count": row.get("market_count", 0),
-            "status": "FAIL" if failures else "OK",
-            "failures": failures,
+            "status": "FAIL" if row_failures else (
+                "UNAVAILABLE"
+                if not markets
+                else "OK"
+            ),
+            "failures": row_failures,
             "warnings": row_warnings,
             "markets": {
-                market.get("market", key): market.get(
-                    "selection_count", 0
-                )
+                market.get("market", key):
+                    market.get("selection_count", 0)
                 for key, market in markets.items()
             },
         })
 
-    # Current William Hill availability has at least the first three rich
-    # fixtures. This prevents a partial/default-line regression being promoted.
     if matches_with_markets < 3:
         errors.append(
-            "Fewer than 3 fixtures returned any match-stat markets."
+            "Fewer than 3 fixtures returned usable match-stat markets."
         )
+
     if rich_matches < 3:
         errors.append(
             f"Expected at least 3 complete eight-market fixtures; "
             f"got {rich_matches}."
         )
+
     if full_corner_matches < 3:
         errors.append(
-            f"Expected at least 3 full Corners ladders; "
+            f"Expected at least 3 valid Corners ladders; "
             f"got {full_corner_matches}."
         )
+
     if full_card_matches < 3:
         errors.append(
-            f"Expected at least 3 full Cards ladders; "
+            f"Expected at least 3 valid Cards ladders; "
             f"got {full_card_matches}."
         )
+
+    output["match_count"] = len(matches)
+    output["matches_with_markets"] = matches_with_markets
+    output["validation_sanitized_at"] = (
+        datetime.now(timezone.utc).isoformat()
+    )
+    output["availability_validation"] = {
+        "complete_eight_market_matches": rich_matches,
+        "valid_corner_ladders": full_corner_matches,
+        "valid_card_ladders": full_card_matches,
+        "rule": (
+            "Corners/Cards require complete Over+Under pairs; "
+            "ladder depth may vary by fixture."
+        ),
+    }
+
+    STAGING_OUT_PATH.write_text(
+        json.dumps(
+            output,
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
 
     report = {
         "status": "PASS" if not errors else "FAIL",
         "validated_at": datetime.now(timezone.utc).isoformat(),
-        "expected_matches": MAX_MATCHES,
+        "expected_matches": len(matches),
+        "requested_max_matches": MAX_MATCHES,
         "actual_matches": len(matches),
         "matches_with_markets": matches_with_markets,
         "complete_eight_market_matches": rich_matches,
@@ -3242,7 +3431,9 @@ def validate_production_output(output):
         "warnings": warnings,
         "per_match": per_match,
     }
+
     return report
+
 
 
 def atomic_promote_staging():

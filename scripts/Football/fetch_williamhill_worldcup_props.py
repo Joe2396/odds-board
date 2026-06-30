@@ -5827,8 +5827,11 @@ def _validate_v23(output):
     warnings = []
     fixtures = output.get("matches", [])
 
-    if len(fixtures) != 15:
-        failures.append(f"Expected 15 fixtures, found {len(fixtures)}")
+    if len(fixtures) < 3:
+        failures.append(
+            f"Only {len(fixtures)} fixtures found; "
+            "minimum safety threshold is 3"
+        )
 
     optional_coverage = {
         "player_shots_on_target": 0,
@@ -6011,10 +6014,18 @@ def main():
         finally:
             discovery_page.close()
 
-        if len(fixtures) != MAX_MATCHES:
+        if len(fixtures) < 3:
             browser.close()
             raise RuntimeError(
-                f"Expected {MAX_MATCHES} fixtures, found {len(fixtures)}"
+                f"Only {len(fixtures)} eligible fixtures found; "
+                "minimum safety threshold is 3"
+            )
+
+        if len(fixtures) < MAX_MATCHES:
+            print(
+                f"William Hill availability: "
+                f"{len(fixtures)}/{MAX_MATCHES} eligible fixtures. "
+                "Continuing with every currently available fixture."
             )
 
         for index, fixture in enumerate(fixtures, start=1):

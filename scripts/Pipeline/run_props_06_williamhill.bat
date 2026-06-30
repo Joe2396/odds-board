@@ -32,11 +32,8 @@ if errorlevel 1 (
 
 echo.
 echo [3/8] William Hill embedded player shots...
-python scripts\Football\fix_williamhill_embedded_player_shots.py
-if errorlevel 1 (
-    echo FAILED: William Hill embedded player shots.
-    exit /b 1
-)
+echo Skipped legacy embedded-player-shots fixer: V23 captures these markets directly.
+
 
 echo.
 echo [4/8] William Hill player market-key normalization...
