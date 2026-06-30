@@ -1,14 +1,26 @@
 #!/usr/bin/env python3
 import json
+import os
 import re
+import sys
+import shutil
+import time
 from pathlib import Path
 from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 
-OUT_PATH  = ROOT / "football" / "data" / "livescorebet_worldcup_props.json"
-DEBUG_DIR = ROOT / "football" / "debug" / "livescorebet_worldcup_props"
+LIVE_OUT_PATH = ROOT / "football" / "data" / "livescorebet_worldcup_props.json"
+LEGACY_STAGING_PATH = ROOT / "football" / "data" / "livescorebet_worldcup_props_PRODUCTION_V3_STAGING.json"
+STAGING_OUT_PATH = ROOT / "football" / "data" / "livescorebet_worldcup_props_PRODUCTION_V4_STAGING.json"
+OUT_PATH = STAGING_OUT_PATH
+
+DEBUG_DIR = ROOT / "football" / "debug" / "livescorebet_worldcup_props_PRODUCTION_V4"
+VALIDATION_REPORT_PATH = DEBUG_DIR / "production_validation_report.json"
+BACKUP_DIR = ROOT / "football" / "data" / "backups"
+MAX_FAILURE_DEBUG_CHARS = 500_000
+MIN_ACTIVE_FIXTURES = 8
 
 COUPON_URL     = "https://www.livescorebet.com/ie/coupon/21127/"
 PLAYER_GRP_ID  = "757"
@@ -669,10 +681,69 @@ def expand_view_more(page):
     except Exception:
         pass
 
-def get_page_text(page, url, scroll_steps=18):
-    page.goto(url, wait_until="domcontentloaded", timeout=60000)
-    page.wait_for_timeout(4500)
-    accept_cookies(page)
+def wait_for_market_content(page, ready_markers=None, timeout_ms=4500):
+    """
+    Wait until the page has fractional prices and one expected market marker.
+
+    This retains the old 4.5 second maximum but usually returns much earlier.
+    """
+    markers = [clean(x) for x in (ready_markers or []) if clean(x)]
+    started = time.perf_counter()
+
+    while (time.perf_counter() - started) * 1000 < timeout_ms:
+        try:
+            state = page.evaluate(
+                r"""
+                (markers) => {
+                    const text = document.body
+                        ? (document.body.innerText || '')
+                        : '';
+                    const odds = text.match(
+                        /(?:^|\s)(?:\d+\/\d+|EVS|EVENS|EVEN)(?=\s|$)/gmi
+                    ) || [];
+                    const markerFound =
+                        !markers.length ||
+                        markers.some(marker => text.includes(marker));
+                    return {
+                        markerFound,
+                        oddsCount: odds.length,
+                        textLength: text.length
+                    };
+                }
+                """,
+                markers,
+            )
+        except Exception:
+            state = {}
+
+        if (
+            state.get("markerFound")
+            and state.get("oddsCount", 0) >= 3
+            and state.get("textLength", 0) >= 500
+        ):
+            return round(time.perf_counter() - started, 2)
+
+        page.wait_for_timeout(250)
+
+    return round(time.perf_counter() - started, 2)
+
+
+def collect_loaded_page_text(
+    page,
+    scroll_steps=18,
+    ready_markers=None,
+    accept_cookie_banner=True,
+):
+    ready_seconds = wait_for_market_content(
+        page,
+        ready_markers=ready_markers,
+        timeout_ms=4500,
+    )
+
+    if accept_cookie_banner:
+        accept_cookies(page)
+
+    scroll_started = time.perf_counter()
 
     for _ in range(scroll_steps):
         page.mouse.wheel(0, 650)
@@ -682,25 +753,127 @@ def get_page_text(page, url, scroll_steps=18):
     page.keyboard.press("Control+Home")
     page.wait_for_timeout(400)
 
-    return page.locator("body").inner_text(timeout=30000)
+    text = page.locator("body").inner_text(timeout=30000)
+
+    return text, {
+        "ready_seconds": ready_seconds,
+        "scroll_expand_seconds": round(
+            time.perf_counter() - scroll_started,
+            2,
+        ),
+    }
+
+
+def get_page_text(
+    page,
+    url,
+    scroll_steps=18,
+    ready_markers=None,
+):
+    navigation_started = time.perf_counter()
+    page.goto(
+        url,
+        wait_until="domcontentloaded",
+        timeout=60000,
+    )
+    dom_seconds = round(
+        time.perf_counter() - navigation_started,
+        2,
+    )
+
+    text, timing = collect_loaded_page_text(
+        page,
+        scroll_steps=scroll_steps,
+        ready_markers=ready_markers,
+        accept_cookie_banner=True,
+    )
+    timing["domcontentloaded_seconds"] = dom_seconds
+    return text, timing
+
 
 def get_match_links(page):
+    """
+    Conservative fixture discovery.
+
+    The original V1 waited 8 seconds and always performed 20 scrolls. This
+    version polls the same link selector and stops only after all 15 links have
+    appeared and the count is stable. It falls back to the full 20 rounds.
+    """
     print(f"Opening coupon page: {COUPON_URL}")
-    page.goto(COUPON_URL, wait_until="domcontentloaded", timeout=60000)
-    page.wait_for_timeout(8000)
+
+    page.goto(
+        COUPON_URL,
+        wait_until="domcontentloaded",
+        timeout=60000,
+    )
+
+    page.wait_for_timeout(1800)
     accept_cookies(page)
 
-    for _ in range(20):
+    target_count = 15
+    stable_rounds = 0
+    previous_count = -1
+    links = []
+
+    for round_index in range(20):
+        try:
+            links = page.evaluate(
+                """
+                () => [...new Set(
+                    Array.from(document.querySelectorAll('a'))
+                        .map(a => a.href)
+                        .filter(h =>
+                            h &&
+                            h.includes('/world-cup-2026/') &&
+                            h.includes('/SBTE_')
+                        )
+                )]
+                """
+            )
+        except Exception:
+            links = []
+
+        current_count = len(links)
+
+        if current_count == previous_count:
+            stable_rounds += 1
+        else:
+            stable_rounds = 0
+
+        print(
+            f"  coupon links after round "
+            f"{round_index + 1}: {current_count}"
+        )
+
+        if (
+            current_count >= target_count
+            and stable_rounds >= 1
+        ):
+            break
+
+        previous_count = current_count
         page.mouse.wheel(0, 750)
         page.wait_for_timeout(350)
 
-    links = page.evaluate("""
-        () => [...new Set(
-            Array.from(document.querySelectorAll('a'))
-                .map(a => a.href)
-                .filter(h => h && h.includes('/world-cup-2026/') && h.includes('/SBTE_'))
-        )]
-    """)
+    # Final read after the last scroll.
+    try:
+        final_links = page.evaluate(
+            """
+            () => [...new Set(
+                Array.from(document.querySelectorAll('a'))
+                    .map(a => a.href)
+                    .filter(h =>
+                        h &&
+                        h.includes('/world-cup-2026/') &&
+                        h.includes('/SBTE_')
+                    )
+            )]
+            """
+        )
+        if len(final_links) > len(links):
+            links = final_links
+    except Exception:
+        pass
 
     fixtures = []
     seen = set()
@@ -711,13 +884,21 @@ def get_match_links(page):
             continue
 
         seen.add(base_url)
-        slug = base_url.split("/world-cup-2026/")[-1].split("/")[0]
+        slug = (
+            base_url
+            .split("/world-cup-2026/")[-1]
+            .split("/")[0]
+        )
         name = slug.replace("-", " ").title()
 
-        fixtures.append({"url": base_url, "name": name})
+        fixtures.append({
+            "url": base_url,
+            "name": name,
+        })
 
     print(f"Found {len(fixtures)} match links")
     return fixtures[:MAX_MATCHES]
+
 
 def detect_teams(text, fallback_slug=""):
     lines = [clean(l) for l in text.splitlines() if clean(l)]
@@ -984,13 +1165,63 @@ def collect_shots_scope_text(page, home, away):
     return "".join(chunks)
 
 def scrape_match(page, fixture):
+    fixture_started = time.perf_counter()
     url = fixture["url"]
     name = fixture["name"]
+    player_url = f"{url}?marketGroupId={PLAYER_GRP_ID}"
+    player_page = None
 
     print(f"\n  [{name}]")
 
     print("    Pass 1: standard markets")
-    text1 = get_page_text(page, url, scroll_steps=20)
+    standard_nav_started = time.perf_counter()
+
+    page.goto(
+        url,
+        wait_until="domcontentloaded",
+        timeout=60000,
+    )
+    standard_dom_seconds = round(
+        time.perf_counter() - standard_nav_started,
+        2,
+    )
+
+    standard_ready_seconds = wait_for_market_content(
+        page,
+        ready_markers=[
+            "Full Time",
+            "Both Teams to Score",
+            "Total Goals",
+        ],
+        timeout_ms=4500,
+    )
+    accept_cookies(page)
+
+    # Start the player page now. The browser continues loading it in the
+    # background while we scroll and capture standard/team-stat markets.
+    prefetch_started = time.perf_counter()
+    player_page = page.context.new_page()
+    player_page.goto(
+        player_url,
+        wait_until="commit",
+        timeout=60000,
+    )
+    player_prefetch_commit_seconds = round(
+        time.perf_counter() - prefetch_started,
+        2,
+    )
+
+    text1, standard_load_timing = collect_loaded_page_text(
+        page,
+        scroll_steps=20,
+        ready_markers=[
+            "Full Time",
+            "Both Teams to Score",
+            "Total Goals",
+        ],
+        accept_cookie_banner=False,
+    )
+
     home, away = detect_teams(text1)
 
     if not home:
@@ -999,21 +1230,65 @@ def scrape_match(page, fixture):
         home = parts[0].title()
         away = " ".join(parts[1:]).title()
 
+    shots_started = time.perf_counter()
     scoped_text = collect_shots_scope_text(page, home, away)
+    shots_scope_seconds = round(
+        time.perf_counter() - shots_started,
+        2,
+    )
+
     text1_for_parse = text1 + scoped_text
 
-    (DEBUG_DIR / f"{slugify(name)}_standard.txt").write_text(text1_for_parse, encoding="utf-8")
+    standard_debug_text = text1_for_parse
 
-    standard_markets = parse_standard_props(text1_for_parse, home, away)
-    print(f"    Standard markets: {len(standard_markets)} — {[m['market'] for m in standard_markets]}")
+    parse_standard_started = time.perf_counter()
+    standard_markets = parse_standard_props(
+        text1_for_parse,
+        home,
+        away,
+    )
+    standard_parse_seconds = round(
+        time.perf_counter() - parse_standard_started,
+        2,
+    )
 
-    print("    Pass 2: player markets")
-    player_url = f"{url}?marketGroupId={PLAYER_GRP_ID}"
-    text2 = get_page_text(page, player_url, scroll_steps=25)
-    (DEBUG_DIR / f"{slugify(name)}_player.txt").write_text(text2, encoding="utf-8")
+    print(
+        f"    Standard markets: {len(standard_markets)} — "
+        f"{[m['market'] for m in standard_markets]}"
+    )
 
+    print("    Pass 2: player markets (prefetched)")
+    player_started = time.perf_counter()
+
+    text2, player_load_timing = collect_loaded_page_text(
+        player_page,
+        scroll_steps=25,
+        ready_markers=[
+            "Goalscorer",
+            "Player's shots on target",
+            "To give an assist",
+            "To Get a Card",
+        ],
+        accept_cookie_banner=False,
+    )
+
+    player_debug_text = text2
+
+    parse_player_started = time.perf_counter()
     player_markets = parse_player_props(text2)
-    print(f"    Player markets: {len(player_markets)} — {[m['market'] for m in player_markets]}")
+    player_parse_seconds = round(
+        time.perf_counter() - parse_player_started,
+        2,
+    )
+    player_total_seconds = round(
+        time.perf_counter() - player_started,
+        2,
+    )
+
+    print(
+        f"    Player markets: {len(player_markets)} — "
+        f"{[m['market'] for m in player_markets]}"
+    )
 
     seen = set()
     all_markets = []
@@ -1025,69 +1300,609 @@ def scrape_match(page, fixture):
         seen.add(key)
         all_markets.append(market)
 
+    total_seconds = round(
+        time.perf_counter() - fixture_started,
+        2,
+    )
+
+    market_names = {
+        market["normalized_market"]
+        for market in all_markets
+    }
+
+    required_markets = {
+        "match_betting",
+        "both_teams_to_score",
+        "total_goals_over_under",
+        "double_chance",
+        "half_time_result",
+        "half_time_full_time",
+        "player_to_score",
+        "total_corners_over_under",
+        "team_with_most_corners",
+        "total_cards_over_under",
+        "player_to_get_a_card",
+        "shots_on_target",
+        "total_shots_on_target_over_under",
+        normalize(f"{home} Shots On Target Over / Under"),
+        normalize(f"{away} Shots On Target Over / Under"),
+        "shots",
+        "player_fouls_conceded",
+        "player_to_assist",
+    }
+
+    missing_required = sorted(
+        required_markets - market_names
+    )
+    quality_status = (
+        "PASS"
+        if len(all_markets) >= 18 and not missing_required
+        else "FAIL"
+    )
+
+    timing = {
+        "standard_domcontentloaded_seconds": standard_dom_seconds,
+        "standard_initial_ready_seconds": standard_ready_seconds,
+        "player_prefetch_commit_seconds": player_prefetch_commit_seconds,
+        "standard_scroll_expand_seconds": standard_load_timing[
+            "scroll_expand_seconds"
+        ],
+        "shots_scope_seconds": shots_scope_seconds,
+        "standard_parse_seconds": standard_parse_seconds,
+        "player_ready_seconds": player_load_timing[
+            "ready_seconds"
+        ],
+        "player_scroll_expand_seconds": player_load_timing[
+            "scroll_expand_seconds"
+        ],
+        "player_parse_seconds": player_parse_seconds,
+        "player_pass_total_seconds": player_total_seconds,
+        "total_seconds": total_seconds,
+    }
+
+    print(
+        "    Timing: "
+        f"standard DOM={standard_dom_seconds}s | "
+        f"standard ready={standard_ready_seconds}s | "
+        f"standard scroll={standard_load_timing['scroll_expand_seconds']}s | "
+        f"shots scopes={shots_scope_seconds}s | "
+        f"player ready={player_load_timing['ready_seconds']}s | "
+        f"player scroll={player_load_timing['scroll_expand_seconds']}s | "
+        f"TOTAL={total_seconds}s"
+    )
+
+    print(
+        f"    QUALITY {quality_status}: "
+        f"{len(all_markets)} markets"
+        + (
+            f" | missing={missing_required}"
+            if missing_required
+            else ""
+        )
+    )
+
+    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+    debug_path = DEBUG_DIR / f"{slugify(name)}.json"
+
+    if quality_status == "PASS":
+        debug_payload = {
+            "match": f"{home} v {away}",
+            "url": url,
+            "quality_status": quality_status,
+            "market_count": len(all_markets),
+            "markets": [
+                {
+                    "market": market["market"],
+                    "selection_count": market["selection_count"],
+                }
+                for market in all_markets
+            ],
+            "timing": timing,
+            "note": (
+                "Full successful page text disabled in production "
+                "to limit disk usage."
+            ),
+        }
+    else:
+        debug_payload = {
+            "match": f"{home} v {away}",
+            "url": url,
+            "quality_status": quality_status,
+            "market_count": len(all_markets),
+            "missing_required_markets": missing_required,
+            "markets": [
+                {
+                    "market": market["market"],
+                    "selection_count": market["selection_count"],
+                }
+                for market in all_markets
+            ],
+            "timing": timing,
+            "standard_text": standard_debug_text[:MAX_FAILURE_DEBUG_CHARS],
+            "player_text": player_debug_text[:MAX_FAILURE_DEBUG_CHARS],
+            "debug_truncated": (
+                len(standard_debug_text) > MAX_FAILURE_DEBUG_CHARS
+                or len(player_debug_text) > MAX_FAILURE_DEBUG_CHARS
+            ),
+        }
+
+    debug_path.write_text(
+        json.dumps(debug_payload, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    try:
+        player_page.close()
+    except Exception:
+        pass
+
     return {
         "match": f"{home} v {away}",
         "home_team": home,
         "away_team": away,
         "url": url,
         "market_count": len(all_markets),
+        "quality_status": quality_status,
+        "missing_required_markets": missing_required,
+        "elapsed_seconds": total_seconds,
+        "timing": timing,
         "markets": all_markets,
     }
 
-def main():
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
-    print("=" * 60)
-    print("LiveScoreBet World Cup Props Scraper")
-    print("=" * 60)
+
+def scoped_sot_market_names(home, away):
+    return {
+        "total_shots_on_target_over_under",
+        normalize(f"{home} Shots On Target Over / Under"),
+        normalize(f"{away} Shots On Target Over / Under"),
+    }
+
+
+def sanitize_incomplete_scoped_sot_sets(output):
+    """
+    Fail closed per fixture.
+
+    When only part of the combined/home/away SOT scope set was captured,
+    remove that incomplete scope set from that fixture. This protects against
+    assigning combined prices to a team while preserving every other valid
+    market from the completed run.
+    """
+    warnings = []
+
+    for row in output.get("matches", []):
+        home = clean(row.get("home_team"))
+        away = clean(row.get("away_team"))
+        match_name = clean(row.get("match"))
+
+        expected = scoped_sot_market_names(home, away)
+        markets = [
+            market
+            for market in row.get("markets", [])
+            if isinstance(market, dict)
+        ]
+        present = {
+            normalize(market.get("market"))
+            for market in markets
+            if normalize(market.get("market")) in expected
+        }
+
+        if not present or present == expected:
+            continue
+
+        row["markets"] = [
+            market
+            for market in markets
+            if normalize(market.get("market")) not in expected
+        ]
+        row["market_count"] = len(row["markets"])
+        row["quality_status"] = "FAIL"
+
+        missing = set(row.get("missing_required_markets", []))
+        missing.update(expected)
+        row["missing_required_markets"] = sorted(missing)
+
+        warning = (
+            f"{match_name}: removed incomplete scoped Shots On Target set "
+            f"({', '.join(sorted(present))}) to prevent mislabelled team odds."
+        )
+        warnings.append(warning)
+        row.setdefault("sanitization_notes", []).append(warning)
+
+    output["match_count"] = len(output.get("matches", []))
+    output["sanitization_warnings"] = warnings
+    return warnings
+
+
+def validate_production_output(output):
+    errors = []
+    warnings = list(output.get("sanitization_warnings", []))
+    matches = output.get("matches", [])
+
+    discovered = output.get("discovered_fixture_count")
+    if not isinstance(discovered, int) or discovered <= 0:
+        discovered = len(matches)
+
+    if len(matches) != discovered:
+        errors.append(
+            f"Expected {discovered} rows from coupon discovery, "
+            f"got {len(matches)}."
+        )
+
+    if discovered > MAX_MATCHES:
+        errors.append(
+            f"Coupon discovery returned {discovered}, above MAX_MATCHES "
+            f"{MAX_MATCHES}."
+        )
+
+    if discovered < MIN_ACTIVE_FIXTURES:
+        errors.append(
+            f"Only {discovered} active coupon fixtures were discovered; "
+            f"minimum safety threshold is {MIN_ACTIVE_FIXTURES}."
+        )
+
+    urls = [clean(row.get("url")) for row in matches]
+    duplicate_urls = sorted({
+        url for url in urls
+        if url and urls.count(url) > 1
+    })
+    if duplicate_urls:
+        errors.append(
+            "Duplicate fixture URLs: " + ", ".join(duplicate_urls)
+        )
+
+    error_rows = [
+        row for row in matches
+        if clean(row.get("error"))
+    ]
+    if error_rows:
+        errors.append(
+            f"{len(error_rows)} fixture(s) ended with errors: "
+            + ", ".join(clean(row.get("match")) for row in error_rows)
+        )
+
+    full_quality = [
+        row for row in matches
+        if row.get("quality_status") == "PASS"
+        and row.get("market_count", 0) >= 18
+        and not row.get("missing_required_markets")
+    ]
+
+    if len(full_quality) < 3:
+        errors.append(
+            f"Expected at least 3 complete 18-market fixtures; "
+            f"got {len(full_quality)}."
+        )
+
+    per_match = []
+
+    for row in matches:
+        match_name = clean(row.get("match"))
+        home = clean(row.get("home_team"))
+        away = clean(row.get("away_team"))
+        market_names = {
+            normalize(market.get("market"))
+            for market in row.get("markets", [])
+            if isinstance(market, dict)
+        }
+
+        row_errors = []
+        row_warnings = []
+
+        expected_sot = scoped_sot_market_names(home, away)
+        scoped_present = market_names & expected_sot
+
+        if scoped_present and scoped_present != expected_sot:
+            row_errors.append(
+                "Incomplete scoped Shots On Target set remains after "
+                "sanitization: " + ", ".join(sorted(scoped_present))
+            )
+
+        if row.get("quality_status") == "PASS":
+            if row.get("market_count", 0) < 18:
+                row_errors.append(
+                    "Marked PASS with fewer than 18 markets."
+                )
+            if row.get("missing_required_markets"):
+                row_errors.append(
+                    "Marked PASS but missing-required list is not empty."
+                )
+        elif row.get("market_count", 0) >= 15:
+            row_warnings.append(
+                "Rich fixture did not meet the full 18-market requirement."
+            )
+
+        if row_errors:
+            errors.append(
+                f"{match_name}: " + "; ".join(row_errors)
+            )
+
+        for warning in row_warnings:
+            warnings.append(f"{match_name}: {warning}")
+
+        per_match.append({
+            "match": match_name,
+            "market_count": row.get("market_count", 0),
+            "quality_status": row.get("quality_status", "UNKNOWN"),
+            "missing_required_markets": row.get(
+                "missing_required_markets", []
+            ),
+            "sanitization_notes": row.get(
+                "sanitization_notes", []
+            ),
+            "errors": row_errors,
+            "warnings": row_warnings,
+        })
+
+    return {
+        "status": "PASS" if not errors else "FAIL",
+        "validated_at": datetime.now(timezone.utc).isoformat(),
+        "requested_max_matches": MAX_MATCHES,
+        "expected_matches_from_coupon": discovered,
+        "actual_matches": len(matches),
+        "coupon_shortfall_from_max": max(
+            0,
+            MAX_MATCHES - discovered,
+        ),
+        "complete_18_market_matches": len(full_quality),
+        "errors": errors,
+        "warnings": warnings,
+        "per_match": per_match,
+    }
+
+
+def atomic_promote_staging():
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+    backup_path = None
+    if LIVE_OUT_PATH.exists():
+        backup_path = (
+            BACKUP_DIR
+            / f"livescorebet_worldcup_props_before_prod_v4_{timestamp}.json"
+        )
+        shutil.copy2(LIVE_OUT_PATH, backup_path)
+
+    temporary_live = LIVE_OUT_PATH.with_suffix(".json.tmp")
+    shutil.copy2(STAGING_OUT_PATH, temporary_live)
+    os.replace(temporary_live, LIVE_OUT_PATH)
+
+    return backup_path
+
+
+def print_validation_and_promote(output, source_label):
+    sanitization_warnings = sanitize_incomplete_scoped_sot_sets(output)
+
+    STAGING_OUT_PATH.write_text(
+        json.dumps(output, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    report = validate_production_output(output)
+    VALIDATION_REPORT_PATH.write_text(
+        json.dumps(report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    print(f"\nSource staging → {source_label}")
+    print(f"Sanitized staging → {STAGING_OUT_PATH}")
+    print(f"Validation report → {VALIDATION_REPORT_PATH}")
+
+    print("\n── Availability-aware validation ─────────────────────")
+    print(
+        f"  Coupon fixtures:      "
+        f"{report['actual_matches']}/"
+        f"{report['expected_matches_from_coupon']}"
+    )
+    print(
+        f"  Max requested:        "
+        f"{report['requested_max_matches']}"
+    )
+    print(
+        f"  Coupon shortfall:     "
+        f"{report['coupon_shortfall_from_max']}"
+    )
+    print(
+        f"  Complete 18-market:   "
+        f"{report['complete_18_market_matches']}"
+    )
+
+    if sanitization_warnings:
+        print("\nSanitized incomplete scope sets:")
+        for warning in sanitization_warnings:
+            print(f"  - {warning}")
+
+    if report["warnings"]:
+        print("\nWarnings:")
+        for warning in report["warnings"]:
+            print(f"  - {warning}")
+
+    if report["status"] != "PASS":
+        print("\nVALIDATION FAIL — live JSON was NOT changed.")
+        for error in report["errors"]:
+            print(f"  - {error}")
+        raise SystemExit(1)
+
+    backup_path = atomic_promote_staging()
+
+    print("\nVALIDATION PASS")
+    if backup_path:
+        print(f"Previous live backup → {backup_path}")
+    else:
+        print("No previous live JSON existed; no backup was required.")
+
+    print(f"Live JSON promoted → {LIVE_OUT_PATH}")
+
+
+def promote_existing_v3_staging():
+    """
+    Reuse the completed 21-minute V3 run without opening a browser.
+    """
+    STAGING_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+
+    if not LEGACY_STAGING_PATH.exists():
+        raise FileNotFoundError(
+            f"Existing V3 staging file not found: {LEGACY_STAGING_PATH}"
+        )
+
+    output = json.loads(
+        LEGACY_STAGING_PATH.read_text(encoding="utf-8")
+    )
+
+    matches = output.get("matches", [])
+    output["requested_max_matches"] = MAX_MATCHES
+    output["discovered_fixture_count"] = len(matches)
+    output["coupon_shortfall_from_max"] = max(
+        0,
+        MAX_MATCHES - len(matches),
+    )
+    output["scraper_version"] = (
+        "production_v4_availability_aware_repaired_from_v3"
+    )
+    output["repaired_at"] = datetime.now(
+        timezone.utc
+    ).isoformat()
+    output["source_staging_file"] = str(LEGACY_STAGING_PATH)
+
+    print("=" * 68)
+    print("LiveScoreBet Props — PROMOTE EXISTING V3 STAGING")
+    print("No browser run; no rescrape.")
+    print("=" * 68)
+
+    print_validation_and_promote(
+        output,
+        source_label=str(LEGACY_STAGING_PATH),
+    )
+
+
+
+def main():
+    STAGING_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+
+    print("=" * 68)
+    print("LiveScoreBet Props — PRODUCTION V4 AVAILABILITY AWARE")
+    print(
+        f"PRODUCTION: MAX_MATCHES = {MAX_MATCHES} | "
+        "staging + validation + atomic promotion"
+    )
+    print("=" * 68)
+
+    run_started = time.perf_counter()
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
-        page = browser.new_page(viewport={"width": 1700, "height": 1000})
+        context = browser.new_context(
+            viewport={"width": 1700, "height": 1000}
+        )
 
+        def block_heavy_resources(route):
+            if route.request.resource_type in {
+                "image",
+                "media",
+                "font",
+            }:
+                route.abort()
+            else:
+                route.continue_()
+
+        context.route("**/*", block_heavy_resources)
+        page = context.new_page()
+
+        fixtures_started = time.perf_counter()
         fixtures = get_match_links(page)
+        print(
+            f"Fixture discovery: "
+            f"{round(time.perf_counter() - fixtures_started, 2)}s"
+        )
 
         results = []
 
-        for i, fixture in enumerate(fixtures):
-            print(f"\n[{i + 1}/{len(fixtures)}]")
+        for index, fixture in enumerate(fixtures, 1):
+            print(f"\n[{index}/{len(fixtures)}]")
             try:
                 result = scrape_match(page, fixture)
                 results.append(result)
-            except Exception as e:
-                print(f"  ⚠ Error: {e}")
+            except KeyboardInterrupt:
+                browser.close()
+                raise
+            except Exception as exc:
+                print(
+                    f"  ⚠ Error: {type(exc).__name__}: {exc}"
+                )
+                for extra_page in list(context.pages):
+                    if extra_page is page:
+                        continue
+                    try:
+                        extra_page.close()
+                    except Exception:
+                        pass
+
                 results.append({
-                    "match": fixture["name"],
+                    "match": fixture.get("name", ""),
                     "home_team": "",
                     "away_team": "",
-                    "url": fixture["url"],
+                    "url": fixture.get("url", ""),
                     "market_count": 0,
+                    "quality_status": "FAIL",
+                    "missing_required_markets": [],
+                    "elapsed_seconds": 0,
+                    "timing": {},
                     "markets": [],
+                    "error": f"{type(exc).__name__}: {exc}",
                 })
 
         browser.close()
+
+    runtime_seconds = round(
+        time.perf_counter() - run_started,
+        1,
+    )
 
     output = {
         "sport": "football",
         "competition": "FIFA World Cup",
         "bookmaker": "LiveScoreBet",
         "market_type": "props",
+        "scraper_version": "production_v4_availability_aware",
         "source_url": COUPON_URL,
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "runtime_seconds": runtime_seconds,
+        "requested_max_matches": MAX_MATCHES,
+        "discovered_fixture_count": len(fixtures),
+        "coupon_shortfall_from_max": max(
+            0,
+            MAX_MATCHES - len(fixtures),
+        ),
         "match_count": len(results),
         "matches": results,
     }
 
-    OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(
+        f"\nRuntime → {runtime_seconds}s "
+        f"({round(runtime_seconds / 60, 1)} minutes)"
+    )
 
-    print(f"\nSaved → {OUT_PATH}")
-    print("\n── Summary ─────────────────────────────────────────────")
-    for r in results:
-        print(f"  {r['match']:<40} {r['market_count']} markets")
-        for m in r["markets"]:
-            print(f"      - {m['market']} ({m['selection_count']})")
-    print("─" * 60)
+    print_validation_and_promote(
+        output,
+        source_label="fresh browser scrape",
+    )
+
+    print("\n── Summary ───────────────────────────────────────────")
+    for row in results:
+        print(
+            f"  {row['match']:<40} "
+            f"{row.get('market_count', 0)} markets | "
+            f"{row.get('elapsed_seconds', 0)}s | "
+            f"{row.get('quality_status', 'UNKNOWN')}"
+        )
+    print("─" * 68)
 
 if __name__ == "__main__":
-    main()
+    if "--promote-existing-staging" in sys.argv:
+        promote_existing_v3_staging()
+    else:
+        main()

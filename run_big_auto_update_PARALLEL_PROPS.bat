@@ -3,7 +3,7 @@ setlocal EnableExtensions
 cd /d "%~dp0"
 
 echo ==================================================
-echo BeatTheBooks balanced fast parallel update started
+echo BeatTheBooks early remaining-props parallel update started
 echo ==================================================
 echo.
 
@@ -76,7 +76,15 @@ if errorlevel 1 (
 )
 
 echo.
-echo Waiting for Bwin full branch...
+echo Running the four remaining props parts in parallel while Bwin and BetVictor continue...
+call scripts\Pipeline\run_props_remaining_parallel.bat
+if errorlevel 1 (
+    echo Remaining props pipeline failed.
+    goto FAIL
+)
+
+echo.
+echo Remaining props pipeline finished. Waiting for Bwin full branch...
 call :WAIT_FOR_FILE "%BWIN_DONE%"
 type "%BWIN_LOG%"
 set /p BWIN_RC=<"%BWIN_DONE%"
@@ -92,14 +100,6 @@ type "%BETVICTOR_LOG%"
 set /p BETVICTOR_RC=<"%BETVICTOR_DONE%"
 if not "%BETVICTOR_RC%"=="0" (
     echo BetVictor full branch failed.
-    goto FAIL
-)
-
-echo.
-echo Running the four remaining props parts in parallel...
-call scripts\Pipeline\run_props_remaining_parallel.bat
-if errorlevel 1 (
-    echo Remaining props pipeline failed.
     goto FAIL
 )
 
@@ -189,7 +189,7 @@ call :CLEANUP
 
 echo.
 echo ==================================================
-echo BeatTheBooks balanced fast parallel update finished
+echo BeatTheBooks early remaining-props parallel update finished
 echo ==================================================
 exit /b 0
 

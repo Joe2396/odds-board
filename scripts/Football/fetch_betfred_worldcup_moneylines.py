@@ -212,7 +212,16 @@ def main():
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
-        page = browser.new_page(viewport={"width": 1700, "height": 1000})
+        page = browser.new_page(
+            viewport={"width": 1700, "height": 1000},
+            locale="en-GB",
+            timezone_id="Europe/Dublin",
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+            ),
+            extra_http_headers={"Accept-Language": "en-GB,en;q=0.9"},
+        )
 
         print(f"Opening {URL}")
         page.goto(URL, wait_until="domcontentloaded", timeout=60000)
