@@ -60,7 +60,7 @@ BACKUP_DIR = (
     / "backups"
 )
 
-EXPECTED_MATCHES = 15
+MAX_MATCHES = 15
 
 TEAM_STAT_MARKETS = (
     "total_shots_on_target",
@@ -463,8 +463,47 @@ def prepare_stats_markets(
     return prepared, recovered
 
 
+def derive_expected_count(
+    payload: dict[str, Any],
+    matches: list[dict[str, Any]],
+    stage_name: str,
+) -> int:
+    raw = payload.get(
+        "expected_match_count",
+        payload.get(
+            "selected_match_count",
+            payload.get(
+                "match_count",
+                len(matches),
+            ),
+        ),
+    )
+
+    try:
+        expected = int(raw)
+    except (TypeError, ValueError):
+        raise RuntimeError(
+            f"{stage_name} has an invalid expected_match_count: {raw!r}"
+        )
+
+    if expected != len(matches):
+        raise RuntimeError(
+            f"{stage_name} count mismatch: metadata says {expected}, "
+            f"but file contains {len(matches)} matches"
+        )
+
+    if not 1 <= expected <= MAX_MATCHES:
+        raise RuntimeError(
+            f"{stage_name} must contain between 1 and {MAX_MATCHES} "
+            f"matches; found {expected}"
+        )
+
+    return expected
+
+
 def validate_main_matches(
     matches: list[dict[str, Any]],
+    expected_matches: int,
 ) -> tuple[
     list[str],
     list[str],
@@ -473,9 +512,9 @@ def validate_main_matches(
     availability_notes: list[str] = []
     seen: set[str] = set()
 
-    if len(matches) != EXPECTED_MATCHES:
+    if len(matches) != expected_matches:
         issues.append(
-            f"Expected {EXPECTED_MATCHES} main-stage matches, "
+            f"Expected {expected_matches} main-stage matches, "
             f"found {len(matches)}"
         )
 
@@ -572,15 +611,55 @@ def main() -> None:
         or []
     )
 
+    try:
+        main_expected = derive_expected_count(
+            main_payload,
+            main_matches,
+            "Main props stage",
+        )
+        stats_expected = derive_expected_count(
+            stats_payload,
+            stats_matches,
+            "Team-stats stage",
+        )
+    except RuntimeError as error:
+        print(f"INPUT VALIDATION: FAIL\n  - {error}")
+        raise SystemExit(1)
+
+    expected_matches = main_expected
+
     issues, availability_notes = (
         validate_main_matches(
-            main_matches
+            main_matches,
+            expected_matches,
         )
     )
 
-    if len(stats_matches) != EXPECTED_MATCHES:
+    if stats_expected != expected_matches:
         issues.append(
-            f"Expected {EXPECTED_MATCHES} team-stats matches, "
+            f"Stage count mismatch: main expects {expected_matches}, "
+            f"team stats expects {stats_expected}"
+        )
+
+    main_snapshot = clean(
+        main_payload.get("fixture_snapshot_created_at")
+    )
+    stats_snapshot = clean(
+        stats_payload.get("fixture_snapshot_created_at")
+    )
+    if (
+        main_snapshot
+        and stats_snapshot
+        and main_snapshot != stats_snapshot
+    ):
+        issues.append(
+            "Main props and team-stats stages were built from "
+            "different fixture snapshots"
+        )
+
+    if len(stats_matches) != expected_matches:
+        issues.append(
+            f"Expected {expected_matches} team-stats matches, "
             f"found {len(stats_matches)}"
         )
 
@@ -778,8 +857,12 @@ def main() -> None:
         },
         "validation": {
             "status": "PASS",
+            "requested_max_matches":
+                MAX_MATCHES,
             "expected_matches":
-                EXPECTED_MATCHES,
+                expected_matches,
+            "fixture_snapshot_created_at":
+                main_snapshot or stats_snapshot,
             "matches_with_complete_team_stats":
                 len(complete_labels),
             "matches_team_stats_unavailable":
@@ -865,7 +948,7 @@ def main() -> None:
                 "matches",
                 [],
             )
-        ) != EXPECTED_MATCHES:
+        ) != expected_matches:
             raise RuntimeError(
                 "Temporary production file failed final count check"
             )
@@ -901,15 +984,15 @@ def main() -> None:
     print("VALIDATION: PASS")
     print(
         f"Production matches: "
-        f"{len(merged_matches)}/{EXPECTED_MATCHES}"
+        f"{len(merged_matches)}/{expected_matches}"
     )
     print(
         f"Complete six-market team stats: "
-        f"{len(complete_labels)}/{EXPECTED_MATCHES}"
+        f"{len(complete_labels)}/{expected_matches}"
     )
     print(
         f"Team stats unavailable: "
-        f"{len(unavailable_labels)}/{EXPECTED_MATCHES}"
+        f"{len(unavailable_labels)}/{expected_matches}"
     )
     print(
         "Partial team-stat sets published: 0"
@@ -920,7 +1003,7 @@ def main() -> None:
     ):
         print(
             f"{market_name}: "
-            f"{count}/{EXPECTED_MATCHES}"
+            f"{count}/{expected_matches}"
         )
 
     if backup_path:

@@ -30,7 +30,7 @@ PRODUCTION_PATH = (
     / "midnite_worldcup_props.json"
 )
 
-EXPECTED_MATCHES = 15
+MAX_MATCHES = 15
 
 TEAM_STAT_MARKETS = (
     "total_shots_on_target",
@@ -131,9 +131,39 @@ def main() -> None:
     complete_stats = 0
     unavailable_stats = 0
 
-    if len(matches) != EXPECTED_MATCHES:
+    validation_meta = (
+        payload.get("validation")
+        if isinstance(payload.get("validation"), dict)
+        else {}
+    )
+    raw_expected = validation_meta.get(
+        "expected_matches",
+        payload.get(
+            "expected_match_count",
+            payload.get(
+                "match_count",
+                len(matches),
+            ),
+        ),
+    )
+
+    try:
+        expected_matches = int(raw_expected)
+    except (TypeError, ValueError):
+        expected_matches = -1
         issues.append(
-            f"Expected {EXPECTED_MATCHES} matches, "
+            f"Invalid expected match count metadata: {raw_expected!r}"
+        )
+
+    if not 1 <= expected_matches <= MAX_MATCHES:
+        issues.append(
+            f"Expected match count must be between 1 and {MAX_MATCHES}; "
+            f"found {expected_matches}"
+        )
+
+    if len(matches) != expected_matches:
+        issues.append(
+            f"Expected {expected_matches} matches, "
             f"found {len(matches)}"
         )
 
@@ -286,20 +316,20 @@ def main() -> None:
     }
 
     print(
-        f"Matches: {len(matches)}/{EXPECTED_MATCHES}"
+        f"Matches: {len(matches)}/{expected_matches}"
     )
     print(
         "Fixtures with all six team stats: "
-        f"{complete_stats}/{EXPECTED_MATCHES}"
+        f"{complete_stats}/{expected_matches}"
     )
     print(
         "Fixtures with team stats unavailable: "
-        f"{unavailable_stats}/{EXPECTED_MATCHES}"
+        f"{unavailable_stats}/{expected_matches}"
     )
     print(
         "Fixtures with partial team stats: "
         f"{len(matches) - complete_stats - unavailable_stats}/"
-        f"{EXPECTED_MATCHES}"
+        f"{expected_matches}"
     )
 
     print("Player-market coverage:")
@@ -309,7 +339,7 @@ def main() -> None:
     ):
         print(
             f"  {market_name}: "
-            f"{count}/{EXPECTED_MATCHES}"
+            f"{count}/{expected_matches}"
         )
 
     if optional_notes:

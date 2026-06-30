@@ -70,13 +70,34 @@ def load_matches():
         [],
     )
 
-    if len(matches) != MAX_MATCHES:
+    expected = payload.get(
+        "expected_match_count",
+        payload.get(
+            "selected_match_count",
+            len(matches),
+        ),
+    )
+
+    try:
+        expected = int(expected)
+    except (TypeError, ValueError):
         raise RuntimeError(
-            f"Expected {MAX_MATCHES} fixtures in snapshot, "
-            f"found {len(matches)}"
+            "Fixture snapshot has an invalid expected_match_count"
         )
 
-    return matches
+    if expected != len(matches):
+        raise RuntimeError(
+            f"Fixture snapshot count mismatch: metadata says {expected}, "
+            f"but contains {len(matches)} matches"
+        )
+
+    if not 1 <= expected <= MAX_MATCHES:
+        raise RuntimeError(
+            f"Fixture snapshot must contain between 1 and {MAX_MATCHES} "
+            f"matches; found {expected}"
+        )
+
+    return matches, payload
 
 def parse_section(lines, heading, n=80):
     try:
@@ -1452,14 +1473,13 @@ def main():
         )
         sys.exit(1)
 
-    matches = load_matches()
+    matches, fixture_snapshot = load_matches()
+    expected_matches = len(matches)
 
-    if len(matches) != MAX_MATCHES:
-        print(
-            f"ERROR: Expected {MAX_MATCHES} fixtures from shared snapshot, "
-            f"found {len(matches)}"
-        )
-        sys.exit(1)
+    print(
+        f"Availability-aware snapshot: {expected_matches} active fixtures "
+        f"(maximum {MAX_MATCHES})"
+    )
 
     PROFILE_DIR.mkdir(
         parents=True,
@@ -1603,6 +1623,9 @@ def main():
         "production_stage": True,
         "production_modified": False,
         "max_matches": MAX_MATCHES,
+        "requested_max_matches": MAX_MATCHES,
+        "expected_match_count": expected_matches,
+        "fixture_snapshot_created_at": fixture_snapshot.get("created_at"),
         "match_count": len(results),
         "error_count": len(errors),
         "errors": errors,
@@ -1624,7 +1647,7 @@ def main():
     print("=" * 72)
     print("MIDNITE MAIN/PLAYER PROPS PROD15 COMPLETE")
     print("=" * 72)
-    print(f"Matches scraped: {len(results)}/{MAX_MATCHES}")
+    print(f"Matches scraped: {len(results)}/{expected_matches}")
     print(f"Errors: {len(errors)}")
     print(f"Elapsed: {elapsed:.2f}s")
     print(f"Wrote temporary stage: {OUTPUT_FILE}")
@@ -1632,7 +1655,7 @@ def main():
     print("=" * 72)
 
     if (
-        len(results) != MAX_MATCHES
+        len(results) != expected_matches
         or errors
     ):
         raise SystemExit(1)

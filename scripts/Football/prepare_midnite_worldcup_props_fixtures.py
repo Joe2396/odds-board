@@ -42,6 +42,7 @@ OUTPUT_PATH = (
 )
 
 MAX_MATCHES = 15
+MIN_MATCHES = 1
 MIN_LEAD_MINUTES = 15
 
 MONTHS = {
@@ -450,10 +451,10 @@ def main() -> None:
         :MAX_MATCHES
     ]
 
-    if len(selected) != MAX_MATCHES:
+    if len(selected) < MIN_MATCHES:
         print(
-            f"ERROR: Found only {len(selected)} eligible fixtures; "
-            f"expected {MAX_MATCHES}"
+            f"ERROR: Found {len(selected)} eligible fixtures; "
+            f"minimum required is {MIN_MATCHES}"
         )
         print(
             f"Source fixtures: {len(source_matches)}"
@@ -463,6 +464,13 @@ def main() -> None:
             f"{len(excluded_started)}"
         )
         raise SystemExit(1)
+
+    if len(selected) < MAX_MATCHES:
+        print(
+            f"AVAILABILITY NOTE: only {len(selected)} eligible fixtures "
+            f"currently have markets; continuing with all available "
+            f"fixtures (maximum {MAX_MATCHES})."
+        )
 
     event_ids = [
         clean(
@@ -486,6 +494,10 @@ def main() -> None:
             now.isoformat(),
         "max_matches":
             MAX_MATCHES,
+        "requested_max_matches":
+            MAX_MATCHES,
+        "expected_match_count":
+            len(selected),
         "minimum_lead_minutes":
             MIN_LEAD_MINUTES,
         "source_path":

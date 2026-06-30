@@ -79,7 +79,7 @@ def frac_to_decimal(value: Any) -> float | None:
         return None
 
 
-def load_matches() -> list[dict[str, Any]]:
+def load_matches() -> tuple[list[dict[str, Any]], dict[str, Any]]:
     if not FIXTURES_PATH.exists():
         raise FileNotFoundError(
             "Midnite fixture snapshot is missing. Run "
@@ -96,13 +96,34 @@ def load_matches() -> list[dict[str, Any]]:
         [],
     )
 
-    if len(matches) != MAX_MATCHES:
+    expected = payload.get(
+        "expected_match_count",
+        payload.get(
+            "selected_match_count",
+            len(matches),
+        ),
+    )
+
+    try:
+        expected = int(expected)
+    except (TypeError, ValueError):
         raise RuntimeError(
-            f"Expected {MAX_MATCHES} fixtures in snapshot, "
-            f"found {len(matches)}"
+            "Fixture snapshot has an invalid expected_match_count"
         )
 
-    return matches
+    if expected != len(matches):
+        raise RuntimeError(
+            f"Fixture snapshot count mismatch: metadata says {expected}, "
+            f"but contains {len(matches)} matches"
+        )
+
+    if not 1 <= expected <= MAX_MATCHES:
+        raise RuntimeError(
+            f"Fixture snapshot must contain between 1 and {MAX_MATCHES} "
+            f"matches; found {expected}"
+        )
+
+    return matches, payload
 
 
 def dismiss_popups(page: Page) -> None:
@@ -1214,13 +1235,13 @@ def main() -> None:
     DEBUG_DIR.mkdir(parents=True, exist_ok=True)
     PROFILE_DIR.mkdir(parents=True, exist_ok=True)
 
-    matches = load_matches()
+    matches, fixture_snapshot = load_matches()
+    expected_matches = len(matches)
 
-    if len(matches) != MAX_MATCHES:
-        raise RuntimeError(
-            f"Expected {MAX_MATCHES} fixtures from moneylines, "
-            f"found {len(matches)}"
-        )
+    print(
+        f"Availability-aware snapshot: {expected_matches} active fixtures "
+        f"(maximum {MAX_MATCHES})"
+    )
 
     print("=" * 72)
     print("MIDNITE WORLD CUP TEAM STATS PROD15")
@@ -1355,6 +1376,9 @@ def main() -> None:
         "production_stage": True,
         "production_modified": False,
         "max_matches": MAX_MATCHES,
+        "requested_max_matches": MAX_MATCHES,
+        "expected_match_count": expected_matches,
+        "fixture_snapshot_created_at": fixture_snapshot.get("created_at"),
         "start_index": TEST_START_INDEX,
         "match_count": len(results),
         "error_count": len(errors),
@@ -1397,7 +1421,7 @@ def main() -> None:
     print("\n" + "=" * 72)
     print("MIDNITE TEAM STATS PROD15 COMPLETE")
     print("=" * 72)
-    print(f"Matches scraped: {len(results)}/{MAX_MATCHES}")
+    print(f"Matches scraped: {len(results)}/{expected_matches}")
     print(
         "Fixtures with all six markets: "
         f"{all_six}"
@@ -1433,7 +1457,7 @@ def main() -> None:
 
     if (
         errors
-        or len(results) != MAX_MATCHES
+        or len(results) != expected_matches
         or partial
     ):
         raise SystemExit(1)
