@@ -1,116 +1,11 @@
 {
-  "generated_at": "2026-07-01T18:19:37.046347+00:00",
-  "total_arbitrage": 5,
+  "generated_at": "2026-07-01T19:21:42.246071+00:00",
+  "total_arbitrage": 2,
   "sports": {
-    "All": 5,
-    "Football": 3,
+    "All": 2,
     "UFC": 2
   },
   "arbitrage": [
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Switzerland v Algeria",
-      "market": "Half Time Result",
-      "type": "props_half_time_result",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 9.95,
-      "arb_percent": 90.95,
-      "arb_sum": 0.909502,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Switzerland",
-          "bookmaker": "PaddyPower",
-          "odds": "8/5",
-          "decimal_odds": 2.6,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Draw",
-          "bookmaker": "Midnite",
-          "odds": 3.4,
-          "decimal_odds": 3.4,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Algeria",
-          "bookmaker": "PaddyPower",
-          "odds": "10/3",
-          "decimal_odds": 4.333333,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Belgium v Senegal",
-      "market": "Half Time Result",
-      "type": "props_half_time_result",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 3.777,
-      "arb_percent": 96.361,
-      "arb_sum": 0.963606,
-      "bookmaker_count": 3,
-      "bookmakers": [
-        {
-          "selection": "Belgium",
-          "bookmaker": "PaddyPower",
-          "odds": "8/5",
-          "decimal_odds": 2.6,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Draw",
-          "bookmaker": "Midnite",
-          "odds": 3.1,
-          "decimal_odds": 3.1,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Senegal",
-          "bookmaker": "888Sport",
-          "odds": "29/10",
-          "decimal_odds": 3.9,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
-    {
-      "sport": "Football",
-      "competition": "FIFA World Cup",
-      "event": "Belgium v Senegal",
-      "market": "Total Cards Over Under",
-      "type": "props_ou",
-      "date_label": "",
-      "time": "",
-      "profit_margin_percent": 2.273,
-      "arb_percent": 97.778,
-      "arb_sum": 0.977778,
-      "bookmaker_count": 2,
-      "bookmakers": [
-        {
-          "selection": "Over 4.5",
-          "bookmaker": "PaddyPower",
-          "odds": "4/1",
-          "decimal_odds": 5.0,
-          "implied_probability": ""
-        },
-        {
-          "selection": "Under 4.5",
-          "bookmaker": "WilliamHill",
-          "odds": "2/7",
-          "decimal_odds": 1.285714,
-          "implied_probability": ""
-        }
-      ],
-      "source_file": "football/data/arbitrage.json"
-    },
     {
       "sport": "UFC",
       "competition": "UFC",
@@ -178,7 +73,7 @@
     "darts": "C:\\Users\\joete\\odds-board\\darts\\data\\arbitrage.json"
   },
   "source_counts": {
-    "football": 3,
+    "football": 0,
     "ufc": 2,
     "darts": 0
   }

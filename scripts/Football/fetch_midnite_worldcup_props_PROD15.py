@@ -1092,74 +1092,449 @@ def _midnite_three_way_sum(decimal_prices):
 
 def parse_midnite_half_result_card(page, home, away):
     """
-    Parse Midnite's first-half 1X2 prices from the exact Half Result card.
+    Parse Midnite's visible 1st Half 1X2 prices from the exact Half Result card.
 
-    Midnite's six-price grid is column-major:
-        home 1H, home 2H,
-        draw 1H, draw 2H,
-        away 1H, away 2H
+    Safety rules:
+      - explicitly click the 1st Half tab inside the Half Result card;
+      - require that tab to report an active/brand state;
+      - read only visible fraction-price leaf elements;
+      - require exactly three left-to-right prices;
+      - require visible Home / Draw / Away labels in that order;
+      - reject an implausible three-way source book.
 
-    The previous parser incorrectly used the first three prices, which mixed
-    home 1H, home 2H and draw 1H.
+    This avoids mixing hidden 2nd Half prices into the 1st Half market.
     """
     expand_accordion(page, "Half Result")
     time.sleep(0.8)
 
-    card_lines = get_midnite_market_card_lines(
-        page,
-        "Half Result",
-    )
-    fractions = [
-        line for line in card_lines
-        if is_frac(line)
-    ]
+    try:
+        click_point = page.evaluate(
+            r"""(payload) => {
+                const norm = value =>
+                    (value || "").replace(/\s+/g, " ").trim();
 
-    if len(fractions) < 3:
-        print(" Half Result rejected: fewer than three prices")
+                const visible = element => {
+                    if (!element) return false;
+                    const rect = element.getBoundingClientRect();
+                    const style = window.getComputedStyle(element);
+
+                    return (
+                        element.getClientRects().length > 0
+                        && rect.width > 0
+                        && rect.height > 0
+                        && style.display !== "none"
+                        && style.visibility !== "hidden"
+                        && style.opacity !== "0"
+                    );
+                };
+
+                const isPrice = value =>
+                    /^\d+\/\d+$|^EVS$|^EVENS$/i.test(norm(value));
+
+                const exactLeaves = root =>
+                    Array.from(root.querySelectorAll("*")).filter(
+                        element =>
+                            element.childElementCount === 0
+                            && visible(element)
+                            && norm(element.innerText)
+                    );
+
+                const headingLeaves = Array.from(
+                    document.querySelectorAll("body *")
+                ).filter(
+                    element =>
+                        element.childElementCount === 0
+                        && visible(element)
+                        && norm(element.innerText) === "Half Result"
+                );
+
+                const candidates = [];
+
+                for (const heading of headingLeaves) {
+                    let node = heading;
+
+                    for (
+                        let depth = 0;
+                        depth < 11 && node;
+                        depth += 1, node = node.parentElement
+                    ) {
+                        const leaves = exactLeaves(node);
+                        const hasFirst = leaves.some(
+                            element => norm(element.innerText) === "1st Half"
+                        );
+                        const hasSecond = leaves.some(
+                            element => norm(element.innerText) === "2nd Half"
+                        );
+                        const prices = leaves.filter(
+                            element => isPrice(element.innerText)
+                        );
+
+                        if (hasFirst && hasSecond && prices.length >= 3) {
+                            const rect = node.getBoundingClientRect();
+
+                            candidates.push({
+                                node,
+                                leaves,
+                                area: rect.width * rect.height,
+                                chars: (node.innerText || "").length,
+                            });
+                            break;
+                        }
+                    }
+                }
+
+                candidates.sort(
+                    (a, b) =>
+                        a.area - b.area
+                        || a.chars - b.chars
+                );
+
+                const card = candidates[0];
+
+                if (!card) return null;
+
+                const firstHalf = card.leaves.find(
+                    element => norm(element.innerText) === "1st Half"
+                );
+
+                if (!firstHalf) return null;
+
+                let target = firstHalf;
+
+                for (
+                    let node = firstHalf;
+                    node && node !== card.node;
+                    node = node.parentElement
+                ) {
+                    const tag = node.tagName.toLowerCase();
+                    const role = (
+                        node.getAttribute("role") || ""
+                    ).toLowerCase();
+                    const style = window.getComputedStyle(node);
+
+                    if (
+                        tag === "button"
+                        || role === "button"
+                        || role === "tab"
+                        || style.cursor === "pointer"
+                    ) {
+                        target = node;
+                        break;
+                    }
+                }
+
+                target.scrollIntoView({
+                    block: "center",
+                    inline: "center",
+                });
+
+                const rect = target.getBoundingClientRect();
+
+                return {
+                    x: rect.left + rect.width / 2,
+                    y: rect.top + rect.height / 2,
+                };
+            }""",
+            {
+                "home": home,
+                "away": away,
+            },
+        )
+    except Exception as error:
+        print(f" Half Result rejected: tab lookup failed: {error}")
         return None
 
-    candidates = []
+    if not click_point:
+        print(" Half Result rejected: exact 1st Half tab not found")
+        return None
 
-    # Preferred actual Midnite six-price grid: first-half prices are 0,2,4.
-    if len(fractions) >= 6:
-        candidates.append(
-            (
-                "column-major first half",
-                [fractions[0], fractions[2], fractions[4]],
-            )
-        )
-
-    # Fallback for a genuine row-major layout.
-    candidates.append(
-        (
-            "row-major first half",
-            fractions[:7],
-        )
+    page.mouse.click(
+        click_point["x"],
+        click_point["y"],
     )
+    time.sleep(1.0)
 
-    for layout, raw_prices in candidates:
-        decimal_prices = [frac(price) for price in raw_prices]
-        implied_sum = _midnite_three_way_sum(decimal_prices)
+    try:
+        state = page.evaluate(
+            r"""(payload) => {
+                const norm = value =>
+                    (value || "").replace(/\s+/g, " ").trim();
 
-        if implied_sum is None:
-            continue
+                const folded = value =>
+                    norm(value).toLocaleLowerCase();
 
-        if 0.98 <= implied_sum <= 1.35:
-            print(
-                f" Half Result 1H: {raw_prices} "
-                f"({layout}, sum {implied_sum:.3f})"
-            )
-            return {
-                "home": decimal_prices[0],
-                "draw": decimal_prices[1],
-                "away": decimal_prices[2],
-            }
+                const visible = element => {
+                    if (!element) return false;
+                    const rect = element.getBoundingClientRect();
+                    const style = window.getComputedStyle(element);
+
+                    return (
+                        element.getClientRects().length > 0
+                        && rect.width > 0
+                        && rect.height > 0
+                        && style.display !== "none"
+                        && style.visibility !== "hidden"
+                        && style.opacity !== "0"
+                    );
+                };
+
+                const isPrice = value =>
+                    /^\d+\/\d+$|^EVS$|^EVENS$/i.test(norm(value));
+
+                const exactLeaves = root =>
+                    Array.from(root.querySelectorAll("*")).filter(
+                        element =>
+                            element.childElementCount === 0
+                            && visible(element)
+                            && norm(element.innerText)
+                    );
+
+                const headingLeaves = Array.from(
+                    document.querySelectorAll("body *")
+                ).filter(
+                    element =>
+                        element.childElementCount === 0
+                        && visible(element)
+                        && norm(element.innerText) === "Half Result"
+                );
+
+                const candidates = [];
+
+                for (const heading of headingLeaves) {
+                    let node = heading;
+
+                    for (
+                        let depth = 0;
+                        depth < 11 && node;
+                        depth += 1, node = node.parentElement
+                    ) {
+                        const leaves = exactLeaves(node);
+                        const hasFirst = leaves.some(
+                            element => norm(element.innerText) === "1st Half"
+                        );
+                        const hasSecond = leaves.some(
+                            element => norm(element.innerText) === "2nd Half"
+                        );
+                        const prices = leaves.filter(
+                            element => isPrice(element.innerText)
+                        );
+
+                        if (hasFirst && hasSecond && prices.length >= 3) {
+                            const rect = node.getBoundingClientRect();
+
+                            candidates.push({
+                                node,
+                                leaves,
+                                area: rect.width * rect.height,
+                                chars: (node.innerText || "").length,
+                            });
+                            break;
+                        }
+                    }
+                }
+
+                candidates.sort(
+                    (a, b) =>
+                        a.area - b.area
+                        || a.chars - b.chars
+                );
+
+                const card = candidates[0];
+
+                if (!card) {
+                    return {
+                        ok: false,
+                        reason: "exact Half Result card not found",
+                    };
+                }
+
+                const firstHalf = card.leaves.find(
+                    element => norm(element.innerText) === "1st Half"
+                );
+
+                let firstHalfActive = false;
+
+                for (
+                    let node = firstHalf;
+                    node && node !== card.node.parentElement;
+                    node = node.parentElement
+                ) {
+                    const className = String(node.className || "")
+                        .toLowerCase();
+                    const ariaSelected = (
+                        node.getAttribute
+                        && node.getAttribute("aria-selected")
+                    ) || "";
+                    const dataState = (
+                        node.getAttribute
+                        && node.getAttribute("data-state")
+                    ) || "";
+
+                    if (
+                        ariaSelected === "true"
+                        || dataState.toLowerCase() === "active"
+                        || className.includes("brand")
+                        || className.includes("active")
+                        || className.includes("selected")
+                    ) {
+                        firstHalfActive = true;
+                        break;
+                    }
+
+                    if (node === card.node) break;
+                }
+
+                const rawPrices = card.leaves
+                    .filter(element => isPrice(element.innerText))
+                    .map(element => {
+                        const rect = element.getBoundingClientRect();
+
+                        return {
+                            value: norm(element.innerText).toUpperCase(),
+                            x: rect.left + rect.width / 2,
+                            y: rect.top + rect.height / 2,
+                        };
+                    });
+
+                const uniquePrices = [];
+
+                for (const item of rawPrices) {
+                    const duplicate = uniquePrices.some(
+                        existing =>
+                            existing.value === item.value
+                            && Math.abs(existing.x - item.x) < 3
+                            && Math.abs(existing.y - item.y) < 3
+                    );
+
+                    if (!duplicate) uniquePrices.push(item);
+                }
+
+                uniquePrices.sort((a, b) => a.x - b.x || a.y - b.y);
+
+                const requestedLabels = [
+                    folded(payload.home),
+                    "draw",
+                    folded(payload.away),
+                ];
+
+                const visibleLabels = requestedLabels.map(label => {
+                    const matches = card.leaves.filter(
+                        element => folded(element.innerText) === label
+                    );
+
+                    if (!matches.length) return null;
+
+                    matches.sort((a, b) => {
+                        const ar = a.getBoundingClientRect();
+                        const br = b.getBoundingClientRect();
+                        return ar.top - br.top || ar.left - br.left;
+                    });
+
+                    const rect = matches[0].getBoundingClientRect();
+
+                    return {
+                        label,
+                        x: rect.left + rect.width / 2,
+                    };
+                });
+
+                if (visibleLabels.some(item => !item)) {
+                    return {
+                        ok: false,
+                        reason: "Home / Draw / Away labels not all visible",
+                        firstHalfActive,
+                        prices: uniquePrices.map(item => item.value),
+                    };
+                }
+
+                const labelOrder = [...visibleLabels]
+                    .sort((a, b) => a.x - b.x)
+                    .map(item => item.label);
+
+                if (
+                    labelOrder.join("|")
+                    !== requestedLabels.join("|")
+                ) {
+                    return {
+                        ok: false,
+                        reason: "visible outcome labels are out of order",
+                        firstHalfActive,
+                        labelOrder,
+                        prices: uniquePrices.map(item => item.value),
+                    };
+                }
+
+                if (!firstHalfActive) {
+                    return {
+                        ok: false,
+                        reason: "1st Half tab did not become active",
+                        prices: uniquePrices.map(item => item.value),
+                    };
+                }
+
+                if (uniquePrices.length !== 3) {
+                    return {
+                        ok: false,
+                        reason:
+                            "expected exactly three visible 1st Half prices",
+                        firstHalfActive,
+                        prices: uniquePrices.map(item => item.value),
+                    };
+                }
+
+                return {
+                    ok: true,
+                    firstHalfActive,
+                    prices: uniquePrices.map(item => item.value),
+                };
+            }""",
+            {
+                "home": home,
+                "away": away,
+            },
+        )
+    except Exception as error:
+        print(f" Half Result rejected: visible-price read failed: {error}")
+        return None
+
+    if not state or not state.get("ok"):
+        reason = (
+            state.get("reason")
+            if isinstance(state, dict)
+            else "unknown card-state failure"
+        )
+        prices = (
+            state.get("prices")
+            if isinstance(state, dict)
+            else None
+        )
+        print(
+            f" Half Result rejected: {reason}"
+            + (f" — {prices}" if prices else "")
+        )
+        return None
+
+    raw_prices = state.get("prices") or []
+    decimal_prices = [frac(price) for price in raw_prices]
+    implied_sum = _midnite_three_way_sum(decimal_prices)
+
+    if implied_sum is None or not 0.98 <= implied_sum <= 1.35:
+        print(
+            f" Half Result rejected: implausible visible "
+            f"1st Half prices {raw_prices}"
+        )
+        return None
 
     print(
-        f" Half Result rejected: implausible prices {fractions[:6]}"
+        f" Half Result 1H: {raw_prices} "
+        f"(visible active tab, sum {implied_sum:.3f})"
     )
-    return None
 
+    return {
+        "home": decimal_prices[0],
+        "draw": decimal_prices[1],
+        "away": decimal_prices[2],
+    }
 
 
 def parse_midnite_double_chance_card(

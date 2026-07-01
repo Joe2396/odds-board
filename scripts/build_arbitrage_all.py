@@ -53,6 +53,48 @@ def normalize_profit(row):
     return 0.0
 
 
+def football_arb_row_is_blocked(row):
+    # Defensive publication filter for stale football arbitrage JSON.
+    row_type = str(row.get("type") or "").lower()
+    market_text = " ".join([
+        str(row.get("market") or ""),
+        str(row.get("canonical_market") or ""),
+        row_type,
+    ]).lower()
+
+    normalized = "".join(
+        character if character.isalnum() else "_"
+        for character in market_text
+    )
+    tokens = {token for token in normalized.split("_") if token}
+
+    if (
+        tokens.intersection({
+            "card",
+            "cards",
+            "carded",
+            "booking",
+            "bookings",
+            "disciplinary",
+        })
+        or "booking_points" in normalized
+    ):
+        return True
+
+    if row_type == "props_half_time_result":
+        selections = row.get("selections") or {}
+
+        for info in selections.values():
+            if (
+                isinstance(info, dict)
+                and str(info.get("bookmaker") or "").casefold()
+                == "midnite"
+            ):
+                return True
+
+    return False
+
+
 def normalize_football():
     data = load_json(FOOTBALL_ARB_PATH)
     rows = data.get("arbitrage") or data.get("arbitrage_opportunities") or []
@@ -69,6 +111,9 @@ def normalize_football():
     }
 
     for row in rows:
+        if football_arb_row_is_blocked(row):
+            continue
+
         selections = row.get("selections") or {}
         row_type = row.get("type") or "moneyline_1x2"
         order = type_orders.get(row_type, list(selections.keys()))

@@ -44,6 +44,9 @@ MIN_PUBLISHED_ARB_SUM = 1.0 / (
 
 NAMED_MARKET_QUARANTINE = {
     ("LiveScoreBet", "half_time_result"),
+    # Midnite Half Result is quarantined until its 1st/2nd-half tab parser
+    # has been re-scraped and verified against the visible site prices.
+    ("Midnite", "half_time_result"),
 }
 
 # These books publish trustworthy threshold Overs for aggregate match/team
@@ -200,6 +203,24 @@ def normalize_key(s):
     return _re.sub(r"[^a-z0-9]+", "_", s).strip("_")
 
 
+def is_disabled_card_market(market_name):
+    # Return True for every football card/booking-count market.
+    mk = normalize_key(market_name)
+    tokens = set(mk.split("_"))
+
+    return bool(
+        tokens.intersection({
+            "card",
+            "cards",
+            "carded",
+            "booking",
+            "bookings",
+            "disciplinary",
+        })
+        or "booking_points" in mk
+    )
+
+
 PLAYER_MARKET_WORDS = {
     "player", "goalscorer", "to_score", "to_assist", "tackles",
     "fouls", "carded", "to_get_a_card",
@@ -218,8 +239,10 @@ def classify_prop_metric(market_name):
         return "shots", "Shots"
     if "corners" in mk:
         return "corners", "Corners"
-    if "cards" in mk or "booking_points" in mk:
-        return "cards", "Cards"
+    # Card totals are deliberately excluded from arbitrage because
+    # bookmakers use incompatible red-card settlement rules.
+    if is_disabled_card_market(market_name):
+        return None
     if "first_half" in mk and "goals" in mk:
         return "first_half_goals", "First Half Goals"
     if "goals" in mk:
@@ -808,6 +831,9 @@ def scan_props_arbitrage(root):
                 if not isinstance(mkt_data, dict):
                     continue
 
+                if is_disabled_card_market(mkt_name):
+                    reject("football card markets disabled from arbitrage")
+                    continue
 
                 if bk == "Unibet" and not unibet_ou_market_is_safe(
                     mkt_name,
@@ -2108,6 +2134,8 @@ def main():
             "minimum_profit_percent": MIN_PUBLISHED_ARB_PROFIT_PERCENT,
             "maximum_profit_percent": MAX_PUBLISHED_ARB_PROFIT_PERCENT,
             "livescorebet_half_time_quarantined": True,
+            "midnite_half_time_quarantined": True,
+            "football_card_markets_disabled": True,
             "trusted_over_only_stats_books": sorted(
                 TRUSTED_OVER_ONLY_STATS_BOOKS
             ),
@@ -2117,7 +2145,7 @@ def main():
                 "match_shots_on_target",
                 "team_shots_on_target",
             ],
-            "model": "source_book_validation_v4_over_only_stats",
+            "model": "source_book_validation_v5_no_cards_midnite_htr",
         },
     }
 
