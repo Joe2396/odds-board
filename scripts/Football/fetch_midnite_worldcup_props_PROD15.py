@@ -3,7 +3,7 @@ fetch_midnite_worldcup_props_PROD15.py
 
 Production Midnite World Cup main/player props scraper.
 
-Scrapes the exact 15-fixture production snapshot from:
+Scrapes the exact 7-fixture production snapshot from:
     football/data/midnite_worldcup_props_fixtures_prod15.json
 
 This stage intentionally excludes aggregate Match/Home/Away Shots and SOT.
@@ -34,7 +34,7 @@ COMPETITION_ID = "38826387"
 BASE_URL   = f"https://www.midnite.com/sports/football/world-cup-2026-{COMPETITION_ID}/"
 USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
               "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 TEST_START_INDEX = 0
 TEST_MODE = False
 DEBUG_DIR = ROOT / "football" / "debug" / "midnite_worldcup_props_prod15"
@@ -1133,7 +1133,7 @@ def parse_midnite_half_result_card(page, home, away):
     candidates.append(
         (
             "row-major first half",
-            fractions[:3],
+            fractions[:7],
         )
     )
 
@@ -1200,8 +1200,8 @@ def parse_midnite_double_chance_card(
     result = {}
 
     for label, price in zip(
-        labels[:3],
-        prices[:3],
+        labels[:7],
+        prices[:7],
     ):
         low = label.casefold()
         home_low = home.casefold()

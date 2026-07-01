@@ -25,7 +25,7 @@ OUT_PATH  = ROOT / "football" / "data" / "ladbrokes_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "ladbrokes_worldcup_props_fast_test_v5_complete_components"
 
 COMPETITION_URL = "https://www.ladbrokes.com/en/sports/competitions/football/international/world-cup-2026"
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 PRODUCTION_MARKER = "LADBROKES_PROPS_PROD15_COMPLETE_V1"
 HEADLESS = False
 SAVE_DEBUG_ARTIFACTS = False
@@ -243,7 +243,7 @@ def parse_double_chance(lines, home="", away=""):
             clean(line)
             for line in block[ninety_idx + 1:ninety_idx + 10]
             if is_odds(line)
-        ][:3]
+        ][:7]
 
     # Fallback: first three prices after all labels.
     if len(odds) != 3:
@@ -255,7 +255,7 @@ def parse_double_chance(lines, home="", away=""):
             clean(line)
             for line in block[last_label_idx + 1:last_label_idx + 12]
             if is_odds(line)
-        ][:3]
+        ][:7]
 
     # Final fallback: a true alternating label/price layout.
     if len(odds) != 3:

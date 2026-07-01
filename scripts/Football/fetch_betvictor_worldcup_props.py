@@ -9,7 +9,7 @@ What this does:
 - Loads football/data/betvictor_worldcup_moneylines.json.
 - Sorts fixtures by kickoff.
 - Skips old/live-ish fixtures.
-- Takes the NEXT 15 fixtures only.
+- Takes the NEXT 7 fixtures only.
 - Opens each fixture from the BetVictor World Cup list with strict row matching.
 - Verifies the event header contains the expected teams before scraping.
 - Opens known BetVictor market_group URLs directly:
@@ -61,7 +61,7 @@ DEBUG_ROOT = ROOT / "football" / "debug" / "betvictor_worldcup_props"
 
 LIST_URL = "https://www.betvictor.com/en-ie/sports/240/sections/custom-list/7199/group/world-cup-matches/item/matches"
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
 LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")
 UPCOMING_BUFFER_MINUTES = 15
@@ -361,7 +361,7 @@ def parse_kickoff(date_label, time_label):
 
     return None
 
-def load_next_15_fixtures():
+def load_next_7_fixtures():
     data = json.loads(MONEYLINES_PATH.read_text(encoding="utf-8"))
     rows = data.get("matches") or []
 
@@ -3778,7 +3778,7 @@ def parse_btts(lines):
     # Handles blocks where the title is exact or combined with Total Goals in Popular.
     indices = [i for i, x in enumerate(lines) if "both teams to score" in clean(x).lower()]
     out = []
-    for idx in indices[:3]:
+    for idx in indices[:7]:
         block = lines[idx:idx + 50]
         for i, tok in enumerate(block):
             if tok in {"Yes", "No"} and i + 1 < len(block) and is_odds(block[i + 1]):
@@ -4314,7 +4314,7 @@ def main():
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     DEBUG_ROOT.mkdir(parents=True, exist_ok=True)
 
-    fixtures = load_next_15_fixtures()
+    fixtures = load_next_7_fixtures()
 
     print(
         "BETVICTOR CORE PROPS — "

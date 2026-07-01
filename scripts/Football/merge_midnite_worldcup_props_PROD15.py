@@ -8,7 +8,7 @@ Merges the two Midnite production stages:
     football/data/midnite_worldcup_team_stats_prod15.json
 
 Production rules:
-- exactly 15 matching fixtures;
+- exactly 7 matching fixtures;
 - Match Result must exist;
 - other main/player markets are availability-based;
 - team stats must be either all six markets or none;
@@ -60,7 +60,7 @@ BACKUP_DIR = (
     / "backups"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 
 TEAM_STAT_MARKETS = (
     "total_shots_on_target",

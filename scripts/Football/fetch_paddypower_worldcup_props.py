@@ -21,7 +21,7 @@ OUT_PATH = ROOT / "football" / "data" / "paddypower_worldcup_props.json"
 DBG_DIR = ROOT / "football" / "debug" / "paddypower_worldcup_props"
 
 LIST_URL = "https://www.paddypower.com/fifa-world-cup"
-MAX_MATCHES = 15  # scrape first 15 real PaddyPower match URLs
+MAX_MATCHES = 7  # scrape first 7 real PaddyPower match URLs
 
 TABS = {
     "": ["Double Chance", "Half Time"],

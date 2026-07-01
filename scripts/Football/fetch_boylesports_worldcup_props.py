@@ -35,7 +35,7 @@ DEBUG_DIR = ROOT / "football" / "debug" / "boylesports_props_fast"
 BASE_URL = "https://www.boylesports.com"
 COMPETITION_URL = f"{BASE_URL}/sports/football/competition/international-world-cup"
 
-MAX_FIXTURES = 15
+MAX_FIXTURES = 7
 MAX_WORKERS = 3
 UPCOMING_BUFFER_MINUTES = 15
 LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")

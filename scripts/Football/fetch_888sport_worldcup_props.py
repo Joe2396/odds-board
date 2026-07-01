@@ -33,7 +33,7 @@ OUT_PATH  = ROOT / "football" / "data" / "888sport_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "888sport_worldcup_props"
 
 COMPETITION_URL = "https://www.888sport.com/football/world-cup/"
-MAX_MATCHES     = 3
+MAX_MATCHES     = 7
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
 
 # ── Helpers ────────────────────────────────────────────────────────────────────

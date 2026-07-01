@@ -11,7 +11,7 @@ This is separate on purpose:
       Cards   -> Match Over/Under Cards
 
 Test mode:
-  MAX_MATCHES = 3
+  MAX_MATCHES = 7
 
 Temporary:
   TEMP_SKIP_MATCHES includes Czechia v South Africa because it is currently in-play.
@@ -40,7 +40,7 @@ DEBUG_DIR = ROOT / "football" / "debug" / "williamhill_cards_corners"
 
 MATCHES_LIST_URL = "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
 
 # Keep this while Czechia v South Africa is in-play/live.

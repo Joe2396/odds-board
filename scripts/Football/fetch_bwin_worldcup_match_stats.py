@@ -16,7 +16,7 @@ Targets:
     - Away Team Total Shots on Target
 
 Test settings:
-    MAX_MATCHES = 3
+    MAX_MATCHES = 7
     HEADLESS = False
 
 
@@ -63,9 +63,9 @@ DEBUG_DIR = (
     ROOT / "football" / "debug" / "bwin_worldcup_match_stats"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
-TARGET_USABLE_EVENTS = 15
+TARGET_USABLE_EVENTS = 7
 # Do not start scraping a fixture that is likely to move in-play before the
 # three-match test completes.
 KICKOFF_BUFFER_MINUTES = 15

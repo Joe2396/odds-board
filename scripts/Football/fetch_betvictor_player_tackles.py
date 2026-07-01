@@ -15,7 +15,7 @@ method from the exact Shots/SOT/Fouls scraper:
 - conflicting duplicate prices rejected.
 
 PRODUCTION MODE:
-    MAX_MATCHES = 15
+    MAX_MATCHES = 7
 
 Output:
     football/data/betvictor_player_tackles.json
@@ -44,7 +44,7 @@ OUT_PATH = DATA_DIR / "betvictor_player_tackles.json"
 DEBUG_ROOT = ROOT / "football" / "debug" / "betvictor_player_tackles"
 
 PLAYER_GROUP = "19296"
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
 UPCOMING_BUFFER_MINUTES = 15
 BETVICTOR_LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")

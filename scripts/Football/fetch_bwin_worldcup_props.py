@@ -10,7 +10,7 @@ market cards directly from the rendered DOM.
 
 The first run is deliberately a TEST3 run:
 
-    MAX_MATCHES = 3
+    MAX_MATCHES = 7
     HEADLESS = True
 
 Output:
@@ -51,7 +51,7 @@ REFERENCE_MONEYLINES_PATH = (
 OUT_PATH = ROOT / "football" / "data" / "bwin_worldcup_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "bwin_worldcup_props"
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
 SKIP_STARTED_MATCHES = True
 KICKOFF_BUFFER_MINUTES = 15

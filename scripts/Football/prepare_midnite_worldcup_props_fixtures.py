@@ -2,12 +2,12 @@
 """
 prepare_midnite_worldcup_props_fixtures.py
 
-Creates one shared 15-fixture snapshot for both Midnite production scrapers.
+Creates one shared 7-fixture snapshot for both Midnite production scrapers.
 
 Why this exists:
 - moneylines are refreshed once;
 - already-started/in-play fixtures are excluded;
-- the same exact 15 fixtures are used by both the main/player-props scraper
+- the same exact 7 fixtures are used by both the main/player-props scraper
   and the separate Match/Home/Away Shots and Shots-on-Target scraper.
 
 Input:
@@ -41,7 +41,7 @@ OUTPUT_PATH = (
     / "midnite_worldcup_props_fixtures_prod15.json"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 MIN_MATCHES = 1
 MIN_LEAD_MINUTES = 15
 

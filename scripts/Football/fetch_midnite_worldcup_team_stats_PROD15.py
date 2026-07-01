@@ -37,7 +37,7 @@ OUT_PATH = ROOT / "football" / "data" / "midnite_worldcup_team_stats_prod15.json
 DEBUG_DIR = ROOT / "football" / "debug" / "midnite_worldcup_team_stats_prod15"
 PROFILE_DIR = ROOT / "scripts" / "Football" / "midnite_team_stats_prod15_profile"
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 TEST_START_INDEX = 0
 HEADLESS = False
 USER_AGENT = (

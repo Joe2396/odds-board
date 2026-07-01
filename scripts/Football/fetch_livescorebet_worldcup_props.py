@@ -20,11 +20,11 @@ DEBUG_DIR = ROOT / "football" / "debug" / "livescorebet_worldcup_props_PRODUCTIO
 VALIDATION_REPORT_PATH = DEBUG_DIR / "production_validation_report.json"
 BACKUP_DIR = ROOT / "football" / "data" / "backups"
 MAX_FAILURE_DEBUG_CHARS = 500_000
-MIN_ACTIVE_FIXTURES = 8
+MIN_ACTIVE_FIXTURES = 3
 
 COUPON_URL     = "https://www.livescorebet.com/ie/coupon/21127/"
 PLAYER_GRP_ID  = "757"
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
 SCOPE_MARKER = "__LSB_SCOPE__"
 
@@ -354,7 +354,7 @@ def parse_double_chance(lines):
     labels = [clean(l) for l in block if clean(l) in label_map]
     odds = [clean(l) for l in block if is_odds(l)]
 
-    for i, label in enumerate(labels[:3]):
+    for i, label in enumerate(labels[:7]):
         if i < len(odds):
             selections.append(sel(label_map[label], odds[i]))
 

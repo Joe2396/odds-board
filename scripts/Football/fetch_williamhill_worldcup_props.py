@@ -4,7 +4,7 @@ fetch_williamhill_worldcup_props_PRODUCTION_V23.py
 
 William Hill World Cup props scraper — PRODUCTION V23 — validated standalone William Hill props scraper.
 
-MAX_MATCHES = 15. This candidate never overwrites production output.
+MAX_MATCHES = 7 for the current production window.
 
 Built from the existing William Hill props scraper, but adds Player tab capture
 and broad parsers for:
@@ -68,7 +68,7 @@ EVENT_URL_CACHE_PATHS = [
 
 COMPETITION_URL = "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
 
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)
@@ -241,7 +241,7 @@ def parse_match_result(lines, home, away):
         if len(selections) >= 3:
             break
 
-    return mkt("Match Betting", selections[:3])
+    return mkt("Match Betting", selections[:7])
 
 
 def parse_total_goals(lines, section_header, market_name):
@@ -324,7 +324,7 @@ def parse_half_time_result(lines, home, away):
         if len(selections) >= 3:
             break
 
-    return mkt("Half Time Result", selections[:3])
+    return mkt("Half Time Result", selections[:7])
 
 
 def parse_double_chance(lines, home, away):
@@ -683,7 +683,7 @@ def find_blocks(lines, keywords, max_len=360):
         blocks.append(block)
 
     blocks.sort(key=lambda b: sum(1 for x in b if is_odds(x)), reverse=True)
-    return blocks[:3]
+    return blocks[:7]
 
 
 def parse_simple_player_odds(block, market_name, prop_type, default_threshold, default_line):
@@ -5996,7 +5996,7 @@ def main():
 
     print("=" * 72)
     print("William Hill World Cup Props — PRODUCTION V23")
-    print("15-fixture full run with availability-aware validation")
+    print("7-fixture full run with availability-aware validation")
     print("Live JSON is replaced only after validation PASS")
     print("=" * 72)
 

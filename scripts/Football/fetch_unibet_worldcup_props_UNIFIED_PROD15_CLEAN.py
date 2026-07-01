@@ -88,7 +88,7 @@ DEBUG_DIR = (
     / "unibet_worldcup_props_unified"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 CANDIDATE_LIMIT = 15
 HEADLESS = False
 

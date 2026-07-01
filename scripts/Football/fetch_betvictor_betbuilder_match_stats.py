@@ -20,7 +20,7 @@ Method:
 - one browser context per fixture.
 
 PRODUCTION MODE:
-    MAX_MATCHES = 15
+    MAX_MATCHES = 7
 
 Output:
     football/data/
@@ -59,7 +59,7 @@ DEBUG_ROOT = (
 )
 
 BETBUILDER_GROUP = "12536"
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
 UPCOMING_BUFFER_MINUTES = 15
 LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")

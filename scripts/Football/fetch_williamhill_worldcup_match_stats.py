@@ -4,7 +4,7 @@ fetch_williamhill_worldcup_match_stats_PRODUCTION_V4_ARB_LINES.py
 
 Production V4 extraction with arb-compatible half-line normalization.
 
-MAX_MATCHES = 15 for production.
+MAX_MATCHES = 7 for production.
 
 This targets the bottom of the Popular/default event page, especially:
   - Team Performance
@@ -59,7 +59,7 @@ MAX_FAILURE_DEBUG_CHARS = 500_000
 
 COMPETITION_URL = "https://sports.williamhill.com/betting/en-gb/football/competitions/OB_TY52321/world-cup-2026/matches"
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
 
 ODDS_RE = re.compile(r"^(?:\d+/\d+|EVS|EVENS|EVEN|Evens)$", re.I)

@@ -51,7 +51,7 @@ SCRAPER_PATH = (
     / "fetch_ladbrokes_worldcup_props.py"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
 MIN_GOALSCORER_SELECTIONS = 30
 MIN_GOALSCORER_ROWS_PER_TEAM = 8

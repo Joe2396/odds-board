@@ -51,7 +51,7 @@ MONEYLINES_PATH = ROOT / "football" / "data" / "boylesports_worldcup_moneylines.
 OUT_PATH = ROOT / "football" / "data" / "boylesports_stats_props.json"
 DEBUG_DIR = ROOT / "football" / "debug" / "boylesports_stats_html"
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 MAX_WORKERS = 3
 SAVE_FULL_HTML = True
 LOCAL_TIMEZONE = ZoneInfo("Europe/Dublin")

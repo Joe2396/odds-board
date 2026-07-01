@@ -6,7 +6,7 @@ Independent final validator for:
     football/data/midnite_worldcup_props.json
 
 Validation rules:
-- exactly 15 unique fixtures;
+- exactly 7 unique fixtures;
 - every fixture has Match Result and a non-empty market payload;
 - other main/player markets are availability-based;
 - team stats are either all six valid ladders or none;
@@ -30,7 +30,7 @@ PRODUCTION_PATH = (
     / "midnite_worldcup_props.json"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 
 TEAM_STAT_MARKETS = (
     "total_shots_on_target",

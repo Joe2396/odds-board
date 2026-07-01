@@ -71,7 +71,7 @@ DEBUG_DIR = (
     / "ladbrokes_shots_prod15_components"
 )
 
-MAX_MATCHES = 15
+MAX_MATCHES = 7
 HEADLESS = False
 
 MIN_SELECTIONS_PER_MARKET = 2

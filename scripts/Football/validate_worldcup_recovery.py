@@ -56,9 +56,9 @@ def main() -> None:
 
     issues = []
 
-    if len(allowed_slugs) != 15:
+    if len(allowed_slugs) != 7:
         issues.append(
-            f"Expected 15 upcoming snapshot fixtures, found {len(allowed_slugs)}"
+            f"Expected 7 upcoming snapshot fixtures, found {len(allowed_slugs)}"
         )
 
     actual_dirs = {
