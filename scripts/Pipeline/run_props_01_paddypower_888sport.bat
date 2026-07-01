@@ -17,7 +17,7 @@ if errorlevel 1 (
 
 echo.
 echo [2/2] 888Sport World Cup props...
-python scripts\Football\fetch_888sport_worldcup_props.py
+echo Skipped 888Sport props: duplicate William Hill prices.
 if errorlevel 1 (
     echo FAILED: 888Sport props.
     exit /b 1
