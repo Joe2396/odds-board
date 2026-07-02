@@ -359,6 +359,92 @@ def parse_player_threshold_market(panel) -> list:
     return out
 
 
+
+# BOYLESPORTS_TEAM_CORNERS_SCOPE_V1
+
+def _boylesports_corner_row(price_el, panel, home, away):
+    node = price_el
+    teams = [clean_text(x) for x in (home, away) if clean_text(x)]
+    for _ in range(9):
+        node = getattr(node, 'parent', None)
+        if node is None:
+            break
+        text = clean_text(node.get_text(' ', strip=True))
+        for team in teams:
+            m = re.search(
+                rf'(?:^|\s){re.escape(team)}\s+Total\s+Corners\s+O\s*/\s*U\s+(\d+(?:\.\d+)?)(?:\s|$)',
+                text,
+                re.I,
+            )
+            if m:
+                return team, m.group(1), text
+        if node == panel:
+            break
+    return '', '', ''
+
+
+def parse_team_total_corners_markets(panel, home, away):
+    grouped = {}
+    for el in panel.select('[data-price][data-marketid]'):
+        market_id = clean_text(el.get('data-marketid', ''))
+        price = clean_text(el.get('data-price', ''))
+        data_name = clean_text(el.get('data-name', ''))
+        m = re.search(r'\b(Over|Under)\s+(\d+(?:\.\d+)?)\b', data_name, re.I)
+        if not market_id or not price or not m:
+            continue
+        side, data_line = m.group(1).lower(), m.group(2)
+        team, row_line, row_text = _boylesports_corner_row(el, panel, home, away)
+        if not team or not row_line or row_line != data_line:
+            continue
+        entry = grouped.setdefault(market_id, {'team': team, 'line': row_line, 'sides': {}})
+        if entry['team'] != team or entry['line'] != row_line:
+            entry['conflict'] = True
+            continue
+        label = f'{team} {side.title()} {row_line}'
+        entry['sides'][side] = {
+            'name': label,
+            'selection': label,
+            'price': price,
+            'odds': price,
+            'team': team,
+            'side': side,
+            'line': row_line,
+            'market_id': market_id,
+            'selection_id': clean_text(el.get('data-selectionid', '')),
+            'source_row': row_text,
+        }
+
+    by_team = {clean_text(home): [], clean_text(away): []}
+    for entry in grouped.values():
+        if entry.get('conflict'):
+            continue
+        over = entry['sides'].get('over')
+        under = entry['sides'].get('under')
+        team = entry['team']
+        if over and under and team in by_team:
+            by_team[team].extend([over, under])
+
+    markets = {}
+    for team in (clean_text(home), clean_text(away)):
+        selections = by_team.get(team, [])
+        selections.sort(key=lambda x: (float(x['line']), 0 if x['side'] == 'over' else 1))
+        if not selections:
+            continue
+        name = f'{team} Total Corners Over / Under'
+        markets[name] = {
+            'label': name,
+            'market': name,
+            'normalized_market': re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_'),
+            'selection_count': len(selections),
+            'complete_pair_count': len(selections) // 2,
+            'scope': 'team',
+            'team': team,
+            'parser': 'boylesports_market_id_row_scope_v1',
+            'selections': selections,
+        }
+    return markets
+
+
 def parse_markets(html: str, home: str, away: str) -> dict:
     soup = BeautifulSoup(html, "lxml")
     markets = {}
@@ -381,6 +467,18 @@ def parse_markets(html: str, home: str, away: str) -> dict:
             low = full_text.lower()
             if "shot" in low or "target" in low or "player" in low:
                 unknown_interesting.append(label)
+            continue
+
+        if key == "team_total_corners":
+            scoped = parse_team_total_corners_markets(panel, home, away)
+            markets.update(scoped)
+            if scoped:
+                print("  Team total corners scoped: " + ", ".join(
+                    f"{name}({market.get('complete_pair_count', 0)} pairs)"
+                    for name, market in scoped.items()
+                ))
+            else:
+                print("  WARNING: Team Total Corners found but no safe scoped pairs parsed")
             continue
 
         if key in markets:

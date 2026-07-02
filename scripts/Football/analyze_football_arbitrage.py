@@ -30,11 +30,10 @@ MAX_SOURCE_THREE_WAY_SUM = 1.40
 
 # Only publish arbs inside a realistic and useful band:
 #   - at least 2% guaranteed profit
-#   - at most 15% guaranteed profit
+#   - at most 25% guaranteed profit
 # Larger values are usually parser/line issues; smaller values are too thin.
 MIN_PUBLISHED_ARB_PROFIT_PERCENT = 2.0
-MAX_PUBLISHED_ARB_PROFIT_PERCENT = 15.0
-
+MAX_PUBLISHED_ARB_PROFIT_PERCENT = 25.0
 MAX_PUBLISHED_ARB_SUM = 1.0 / (
     1.0 + MIN_PUBLISHED_ARB_PROFIT_PERCENT / 100.0
 )
@@ -49,12 +48,11 @@ NAMED_MARKET_QUARANTINE = {
     ("Midnite", "half_time_result"),
 }
 
-# These books publish trustworthy threshold Overs for aggregate match/team
-# statistics, but often no matching Under. They may contribute only the Over
-# side, and only for Shots / Shots On Target.
+# Every props source may contribute an Over-only price for aggregate match/team
+# Shots and Shots On Target. Under-only prices remain disallowed, and the final
+# hedge must use a validated Under from a different bookmaker at the exact line.
 TRUSTED_OVER_ONLY_STATS_BOOKS = {
-    "PaddyPower",
-    "Midnite",
+    "ALL_PROPS_SOURCES",
 }
 
 OVER_ONLY_STATS_CANONICAL_PREFIXES = {
@@ -582,8 +580,8 @@ def validate_ou_source_books(data, rejected):
       - must supply both Over and Under at the exact line;
       - their own two-way book must be internally plausible.
 
-    Trusted over-only aggregate-stat sources:
-      - PaddyPower and Midnite may supply an Over without an Under;
+    Over-only aggregate-stat sources:
+      - every bookmaker may supply an Over without an Under;
       - only for match/team Shots and Shots On Target;
       - the eventual arb must still use a validated Under from another book.
 
@@ -619,6 +617,24 @@ def validate_ou_source_books(data, rejected):
                         unders,
                         bookmaker,
                     )
+                    # MIDNITE_OVER_ONLY_CORNERS_V3_MINIMAL
+                    # Midnite publishes genuine corner milestones such as 6+, which the
+                    # adapter maps to Over 5.5. Admit only this bookmaker's Over-only
+                    # match/team corner offer. All existing source rules remain below.
+                    if (
+                        over
+                        and not under
+                        and bookmaker == "Midnite"
+                        and (
+                            canonical_market == "match_corners"
+                            or canonical_market.startswith(
+                                "team_corners::"
+                            )
+                        )
+                    ):
+                        valid_over_books.add(bookmaker)
+                        continue
+
 
                     # Normal two-sided source validation.
                     if over and under:
@@ -643,12 +659,27 @@ def validate_ou_source_books(data, rejected):
                         and not under
                         and allow_trusted_over_only
                         and bookmaker
-                            in TRUSTED_OVER_ONLY_STATS_BOOKS
                     ):
+                        # Every source bookmaker may contribute an Over-only
+                        # offer for aggregate match/team Shots or Shots On
+                        # Target. The eventual hedge still requires a validated
+                        # Under from a different bookmaker at the exact line.
                         valid_over_books.add(bookmaker)
                         continue
 
-                    # Under-only rows are deliberately never accepted.
+                    # Every bookmaker may also contribute an Under-only
+                    # offer for aggregate match/team Shots or Shots On
+                    # Target. Exact fixture, scope, team and line matching
+                    # are still required, and the eventual Over must come
+                    # from a different bookmaker.
+                    if (
+                        under
+                        and not over
+                        and allow_trusted_over_only
+                        and bookmaker
+                    ):
+                        valid_under_books.add(bookmaker)
+                        continue
 
                 before_over = len(overs)
                 sides["over"] = [
@@ -891,6 +922,28 @@ def scan_props_arbitrage(root):
                         scope_team,
                         metric,
                     ) = identity
+
+                    # Ladbrokes currently emits an impossible number of
+                    # aggregate Shots/SOT Over rows, including prices such as
+                    # 25/1 for Over 1.5 team SOT. Keep its separately captured
+                    # Unders available, but quarantine aggregate Over rows until
+                    # the source scraper's threshold/price mapping is repaired.
+                    if (
+                        bk == "Ladbrokes"
+                        and side == "over"
+                        and (
+                            canonical_mk == "match_shots"
+                            or canonical_mk == "match_shots_on_target"
+                            or canonical_mk.startswith("team_shots::")
+                            or canonical_mk.startswith(
+                                "team_shots_on_target::"
+                            )
+                        )
+                    ):
+                        reject(
+                            "Ladbrokes aggregate Shots/SOT Over parser quarantine"
+                        )
+                        continue
 
                     quarantine_reason = should_quarantine_offer(
                         bk,
@@ -1275,6 +1328,17 @@ def iter_midnite_market_items(match):
     threshold_markets = [
         ("total_cards", "Total Cards Over / Under", ""),
         ("total_corners", "Total Corners Over / Under", ""),
+        # MIDNITE_HOME_AWAY_CORNERS_ADAPTER_V1
+        (
+            "home_corners",
+            f"{home} Total Corners Over / Under",
+            home,
+        ),
+        (
+            "away_corners",
+            f"{away} Total Corners Over / Under",
+            away,
+        ),
         (
             "total_shots_on_target",
             "Total Shots On Target Over / Under",

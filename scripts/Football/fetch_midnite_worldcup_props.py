@@ -509,6 +509,261 @@ def parse_midnite_half_result_card(page, home, away):
     return None
 
 
+
+# ---------------------------------------------------------------------------
+# MIDNITE_MATCH_TEAM_CORNERS_V1
+# Verified live on three active World Cup fixtures.
+# ---------------------------------------------------------------------------
+def _midnite_corner_norm(value):
+    return re.sub(r"\\s+", " ", str(value or "")).strip()
+
+
+def _midnite_corner_team_key(value):
+    return re.sub(
+        r"[^a-z0-9]+",
+        " ",
+        _midnite_corner_norm(value).lower(),
+    ).strip()
+
+
+def _midnite_corner_card_state(page):
+    try:
+        return page.evaluate(
+            r"""() => {
+                const norm = value => (value || "").replace(/\s+/g, " ").trim();
+                const visible = element => {
+                    if (!element) return false;
+                    const rect = element.getBoundingClientRect();
+                    const style = getComputedStyle(element);
+                    return rect.width > 0 && rect.height > 0
+                        && rect.bottom > 0 && rect.top < window.innerHeight
+                        && style.display !== "none" && style.visibility !== "hidden";
+                };
+                const isOdds = value => /^(?:\d+\/\d+|EVS|EVENS|EVEN)$/i.test(norm(value));
+                const isThreshold = value => /^(?:.+?\s+)?\d+\+$/.test(norm(value));
+
+                const headings = Array.from(document.querySelectorAll("body *"))
+                    .filter(element => element.childElementCount === 0
+                        && norm(element.innerText) === "Corners" && visible(element));
+                const candidates = [];
+
+                for (const heading of headings) {
+                    let node = heading;
+                    for (let depth = 0; node && node !== document.body && depth < 12;
+                         node = node.parentElement, depth += 1) {
+                        const leaves = Array.from(node.querySelectorAll("*"))
+                            .filter(element => element.childElementCount === 0
+                                && visible(element) && norm(element.innerText));
+                        const odds = leaves.filter(element => isOdds(element.innerText));
+                        const thresholds = leaves.filter(element => isThreshold(element.innerText));
+                        const poppers = Array.from(node.querySelectorAll("*"))
+                            .filter(element => visible(element)
+                                && String(element.className || "").includes("v-popper")
+                                && norm(element.innerText));
+                        if (odds.length >= 2 && thresholds.length >= 2 && poppers.length >= 2) {
+                            const rect = node.getBoundingClientRect();
+                            candidates.push({node, odds, thresholds, poppers, area: rect.width * rect.height});
+                            break;
+                        }
+                    }
+                }
+
+                candidates.sort((a, b) => a.area - b.area);
+                const selected = candidates[0];
+                if (!selected) return {found:false, controls:[], scope_control:null, rows:[]};
+
+                const center = element => {
+                    const rect = element.getBoundingClientRect();
+                    return {x:rect.left + rect.width/2, y:rect.top + rect.height/2};
+                };
+
+                const controls = [];
+                for (const element of selected.poppers) {
+                    const point = center(element);
+                    const text = norm(element.innerText);
+                    if (!text || text.length > 80) continue;
+                    if (controls.some(control => control.text === text
+                        && Math.abs(control.x-point.x) < 8
+                        && Math.abs(control.y-point.y) < 8)) continue;
+                    controls.push({text, ...point});
+                }
+                controls.sort((a,b) => Math.abs(a.y-b.y) > 25 ? a.y-b.y : a.x-b.x);
+                let scopeControl = null;
+                if (controls.length) {
+                    const topY = controls[0].y;
+                    const topRow = controls.filter(control => Math.abs(control.y-topY) <= 25)
+                        .sort((a,b) => a.x-b.x);
+                    scopeControl = topRow[0] || null;
+                }
+
+                const odds = selected.odds.map(element => ({odds:norm(element.innerText), ...center(element)}));
+                const thresholds = selected.thresholds.map(element => ({label:norm(element.innerText), ...center(element)}));
+                const rows = [];
+                for (const threshold of thresholds) {
+                    const nearest = odds.reduce((best, price) => {
+                        const distance = Math.abs(price.y-threshold.y);
+                        return !best || distance < best.distance ? {...price, distance} : best;
+                    }, null);
+                    if (nearest && nearest.distance <= 38) {
+                        rows.push({label:threshold.label, odds:nearest.odds});
+                    }
+                }
+                return {found:true, controls, scope_control:scopeControl, rows};
+            }"""
+        )
+    except Exception:
+        return {"found": False, "controls": [], "scope_control": None, "rows": []}
+
+
+def _midnite_corner_scope_key(value):
+    value = _midnite_corner_team_key(value)
+    return "combined" if value in {"combined", "match"} else value
+
+
+def _midnite_corner_scope_confirmed(state, target):
+    control = state.get("scope_control") or {}
+    return bool(
+        _midnite_corner_scope_key(control.get("text"))
+        == _midnite_corner_scope_key(target)
+    )
+
+
+def _midnite_click_open_corner_option(page, target, control):
+    aliases = (
+        ["Combined", "Match"]
+        if _midnite_corner_scope_key(target) == "combined"
+        else [_midnite_corner_norm(target)]
+    )
+    for alias in aliases:
+        try:
+            point = page.evaluate(
+                r"""payload => {
+                    const norm = value => (value || "").replace(/\s+/g, " ").trim();
+                    const visible = element => {
+                        if (!element) return false;
+                        const rect = element.getBoundingClientRect();
+                        const style = getComputedStyle(element);
+                        return rect.width > 0 && rect.height > 0 && rect.bottom > 0
+                            && rect.top < window.innerHeight && style.display !== "none"
+                            && style.visibility !== "hidden";
+                    };
+                    const matches = Array.from(document.querySelectorAll("body *"))
+                        .filter(element => element.childElementCount === 0
+                            && norm(element.innerText) === payload.text && visible(element))
+                        .map(element => {
+                            const rect = element.getBoundingClientRect();
+                            return {x:rect.left+rect.width/2, y:rect.top+rect.height/2,
+                                    area:rect.width*rect.height};
+                        })
+                        .filter(point => point.y > payload.controlY - 10
+                            && Math.abs(point.x-payload.controlX) < 260)
+                        .sort((a,b) => {
+                            const ay = Math.abs(a.y-payload.controlY);
+                            const by = Math.abs(b.y-payload.controlY);
+                            return ay !== by ? ay-by : a.area-b.area;
+                        });
+                    return matches[0] || null;
+                }""",
+                {"text": alias, "controlX": control["x"], "controlY": control["y"]},
+            )
+        except Exception:
+            point = None
+        if point:
+            page.mouse.click(point["x"], point["y"])
+            time.sleep(0.35)
+            return True
+    return False
+
+
+def _midnite_click_corner_scope(page, target):
+    for _attempt in range(3):
+        state = _midnite_corner_card_state(page)
+        if state.get("found") and _midnite_corner_scope_confirmed(state, target):
+            return True
+        control = state.get("scope_control") or {}
+        if not control:
+            expand_accordion(page, "Corners")
+            time.sleep(0.4)
+            continue
+        page.mouse.click(control["x"], control["y"])
+        time.sleep(0.35)
+        if not _midnite_click_open_corner_option(page, target, control):
+            try: page.keyboard.press("Escape")
+            except Exception: pass
+            continue
+        for _ in range(12):
+            time.sleep(0.25)
+            verified = _midnite_corner_card_state(page)
+            if verified.get("found") and _midnite_corner_scope_confirmed(verified, target):
+                return True
+        try: page.keyboard.press("Escape")
+        except Exception: pass
+    return False
+
+
+def _midnite_parse_corner_scope(state, target):
+    result = {}
+    wanted = _midnite_corner_team_key(target)
+    for row in state.get("rows", []):
+        label = _midnite_corner_norm(row.get("label"))
+        odds = _midnite_corner_norm(row.get("odds")).upper()
+        parsed = re.fullmatch(r"(?:(.+?)\s+)?(\d+)\+", label)
+        if not parsed or not (is_frac(odds) or odds in {"EVS", "EVENS"}):
+            continue
+        team_text = _midnite_corner_norm(parsed.group(1))
+        team_key = _midnite_corner_team_key(team_text)
+        if wanted == "combined":
+            if team_text: continue
+        elif team_key != wanted:
+            continue
+        decimal = frac(odds)
+        if decimal is not None:
+            result[f"over_{parsed.group(2)}"] = decimal
+    return result or None
+
+
+def scrape_midnite_corner_scopes(page, home, away):
+    try:
+        click_tab(page, "Corners")
+    except Exception:
+        pass
+    time.sleep(0.8)
+    expand_accordion(page, "Corners")
+    time.sleep(0.5)
+    if not _midnite_corner_card_state(page).get("found"):
+        return {}
+
+    scopes = [
+        ("Combined", "total_corners"),
+        (home, "home_corners"),
+        (away, "away_corners"),
+    ]
+    output = {}
+    signatures = set()
+
+    for scope, source_key in scopes:
+        if not _midnite_click_corner_scope(page, scope):
+            print(f" Midnite corners: scope not confirmed: {scope}")
+            continue
+        expand_accordion(page, "Corners")
+        time.sleep(0.35)
+        ladder = _midnite_parse_corner_scope(
+            _midnite_corner_card_state(page),
+            scope,
+        )
+        if not ladder:
+            print(f" Midnite corners: no rows for {scope}")
+            continue
+        signature = tuple(sorted(ladder.items()))
+        if scope != "Combined" and signature in signatures:
+            print(f" Midnite corners: duplicate scope rejected: {scope}")
+            continue
+        signatures.add(signature)
+        output[source_key] = ladder
+        print(f" Midnite corners: {scope}({len(ladder)} Overs)")
+
+    return output
+
 def scrape_match(page, match):
     url  = match.get("url") or f"{BASE_URL}{match['match_id']}-{match['event_id']}"
     home = match.get("home", "")
@@ -765,23 +1020,26 @@ def scrape_match(page, match):
         if d: props["total_cards"] = d
 
     # ------------------------------------------------------------------ #
-    # CORNERS tab
+    # CORNERS tab — Combined, Home and Away milestone Overs
     # ------------------------------------------------------------------ #
-    click_tab(page, "Corners")
-    time.sleep(0.8)
+    corner_markets = scrape_midnite_corner_scopes(page, home, away)
+    for source_key, ladder in corner_markets.items():
+        props[source_key] = ladder
+
+    # Keep Team with Most Corners as a separate three-way market.
     lines_cn = get_lines(page)
-    ci = [i for i,l in enumerate(lines_cn) if l == "Corners"]
-    if ci:
-        seg = lines_cn[ci[0]:ci[0]+20]
-        thresh = [l for l in seg if re.match(r"^\d+\+$",l)]
-        f = [l for l in seg if is_frac(l)]
-        d = {f"over_{t.replace('+','')}":frac(f[i]) if i<len(f) else None for i,t in enumerate(thresh)}
-        if d: props["total_corners"] = d
-    twmc = next((i for i,l in enumerate(lines_cn) if l=="Team with Most Corners"),None)
+    twmc = next(
+        (i for i, line in enumerate(lines_cn) if line == "Team with Most Corners"),
+        None,
+    )
     if twmc is not None:
-        f = [l for l in lines_cn[twmc:twmc+10] if is_frac(l)]
+        f = [line for line in lines_cn[twmc:twmc+10] if is_frac(line)]
         if len(f) >= 3:
-            props["team_most_corners"] = {"home":frac(f[0]),"draw":frac(f[1]),"away":frac(f[2])}
+            props["team_most_corners"] = {
+                "home": frac(f[0]),
+                "draw": frac(f[1]),
+                "away": frac(f[2]),
+            }
 
     # ------------------------------------------------------------------ #
     # PLAYERS tab
