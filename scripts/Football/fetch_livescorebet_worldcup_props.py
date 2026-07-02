@@ -1164,6 +1164,387 @@ def collect_shots_scope_text(page, home, away):
 
     return "".join(chunks)
 
+
+# ---------------------------------------------------------------------------
+# LIVESCOREBET_FULL_MATCH_TEAM_SHOTS_DOM_V1
+# Verified on TEST3: exact Match/Home/Away rows for Shots and SOT.
+# ---------------------------------------------------------------------------
+
+STATS_GRP_ID = "595"
+
+
+def _with_market_group(url, group_id):
+    from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+    parts = urlsplit(url)
+    query = dict(parse_qsl(parts.query, keep_blank_values=True))
+    query["marketGroupId"] = str(group_id)
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment))
+
+
+def _fractional_to_decimal(value):
+    value = clean(value).upper()
+    if value in {"EVS", "EVENS", "EVEN"}:
+        return 2.0
+    if "/" not in value:
+        return None
+    try:
+        numerator, denominator = value.split("/", 1)
+        denominator = float(denominator)
+        if denominator == 0:
+            return None
+        return float(numerator) / denominator + 1.0
+    except Exception:
+        return None
+
+
+def _source_pair_is_plausible(over_odds, under_odds):
+    over_decimal = _fractional_to_decimal(over_odds)
+    under_decimal = _fractional_to_decimal(under_odds)
+    if not over_decimal or not under_decimal:
+        return False
+    source_sum = (1.0 / over_decimal) + (1.0 / under_decimal)
+    return 0.90 <= source_sum <= 1.30
+
+
+def _scroll_until_stats_market(page, heading):
+    page.keyboard.press("Control+Home")
+    page.wait_for_timeout(300)
+    for _ in range(36):
+        try:
+            locator = page.get_by_text(heading, exact=True)
+            for index in range(locator.count()):
+                try:
+                    if locator.nth(index).is_visible():
+                        return True
+                except Exception:
+                    pass
+        except Exception:
+            pass
+        page.mouse.wheel(0, 650)
+        page.wait_for_timeout(180)
+    return False
+
+
+def _expand_stats_market(page, heading):
+    if not _scroll_until_stats_market(page, heading):
+        return False
+    try:
+        result = page.evaluate(
+            r"""heading => {
+                const norm = value => (value || "").replace(/\s+/g, " ").trim();
+                const visible = element => {
+                    if (!element) return false;
+                    const rect = element.getBoundingClientRect();
+                    const style = getComputedStyle(element);
+                    return rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden";
+                };
+                const leaves = Array.from(document.querySelectorAll("body *")).filter(element =>
+                    element.childElementCount === 0 && norm(element.innerText) === heading && visible(element)
+                );
+                if (!leaves.length) return {found:false, clicked:false};
+                const leaf = leaves[0];
+                let card = null;
+                for (let node = leaf; node && node !== document.body; node = node.parentElement) {
+                    const text = norm(node.innerText);
+                    if (text.includes(heading) && (text.includes("Both Teams Combined") || text.includes("Over") || text.includes("Under"))) {
+                        card = node;
+                        break;
+                    }
+                }
+                const cardText = norm((card || leaf.parentElement || leaf).innerText);
+                const alreadyOpen = cardText.includes("Over") && cardText.includes("Under") && /(?:\d+\/\d+|EVS|EVENS)/i.test(cardText);
+                if (alreadyOpen) return {found:true, clicked:false};
+                let target = leaf;
+                for (let node = leaf; node && node !== document.body; node = node.parentElement) {
+                    const tag = node.tagName.toLowerCase();
+                    const role = (node.getAttribute("role") || "").toLowerCase();
+                    const cursor = getComputedStyle(node).cursor;
+                    if (tag === "button" || role === "button" || cursor === "pointer") {
+                        target = node;
+                        break;
+                    }
+                }
+                target.scrollIntoView({block:"center", behavior:"instant"});
+                target.click();
+                return {found:true, clicked:true};
+            }""",
+            heading,
+        )
+    except Exception:
+        return False
+    if not result or not result.get("found"):
+        return False
+    page.wait_for_timeout(900)
+    return True
+
+
+def _stats_component_state(page, heading, scopes):
+    try:
+        return page.evaluate(
+            r"""payload => {
+                const norm = value => (value || "").replace(/\s+/g, " ").trim();
+                const visible = element => {
+                    if (!element) return false;
+                    const rect = element.getBoundingClientRect();
+                    const style = getComputedStyle(element);
+                    return rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden";
+                };
+                const isOdds = value => /^(?:\d+\/\d+|EVS|EVENS|EVEN)$/i.test(norm(value));
+                const isLine = value => /^\d+(?:\.\d+)?$/.test(norm(value));
+                const targetHeadings = new Set(["Total Shots", "Total Shots on Target"]);
+                const headingLeaves = Array.from(document.querySelectorAll("body *")).filter(element =>
+                    element.childElementCount === 0 && norm(element.innerText) === payload.heading && visible(element)
+                );
+                const candidates = [];
+                for (const leaf of headingLeaves) {
+                    let depth = 0;
+                    for (let node = leaf.parentElement; node && node !== document.body && depth < 12; node = node.parentElement, depth += 1) {
+                        const text = norm(node.innerText);
+                        if (!text.includes(payload.heading) || !text.includes("Over") || !text.includes("Under") || !/(?:\d+\/\d+|EVS|EVENS)/i.test(text)) continue;
+                        const leaves = Array.from(node.querySelectorAll("*")).filter(element => element.childElementCount === 0 && visible(element) && norm(element.innerText));
+                        const foreignHeading = leaves.some(element => {
+                            const value = norm(element.innerText);
+                            return targetHeadings.has(value) && value !== payload.heading;
+                        });
+                        if (foreignHeading) continue;
+                        const scopeHits = payload.scopes.filter(scope => leaves.some(element => norm(element.innerText) === scope));
+                        if (scopeHits.length < 2) continue;
+                        const oddsCount = leaves.filter(element => isOdds(element.innerText)).length;
+                        const lineCount = leaves.filter(element => isLine(element.innerText)).length;
+                        if (!oddsCount || !lineCount) continue;
+                        const rect = node.getBoundingClientRect();
+                        candidates.push({node, leaves, area:rect.width * rect.height});
+                    }
+                }
+                candidates.sort((a,b) => a.area - b.area);
+                const selected = candidates[0];
+                if (!selected) return {found:false, reason:"exact component not found", rows:[], tabs:[]};
+                const leaves = selected.leaves;
+                const headerOver = leaves.find(element => norm(element.innerText) === "Over");
+                const headerUnder = leaves.find(element => norm(element.innerText) === "Under");
+                const center = element => {
+                    const rect = element.getBoundingClientRect();
+                    return {x:rect.left + rect.width / 2, y:rect.top + rect.height / 2};
+                };
+                const overX = headerOver ? center(headerOver).x : null;
+                const underX = headerUnder ? center(headerUnder).x : null;
+                const lines = leaves.filter(element => isLine(element.innerText)).map(element => ({value:norm(element.innerText), ...center(element)}));
+                const odds = leaves.filter(element => isOdds(element.innerText)).map(element => ({value:norm(element.innerText), ...center(element)}));
+                const rows = [];
+                for (const line of lines) {
+                    const sameRow = odds.filter(price => Math.abs(price.y - line.y) <= 32);
+                    if (sameRow.length < 2) continue;
+                    let over = null;
+                    let under = null;
+                    if (overX !== null && underX !== null) {
+                        over = sameRow.reduce((best, price) => !best || Math.abs(price.x - overX) < Math.abs(best.x - overX) ? price : best, null);
+                        under = sameRow.filter(price => price !== over).reduce((best, price) => !best || Math.abs(price.x - underX) < Math.abs(best.x - underX) ? price : best, null);
+                    } else {
+                        const ordered = [...sameRow].sort((a,b) => a.x - b.x);
+                        over = ordered[0] || null;
+                        under = ordered[1] || null;
+                    }
+                    if (!over || !under) continue;
+                    rows.push({line:line.value, over:over.value, under:under.value});
+                }
+                const dedupedRows = [];
+                const rowKeys = new Set();
+                for (const row of rows.sort((a,b) => Number(a.line) - Number(b.line))) {
+                    const key = row.line + "|" + row.over + "|" + row.under;
+                    if (rowKeys.has(key)) continue;
+                    rowKeys.add(key);
+                    dedupedRows.push(row);
+                }
+                const tabs = [];
+                for (const scope of payload.scopes) {
+                    const matches = leaves.filter(element => norm(element.innerText) === scope);
+                    if (!matches.length) continue;
+                    let target = matches[matches.length - 1];
+                    for (let node = target; node && node !== selected.node; node = node.parentElement) {
+                        const tag = node.tagName.toLowerCase();
+                        const role = (node.getAttribute("role") || "").toLowerCase();
+                        const cursor = getComputedStyle(node).cursor;
+                        if (tag === "button" || role === "button" || role === "tab" || cursor === "pointer") {
+                            target = node;
+                            break;
+                        }
+                    }
+                    const point = center(target);
+                    tabs.push({label:scope, x:point.x, y:point.y});
+                }
+                return {found:true, rows:dedupedRows, tabs, text:norm(selected.node.innerText)};
+            }""",
+            {"heading": heading, "scopes": scopes},
+        )
+    except Exception as error:
+        return {"found": False, "reason": str(error), "rows": [], "tabs": []}
+
+
+def _click_stats_scope(page, heading, scope, scopes):
+    state = _stats_component_state(page, heading, scopes)
+    if not state.get("found"):
+        return False
+    tab = next((item for item in state.get("tabs", []) if item.get("label") == scope), None)
+    if not tab:
+        return False
+    page.mouse.click(tab["x"], tab["y"])
+    page.wait_for_timeout(1100)
+    return True
+
+
+def _expand_stats_view_more(page, heading, scopes):
+    try:
+        result = page.evaluate(
+            r"""payload => {
+                const norm = value => (value || "").replace(/\s+/g, " ").trim();
+                const visible = element => {
+                    if (!element) return false;
+                    const rect = element.getBoundingClientRect();
+                    const style = getComputedStyle(element);
+                    return rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden";
+                };
+                const headingLeaf = Array.from(document.querySelectorAll("body *")).find(element =>
+                    element.childElementCount === 0 && norm(element.innerText) === payload.heading && visible(element)
+                );
+                if (!headingLeaf) return 0;
+                let component = null;
+                for (let node = headingLeaf.parentElement; node && node !== document.body; node = node.parentElement) {
+                    const text = norm(node.innerText);
+                    if (text.includes(payload.heading) && text.includes("Over") && text.includes("Under") && payload.scopes.filter(scope => text.includes(scope)).length >= 2) {
+                        component = node;
+                        break;
+                    }
+                }
+                if (!component) return 0;
+                const buttons = Array.from(component.querySelectorAll("button, a, [role='button']")).filter(element =>
+                    visible(element) && /^(view more|show more|show all|see all)$/i.test(norm(element.innerText))
+                );
+                let clicks = 0;
+                for (const button of buttons) {
+                    button.scrollIntoView({block:"center", behavior:"instant"});
+                    button.click();
+                    clicks += 1;
+                }
+                return clicks;
+            }""",
+            {"heading": heading, "scopes": scopes},
+        )
+    except Exception:
+        return 0
+    if result:
+        page.wait_for_timeout(650)
+    return int(result or 0)
+
+
+def _stats_rows_signature(rows):
+    return "|".join(f"{row.get('line')}:{row.get('over')}:{row.get('under')}" for row in rows)
+
+
+def _build_stats_market(heading, label, scope, rows, max_line):
+    selections = []
+    for row in rows:
+        line = clean(row.get("line"))
+        over = clean(row.get("over")).upper()
+        under = clean(row.get("under")).upper()
+        if not re.match(r"^\d+(?:\.\d+)?$", line) or not is_odds(over) or not is_odds(under):
+            continue
+        try:
+            if float(line) > max_line:
+                continue
+        except Exception:
+            continue
+        if not _source_pair_is_plausible(over, under):
+            continue
+        over_extra = {"side":"over", "line":line}
+        under_extra = {"side":"under", "line":line}
+        if scope != "Both Teams Combined":
+            over_extra["team"] = scope
+            under_extra["team"] = scope
+            over_name = f"{scope} Over {line}"
+            under_name = f"{scope} Under {line}"
+        else:
+            over_name = f"Over {line}"
+            under_name = f"Under {line}"
+        selections.append(sel(over_name, over, over_extra))
+        selections.append(sel(under_name, under, under_extra))
+    market_name = f"Total {label} Over / Under" if scope == "Both Teams Combined" else f"{scope} {label} Over / Under"
+    market = dedupe_market(mkt(market_name, selections))
+    market["source_heading"] = heading
+    market["scope"] = scope
+    market["complete_pair_count"] = market.get("selection_count", 0) // 2
+    return market
+
+
+def collect_shots_scope_markets_dom(page, url, home, away):
+    stats_url = _with_market_group(url, STATS_GRP_ID)
+    page.goto(stats_url, wait_until="domcontentloaded", timeout=60000)
+    page.wait_for_timeout(3000)
+    accept_cookies(page)
+    scopes = ["Both Teams Combined", home, away]
+    targets = (("Total Shots", "Shots", 60.5), ("Total Shots on Target", "Shots On Target", 30.5))
+    markets = []
+    audit = []
+    for heading, label, max_line in targets:
+        if not _expand_stats_market(page, heading):
+            audit.append({"heading":heading, "status":"heading_unavailable"})
+            print(f"    {heading}: unavailable")
+            continue
+        seen_scope_signatures = set()
+        for scope in scopes:
+            if not _click_stats_scope(page, heading, scope, scopes):
+                audit.append({"heading":heading, "scope":scope, "status":"scope_click_failed"})
+                print(f"    {heading} / {scope}: scope click failed")
+                continue
+            for _ in range(3):
+                clicks = _expand_stats_view_more(page, heading, scopes)
+                if not clicks:
+                    break
+            best_state = None
+            best_rows = []
+            for _ in range(8):
+                state = _stats_component_state(page, heading, scopes)
+                rows = state.get("rows") or []
+                if len(rows) > len(best_rows):
+                    best_rows = rows
+                    best_state = state
+                page.wait_for_timeout(250)
+            if not best_state or not best_rows:
+                audit.append({"heading":heading, "scope":scope, "status":"no_rows"})
+                print(f"    {heading} / {scope}: no rows")
+                continue
+            signature = _stats_rows_signature(best_rows)
+            if scope != "Both Teams Combined" and signature in seen_scope_signatures:
+                audit.append({"heading":heading, "scope":scope, "status":"duplicate_scope_signature_rejected", "rows":len(best_rows)})
+                print(f"    {heading} / {scope}: duplicate scope rejected")
+                continue
+            seen_scope_signatures.add(signature)
+            market = _build_stats_market(heading, label, scope, best_rows, max_line)
+            pairs = market.get("complete_pair_count", 0)
+            if not pairs:
+                audit.append({"heading":heading, "scope":scope, "status":"no_plausible_complete_pairs", "raw_rows":len(best_rows)})
+                print(f"    {heading} / {scope}: no plausible complete pairs")
+                continue
+            markets.append(market)
+            audit.append({"heading":heading, "scope":scope, "status":"captured", "raw_rows":len(best_rows), "complete_pairs":pairs, "signature":signature})
+            print(f"    {heading} / {scope}: {pairs} complete Over/Under line(s)")
+    return markets, audit
+
+
+def _is_aggregate_shots_market(market):
+    key = normalize(market.get("normalized_market") or market.get("market") or "")
+    return key == "total_shots_over_under" or key == "total_shots_on_target_over_under" or key.endswith("_shots_over_under") or key.endswith("_shots_on_target_over_under")
+
+
+def _expected_aggregate_shots_markets(home, away):
+    return {
+        "total_shots_over_under",
+        normalize(f"{home} Shots Over / Under"),
+        normalize(f"{away} Shots Over / Under"),
+        "total_shots_on_target_over_under",
+        normalize(f"{home} Shots On Target Over / Under"),
+        normalize(f"{away} Shots On Target Over / Under"),
+    }
+
 def scrape_match(page, fixture):
     fixture_started = time.perf_counter()
     url = fixture["url"]
@@ -1230,26 +1611,59 @@ def scrape_match(page, fixture):
         home = parts[0].title()
         away = " ".join(parts[1:]).title()
 
-    shots_started = time.perf_counter()
-    scoped_text = collect_shots_scope_text(page, home, away)
-    shots_scope_seconds = round(
-        time.perf_counter() - shots_started,
-        2,
-    )
-
-    text1_for_parse = text1 + scoped_text
-
-    standard_debug_text = text1_for_parse
+    standard_debug_text = text1
 
     parse_standard_started = time.perf_counter()
     standard_markets = parse_standard_props(
-        text1_for_parse,
+        text1,
         home,
         away,
     )
     standard_parse_seconds = round(
         time.perf_counter() - parse_standard_started,
         2,
+    )
+
+    standard_markets = [
+        market
+        for market in standard_markets
+        if not _is_aggregate_shots_market(market)
+    ]
+
+    shots_started = time.perf_counter()
+    aggregate_shots_markets, aggregate_shots_audit = (
+        collect_shots_scope_markets_dom(
+            page,
+            url,
+            home,
+            away,
+        )
+    )
+    shots_scope_seconds = round(
+        time.perf_counter() - shots_started,
+        2,
+    )
+
+    standard_markets.extend(aggregate_shots_markets)
+
+    aggregate_shots_market_names = {
+        market.get("normalized_market")
+        for market in aggregate_shots_markets
+    }
+    expected_aggregate_shots = _expected_aggregate_shots_markets(home, away)
+    aggregate_shots_status = (
+        "complete"
+        if aggregate_shots_market_names == expected_aggregate_shots
+        else "partial"
+        if aggregate_shots_market_names
+        else "unavailable"
+    )
+
+    print(
+        f"    Aggregate Shots/SOT DOM: "
+        f"{len(aggregate_shots_markets)}/6 markets | "
+        f"{sum(m.get('complete_pair_count', 0) for m in aggregate_shots_markets)} "
+        f"complete line(s)"
     )
 
     print(
@@ -1323,6 +1737,9 @@ def scrape_match(page, fixture):
         "total_cards_over_under",
         "player_to_get_a_card",
         "shots_on_target",
+        "total_shots_over_under",
+        normalize(f"{home} Shots Over / Under"),
+        normalize(f"{away} Shots Over / Under"),
         "total_shots_on_target_over_under",
         normalize(f"{home} Shots On Target Over / Under"),
         normalize(f"{away} Shots On Target Over / Under"),
@@ -1336,7 +1753,7 @@ def scrape_match(page, fixture):
     )
     quality_status = (
         "PASS"
-        if len(all_markets) >= 18 and not missing_required
+        if len(all_markets) >= 21 and not missing_required
         else "FAIL"
     )
 
@@ -1446,6 +1863,8 @@ def scrape_match(page, fixture):
         "missing_required_markets": missing_required,
         "elapsed_seconds": total_seconds,
         "timing": timing,
+        "aggregate_shots_dom_status": aggregate_shots_status,
+        "aggregate_shots_dom_audit": aggregate_shots_audit,
         "markets": all_markets,
     }
 
@@ -1564,13 +1983,13 @@ def validate_production_output(output):
     full_quality = [
         row for row in matches
         if row.get("quality_status") == "PASS"
-        and row.get("market_count", 0) >= 18
+        and row.get("market_count", 0) >= 21
         and not row.get("missing_required_markets")
     ]
 
     if len(full_quality) < 3:
         errors.append(
-            f"Expected at least 3 complete 18-market fixtures; "
+            f"Expected at least 3 complete full-market fixtures; "
             f"got {len(full_quality)}."
         )
 
@@ -1599,9 +2018,9 @@ def validate_production_output(output):
             )
 
         if row.get("quality_status") == "PASS":
-            if row.get("market_count", 0) < 18:
+            if row.get("market_count", 0) < 21:
                 row_errors.append(
-                    "Marked PASS with fewer than 18 markets."
+                    "Marked PASS with fewer than 21 markets."
                 )
             if row.get("missing_required_markets"):
                 row_errors.append(
@@ -1609,7 +2028,7 @@ def validate_production_output(output):
                 )
         elif row.get("market_count", 0) >= 15:
             row_warnings.append(
-                "Rich fixture did not meet the full 18-market requirement."
+                "Rich fixture did not meet the full required-market requirement."
             )
 
         if row_errors:
@@ -1703,7 +2122,7 @@ def print_validation_and_promote(output, source_label):
         f"{report['coupon_shortfall_from_max']}"
     )
     print(
-        f"  Complete 18-market:   "
+        f"  Complete full-market: "
         f"{report['complete_18_market_matches']}"
     )
 

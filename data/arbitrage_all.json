@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-07-01T19:21:42.246071+00:00",
-  "total_arbitrage": 2,
+  "generated_at": "2026-07-02T06:31:57.108309+00:00",
+  "total_arbitrage": 3,
   "sports": {
-    "All": 2,
-    "UFC": 2
+    "All": 3,
+    "UFC": 2,
+    "Football": 1
   },
   "arbitrage": [
     {
@@ -35,6 +36,36 @@
         }
       ],
       "source_file": "ufc/data/arbitrage.json"
+    },
+    {
+      "sport": "Football",
+      "competition": "FIFA World Cup",
+      "event": "Portugal v Croatia",
+      "market": "Total Goals Over Under",
+      "type": "props_ou",
+      "date_label": "",
+      "time": "",
+      "profit_margin_percent": 2.048,
+      "arb_percent": 97.993,
+      "arb_sum": 0.979927,
+      "bookmaker_count": 2,
+      "bookmakers": [
+        {
+          "selection": "Over 1.5",
+          "bookmaker": "Unibet",
+          "odds": "37/100",
+          "decimal_odds": 1.37,
+          "implied_probability": ""
+        },
+        {
+          "selection": "Under 1.5",
+          "bookmaker": "LiveScoreBet",
+          "odds": "3/1",
+          "decimal_odds": 4.0,
+          "implied_probability": ""
+        }
+      ],
+      "source_file": "football/data/arbitrage.json"
     },
     {
       "sport": "UFC",
@@ -73,7 +104,7 @@
     "darts": "C:\\Users\\joete\\odds-board\\darts\\data\\arbitrage.json"
   },
   "source_counts": {
-    "football": 0,
+    "football": 1,
     "ufc": 2,
     "darts": 0
   }
